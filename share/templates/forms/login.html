@@ -1,0 +1,18 @@
+<div id="login-container">
+    <form id="login" method="post">
+        <fieldset>
+            <label for="username">Username</label><input type="text" id="username" name="username" />
+            <label for="password">Password</label><input type="password" id="password" name="password" />
+        </fieldset>
+        <a id="do-login" class="btn btn-primary" href="#">Login</a>
+    </form>
+</div>
+
+<script>
+    $("#do-login").click(function() {
+        $.post('{{ web_link("Login") }}', $('#login').serialize(), function(text, status) {
+            var struct = JSON.parse(text);
+            console.log(struct);
+        });
+    })
+</script>

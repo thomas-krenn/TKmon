@@ -1,0 +1,14 @@
+{
+    "session.name":         "tkmon-loggin-session",
+    "session.lifetime":     3600,
+
+    "template.file":        "main.html",
+
+    "mvc.action.namespace": "\\TKMON\\Action\\Expose",
+
+    "app.version.major":    0,
+    "app.version.minor":    0,
+    "app.version.patch":    0,
+    "app.name":             "tkmon",
+    "app.version.release":  "{app.name}-{app.version.major}.{app.version.minor}.{app.version.patch}"
+}
