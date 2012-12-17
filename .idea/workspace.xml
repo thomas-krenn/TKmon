@@ -20,48 +20,19 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf>
+      <file leaf-file-name="about.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/share/templates/views/about.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="6" column="104" selection-start="432" selection-end="432" vertical-scroll-proportion="-4.8">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="login.html" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/share/templates/forms/login.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="41" column="36" selection-start="1428" selection-end="1428" vertical-scroll-proportion="0.50934577">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="welcome.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/share/templates/views/welcome.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="1" column="0" selection-start="35" selection-end="35" vertical-scroll-proportion="-0.8">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Index.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/TKMON/Action/Expose/Index.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="19" column="0" selection-start="513" selection-end="513" vertical-scroll-proportion="-15.2">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="welcome-guest.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/share/templates/views/welcome-guest.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="9" column="0" selection-start="153" selection-end="153" vertical-scroll-proportion="-7.2">
-              <folding>
-                <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="logout.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/share/templates/forms/logout.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="11" column="6" selection-start="318" selection-end="318" vertical-scroll-proportion="-8.8">
+            <state line="52" column="27" selection-start="1970" selection-end="1970" vertical-scroll-proportion="0.5151869">
               <folding />
             </state>
           </provider>
@@ -70,7 +41,7 @@
       <file leaf-file-name="Dispatcher.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lib/TKMON/Mvc/Dispatcher.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="189" column="50" selection-start="4246" selection-end="4246" vertical-scroll-proportion="-25.0">
+            <state line="175" column="28" selection-start="3784" selection-end="3784" vertical-scroll-proportion="-7.36">
               <folding />
             </state>
           </provider>
@@ -79,34 +50,16 @@
       <file leaf-file-name="base.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/share/templates/base.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="32" column="41" selection-start="1729" selection-end="1729" vertical-scroll-proportion="-16.0">
+            <state line="37" column="45" selection-start="1939" selection-end="1939" vertical-scroll-proportion="-20.92">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Login.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/TKMON/Action/Expose/System/Login.php">
+      <file leaf-file-name="config.json" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/etc/config.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="14" column="5" selection-start="382" selection-end="382" vertical-scroll-proportion="-11.2">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Session.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/NETWAYS/Http/Session.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="186" column="5" selection-start="3645" selection-end="3645" vertical-scroll-proportion="-17.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="User.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/TKMON/Model/User.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="162" column="0" selection-start="3333" selection-end="3333" vertical-scroll-proportion="-13.44">
+            <state line="12" column="5" selection-start="322" selection-end="341" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -122,21 +75,21 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/doc/database.sql" />
         <option value="$PROJECT_DIR$/lib/TKMON/Model/Database/Importer.php" />
         <option value="$PROJECT_DIR$/lib/TKMON/Binary/Web.php" />
         <option value="$PROJECT_DIR$/lib/TKMON/Mvc/Output/JsonReponse.php" />
         <option value="$PROJECT_DIR$/lib/TKMON/Mvc/Output/JsonResponse.php" />
         <option value="$PROJECT_DIR$/lib/TKMON/Exception/UserException.php" />
         <option value="$PROJECT_DIR$/lib/TKMON/Model/User.php" />
-        <option value="$PROJECT_DIR$/lib/TKMON/Mvc/Dispatcher.php" />
-        <option value="$PROJECT_DIR$/share/templates/base.html" />
         <option value="$PROJECT_DIR$/lib/NETWAYS/Http/Session.php" />
         <option value="$PROJECT_DIR$/lib/TKMON/Action/Expose/System/Login.php" />
         <option value="$PROJECT_DIR$/share/templates/forms/logout.html" />
         <option value="$PROJECT_DIR$/share/templates/views/welcome.html" />
         <option value="$PROJECT_DIR$/lib/TKMON/Action/Expose/Index.php" />
         <option value="$PROJECT_DIR$/share/templates/views/welcome-guest.html" />
+        <option value="$PROJECT_DIR$/share/templates/base.html" />
+        <option value="$PROJECT_DIR$/lib/TKMON/Mvc/Dispatcher.php" />
+        <option value="$PROJECT_DIR$/share/templates/views/about.html" />
         <option value="$PROJECT_DIR$/share/templates/forms/login.html" />
       </list>
     </option>
@@ -211,6 +164,16 @@
               <option name="myItemId" value="tk-mon" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tk-mon" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tk-mon" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="var" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
@@ -266,7 +229,11 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="htdocs" />
+              <option name="myItemId" value="templates" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -284,11 +251,25 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="htdocs" />
+              <option name="myItemId" value="templates" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
+              <option name="myItemId" value="forms" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tk-mon" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tk-mon" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="share" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -749,27 +730,6 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/lib/TKMON/Mvc/Output/Json.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="0" selection-start="271" selection-end="271" vertical-scroll-proportion="-12.8">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/TKMON/Mvc/Output/JsonResponse.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="34" column="5" selection-start="899" selection-end="899" vertical-scroll-proportion="0.7943925">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/TKMON/Exception/DispatcherException.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lib/TKMON/Exception/UserException.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="4" column="33" selection-start="68" selection-end="68" vertical-scroll-proportion="0.093457945">
@@ -798,67 +758,88 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/TKMON/Mvc/Dispatcher.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="189" column="50" selection-start="4246" selection-end="4246" vertical-scroll-proportion="-25.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lib/NETWAYS/Http/Session.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="186" column="5" selection-start="3645" selection-end="3645" vertical-scroll-proportion="-17.0">
+        <state line="186" column="5" selection-start="3645" selection-end="3645" vertical-scroll-proportion="0.49649534">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/TKMON/Action/Expose/System/Login.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="5" selection-start="382" selection-end="382" vertical-scroll-proportion="-11.2">
+        <state line="14" column="5" selection-start="382" selection-end="382" vertical-scroll-proportion="0.3271028">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/share/templates/forms/logout.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="6" selection-start="318" selection-end="318" vertical-scroll-proportion="-8.8">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/share/templates/base.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="32" column="41" selection-start="1729" selection-end="1729" vertical-scroll-proportion="-16.0">
+        <state line="11" column="6" selection-start="318" selection-end="318" vertical-scroll-proportion="0.25700936">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/share/templates/views/welcome.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="1" column="0" selection-start="35" selection-end="35" vertical-scroll-proportion="-0.8">
+        <state line="1" column="0" selection-start="35" selection-end="35" vertical-scroll-proportion="0.023364486">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/TKMON/Action/Expose/Index.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="0" selection-start="513" selection-end="513" vertical-scroll-proportion="-15.2">
+        <state line="19" column="0" selection-start="513" selection-end="513" vertical-scroll-proportion="0.44392523">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/share/templates/views/welcome-guest.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="0" selection-start="153" selection-end="153" vertical-scroll-proportion="-7.2">
+        <state line="9" column="0" selection-start="153" selection-end="153" vertical-scroll-proportion="0.21028037">
           <folding>
             <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/share/templates/main.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/TKMON/Mvc/Dispatcher.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="175" column="28" selection-start="3784" selection-end="3784" vertical-scroll-proportion="-7.36">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/etc/config.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="12" column="5" selection-start="322" selection-end="341" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/share/templates/base.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="37" column="45" selection-start="1939" selection-end="1939" vertical-scroll-proportion="-20.92">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/share/templates/views/about.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="6" column="104" selection-start="432" selection-end="432" vertical-scroll-proportion="-4.8">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/share/templates/forms/login.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="41" column="36" selection-start="1428" selection-end="1428" vertical-scroll-proportion="0.50934577">
+        <state line="52" column="27" selection-start="1970" selection-end="1970" vertical-scroll-proportion="0.5151869">
           <folding />
         </state>
       </provider>

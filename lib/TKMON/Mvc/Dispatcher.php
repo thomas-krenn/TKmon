@@ -187,7 +187,8 @@ class Dispatcher
         $template = $this->container['template']->loadTemplate($this->container['config']->get('template.file'));
         return $template->render(array(
             'content'   => $content,
-            'user'      => $this->container['user']
+            'user'      => $this->container['user'],
+            'config'    => $this->container['config']
         ));
     }
 

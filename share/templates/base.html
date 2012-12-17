@@ -35,7 +35,7 @@
                 <a class="brand" href="{{ web_link("Index/Index") }}">{{ app_name }}</a>
 
                 <ul class="nav">
-                    <li><a href="#">DING</a></li>
+                    <li><a href="#tkmon-about" data-toggle="modal">About</a></li>
                 </ul>
 
                 <ul class="nav pull-right">
@@ -50,6 +50,9 @@
                 </ul>
             </div>
         </div>
+
+        {% include "views/about.html" %}
+
         <div class="container-fluid">
             <div class="span2"></div>
             <div class="span10">

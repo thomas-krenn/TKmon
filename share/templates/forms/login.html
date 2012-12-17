@@ -44,13 +44,13 @@
                 } else {
                     $("#errors").append('<div class="alert alert-success">'
                     + 'You are logged in successfully. You will be redirected'
-                    + ' after two second. If not, please <a href="{{ web_link("Index/Index") }}">'
+                    + ' after a second. If not, please <a href="{{ web_link("Index/Index") }}">'
                     + 'follow this link to proceed.</a>'
                     + '</div>');
 
                     setTimeout(function() {
                         window.location.href='{{ web_link("Index/Index") }}';
-                    }, 2000);
+                    }, 1000);
                 }
             })
         };
