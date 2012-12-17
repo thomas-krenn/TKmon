@@ -19,7 +19,7 @@
  *      </div>
  * {% endspaceless %}
  *
- * {# output will be <div><strong>foo</strong></div> #}
+ * {# Output will be <div><strong>foo</strong></div> #}
  * </pre>
  */
 class Twig_TokenParser_Spaceless extends Twig_TokenParser

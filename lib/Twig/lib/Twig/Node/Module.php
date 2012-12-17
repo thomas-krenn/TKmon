@@ -310,7 +310,7 @@ class Twig_Node_Module extends Twig_Node
                     continue;
                 }
 
-                if ($node instanceof Twig_Node_Text && ctype_space($node->getAttribute('data'))) {
+                if ($node instanceof Twig_Node_Text && ctype_space($node->getAttribute('db'))) {
                     continue;
                 }
 

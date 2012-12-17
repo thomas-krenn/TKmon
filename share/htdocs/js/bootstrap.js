@@ -85,14 +85,14 @@
  /* ALERT CLASS DEFINITION
   * ====================== */
 
-  var dismiss = '[data-dismiss="alert"]'
+  var dismiss = '[db-dismiss="alert"]'
     , Alert = function (el) {
         $(el).on('click', dismiss, this.close)
       }
 
   Alert.prototype.close = function (e) {
     var $this = $(this)
-      , selector = $this.attr('data-target')
+      , selector = $this.attr('db-target')
       , $parent
 
     if (!selector) {
@@ -153,7 +153,7 @@
  /* ALERT DATA-API
   * ============== */
 
-  $(document).on('click.alert.data-api', dismiss, Alert.prototype.close)
+  $(document).on('click.alert.db-api', dismiss, Alert.prototype.close)
 
 }(window.jQuery);/* ============================================================
  * bootstrap-button.js v2.2.2
@@ -208,7 +208,7 @@
   }
 
   Button.prototype.toggle = function () {
-    var $parent = this.$element.closest('[data-toggle="buttons-radio"]')
+    var $parent = this.$element.closest('[db-toggle="buttons-radio"]')
 
     $parent && $parent
       .find('.active')
@@ -253,7 +253,7 @@
  /* BUTTON DATA-API
   * =============== */
 
-  $(document).on('click.button.data-api', '[data-toggle^=button]', function (e) {
+  $(document).on('click.button.db-api', '[db-toggle^=button]', function (e) {
     var $btn = $(e.target)
     if (!$btn.hasClass('btn')) $btn = $btn.closest('.btn')
     $btn.button('toggle')
@@ -435,9 +435,9 @@
  /* CAROUSEL DATA-API
   * ================= */
 
-  $(document).on('click.carousel.data-api', '[data-slide]', function (e) {
+  $(document).on('click.carousel.db-api', '[db-slide]', function (e) {
     var $this = $(this), href
-      , $target = $($this.attr('data-target') || (href = $this.attr('href')) && href.replace(/.*(?=#[^\s]+$)/, '')) //strip for ie7
+      , $target = $($this.attr('db-target') || (href = $this.attr('href')) && href.replace(/.*(?=#[^\s]+$)/, '')) //strip for ie7
       , options = $.extend({}, $target.data(), $this.data())
     $target.carousel(options)
     e.preventDefault()
@@ -599,9 +599,9 @@
  /* COLLAPSE DATA-API
   * ================= */
 
-  $(document).on('click.collapse.data-api', '[data-toggle=collapse]', function (e) {
+  $(document).on('click.collapse.db-api', '[db-toggle=collapse]', function (e) {
     var $this = $(this), href
-      , target = $this.attr('data-target')
+      , target = $this.attr('db-target')
         || e.preventDefault()
         || (href = $this.attr('href')) && href.replace(/.*(?=#[^\s]+$)/, '') //strip for ie7
       , option = $(target).data('collapse') ? 'toggle' : $this.data()
@@ -637,10 +637,10 @@
  /* DROPDOWN CLASS DEFINITION
   * ========================= */
 
-  var toggle = '[data-toggle=dropdown]'
+  var toggle = '[db-toggle=dropdown]'
     , Dropdown = function (element) {
-        var $el = $(element).on('click.dropdown.data-api', this.toggle)
-        $('html').on('click.dropdown.data-api', function () {
+        var $el = $(element).on('click.dropdown.db-api', this.toggle)
+        $('html').on('click.dropdown.db-api', function () {
           $el.parent().removeClass('open')
         })
       }
@@ -718,7 +718,7 @@
   }
 
   function getParent($this) {
-    var selector = $this.attr('data-target')
+    var selector = $this.attr('db-target')
       , $parent
 
     if (!selector) {
@@ -763,11 +763,11 @@
    * =================================== */
 
   $(document)
-    .on('click.dropdown.data-api touchstart.dropdown.data-api', clearMenus)
-    .on('click.dropdown touchstart.dropdown.data-api', '.dropdown form', function (e) { e.stopPropagation() })
-    .on('touchstart.dropdown.data-api', '.dropdown-menu', function (e) { e.stopPropagation() })
-    .on('click.dropdown.data-api touchstart.dropdown.data-api'  , toggle, Dropdown.prototype.toggle)
-    .on('keydown.dropdown.data-api touchstart.dropdown.data-api', toggle + ', [role=menu]' , Dropdown.prototype.keydown)
+    .on('click.dropdown.db-api touchstart.dropdown.db-api', clearMenus)
+    .on('click.dropdown touchstart.dropdown.db-api', '.dropdown form', function (e) { e.stopPropagation() })
+    .on('touchstart.dropdown.db-api', '.dropdown-menu', function (e) { e.stopPropagation() })
+    .on('click.dropdown.db-api touchstart.dropdown.db-api'  , toggle, Dropdown.prototype.toggle)
+    .on('keydown.dropdown.db-api touchstart.dropdown.db-api', toggle + ', [role=menu]' , Dropdown.prototype.keydown)
 
 }(window.jQuery);/* =========================================================
  * bootstrap-modal.js v2.2.2
@@ -800,7 +800,7 @@
   var Modal = function (element, options) {
     this.options = options
     this.$element = $(element)
-      .delegate('[data-dismiss="modal"]', 'click.dismiss.modal', $.proxy(this.hide, this))
+      .delegate('[db-dismiss="modal"]', 'click.dismiss.modal', $.proxy(this.hide, this))
     this.options.remote && this.$element.find('.modal-body').load(this.options.remote)
   }
 
@@ -998,10 +998,10 @@
  /* MODAL DATA-API
   * ============== */
 
-  $(document).on('click.modal.data-api', '[data-toggle="modal"]', function (e) {
+  $(document).on('click.modal.db-api', '[db-toggle="modal"]', function (e) {
     var $this = $(this)
       , href = $this.attr('href')
-      , $target = $($this.attr('data-target') || (href && href.replace(/.*(?=#[^\s]+$)/, ''))) //strip for ie7
+      , $target = $($this.attr('db-target') || (href && href.replace(/.*(?=#[^\s]+$)/, ''))) //strip for ie7
       , option = $target.data('modal') ? 'toggle' : $.extend({ remote:!/#/.test(href) && href }, $target.data(), $this.data())
 
     e.preventDefault()
@@ -1200,8 +1200,8 @@
 
   , fixTitle: function () {
       var $e = this.$element
-      if ($e.attr('title') || typeof($e.attr('data-original-title')) != 'string') {
-        $e.attr('data-original-title', $e.attr('title') || '').removeAttr('title')
+      if ($e.attr('title') || typeof($e.attr('db-original-title')) != 'string') {
+        $e.attr('db-original-title', $e.attr('title') || '').removeAttr('title')
       }
     }
 
@@ -1221,7 +1221,7 @@
         , $e = this.$element
         , o = this.options
 
-      title = $e.attr('data-original-title')
+      title = $e.attr('db-original-title')
         || (typeof o.title == 'function' ? o.title.call($e[0]) :  o.title)
 
       return title
@@ -1360,7 +1360,7 @@
         , $e = this.$element
         , o = this.options
 
-      content = $e.attr('data-content')
+      content = $e.attr('db-content')
         || (typeof o.content == 'function' ? o.content.call($e[0]) :  o.content)
 
       return content
@@ -1446,7 +1446,7 @@
       , $element = $(element).is('body') ? $(window) : $(element)
       , href
     this.options = $.extend({}, $.fn.scrollspy.defaults, options)
-    this.$scrollElement = $element.on('scroll.scroll-spy.data-api', process)
+    this.$scrollElement = $element.on('scroll.scroll-spy.db-api', process)
     this.selector = (this.options.target
       || ((href = $(element).attr('href')) && href.replace(/.*(?=#[^\s]+$)/, '')) //strip for ie7
       || '') + ' .nav li > a'
@@ -1516,7 +1516,7 @@
           .removeClass('active')
 
         selector = this.selector
-          + '[data-target="' + target + '"],'
+          + '[db-target="' + target + '"],'
           + this.selector + '[href="' + target + '"]'
 
         active = $(selector)
@@ -1568,7 +1568,7 @@
   * ================== */
 
   $(window).on('load', function () {
-    $('[data-spy="scroll"]').each(function () {
+    $('[db-spy="scroll"]').each(function () {
       var $spy = $(this)
       $spy.scrollspy($spy.data())
     })
@@ -1613,7 +1613,7 @@
   , show: function () {
       var $this = this.element
         , $ul = $this.closest('ul:not(.dropdown-menu)')
-        , selector = $this.attr('data-target')
+        , selector = $this.attr('db-target')
         , previous
         , $target
         , e
@@ -1712,7 +1712,7 @@
  /* TAB DATA-API
   * ============ */
 
-  $(document).on('click.tab.data-api', '[data-toggle="tab"], [data-toggle="pill"]', function (e) {
+  $(document).on('click.tab.db-api', '[db-toggle="tab"], [db-toggle="pill"]', function (e) {
     e.preventDefault()
     $(this).tab('show')
   })
@@ -1763,7 +1763,7 @@
     constructor: Typeahead
 
   , select: function () {
-      var val = this.$menu.find('.active').attr('data-value')
+      var val = this.$menu.find('.active').attr('db-value')
       this.$element
         .val(this.updater(val))
         .change()
@@ -1857,7 +1857,7 @@
       var that = this
 
       items = $(items).map(function (i, item) {
-        i = $(that.options.item).attr('data-value', item)
+        i = $(that.options.item).attr('db-value', item)
         i.find('a').html(that.highlighter(item))
         return i[0]
       })
@@ -2032,7 +2032,7 @@
  /* TYPEAHEAD DATA-API
   * ================== */
 
-  $(document).on('focus.typeahead.data-api', '[data-provide="typeahead"]', function (e) {
+  $(document).on('focus.typeahead.db-api', '[db-provide="typeahead"]', function (e) {
     var $this = $(this)
     if ($this.data('typeahead')) return
     e.preventDefault()
@@ -2071,8 +2071,8 @@
   var Affix = function (element, options) {
     this.options = $.extend({}, $.fn.affix.defaults, options)
     this.$window = $(window)
-      .on('scroll.affix.data-api', $.proxy(this.checkPosition, this))
-      .on('click.affix.data-api',  $.proxy(function () { setTimeout($.proxy(this.checkPosition, this), 1) }, this))
+      .on('scroll.affix.db-api', $.proxy(this.checkPosition, this))
+      .on('click.affix.db-api',  $.proxy(function () { setTimeout($.proxy(this.checkPosition, this), 1) }, this))
     this.$element = $(element)
     this.checkPosition()
   }
@@ -2142,7 +2142,7 @@
   * ============== */
 
   $(window).on('load', function () {
-    $('[data-spy="affix"]').each(function () {
+    $('[db-spy="affix"]').each(function () {
       var $spy = $(this)
         , data = $spy.data()
 

@@ -9,7 +9,7 @@ namespace TKMON\Binary;
 final class Web
 {
     /**
-     * Inits the framework, and output to the world
+     * Inits the framework, and Output to the world
      */
     public static function run()
     {
@@ -76,11 +76,12 @@ final class Web
             $config->set('core.etc_dir', $c['etc_dir']);
             $config->set('core.share_dir', $c['share_dir']);
             $config->set('core.template_dir', '{core.share_dir}/templates');
+            $config->set('core.var_dir', '{core.root_dir}/var');
             $config->set('core.cache_dir', '{core.root_dir}/var/cache');
 
             // Web settings
             $filename = basename($params->getParameter('SCRIPT_FILENAME', null, 'header'));
-            $path = str_replace($filename, '', $params->getParameter('PHP_SELF', null, 'header'));
+            $path = str_replace($filename, '', $params->getParameter('SCRIPT_NAME', null, 'header'));
 
             $config->set('web.path', $path);
             $config->set('web.script', $path. $filename);
@@ -111,6 +112,34 @@ final class Web
         });
 
         /*
+         * Database
+         */
+        $container['db_class'] = '\PDO';
+
+        $container['db'] = $container->share(function($c) {
+            $config = $c['config'];
+
+            $importer = new \TKMON\Model\Database\Importer();
+            $importer->setDatabase($config['db.file']);
+            $importer->setSchema($config['db.schema']);
+
+            if (!$importer->databaseExists()) {
+                $importer->createDefaultDatabase();
+            }
+
+            return new $c['db_class']($config->get('db.dsn'), null, null,
+                array(
+                    \PDO::ATTR_PERSISTENT           => true,
+                    \PDO::ATTR_ERRMODE              => \PDO::ERRMODE_EXCEPTION,
+                    \PDO::ATTR_CASE                 => \PDO::CASE_LOWER,
+                    \PDO::ATTR_DEFAULT_FETCH_MODE   => \PDO::FETCH_ASSOC
+                ));
+        });
+
+        // Trigger the database object to have it ready imported
+        $container['db'];
+
+        /*
          * Session
          */
         $container['session_class'] = 'NETWAYS\Http\Session';
@@ -127,6 +156,16 @@ final class Web
             $session->start();
 
             return $session;
+        });
+
+        /*
+         * User
+         */
+        $container['user_class'] = '\TKMON\Model\User';
+        $container['user'] = $container->share(function($c) {
+            $user = new \TKMON\Model\User($c);
+            $user->initialize();
+            return $user;
         });
 
         /*

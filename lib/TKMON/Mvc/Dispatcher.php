@@ -128,7 +128,7 @@ class Dispatcher
     }
 
     /**
-     * Fills the object with data (action, class) from URL
+     * Fills the object with db (action, class) from URL
      */
     private function initializeData()
     {
@@ -160,12 +160,21 @@ class Dispatcher
 
         $content = $reflectionMethod->invoke($object);
 
-        $testAjax = $this->container['params']->getParameter('HTTP_X_REQUESTED_WITH', false, 'header');
-        if ($testAjax && strtolower($testAjax) === 'xmlhttprequest') {
-            return $content;
-        } else {
-            return $this->renderTemplate($content);
+        if (is_object($content) && $content instanceof \TKMON\Mvc\Output\DataInterface) {
+            if ($this->isAjaxRequest()) {
+                return $content->toString();
+            } else {
+                return $this->renderTemplate($content->toString());
+            }
         }
+
+        throw new \TKMON\Exception\DispatcherException('Output is not type of DataInterface');
+    }
+
+    private function isAjaxRequest() {
+        $testAjax = $this->container['params']->getParameter('HTTP_X_REQUESTED_WITH', false, 'header');
+        return ($testAjax && strtolower($testAjax) === 'xmlhttprequest')
+            ? true : false;
     }
 
     /**
@@ -176,7 +185,10 @@ class Dispatcher
     private function renderTemplate($content)
     {
         $template = $this->container['template']->loadTemplate($this->container['config']->get('template.file'));
-        return $template->render(array('content' => $content));
+        return $template->render(array(
+            'content'   => $content,
+            'user'      => $this->container['user']
+        ));
     }
 
     /**

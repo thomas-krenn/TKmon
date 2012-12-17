@@ -17,7 +17,7 @@ class ArrayObject extends \ArrayObject
     }
 
     /**
-     * Set all data
+     * Set all db
      * @param array $data
      */
     public function setAll(array $data)
@@ -26,7 +26,7 @@ class ArrayObject extends \ArrayObject
     }
 
     /**
-     * Clear all the data
+     * Clear all the db
      */
     public function clear() {
         parent::__construct(array());

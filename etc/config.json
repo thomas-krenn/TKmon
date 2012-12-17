@@ -10,5 +10,9 @@
     "app.version.minor":    0,
     "app.version.patch":    0,
     "app.name":             "tkmon",
-    "app.version.release":  "{app.name}-{app.version.major}.{app.version.minor}.{app.version.patch}"
+    "app.version.release":  "{app.name}-{app.version.major}.{app.version.minor}.{app.version.patch}",
+
+    "db.schema":            "{core.root_dir}/doc/database.sql",
+    "db.file":              "{core.var_dir}/db/default.sqlite",
+    "db.dsn":               "sqlite:{db.file}"
 }

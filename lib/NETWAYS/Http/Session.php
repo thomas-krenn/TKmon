@@ -183,10 +183,11 @@ class Session implements \ArrayAccess, \Countable
             $this->getDomain(), $this->getIsSecured(), true);
         session_destroy();
         unset($_SESSION);
+        $_SESSION=array(); // Throw errors if not
     }
 
     /**
-     * Write data into the session
+     * Write db into the session
      * @param array $data
      */
     public function write(array $data)

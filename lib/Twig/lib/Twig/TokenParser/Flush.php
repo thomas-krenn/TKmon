@@ -10,7 +10,7 @@
  */
 
 /**
- * Flushes the output to the client.
+ * Flushes the Output to the client.
  *
  * @see flush()
  */

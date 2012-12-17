@@ -21,7 +21,7 @@ class CgiParams {
     );
 
     /**
-     * All the data
+     * All the db
      * @var array[ArrayObject}
      */
     private $data = array();
@@ -40,7 +40,7 @@ class CgiParams {
     }
 
     /**
-     * Fills up the object with data
+     * Fills up the object with db
      */
     private function initializeData() {
         foreach ($this->namespaces as $namespace) {
@@ -52,7 +52,7 @@ class CgiParams {
     }
 
     /**
-     * How to get request data
+     * How to get request db
      * @return array
      */
     private function getRequestData()
@@ -61,7 +61,7 @@ class CgiParams {
     }
 
     /**
-     * How to get cookie data
+     * How to get cookie db
      * @return array
      */
     private function getCookieData()
@@ -70,7 +70,7 @@ class CgiParams {
     }
 
     /**
-     * How to get header data
+     * How to get header db
      * @return array
      */
     private function getHeaderData()

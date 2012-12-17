@@ -163,7 +163,7 @@ AddType text/x-vcard                        vcf
     </IfModule>
   </IfModule>
 
-  # Compress all output labeled with one of the following MIME-types
+  # Compress all Output labeled with one of the following MIME-types
   # (for Apache versions below 2.3.7, you don't need to enable `mod_filter`
   # and can remove the `<IfModule mod_filter.c>` and `</IfModule>` lines as
   # `AddOutputFilterByType` is still in the core directives)
@@ -519,7 +519,7 @@ AddCharset utf-8 .atom .css .js .json .rss .vtt .xml
 # php_flag display_startup_errors Off
 
 # Format errors in plain text
-# Note: Leave this setting 'On' for xdebug's var_dump() output
+# Note: Leave this setting 'On' for xdebug's var_dump() Output
 # php_flag html_errors Off
 
 # Show multiple occurrence of error

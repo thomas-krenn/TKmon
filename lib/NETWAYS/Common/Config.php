@@ -9,7 +9,7 @@ namespace NETWAYS\Common;
 class Config extends \ArrayObject
 {
     /**
-     * Array reference to all the data
+     * Array reference to all the db
      * @var array
      */
     private $data = array();

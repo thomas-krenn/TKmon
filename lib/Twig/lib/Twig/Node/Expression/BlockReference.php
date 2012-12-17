@@ -20,7 +20,7 @@ class Twig_Node_Expression_BlockReference extends Twig_Node_Expression
 {
     public function __construct(Twig_NodeInterface $name, $asString = false, $lineno, $tag = null)
     {
-        parent::__construct(array('name' => $name), array('as_string' => $asString, 'output' => false), $lineno, $tag);
+        parent::__construct(array('name' => $name), array('as_string' => $asString, 'Output' => false), $lineno, $tag);
     }
 
     /**
@@ -34,7 +34,7 @@ class Twig_Node_Expression_BlockReference extends Twig_Node_Expression
             $compiler->raw('(string) ');
         }
 
-        if ($this->getAttribute('output')) {
+        if ($this->getAttribute('Output')) {
             $compiler
                 ->addDebugInfo($this)
                 ->write("\$this->displayBlock(")

@@ -10,7 +10,8 @@ class Extension implements \Twig_ExtensionInterface
      */
     private $container;
 
-    public function __construct(\Pimple $container) {
+    public function __construct(\Pimple $container)
+    {
         $this->container = $container;
     }
 
@@ -19,46 +20,57 @@ class Extension implements \Twig_ExtensionInterface
 
     }
 
-    public function getTokenParsers() {
+    public function getTokenParsers()
+    {
         return array();
     }
 
-    public function getNodeVisitors() {
-        return array();
-    }
-
-
-    public function getFilters() {
-        return array();
-    }
-
-    public function getTests() {
-        return array();
-    }
-
-    public function getOperators() {
+    public function getNodeVisitors()
+    {
         return array();
     }
 
 
-    public function getGlobals() {
+    public function getFilters()
+    {
         return array();
     }
 
-    public function getName() {
+    public function getTests()
+    {
+        return array();
+    }
+
+    public function getOperators()
+    {
+        return array();
+    }
+
+
+    public function getGlobals()
+    {
+        return array(
+            'app_name' => $this->container['config']->get('app.name')
+        );
+    }
+
+    public function getName()
+    {
         return 'TKMON MVC Twig extension';
     }
 
-    public function getFunctions() {
+    public function getFunctions()
+    {
         return array(
             'web_link' => new \Twig_Function_Method($this, 'getCurrentUrl')
         );
     }
 
-    public function getCurrentUrl($args) {
+    public function getCurrentUrl($args)
+    {
         $num = func_num_args();
         $params = $this->container['params'];
-        $uri =  $params->getParameter('REQUEST_URI', null, 'header');
+        $uri = $params->getParameter('REQUEST_URI', null, 'header');
 
         if ($num === 0) {
             return $uri;
@@ -70,7 +82,7 @@ class Extension implements \Twig_ExtensionInterface
                 $parts[] = ucfirst($new[0]);
                 return implode('/', $parts);
             } else {
-                return $params->getParameter('SCRIPT_NAME', null, 'header'). '/'. implode('/', $new);
+                return $params->getParameter('SCRIPT_NAME', null, 'header') . '/' . implode('/', $new);
             }
         }
     }

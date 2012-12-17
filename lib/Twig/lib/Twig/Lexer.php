@@ -175,7 +175,7 @@ class Twig_Lexer implements Twig_LexerInterface
                 break;
 
             case $this->options['tag_block'][0]:
-                // raw data?
+                // raw db?
                 if (preg_match($this->regexes['lex_block_raw'], $this->code, $match, null, $this->cursor)) {
                     $this->moveCursor($match[0]);
                     $this->lexRawData();

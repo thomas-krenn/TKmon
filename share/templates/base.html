@@ -30,9 +30,24 @@
         <script src="/js/bootstrap.min.js"></script>
 
         <!-- Add your site or application content here -->
-        <div class="navbar">
+        <div class="navbar navbar-inverse">
             <div class="navbar-inner">
-                <a class="brand" href="#">Title</a>
+                <a class="brand" href="{{ web_link("Index/Index") }}">{{ app_name }}</a>
+
+                <ul class="nav">
+                    <li><a href="#">DING</a></li>
+                </ul>
+
+                <ul class="nav pull-right">
+                    <li><p class="navbar-text">Logged in as {{ user.getName() }}</p></li>
+                {% if user.getAuthenticated == true %}
+                    <li><a href="{{ web_link("System/Login/Logout") }}">Logout</a></li>
+                {% else %}
+                    <li class="divider-vertica">
+                        <a href="{{ web_link("System/Login/Index") }}">Login</a>
+                    </li>
+                {% endif %}
+                </ul>
             </div>
         </div>
         <div class="container-fluid">

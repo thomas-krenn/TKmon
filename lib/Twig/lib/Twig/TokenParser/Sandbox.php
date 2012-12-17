@@ -38,7 +38,7 @@ class Twig_TokenParser_Sandbox extends Twig_TokenParser
         // in a sandbox tag, only include tags are allowed
         if (!$body instanceof Twig_Node_Include) {
             foreach ($body as $node) {
-                if ($node instanceof Twig_Node_Text && ctype_space($node->getAttribute('data'))) {
+                if ($node instanceof Twig_Node_Text && ctype_space($node->getAttribute('db'))) {
                     continue;
                 }
 

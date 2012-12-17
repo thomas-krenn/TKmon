@@ -140,7 +140,7 @@ class Twig_NodeVisitor_Optimizer implements Twig_NodeVisitorInterface
             $node->getNode('expr') instanceof Twig_Node_Expression_BlockReference ||
             $node->getNode('expr') instanceof Twig_Node_Expression_Parent
         ) {
-            $node->getNode('expr')->setAttribute('output', true);
+            $node->getNode('expr')->setAttribute('Output', true);
 
             return $node->getNode('expr');
         }

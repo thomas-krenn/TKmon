@@ -10,7 +10,7 @@
  */
 
 /**
- * Twig_NodeVisitor_Escaper implements output escaping.
+ * Twig_NodeVisitor_Escaper implements Output escaping.
  *
  * @package    twig
  * @author     Fabien Potencier <fabien@symfony.com>

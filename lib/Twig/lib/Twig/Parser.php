@@ -362,9 +362,9 @@ class Twig_Parser implements Twig_ParserInterface
 
     protected function filterBodyNodes(Twig_NodeInterface $node)
     {
-        // check that the body does not contain non-empty output nodes
+        // check that the body does not contain non-empty Output nodes
         if (
-            ($node instanceof Twig_Node_Text && !ctype_space($node->getAttribute('data')))
+            ($node instanceof Twig_Node_Text && !ctype_space($node->getAttribute('db')))
             ||
             (!$node instanceof Twig_Node_Text && !$node instanceof Twig_Node_BlockReference && $node instanceof Twig_NodeOutputInterface)
         ) {
@@ -375,7 +375,7 @@ class Twig_Parser implements Twig_ParserInterface
             throw new Twig_Error_Syntax('A template that extends another one cannot have a body.', $node->getLine(), $this->getFilename());
         }
 
-        // bypass "set" nodes as they "capture" the output
+        // bypass "set" nodes as they "capture" the Output
         if ($node instanceof Twig_Node_Set) {
             return $node;
         }
