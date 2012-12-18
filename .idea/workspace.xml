@@ -12,7 +12,7 @@
   </component>
   <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/tk-mon$tk_mon.coverage" NAME="tk-mon Coverage Results" MODIFIED="1355837964777" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="PhpCoverage" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/tk-mon$tk_mon.coverage" NAME="tk-mon Coverage Results" MODIFIED="1355849497535" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="PhpCoverage" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
@@ -23,54 +23,37 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="Dispatcher.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/TKMON/Mvc/Dispatcher.php">
+      <file leaf-file-name="SimpleStringTest.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tests/TKMON/Tests/Mvc/Output/SimpleStringTest.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="198" column="55" selection-start="4582" selection-end="4582" vertical-scroll-proportion="-9.28">
-              <folding>
-                <element signature="e#6#777#0" expanded="true" />
-              </folding>
+            <state line="15" column="0" selection-start="362" selection-end="362" vertical-scroll-proportion="-12.0">
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Json.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/TKMON/Mvc/Output/Json.php">
+      <file leaf-file-name="JsonTest.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tests/TKMON/Tests/Mvc/Output/JsonTest.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="50" column="21" selection-start="1401" selection-end="1401" vertical-scroll-proportion="-14.32">
-              <folding>
-                <element signature="e#6#777#0" expanded="true" />
-              </folding>
+            <state line="2" column="33" selection-start="40" selection-end="40" vertical-scroll-proportion="-1.6">
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DataInterface.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/TKMON/Mvc/Output/DataInterface.php">
+      <file leaf-file-name="JsonResponseTest.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tests/TKMON/Tests/Mvc/Output/JsonResponseTest.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="47" column="21" selection-start="1314" selection-end="1314" vertical-scroll-proportion="-21.52">
-              <folding>
-                <element signature="e#6#777#0" expanded="true" />
-              </folding>
+            <state line="2" column="33" selection-start="40" selection-end="40" vertical-scroll-proportion="-1.6">
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TwigTemplate.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/TKMON/Mvc/Output/TwigTemplate.php">
+      <file leaf-file-name="SortedFileIterator.php" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/lib/NETWAYS/Common/SortedFileIterator.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="109" column="33" selection-start="2683" selection-end="2683" vertical-scroll-proportion="-8.72">
-              <folding>
-                <element signature="e#6#777#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SimpleString.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/TKMON/Mvc/Output/SimpleString.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="62" column="32" selection-start="1546" selection-end="1546" vertical-scroll-proportion="-15.92">
+            <state line="50" column="48" selection-start="1445" selection-end="1445" vertical-scroll-proportion="0.5799677">
               <folding>
                 <element signature="e#6#777#0" expanded="true" />
               </folding>
@@ -81,52 +64,53 @@
       <file leaf-file-name="JsonResponse.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lib/TKMON/Mvc/Output/JsonResponse.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="83" column="31" selection-start="2222" selection-end="2222" vertical-scroll-proportion="-16.72">
-              <folding>
-                <element signature="e#6#777#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Base.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/TKMON/Action/Base.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="56" column="5" selection-start="1389" selection-end="1389" vertical-scroll-proportion="-6.32">
-              <folding>
-                <element signature="e#6#777#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Index.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/TKMON/Action/Expose/Index.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="26" column="0" selection-start="834" selection-end="906" vertical-scroll-proportion="-17.52">
-              <folding>
-                <element signature="e#6#777#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Login.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/TKMON/Action/Expose/System/Login.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="77" column="21" selection-start="2141" selection-end="2141" vertical-scroll-proportion="-20.8">
+            <state line="68" column="34" selection-start="1912" selection-end="1912" vertical-scroll-proportion="-4.8">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Extension.php" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/lib/TKMON/Twig/Extension.php">
+      <file leaf-file-name="ArrayObjectTest.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tests/NETWAYS/Tests/Common/ArrayObjectTest.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="159" column="28" selection-start="3701" selection-end="3701" vertical-scroll-proportion="0.6440129">
-              <folding>
-                <element signature="e#6#777#0" expanded="true" />
-              </folding>
+            <state line="2" column="0" selection-start="7" selection-end="38" vertical-scroll-proportion="-1.6">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Json.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lib/TKMON/Mvc/Output/Json.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ClassLoaderTest.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tests/NETWAYS/Tests/Common/ClassLoaderTest.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="2" column="31" selection-start="38" selection-end="38" vertical-scroll-proportion="-1.6">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ConfigTest.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tests/NETWAYS/Tests/Common/ConfigTest.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="2" column="31" selection-start="38" selection-end="38" vertical-scroll-proportion="-1.6">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SimpleString.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lib/TKMON/Mvc/Output/SimpleString.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="58" column="27" selection-start="1498" selection-end="1498" vertical-scroll-proportion="-11.96">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -141,22 +125,22 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/lib/TKMON/Model/Database/Importer.php" />
+        <option value="$PROJECT_DIR$/tests/NETWAYS/Data/Config1/2.json" />
+        <option value="$PROJECT_DIR$/tests/NETWAYS/Data/Config2/1.json" />
         <option value="$PROJECT_DIR$/lib/NETWAYS/Common/Config.php" />
-        <option value="$PROJECT_DIR$/lib/NETWAYS/Common/ClassLoader.php" />
-        <option value="$PROJECT_DIR$/lib/NETWAYS/Http/CgiParams.php" />
-        <option value="$PROJECT_DIR$/lib/NETWAYS/Http/Session.php" />
-        <option value="$PROJECT_DIR$/lib/TKMON/Model/User.php" />
-        <option value="$PROJECT_DIR$/lib/TKMON/Mvc/Dispatcher.php" />
-        <option value="$PROJECT_DIR$/lib/TKMON/Mvc/Output/Json.php" />
-        <option value="$PROJECT_DIR$/lib/TKMON/Mvc/Output/DataInterface.php" />
-        <option value="$PROJECT_DIR$/lib/TKMON/Mvc/Output/TwigTemplate.php" />
-        <option value="$PROJECT_DIR$/lib/TKMON/Mvc/Output/SimpleString.php" />
-        <option value="$PROJECT_DIR$/lib/TKMON/Mvc/Output/JsonResponse.php" />
-        <option value="$PROJECT_DIR$/lib/TKMON/Action/Base.php" />
+        <option value="$PROJECT_DIR$/tests/NETWAYS/Tests/ConfigTest.php" />
         <option value="$PROJECT_DIR$/lib/TKMON/Action/Expose/Index.php" />
-        <option value="$PROJECT_DIR$/lib/TKMON/Action/Expose/System/Login.php" />
-        <option value="$PROJECT_DIR$/lib/TKMON/Twig/Extension.php" />
+        <option value="$PROJECT_DIR$/lib/NETWAYS/Http/CgiParams.php" />
+        <option value="$PROJECT_DIR$/tests/NETWAYS/Tests/Http/CgiParamsTest.php" />
+        <option value="$PROJECT_DIR$/tests/NETWAYS/Tests/Http/SessionTest.php" />
+        <option value="$PROJECT_DIR$/tests/TKMON/Tests/Mvc/Output/SimpleString.php" />
+        <option value="$PROJECT_DIR$/tests/NETWAYS/Tests/Common/ArrayObjectTest.php" />
+        <option value="$PROJECT_DIR$/tests/NETWAYS/Tests/Common/ClassLoaderTest.php" />
+        <option value="$PROJECT_DIR$/tests/NETWAYS/Tests/Common/ConfigTest.php" />
+        <option value="$PROJECT_DIR$/tests/TKMON/Tests/Mvc/Output/SimpleStringTest.php" />
+        <option value="$PROJECT_DIR$/tests/TKMON/Tests/Mvc/Output/JsonResponseTest.php" />
+        <option value="$PROJECT_DIR$/tests/TKMON/Tests/Mvc/Output/JsonTest.php" />
+        <option value="$PROJECT_DIR$/lib/NETWAYS/Common/SortedFileIterator.php" />
       </list>
     </option>
   </component>
@@ -212,7 +196,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -273,6 +256,116 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="tests" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tk-mon" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tk-mon" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tests" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="TKMON" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Tests" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Mvc" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Output" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tk-mon" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tk-mon" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tests" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="NETWAYS" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Tests" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tk-mon" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tk-mon" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tests" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="NETWAYS" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Tests" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Common" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tk-mon" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tk-mon" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tests" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="NETWAYS" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tk-mon" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tk-mon" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="lib" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -292,10 +385,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="TKMON" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Twig" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -365,98 +454,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Model" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tk-mon" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tk-mon" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="lib" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TKMON" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Model" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Database" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tk-mon" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tk-mon" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="lib" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TKMON" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Exception" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tk-mon" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tk-mon" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="lib" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TKMON" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Binary" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tk-mon" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tk-mon" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="lib" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TKMON" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="Action" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -484,36 +481,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="Expose" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tk-mon" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tk-mon" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="lib" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TKMON" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Action" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Expose" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="System" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -563,18 +530,19 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="options.lastSelected" value="reference.webide.settings.project.settings.php.debug" />
     <property name="recentsLimit" value="5" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/phpunit.xml" />
+    <property name="options.lastSelected" value="reference.webide.settings.project.settings.php.debug" />
     <property name="restartRequiresConfirmation" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/phpunit.xml" />
     <property name="DefaultHtmlFileTemplate" value="Html5" />
-    <property name="options.searchVisible" value="true" />
     <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="options.searchVisible" value="true" />
   </component>
   <component name="PublishConfig">
     <servers>
@@ -589,6 +557,7 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/tests/NETWAYS/Tests/Common" />
       <recent name="$PROJECT_DIR$/lib/TKMON/Exception" />
       <recent name="$PROJECT_DIR$/lib/NETWAYS/Http" />
       <recent name="$PROJECT_DIR$/lib/NETWAYS" />
@@ -617,14 +586,14 @@
     <configuration default="true" type="PhpLocalRunConfigurationType" factoryName="PHP Console">
       <method />
     </configuration>
+    <configuration default="true" type="PhpUnitRemoteRunConfigurationType" factoryName="PHPUnit on Server">
+      <method />
+    </configuration>
     <configuration default="true" type="JavascriptDebugSession" factoryName="Local">
       <JSDebuggerConfigurationSettings>
         <option name="engineId" value="embedded" />
         <option name="fileUrl" />
       </JSDebuggerConfigurationSettings>
-      <method />
-    </configuration>
-    <configuration default="true" type="PhpUnitRemoteRunConfigurationType" factoryName="PHPUnit on Server">
       <method />
     </configuration>
     <list size="2">
@@ -668,16 +637,16 @@
     <frame x="-1" y="25" width="1922" height="1176" extended-state="7" />
     <editor active="true" />
     <layout>
-      <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.226254" sideWeight="0.6705653" order="0" side_tool="true" content_ui="tabs" />
+      <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.226254" sideWeight="0.67153996" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.23159018" sideWeight="0.21929824" order="1" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.23159018" sideWeight="0.44444445" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.23425826" sideWeight="0.20565303" order="1" side_tool="true" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.23425826" sideWeight="0.67153996" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.23099415" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3294347" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32846004" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -741,88 +710,46 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/lib/NETWAYS/Common/Config.php">
+    <entry file="file://$PROJECT_DIR$/lib/NETWAYS/Common/ArrayObject.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="120" column="6" selection-start="3254" selection-end="3254" vertical-scroll-proportion="-3.28">
-          <folding>
-            <element signature="e#6#777#0" expanded="true" />
-          </folding>
+        <state line="32" column="40" selection-start="1020" selection-end="1250" vertical-scroll-proportion="0.43818465">
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/NETWAYS/Common/ClassLoader.php">
+    <entry file="file://$PROJECT_DIR$/lib/TKMON/Action/Expose/Index.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="198" column="6" selection-start="4276" selection-end="4276" vertical-scroll-proportion="-15.2">
-          <folding>
-            <element signature="e#6#777#0" expanded="true" />
-          </folding>
+        <state line="47" column="0" selection-start="1281" selection-end="1281" vertical-scroll-proportion="0.7198748">
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/NETWAYS/Http/CgiParams.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="102" column="6" selection-start="2370" selection-end="2370" vertical-scroll-proportion="-12.0">
+        <state line="150" column="7" selection-start="3615" selection-end="3615" vertical-scroll-proportion="-27.96">
           <folding>
             <element signature="e#6#777#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/NETWAYS/Tests/Http/CgiParamsTest.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="1" column="0" selection-start="6" selection-end="6" vertical-scroll-proportion="-0.8">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/NETWAYS/Tests/Http/SessionTest.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="49" column="50" selection-start="1245" selection-end="1245" vertical-scroll-proportion="-20.0">
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/NETWAYS/Http/Session.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="192" column="37" selection-start="4104" selection-end="4104" vertical-scroll-proportion="-3.68">
-          <folding>
-            <element signature="e#6#777#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/TKMON/Model/User.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="256" column="0" selection-start="5968" selection-end="5968" vertical-scroll-proportion="-17.52">
-          <folding>
-            <element signature="e#6#777#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/NETWAYS/Tests/ClassLoaderTest.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="36" selection-start="540" selection-end="540" vertical-scroll-proportion="0.24764891">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/TKMON/Mvc/Dispatcher.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="198" column="55" selection-start="4582" selection-end="4582" vertical-scroll-proportion="-9.28">
-          <folding>
-            <element signature="e#6#777#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/TKMON/Mvc/Output/Json.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="50" column="21" selection-start="1401" selection-end="1401" vertical-scroll-proportion="-14.32">
-          <folding>
-            <element signature="e#6#777#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/TKMON/Mvc/Output/DataInterface.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="47" column="21" selection-start="1314" selection-end="1314" vertical-scroll-proportion="-21.52">
-          <folding>
-            <element signature="e#6#777#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/TKMON/Mvc/Output/TwigTemplate.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="109" column="33" selection-start="2683" selection-end="2683" vertical-scroll-proportion="-8.72">
+        <state line="186" column="41" selection-start="4008" selection-end="4008" vertical-scroll-proportion="13.64">
           <folding>
             <element signature="e#6#777#0" expanded="true" />
           </folding>
@@ -831,50 +758,70 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/TKMON/Mvc/Output/SimpleString.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="62" column="32" selection-start="1546" selection-end="1546" vertical-scroll-proportion="-15.92">
-          <folding>
-            <element signature="e#6#777#0" expanded="true" />
-          </folding>
+        <state line="58" column="27" selection-start="1498" selection-end="1498" vertical-scroll-proportion="-11.96">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/TKMON/Mvc/Output/Json.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/NETWAYS/Tests/Common/ArrayObjectTest.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="2" column="0" selection-start="7" selection-end="38" vertical-scroll-proportion="-1.6">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/NETWAYS/Tests/Common/ClassLoaderTest.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="2" column="31" selection-start="38" selection-end="38" vertical-scroll-proportion="-1.6">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/NETWAYS/Tests/Common/ConfigTest.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="2" column="31" selection-start="38" selection-end="38" vertical-scroll-proportion="-1.6">
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/TKMON/Mvc/Output/JsonResponse.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="83" column="31" selection-start="2222" selection-end="2222" vertical-scroll-proportion="-16.72">
-          <folding>
-            <element signature="e#6#777#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/TKMON/Action/Base.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="56" column="5" selection-start="1389" selection-end="1389" vertical-scroll-proportion="-6.32">
-          <folding>
-            <element signature="e#6#777#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/TKMON/Action/Expose/System/Login.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="77" column="21" selection-start="2141" selection-end="2141" vertical-scroll-proportion="-20.8">
+        <state line="68" column="34" selection-start="1912" selection-end="1912" vertical-scroll-proportion="-4.8">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/TKMON/Action/Expose/Index.php">
+    <entry file="file://$PROJECT_DIR$/tests/TKMON/Tests/Mvc/Output/JsonTest.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="26" column="0" selection-start="834" selection-end="906" vertical-scroll-proportion="-17.52">
-          <folding>
-            <element signature="e#6#777#0" expanded="true" />
-          </folding>
+        <state line="2" column="33" selection-start="40" selection-end="40" vertical-scroll-proportion="-1.6">
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/TKMON/Twig/Extension.php">
+    <entry file="file://$PROJECT_DIR$/tests/TKMON/Tests/Mvc/Output/SimpleStringTest.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="159" column="28" selection-start="3701" selection-end="3701" vertical-scroll-proportion="0.6440129">
+        <state line="15" column="0" selection-start="362" selection-end="362" vertical-scroll-proportion="-12.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/TKMON/Tests/Mvc/Output/JsonResponseTest.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="2" column="33" selection-start="40" selection-end="40" vertical-scroll-proportion="-1.6">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/NETWAYS/Common/SortedFileIterator.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="50" column="48" selection-start="1445" selection-end="1445" vertical-scroll-proportion="0.5799677">
           <folding>
             <element signature="e#6#777#0" expanded="true" />
           </folding>

@@ -1,11 +1,7 @@
 <?php
-/**
- * Created by JetBrains PhpStorm.
- * User: mhein
- * Date: 17/12/12
- * Time: 22:33
- * To change this template use File | Settings | File Templates.
- */
+
+namespace NETWAYS\Tests\Common;
+
 class ClassLoaderTest extends \PHPUnit_Framework_TestCase
 {
 
