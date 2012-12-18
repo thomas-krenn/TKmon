@@ -1,10 +1,27 @@
 <?php
+/*
+ * This file is part of TKMON
+ *
+ * TKMON is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * TKMON is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with TKMON.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
 namespace TKMON\Binary;
 
 /**
  * Executor class to run the web stack in a function scope
- * @package TKMON
+ * @package TKMON\Binary
+ * @author Marius Hein <marius.hein@netways.de>
  */
 final class Web
 {
@@ -20,13 +37,13 @@ final class Web
         ini_set('display_errors', true);
         ini_set('error_reporting', E_ALL);
 
-        require $libdir. DIRECTORY_SEPARATOR. 'Pimple'. DIRECTORY_SEPARATOR. 'Pimple.php';
+        require $libdir . DIRECTORY_SEPARATOR . 'Pimple' . DIRECTORY_SEPARATOR . 'Pimple.php';
 
-        require $libdir. DIRECTORY_SEPARATOR. 'NETWAYS'. DIRECTORY_SEPARATOR. 'Common'
-            .DIRECTORY_SEPARATOR. 'ClassLoader.php';
+        require $libdir . DIRECTORY_SEPARATOR . 'NETWAYS' . DIRECTORY_SEPARATOR . 'Common'
+            . DIRECTORY_SEPARATOR . 'ClassLoader.php';
 
-        require $libdir. DIRECTORY_SEPARATOR. 'Twig'. DIRECTORY_SEPARATOR. 'lib'
-            . DIRECTORY_SEPARATOR. 'Twig'. DIRECTORY_SEPARATOR. 'Autoloader.php';
+        require $libdir . DIRECTORY_SEPARATOR . 'Twig' . DIRECTORY_SEPARATOR . 'lib'
+            . DIRECTORY_SEPARATOR . 'Twig' . DIRECTORY_SEPARATOR . 'Autoloader.php';
 
         $container = new \Pimple();
 
@@ -50,14 +67,14 @@ final class Web
          */
         $container['lib_dir'] = $libdir;
         $container['root_dir'] = dirname($libdir);
-        $container['etc_dir'] = $container['root_dir']. DIRECTORY_SEPARATOR. 'etc';
-        $container['share_dir'] = $container['root_dir']. DIRECTORY_SEPARATOR. 'share';
+        $container['etc_dir'] = $container['root_dir'] . DIRECTORY_SEPARATOR . 'etc';
+        $container['share_dir'] = $container['root_dir'] . DIRECTORY_SEPARATOR . 'share';
 
         /*
          * Cgi Params
          */
         $container['params_class'] = 'NETWAYS\Http\CgiParams';
-        $container['params'] = $container->share(function($c) {
+        $container['params'] = $container->share(function ($c) {
             return new $c['params_class']();
         });
 
@@ -65,7 +82,7 @@ final class Web
          * Configuration object
          */
         $container['config_class'] = 'NETWAYS\Common\Config';
-        $container['config'] = $container->share(function($c) {
+        $container['config'] = $container->share(function ($c) {
             $params = $c['params'];
 
             $config = new $c['config_class'];
@@ -84,27 +101,26 @@ final class Web
             $path = str_replace($filename, '', $params->getParameter('SCRIPT_NAME', null, 'header'));
 
             $config->set('web.path', $path);
-            $config->set('web.script', $path. $filename);
+            $config->set('web.script', $path . $filename);
             $config->set('web.img_path', '{web.path}/img');
             $config->set('web.port', $params->getParameter('SERVER_PORT', null, 'header'));
             $config->set('web.domain', $params->getParameter('SERVER_NAME', null, 'header'));
             $config->set('web.https', false); // TODO: This should be detected
 
-            $config->loadFile($c['etc_dir']. DIRECTORY_SEPARATOR. 'config.json');
+            $config->loadFile($c['etc_dir'] . DIRECTORY_SEPARATOR . 'config.json');
             return $config;
         });
 
         /*
          * Template engine
          */
-        $container['template_loader'] = $container->share(function($c) {
+        $container['template_loader'] = $container->share(function ($c) {
             return new \Twig_Loader_Filesystem($c['config']->get('core.template_dir'));
         });
 
-        $container['template'] = $container->share(function($c) {
-           $twig = new \Twig_Environment($c['template_loader'], array(
-               // 'cache' => $c['config']->get('core.cache_dir')
-           ));
+        $container['template'] = $container->share(function ($c) {
+            $twig = new \Twig_Environment($c['template_loader'], array(// 'cache' => $c['config']->get('core.cache_dir')
+            ));
 
             $twig->addExtension(new \TKMON\Twig\Extension($c));
 
@@ -116,7 +132,7 @@ final class Web
          */
         $container['db_class'] = '\PDO';
 
-        $container['db'] = $container->share(function($c) {
+        $container['db'] = $container->share(function ($c) {
             $config = $c['config'];
 
             $importer = new \TKMON\Model\Database\Importer();
@@ -129,10 +145,10 @@ final class Web
 
             return new $c['db_class']($config->get('db.dsn'), null, null,
                 array(
-                    \PDO::ATTR_PERSISTENT           => true,
-                    \PDO::ATTR_ERRMODE              => \PDO::ERRMODE_EXCEPTION,
-                    \PDO::ATTR_CASE                 => \PDO::CASE_LOWER,
-                    \PDO::ATTR_DEFAULT_FETCH_MODE   => \PDO::FETCH_ASSOC
+                    \PDO::ATTR_PERSISTENT => true,
+                    \PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION,
+                    \PDO::ATTR_CASE => \PDO::CASE_LOWER,
+                    \PDO::ATTR_DEFAULT_FETCH_MODE => \PDO::FETCH_ASSOC
                 ));
         });
 
@@ -143,7 +159,7 @@ final class Web
          * Session
          */
         $container['session_class'] = 'NETWAYS\Http\Session';
-        $container['session'] = $container->share(function($c) {
+        $container['session'] = $container->share(function ($c) {
             $config = $c['config'];
 
             $session = new $c['session_class']();
@@ -162,7 +178,7 @@ final class Web
          * User
          */
         $container['user_class'] = '\TKMON\Model\User';
-        $container['user'] = $container->share(function($c) {
+        $container['user'] = $container->share(function ($c) {
             $user = new \TKMON\Model\User($c);
             $user->initialize();
             return $user;
@@ -172,7 +188,7 @@ final class Web
          * Dispatcher
          */
         $container['dispatcher_class'] = '\TKMON\Mvc\Dispatcher';
-        $container['dispatcher'] = $container->share(function($c) {
+        $container['dispatcher'] = $container->share(function ($c) {
             return new $c['dispatcher_class']($c);
         });
 

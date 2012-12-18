@@ -1,40 +1,67 @@
 <?php
+/*
+ * This file is part of TKMON
+ *
+ * TKMON is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * TKMON is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with TKMON.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
 namespace TKMON\Mvc\Output;
 
+/**
+ * This is a predefined json response object to handle
+ * client side handling
+ * @package TKMON/Mvc/Output
+ * @author Marius Hein <marius.hein@netways.de>
+ */
 class JsonResponse extends Json
 {
 
-    const REF_TYPE_SERVER='server';
-    const REF_TYPE_CLIENT='client';
-    const REF_EXCEPTION='exception';
-    const REF_UNKNOWN='unknown';
+    const REF_TYPE_SERVER = 'server';
+    const REF_TYPE_CLIENT = 'client';
+    const REF_EXCEPTION = 'exception';
+    const REF_UNKNOWN = 'unknown';
 
-    public function __construct() {
+    public function __construct()
+    {
         parent::__construct(array(
-            'success'   => false,
-            'errors'    => array(),
-            'data'      => array()
+            'success' => false,
+            'errors' => array(),
+            'data' => array()
         ));
     }
 
-    public function setSuccess($success=true) {
+    public function setSuccess($success = true)
+    {
         $this['success'] = $success;
     }
 
-    public function addError($message, $refType=self::REF_TYPE_SERVER, $ref=self::REF_UNKNOWN) {
+    public function addError($message, $refType = self::REF_TYPE_SERVER, $ref = self::REF_UNKNOWN)
+    {
         $this['errors'][] = array(
-            'message'   => $message,
-            'reftype'   => $refType,
-            'ref'       => $ref
+            'message' => $message,
+            'reftype' => $refType,
+            'ref' => $ref
         );
     }
 
-    public function addException(\Exception $e) {
+    public function addException(\Exception $e)
+    {
         $this->addError($e->getMessage(), self::REF_TYPE_SERVER, self::REF_EXCEPTION);
     }
 
-    public function addData(array $data) {
+    public function addData(array $data)
+    {
         $this['data'][] = $data;
     }
 }

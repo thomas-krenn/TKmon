@@ -1,10 +1,29 @@
 <?php
+/*
+ * This file is part of TKMON
+ *
+ * TKMON is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * TKMON is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with TKMON.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
 namespace NETWAYS\Common;
 
 /**
  * NETWAYS Spl autoloader class which follows the
  * PSR-0 standard to load classes
+ *
+ * @package NETWAYS\Common
+ * @author Marius Hein <marius.hein@netways.de>
  */
 class ClassLoader
 {
@@ -34,7 +53,7 @@ class ClassLoader
      * @param string $namespace
      * @param string $includePath
      */
-    public function __construct($namespace, $includePath='')
+    public function __construct($namespace, $includePath = '')
     {
         $this->setNamespace($namespace);
         $this->setIncludePath($includePath);
@@ -115,7 +134,8 @@ class ClassLoader
     /**
      * Unregister SPL autoloader method
      */
-    public function unregister() {
+    public function unregister()
+    {
         spl_autoload_unregister(array($this, 'loadClass'));
     }
 
@@ -130,7 +150,7 @@ class ClassLoader
             return false;
         }
 
-        require_once (($this->includePath !== null) ? $this->includePath. DIRECTORY_SEPARATOR : '')
+        require_once (($this->includePath !== null) ? $this->includePath . DIRECTORY_SEPARATOR : '')
             . $this->getClassFile($className);
 
         return true;

@@ -1,13 +1,32 @@
 <?php
+/*
+ * This file is part of TKMON
+ *
+ * TKMON is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * TKMON is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with TKMON.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
 namespace NETWAYS\Common;
 
 /**
- * Shorter implementation of ArrayObject
+ * Extended implementation ArrayObject
+ *
+ * @package NETWAYS\Common
+ * @author Marius Hein <marius.hein@netways.de>
  */
 class ArrayObject extends \ArrayObject
 {
-    public function __construct(array $data=null)
+    public function __construct(array $data = null)
     {
         if ($data !== null) {
             parent::__construct($data);
@@ -28,7 +47,8 @@ class ArrayObject extends \ArrayObject
     /**
      * Clear all the db
      */
-    public function clear() {
+    public function clear()
+    {
         parent::__construct(array());
     }
 
@@ -38,7 +58,8 @@ class ArrayObject extends \ArrayObject
      * @param mixed $default
      * @return mixed
      */
-    public function get($index, $default=null) {
+    public function get($index, $default = null)
+    {
         if ($this->offsetExists($index)) {
             return $this->offsetGet($index);
         }
@@ -51,7 +72,8 @@ class ArrayObject extends \ArrayObject
      * @param mixed $index
      * @param mixed $newval
      */
-    public function set($index, $newval) {
+    public function set($index, $newval)
+    {
         return $this->offsetSet($index, $newval);
     }
 
@@ -59,7 +81,8 @@ class ArrayObject extends \ArrayObject
      * Get all in short form
      * @return array
      */
-    public function getAll() {
+    public function getAll()
+    {
         return (array)$this->getArrayCopy();
     }
 }
