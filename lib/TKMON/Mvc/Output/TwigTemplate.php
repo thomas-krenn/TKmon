@@ -1,5 +1,5 @@
 <?php
-/*
+/**
  * This file is part of TKMON
  *
  * TKMON is free software: you can redistribute it and/or modify
@@ -14,6 +14,9 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with TKMON.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ * @author Marius Hein <marius.hein@netways.de>
+ * @copyright 2012-2013 NETWAYS GmbH <info@netways.de>
  */
 
 namespace TKMON\Mvc\Output;
@@ -27,15 +30,23 @@ class TwigTemplate extends \NETWAYS\Common\ArrayObject implements DataInterface
 {
 
     /**
+     * String / path name of the template
      * @var string
      */
     private $templateName;
 
     /**
+     * Current template environment
      * @var \Twig_Environment
      */
     private $twigEnvironment;
 
+    /**
+     * Creates a new object
+     * The template is rendered when you convert it to string
+     * @param \Twig_Environment $twig
+     * @param null|string $templateName
+     */
     public function __construct(\Twig_Environment $twig, $templateName = null)
     {
         $this->twigEnvironment = $twig;
@@ -46,6 +57,7 @@ class TwigTemplate extends \NETWAYS\Common\ArrayObject implements DataInterface
     }
 
     /**
+     * Setter for template name
      * @param string $templateName
      */
     public function setTemplateName($templateName)
@@ -54,6 +66,7 @@ class TwigTemplate extends \NETWAYS\Common\ArrayObject implements DataInterface
     }
 
     /**
+     * Getter for template name
      * @return string
      */
     public function getTemplateName()
@@ -62,6 +75,7 @@ class TwigTemplate extends \NETWAYS\Common\ArrayObject implements DataInterface
     }
 
     /**
+     * Setter for Twig environment
      * @param \Twig_Environment $twigEnvironment
      */
     public function setTwigEnvironment($twigEnvironment)
@@ -70,6 +84,7 @@ class TwigTemplate extends \NETWAYS\Common\ArrayObject implements DataInterface
     }
 
     /**
+     * Getter for Twig Environment
      * @return \Twig_Environment
      */
     public function getTwigEnvironment()
@@ -77,16 +92,28 @@ class TwigTemplate extends \NETWAYS\Common\ArrayObject implements DataInterface
         return $this->twigEnvironment;
     }
 
+    /**
+     * Return the template vars
+     * @return array|mixed
+     */
     public function getData()
     {
         return $this->getArrayCopy();
     }
 
+    /**
+     * Convert to string
+     * @return string
+     */
     public function __toString()
     {
         return $this->toString();
     }
 
+    /**
+     * Convert to string
+     * @return string
+     */
     public function toString()
     {
         $template = $this->twigEnvironment->loadTemplate($this->getTemplateName());

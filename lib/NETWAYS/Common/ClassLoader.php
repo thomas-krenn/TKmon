@@ -1,5 +1,5 @@
 <?php
-/*
+/**
  * This file is part of TKMON
  *
  * TKMON is free software: you can redistribute it and/or modify
@@ -14,6 +14,9 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with TKMON.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ * @author Marius Hein <marius.hein@netways.de>
+ * @copyright 2012-2013 NETWAYS GmbH <info@netways.de>
  */
 
 namespace NETWAYS\Common;
@@ -28,21 +31,25 @@ namespace NETWAYS\Common;
 class ClassLoader
 {
     /**
+     * File extensions
      * @var string
      */
     private $fileExtension = '.php';
 
     /**
+     * Namespace separator
      * @var string
      */
     private $namespaceSeparator = '\\';
 
     /**
+     * Name space responsible for
      * @var string
      */
     private $namespace = '';
 
     /**
+     * Path where including starts
      * @var string
      */
     private $includePath = '';
@@ -60,6 +67,8 @@ class ClassLoader
     }
 
     /**
+     * Setter for fileExtension
+     *
      * @param string $fileExtension
      */
     public function setFileExtension($fileExtension)
@@ -68,6 +77,8 @@ class ClassLoader
     }
 
     /**
+     * Getter for fileExtension
+     *
      * @return string
      */
     public function getFileExtension()
@@ -76,6 +87,8 @@ class ClassLoader
     }
 
     /**
+     * Setter for includePath
+     *
      * @param string $includePath
      */
     public function setIncludePath($includePath)
@@ -84,6 +97,8 @@ class ClassLoader
     }
 
     /**
+     * Getter for includePath
+     *
      * @return string
      */
     public function getIncludePath()
@@ -92,6 +107,8 @@ class ClassLoader
     }
 
     /**
+     * Setter for namespace
+     *
      * @param string $namespace
      */
     public function setNamespace($namespace)
@@ -100,6 +117,8 @@ class ClassLoader
     }
 
     /**
+     * Getter for namespace
+     *
      * @return string
      */
     public function getNamespace()
@@ -108,6 +127,8 @@ class ClassLoader
     }
 
     /**
+     * Setter for namespaceSeparator
+     *
      * @param string $namespaceSeparator
      */
     public function setNamespaceSeparator($namespaceSeparator)
@@ -116,6 +137,8 @@ class ClassLoader
     }
 
     /**
+     * Getter for namespaceSeparator
+     *
      * @return string
      */
     public function getNamespaceSeparator()
@@ -173,6 +196,7 @@ class ClassLoader
 
     /**
      * Returns the file name extracted from class name
+     *
      * @param $className
      * @return mixed
      */

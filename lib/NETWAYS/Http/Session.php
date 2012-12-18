@@ -1,5 +1,5 @@
 <?php
-/*
+/**
  * This file is part of TKMON
  *
  * TKMON is free software: you can redistribute it and/or modify
@@ -14,6 +14,9 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with TKMON.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ * @author Marius Hein <marius.hein@netways.de>
+ * @copyright 2012-2013 NETWAYS GmbH <info@netways.de>
  */
 
 namespace NETWAYS\Http;
@@ -186,6 +189,10 @@ class Session implements \ArrayAccess, \Countable
         session_regenerate_id(true);
     }
 
+    /**
+     * Returns the current session id
+     * @return string
+     */
     public function getSessionId()
     {
         return session_id();

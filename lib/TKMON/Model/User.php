@@ -1,9 +1,30 @@
 <?php
+/**
+ * This file is part of TKMON
+ *
+ * TKMON is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * TKMON is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with TKMON.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ * @author Marius Hein <marius.hein@netways.de>
+ * @copyright 2012-2013 NETWAYS GmbH <info@netways.de>
+ */
 
 namespace TKMON\Model;
 
 /**
  * This is the current user
+ * @package TKMON\Model
+ * @author Marius Hein <marius.hein@netways.de>
  */
 class User
 {
@@ -18,29 +39,52 @@ class User
      */
     const NS_USERID='user.id';
 
+    /**
+     * Field tag id
+     */
     const FIELD_ID='id';
+
+    /**
+     * Field tag name
+     */
     const FIELD_NAME='name';
+
+    /**
+     * Field tag password
+     */
     const FIELD_PASSWORD='password';
+
+    /**
+     * Field tag salt
+     */
     const FIELD_SALT='salt';
 
     /**
+     * DI container
      * @var \Pimple
      */
     protected $container;
     /**
+     * Flag if the user if authenticated
      * @var bool
      */
     protected $authenticated=false;
+
     /**
-     * @var
+     * Name of the user (loginname)
+     * @var string
      */
     protected $name;
+
     /**
-     * @var
+     * User id in database
+     * @var int
      */
     protected $id;
 
     /**
+     * Creates a new user
+     *
      * @param \Pimple $container
      */
     public function __construct(\Pimple $container) {
@@ -48,6 +92,7 @@ class User
     }
 
     /**
+     * Setter for authenticated flag
      * @param bool $authenticated
      */
     public function setAuthenticated($authenticated)
@@ -56,6 +101,7 @@ class User
     }
 
     /**
+     * Getter for authenticated flag
      * @return bool
      */
     public function getAuthenticated()
@@ -64,6 +110,7 @@ class User
     }
 
     /**
+     * Setter for DI container
      * @param \Pimple $container
      */
     public function setContainer($container)
@@ -72,6 +119,7 @@ class User
     }
 
     /**
+     * Getter for DI container
      * @return \Pimple
      */
     public function getContainer()
@@ -80,6 +128,7 @@ class User
     }
 
     /**
+     * Setter for id
      * @param int $id
      */
     public function setId($id)
@@ -88,6 +137,7 @@ class User
     }
 
     /**
+     * Getter for id
      * @return int
      */
     public function getId()
@@ -96,6 +146,7 @@ class User
     }
 
     /**
+     * Setter for name
      * @param string $name
      */
     public function setName($name)
@@ -104,6 +155,7 @@ class User
     }
 
     /**
+     * Getter for name
      * @return string
      */
     public function getName()
@@ -111,6 +163,13 @@ class User
         return $this->name;
     }
 
+    /**
+     * Initialize the user
+     *
+     * Checks if we have a current session and loads userdata
+     * from session into the object. If no valid session there
+     * we create one for you with context 'guest'
+     */
     public function initialize() {
         $session = $this->container['session'];
         if ($session->offsetExists(self::NS_AUTHENTICATED)) {
@@ -129,12 +188,21 @@ class User
         }
     }
 
+    /**
+     * Write data to session object
+     */
     public function write() {
         $session = $this->container['session'];
         $session[self::NS_USERID] = $this->getId();
         $session[self::NS_AUTHENTICATED] = $this->getAuthenticated();
     }
 
+    /**
+     * Return database row as as annay
+     * @param string $fieldValue fieldContent
+     * @param string $fieldName Database field
+     * @return bool|array
+     */
     private function getUserData($fieldValue, $fieldName=self::FIELD_ID) {
         $db = $this->container['db'];
         $statement = $db->prepare('SELECT * from user where '
@@ -150,11 +218,21 @@ class User
         return false;
     }
 
+    /**
+     * Apply data from array to the object
+     * @param array $data
+     */
     private function applyDataToObject(array $data) {
         $this->setId($data[self::FIELD_ID]);
         $this->setName($data[self::FIELD_NAME]);
     }
 
+    /**
+     * Tries to authenticate
+     * @param string $username
+     * @param string $password
+     * @throws \TKMON\Exception\UserException
+     */
     public function doAuthenticate($username, $password) {
 
         if (!$username) {

@@ -1,5 +1,5 @@
 <?php
-/*
+/**
  * This file is part of TKMON
  *
  * TKMON is free software: you can redistribute it and/or modify
@@ -14,6 +14,9 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with TKMON.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ * @author Marius Hein <marius.hein@netways.de>
+ * @copyright 2012-2013 NETWAYS GmbH <info@netways.de>
  */
 
 namespace TKMON\Mvc;
@@ -27,21 +30,25 @@ class Dispatcher
 {
 
     /**
+     * DI container
      * @var null|Pimple
      */
     private $container = null;
 
     /**
+     * Current class
      * @var string
      */
     private $class = '';
 
     /**
+     * Current action
      * @var string
      */
     private $action = '';
 
     /**
+     * Current URI
      * @var string
      */
     private $uri = '';
@@ -188,6 +195,10 @@ class Dispatcher
         throw new \TKMON\Exception\DispatcherException('Output is not type of DataInterface');
     }
 
+    /**
+     * Test the header if we are an ajax request or not
+     * @return bool
+     */
     private function isAjaxRequest() {
         $testAjax = $this->container['params']->getParameter('HTTP_X_REQUESTED_WITH', false, 'header');
         return ($testAjax && strtolower($testAjax) === 'xmlhttprequest')

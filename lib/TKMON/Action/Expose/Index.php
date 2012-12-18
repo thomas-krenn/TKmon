@@ -1,5 +1,5 @@
 <?php
-/*
+/**
  * This file is part of TKMON
  *
  * TKMON is free software: you can redistribute it and/or modify
@@ -14,6 +14,9 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with TKMON.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ * @author Marius Hein <marius.hein@netways.de>
+ * @copyright 2012-2013 NETWAYS GmbH <info@netways.de>
  */
 
 namespace TKMON\Action\Expose;
@@ -26,11 +29,19 @@ namespace TKMON\Action\Expose;
  */
 class Index extends \TKMON\Action\Base
 {
+    /**
+     * Get declared actions
+     * @return array
+     */
     public function getActions()
     {
         return array('Index');
     }
 
+    /**
+     * Index page, say hellow to the world
+     * @return \TKMON\Mvc\Output\TwigTemplate
+     */
     public function actionIndex()
     {
         $user = $this->container['user'];

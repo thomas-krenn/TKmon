@@ -1,5 +1,5 @@
 <?php
-/*
+/**
  * This file is part of TKMON
  *
  * TKMON is free software: you can redistribute it and/or modify
@@ -14,6 +14,9 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with TKMON.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ * @author Marius Hein <marius.hein@netways.de>
+ * @copyright 2012-2013 NETWAYS GmbH <info@netways.de>
  */
 
 namespace TKMON\Action\Expose\System;
@@ -26,11 +29,19 @@ namespace TKMON\Action\Expose\System;
  */
 class Login extends \TKMON\Action\Base
 {
+    /**
+     * Get declared actions
+     * @return array
+     */
     public function getActions()
     {
         return array('Index', 'Login', 'Logout');
     }
 
+    /**
+     * Show login box
+     * @return \TKMON\Mvc\Output\TwigTemplate
+     */
     public function actionIndex()
     {
         $output = new \TKMON\Mvc\Output\TwigTemplate($this->container['template']);
@@ -38,6 +49,10 @@ class Login extends \TKMON\Action\Base
         return $output;
     }
 
+    /**
+     * Login request as ajax
+     * @return \TKMON\Mvc\Output\JsonResponse
+     */
     public function actionLogin()
     {
         $params = $this->container['params'];
@@ -59,6 +74,10 @@ class Login extends \TKMON\Action\Base
         return $r;
     }
 
+    /**
+     * Logout request
+     * @return \TKMON\Mvc\Output\TwigTemplate
+     */
     public function actionLogout()
     {
         $session = $this->container['session'];

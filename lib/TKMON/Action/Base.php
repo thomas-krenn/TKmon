@@ -1,5 +1,5 @@
 <?php
-/*
+/**
  * This file is part of TKMON
  *
  * TKMON is free software: you can redistribute it and/or modify
@@ -14,6 +14,9 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with TKMON.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ * @author Marius Hein <marius.hein@netways.de>
+ * @copyright 2012-2013 NETWAYS GmbH <info@netways.de>
  */
 
 namespace TKMON\Action;
@@ -30,11 +33,13 @@ abstract class Base
     const FLAG_SECURITY = 1;
 
     /**
+     * Our DI container
      * @var \Pimple
      */
     protected $container;
 
     /**
+     * Setter for DI container
      * @param \Pimple $container
      */
     public function setContainer($container)
@@ -43,19 +48,12 @@ abstract class Base
     }
 
     /**
+     * Getter for DI container
      * @return \Pimple
      */
     public function getContainer()
     {
         return $this->container;
-    }
-
-    /**
-     * @param string $name name of the template
-     * @return \Twig_Template
-     */
-    public function createTemplate($name) {
-        return $this->container['template']->loadTemplate($name);
     }
 
     /**
@@ -66,6 +64,10 @@ abstract class Base
         return array();
     }
 
+    /**
+     * Declared actions of the action object
+     * @return array
+     */
     abstract public function getActions();
 
 }

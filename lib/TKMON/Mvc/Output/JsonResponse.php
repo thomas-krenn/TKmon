@@ -1,5 +1,5 @@
 <?php
-/*
+/**
  * This file is part of TKMON
  *
  * TKMON is free software: you can redistribute it and/or modify
@@ -14,6 +14,9 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with TKMON.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ * @author Marius Hein <marius.hein@netways.de>
+ * @copyright 2012-2013 NETWAYS GmbH <info@netways.de>
  */
 
 namespace TKMON\Mvc\Output;
@@ -32,6 +35,9 @@ class JsonResponse extends Json
     const REF_EXCEPTION = 'exception';
     const REF_UNKNOWN = 'unknown';
 
+    /**
+     * Creates a new object
+     */
     public function __construct()
     {
         parent::__construct(array(
@@ -41,11 +47,21 @@ class JsonResponse extends Json
         ));
     }
 
+    /**
+     * Setter for success flag
+     * @param bool $success
+     */
     public function setSuccess($success = true)
     {
         $this['success'] = $success;
     }
 
+    /**
+     * Add a new error to the object
+     * @param string $message
+     * @param string $refType
+     * @param string $ref
+     */
     public function addError($message, $refType = self::REF_TYPE_SERVER, $ref = self::REF_UNKNOWN)
     {
         $this['errors'][] = array(
@@ -55,11 +71,19 @@ class JsonResponse extends Json
         );
     }
 
+    /**
+     * Adds a exception to object
+     * @param \Exception $e
+     */
     public function addException(\Exception $e)
     {
         $this->addError($e->getMessage(), self::REF_TYPE_SERVER, self::REF_EXCEPTION);
     }
 
+    /**
+     * Add a data row to object
+     * @param array $data
+     */
     public function addData(array $data)
     {
         $this['data'][] = $data;
