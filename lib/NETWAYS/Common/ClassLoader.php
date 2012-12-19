@@ -169,12 +169,17 @@ class ClassLoader
      */
     public function loadClass($className)
     {
-        if (!$this->checkNamespace($className)) {
+
+        if ($this->namespace && !$this->checkNamespace($className)) {
             return false;
         }
 
-        require_once (($this->includePath !== null) ? $this->includePath . DIRECTORY_SEPARATOR : '')
+        $file = (($this->includePath !== null) ? $this->includePath . DIRECTORY_SEPARATOR : '')
             . $this->getClassFile($className);
+
+        if (is_file($file)) {
+            require_once $file;
+        }
 
         return true;
     }

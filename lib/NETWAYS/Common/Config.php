@@ -51,9 +51,12 @@ class Config extends \ArrayObject
         $iterator = new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($dir),
             \RecursiveIteratorIterator::CHILD_FIRST);
 
-        foreach ($iterator as $file) {
+        // We need sorting cause of config dependencies
+        $sorted = new SortedFileIterator($iterator);
+
+        foreach ($sorted as $file) {
             if ($file->isFile()) {
-                $this->loadFile($file->getPathname());
+                $this->loadFile($file->getRealPath());
             }
         }
     }
@@ -108,6 +111,11 @@ class Config extends \ArrayObject
      */
     public function get($index, $default=null)
     {
+
+        if (!$this->offsetExists($index)) {
+            return $default;
+        }
+
         $val = $this->offsetGet($index);
         if (!isset($val)) {
             return $default;
@@ -124,19 +132,12 @@ class Config extends \ArrayObject
      */
     private function replaceValueTokens($val)
     {
-        static $max_iterations = 20;
-
         $matches = array();
-        $i = 0;
 
-        while (preg_match_all('/(\{([^\}]+)})/', $val, $matches, PREG_SET_ORDER)) {
+        if (preg_match_all('/(\{([^\}]+)})/', $val, $matches, PREG_SET_ORDER)) {
             for ($i=0; $i<count($matches); $i++) {
                 $newval = $this->get($matches[$i][2], 'NOT_FOUND('. $matches[$i][2]. ')');
                 $val = preg_replace('/'. preg_quote($matches[$i][1]). '/', $newval, $val);
-            }
-
-            if ((++$i) > $max_iterations) {
-                break;
             }
         }
         return $val;

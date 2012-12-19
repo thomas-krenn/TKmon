@@ -14,6 +14,12 @@ final class TestKit {
 
         $classLoader = new \NETWAYS\Common\ClassLoader('TKMON', $libdir);
         $classLoader->register();
+
+        $classLoader = new \NETWAYS\Common\ClassLoader('', $libdir. DIRECTORY_SEPARATOR. 'Twig/lib');
+        $classLoader->register();
+
+        $classLoader = new \NETWAYS\Common\ClassLoader('', $libdir. DIRECTORY_SEPARATOR. 'Pimple');
+        $classLoader->register();
     }
 }
 

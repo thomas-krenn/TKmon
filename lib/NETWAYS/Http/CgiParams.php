@@ -110,6 +110,7 @@ class CgiParams {
         } elseif (in_array($ns, $this->namespaces) === true) {
             return $this->data[$ns];
         }
+        return null;
     }
 
     /**
@@ -149,6 +150,11 @@ class CgiParams {
      * @return array
      */
     public function getAll($ns=null) {
-        return $this->getArrayObject($ns)->getAll();
+        $obj = $this->getArrayObject($ns);
+        if ($obj instanceof \NETWAYS\Common\ArrayObject) {
+            return $obj->getAll();
+        }
+
+        return $obj;
     }
 }
