@@ -29,6 +29,19 @@ namespace NETWAYS\Common;
  */
 class Config extends \ArrayObject
 {
+
+    /**
+     * Persister to store configuration
+     * @var \NETWAYS\Common\Config\PersisterInterface
+     */
+    private $persister;
+
+    /**
+     * Flag to control updates
+     * @var bool
+     */
+    private $allowUpdate = true;
+
     /**
      * Array reference to all the db
      * @var array
@@ -44,10 +57,73 @@ class Config extends \ArrayObject
     }
 
     /**
+     * Setter for a persister
+     * @param \NETWAYS\Common\Config\PersisterInterface $persister
+     */
+    public function setPersister($persister)
+    {
+        $this->persister = $persister;
+    }
+
+    /**
+     * Returns the current persister
+     * @return \NETWAYS\Common\Config\PersisterInterface
+     */
+    public function getPersister()
+    {
+        return $this->persister;
+    }
+
+    /**
+     * Allow updating to persister
+     */
+    public function allowUpdates()
+    {
+        $this->allowUpdate = true;
+    }
+
+    /**
+     * Stop updating to persister
+     */
+    public function stopUpdates()
+    {
+        $this->allowUpdate = false;
+    }
+
+    /**
+     * Internal work method to control values in the persister
+     * @param string $key
+     * @param string $value
+     * @param bool $delete
+     */
+    private function persist($key, $value, $delete = false)
+    {
+        if ($this->allowUpdate === true && $this->persister !== null) {
+            if ($delete === true) {
+                $this->persister->drop($key);
+            } else {
+                $this->persister->persist($key, $value);
+            }
+        }
+    }
+
+    /**
+     * Drops all data in the object
+     */
+    public function clear()
+    {
+        if ($this->allowUpdate === true && $this->persister !== null) {
+            $this->persister->purge();
+        }
+        parent::__construct(array());
+    }
+
+    /**
      * Loads a directory of files
      * @param string $dir Directory
      */
-    public function loadDirectory($dir) {
+    public function loadDirectory($dir)
+    {
         $iterator = new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($dir),
             \RecursiveIteratorIterator::CHILD_FIRST);
 
@@ -78,13 +154,24 @@ class Config extends \ArrayObject
     }
 
     /**
+     * Loads the config object from external interfaces
+     * @param Config\LoadInterface $loader
+     */
+    public function load(\NETWAYS\Common\Config\LoadInterface $loader)
+    {
+        foreach ($loader as $key => $val) {
+            $this->set($key, $val);
+        }
+    }
+
+    /**
      * Setter method for any value on the configuration store
      * @param string $index Index of configuration item
      * @param mixed $newval Value, anything to store
      */
     public function set($index, $newval)
     {
-        return $this->offsetSet($index, $newval);
+        $this->offsetSet($index, $newval);
     }
 
     /**
@@ -98,7 +185,19 @@ class Config extends \ArrayObject
             $newval = $this->replaceValueTokens($newval);
         }
 
+        $this->persist($index, $newval);
+
         return parent::offsetSet($index, $newval);
+    }
+
+    /**
+     * Delete items from object
+     * @param mixed $index
+     */
+    public function offsetUnset($index)
+    {
+        $this->persist($index, null, true);
+        parent::offsetUnset($index);
     }
 
     /**
@@ -109,7 +208,7 @@ class Config extends \ArrayObject
      * @param mixed $default If value is not found
      * @return mixed|null The value found of default value
      */
-    public function get($index, $default=null)
+    public function get($index, $default = null)
     {
 
         if (!$this->offsetExists($index)) {
@@ -135,9 +234,9 @@ class Config extends \ArrayObject
         $matches = array();
 
         if (preg_match_all('/(\{([^\}]+)})/', $val, $matches, PREG_SET_ORDER)) {
-            for ($i=0; $i<count($matches); $i++) {
-                $newval = $this->get($matches[$i][2], 'NOT_FOUND('. $matches[$i][2]. ')');
-                $val = preg_replace('/'. preg_quote($matches[$i][1]). '/', $newval, $val);
+            for ($i = 0; $i < count($matches); $i++) {
+                $newval = $this->get($matches[$i][2], 'NOT_FOUND(' . $matches[$i][2] . ')');
+                $val = preg_replace('/' . preg_quote($matches[$i][1]) . '/', $newval, $val);
             }
         }
         return $val;

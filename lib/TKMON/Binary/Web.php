@@ -146,13 +146,33 @@ final class Web
                 $importer->createDefaultDatabase();
             }
 
-            return new $c['db_class']($config->get('db.dsn'), null, null,
+            $dbo =  new $c['db_class']($config->get('db.dsn'), null, null,
                 array(
                     \PDO::ATTR_PERSISTENT => true,
                     \PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION,
                     \PDO::ATTR_CASE => \PDO::CASE_LOWER,
                     \PDO::ATTR_DEFAULT_FETCH_MODE => \PDO::FETCH_ASSOC
                 ));
+
+            $dbo->exec('PRAGMA temp_store=MEMORY; PRAGMA journal_mode=MEMORY;');
+
+            // Load additional settings from database
+            $pdoLoader = new \NETWAYS\Common\Config\PDOLoader($dbo);
+            $pdoLoader->setTable('config');
+            $pdoLoader->setKeyColumn('name');
+            $pdoLoader->setValueColumn('value');
+
+            $c['config']->load($pdoLoader);
+
+            // Configure persister to write data back
+            $pdoPersister = new \NETWAYS\Common\Config\PDOPersister($dbo);
+            $pdoPersister->setTable('config');
+            $pdoPersister->setKeyColumn('name');
+            $pdoPersister->setValueColumn('value');
+
+            $c['config']->setPersister($pdoPersister);
+
+            return $dbo;
         });
 
         // Trigger the database object to have it ready imported

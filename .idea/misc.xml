@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="Jenkins.Application.Settings">
+    <option name="serverUrl" value="http://net-build.adm.netways.de:8080/" />
+  </component>
   <component name="ProjectResources">
     <default-html-doctype>$APPLICATION_HOME_DIR$/lib/webide.jar!/resources/html5-schema/html5.rnc</default-html-doctype>
   </component>

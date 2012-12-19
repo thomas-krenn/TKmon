@@ -12,4 +12,10 @@ INSERT INTO user VALUES(
   'XnIPQBc7LwMI3MB5jeOVgxbn2fNxczzqTdXci4IC'
 );
 
+CREATE TABLE config(
+  id INTEGER PRIMARY KEY,
+  name TEXT NOT NULL UNIQUE,
+  value TEXT NOT NULL
+);
+
 -- EOF
