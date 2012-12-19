@@ -1,5 +1,7 @@
 <?php
 
+namespace NETWAYS\Tests\Http;
+
 class CgiParamsTest extends \PHPUnit_Framework_TestCase
 {
 
