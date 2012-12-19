@@ -23,10 +23,19 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="TestInit.php" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="TestInit.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tests/TestInit.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="20" column="96" selection-start="733" selection-end="733" vertical-scroll-proportion="0.9661836">
+            <state line="2" column="0" selection-start="25" selection-end="25" vertical-scroll-proportion="-1.6">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SessionTest.php" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/tests/NETWAYS/Tests/Http/SessionTest.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="25" column="64" selection-start="620" selection-end="620" vertical-scroll-proportion="0.39946738">
               <folding />
             </state>
           </provider>
@@ -35,7 +44,7 @@
       <file leaf-file-name="Dispatcher.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lib/TKMON/Mvc/Dispatcher.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="161" column="45" selection-start="3391" selection-end="3391" vertical-scroll-proportion="-4.0">
+            <state line="161" column="45" selection-start="3391" selection-end="3391" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -44,7 +53,7 @@
       <file leaf-file-name="Web.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lib/TKMON/Binary/Web.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="128" column="0" selection-start="4923" selection-end="4923" vertical-scroll-proportion="-3.96">
+            <state line="128" column="0" selection-start="4923" selection-end="4923" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -53,7 +62,7 @@
       <file leaf-file-name="SimpleStringTest.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tests/TKMON/Tests/Mvc/Output/SimpleStringTest.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="2" column="0" selection-start="7" selection-end="40" vertical-scroll-proportion="-1.6">
+            <state line="2" column="0" selection-start="7" selection-end="40" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -80,17 +89,18 @@
         <option value="$PROJECT_DIR$/lib/NETWAYS/Common/SortedFileIterator.php" />
         <option value="$PROJECT_DIR$/tests/TKMON/Data/Template/test.html" />
         <option value="$PROJECT_DIR$/tests/NETWAYS/Tests/Http/CgiParamsTest.php" />
-        <option value="$PROJECT_DIR$/tests/NETWAYS/Tests/Http/SessionTest.php" />
         <option value="$PROJECT_DIR$/lib/NETWAYS/Common/ClassLoader.php" />
         <option value="$PROJECT_DIR$/tests/TKMON/Tests/Mvc/Output/TwigTemplateTest.php" />
         <option value="$PROJECT_DIR$/tests/TestInit.php" />
         <option value="$PROJECT_DIR$/tests/TKMON/Tests/Mvc/DispatcherTest.php" />
+        <option value="$PROJECT_DIR$/tests/NETWAYS/Tests/Http/SessionTest.php" />
       </list>
     </option>
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" interpreter_name="Default" />
   <component name="ProjectFrameBounds">
-    <option name="y" value="117" />
+    <option name="x" value="58" />
+    <option name="y" value="93" />
     <option name="width" value="1719" />
     <option name="height" value="951" />
   </component>
@@ -218,7 +228,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="TKMON" />
+              <option name="myItemId" value="NETWAYS" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -226,11 +236,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Mvc" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Output" />
+              <option name="myItemId" value="Http" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -248,7 +254,29 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="TKMON" />
+              <option name="myItemId" value="NETWAYS" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Tests" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tk-mon" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tk-mon" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tests" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="NETWAYS" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -459,13 +487,13 @@
   <component name="PropertiesComponent">
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="options.lastSelected" value="reference.webide.settings.project.settings.php.debug" />
     <property name="recentsLimit" value="5" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/phpunit.xml" />
+    <property name="options.lastSelected" value="reference.webide.settings.project.settings.php.debug" />
     <property name="restartRequiresConfirmation" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/phpunit.xml" />
     <property name="DefaultHtmlFileTemplate" value="Html5" />
-    <property name="options.searchVisible" value="true" />
     <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="options.searchVisible" value="true" />
   </component>
   <component name="PublishConfig">
     <servers>
@@ -509,14 +537,14 @@
     <configuration default="true" type="PhpLocalRunConfigurationType" factoryName="PHP Console">
       <method />
     </configuration>
+    <configuration default="true" type="PhpUnitRemoteRunConfigurationType" factoryName="PHPUnit on Server">
+      <method />
+    </configuration>
     <configuration default="true" type="JavascriptDebugSession" factoryName="Local">
       <JSDebuggerConfigurationSettings>
         <option name="engineId" value="embedded" />
         <option name="fileUrl" />
       </JSDebuggerConfigurationSettings>
-      <method />
-    </configuration>
-    <configuration default="true" type="PhpUnitRemoteRunConfigurationType" factoryName="PHPUnit on Server">
       <method />
     </configuration>
     <list size="2">
@@ -557,24 +585,24 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="117" width="1719" height="951" extended-state="1" />
-    <editor active="false" />
+    <frame x="58" y="93" width="1719" height="951" extended-state="1" />
+    <editor active="true" />
     <layout>
-      <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25374028" sideWeight="0.5792759" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.23425826" sideWeight="0.20565303" order="1" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.26570916" sideWeight="0.5792759" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.26929983" sideWeight="0.5792759" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.23099415" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.4207241" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.42009684" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32828283" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25374028" sideWeight="0.5792759" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -633,11 +661,16 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/lib/TKMON/Mvc/Output/JsonResponse.php">
+    <entry file="file://$PROJECT_DIR$/tests/TKMON/Tests/Mvc/Output/SimpleStringTest.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="68" column="34" selection-start="1912" selection-end="1912" vertical-scroll-proportion="0.4057377">
+        <state line="2" column="0" selection-start="7" selection-end="40" vertical-scroll-proportion="0.0">
           <folding />
         </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/TKMON/Mvc/Output/JsonResponse.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="68" column="34" selection-start="1912" selection-end="1912" vertical-scroll-proportion="0.4057377" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/tests/TKMON/Tests/Mvc/Output/JsonTest.php">
@@ -658,16 +691,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/tests/TKMON/Data/Template/test.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="13" selection-start="13" selection-end="13" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/NETWAYS/Tests/Http/SessionTest.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="29" selection-start="36" selection-end="36" vertical-scroll-proportion="0.06259781">
-          <folding />
-        </state>
+        <state line="0" column="13" selection-start="13" selection-end="13" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/tests/TKMON/Tests/Mvc/Output/JsonResponseTest.php">
@@ -679,16 +703,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/tests/NETWAYS/Tests/Http/CgiParamsTest.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="35" selection-start="132" selection-end="132" vertical-scroll-proportion="0.21909232">
-          <folding />
-        </state>
+        <state line="7" column="35" selection-start="132" selection-end="132" vertical-scroll-proportion="0.21909232" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/tests/NETWAYS/Tests/Common/ConfigTest.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="1" column="0" selection-start="6" selection-end="38" vertical-scroll-proportion="0.031298906">
-          <folding />
-        </state>
+        <state line="1" column="0" selection-start="6" selection-end="38" vertical-scroll-proportion="0.031298906" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/NETWAYS/Common/ClassLoader.php">
@@ -700,9 +720,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/TKMON/Mvc/Output/TwigTemplate.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="99" column="5" selection-start="2502" selection-end="2502" vertical-scroll-proportion="0.18779343">
-          <folding />
-        </state>
+        <state line="99" column="5" selection-start="2502" selection-end="2502" vertical-scroll-proportion="0.18779343" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/tests/TKMON/Tests/Mvc/Output/TwigTemplateTest.php">
@@ -714,28 +732,35 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/tests/TKMON/Tests/Mvc/Output/SimpleStringTest.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="0" selection-start="7" selection-end="40" vertical-scroll-proportion="-1.6">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/TestInit.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="96" selection-start="733" selection-end="733" vertical-scroll-proportion="0.9661836">
+        <state line="2" column="0" selection-start="7" selection-end="40" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/TKMON/Binary/Web.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="128" column="0" selection-start="4923" selection-end="4923" vertical-scroll-proportion="-3.96">
+        <state line="128" column="0" selection-start="4923" selection-end="4923" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/TKMON/Mvc/Dispatcher.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="161" column="45" selection-start="3391" selection-end="3391" vertical-scroll-proportion="-4.0">
+        <state line="161" column="45" selection-start="3391" selection-end="3391" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/TestInit.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="2" column="0" selection-start="25" selection-end="25" vertical-scroll-proportion="-1.6">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/NETWAYS/Tests/Http/SessionTest.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="25" column="64" selection-start="620" selection-end="620" vertical-scroll-proportion="0.39946738">
           <folding />
         </state>
       </provider>
