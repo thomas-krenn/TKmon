@@ -77,7 +77,10 @@ class CgiParams {
      */
     private function getRequestData()
     {
-        return array_merge($_POST, $_GET);
+        return filter_var_array(
+            array_merge($_POST, $_GET),
+            FILTER_SANITIZE_STRING
+        );
     }
 
     /**
@@ -104,7 +107,7 @@ class CgiParams {
      * @param $ns
      * @return \NETWAYS\Common\ArrayObject
      */
-    private function getArrayObject($ns) {
+    public function getArrayObject($ns) {
         if ($ns === null) {
             return $this->data[$this->defaultNamespace];
         } elseif (in_array($ns, $this->namespaces) === true) {

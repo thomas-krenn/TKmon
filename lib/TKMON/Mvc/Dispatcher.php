@@ -29,6 +29,8 @@ namespace TKMON\Mvc;
 class Dispatcher
 {
 
+    const ACTION_PREFIX = 'action';
+
     /**
      * DI container
      * @var null|Pimple
@@ -175,24 +177,41 @@ class Dispatcher
      */
     public function dispatchRequest()
     {
-        $reflectionClass = $this->getActionReflection($this->class);
-        $object = $reflectionClass->newInstance();
+        try {
+            $reflectionClass = $this->getActionReflection($this->class);
+            $object = $reflectionClass->newInstance();
 
-        $object->setContainer($this->container);
+            $object->setContainer($this->container);
 
-        $reflectionMethod = $this->getActionMethod($object, $reflectionClass, $this->action);
+            $reflectionMethod = $this->getActionMethod($object, $reflectionClass, $this->action);
 
-        $content = $reflectionMethod->invoke($object);
+            $content = $reflectionMethod->invoke($object);
 
-        if (is_object($content) && $content instanceof \TKMON\Mvc\Output\DataInterface) {
+            if (is_object($content) && $content instanceof \TKMON\Mvc\Output\DataInterface) {
+                if ($this->isAjaxRequest()) {
+                    return $content->toString();
+                } else {
+                    return $this->renderTemplate($content->toString());
+                }
+            }
+
+            throw new \TKMON\Exception\DispatcherException('Output is not type of DataInterface');
+        }
+        catch (\TKMON\Exception\DispatcherException $e) {
             if ($this->isAjaxRequest()) {
-                return $content->toString();
+                $response = new \TKMON\Mvc\Output\JsonResponse();
+                $response->setSuccess(false);
+                $response->addException($e);
+                return $response->toString();
             } else {
-                return $this->renderTemplate($content->toString());
+                $response = new \TKMON\Mvc\Output\TwigTemplate($this->container['template']);
+                $response->setTemplateName('views/exception.twig');
+                $response['exception'] = $e;
+                $response['type'] = get_class($e);
+                $response['text'] = (string)$e;
+                return $this->renderTemplate($response->toString());
             }
         }
-
-        throw new \TKMON\Exception\DispatcherException('Output is not type of DataInterface');
     }
 
     /**
@@ -214,9 +233,10 @@ class Dispatcher
     {
         $template = $this->container['template']->loadTemplate($this->container['config']->get('template.file'));
         return $template->render(array(
-            'content'   => $content,
-            'user'      => $this->container['user'],
-            'config'    => $this->container['config']
+            'content'       => $content,
+            'user'          => $this->container['user'],
+            'config'        => $this->container['config'],
+            'navigation'    => $this->container['navigation']
         ));
     }
 
@@ -230,16 +250,12 @@ class Dispatcher
      */
     private function getActionMethod(\TKMON\Action\Base $object, \ReflectionClass $class, $actionName)
     {
-        if (in_array($actionName, $object->getActions())) {
-            $methodName = 'action'. $actionName;
-            if ($class->hasMethod($methodName)) {
-                return $class->getMethod($methodName);
-            }
-
-            throw new \TKMON\Exception\DispatcherException('Method not found: '. $methodName);
+        $methodName = self::ACTION_PREFIX. $actionName;
+        if ($class->hasMethod($methodName)) {
+            return $class->getMethod($methodName);
         }
 
-        throw new \TKMON\Exception\DispatcherException('Action not allowed: '. $actionName);
+        throw new \TKMON\Exception\DispatcherException('Method not found: '. $methodName);
     }
 
     /**

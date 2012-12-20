@@ -19,32 +19,15 @@
  * @copyright 2012-2013 NETWAYS GmbH <info@netways.de>
  */
 
-namespace TKMON\Action\Expose;
+namespace TKMON\Navigation;
 
 /**
- * Index action
+ * Navigation container
  *
- * @package TKMON\Action
+ * @package TKMON\Navigation
  * @author Marius Hein <marius.hein@netways.de>
  */
-class Index extends \TKMON\Action\Base
+class Container extends \NETWAYS\Common\Config
 {
-    /**
-     * Index page, say hellow to the world
-     * @return \TKMON\Mvc\Output\TwigTemplate
-     */
-    public function actionIndex()
-    {
-        $user = $this->container['user'];
-
-        $view = new \TKMON\Mvc\Output\TwigTemplate($this->container['template']);
-
-        if ($user->getAuthenticated() === true) {
-            $view->setTemplateName('views/welcome.twig');
-        } else {
-            $view->setTemplateName('views/welcome-guest.twig');
-        }
-
-        return $view;
-    }
+    // PASS
 }

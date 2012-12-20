@@ -208,6 +208,15 @@ final class Web
         });
 
         /*
+         * Navigation
+         */
+        $container['navigation'] = $container->share(function($c) {
+            $container = new \TKMON\Navigation\Container();
+            $container->loadFile($c['config']['navigation.data']);
+            return $container;
+        });
+
+        /*
          * Dispatcher
          */
         $container['dispatcher_class'] = '\TKMON\Mvc\Dispatcher';

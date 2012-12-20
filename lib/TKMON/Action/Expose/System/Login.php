@@ -29,14 +29,6 @@ namespace TKMON\Action\Expose\System;
  */
 class Login extends \TKMON\Action\Base
 {
-    /**
-     * Get declared actions
-     * @return array
-     */
-    public function getActions()
-    {
-        return array('Index', 'Login', 'Logout');
-    }
 
     /**
      * Show login box
@@ -45,7 +37,7 @@ class Login extends \TKMON\Action\Base
     public function actionIndex()
     {
         $output = new \TKMON\Mvc\Output\TwigTemplate($this->container['template']);
-        $output->setTemplateName('forms/login.html');
+        $output->setTemplateName('forms/login.twig');
         return $output;
     }
 
@@ -55,13 +47,12 @@ class Login extends \TKMON\Action\Base
      */
     public function actionLogin()
     {
-        $params = $this->container['params'];
         $user = $this->container['user'];
 
         $r = new \TKMON\Mvc\Output\JsonResponse();
 
         try {
-            $user->doAuthenticate($params->getParameter('username'), $params->getParameter('password'));
+            $user->doAuthenticate($this->getParameter('username'), $this->getParameter('password'));
             $user->write();
             $r->setSuccess(true);
         } catch (\TKMON\Exception\UserException $e) {
@@ -84,7 +75,7 @@ class Login extends \TKMON\Action\Base
         $session->destroySession();
 
         $template = new \TKMON\Mvc\Output\TwigTemplate($this->container['template']);
-        $template->setTemplateName('forms/logout.html');
+        $template->setTemplateName('forms/logout.twig');
         return $template;
     }
 }

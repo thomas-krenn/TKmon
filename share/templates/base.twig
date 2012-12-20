@@ -51,10 +51,18 @@
             </div>
         </div>
 
-        {% include "views/about.html" %}
+        {% include "views/about.twig" %}
 
         <div class="container-fluid">
-            <div class="span2"></div>
+            <div class="span2">
+                <div class="nav-container">
+                {% import "macros/menu.twig" as menu %}
+                <ul class="nav nav-list">
+                {{ menu.rendertree(navigation.getArrayCopy()) }}
+                </ul>
+                </div>
+            </div>
+
             <div class="span10">
                 {% block content %}
                 {% autoescape false %}

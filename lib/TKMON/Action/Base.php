@@ -30,8 +30,6 @@ namespace TKMON\Action;
 abstract class Base
 {
 
-    const FLAG_SECURITY = 1;
-
     /**
      * Our DI container
      * @var \Pimple
@@ -57,17 +55,29 @@ abstract class Base
     }
 
     /**
-     * Return flags of this action
-     * @return array
+     * Return the request parameters object
+     * @return \NETWAYS\Common\ArrayObject
      */
-    public function getFlags() {
-        return array();
+    protected function getParameters() {
+        return $this->container['params']->getArrayObject('request');
     }
 
     /**
-     * Declared actions of the action object
-     * @return array
+     * Return a specific parameter
+     * @param string $name
+     * @param mixed $default
+     * @return mixed
      */
-    abstract public function getActions();
+    protected function getParameter($name, $default=null) {
+        return $this->container['params']->getParameter($name, $default, 'request');
+    }
+
+    /**
+     * Return the parameter holder
+     * @return \NETWAYS\Http\CgiParams
+     */
+    protected function getParameterHolder() {
+        return $this->container['params'];
+    }
 
 }
