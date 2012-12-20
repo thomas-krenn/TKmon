@@ -1,0 +1,9 @@
+<h2>Configuration</h2>
+<table border="1" cellspacing="2" cellpadding="6">
+    {% for key,item in config %}
+    <tr>
+        <td>{{ key }}</td>
+        <td>{{ item }}</td>
+    </tr>
+    {% endfor %}
+</table>
