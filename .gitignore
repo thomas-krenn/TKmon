@@ -1,2 +1,4 @@
 var/db/default.sqlite
 .idea/workspace.xml
+composer.lock
+vendor/

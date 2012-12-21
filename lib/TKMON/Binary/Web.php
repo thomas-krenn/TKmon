@@ -40,26 +40,7 @@ final class Web
         ini_set('display_errors', true);
         ini_set('error_reporting', E_ALL);
 
-        require $libdir . DIRECTORY_SEPARATOR . 'Pimple' . DIRECTORY_SEPARATOR . 'Pimple.php';
-
-        require $libdir . DIRECTORY_SEPARATOR . 'NETWAYS' . DIRECTORY_SEPARATOR . 'Common'
-            . DIRECTORY_SEPARATOR . 'ClassLoader.php';
-
-        require $libdir . DIRECTORY_SEPARATOR . 'Twig' . DIRECTORY_SEPARATOR . 'lib'
-            . DIRECTORY_SEPARATOR . 'Twig' . DIRECTORY_SEPARATOR . 'Autoloader.php';
-
         $container = new \Pimple();
-
-        // Loader for NETWAYS
-        $loader = new \NETWAYS\Common\ClassLoader('NETWAYS', $libdir);
-        $loader->register();
-
-        // Loader for TKMON
-        $loader = new \NETWAYS\Common\ClassLoader('TKMON', $libdir);
-        $loader->register();
-
-        // Loader for Twig
-        \Twig_Autoloader::register();
 
         // -------------------------------------------------------------------------------------------------------------
         // Build our environment to deliver content to the world
