@@ -86,7 +86,7 @@ final class Web
 
             $config->set('web.path', $path);
             $config->set('web.script', $path . $filename);
-            $config->set('web.img_path', '{web.path}/img');
+            $config->set('web.img_path', '{web.path}img');
             $config->set('web.port', $params->getParameter('SERVER_PORT', null, 'header'));
             $config->set('web.domain', $params->getParameter('SERVER_NAME', null, 'header'));
             $config->set('web.https', false); // TODO: This should be detected
@@ -189,20 +189,21 @@ final class Web
         });
 
         /*
-         * Navigation
-         */
-        $container['navigation'] = $container->share(function($c) {
-            $container = new \TKMON\Navigation\Container();
-            $container->loadFile($c['config']['navigation.data']);
-            return $container;
-        });
-
-        /*
          * Dispatcher
          */
         $container['dispatcher_class'] = '\TKMON\Mvc\Dispatcher';
         $container['dispatcher'] = $container->share(function ($c) {
             return new $c['dispatcher_class']($c);
+        });
+
+        /*
+         * Navigation
+         */
+        $container['navigation'] = $container->share(function($c) {
+            $container = new \TKMON\Navigation\Container($c['user']);
+            $container->loadFile($c['config']['navigation.data']);
+            $container->setUri($c['dispatcher']->getUri());
+            return $container;
         });
 
         echo $container['dispatcher']->dispatchRequest();

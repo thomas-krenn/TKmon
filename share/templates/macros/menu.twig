@@ -1,10 +1,8 @@
 {% macro rendertree(links) %}
     {% for link in links %}
-        {% if link.type == 'header' %}
-            <li class="nav-header">
-        {% else %}
-            <li>
-        {% endif %}
+    {%  if link.hide == false %}
+
+        <li class="{{ link.class }}">
 
         {% if link.type == 'header' %}
             {{ link.title }}
@@ -18,5 +16,7 @@
             </ul>
         {% endif %}
         </li>
+
+    {% endif %}
     {% endfor %}
 {% endmacro %}

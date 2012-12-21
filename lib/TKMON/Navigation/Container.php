@@ -29,5 +29,134 @@ namespace TKMON\Navigation;
  */
 class Container extends \NETWAYS\Common\Config
 {
-    // PASS
+
+    /**
+     * The current user
+     * @var \TKMON\Model\User
+     */
+    private $user;
+
+    /**
+     * The current action path
+     * @var string
+     */
+    private $uri;
+
+    /**
+     * Creates a new object
+     * @param \TKMON\Model\User $user
+     */
+    public function __construct(\TKMON\Model\User $user)
+    {
+        parent::__construct();
+        $this->user = $user;
+    }
+
+    /**
+     * Setter for current user
+     * @param \TKMON\Model\User $user
+     */
+    public function setUser($user)
+    {
+        $this->user = $user;
+    }
+
+    /**
+     * Getter for current user
+     * @return \TKMON\Model\User
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * Setter for current URI
+     * @param string $uri
+     */
+    public function setUri($uri)
+    {
+        $this->uri = $uri;
+    }
+
+    /**
+     * Getter for current URI
+     * @return string
+     */
+    public function getUri()
+    {
+        return $this->uri;
+    }
+
+    /**
+     * Item modifier
+     * Adds css classes and attributes to nav item
+     * @param \stdClass &$item
+     */
+    private function testMenuItem(\stdClass &$item)
+    {
+
+        // Prepare for later string handling
+        $item->class = '';
+
+        // Other header layout
+        if (isset($item->type) && $item->type == 'header') {
+            $item->class .= ' nav-header';
+        }
+
+        // Mark active items
+        if (isset($item->href) && '/'. $item->href == $this->uri) {
+            $item->active = true;
+            $item->class .= ' active';
+        } else {
+            $item->active = false;
+        }
+
+        if (isset($item->hide)) {
+            return;
+        }
+
+        // ublic visible actions
+        if (isset($item->allowGuest) && $item->allowGuest === true) {
+            $item->hide = false;
+            return;
+        }
+
+        // Default case, user have to be authenticated
+        if ($this->user->getAuthenticated() === false) {
+            $item->hide = true;
+            return;
+        }
+
+        $item->hide = false;
+    }
+
+    /**
+     * Recursive object walk
+     * @param array $items
+     */
+    private function walkStructure(array &$items) {
+        foreach ($items as &$item) {
+            $this->testMenuItem($item);
+
+            if (isset($item->items) && is_array($item->items)) {
+                $this->walkStructure($item->items);
+            }
+        }
+    }
+
+    /**
+     * Returns a modified version
+     * @return array|void
+     */
+    public function getArrayCopy()
+    {
+        $array = parent::getArrayCopy();
+
+        if (is_array($array)) {
+            $this->walkStructure($array);
+        }
+
+        return $array;
+    }
 }

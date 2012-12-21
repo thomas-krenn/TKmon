@@ -1,8 +1,16 @@
 [
     {
-        "title": "Home",
-        "description": "Welcome screen",
-        "href": "Index/Index"
+        "title": "Basic",
+        "type": "header",
+        "allowGuest": true,
+        "items": [
+            {
+                "title": "Home",
+                "description": "Go home",
+                "href": "Index/Index",
+                "allowGuest": true
+            }
+        ]
     },
 
     {
@@ -41,9 +49,5 @@
                 "href": "System/Configuration/Advanced/Free"
             }
         ]
-    }, {
-        "title": "System",
-        "description": "NavItem 2",
-        "href": "Index/Index"
     }
 ]

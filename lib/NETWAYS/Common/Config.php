@@ -43,20 +43,6 @@ class Config extends \ArrayObject
     private $allowUpdate = true;
 
     /**
-     * Array reference to all the db
-     * @var array
-     */
-    private $data = array();
-
-    /**
-     * Constructor, creates a new instance of the object
-     */
-    public function __construct()
-    {
-        parent::__construct($this->data);
-    }
-
-    /**
      * Setter for a persister
      * @param \NETWAYS\Common\Config\PersisterInterface $persister
      */
@@ -144,7 +130,7 @@ class Config extends \ArrayObject
     public function loadFile($file)
     {
         if (is_file($file)) {
-            $array = (array)json_decode(file_get_contents($file), true);
+            $array = (array)json_decode(file_get_contents($file), false);
             if (count($array)) {
                 foreach ($array as $index => $newval) {
                     $this->offsetSet($index, $newval);
