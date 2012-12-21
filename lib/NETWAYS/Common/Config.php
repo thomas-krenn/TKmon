@@ -110,8 +110,10 @@ class Config extends \ArrayObject
      */
     public function loadDirectory($dir)
     {
-        $iterator = new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($dir),
-            \RecursiveIteratorIterator::CHILD_FIRST);
+        $iterator = new \RecursiveIteratorIterator(
+            new \RecursiveDirectoryIterator($dir),
+            \RecursiveIteratorIterator::CHILD_FIRST
+        );
 
         // We need sorting cause of config dependencies
         $sorted = new SortedFileIterator($iterator);

@@ -32,32 +32,32 @@ class User
     /**
      * Session id for authenticated flag
      */
-    const NS_AUTHENTICATED='user.authenticated';
+    const NS_AUTHENTICATED = 'user.authenticated';
 
     /**
      * Session id for id flag
      */
-    const NS_USERID='user.id';
+    const NS_USERID = 'user.id';
 
     /**
      * Field tag id
      */
-    const FIELD_ID='id';
+    const FIELD_ID = 'id';
 
     /**
      * Field tag name
      */
-    const FIELD_NAME='name';
+    const FIELD_NAME = 'name';
 
     /**
      * Field tag password
      */
-    const FIELD_PASSWORD='password';
+    const FIELD_PASSWORD = 'password';
 
     /**
      * Field tag salt
      */
-    const FIELD_SALT='salt';
+    const FIELD_SALT = 'salt';
 
     /**
      * DI container
@@ -68,7 +68,7 @@ class User
      * Flag if the user if authenticated
      * @var bool
      */
-    protected $authenticated=false;
+    protected $authenticated = false;
 
     /**
      * Name of the user (loginname)
@@ -87,7 +87,8 @@ class User
      *
      * @param \Pimple $container
      */
-    public function __construct(\Pimple $container) {
+    public function __construct(\Pimple $container)
+    {
         $this->container = $container;
     }
 
@@ -170,7 +171,8 @@ class User
      * from session into the object. If no valid session there
      * we create one for you with context 'guest'
      */
-    public function initialize() {
+    public function initialize()
+    {
         $session = $this->container['session'];
         if ($session->offsetExists(self::NS_AUTHENTICATED)) {
             $this->setAuthenticated((bool)$session->offsetGet(self::NS_AUTHENTICATED));
@@ -191,7 +193,8 @@ class User
     /**
      * Write data to session object
      */
-    public function write() {
+    public function write()
+    {
         $session = $this->container['session'];
         $session[self::NS_USERID] = $this->getId();
         $session[self::NS_AUTHENTICATED] = $this->getAuthenticated();
@@ -203,10 +206,13 @@ class User
      * @param string $fieldName Database field
      * @return bool|array
      */
-    private function getUserData($fieldValue, $fieldName=self::FIELD_ID) {
+    private function getUserData($fieldValue, $fieldName = self::FIELD_ID)
+    {
         $db = $this->container['db'];
-        $statement = $db->prepare('SELECT * from user where '
-            . $fieldName. '=:value LIMIT 1;');
+        $statement = $db->prepare(
+            'SELECT * from user where '
+            . $fieldName . '=:value LIMIT 1;'
+        );
 
         $statement->bindValue(':value', $fieldValue, \PDO::PARAM_STR);
         $re = $statement->execute();
@@ -222,7 +228,8 @@ class User
      * Apply data from array to the object
      * @param array $data
      */
-    private function applyDataToObject(array $data) {
+    private function applyDataToObject(array $data)
+    {
         $this->setId($data[self::FIELD_ID]);
         $this->setName($data[self::FIELD_NAME]);
     }
@@ -233,7 +240,8 @@ class User
      * @param string $password
      * @throws \TKMON\Exception\UserException
      */
-    public function doAuthenticate($username, $password) {
+    public function doAuthenticate($username, $password)
+    {
 
         if (!$username) {
             throw new \TKMON\Exception\UserException('Username is mandatory.');
@@ -255,6 +263,6 @@ class User
             }
         }
 
-        throw new \TKMON\Exception\UserException('Could not authenticate user: '. $username);
+        throw new \TKMON\Exception\UserException('Could not authenticate user: ' . $username);
     }
 }

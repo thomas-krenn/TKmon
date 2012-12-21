@@ -34,11 +34,11 @@ class Advanced extends \TKMON\Action\Base
      * Display all config settings
      * @return \TKMON\Mvc\Output\TwigTemplate
      */
-    public function actionFree() {
+    public function actionFree()
+    {
         $template = new \TKMON\Mvc\Output\TwigTemplate($this->container['template']);
         $template->setTemplateName('views/System/Configuration/Free.twig');
         $template['config'] = $this->container['config'];
         return $template;
     }
-
 }

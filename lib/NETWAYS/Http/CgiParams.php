@@ -30,8 +30,8 @@ namespace NETWAYS\Http;
  * @package NETWAYS\Http
  * @author Marius Hein <marius.hein@netways.de>
  */
-class CgiParams {
-
+class CgiParams
+{
     /**
      * What we can hold
      * @var array
@@ -55,18 +55,20 @@ class CgiParams {
     /**
      * Creates a new parameter holder object
      */
-    public function __construct() {
+    public function __construct()
+    {
         $this->initializeData();
     }
 
     /**
      * Fills up the object with db
      */
-    private function initializeData() {
+    private function initializeData()
+    {
         foreach ($this->namespaces as $namespace) {
             $this->data[$namespace] = new \NETWAYS\Common\ArrayObject();
 
-            $method = 'get'. ucfirst($namespace). 'Data';
+            $method = 'get' . ucfirst($namespace) . 'Data';
             $this->data[$namespace]->setAll(call_user_func(array($this, $method)));
         }
     }
@@ -107,7 +109,8 @@ class CgiParams {
      * @param $ns
      * @return \NETWAYS\Common\ArrayObject
      */
-    public function getArrayObject($ns) {
+    public function getArrayObject($ns)
+    {
         if ($ns === null) {
             return $this->data[$this->defaultNamespace];
         } elseif (in_array($ns, $this->namespaces) === true) {
@@ -123,7 +126,8 @@ class CgiParams {
      * @param string $ns
      * @return mixed
      */
-    public function getParameter($name, $default=null, $ns=null) {
+    public function getParameter($name, $default = null, $ns = null)
+    {
         return $this->getArrayObject($ns)->get($name, $default);
     }
 
@@ -133,7 +137,8 @@ class CgiParams {
      * @param mixed $value
      * @param string $ns
      */
-    public function setParameter($name, $value, $ns=null) {
+    public function setParameter($name, $value, $ns = null)
+    {
         return $this->getArrayObject($ns)->set($name, $value);
     }
 
@@ -143,7 +148,8 @@ class CgiParams {
      * @param string $ns
      * @return bool
      */
-    public function hasParameter($name, $ns=null) {
+    public function hasParameter($name, $ns = null)
+    {
         return $this->getArrayObject($ns)->offsetExists($name);
     }
 
@@ -152,7 +158,8 @@ class CgiParams {
      * @param string $ns
      * @return array
      */
-    public function getAll($ns=null) {
+    public function getAll($ns = null)
+    {
         $obj = $this->getArrayObject($ns);
         if ($obj instanceof \NETWAYS\Common\ArrayObject) {
             return $obj->getAll();

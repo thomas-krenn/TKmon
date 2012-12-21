@@ -27,4 +27,5 @@ namespace TKMON\Exception;
  * @author Marius Hein <marius.hein@netways.de>
  */
 class BaseException extends \Exception
-{}
+{
+}

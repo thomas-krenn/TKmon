@@ -58,7 +58,8 @@ abstract class Base
      * Return the request parameters object
      * @return \NETWAYS\Common\ArrayObject
      */
-    protected function getParameters() {
+    protected function getParameters()
+    {
         return $this->container['params']->getArrayObject('request');
     }
 
@@ -68,7 +69,8 @@ abstract class Base
      * @param mixed $default
      * @return mixed
      */
-    protected function getParameter($name, $default=null) {
+    protected function getParameter($name, $default = null)
+    {
         return $this->container['params']->getParameter($name, $default, 'request');
     }
 
@@ -76,8 +78,8 @@ abstract class Base
      * Return the parameter holder
      * @return \NETWAYS\Http\CgiParams
      */
-    protected function getParameterHolder() {
+    protected function getParameterHolder()
+    {
         return $this->container['params'];
     }
-
 }

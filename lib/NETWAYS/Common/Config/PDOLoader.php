@@ -171,9 +171,13 @@ class PDOLoader implements LoadInterface
     public function prepareLoading()
     {
         if ($this->statement === null) {
-            $sql = sprintf('SELECT %s,%s from %s ORDER BY %s;',
-                $this->getKeyColumn(), $this->getValueColumn(),
-                $this->getTable(), $this->getKeyColumn());
+            $sql = sprintf(
+                'SELECT %s,%s from %s ORDER BY %s;',
+                $this->getKeyColumn(),
+                $this->getValueColumn(),
+                $this->getTable(),
+                $this->getKeyColumn()
+            );
 
             $this->statement = $this->getPdo()->prepare($sql);
         }

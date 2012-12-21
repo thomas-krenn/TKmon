@@ -40,11 +40,13 @@ class JsonResponse extends Json
      */
     public function __construct()
     {
-        parent::__construct(array(
-            'success' => false,
-            'errors' => array(),
-            'data' => array()
-        ));
+        parent::__construct(
+            array(
+                'success' => false,
+                'errors' => array(),
+                'data' => array()
+            )
+        );
     }
 
     /**

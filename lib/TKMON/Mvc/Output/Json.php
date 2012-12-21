@@ -54,5 +54,4 @@ class Json extends \NETWAYS\Common\ArrayObject implements DataInterface
     {
         return json_encode((array)$this);
     }
-
 }

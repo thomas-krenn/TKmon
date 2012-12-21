@@ -27,4 +27,5 @@ namespace NETWAYS\Common;
  * @author Marius Hein <marius.hein@netways.de>
  */
 class Exception extends \Exception
-{}
+{
+}

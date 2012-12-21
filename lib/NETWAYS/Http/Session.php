@@ -28,7 +28,6 @@ namespace NETWAYS\Http;
  */
 class Session implements \ArrayAccess, \Countable
 {
-
     /**
      * Session name
      * @var string
@@ -170,9 +169,13 @@ class Session implements \ArrayAccess, \Countable
     public function start()
     {
         if ($this->isConfigured() === true) {
-            session_set_cookie_params($this->getLifetime(), $this->getPath(),
-                $this->getDomain(), $this->getIsSecured(), true);
-
+            session_set_cookie_params(
+                $this->getLifetime(),
+                $this->getPath(),
+                $this->getDomain(),
+                $this->getIsSecured(),
+                true
+            );
 
             session_name($this->getName());
             return session_start();
@@ -203,8 +206,15 @@ class Session implements \ArrayAccess, \Countable
      */
     public function destroySession()
     {
-        setcookie($this->getName(), '', -3600, $this->getPath(),
-            $this->getDomain(), $this->getIsSecured(), true);
+        setcookie(
+            $this->getName(),
+            '',
+            -3600,
+            $this->getPath(),
+            $this->getDomain(),
+            $this->getIsSecured(),
+            true
+        );
         session_destroy();
         unset($_SESSION);
         $_SESSION=array(); // Throw errors if not

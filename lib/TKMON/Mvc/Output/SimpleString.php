@@ -39,7 +39,8 @@ class SimpleString implements DataInterface
      * Create a new object
      * @param string $string
      */
-    public function __construct($string) {
+    public function __construct($string)
+    {
         $this->data = $string;
     }
 
@@ -47,7 +48,8 @@ class SimpleString implements DataInterface
      * Convert the object to string
      * @return string
      */
-    public function __toString() {
+    public function __toString()
+    {
         return $this->data;
     }
 
@@ -55,7 +57,8 @@ class SimpleString implements DataInterface
      * Convert the object to string
      * @return string
      */
-    public function toString() {
+    public function toString()
+    {
         return $this->data;
     }
 
@@ -63,7 +66,8 @@ class SimpleString implements DataInterface
      * Return the current string
      * @return string
      */
-    public function getData() {
+    public function getData()
+    {
         return $this->data;
     }
 }

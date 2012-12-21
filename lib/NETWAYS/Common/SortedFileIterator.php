@@ -53,8 +53,8 @@ class SortedFileIterator extends \SplHeap
      * @param \SplFileInfo $value2
      * @return int
      */
-    public function compare($value1, $value2) {
+    public function compare($value1, $value2)
+    {
         return strcmp($value2->getRealPath(), $value1->getRealPath());
     }
-
 }

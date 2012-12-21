@@ -119,5 +119,4 @@ class TwigTemplate extends \NETWAYS\Common\ArrayObject implements DataInterface
         $template = $this->twigEnvironment->loadTemplate($this->getTemplateName());
         return $template->render((array)$this);
     }
-
 }

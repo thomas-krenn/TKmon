@@ -94,12 +94,14 @@ class PDOPersister implements PersisterInterface
     private function getCreate()
     {
         if ($this->createStatement === null) {
-            $this->createStatement = $this->pdo->prepare(sprintf(
-                'INSERT OR REPLACE INTO %s VALUES(NULL, %s, %s);',
-                $this->getTable(),
-                self::TAG_KEY,
-                self::TAG_VALUE
-            ));
+            $this->createStatement = $this->pdo->prepare(
+                sprintf(
+                    'INSERT OR REPLACE INTO %s VALUES(NULL, %s, %s);',
+                    $this->getTable(),
+                    self::TAG_KEY,
+                    self::TAG_VALUE
+                )
+            );
         }
 
         return $this->createStatement;
@@ -113,12 +115,14 @@ class PDOPersister implements PersisterInterface
     private function getDelete()
     {
         if ($this->deleteStatement === null) {
-            $this->deleteStatement = $this->pdo->prepare(sprintf(
-                'DELETE FROM %s WHERE %s=%s',
-                $this->getTable(),
-                $this->getKeyColumn(),
-                self::TAG_KEY
-            ));
+            $this->deleteStatement = $this->pdo->prepare(
+                sprintf(
+                    'DELETE FROM %s WHERE %s=%s',
+                    $this->getTable(),
+                    $this->getKeyColumn(),
+                    self::TAG_KEY
+                )
+            );
         }
 
         return $this->deleteStatement;

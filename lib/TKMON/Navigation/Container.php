@@ -135,7 +135,8 @@ class Container extends \NETWAYS\Common\Config
      * Recursive object walk
      * @param array $items
      */
-    private function walkStructure(array &$items) {
+    private function walkStructure(array &$items)
+    {
         foreach ($items as &$item) {
             $this->testMenuItem($item);
 

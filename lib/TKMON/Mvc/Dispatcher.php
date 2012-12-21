@@ -142,7 +142,8 @@ class Dispatcher
      * returns the url
      * @return string
      */
-    private function determineUri() {
+    private function determineUri()
+    {
         $params = $this->container['params'];
 
         if ($params->hasParameter('path')) {
@@ -168,7 +169,7 @@ class Dispatcher
         }
 
         $this->action = array_pop($parts);
-        $this->class = $this->container['config']->get('mvc.action.namespace'). '\\'. implode('\\', $parts);
+        $this->class = $this->container['config']->get('mvc.action.namespace') . '\\' . implode('\\', $parts);
     }
 
     /**
@@ -196,8 +197,7 @@ class Dispatcher
             }
 
             throw new \TKMON\Exception\DispatcherException('Output is not type of DataInterface');
-        }
-        catch (\TKMON\Exception\DispatcherException $e) {
+        } catch (\TKMON\Exception\DispatcherException $e) {
             if ($this->isAjaxRequest()) {
                 $response = new \TKMON\Mvc\Output\JsonResponse();
                 $response->setSuccess(false);
@@ -218,7 +218,8 @@ class Dispatcher
      * Test the header if we are an ajax request or not
      * @return bool
      */
-    private function isAjaxRequest() {
+    private function isAjaxRequest()
+    {
         $testAjax = $this->container['params']->getParameter('HTTP_X_REQUESTED_WITH', false, 'header');
         return ($testAjax && strtolower($testAjax) === 'xmlhttprequest')
             ? true : false;
@@ -232,12 +233,14 @@ class Dispatcher
     private function renderTemplate($content)
     {
         $template = $this->container['template']->loadTemplate($this->container['config']->get('template.file'));
-        return $template->render(array(
-            'content'       => $content,
-            'user'          => $this->container['user'],
-            'config'        => $this->container['config'],
-            'navigation'    => $this->container['navigation']
-        ));
+        return $template->render(
+            array(
+                'content' => $content,
+                'user' => $this->container['user'],
+                'config' => $this->container['config'],
+                'navigation' => $this->container['navigation']
+            )
+        );
     }
 
     /**
@@ -250,12 +253,12 @@ class Dispatcher
      */
     private function getActionMethod(\TKMON\Action\Base $object, \ReflectionClass $class, $actionName)
     {
-        $methodName = self::ACTION_PREFIX. $actionName;
+        $methodName = self::ACTION_PREFIX . $actionName;
         if ($class->hasMethod($methodName)) {
             return $class->getMethod($methodName);
         }
 
-        throw new \TKMON\Exception\DispatcherException('Method not found: '. $methodName);
+        throw new \TKMON\Exception\DispatcherException('Method not found: ' . $methodName);
     }
 
     /**
@@ -277,7 +280,6 @@ class Dispatcher
             throw new \TKMON\Exception\DispatcherException('Parent class is not "TKMON\Action\Base"');
         }
 
-        throw new \TKMON\Exception\DispatcherException('Could not load class from URI: '. $className);
+        throw new \TKMON\Exception\DispatcherException('Could not load class from URI: ' . $className);
     }
-
 }
