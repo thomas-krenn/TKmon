@@ -22,23 +22,21 @@
 namespace TKMON\Action\Expose\System\Configuration;
 
 /**
- * Action handling advanced configuration settings
+ * Security settings
  *
  * @package TKMON\Action
  * @author Marius Hein <marius.hein@netways.de>
  */
-class Advanced extends \TKMON\Action\Base
+class Security extends \TKMON\Action\Base
 {
-
     /**
-     * Display all config settings
+     * Display the html side of basic security settings
      * @return \TKMON\Mvc\Output\TwigTemplate
      */
-    public function actionFree()
+    public function actionIndex()
     {
-        $template = new \TKMON\Mvc\Output\TwigTemplate($this->container['template']);
-        $template->setTemplateName('views/System/Configuration/Free.twig');
-        $template['config'] = $this->container['config'];
-        return $template;
+        $output = new \TKMON\Mvc\Output\TwigTemplate($this->container['template']);
+        $output->setTemplateName('views/System/Configuration/Security.twig');
+        return $output;
     }
 }

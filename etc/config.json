@@ -12,6 +12,8 @@
     "app.version.minor":    0,
     "app.version.patch":    0,
     "app.name":             "tkmon",
+    "app.copyright":        "(c) 2012-2013",
+
     "app.version.release":  "{app.name}-{app.version.major}.{app.version.minor}.{app.version.patch}",
 
     "db.schema":            "{core.root_dir}/doc/database.sql",

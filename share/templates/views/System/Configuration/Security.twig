@@ -1,0 +1,67 @@
+{% import "macros/misc.twig" as misc %}
+
+<div class="page-header">
+    <h2>Security</h2>
+</div>
+
+<p>
+    This panel is used to change security settings of your
+    appliance. Please select an appropriate tab to
+    change specific settings.
+</p>
+
+<br />
+
+<div class="tabbable">
+    <ul class="nav nav-tabs">
+        <li class="active"><a href="#tab-user" data-toggle="tab">User</a></li>
+        <li><a href="#tab-access-icinga" data-toggle="tab">Icinga access</a></li>
+        <li><a href="#tab-access-ssh" data-toggle="tab">SSH Access</a></li>
+    </ul>
+    <div class="tab-content">
+        <div class="tab-pane active" id="tab-user">
+
+            <h4>Change your your password</h4>
+
+            <div data-result="ajax"></div>
+
+            <form id="form-change-password">
+                <fieldset>
+                    <label for="current_password">Current password</label>
+                    <input id="current_password" type="password" name="current_password" />
+
+                    <label for="password">New password</label>
+                    <input id="password" type="password" name="password" />
+
+                    <label for="password_verify">Verification</label>
+                    <input id="password_verify" type="password" name="password_verify" />
+                </fieldset>
+
+                <br /><br />
+                <a id="action-password-change" href="#" class="btn btn-primary" data-ajax="form" data-action="System/Configuration/Security/ChangePassword">Change</a>
+            </form>
+        </div>
+
+        <div class="tab-pane" id="tab-access-icinga">
+            <h3>Icinga access</h3>
+        </div>
+
+        <div class="tab-pane" id="tab-access-ssh">
+            <h3>SSH access</h3>
+        </div>
+    </div>
+</div>
+
+<script>
+    (function() {
+        "use strict";
+
+        var handler = function(form, action) {
+
+        };
+
+        $('a[data-ajax="form"]').click(function(item) {
+            console.log($(this).parents("form").serialize());
+        });
+    })();
+</script>
