@@ -37,7 +37,7 @@ class CgiParams
      * @var array
      */
     private $namespaces = array(
-        'request', 'cookie', 'header'
+        'header', 'request', 'cookie'
     );
 
     /**
@@ -61,7 +61,7 @@ class CgiParams
     }
 
     /**
-     * Fills up the object with db
+     * Fills up the object with data
      */
     private function initializeData()
     {
@@ -74,11 +74,20 @@ class CgiParams
     }
 
     /**
-     * How to get request db
+     * How to get request data
+     *
+     * This method determines json data and converts HTTP RAW DATA into
+     * a associative data array we can use in CGI params
+     *
      * @return array
      */
     private function getRequestData()
     {
+        if (strpos($this->getParameter('CONTENT_TYPE', null, 'header'), 'application/json') === 0) {
+            $json = file_get_contents('php://input');
+            return json_decode($json, true);
+        }
+
         return filter_var_array(
             array_merge($_POST, $_GET),
             FILTER_SANITIZE_STRING

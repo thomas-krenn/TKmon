@@ -38,7 +38,7 @@
                 </fieldset>
 
                 <br /><br />
-                <a id="action-password-change" href="#" class="btn btn-primary" data-ajax="form" data-action="System/Configuration/Security/ChangePassword">Change</a>
+                <a id="action-password-change" href="#" class="btn btn-primary" data-ajax="form" data-action="{{ web_link('ChangePassword') }}">Change</a>
             </form>
         </div>
 
@@ -61,6 +61,7 @@
         };
 
         $('a[data-ajax="form"]').click(function(item) {
+            console.log($(this).attr("data-action"));
             console.log($(this).parents("form").serialize());
         });
     })();

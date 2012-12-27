@@ -190,6 +190,9 @@ class Dispatcher
 
             if (is_object($content) && $content instanceof \TKMON\Mvc\Output\DataInterface) {
                 if ($this->isAjaxRequest()) {
+                    if ($content instanceof  \TKMON\Mvc\Output\Json) {
+                        header('Content-type: application/json; charset=utf-8', true);
+                    }
                     return $content->toString();
                 } else {
                     return $this->renderTemplate($content->toString());
