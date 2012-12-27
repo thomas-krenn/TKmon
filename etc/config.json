@@ -16,7 +16,7 @@
 
     "app.version.release":  "{app.name}-{app.version.major}.{app.version.minor}.{app.version.patch}",
 
-    "db.schema":            "{core.root_dir}/doc/database.sql",
+    "db.schema":            "{core.etc_dir}/database.sql",
     "db.file":              "{core.var_dir}/db/default.sqlite",
     "db.dsn":               "sqlite:{db.file}"
 }
