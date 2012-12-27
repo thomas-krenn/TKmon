@@ -29,6 +29,8 @@ namespace TKMON\Model;
 class User
 {
 
+    const HASH_ALGO = 'md5';
+
     /**
      * Session id for authenticated flag
      */
@@ -252,10 +254,15 @@ class User
         }
 
         $data = $this->getUserData($username, self::FIELD_NAME);
-        if (is_array($data) === true) {
-            $check_password = hash_hmac('md5', $password, $data[self::FIELD_SALT]);
 
-            if ($check_password === $data[self::FIELD_PASSWORD]) {
+        if (is_array($data) === true) {
+            $check_password = hash_hmac(self::HASH_ALGO, $password, $data[self::FIELD_SALT]);
+
+            if ($this->testPassword(
+                $password,
+                $data[self::FIELD_PASSWORD],
+                $data[self::FIELD_SALT]
+            ) === true) {
                 $this->setAuthenticated(true);
                 $this->applyDataToObject($data);
                 $this->write();
@@ -264,5 +271,94 @@ class User
         }
 
         throw new \TKMON\Exception\UserException('Could not authenticate user: ' . $username);
+    }
+
+    /**
+     * Tests current user password
+     * @param string $password
+     * @return bool Success or not
+     */
+    public function testCurrentPassword($password)
+    {
+        $data = $this->getUserData($this->getId());
+        if (is_array($data)) {
+            return $this->testPassword(
+                $password,
+                $data[self::FIELD_PASSWORD],
+                $data[self::FIELD_SALT]
+            );
+        }
+
+        return false;
+    }
+
+    /**
+     * Change the password
+     *
+     * @param string $currentPassword
+     * @param string $newPassword
+     * @param string $verification
+     * @return bool
+     * @throws \TKMON\Exception\UserException
+     */
+    public function changePassword($currentPassword, $newPassword, $verification)
+    {
+
+        if ($this->getAuthenticated()===false || !$this->getId()) {
+            throw new \TKMON\Exception\UserException('User not initialized and authenticated');
+        }
+
+        if (!$currentPassword) {
+            throw new \TKMON\Exception\UserException('Current password is mandatory');
+        }
+
+        if (!$newPassword) {
+            throw new \TKMON\Exception\UserException('New password is mandatory');
+        }
+
+        if (!$verification) {
+            throw new \TKMON\Exception\UserException('Verification is mandatory');
+        }
+
+        if ($newPassword !== $verification) {
+            throw new \TKMON\Exception\UserException('Password does not match');
+        }
+
+        if ($this->testCurrentPassword($currentPassword) === false) {
+            throw new \TKMON\Exception\UserException('Your current password is wrong');
+        }
+
+        if ($currentPassword === $newPassword) {
+            throw new \TKMON\Exception\UserException('Old and new password are the same!');
+        }
+
+        $data = $this->getUserData($this->getId());
+        $newHash = hash_hmac(self::HASH_ALGO, $newPassword, $data[self::FIELD_SALT]);
+
+        $db = $this->container['db'];
+        $statement = $db->prepare('UPDATE user SET password=:password WHERE ID=:id;');
+        $statement->bindValue(':password', $newHash, \PDO::PARAM_STR);
+        $statement->bindValue(':id', $this->getId(), \PDO::PARAM_INT);
+
+        return $statement->execute();
+    }
+
+    /**
+     * Class wide password teste method
+     *
+     * @param string $testPassword
+     * @param string $passwordHash
+     * @param string $passwordSalt
+     * @return bool Success or not
+     */
+    private function testPassword($testPassword, $passwordHash, $passwordSalt)
+    {
+        $check = hash_hmac(self::HASH_ALGO, $testPassword, $passwordSalt);
+
+        if ($passwordHash === $check) {
+            return true;
+        }
+
+        return false;
     }
 }

@@ -23,9 +23,28 @@
 
             <h4>Change your your password</h4>
 
-            <div data-result="ajax"></div>
+            <div id="change-errors">
 
-            <form id="form-change-password">
+            </div>
+
+            <div id="change-success" class="hidden">
+                <div class="alert alert-success">
+                    <h4>Success!</h4>
+                    Thank you for changing your password. Please do this regularly to
+                    increase security for this device!
+                </div>
+            </div>
+
+            <form
+                    id="form-change-password"
+                    action="{{ web_link("ChangePassword") }}"
+                    data-ajax="form"
+                    data-ajax-type="json"
+                    data-form-focus-first="#current_password"
+                    data-form-reset="true"
+                    data-error-target="#change-errors"
+                    data-success-frame="#change-success"
+            >
                 <fieldset>
                     <label for="current_password">Current password</label>
                     <input id="current_password" type="password" name="current_password" />
@@ -37,8 +56,7 @@
                     <input id="password_verify" type="password" name="password_verify" />
                 </fieldset>
 
-                <br /><br />
-                <a id="action-password-change" href="#" class="btn btn-primary" data-ajax="form" data-action="{{ web_link('ChangePassword') }}">Change</a>
+                <input type="submit" class="btn btn-primary" value="Change" />
             </form>
         </div>
 
@@ -51,18 +69,3 @@
         </div>
     </div>
 </div>
-
-<script>
-    (function() {
-        "use strict";
-
-        var handler = function(form, action) {
-
-        };
-
-        $('a[data-ajax="form"]').click(function(item) {
-            console.log($(this).attr("data-action"));
-            console.log($(this).parents("form").serialize());
-        });
-    })();
-</script>

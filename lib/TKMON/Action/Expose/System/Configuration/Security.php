@@ -39,4 +39,30 @@ class Security extends \TKMON\Action\Base
         $output->setTemplateName('views/System/Configuration/Security.twig');
         return $output;
     }
+
+    /**
+     * Action to trigger password changes
+     * @return \TKMON\Mvc\Output\JsonResponse
+     */
+    public function actionChangePassword()
+    {
+        $params = $this->container['params'];
+        $user = $this->container['user'];
+
+        $r = new \TKMON\Mvc\Output\JsonResponse();
+
+        try {
+            $re = $user->changePassword(
+                $params->getParameter('current_password'),
+                $params->getParameter('password'),
+                $params->getParameter('password_verify')
+            );
+            $r->setSuccess($re);
+        } catch (\TKMON\Exception\UserException $e) {
+            $r->setSuccess(false);
+            $r->addException($e);
+        }
+
+        return $r;
+    }
 }

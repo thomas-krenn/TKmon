@@ -30,6 +30,16 @@ namespace TKMON\Action\Expose;
 class Index extends \TKMON\Action\Base
 {
     /**
+     * Set access flag
+     * To false for index action
+     * @return bool
+     */
+    public function securityIndex()
+    {
+        return false;
+    }
+
+    /**
      * Index page, say hellow to the world
      * @return \TKMON\Mvc\Output\TwigTemplate
      */

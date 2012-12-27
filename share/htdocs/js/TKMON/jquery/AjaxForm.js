@@ -58,6 +58,7 @@
                 var that = $(this);
 
                 submitButton.addClass("disabled");
+                $($(this).attr("data-success-frame")).addClass("hidden");
                 errorTarget.find('*').remove();
 
                 if ($(this).attr("data-ajax-type") && $(this).attr("data-ajax-type") === "json") {
@@ -104,6 +105,10 @@
                                         window[cb].call(that);
                                     }
                                 }
+
+                                if (that.attr("data-form-reset") === 'true') {
+                                    Html5AjaxForm.prototype.resetForm(that);
+                                }
                             } else {
                                 $.each(struct.errors, function (i, e) {
                                     errorTarget.append(Html5AjaxForm.prototype.createErrorPanel(e));
@@ -112,6 +117,8 @@
                         } else {
                             $.error("Unknown response from " + actionUrl);
                         }
+
+                        submitButton.removeClass("disabled");
                     }
                 });
             },
@@ -155,6 +162,15 @@
              */
             getActionUrl: function () {
                 return $(this).attr('action');
+            },
+
+            /**
+             * Resets a the whole form
+             * TODO: Add complex fields
+             * @param {jquery} form
+             */
+            resetForm: function(form) {
+                $(form).find('input[type!="submit"]').val('');
             }
         };
 

@@ -31,6 +31,8 @@ class Dispatcher
 
     const ACTION_PREFIX = 'action';
 
+    const SECURITY_PREFIX = 'security';
+
     /**
      * DI container
      * @var null|Pimple
@@ -184,7 +186,14 @@ class Dispatcher
 
             $object->setContainer($this->container);
 
-            $reflectionMethod = $this->getActionMethod($object, $reflectionClass, $this->action);
+            $reflectionMethod = $this->getActionMethod($reflectionClass, $this->action);
+
+            /**
+             * If this is a public action
+             */
+            if ($this->passUserSecurityTest($this->action, $reflectionClass, $object) === false) {
+                throw new \TKMON\Exception\DispatcherException('Action needs authenticated user: '. $this->action);
+            }
 
             $content = $reflectionMethod->invoke($object);
 
@@ -248,13 +257,12 @@ class Dispatcher
 
     /**
      * Return the action method as ReflectionMethod
-     * @param \TKMON\Action\Base $object
      * @param \ReflectionClass $class
      * @param string $actionName
      * @return \ReflectionMethod
      * @throws \TKMON\Exception\DispatcherException
      */
-    private function getActionMethod(\TKMON\Action\Base $object, \ReflectionClass $class, $actionName)
+    private function getActionMethod(\ReflectionClass $class, $actionName)
     {
         $methodName = self::ACTION_PREFIX . $actionName;
         if ($class->hasMethod($methodName)) {
@@ -284,5 +292,31 @@ class Dispatcher
         }
 
         throw new \TKMON\Exception\DispatcherException('Could not load class from URI: ' . $className);
+    }
+
+    /**
+     * Tests for user access to action
+     * @param string $action
+     * @param \ReflectionClass $reflection
+     * @param \TKMON\Action\Base $object
+     * @return bool
+     */
+    private function passUserSecurityTest($action, \ReflectionClass $reflection, \TKMON\Action\Base $object)
+    {
+        $methodName = self::SECURITY_PREFIX. $action;
+        $test = true; // Default, user needs to be authenticated
+
+        if ($reflection->hasMethod($methodName)) {
+            $method = $reflection->getMethod($methodName);
+            $test = $method->invoke($object);
+        }
+
+        $user = $this->container['user'];
+
+        if ($test === true && $user->getAuthenticated() !== true) {
+            return false;
+        }
+
+        return true;
     }
 }

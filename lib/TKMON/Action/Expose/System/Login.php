@@ -31,6 +31,15 @@ class Login extends \TKMON\Action\Base
 {
 
     /**
+     * Security flag for index action
+     * @return bool
+     */
+    public function securityIndex()
+    {
+        return false;
+    }
+
+    /**
      * Show login box
      * @return \TKMON\Mvc\Output\TwigTemplate
      */
@@ -39,6 +48,15 @@ class Login extends \TKMON\Action\Base
         $output = new \TKMON\Mvc\Output\TwigTemplate($this->container['template']);
         $output->setTemplateName('forms/login.twig');
         return $output;
+    }
+
+    /**
+     * Security flag for logout;
+     * @return bool
+     */
+    public function securityLogin()
+    {
+        return false;
     }
 
     /**
