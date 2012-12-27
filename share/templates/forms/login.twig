@@ -6,64 +6,41 @@
         <a href="{{ web_link('Reset') }}">follow this link to reset the password</a>.
     </div>
 
-    <div id="errors"></div>
+    <div id="login-errors"></div>
 
-    <form id="login">
+    <div id="login-success" class="hidden">
+        <div class="alert alert-success">
+        You are logged in successfully. You will be redirected
+        after a second. If not, please <a href="{{ web_link("Index/Index") }}">
+        follow this link to proceed.</a>
+        </div>
+    </div>
+
+    <form
+            id="login"
+            action="{{ web_link("Login") }}"
+            data-ajax="form"
+            data-ajax-type="form"
+            data-form-focus-first="#username"
+            data-error-target="#login-errors"
+            data-success-frame="#login-success"
+            data-success-callback="redirectHome"
+     >
         <fieldset>
             <label for="username">Username</label>
             <input type="text" id="username" name="username" />
             <label for="password">Password</label>
             <input type="password" id="password" name="password" />
         </fieldset>
-    </form>
 
-    <a href="#" id="do-login" class="btn btn-primary">Login</a>
+        <input type="submit" value="Login" class="btn btn-primary" />
+    </form>
 </div>
 
 <script>
-    (function() {
-
-        "use strict";
-
-        $("#username").focus();
-
-        var handler = function() {
-            $("#do-login").addClass("disabled");
-            $("#errors *").remove();
-            $.post('{{ web_link("Login") }}', $('#login').serialize(), function(text, status) {
-                $("#do-login").removeClass("disabled");
-                var struct = JSON.parse(text);
-
-                if (struct.success === false) {
-                    $.each(struct.errors, function(i, e) {
-                        $("#errors").append('<div class="alert alert-error">'
-                        + '<h4>Error!</h4>'
-                        + e.message
-                        + '</div>');
-                    });
-                } else {
-                    $("#errors").append('<div class="alert alert-success">'
-                    + 'You are logged in successfully. You will be redirected'
-                    + ' after a second. If not, please <a href="{{ web_link("Index/Index") }}">'
-                    + 'follow this link to proceed.</a>'
-                    + '</div>');
-
-                    setTimeout(function() {
-                        window.location.href='{{ web_link("Index/Index") }}';
-                    }, 1000);
-                }
-            })
-        };
-
-        var keypressHandler = function(e) {
-            var code = (e.keyCode ? e.keyCode : e.which);
-            if (code === 13) {
-                handler();
-            }
-        }
-
-        $("#do-login").click(handler);
-        $("#username").keypress(keypressHandler);
-        $("#password").keypress(keypressHandler);
-    })();
+    var redirectHome = function() {
+        setTimeout(function() {
+            window.location.href='{{ web_link("Index/Index") }}';
+        }, 1000);
+    }
 </script>
