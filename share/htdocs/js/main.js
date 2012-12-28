@@ -18,20 +18,6 @@
  * @copyright 2012-2013 NETWAYS GmbH <info@netways.de>
  */
 
-/*
- * RequireJS configuration.
- *
- * Change some paths to match distribution format
- */
-requirejs.config({
-    baseUrl: "/js",
-    paths: {
-        jquery:     "/js/vendor/jquery-1.8.3.min",
-        modernizr:  "/js/vendor/modernizr-2.6.2.min",
-        bootstrap:  "/js/bootstrap.min"
-    }
-});
-
 /**
  * Starting JS stack in the right order
  */

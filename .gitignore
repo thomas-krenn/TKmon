@@ -4,3 +4,4 @@ var/db/default.sqlite
 composer.lock
 vendor/
 composer.phar
+.vagrant

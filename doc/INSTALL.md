@@ -6,11 +6,35 @@ Installation
 
 ### Prerequisites
 
+Base system was a **Ubuntu LTS 12.04 Precise**
+
 To get the system running you'll need to have some mandatory things:
 
 * PHP > 5.3 (Web and CLI)
 * Extensions installed: pdo-sqlite
 * Apache2
+
+### Ubuntu install
+
+#### Package install
+
+    apt-get install apache2 php5 php5-cli php5-sqlite libapache2-mod-php5
+
+#### Apache configuration
+
+    cp etc/httpd.conf /etc/apache2/conf.d/tkmon.conf
+    a2enmod rewrite
+    /etc/init.d/apache2 restart
+
+#### Test install
+
+    apt-get install php-pear
+    pear config-set auto_discover 1
+    pear install pear.phpunit.de/PHPUnit
+
+#### Run tests
+
+    phpunit
 
 ### Copy sources
 

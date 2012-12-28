@@ -147,13 +147,21 @@ class Dispatcher
     private function determineUri()
     {
         $params = $this->container['params'];
+        $config = $this->container['config'];
 
-        if ($params->hasParameter('path')) {
-            return $params->getParameter('path');
-        } elseif ($params->hasParameter('PATH_INFO', 'header')) {
-            return $params->getParameter('PATH_INFO', null, 'header');
+        if ($config->get('web.rewrite', false) === true) {
+            return preg_replace(
+                '@^'. preg_quote($config['web.path'], '@'). '@',
+                '',
+                $params->getParameter('REQUEST_URI', null, 'header')
+            );
+        } else {
+            if ($params->hasParameter('path')) {
+                return $params->getParameter('path');
+            } elseif ($params->hasParameter('PATH_INFO', 'header')) {
+                return $params->getParameter('PATH_INFO', null, 'header');
+            }
         }
-
     }
 
     /**

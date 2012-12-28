@@ -87,6 +87,18 @@ final class Web
                 $filename = basename($params->getParameter('SCRIPT_FILENAME', null, 'header'));
                 $path = str_replace($filename, '', $params->getParameter('SCRIPT_NAME', null, 'header'));
 
+                $requestUri = $params->getParameter('REQUEST_URI', null, 'header');
+
+                // rewrite in progress (e.g. mod_rewrite/apache2)
+                // Set ENV variable TKMON_USE_REWRITE to On
+                if (getenv('TKMON_USE_REWRITE') && getenv('TKMON_USE_REWRITE') === 'On') {
+                    $filename = '';
+                    $path = rtrim($path, '/');
+                    $config->set('web.rewrite', true);
+                } else {
+                    $config->set('web.rewrite', false);
+                }
+
                 $config->set('web.path', $path);
                 $config->set('web.script', $path . $filename);
                 $config->set('web.img_path', '{web.path}img');

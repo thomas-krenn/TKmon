@@ -146,6 +146,7 @@ class Extension implements \Twig_ExtensionInterface
         $num = func_num_args();
         $params = $this->container['params'];
         $uri = $params->getParameter('REQUEST_URI', null, 'header');
+        $script = $this->container['config']['web.script'];
 
         if ($num === 0) {
             return $uri;
@@ -157,7 +158,7 @@ class Extension implements \Twig_ExtensionInterface
                 $parts[] = ucfirst($new[0]);
                 return implode('/', $parts);
             } else {
-                return $params->getParameter('SCRIPT_NAME', null, 'header') . '/' . implode('/', $new);
+                return $script . '/' . implode('/', $new);
             }
         }
     }
