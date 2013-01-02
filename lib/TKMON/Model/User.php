@@ -357,7 +357,7 @@ class User
      */
     private function changeSystemPassword($username, $password)
     {
-        $command = $this->container['command']->create('user-password-change');
+        $command = $this->container['command']->create('chpasswd');
         $command->setInput($username. ':'. $password);
 
         $command->execute();
