@@ -18,5 +18,22 @@
 
     "db.schema":            "{core.etc_dir}/database.sql",
     "db.file":              "{core.var_dir}/db/default.sqlite",
-    "db.dsn":               "sqlite:{db.file}"
+    "db.dsn":               "sqlite:{db.file}",
+
+    "command.config": {
+        "chpasswd":  {
+            "path": "/usr/sbin/chpasswd",
+            "sudo": true
+        },
+
+        "usermod": {
+            "path": "/usr/sbin/usermod",
+            "sudo": true
+        },
+
+        "passwd": {
+            "path": "/usr/bin/passwd",
+            "sudo": true
+        }
+    }
 }

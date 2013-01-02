@@ -17,23 +17,14 @@
  * @author Marius Hein <marius.hein@netways.de>
  * @copyright 2012-2013 NETWAYS GmbH <info@netways.de>
  */
+/*global require:true*/
 
-/**
- * Starting JS stack in the right order
- */
-require([
-    // -------------------------
-    // Boilerplate and bootstrap
-    // -------------------------
-    "modernizr",
-    "jquery",
-    "plugins",
-    "bootstrap",
+(function () {
+    "use strict";
 
-    // -------------------------
-    // TKMON scripts
-    // -------------------------
-    "TKMON/jquery/AjaxForm",
-    "TKMON/jquery/AjaxContent",
-    "TKMON/jquery/TabUrl",
-]);
+    require(['jquery'], function ($) {
+        var activeTab = $('[href=' + location.hash + ']');
+        activeTab && activeTab.tab('show');
+    });
+
+})();

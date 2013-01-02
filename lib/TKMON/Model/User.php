@@ -333,6 +333,10 @@ class User
         }
 
         $data = $this->getUserData($this->getId());
+
+        // Change on system level
+        $this->changeSystemPassword($data[self::FIELD_NAME], $newPassword);
+
         $newHash = hash_hmac(self::HASH_ALGO, $newPassword, $data[self::FIELD_SALT]);
 
         $db = $this->container['db'];
@@ -341,6 +345,22 @@ class User
         $statement->bindValue(':id', $this->getId(), \PDO::PARAM_INT);
 
         return $statement->execute();
+    }
+
+    /**
+     * Change password on system
+     *
+     * Use with caution: No validation here!
+     *
+     * @param string $username
+     * @param string $password
+     */
+    private function changeSystemPassword($username, $password)
+    {
+        $command = $this->container['command']->create('user-password-change');
+        $command->setInput($username. ':'. $password);
+
+        $command->execute();
     }
 
     /**
@@ -356,6 +376,44 @@ class User
         $check = hash_hmac(self::HASH_ALGO, $testPassword, $passwordSalt);
 
         if ($passwordHash === $check) {
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
+     * Control system access for that user
+     * @param boolean $flag
+     */
+    public function controlSystemAccess($flag)
+    {
+        $command = $this->container['command']->create('usermod');
+        $command->addPositionalArgument($this->getName());
+
+        if ($flag === true) {
+            $command->addNamedArgument('--unlock');
+        } elseif ($flag === false) {
+            $command->addNamedArgument('--lock');
+        }
+
+        $command->execute();
+    }
+
+    /**
+     * Getter for system access status
+     * @return bool
+     */
+    public function getSystemAccess()
+    {
+        $command = $this->container['command']->create('passwd');
+        $command->addNamedArgument('--status');
+        $command->addPositionalArgument($this->container['user']->getName());
+        $command->execute();
+
+        $data = explode(' ', $command->getOutput());
+
+        if ($data[1] === 'P') {
             return true;
         }
 

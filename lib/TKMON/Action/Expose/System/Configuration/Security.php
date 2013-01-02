@@ -37,6 +37,11 @@ class Security extends \TKMON\Action\Base
     {
         $output = new \TKMON\Mvc\Output\TwigTemplate($this->container['template']);
         $output->setTemplateName('views/System/Configuration/Security.twig');
+
+        $user = $this->container['user'];
+        $output['system_enabled'] = $user->getSystemAccess();
+        $output['user'] = $user;
+
         return $output;
     }
 
@@ -58,11 +63,64 @@ class Security extends \TKMON\Action\Base
                 $params->getParameter('password_verify')
             );
             $r->setSuccess($re);
-        } catch (\TKMON\Exception\UserException $e) {
+        } catch (\Exception $e) {
             $r->setSuccess(false);
             $r->addException($e);
         }
 
         return $r;
+    }
+
+    /**
+     * Return a html fragment
+     * which indicates if the user has system access
+     * @return \TKMON\Mvc\Output\SimpleString
+     */
+    public function actionSystemAccess()
+    {
+        $user = $this->container['user'];
+
+        if ($user->getSystemAccess() === true) {
+            return  new \TKMON\Mvc\Output\SimpleString(
+                '<span class="label label-success">Enabled</span>'
+            );
+        }
+
+        return  new \TKMON\Mvc\Output\SimpleString(
+            '<span class="label label-important">Disabled</span>'
+        );
+
+    }
+
+    /**
+     * Changer for system controll access
+     * @return \TKMON\Mvc\Output\JsonResponse
+     * @throws \TKMON\Exception\ModelException
+     */
+    public function actionChangeSystemAccess()
+    {
+        $user = $this->container['user'];
+        $params = $this->container['params'];
+        $val = $params->getParameter('access');
+        $response = new \TKMON\Mvc\Output\JsonResponse();
+
+        try {
+            if ($val === "1") {
+                $user->controlSystemAccess(true);
+                $response->setSuccess(true);
+            } elseif ($val === "0") {
+                $user->controlSystemAccess(false);
+                $response->setSuccess(true);
+            } else {
+                throw new \TKMON\Exception\ModelException(
+                    "Invalid arguments, access have to be 0/1"
+                );
+            }
+        } catch (\Exception $e) {
+            $response->setSuccess(false);
+            $response->addException($e);
+        }
+
+        return $response;
     }
 }

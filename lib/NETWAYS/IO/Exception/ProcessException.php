@@ -1,3 +1,4 @@
+<?php
 /**
  * This file is part of TKMON
  *
@@ -18,22 +19,14 @@
  * @copyright 2012-2013 NETWAYS GmbH <info@netways.de>
  */
 
-/**
- * Starting JS stack in the right order
- */
-require([
-    // -------------------------
-    // Boilerplate and bootstrap
-    // -------------------------
-    "modernizr",
-    "jquery",
-    "plugins",
-    "bootstrap",
+namespace NETWAYS\IO\Exception;
 
-    // -------------------------
-    // TKMON scripts
-    // -------------------------
-    "TKMON/jquery/AjaxForm",
-    "TKMON/jquery/AjaxContent",
-    "TKMON/jquery/TabUrl",
-]);
+
+/**
+ * Process exception
+ * @package NETWAYS\IO
+ * @author Marius Hein <marius.hein@netways.de>
+ */
+class ProcessException extends \NETWAYS\Common\Exception
+{
+}
