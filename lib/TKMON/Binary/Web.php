@@ -93,7 +93,6 @@ final class Web
                 // Set ENV variable TKMON_USE_REWRITE to On
                 if (getenv('TKMON_USE_REWRITE') && getenv('TKMON_USE_REWRITE') === 'On') {
                     $filename = '';
-                    $path = rtrim($path, '/');
                     $config->set('web.rewrite', true);
                 } else {
                     $config->set('web.rewrite', false);
