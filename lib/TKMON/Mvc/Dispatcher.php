@@ -150,7 +150,7 @@ class Dispatcher
         $config = $this->container['config'];
 
         if ($config->get('web.rewrite', false) === true) {
-            return preg_replace(
+            return '/'. preg_replace(
                 '@^'. preg_quote($config['web.path'], '@'). '@',
                 '',
                 $params->getParameter('REQUEST_URI', null, 'header')

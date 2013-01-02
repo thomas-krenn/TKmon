@@ -158,7 +158,7 @@ class Extension implements \Twig_ExtensionInterface
                 $parts[] = ucfirst($new[0]);
                 return implode('/', $parts);
             } else {
-                return $script . '/' . implode('/', $new);
+                return $script . implode('/', $new);
             }
         }
     }
