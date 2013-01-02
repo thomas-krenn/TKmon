@@ -1,6 +1,6 @@
 {% import "macros/misc.twig" as misc %}
 
-<div class="page-header">
+<div class="page-header" xmlns="http://www.w3.org/1999/html">
     <h2>Security</h2>
 </div>
 
@@ -66,6 +66,59 @@
 
         <div class="tab-pane" id="tab-access-ssh">
             <h3>SSH access</h3>
+
+            <div id="access-errors">
+
+            </div>
+
+            <div id="access-success" class="hidden">
+                <div class="alert alert-success">
+                    <h4>Success!</h4>
+                    User access has been modified successfully
+                </div>
+            </div>
+
+            <p>
+                System access is: <span data-ajax-call="{{ web_link("SystemAccess") }}"></span>
+            </p>
+
+            <p id="access-again" class="hidden">
+                Please <a href="{{ web_link('Index#tab-access-ssh') }}">click here</a> to change mode again.
+            </p>
+
+            <form
+                id="form-system-access"
+                action="{{ web_link("ChangeSystemAccess") }}"
+                data-ajax="form"
+                data-ajax-type="json"
+                data-form-reset="true"
+                data-error-target="#access-errors"
+                data-success-frame="#access-success"
+                data-success-callback="access_success_callback"
+                >
+
+                <h4>To change access please press the following button</h4>
+
+                <p>
+                {% if system_enabled == false %}
+                    <input type="hidden" name="access" value="1" />
+                    <input type="submit" class="btn btn-success" value="Enable" />
+                    <p>System access (ssh/shell) for user {{ user.getName() }} will be enabled.</p>
+                {% else %}
+                    <input type="hidden" name="access" value="0" />
+                    <input type="submit" class="btn btn-danger" value="Disable" />
+                    <p>System access (ssh/shell) for user {{ user.getName() }} will be disabled.</p>
+                {% endif %}
+                </p
+            </form>
+
+            <script>
+                var access_success_callback = function() {
+                    $("#form-system-access").remove();
+                    $("#access-again").removeClass("hidden");
+                    $(document).Html5AjaxContent("insert");
+                }
+            </script>
         </div>
     </div>
 </div>

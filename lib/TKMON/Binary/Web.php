@@ -237,6 +237,15 @@ final class Web
             }
         );
 
+        /*
+         * Command factory
+         */
+        $container['command'] = $container->share(
+            function ($c) {
+                return new \TKMON\Model\Command\Factory($c['config']);
+            }
+        );
+
         echo $container['dispatcher']->dispatchRequest();
     }
 }

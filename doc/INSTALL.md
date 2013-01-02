@@ -93,6 +93,21 @@ You need only a simple vhost to expose the project to air:
         DocumentRoot /data/users/mhein/workspaces/tk-mon/tk-mon/share/htdocs
     </VirtualHost>
 
+### Sudoers file
+
+Tkmon runs a couple of commands with root privileges you need to allow for the web user.
+
+#### Copy sudoers
+
+    cp etc/sudoers /etc/sudoers.d/tkmon
+    chmod 440 /etc/sudoers.d/tkmon
+
+#### Add admin group and allow web user
+
+    addgroup --system tkmonweb
+    adduser www-data tkmonweb
+    service apache2 restart
+
 ### Done
 
 You are ready now to open your browser and go to you configured location.

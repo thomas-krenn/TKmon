@@ -45,6 +45,8 @@ class Process
     const STATUS_TERMSIG        = 'termsig';
     const STATUS_STOPSIG        = 'termsig';
 
+    const PATH_SUDO             = '/usr/bin/sudo';
+
     /**
      * Array of input/output descriptors
      * @var array
@@ -130,6 +132,12 @@ class Process
     private $processError;
 
     /**
+     * Wrap as sudo call
+     * @var bool
+     */
+    private $wrapSudo=false;
+
+    /**
      * Create a new object
      * @param string $command
      */
@@ -141,6 +149,7 @@ class Process
 
     /**
      * Creates a default descriptor
+     *
      * @return array
      */
     private function getDefaultDescriptor()
@@ -169,6 +178,10 @@ class Process
         $this->descriptors[$output] = $type_arr;
     }
 
+    /**
+     * Return the current descriptor array
+     * @return array
+     */
     public function getDescriptors()
     {
         return $this->descriptors;
@@ -193,24 +206,51 @@ class Process
         return $this->command;
     }
 
+    /**
+     * Set execution directory
+     * '/' by default
+     * @param string $workDirectory
+     */
     public function setWorkDirectory($workDirectory)
     {
         $this->workDirectory = $workDirectory;
     }
 
+    /**
+     * Getter for work directory
+     * @return string
+     */
     public function getWorkDirectory()
     {
         return $this->workDirectory;
     }
 
+    /**
+     * Adding a named argument
+     * @param string $name
+     * @param mixed|null $value
+     */
     public function addNamedArgument($name, $value = null)
     {
         $this->namedArguments[$name] = $value;
     }
 
+    /**
+     * Add a positional argument to list
+     * @param mixed $value
+     */
     public function addPositionalArgument($value)
     {
         $this->positionalArguments[] = $value;
+    }
+
+    /**
+     * Wrap execution call with sudo
+     * @param bool $flag
+     */
+    public function setSudoersFlag($flag = true)
+    {
+        $this->wrapSudo = $flag;
     }
 
     /**
@@ -226,6 +266,11 @@ class Process
         return null;
     }
 
+    /**
+     * Object global escape method
+     * @param string $arg
+     * @return string
+     */
     public function escapeShellArg($arg)
     {
         $val = escapeshellarg($arg);
@@ -237,6 +282,10 @@ class Process
         return $val;
     }
 
+    /**
+     * Return a string of all named arguments
+     * @return string
+     */
     public function getNamedArguments()
     {
         $arguments = array();
@@ -261,6 +310,10 @@ class Process
         return implode(' ', $arguments);
     }
 
+    /**
+     * Clean up method, close all
+     * open pipes
+     */
     private function closeAllPipes()
     {
         foreach ($this->pipes as $pipe) {
@@ -271,6 +324,9 @@ class Process
         $this->pipes = array();
     }
 
+    /**
+     * Resets the command object to call again
+     */
     private function resetPreviousCall()
     {
         $this->processStatus = null;
@@ -288,6 +344,10 @@ class Process
         }
     }
 
+    /**
+     * Return all positional arguments as string
+     * @return string
+     */
     public function getPositionalArguments()
     {
         $arguments = array();
@@ -299,16 +359,34 @@ class Process
         return implode(' ', $arguments);
     }
 
+    /**
+     * Return the whole command
+     * @return string
+     */
     public function getExecutionCall()
     {
         $cmd = array();
+
         $cmd[] = $this->getCommand();
         $cmd[] = $this->getNamedArguments();
         $cmd[] = $this->getPositionalArguments();
 
-        return implode(' ', $cmd);
+
+
+        $call = implode(' ', $cmd);
+
+        if ($this->wrapSudo === true) {
+            return self::PATH_SUDO. ' '. $call;
+        }
+
+        return $call;
     }
 
+    /**
+     * Execute the command
+     * @return bool
+     * @throws Exception\ProcessException
+     */
     public function execute()
     {
         $this->resetPreviousCall();
@@ -353,25 +431,53 @@ class Process
         return true;
     }
 
+    /**
+     * Return output of STDOUT
+     * @return mixed
+     */
     public function getOutput()
     {
         return $this->processOutput;
     }
 
+    /**
+     * Return exit status
+     * @return int
+     */
     public function getExitStatus()
     {
         return $this->processReturn;
     }
 
-    public function setInput($input) {
+    /**
+     * Set stdin
+     * @param string $input
+     */
+    public function setInput($input)
+    {
         $this->processInput = $input;
     }
 
+    /**
+     * Return the current process status
+     *
+     * See http://de2.php.net/manual/en/function.proc-get-status.php
+     *
+     * @return array
+     */
     public function getStatus()
     {
         return $this->processStatus;
     }
 
+    /**
+     * Return specific status item
+     *
+     * See http://de2.php.net/manual/en/function.proc-get-status.php
+     *
+     * @param string $type
+     * @return mixed
+     */
     public function getStatusItem($type)
     {
         return $this->processStatus[$type];
