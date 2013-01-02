@@ -12,10 +12,10 @@
 
         <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
-        <link rel="stylesheet" href="{{ config['web.path'] }}/css/normalize.css">
-        <link rel="stylesheet" href="{{ config['web.path'] }}/css/main.css">
-        <link href="{{ config['web.path'] }}/css/bootstrap.min.css" rel="stylesheet" media="screen">
-        <link rel="stylesheet" href="{{ config['web.path'] }}/css/default.css">
+        <link rel="stylesheet" href="{{ config['web.path'] }}css/normalize.css">
+        <link rel="stylesheet" href="{{ config['web.path'] }}css/main.css">
+        <link href="{{ config['web.path'] }}css/bootstrap.min.css" rel="stylesheet" media="screen">
+        <link rel="stylesheet" href="{{ config['web.path'] }}css/default.css">
     </head>
     <body>
         <!--[if lt IE 7]>
@@ -70,16 +70,16 @@
 
         {% include "views/footer.twig" %}
 
-        <script src="{{ config['web.path'] }}/js/require.js"></script>
+        <script src="{{ config['web.path'] }}js/require.js"></script>
         <script>
             (function() {
                 var path = "{{ config['web.path'] }}";
                 require.config({
-                    baseUrl: path + "/js",
+                    baseUrl: path + "js",
                     paths: {
-                        jquery:     path + "/js/vendor/jquery-1.8.3.min",
-                        modernizr:  path + "/js/vendor/modernizr-2.6.2.min",
-                        bootstrap:  path + "/js/bootstrap.min"
+                        jquery:     path + "js/vendor/jquery-1.8.3.min",
+                        modernizr:  path + "js/vendor/modernizr-2.6.2.min",
+                        bootstrap:  path + "js/bootstrap.min"
                     }
                 });
                 require(['main']);

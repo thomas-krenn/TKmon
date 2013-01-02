@@ -158,7 +158,7 @@ class Session implements \ArrayAccess, \Countable
      */
     public function isConfigured()
     {
-        return ($this->name && $this->path && ($this->lifetime > 0) && $this->domain) ? true : false;
+        return ($this->name && ($this->lifetime > 0) && $this->domain) ? true : false;
     }
 
     /**
