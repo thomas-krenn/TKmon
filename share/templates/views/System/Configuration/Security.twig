@@ -62,6 +62,8 @@
 
         <div class="tab-pane" id="tab-access-icinga">
             <h3>Icinga access</h3>
+
+            <code>FEATURE IS MISSING</code>
         </div>
 
         <div class="tab-pane" id="tab-access-ssh">
@@ -83,7 +85,7 @@
             </p>
 
             <p id="access-again" class="hidden">
-                Please <a href="{{ web_link('Index#tab-access-ssh') }}">click here</a> to change mode again.
+                Please <a href="#" id="access-again-link">click here</a> to change mode again.
             </p>
 
             <form
@@ -117,6 +119,14 @@
                     $("#form-system-access").remove();
                     $("#access-again").removeClass("hidden");
                     $(document).Html5AjaxContent("insert");
+
+                    // Reload with hash
+                    $("#access-again-link").click(function(e) {
+                        e.preventDefault();
+                        var url = "{{ web_link('Index#tab-access-ssh') }}";
+                        location.href = url;
+                        location.reload();
+                    });
                 }
             </script>
         </div>

@@ -334,10 +334,6 @@ class Process
         $this->processOutput = null;
         $this->processError = null;
 
-        if (count($this->pipes)) {
-            $this->closeAllPipes();
-        }
-
         if ($this->resource) {
             proc_close($this->resource);
             $this->resource = null;
@@ -481,5 +477,14 @@ class Process
     public function getStatusItem($type)
     {
         return $this->processStatus[$type];
+    }
+
+    /**
+     * Runtime
+     * @return float
+     */
+    public function getRuntime()
+    {
+        return $this->runtime;
     }
 }

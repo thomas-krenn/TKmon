@@ -84,4 +84,35 @@ class ProcessTest extends \PHPUnit_Framework_TestCase
 
         $this->assertTrue(!$status['running']);
     }
+
+    public function testOutput() {
+        $proc = new \NETWAYS\IO\Process('echo');
+        $proc->addNamedArgument('-n');
+        $proc->addPositionalArgument('OK11');
+        $proc->execute();
+        $this->assertEquals('OK11', $proc->getOutput());
+    }
+
+    public function testNamedArguments() {
+        $proc = new \NETWAYS\IO\Process('cut');
+        $proc->addNamedArgument('--delimiter', ';');
+        $proc->addNamedArgument('--fields', '2');
+        $proc->setInput('OK12;LLL2;KOK3');
+        $proc->execute();
+        $this->assertEquals('LLL2'. chr(10), $proc->getOutput());
+    }
+
+    public function testRuntime() {
+        $proc = new \NETWAYS\IO\Process('sleep');
+        $proc->addPositionalArgument(1);
+        $proc->execute();
+        $this->assertGreaterThan(0.0, $proc->getRuntime());
+    }
+
+    public function testWorkDirectory() {
+        $proc = new \NETWAYS\IO\Process('pwd');
+        $proc->setWorkDirectory('/var/log/');
+        $proc->execute();
+        $this->assertEquals('/var/log'. chr(10), $proc->getOutput());
+    }
 }
