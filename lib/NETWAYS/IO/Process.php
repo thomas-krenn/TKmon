@@ -245,6 +245,31 @@ class Process
     }
 
     /**
+     * Resets positional arguments
+     */
+    public function resetPositionalArguments()
+    {
+        $this->positionalArguments = array();
+    }
+
+    /**
+     * Resets named arguments
+     */
+    public function resetNamedArguments()
+    {
+        $this->namedArguments = array();
+    }
+
+    /**
+     * Resets all arguments
+     */
+    public function resetArguments()
+    {
+        $this->resetNamedArguments();
+        $this->resetPositionalrguments();
+    }
+
+    /**
      * Wrap execution call with sudo
      * @param bool $flag
      */

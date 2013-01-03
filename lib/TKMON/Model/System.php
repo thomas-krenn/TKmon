@@ -19,45 +19,22 @@
  * @copyright 2012-2013 NETWAYS GmbH <info@netways.de>
  */
 
-namespace TKMON\Action\Expose;
+namespace TKMON\Model;
 
 /**
- * System base action
- *
- * @package TKMON\Action
+ * This a collection of common actions
+ * @package TKMON\Model
  * @author Marius Hein <marius.hein@netways.de>
  */
-class System extends \TKMON\Action\Base
+class System extends ApplicationModel
 {
-    /**
-     * Security flag for ping action
-     * @return bool
-     */
-    public function securityPing()
-    {
-        return false;
-    }
 
     /**
-     * Simple ping action to determine we're online
-     * @return \TKMON\Mvc\Output\JsonResponse
+     * Modelled action to excecute a system reboot
      */
-    public function actionPing()
+    public function doReboot()
     {
-
-        $user = $this->container['user'];
-        $config = $this->container['config'];
-
-        $response = new \TKMON\Mvc\Output\JsonResponse();
-        $response->setSuccess(true);
-        $response->addData(
-            array(
-                'ping' => true,
-                'user' => $user->getAuthenticated() ? $user->getName() : false,
-                'version' => $config->get('app.version.release')
-            )
-        );
-
-        return $response;
+        $command = $this->container['command']->create('reboot');
+        $command->execute();
     }
 }

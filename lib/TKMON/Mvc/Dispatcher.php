@@ -150,11 +150,14 @@ class Dispatcher
         $config = $this->container['config'];
 
         if ($config->get('web.rewrite', false) === true) {
-            return '/'. preg_replace(
+            $uri = '/'. preg_replace(
                 '@^'. preg_quote($config['web.path'], '@'). '@',
                 '',
                 $params->getParameter('REQUEST_URI', null, 'header')
             );
+
+            // We do not need CGI params here
+            return preg_replace('@\?[^$]+$@', '', $uri);
         } else {
             if ($params->hasParameter('path')) {
                 return $params->getParameter('path');
@@ -203,7 +206,9 @@ class Dispatcher
                 throw new \TKMON\Exception\DispatcherException('Action needs authenticated user: '. $this->action);
             }
 
-            $content = $reflectionMethod->invoke($object);
+            $params = $this->container['params']->getArrayObject('request');
+
+            $content = $reflectionMethod->invoke($object, $params);
 
             if (is_object($content) && $content instanceof \TKMON\Mvc\Output\DataInterface) {
                 if ($this->isAjaxRequest()) {

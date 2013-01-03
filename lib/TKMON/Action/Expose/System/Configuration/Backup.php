@@ -29,28 +29,38 @@ namespace TKMON\Action\Expose\System\Configuration;
  */
 class Backup extends \TKMON\Action\Base
 {
-    public function actionIndex()
+    /**
+     * Show the form
+     * @param \NETWAYS\Common\ArrayObject $params
+     * @return \TKMON\Mvc\Output\TwigTemplate
+     */
+    public function actionIndex(\NETWAYS\Common\ArrayObject $params)
     {
         $template = new \TKMON\Mvc\Output\TwigTemplate($this->container['template']);
         $template->setTemplateName('views/System/Configuration/Backup.twig');
         return $template;
     }
 
-    public function actionApplianceReboot()
+    /**
+     * Action to handle reboot
+     * @param \NETWAYS\Common\ArrayObject $params
+     * @return \TKMON\Mvc\Output\JsonResponse
+     * @throws \TKMON\Exception\ModelException
+     */
+    public function actionApplianceReboot(\NETWAYS\Common\ArrayObject $params)
     {
-        $params = $this->container['params'];
-
         $response = new \TKMON\Mvc\Output\JsonResponse();
 
+        $systemModel = new \TKMON\Model\System($this->container);
+
         try {
-            if ($params->getParameter('reboot', false) === '1') {
-                $command = $this->container['command']->create('reboot');
-                $command->execute();
+            if ($params->get('reboot', false) === '1') {
+                $systemModel->doReboot();
                 $response->setSuccess(true);
             } else {
                 throw new \TKMON\Exception\ModelException("Not properly parametrized: Action ApplianceReboot");
             }
-        } catch(\Exception $e) {
+        } catch (\Exception $e) {
             $response->addException($e);
         }
 

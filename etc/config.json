@@ -39,6 +39,16 @@
         "reboot": {
             "path": "/sbin/reboot",
             "sudo": true
+        },
+
+        "hostname": {
+            "path": "/bin/hostname",
+            "sudo": true
+        },
+
+        "mv": {
+            "path": "/bin/mv",
+            "sudo": true
         }
     }
 }

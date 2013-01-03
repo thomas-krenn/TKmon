@@ -5,3 +5,5 @@
 %tkmonweb ALL=(ALL)NOPASSWD:/usr/sbin/usermod
 %tkmonweb ALL=(ALL)NOPASSWD:/usr/bin/passwd
 %tkmonweb ALL=(ALL)NOPASSWD:/sbin/reboot
+%tkmonweb ALL=(ALL)NOPASSWD:/bin/mv
+%tkmonweb ALL=(ALL)NOPASSWD:/bin/hostname
