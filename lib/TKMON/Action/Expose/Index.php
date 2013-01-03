@@ -45,16 +45,9 @@ class Index extends \TKMON\Action\Base
      */
     public function actionIndex()
     {
-        $user = $this->container['user'];
-
         $view = new \TKMON\Mvc\Output\TwigTemplate($this->container['template']);
-
-        if ($user->getAuthenticated() === true) {
-            $view->setTemplateName('views/welcome.twig');
-        } else {
-            $view->setTemplateName('views/welcome-guest.twig');
-        }
-
+        $view->setTemplateName('views/Index.twig');
+        $view['user'] = $this->container['user'];
         return $view;
     }
 }
