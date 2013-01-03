@@ -67,4 +67,20 @@ class Network extends \TKMON\Action\Base
 
         return $response;
     }
+
+    public function actionChangeDnsSettings(\NETWAYS\Common\ArrayObject $params)
+    {
+        $response = new \TKMON\Mvc\Output\JsonResponse();
+        try {
+            $ethernet = new \TKMON\Model\System\Interfaces($this->container);
+            $ethernet->setInterfaceName('eth0');
+            $ethernet->load();
+
+        } catch (\Exception $e) {
+            $response->setSuccess(false);
+            $response->addException($e);
+        }
+
+        return $response;
+    }
 }

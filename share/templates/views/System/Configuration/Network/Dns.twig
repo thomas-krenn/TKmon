@@ -11,11 +11,11 @@
 <p>Here you can change your DNS settings for this appliance</p>
 
 <form
+        id="dns-form"
         class="container-spacer-down"
         action="{{ web_link("ChangeDnsSettings") }}"
         data-ajax="form"
         data-ajax-type="json"
-        data-form-focus-first="#device_name"
         data-error-target="#dns-errors"
         data-success-frame="#dns-success"
         >
