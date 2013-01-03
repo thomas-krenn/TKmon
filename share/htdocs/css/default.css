@@ -31,3 +31,11 @@ html, body {
     -moz-border-radius: 5px;
     border-radius: 5px;
 }
+
+.container-to-right-50 {
+    margin-left: 50px;
+}
+
+.container-spacer-down {
+    margin-top: 20px;
+}

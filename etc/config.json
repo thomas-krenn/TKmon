@@ -34,6 +34,11 @@
         "passwd": {
             "path": "/usr/bin/passwd",
             "sudo": true
+        },
+
+        "reboot": {
+            "path": "/sbin/reboot",
+            "sudo": true
         }
     }
 }

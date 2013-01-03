@@ -1,4 +1,7 @@
-
+# ------------------------------
+# Sudoers file for tkmon actions
+# ------------------------------
 %tkmonweb ALL=(ALL)NOPASSWD:/usr/sbin/chpasswd
 %tkmonweb ALL=(ALL)NOPASSWD:/usr/sbin/usermod
 %tkmonweb ALL=(ALL)NOPASSWD:/usr/bin/passwd
+%tkmonweb ALL=(ALL)NOPASSWD:/sbin/reboot

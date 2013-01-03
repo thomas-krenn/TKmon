@@ -20,12 +20,6 @@
 
         "items": [
             {
-                "title": "Basic settings",
-                "description": "Configure basic settings",
-                "href": "System/Configuration/Basic/Index"
-            },
-
-            {
                 "title": "Security",
                 "description": "Configure access, https",
                 "href": "System/Configuration/Security/Index"
@@ -47,6 +41,12 @@
                 "title": "Free Settings",
                 "description": "Free config",
                 "href": "System/Configuration/Advanced/Free"
+            },
+
+            {
+                "title": "Backup/Restore",
+                "description": "Backup and restore",
+                "href": "System/Configuration/Backup/Index"
             }
         ]
     }
