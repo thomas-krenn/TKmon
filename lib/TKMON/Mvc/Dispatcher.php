@@ -33,6 +33,8 @@ class Dispatcher
 
     const SECURITY_PREFIX = 'security';
 
+    const TEMPLATE_PREFX = 'template';
+
     /**
      * DI container
      * @var null|Pimple
@@ -194,8 +196,6 @@ class Dispatcher
 
             $object->setContainer($this->container);
 
-            $reflectionMethod = $this->getActionMethod($reflectionClass, $this->action);
-
             /**
              * If this is a public action
              */
@@ -203,7 +203,14 @@ class Dispatcher
                 throw new \TKMON\Exception\DispatcherException('Action needs authenticated user: '. $this->action);
             }
 
-            $content = $reflectionMethod->invoke($object);
+            $content = null;
+
+            if (($data = $this->getSimpleTemplate($this->action, $reflectionClass, $object))) {
+                $content = $data;
+            } else {
+                $reflectionMethod = $this->getActionMethod($reflectionClass, $this->action);
+                $content = $reflectionMethod->invoke($object);
+            }
 
             if (is_object($content) && $content instanceof \TKMON\Mvc\Output\DataInterface) {
                 if ($this->isAjaxRequest()) {
@@ -326,5 +333,24 @@ class Dispatcher
         }
 
         return true;
+    }
+
+    private function getSimpleTemplate($action, \ReflectionClass $reflection, \TKMON\Action\Base $object)
+    {
+        $methodName = self::TEMPLATE_PREFX. $action;
+
+        if ($reflection->hasMethod($methodName)) {
+            $method = $reflection->getMethod($methodName);
+            $templateName = $method->invoke($object);
+
+            if ($templateName && is_string($templateName)) {
+                $template = new \TKMON\Mvc\Output\TwigTemplate($this->container['template']);
+                $template->setTemplateName($templateName);
+                $template['user'] = $this->container['user'];
+                return $template;
+            }
+
+            throw new \TKMON\Exception\DispatcherException("Template from action '$action' is not configured");
+        }
     }
 }

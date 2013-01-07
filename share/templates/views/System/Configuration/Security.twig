@@ -54,7 +54,11 @@
                     <input id="password_verify" type="password" name="password_verify" />
                 </fieldset>
 
-                <input type="submit" class="btn btn-primary" value="Change" />
+                <div class="container-spacer-down">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="icon-key"></i> Change password
+                    </button>
+                </div>
             </form>
         </div>
 
@@ -102,11 +106,15 @@
                 <p>
                 {% if system_enabled == false %}
                     <input type="hidden" name="access" value="1" />
-                    <input type="submit" class="btn btn-success" value="Enable" />
+                    <button type="submit" class="btn btn-success">
+                        <i class="icon-unlock"></i> Enable
+                    </button>
                     <p>System access (ssh/shell) for user {{ user.getName() }} will be enabled.</p>
                 {% else %}
                     <input type="hidden" name="access" value="0" />
-                    <input type="submit" class="btn btn-danger" value="Disable" />
+                    <button type="submit" class="btn btn-danger">
+                        <i class="icon-lock"></i> Disable
+                    </button>
                     <p>System access (ssh/shell) for user {{ user.getName() }} will be disabled.</p>
                 {% endif %}
                 </p
