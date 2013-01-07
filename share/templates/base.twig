@@ -14,8 +14,14 @@
 
         <link rel="stylesheet" href="{{ config['web.path'] }}css/normalize.css">
         <link rel="stylesheet" href="{{ config['web.path'] }}css/main.css">
-        <link href="{{ config['web.path'] }}css/bootstrap.min.css" rel="stylesheet" media="screen">
+        <link rel="stylesheet" href="{{ config['web.path'] }}css/bootstrap.min.css" media="screen">
+        <link rel="stylesheet" href="{{ config['web.path'] }}css/font-awesome.min.css">
+        <!--[if IE 7]>
+        <link rel="stylesheet" href="{{ config['web.path'] }}css/font-awesome-ie7.min.css">
+        <![endif]-->
         <link rel="stylesheet" href="{{ config['web.path'] }}css/default.css">
+
+        <title>TKMON</title>
     </head>
     <body>
         <!--[if lt IE 7]>
@@ -34,10 +40,16 @@
                     <ul class="nav pull-right">
                         <li><p class="navbar-text">Logged in as {{ user.getName() }}</p></li>
                     {% if user.getAuthenticated == true %}
-                        <li><a href="{{ web_link("System/Login/Logout") }}">Logout</a></li>
+                        <li>
+                            <a href="{{ web_link("System/Login/Logout") }}">
+                                <i class="icon-lock"></i> Logout
+                            </a>
+                        </li>
                     {% else %}
                         <li class="divider-vertica">
-                            <a href="{{ web_link("System/Login/Index") }}">Login</a>
+                            <a href="{{ web_link("System/Login/Index") }}">
+                                <i class="icon-unlock"></i> Login
+                            </a>
                         </li>
                     {% endif %}
                     </ul>

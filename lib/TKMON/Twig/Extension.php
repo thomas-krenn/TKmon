@@ -105,7 +105,9 @@ class Extension implements \Twig_ExtensionInterface
     public function getGlobals()
     {
         return array(
-            'app_name' => $this->container['config']->get('app.name')
+            'app_name' => $this->container['config']->get('app.name'),
+            'web_path' => $this->container['config']->get('web.path'),
+            'img_path' => $this->container['config']->get('web.img_path')
         );
     }
 

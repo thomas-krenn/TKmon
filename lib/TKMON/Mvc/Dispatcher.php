@@ -33,6 +33,8 @@ class Dispatcher
 
     const SECURITY_PREFIX = 'security';
 
+    const TEMPLATE_PREFX = 'template';
+
     /**
      * DI container
      * @var null|Pimple
@@ -150,7 +152,7 @@ class Dispatcher
         $config = $this->container['config'];
 
         if ($config->get('web.rewrite', false) === true) {
-            $uri = '/'. preg_replace(
+            return '/'. preg_replace(
                 '@^'. preg_quote($config['web.path'], '@'). '@',
                 '',
                 $params->getParameter('REQUEST_URI', null, 'header')
@@ -197,8 +199,6 @@ class Dispatcher
 
             $object->setContainer($this->container);
 
-            $reflectionMethod = $this->getActionMethod($reflectionClass, $this->action);
-
             /**
              * If this is a public action
              */
@@ -206,9 +206,14 @@ class Dispatcher
                 throw new \TKMON\Exception\DispatcherException('Action needs authenticated user: '. $this->action);
             }
 
-            $params = $this->container['params']->getArrayObject('request');
+            $content = null;
 
-            $content = $reflectionMethod->invoke($object, $params);
+            if (($data = $this->getSimpleTemplate($this->action, $reflectionClass, $object))) {
+                $content = $data;
+            } else {
+                $reflectionMethod = $this->getActionMethod($reflectionClass, $this->action);
+                $content = $reflectionMethod->invoke($object, $this->container['params']->getArrayObject('request'));
+            }
 
             if (is_object($content) && $content instanceof \TKMON\Mvc\Output\DataInterface) {
                 if ($this->isAjaxRequest()) {
@@ -331,5 +336,24 @@ class Dispatcher
         }
 
         return true;
+    }
+
+    private function getSimpleTemplate($action, \ReflectionClass $reflection, \TKMON\Action\Base $object)
+    {
+        $methodName = self::TEMPLATE_PREFX. $action;
+
+        if ($reflection->hasMethod($methodName)) {
+            $method = $reflection->getMethod($methodName);
+            $templateName = $method->invoke($object);
+
+            if ($templateName && is_string($templateName)) {
+                $template = new \TKMON\Mvc\Output\TwigTemplate($this->container['template']);
+                $template->setTemplateName($templateName);
+                $template['user'] = $this->container['user'];
+                return $template;
+            }
+
+            throw new \TKMON\Exception\DispatcherException("Template from action '$action' is not configured");
+        }
     }
 }

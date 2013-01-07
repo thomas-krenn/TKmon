@@ -208,4 +208,13 @@ class Interfaces extends \TKMON\Model\ApplicationModel implements \ArrayAccess, 
             }
         }
     }
+
+    /**
+     * Write the data to disk
+     */
+    public function write()
+    {
+        $lines = explode(PHP_EOL, file_get_contents($this->getInterfaceFile()));
+        var_dump($lines);
+    }
 }

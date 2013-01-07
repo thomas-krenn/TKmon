@@ -50,4 +50,13 @@ class Index extends \TKMON\Action\Base
         $view['user'] = $this->container['user'];
         return $view;
     }
+
+    /**
+     * Just display a template
+     * @return string
+     */
+    public function templateLearnMore()
+    {
+        return 'views/Index/LearnMore.twig';
+    }
 }
