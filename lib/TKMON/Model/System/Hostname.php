@@ -39,7 +39,7 @@ class Hostname extends \TKMON\Model\ApplicationModel
      * Filename of hostname file
      * @var string
      */
-    private $hostnameFile = self::FILE_HOSTS;
+    private $hostnameFile = self::FILE_HOST_NAME;
 
     /**
      * Filename of hosts file (resolver)

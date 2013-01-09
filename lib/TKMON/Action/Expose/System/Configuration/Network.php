@@ -66,6 +66,7 @@ class Network extends \TKMON\Action\Base
         try {
             if ($params->get('device_name')) {
                 $hostnameModel = new \TKMON\Model\System\Hostname($this->container);
+                $hostnameModel->load();
                 $hostnameModel->setCombined($params->get('device_name'));
                 $hostnameModel->write();
 
