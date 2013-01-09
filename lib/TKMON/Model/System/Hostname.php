@@ -36,6 +36,18 @@ class Hostname extends \TKMON\Model\ApplicationModel
     const FILE_HOST_NAME = '/etc/hostname';
 
     /**
+     * Filename of hostname file
+     * @var string
+     */
+    private $hostnameFile = self::FILE_HOSTS;
+
+    /**
+     * Filename of hosts file (resolver)
+     * @var string
+     */
+    private $hostsFile = self::FILE_HOSTS;
+
+    /**
      * hostname / device name
      * @var string
      */
@@ -55,9 +67,11 @@ class Hostname extends \TKMON\Model\ApplicationModel
 
     public function __construct(\Pimple $container) {
         parent::__construct($container);
-        $this->load();
     }
 
+    /**
+     * Loads current hostname configuration into the object
+     */
     private function load() {
         /** @var $command \NETWAYS\IO\Process */
         $command = $this->container['command']->create('hostname');
@@ -100,6 +114,42 @@ class Hostname extends \TKMON\Model\ApplicationModel
     public function getHostname()
     {
         return $this->hostname;
+    }
+
+    /**
+     * Setter for hosts file
+     * @param string $hostsFile
+     */
+    public function setHostsFile($hostsFile)
+    {
+        $this->hostsFile = $hostsFile;
+    }
+
+    /**
+     * Getter for hosts file
+     * @return string
+     */
+    public function getHostsFile()
+    {
+        return $this->hostsFile;
+    }
+
+    /**
+     * Setter for hostname file
+     * @param string $hostnameFile
+     */
+    public function setHostnameFile($hostnameFile)
+    {
+        $this->hostnameFile = $hostnameFile;
+    }
+
+    /**
+     * Getter for hostnamefile
+     * @return string
+     */
+    public function getHostnameFile()
+    {
+        return $this->hostnameFile;
     }
 
     /**
@@ -193,7 +243,7 @@ class Hostname extends \TKMON\Model\ApplicationModel
         $hostsFile->fflush();
 
         $mv->addPositionalArgument($hostsFile->getRealPath());
-        $mv->addPositionalArgument(self::FILE_HOSTS);
+        $mv->addPositionalArgument($this->getHostsFile());
         $mv->execute();
         $mv->resetPositionalArguments();
 
@@ -202,12 +252,12 @@ class Hostname extends \TKMON\Model\ApplicationModel
         $hostnameFile->fflush();
 
         $mv->addPositionalArgument($hostnameFile->getRealPath());
-        $mv->addPositionalArgument(self::FILE_HOST_NAME);
+        $mv->addPositionalArgument($this->getHostnameFile());
         $mv->execute();
 
         /** @var $hostname \NETWAYS\IO\Process **/
         $hostname = $this->container['command']->create('hostname');
-        $hostname->addNamedArgument('-F', self::FILE_HOST_NAME);
+        $hostname->addNamedArgument('-F', $this->getHostnameFile());
         $hostname->execute();
     }
 }

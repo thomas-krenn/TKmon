@@ -29,6 +29,8 @@ namespace TKMON\Model\System;
 class Interfaces extends \TKMON\Model\ApplicationModel implements \ArrayAccess, \Countable
 {
 
+    const TEMP_PREFIX = 'interfaces-model-';
+
     /**
      * Interface options
      * e.g. address, netmask, ...
@@ -54,6 +56,12 @@ class Interfaces extends \TKMON\Model\ApplicationModel implements \ArrayAccess, 
      * @var string
      */
     private $interfaceFile = '/etc/network/interfaces';
+
+    /**
+     * Tester if the file was loaded
+     * @var bool
+     */
+    private $loaded = false;
 
     /**
      * Setter for the file
@@ -157,6 +165,12 @@ class Interfaces extends \TKMON\Model\ApplicationModel implements \ArrayAccess, 
         unset($this->options[$offset]);
     }
 
+    public function purgeOptions()
+    {
+        unset($this->options);
+        $this->options = array();
+    }
+
     /**
      * (PHP 5 &gt;= 5.1.0)<br/>
      * Count elements of an object
@@ -176,28 +190,62 @@ class Interfaces extends \TKMON\Model\ApplicationModel implements \ArrayAccess, 
      * @param $flag
      * @return bool
      */
-    public function hasFlag($flag) {
-        return in_array($this->flags, $flag);
+    public function hasFlag($flag)
+    {
+        return array_key_exists($flag, $this->flags);
     }
+
+    /**
+     * Set a new flag
+     * @param string $flag
+     */
+    public function setFlag($flag)
+    {
+        $this->flags[$flag] = true;
+    }
+
+    /**
+     * Drop the flag
+     * @param string $flag
+     */
+    public function dropFlag($flag)
+    {
+        if ($this->hasFlag($flag)) {
+            unset($this->flags[$flag]);
+        }
+    }
+
+    public function purgeFlags()
+    {
+        unset($this->flags);
+        $this->flags = array();
+    }
+
 
     /**
      * Parser for interface formats
      */
     public function load()
     {
+        //$test = file_get_contents($this->getInterfaceFile());
+        //var_dump($test);
+        //die;
+
         $file = new \SplFileObject($this->getInterfaceFile(), 'r');
-        $matchLine = '@^iface\s+'. preg_quote($this->getInterfaceName(), '@'). '\s+inet\s+([^$]+)$@';
         $match = array();
         $state = false;
+        $matchLine = $this->getInterfaceMatchLine();
 
-        while (($line = $file->fgets())) {
+        foreach ($file as $line) {
             if ($state === false && preg_match($matchLine, $line, $match)) {
                 $flags = explode(' ', trim($match[1]));
-                $this->flags = $flags;
+                foreach ($flags as $flag) {
+                    $this->setFlag($flag);
+                }
                 $state = true;
-            } elseif ($state === true && preg_match('@^\t+[^#]([^\s]+)\s+([^$]+)$@', $line, $match)) {
+            } elseif ($state === true && preg_match('@^\s+([^\s]+)\s+([^$]+)$@', $line, $match)) {
                 $this->offsetSet($match[1], trim($match[2]));
-            } elseif ($state === true && preg_match('@^\t*(#|$)@', $line)) {
+            } elseif ($state === true && preg_match('@^\s*(#|$)@', $line)) {
                 continue;
             } elseif ($state === true) {
                 $state = -1;
@@ -207,14 +255,109 @@ class Interfaces extends \TKMON\Model\ApplicationModel implements \ArrayAccess, 
                 break;
             }
         }
+
+        $this->loaded = true;
+    }
+
+    private function getInterfaceMatchLine()
+    {
+        if (!$this->getInterfaceName()) {
+            throw new \TKMON\Exception\ModelException('$interfaceName is missing');
+        }
+
+        return '@^iface\s+'. preg_quote($this->getInterfaceName(), '@'). '\s+inet\s+([^$]+)$@';
+    }
+
+    private function detectDataIndex(&$start, &$length, $lines)
+    {
+        $set = false;
+        foreach ($lines as $i=>$line) {
+            if ($set && (preg_match('/^iface\s+\w+/', $line) || count($lines)-1 == $i)) {
+                $length = $i-$start;
+
+                /*
+                 * Go up to find comments
+                 */
+                for (;$i>0; $i--) {
+                    $line = $lines[$i];
+                    if (preg_match('/^(#|iface|auto|\s+$)/', $line)===0) {
+                        break 2;
+                    }
+                    $length--;
+                }
+            }
+
+
+            if (!$set && preg_match($this->getInterfaceMatchLine(), $line)) {
+                $start = $i;
+                $set = true;
+            }
+        }
+    }
+
+    private function generateDataToWrite()
+    {
+        $out = array();
+        $out[] = 'iface '
+            . $this->getInterfaceName()
+            . ' inet '
+            . implode(' ', array_keys($this->flags));
+
+        foreach ($this->options as $name=>$value) {
+            $out[] = "\t". $name. ' '. $value;
+        }
+
+        return $out;
     }
 
     /**
      * Write the data to disk
+     * @throws \TKMON\Exception\ModelException
      */
     public function write()
     {
-        $lines = explode(PHP_EOL, file_get_contents($this->getInterfaceFile()));
-        var_dump($lines);
+        $lines = array();
+
+        if (is_file($this->getInterfaceFile())) {
+            if ($this->loaded === false) {
+                throw new \TKMON\Exception\ModelException(
+                    "File is present but not loaded,"
+                    . " you'll loose all your data, abort!"
+                );
+            }
+
+            $lines = explode(PHP_EOL, file_get_contents($this->getInterfaceFile()));
+        }
+
+        /** @var int $index Index counter where we found the interface **/
+        $index = 0;
+
+        /** @var int $length Length items belonging to the interface **/
+        $length = 0;
+
+        // Generate index to splice
+        $this->detectDataIndex($index, $length, $lines);
+
+
+        // Write our new config
+        array_splice($lines, $index, $length, $this->generateDataToWrite());
+
+        $interfacesFile = new \NETWAYS\IO\RealTempFileObject(self::TEMP_PREFIX, 'w');
+        $interfacesFile->fwrite(implode(PHP_EOL, $lines));
+        $interfacesFile->fflush();
+
+        /** @var $mv \NETWAYS\IO\Process **/
+        $mv = $this->container['command']->create('mv');
+        $mv->addPositionalArgument($interfacesFile->getRealPath());
+        $mv->addPositionalArgument($this->getInterfaceFile());
+        $mv->execute();
+    }
+
+    public function resetData()
+    {
+        $this->purgeOptions();
+        $this->purgeFlags();
+        $this->loaded = false;
+        unset($this->interfaceName);
     }
 }

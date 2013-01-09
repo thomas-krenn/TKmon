@@ -76,6 +76,9 @@ class Network extends \TKMON\Action\Base
             $ethernet->setInterfaceName('eth0');
             $ethernet->load();
 
+            var_dump($this->container);
+            die();
+
         } catch (\Exception $e) {
             $response->setSuccess(false);
             $response->addException($e);
