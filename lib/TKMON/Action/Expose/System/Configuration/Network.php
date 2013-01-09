@@ -39,12 +39,26 @@ class Network extends \TKMON\Action\Base
         $template->setTemplateName('views/System/Configuration/Network.twig');
 
         $hostnameModel = new \TKMON\Model\System\Hostname($this->container);
-
+        $hostnameModel->load();
         $template['device_name'] = $hostnameModel->getCombined();
+
+        $dnsModel = new \TKMON\Model\System\DnsServers($this->container);
+        $dnsModel->setInterfaceName($this->container['config']['system.interface']);
+        $dnsModel->load();
+        $template['dns_nameserver1'] = $dnsModel->getDnsServerItem(0);
+        $template['dns_nameserver2'] = $dnsModel->getDnsServerItem(1);
+        $template['dns_nameserver3'] = $dnsModel->getDnsServerItem(2);
+        $template['dns_search'] = $dnsModel->getDnsSearch();
 
         return $template;
     }
 
+    /**
+     * Updater to change the hostname
+     * @param \NETWAYS\Common\ArrayObject $params
+     * @return \TKMON\Mvc\Output\JsonResponse
+     * @throws \TKMON\Exception\ModelException
+     */
     public function actionChangeDeviceName(\NETWAYS\Common\ArrayObject $params)
     {
         $response = new \TKMON\Mvc\Output\JsonResponse();
@@ -68,16 +82,52 @@ class Network extends \TKMON\Action\Base
         return $response;
     }
 
+    /**
+     * @param \NETWAYS\Common\ArrayObject $params
+     * @return \TKMON\Mvc\Output\JsonResponse
+     */
     public function actionChangeDnsSettings(\NETWAYS\Common\ArrayObject $params)
     {
         $response = new \TKMON\Mvc\Output\JsonResponse();
-        try {
-            $ethernet = new \TKMON\Model\System\Interfaces($this->container);
-            $ethernet->setInterfaceName('eth0');
-            $ethernet->load();
 
-            var_dump($this->container);
-            die();
+        try {
+            $validator = new \NETWAYS\Common\ArrayObjectValidator();
+            $validator->addValidator('dns_nameserver1', 'IP address', FILTER_VALIDATE_IP);
+            $validator->addValidator('dns_nameserver2', 'IP address', FILTER_VALIDATE_IP);
+            $validator->addValidator('dns_nameserver3', 'IP address', FILTER_VALIDATE_IP);
+            $validator->addValidator('dns_search', 'Host', FILTER_VALIDATE_REGEXP, null, array(
+                'regexp' => '/^\w+\.\w+/'
+            ));
+            $validator->validateArrayObject($params);
+
+            $systemModel = new \TKMON\Model\System($this->container);
+
+            $dnsModel = new \TKMON\Model\System\DnsServers($this->container);
+            $dnsModel->setInterfaceName($this->container['config']['system.interface']);
+            $dnsModel->load();
+
+            if ($params->get('dns_nameserver1')) {
+                $dnsModel->setDnsServerItem(0, $params->get('dns_nameserver1'));
+            }
+
+            if ($params->get('dns_nameserver2')) {
+                $dnsModel->setDnsServerItem(1, $params->get('dns_nameserver2'));
+            }
+
+            if ($params->get('dns_nameserver3')) {
+                $dnsModel->setDnsServerItem(1, $params->get('dns_nameserver3'));
+            }
+
+            if ($params->get('dns_search')) {
+                $dnsModel->setDnsSearch($params->get('dns_search'));
+            }
+
+            $dnsModel->write();
+
+            $systemModel->restartNetworkInterfaces();
+
+            $response->setSuccess(true);
+
 
         } catch (\Exception $e) {
             $response->setSuccess(false);

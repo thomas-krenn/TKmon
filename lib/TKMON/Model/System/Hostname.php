@@ -72,7 +72,7 @@ class Hostname extends \TKMON\Model\ApplicationModel
     /**
      * Loads current hostname configuration into the object
      */
-    private function load() {
+    public function load() {
         /** @var $command \NETWAYS\IO\Process */
         $command = $this->container['command']->create('hostname');
         $command->addNamedArgument('--long');

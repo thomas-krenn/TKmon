@@ -20,6 +20,8 @@
     "db.file":              "{core.var_dir}/db/default.sqlite",
     "db.dsn":               "sqlite:{db.file}",
 
+    "system.interface":     "eth0",
+
     "command.config": {
         "chpasswd":  {
             "path": "/usr/sbin/chpasswd",
@@ -48,6 +50,11 @@
 
         "mv": {
             "path": "/bin/mv",
+            "sudo": true
+        },
+
+        "restart": {
+            "path": "/sbin/restart",
             "sudo": true
         }
     }

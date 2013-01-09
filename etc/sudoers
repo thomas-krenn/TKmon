@@ -7,3 +7,4 @@
 %tkmonweb ALL=(ALL)NOPASSWD:/sbin/reboot
 %tkmonweb ALL=(ALL)NOPASSWD:/bin/mv
 %tkmonweb ALL=(ALL)NOPASSWD:/bin/hostname
+%tkmonweb ALL=(ALL)NOPASSWD:/sbin/restart

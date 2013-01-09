@@ -19,33 +19,14 @@
  * @copyright 2012-2013 NETWAYS GmbH <info@netways.de>
  */
 
-namespace TKMON\Model;
+namespace NETWAYS\Common\Exception;
 
 /**
- * This a collection of common actions
- * @package TKMON\Model
+ * Validator exception
+ *
+ * @package NETWAYS\Common
  * @author Marius Hein <marius.hein@netways.de>
  */
-class System extends ApplicationModel
+class ValidatorException extends \NETWAYS\Common\Exception
 {
-
-    /**
-     * Modelled action to excecute a system reboot
-     */
-    public function doReboot()
-    {
-        $command = $this->container['command']->create('reboot');
-        $command->execute();
-    }
-
-    public function restartNetworkInterfaces()
-    {
-        $interface = $this->container['config']['system.interface'];
-
-        /** @var $command \NETWAYS\IO\Process */
-        $command = $this->container['command']->create('restart');
-        $command->addPositionalArgument('network-interface');
-        $command->addPositionalArgument('INTERFACE='. $interface);
-        $command->execute();
-    }
 }

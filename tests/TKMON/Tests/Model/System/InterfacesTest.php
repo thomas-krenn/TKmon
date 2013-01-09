@@ -18,7 +18,9 @@ class InterfacesTest extends \PHPUnit_Framework_TestCase
 
     public static function tearDownAfterClass()
     {
-        unlink(self::$interfaceFile);
+        if (file_exists(self::$interfaceFile)) {
+            unlink(self::$interfaceFile);
+        }
     }
 
     public function testStep1()
