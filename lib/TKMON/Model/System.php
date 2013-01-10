@@ -38,6 +38,9 @@ class System extends ApplicationModel
         $command->execute();
     }
 
+    /**
+     * Restart main interface
+     */
     public function restartNetworkInterfaces()
     {
         $interface = $this->container['config']['system.interface'];

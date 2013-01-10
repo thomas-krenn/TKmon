@@ -65,7 +65,8 @@ class RealTempFileObject extends \SplFileObject
     /**
      * Delete the file before destruct object
      */
-    public function __destruct() {
+    public function __destruct()
+    {
         $fname = $this->getRealPath();
         if (is_file($fname)) {
             $this->fflush();

@@ -165,6 +165,9 @@ class Interfaces extends \TKMON\Model\ApplicationModel implements \ArrayAccess, 
         unset($this->options[$offset]);
     }
 
+    /**
+     * Clear all options
+     */
     public function purgeOptions()
     {
         unset($this->options);
@@ -215,6 +218,9 @@ class Interfaces extends \TKMON\Model\ApplicationModel implements \ArrayAccess, 
         }
     }
 
+    /**
+     * Clear all flags
+     */
     public function purgeFlags()
     {
         unset($this->flags);
@@ -259,6 +265,11 @@ class Interfaces extends \TKMON\Model\ApplicationModel implements \ArrayAccess, 
         $this->loaded = true;
     }
 
+    /**
+     * Ready quoted match line for file content
+     * @return string
+     * @throws \TKMON\Exception\ModelException
+     */
     private function getInterfaceMatchLine()
     {
         if (!$this->getInterfaceName()) {
@@ -268,17 +279,26 @@ class Interfaces extends \TKMON\Model\ApplicationModel implements \ArrayAccess, 
         return '@^iface\s+'. preg_quote($this->getInterfaceName(), '@'). '\s+inet\s+([^$]+)$@';
     }
 
-    private function detectDataIndex(&$start, &$length, $lines)
+    /**
+     * Detect our cutting window
+     *
+     * To insert new interface configuration
+     *
+     * @param int $start start index where to insert
+     * @param int $length how many lines belongs to us
+     * @param array $lines The file content
+     */
+    private function detectDataIndex(&$start, &$length, array $lines)
     {
         $set = false;
-        foreach ($lines as $i=>$line) {
+        foreach ($lines as $i => $line) {
             if ($set && (preg_match('/^iface\s+\w+/', $line) || count($lines)-1 == $i)) {
                 $length = $i-$start;
 
                 /*
                  * Go up to find comments
                  */
-                for (;$i>0; $i--) {
+                for (; $i>0; $i--) {
                     $line = $lines[$i];
                     if (preg_match('/^(#|iface|auto|\s+$)/', $line)===0) {
                         break 2;
@@ -295,6 +315,10 @@ class Interfaces extends \TKMON\Model\ApplicationModel implements \ArrayAccess, 
         }
     }
 
+    /**
+     * Generate data we can insert into interfaces file
+     * @return array
+     */
     private function generateDataToWrite()
     {
         $out = array();
@@ -303,7 +327,7 @@ class Interfaces extends \TKMON\Model\ApplicationModel implements \ArrayAccess, 
             . ' inet '
             . implode(' ', array_keys($this->flags));
 
-        foreach ($this->options as $name=>$value) {
+        foreach ($this->options as $name => $value) {
             $out[] = "\t". $name. ' '. $value;
         }
 
@@ -353,6 +377,11 @@ class Interfaces extends \TKMON\Model\ApplicationModel implements \ArrayAccess, 
         $mv->execute();
     }
 
+    /**
+     * Bring the object back into startup state
+     *
+     * So we can write a new interface definition
+     */
     public function resetData()
     {
         $this->purgeOptions();

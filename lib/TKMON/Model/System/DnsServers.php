@@ -26,9 +26,6 @@ namespace TKMON\Model\System;
  * @package TKMON\Model
  * @author Marius Hein <marius.hein@netways.de>
  */
-/**
- *
- */
 class DnsServers extends Interfaces
 {
 
@@ -95,7 +92,7 @@ class DnsServers extends Interfaces
      * Setter of a dns server item
      * @param int|null $index
      */
-    public function getDnsServerItem($index=0)
+    public function getDnsServerItem($index = 0)
     {
         if (isset($this->dnsServers[$index])) {
                 return $this->dnsServers[$index];
@@ -110,7 +107,7 @@ class DnsServers extends Interfaces
      * @param string $server
      * @return void
      */
-    public function setDnsServerItem($index=0, $server)
+    public function setDnsServerItem($index, $server)
     {
         $this->dnsServers[$index] = $server;
     }

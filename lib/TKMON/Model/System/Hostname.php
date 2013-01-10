@@ -65,14 +65,20 @@ class Hostname extends \TKMON\Model\ApplicationModel
      */
     private $oldHostname;
 
-    public function __construct(\Pimple $container) {
+    /**
+     * Creates a new hostname model
+     * @param \Pimple $container
+     */
+    public function __construct(\Pimple $container)
+    {
         parent::__construct($container);
     }
 
     /**
      * Loads current hostname configuration into the object
      */
-    public function load() {
+    public function load()
+    {
         /** @var $command \NETWAYS\IO\Process */
         $command = $this->container['command']->create('hostname');
         $command->addNamedArgument('--long');
@@ -85,6 +91,7 @@ class Hostname extends \TKMON\Model\ApplicationModel
     }
 
     /**
+     * Setter for domainName
      * @param string $domainName
      */
     public function setDomainName($domainName)
@@ -93,6 +100,7 @@ class Hostname extends \TKMON\Model\ApplicationModel
     }
 
     /**
+     * Getter for domainName
      * @return string
      */
     public function getDomainName()
@@ -101,6 +109,7 @@ class Hostname extends \TKMON\Model\ApplicationModel
     }
 
     /**
+     * Setter for hostname
      * @param string $hostname
      */
     public function setHostname($hostname)
@@ -109,6 +118,7 @@ class Hostname extends \TKMON\Model\ApplicationModel
     }
 
     /**
+     * Getter for hostname
      * @return string
      */
     public function getHostname()

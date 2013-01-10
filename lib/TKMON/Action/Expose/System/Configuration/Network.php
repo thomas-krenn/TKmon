@@ -30,6 +30,8 @@ namespace TKMON\Action\Expose\System\Configuration;
 class Network extends \TKMON\Action\Base
 {
     /**
+     * Displays the form and set some basic data
+     *
      * @param \NETWAYS\Common\ArrayObject $params
      * @return \TKMON\Mvc\Output\TwigTemplate
      */
@@ -54,7 +56,8 @@ class Network extends \TKMON\Action\Base
     }
 
     /**
-     * Updater to change the hostname
+     * Updater to change the dns configuration
+     *
      * @param \NETWAYS\Common\ArrayObject $params
      * @return \TKMON\Mvc\Output\JsonResponse
      * @throws \TKMON\Exception\ModelException
@@ -84,6 +87,8 @@ class Network extends \TKMON\Action\Base
     }
 
     /**
+     * Action to change DNS settings
+     *
      * @param \NETWAYS\Common\ArrayObject $params
      * @return \TKMON\Mvc\Output\JsonResponse
      */
@@ -93,12 +98,19 @@ class Network extends \TKMON\Action\Base
 
         try {
             $validator = new \NETWAYS\Common\ArrayObjectValidator();
+            $validator->throwOnErrors(true);
             $validator->addValidator('dns_nameserver1', 'IP address', FILTER_VALIDATE_IP);
             $validator->addValidator('dns_nameserver2', 'IP address', FILTER_VALIDATE_IP);
             $validator->addValidator('dns_nameserver3', 'IP address', FILTER_VALIDATE_IP);
-            $validator->addValidator('dns_search', 'Host', FILTER_VALIDATE_REGEXP, null, array(
-                'regexp' => '/^\w+\.\w+/'
-            ));
+            $validator->addValidator(
+                'dns_search',
+                'Host',
+                FILTER_VALIDATE_REGEXP,
+                null,
+                array(
+                    'regexp' => '/^\w+\.\w+/'
+                )
+            );
             $validator->validateArrayObject($params);
 
             $systemModel = new \TKMON\Model\System($this->container);

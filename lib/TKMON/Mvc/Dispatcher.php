@@ -338,6 +338,15 @@ class Dispatcher
         return true;
     }
 
+    /**
+     * Reflection test to display simple template only
+     *
+     * @param string $action
+     * @param \ReflectionClass $reflection
+     * @param \TKMON\Action\Base $object
+     * @return \TKMON\Mvc\Output\TwigTemplate
+     * @throws \TKMON\Exception\DispatcherException
+     */
     private function getSimpleTemplate($action, \ReflectionClass $reflection, \TKMON\Action\Base $object)
     {
         $methodName = self::TEMPLATE_PREFX. $action;
