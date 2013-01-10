@@ -41,9 +41,10 @@ class Login extends \TKMON\Action\Base
 
     /**
      * Show login box
+     * @param \NETWAYS\Common\ArrayObject $params
      * @return \TKMON\Mvc\Output\TwigTemplate
      */
-    public function actionIndex()
+    public function actionIndex(\NETWAYS\Common\ArrayObject $params)
     {
         $output = new \TKMON\Mvc\Output\TwigTemplate($this->container['template']);
         $output->setTemplateName('forms/login.twig');
@@ -61,16 +62,17 @@ class Login extends \TKMON\Action\Base
 
     /**
      * Login request as ajax
+     * @param \NETWAYS\Common\ArrayObject $params
      * @return \TKMON\Mvc\Output\JsonResponse
      */
-    public function actionLogin()
+    public function actionLogin(\NETWAYS\Common\ArrayObject $params)
     {
         $user = $this->container['user'];
 
         $r = new \TKMON\Mvc\Output\JsonResponse();
 
         try {
-            $user->doAuthenticate($this->getParameter('username'), $this->getParameter('password'));
+            $user->doAuthenticate($params->get('username'), $params->get('password'));
             $user->write();
             $r->setSuccess(true);
         } catch (\TKMON\Exception\UserException $e) {
@@ -85,9 +87,10 @@ class Login extends \TKMON\Action\Base
 
     /**
      * Logout request
+     * @param \NETWAYS\Common\ArrayObject $params
      * @return \TKMON\Mvc\Output\TwigTemplate
      */
-    public function actionLogout()
+    public function actionLogout(\NETWAYS\Common\ArrayObject $params)
     {
         $session = $this->container['session'];
         $session->destroySession();

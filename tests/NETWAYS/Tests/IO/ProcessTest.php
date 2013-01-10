@@ -1,5 +1,5 @@
 <?php
-namespace NETWAYS\Tests\Http;
+namespace NETWAYS\Tests\IO;
 
 class ProcessTest extends \PHPUnit_Framework_TestCase
 {

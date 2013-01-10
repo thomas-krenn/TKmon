@@ -1,3 +1,4 @@
+<?php
 /**
  * This file is part of TKMON
  *
@@ -17,14 +18,15 @@
  * @author Marius Hein <marius.hein@netways.de>
  * @copyright 2012-2013 NETWAYS GmbH <info@netways.de>
  */
-/*global require:true*/
 
-(function () {
-    "use strict";
+namespace NETWAYS\Common\Exception;
 
-    require(['jquery', 'bootstrap'], function ($) {
-        var activeTab = $('[href=' + location.hash + ']');
-        activeTab && $(activeTab).tab('show');
-    });
-
-})();
+/**
+ * Validator exception
+ *
+ * @package NETWAYS\Common
+ * @author Marius Hein <marius.hein@netways.de>
+ */
+class ValidatorException extends \NETWAYS\Common\Exception
+{
+}

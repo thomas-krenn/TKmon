@@ -21,6 +21,22 @@
         <![endif]-->
         <link rel="stylesheet" href="{{ config['web.path'] }}css/default.css">
 
+        <script src="{{ config['web.path'] }}js/require.js"></script>
+        <script>
+            (function() {
+                var path = "{{ config['web.path'] }}";
+                require.config({
+                    baseUrl: path + "js",
+                    paths: {
+                        jquery:     path + "js/vendor/jquery-1.8.3.min",
+                        modernizr:  path + "js/vendor/modernizr-2.6.2.min",
+                        bootstrap:  path + "js/bootstrap.min"
+                    }
+                });
+                require(['main']);
+            })();
+        </script>
+
         <title>TKMON</title>
     </head>
     <body>
@@ -29,7 +45,7 @@
         <![endif]-->
 
         <div id="wrap">
-            <div class="navbar navbar-inverse">
+            <div class="navbar navbar-inverse navbar-fixed-top">
                 <div class="navbar-inner">
                     <a class="brand" href="{{ web_link("Index/Index") }}">{{ app_name }}</a>
 
@@ -81,21 +97,5 @@
         </div>
 
         {% include "views/footer.twig" %}
-
-        <script src="{{ config['web.path'] }}js/require.js"></script>
-        <script>
-            (function() {
-                var path = "{{ config['web.path'] }}";
-                require.config({
-                    baseUrl: path + "js",
-                    paths: {
-                        jquery:     path + "js/vendor/jquery-1.8.3.min",
-                        modernizr:  path + "js/vendor/modernizr-2.6.2.min",
-                        bootstrap:  path + "js/bootstrap.min"
-                    }
-                });
-                require(['main']);
-            })();
-        </script>
     </body>
 </html>

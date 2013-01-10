@@ -10,9 +10,23 @@
       <library name="PHARS">
         <CLASSES>
           <root url="phar:///data/users/mhein/workspaces/tk-mon/tk-mon/composer.phar" />
+          <root url="phar:///usr/share/php/phpDocumentor/tests/data/test.phar" />
+          <root url="phar:///usr/share/php/data/phpDocumentor/vendor/phpdocumentor/fileset/tests/data/test.phar" />
         </CLASSES>
         <SOURCES>
           <root url="phar:///data/users/mhein/workspaces/tk-mon/tk-mon/composer.phar" />
+          <root url="phar:///usr/share/php/phpDocumentor/tests/data/test.phar" />
+          <root url="phar:///usr/share/php/data/phpDocumentor/vendor/phpdocumentor/fileset/tests/data/test.phar" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="PHP">
+        <CLASSES>
+          <root url="file:///usr/share/php" />
+        </CLASSES>
+        <SOURCES>
+          <root url="file:///usr/share/php" />
         </SOURCES>
       </library>
     </orderEntry>

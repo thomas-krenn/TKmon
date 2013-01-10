@@ -28,4 +28,10 @@ namespace TKMON\Exception;
  */
 class DispatcherException extends BaseException
 {
+    const TYPE_UNAUTHORIZED = 1;
+    const TYPE_OUTPUT       = 2;
+    const TYPE_METHOD       = 4;
+    const TYPE_PARENT       = 8;
+    const TYPE_NOTFOUND     = 16;
+    const TYPE_MISC         = 32;
 }

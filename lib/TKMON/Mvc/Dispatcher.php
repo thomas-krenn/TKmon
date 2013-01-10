@@ -157,6 +157,9 @@ class Dispatcher
                 '',
                 $params->getParameter('REQUEST_URI', null, 'header')
             );
+
+            // We do not need CGI params here
+            return preg_replace('@\?[^$]+$@', '', $uri);
         } else {
             if ($params->hasParameter('path')) {
                 return $params->getParameter('path');
@@ -194,13 +197,24 @@ class Dispatcher
             $reflectionClass = $this->getActionReflection($this->class);
             $object = $reflectionClass->newInstance();
 
+            /*
+             * External configuration
+             */
             $object->setContainer($this->container);
+
+            /*
+             * Object is ready, want to initialize?
+             */
+            $object->init();
 
             /**
              * If this is a public action
              */
             if ($this->passUserSecurityTest($this->action, $reflectionClass, $object) === false) {
-                throw new \TKMON\Exception\DispatcherException('Action needs authenticated user: '. $this->action);
+                throw new \TKMON\Exception\DispatcherException(
+                    'Action needs authenticated user: '. $this->action,
+                    \TKMON\Exception\DispatcherException::TYPE_UNAUTHORIZED
+                );
             }
 
             $content = null;
@@ -209,7 +223,7 @@ class Dispatcher
                 $content = $data;
             } else {
                 $reflectionMethod = $this->getActionMethod($reflectionClass, $this->action);
-                $content = $reflectionMethod->invoke($object);
+                $content = $reflectionMethod->invoke($object, $this->container['params']->getArrayObject('request'));
             }
 
             if (is_object($content) && $content instanceof \TKMON\Mvc\Output\DataInterface) {
@@ -223,8 +237,23 @@ class Dispatcher
                 }
             }
 
-            throw new \TKMON\Exception\DispatcherException('Output is not type of DataInterface');
+            throw new \TKMON\Exception\DispatcherException(
+                'Output is not type of DataInterface',
+                \TKMON\Exception\DispatcherException::TYPE_OUTPUT
+            );
         } catch (\TKMON\Exception\DispatcherException $e) {
+
+            /**
+             * Try to catch known exceptions
+             */
+            if (!$this->isAjaxRequest()) {
+                if ($e->getCode() === \TKMON\Exception\DispatcherException::TYPE_UNAUTHORIZED) {
+                    $response = new \TKMON\Mvc\Output\TwigTemplate($this->container['template']);
+                    $response->setTemplateName('views/Common/SessionExpired.twig');
+                    return $this->renderTemplate($response->toString());
+                }
+            }
+
             if ($this->isAjaxRequest()) {
                 $response = new \TKMON\Mvc\Output\JsonResponse();
                 $response->setSuccess(false);
@@ -284,7 +313,10 @@ class Dispatcher
             return $class->getMethod($methodName);
         }
 
-        throw new \TKMON\Exception\DispatcherException('Method not found: ' . $methodName);
+        throw new \TKMON\Exception\DispatcherException(
+            'Method not found: ' . $methodName,
+            \TKMON\Exception\DispatcherException::TYPE_METHOD
+        );
     }
 
     /**
@@ -303,10 +335,16 @@ class Dispatcher
                 return $reflection;
             }
 
-            throw new \TKMON\Exception\DispatcherException('Parent class is not "TKMON\Action\Base"');
+            throw new \TKMON\Exception\DispatcherException(
+                'Parent class is not "TKMON\Action\Base"',
+                \TKMON\Exception\DispatcherException::TYPE_PARENT
+            );
         }
 
-        throw new \TKMON\Exception\DispatcherException('Could not load class from URI: ' . $className);
+        throw new \TKMON\Exception\DispatcherException(
+            'Could not load class from URI: ' . $className,
+            \TKMON\Exception\DispatcherException::TYPE_NOTFOUND
+        );
     }
 
     /**
@@ -335,6 +373,15 @@ class Dispatcher
         return true;
     }
 
+    /**
+     * Reflection test to display simple template only
+     *
+     * @param string $action
+     * @param \ReflectionClass $reflection
+     * @param \TKMON\Action\Base $object
+     * @return \TKMON\Mvc\Output\TwigTemplate
+     * @throws \TKMON\Exception\DispatcherException
+     */
     private function getSimpleTemplate($action, \ReflectionClass $reflection, \TKMON\Action\Base $object)
     {
         $methodName = self::TEMPLATE_PREFX. $action;
@@ -350,7 +397,10 @@ class Dispatcher
                 return $template;
             }
 
-            throw new \TKMON\Exception\DispatcherException("Template from action '$action' is not configured");
+            throw new \TKMON\Exception\DispatcherException(
+                "Template from action '$action' is not configured",
+                \TKMON\Exception\DispatcherException::TYPE_MISC
+            );
         }
     }
 }

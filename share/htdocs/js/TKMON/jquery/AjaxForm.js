@@ -85,6 +85,34 @@
                         "application/json; charset=utf-8" :
                         "application/x-www-form-urlencoded; charset=utf-8",
                     dataType: dataType,
+
+                    beforeSend: function() {
+                        if (that.attr("data-before-callback")) {
+                            var cb = that.attr("data-before-callback");
+                            if (typeof (window[cb]) === 'function') {
+                                window[cb].apply(that, arguments);
+                            }
+                        }
+                    },
+
+                    complete: function() {
+                        if (that.attr("data-complete-callback")) {
+                            var cb = that.attr("data-complete-callback");
+                            if (typeof (window[cb]) === 'function') {
+                                window[cb].apply(that, arguments);
+                            }
+                        }
+                    },
+
+                    error: function() {
+                        if (that.attr("data-error-callback")) {
+                            var cb = that.attr("data-error-callback");
+                            if (typeof (window[cb]) === 'function') {
+                                window[cb].apply(that, arguments);
+                            }
+                        }
+                    },
+
                     success: function (struct) {
 
                         // On try to convert string into an object
@@ -99,6 +127,7 @@
                                     $(that.attr("data-success-frame")).removeClass("hidden");
                                 }
 
+                                // Call after ajax operation is success
                                 if (that.attr("data-success-callback")) {
                                     var cb = that.attr("data-success-callback");
                                     if (typeof (window[cb]) === 'function') {

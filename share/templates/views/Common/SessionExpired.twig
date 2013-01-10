@@ -1,0 +1,18 @@
+<div class="page-header">
+    <h2>Session expired</h2>
+</div>
+
+<div class="alert alert-error">
+    <h4><i class="icon-warning-sign icon-2x"></i> You are not logged in</h4>
+    <p class="container-spacer-down">
+        The action you want to acquire need an authenticated user, please
+        <a href="{{ web_link('System/Login/Index') }}">go to login page</a>
+        to enter your credentials again.
+    </p>
+
+    <div class="container-spacer-down">
+        <a class="btn btn-large btn-danger" href="{{ web_link('System/Login/Index') }}">
+            <i class="icon-lock icon-2x"></i> Login
+        </a>
+    </div>
+</div>

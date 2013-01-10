@@ -55,31 +55,19 @@ abstract class Base
     }
 
     /**
-     * Return the request parameters object
-     * @return \NETWAYS\Common\ArrayObject
-     */
-    protected function getParameters()
-    {
-        return $this->container['params']->getArrayObject('request');
-    }
-
-    /**
-     * Return a specific parameter
-     * @param string $name
-     * @param mixed $default
-     * @return mixed
-     */
-    protected function getParameter($name, $default = null)
-    {
-        return $this->container['params']->getParameter($name, $default, 'request');
-    }
-
-    /**
      * Return the parameter holder
      * @return \NETWAYS\Http\CgiParams
      */
     protected function getParameterHolder()
     {
         return $this->container['params'];
+    }
+
+    /**
+     * Initialize method after action is configured
+     */
+    public function init()
+    {
+        // DO NOTHING HERE
     }
 }

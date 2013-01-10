@@ -20,6 +20,8 @@
     "db.file":              "{core.var_dir}/db/default.sqlite",
     "db.dsn":               "sqlite:{db.file}",
 
+    "system.interface":     "eth0",
+
     "command.config": {
         "chpasswd":  {
             "path": "/usr/sbin/chpasswd",
@@ -38,6 +40,26 @@
 
         "reboot": {
             "path": "/sbin/reboot",
+            "sudo": true
+        },
+
+        "hostname": {
+            "path": "/bin/hostname",
+            "sudo": true
+        },
+
+        "mv": {
+            "path": "/bin/mv",
+            "sudo": true
+        },
+
+        "restart": {
+            "path": "/sbin/restart",
+            "sudo": true
+        },
+
+        "service": {
+            "path": "/usr/sbin/service",
             "sudo": true
         }
     }

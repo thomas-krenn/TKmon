@@ -19,45 +19,45 @@
  * @copyright 2012-2013 NETWAYS GmbH <info@netways.de>
  */
 
-namespace TKMON\Action\Expose;
+namespace TKMON\Model;
 
 /**
- * System base action
- *
- * @package TKMON\Action
+ * Abstract model for working with our DI container
+ * @package TKMON\Model
  * @author Marius Hein <marius.hein@netways.de>
  */
-class System extends \TKMON\Action\Base
+abstract class ApplicationModel
 {
     /**
-     * Security flag for ping action
-     * @return bool
+     * DI container
+     * @var \Pimple
      */
-    public function securityPing()
+    protected $container;
+
+    /**
+     * Create a new object
+     * @param \Pimple $container
+     */
+    public function __construct(\Pimple $container)
     {
-        return false;
+        $this->setContainer($container);
     }
 
     /**
-     * Simple ping action to determine we're online
-     * @return \TKMON\Mvc\Output\JsonResponse
+     * Setter for the DI container
+     * @param \Pimple $container
      */
-    public function actionPing()
+    public function setContainer(\Pimple $container)
     {
+        $this->container = $container;
+    }
 
-        $user = $this->container['user'];
-        $config = $this->container['config'];
-
-        $response = new \TKMON\Mvc\Output\JsonResponse();
-        $response->setSuccess(true);
-        $response->addData(
-            array(
-                'ping' => true,
-                'user' => $user->getAuthenticated() ? $user->getName() : false,
-                'version' => $config->get('app.version.release')
-            )
-        );
-
-        return $response;
+    /**
+     * Getter for the DI container
+     * @return \Pimple
+     */
+    public function getContainer()
+    {
+        return $this->container;
     }
 }

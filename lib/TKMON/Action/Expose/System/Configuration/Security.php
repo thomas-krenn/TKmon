@@ -31,9 +31,10 @@ class Security extends \TKMON\Action\Base
 {
     /**
      * Display the html side of basic security settings
+     * @param \NETWAYS\Common\ArrayObject $params
      * @return \TKMON\Mvc\Output\TwigTemplate
      */
-    public function actionIndex()
+    public function actionIndex(\NETWAYS\Common\ArrayObject $params)
     {
         $output = new \TKMON\Mvc\Output\TwigTemplate($this->container['template']);
         $output->setTemplateName('views/System/Configuration/Security.twig');
@@ -47,20 +48,20 @@ class Security extends \TKMON\Action\Base
 
     /**
      * Action to trigger password changes
+     * @param \NETWAYS\Common\ArrayObject $params
      * @return \TKMON\Mvc\Output\JsonResponse
      */
-    public function actionChangePassword()
+    public function actionChangePassword(\NETWAYS\Common\ArrayObject $params)
     {
-        $params = $this->container['params'];
         $user = $this->container['user'];
 
         $r = new \TKMON\Mvc\Output\JsonResponse();
 
         try {
             $re = $user->changePassword(
-                $params->getParameter('current_password'),
-                $params->getParameter('password'),
-                $params->getParameter('password_verify')
+                $params->get('current_password'),
+                $params->get('password'),
+                $params->get('password_verify')
             );
             $r->setSuccess($re);
         } catch (\Exception $e) {
@@ -74,9 +75,10 @@ class Security extends \TKMON\Action\Base
     /**
      * Return a html fragment
      * which indicates if the user has system access
+     * @param \NETWAYS\Common\ArrayObject $params
      * @return \TKMON\Mvc\Output\SimpleString
      */
-    public function actionSystemAccess()
+    public function actionSystemAccess(\NETWAYS\Common\ArrayObject $params)
     {
         $user = $this->container['user'];
 
@@ -94,14 +96,14 @@ class Security extends \TKMON\Action\Base
 
     /**
      * Changer for system controll access
-     * @return \TKMON\Mvc\Output\JsonResponse
+     * @param \NETWAYS\Common\ArrayObject $params
      * @throws \TKMON\Exception\ModelException
+     * @return \TKMON\Mvc\Output\JsonResponse
      */
-    public function actionChangeSystemAccess()
+    public function actionChangeSystemAccess(\NETWAYS\Common\ArrayObject $params)
     {
         $user = $this->container['user'];
-        $params = $this->container['params'];
-        $val = $params->getParameter('access');
+        $val = $params->get('access');
         $response = new \TKMON\Mvc\Output\JsonResponse();
 
         try {

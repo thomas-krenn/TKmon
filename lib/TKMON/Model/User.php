@@ -26,7 +26,7 @@ namespace TKMON\Model;
  * @package TKMON\Model
  * @author Marius Hein <marius.hein@netways.de>
  */
-class User
+class User extends ApplicationModel
 {
 
     const HASH_ALGO = 'md5';
@@ -60,12 +60,6 @@ class User
      * Field tag salt
      */
     const FIELD_SALT = 'salt';
-
-    /**
-     * DI container
-     * @var \Pimple
-     */
-    protected $container;
     /**
      * Flag if the user if authenticated
      * @var bool
@@ -85,16 +79,6 @@ class User
     protected $id;
 
     /**
-     * Creates a new user
-     *
-     * @param \Pimple $container
-     */
-    public function __construct(\Pimple $container)
-    {
-        $this->container = $container;
-    }
-
-    /**
      * Setter for authenticated flag
      * @param bool $authenticated
      */
@@ -111,25 +95,6 @@ class User
     {
         return $this->authenticated;
     }
-
-    /**
-     * Setter for DI container
-     * @param \Pimple $container
-     */
-    public function setContainer($container)
-    {
-        $this->container = $container;
-    }
-
-    /**
-     * Getter for DI container
-     * @return \Pimple
-     */
-    public function getContainer()
-    {
-        return $this->container;
-    }
-
     /**
      * Setter for id
      * @param int $id

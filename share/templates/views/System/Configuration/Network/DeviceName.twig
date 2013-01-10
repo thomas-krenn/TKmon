@@ -1,0 +1,41 @@
+<h4>Device name</h4>
+
+<div id="device-errors">
+
+</div>
+
+<div id="device-success" class="hidden alert alert-success">
+    New device name was written to appliance. You should consider
+    to reboot your device. To do so, please <a href="{{ web_link('System/Configuration/Backup/Index#tab-reboot') }}">
+    click on this link</a> and follow instructions.
+</div>
+
+<p>
+    Change your device name here to suite your needs.
+</p>
+
+<p>
+    <span class="label label-info">Information:</span> A valid
+    device name is <strong>&lt;name&gt;.&lt;fqdn&gt;</strong>
+    e.g. <strong>icinga.my.company.com</strong>
+</p>
+
+<form
+        id="device-form"
+        class="container-spacer-down"
+        action="{{ web_link("ChangeDeviceName") }}"
+        data-ajax="form"
+        data-ajax-type="json"
+        data-form-focus-first="#device_name"
+        data-error-target="#device-errors"
+        data-success-frame="#device-success"
+        >
+
+    <fieldset>
+        <label for="device_name">Current devicename</label>
+        <input type="text" id="device_name" name="device_name" value="{{ device_name }}" />
+    </fieldset>
+
+    <input type="submit" class="btn btn-primary" value="Update" />
+
+</form>

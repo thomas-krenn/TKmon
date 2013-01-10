@@ -1,0 +1,57 @@
+<h4>DNS settings</h4>
+
+<div id="dns-errors">
+
+</div>
+
+<div id="dns-success" class="hidden alert alert-success">
+    <h4>Success!</h4>
+    <p>DNS resolver config was written and networking restarted</p>
+</div>
+
+<p>Here you can change your DNS settings for this appliance</p>
+
+<form
+        id="dns-form"
+        class="container-spacer-down"
+        action="{{ web_link("ChangeDnsSettings") }}"
+        data-ajax="form"
+        data-ajax-type="json"
+        data-error-target="#dns-errors"
+        data-success-frame="#dns-success"
+        >
+
+    <div class="alert alert-info">
+        This system uses resolveconf which detects dns servers and combines them
+        into a usefull order. You can leave it blank if you use a DHCP interface
+        on the address tab.
+    </div>
+
+    <fieldset>
+        <label for="dns_nameserver1">First nameserver</label>
+        <input type="text" name="dns_nameserver1" id="dns_nameserver1" value="{{ dns_nameserver1 }}" />
+    </fieldset>
+
+    <fieldset>
+        <label for="dns_nameserver2">Second nameserver</label>
+        <input type="text" name="dns_nameserver2" id="dns_nameserver2" value="{{ dns_nameserver2 }}" />
+    </fieldset>
+
+    <fieldset>
+        <label for="dns_nameserver3">Third nameserver</label>
+        <input type="text" name="dns_nameserver3" id="dns_nameserver3" value="{{ dns_nameserver3 }}" />
+    </fieldset>
+
+    <div class="container-spacer-down">
+        <fieldset>
+            <label for="dns_search">Search suffix</label>
+            <input type="text" name="dns_search" id="dns_search" value="{{ dns_search }}" />
+        </fieldset>
+    </div>
+
+    <div class="container-spacer-down">
+        <input type="submit" class="btn btn-primary" value="Update" />
+    </div>
+
+</form>
+
