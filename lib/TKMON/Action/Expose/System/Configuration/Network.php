@@ -30,6 +30,21 @@ namespace TKMON\Action\Expose\System\Configuration;
 class Network extends \TKMON\Action\Base
 {
     /**
+     * Primary interface
+     * @var string
+     */
+    private $primaryInterface = null;
+
+    public function init()
+    {
+        $this->primaryInterface = $this->container['config']['system.interface'];
+
+        if (!$this->primaryInterface) {
+            throw new \TKMON\Exception\ModelException('Primary interface (system.interface) not configured');
+        }
+    }
+
+    /**
      * Displays the form and set some basic data
      *
      * @param \NETWAYS\Common\ArrayObject $params
@@ -40,17 +55,29 @@ class Network extends \TKMON\Action\Base
         $template = new \TKMON\Mvc\Output\TwigTemplate($this->container['template']);
         $template->setTemplateName('views/System/Configuration/Network.twig');
 
+        // Hostname / Devicename
         $hostnameModel = new \TKMON\Model\System\Hostname($this->container);
         $hostnameModel->load();
         $template['device_name'] = $hostnameModel->getCombined();
 
+        // DNS configuration
         $dnsModel = new \TKMON\Model\System\DnsServers($this->container);
-        $dnsModel->setInterfaceName($this->container['config']['system.interface']);
+        $dnsModel->setInterfaceName($this->primaryInterface);
         $dnsModel->load();
         $template['dns_nameserver1'] = $dnsModel->getDnsServerItem(0);
         $template['dns_nameserver2'] = $dnsModel->getDnsServerItem(1);
         $template['dns_nameserver3'] = $dnsModel->getDnsServerItem(2);
         $template['dns_search'] = $dnsModel->getDnsSearch();
+
+
+        // IP Address
+        $ipModel = new \TKMON\Model\System\IpAddress($this->container);
+        $ipModel->setInterfaceName($this->primaryInterface);
+        $ipModel->load();
+        $template['ip_address'] = $ipModel->getIpAddress();
+        $template['ip_netmask'] = $ipModel->getIpNetmask();
+        $template['ip_gateway'] = $ipModel->getIpGateway();
+        $template['ip_config'] = $ipModel->getConfigType();
 
         return $template;
     }
@@ -116,7 +143,7 @@ class Network extends \TKMON\Action\Base
             $systemModel = new \TKMON\Model\System($this->container);
 
             $dnsModel = new \TKMON\Model\System\DnsServers($this->container);
-            $dnsModel->setInterfaceName($this->container['config']['system.interface']);
+            $dnsModel->setInterfaceName($this->primaryInterface);
             $dnsModel->load();
 
             if ($params->get('dns_nameserver1')) {
@@ -144,6 +171,49 @@ class Network extends \TKMON\Action\Base
 
         } catch (\Exception $e) {
             $response->setSuccess(false);
+            $response->addException($e);
+        }
+
+        return $response;
+    }
+
+    /**
+     * Write ip address settings to file
+     * @param \NETWAYS\Common\ArrayObject $params
+     * @return \TKMON\Mvc\Output\JsonResponse
+     */
+    public function actionChangeIpSettings(\NETWAYS\Common\ArrayObject $params)
+    {
+        $response = new \TKMON\Mvc\Output\JsonResponse();
+        try {
+
+            $validator = new \NETWAYS\Common\ArrayObjectValidator();
+            $validator->addValidator('ip_address', 'IP', FILTER_VALIDATE_IP);
+            $validator->addValidator('ip_netmask', 'IP', FILTER_VALIDATE_IP);
+            $validator->addValidator('ip_gateway', 'IP', FILTER_VALIDATE_IP);
+            $validator->validateArrayObject($params);
+
+            $ipModel = new \TKMON\Model\System\IpAddress($this->container);
+            $ipModel->setInterfaceName($this->primaryInterface);
+            $ipModel->load();
+            
+            $ipConfig = $params['ip_config'];
+            $ipModel->setConfigType($ipConfig);
+            
+            if ($ipConfig == \TKMON\Model\System\IpAddress::TYPE_STATIC) {
+                $ipModel->setIpAddress($params['ip_address']);
+                $ipModel->setIpGateway($params['ip_gateway']);
+                $ipModel->setIpNetmask($params['ip_netmask']);
+            }
+
+            $ipModel->write();
+
+            $systemModel = new \TKMON\Model\System($this->container);
+            $systemModel->restartNetworkInterfaces();
+
+            $response->setSuccess();
+
+        } catch (\Exception $e) {
             $response->addException($e);
         }
 

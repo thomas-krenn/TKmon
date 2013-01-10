@@ -197,7 +197,15 @@ class Dispatcher
             $reflectionClass = $this->getActionReflection($this->class);
             $object = $reflectionClass->newInstance();
 
+            /*
+             * External configuration
+             */
             $object->setContainer($this->container);
+
+            /*
+             * Object is ready, want to initialize?
+             */
+            $object->init();
 
             /**
              * If this is a public action

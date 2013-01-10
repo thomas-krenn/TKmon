@@ -21,6 +21,12 @@
         data-success-frame="#dns-success"
         >
 
+    <div class="alert alert-info">
+        This system uses resolveconf which detects dns servers and combines them
+        into a usefull order. You can leave it blank if you use a DHCP interface
+        on the address tab.
+    </div>
+
     <fieldset>
         <label for="dns_nameserver1">First nameserver</label>
         <input type="text" name="dns_nameserver1" id="dns_nameserver1" value="{{ dns_nameserver1 }}" />

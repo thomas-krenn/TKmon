@@ -62,4 +62,12 @@ abstract class Base
     {
         return $this->container['params'];
     }
+
+    /**
+     * Initialize method after action is configured
+     */
+    public function init()
+    {
+        // DO NOTHING HERE
+    }
 }

@@ -1,0 +1,95 @@
+<h4>IP adress settings</h4>
+
+<p>On this page you can change your ip settings.</p>
+
+<div class="alert alert-error">
+    <i class="icon-exclamation-sign"></i>
+    If any changes here you can not access your appliance anymore and you have to
+    reset the configuration to its default.
+</div>
+
+<form
+    id="ip-form"
+    class="container-spacer-down"
+    action="{{ web_link("ChangeIpSettings") }}"
+    data-ajax="form"
+    data-ajax-type="json"
+    data-error-target="#ip-errors"
+    data-success-frame="#ip-success"
+    >
+
+    <div id="ip-errors">
+
+    </div>
+
+    <div id="ip-success" class="hidden alert alert-success">
+        <h4>Success!</h4>
+        Your new network configuration hast been set and applied!
+    </div>
+
+    <fieldset>
+        <label>Configuration type</label>
+        <div class="btn-group" data-toggle="buttons-radio">
+            <button id="ip-static" type="button" class="btn btn-success" value="static">Static</button>
+            <button id="ip-dhcp" type="button" class="btn btn-success" value="dhcp">DHCP</button>
+        </div>
+    </fieldset>
+
+    <fieldset class="container-spacer-down">
+        <label for="ip_address">IP address</label>
+        <input type="text" name="ip_address" id="ip_address" value="{{ ip_address }}" />
+    </fieldset>
+
+    <fieldset>
+        <label for="ip_netmask">Subnet mask</label>
+        <input type="text" name="ip_netmask" id="ip_netmask" value="{{ ip_netmask }}" />
+    </fieldset>
+
+    <fieldset class="container-spacer-down">
+        <label for="ip_gateway">Gateway</label>
+        <input type="text" name="ip_gateway" id="ip_gateway" value="{{ ip_gateway }}" />
+    </fieldset>
+
+    <button type="submit" class="btn btn-primary">
+        Save
+    </button>
+
+    <input type="hidden" name="ip_config" id="ip_config" value="{{ ip_config }}" />
+
+    <script>
+        (function() {
+            "use strict";
+
+            require(['jquery', 'bootstrap'], function() {
+                $(document).ready(function() {
+                    var configType = '{{ ip_config }}';
+
+                    var toggleForm = function(type) {
+                        var selector = 'form#ip-form input[type=text]';
+                        $(selector).attr('disabled', !!(type==='dhcp'))
+
+                        if (type === 'dhcp') {
+                            $(selector).val('');
+                        }
+
+                        $('#ip_config').val(type);
+
+                    };
+
+                    var setConfig = function(type) {
+                        var id = '#ip-' + type;
+                        $(id).button('toggle');
+                        toggleForm(type);
+                    };
+
+                    $('form#ip-form .btn-group button').click(function(e) {
+                        var value = $(this).attr('value');
+                        toggleForm(value);
+                    });
+
+                    setConfig(configType);
+                })
+            })
+        })();
+    </script>
+</form>

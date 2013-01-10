@@ -22,9 +22,9 @@
 (function () {
     "use strict";
 
-    require(['jquery'], function ($) {
+    require(['jquery', 'bootstrap'], function ($) {
         var activeTab = $('[href=' + location.hash + ']');
-        activeTab && activeTab.tab('show');
+        activeTab && $(activeTab).tab('show');
     });
 
 })();
