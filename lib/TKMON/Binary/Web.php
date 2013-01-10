@@ -127,6 +127,7 @@ final class Web
                 );
 
                 $twig->addExtension(new \TKMON\Twig\Extension($c));
+                $twig->addExtension(new \Twig_Extensions_Extension_I18n());
 
                 return $twig;
             }
@@ -245,6 +246,20 @@ final class Web
                 return new \TKMON\Model\Command\Factory($c['config']);
             }
         );
+
+        /*
+         * Intl
+         */
+        $gettextController = new \NETWAYS\Intl\Gettext();
+
+        $gettextController->setLocale($container['config']['locale.name']);
+
+        $gettextController->addDomain(
+            $container['config']['locale.domain'],
+            $container['config']['locale.path']
+        );
+
+        $gettextController->setDefaultDomain($container['config']['locale.domain']);
 
         echo $container['dispatcher']->dispatchRequest();
     }

@@ -1,0 +1,133 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: 1.0\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2013-01-10 18:19+0100\n"
+"Last-Translator: Marius Hein <marius.hein@netways.de>\n"
+"Language-Team: German\n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: /tmp/tkmon-templates//38ed91e972e568ed12a3cdb1106f.php:24
+msgid "Session expired"
+msgstr "Login abgelaufen"
+
+#: /tmp/tkmon-templates//38ed91e972e568ed12a3cdb1106f.php:31
+msgid "You are not logged in"
+msgstr "Sie sind nicht mehr eingelogged"
+
+#: /tmp/tkmon-templates//38ed91e972e568ed12a3cdb1106f.php:37
+msgid ""
+"The action you want to acquire need an authenticated user, please\n"
+"        <a href=\"%link_login%\">go to login page</a>\n"
+"        to enter your credentials again."
+msgstr ""
+"Fuer die diesen Schritt muessen Sie eingelogged sein.\n"
+"Folgen Sie bitte <a href=\"\">diesem Link um sich anzumelden.</a>"
+
+#: /tmp/tkmon-templates//38ed91e972e568ed12a3cdb1106f.php:51
+#: /tmp/tkmon-templates//98bbdd7bd05f3e29f5a3bd3f6442.php:41
+#: /tmp/tkmon-templates//a0d6d2e237a639551da091320f44.php:73
+msgid "Login"
+msgstr "Login"
+
+#: /tmp/tkmon-templates//98bbdd7bd05f3e29f5a3bd3f6442.php:23
+msgid "You are logged out successfully!"
+msgstr "Sie sind erfolgreich ausgelogged."
+
+#: /tmp/tkmon-templates//98bbdd7bd05f3e29f5a3bd3f6442.php:30
+msgid ""
+"You can now close the application or press the button\n"
+"        below to login again."
+msgstr "Sie können nun den Browser schließen oder sich neu anmelden."
+
+#: /tmp/tkmon-templates//a0d6d2e237a639551da091320f44.php:25
+msgid ""
+"Howdy! This application is protected by password.\n"
+"        Please proceed by apply your credentials."
+msgstr "Hi. Diese Anwendung ist Password geschützt. Bitte melden Sie sich an."
+
+#: /tmp/tkmon-templates//a0d6d2e237a639551da091320f44.php:36
+msgid ""
+"You are logged in successfully. You will be redirected\n"
+"        after a second. If not, please <a href=\"%link_home%\">\n"
+"        follow this link to proceed.</a>"
+msgstr ""
+"Log in erfolgreich. Sie werden weitergeleitet. Falls nicht klicken Sie\n"
+" bitte <a href=\"%link_home%\">auf diesen Link</a> um auf die \n"
+"Startseite zu gelangen."
+
+#: /tmp/tkmon-templates//a0d6d2e237a639551da091320f44.php:60
+msgid "Username"
+msgstr "Benutzername"
+
+#: /tmp/tkmon-templates//a0d6d2e237a639551da091320f44.php:65
+msgid "Password"
+msgstr "Passwort"
+
+#: /tmp/tkmon-templates//ed6b22ff38bc6f710a3c545de2a7.php:40
+msgid ""
+"Please press the following button to reboot your appliance. The\n"
+"        reboot will take a few minutes. After the platform is\n"
+"        available the interface reloads and you will be prompted for\n"
+"        your credentials to login."
+msgstr ""
+"Bitte klicken Sie auf den Button um neu zu starten. Der Neustart\n"
+" dauert einige Minuten bis sich die Weboberfläche neu geladen hat.\n"
+" Danach müssen Sie sich neu einloggen."
+
+#: /tmp/tkmon-templates//ed6b22ff38bc6f710a3c545de2a7.php:50
+msgid "Warning"
+msgstr "Warnung"
+
+#: /tmp/tkmon-templates//ed6b22ff38bc6f710a3c545de2a7.php:54
+msgid "While rebooting no notifications for problems will be send to you."
+msgstr "Während dem Neustart werden keien Meldungen per Mail versandt."
+
+#: /tmp/tkmon-templates//ed6b22ff38bc6f710a3c545de2a7.php:64
+msgid "Reboot device!"
+msgstr "Neu Start!"
+
+#: /tmp/tkmon-templates//f4fee47896d47e984010ad12f9cc.php:27
+msgid ""
+"If any changes here you can not access your appliance anymore and you have to\n"
+"    reset the configuration to its default."
+msgstr ""
+"Nach Änderung erreichen Sie Ihre Appliance eventuell nicht mehr.\n"
+"Ist dies der Fall müssen die Die Appliance zurüksetzen."
+
+#: /tmp/tkmon-templates//f4fee47896d47e984010ad12f9cc.php:52
+msgid "Success"
+msgstr "Wunderbar!"
+
+#: /tmp/tkmon-templates//f4fee47896d47e984010ad12f9cc.php:56
+msgid "Your new network configuration hast been set and applied!"
+msgstr "Neue Netzwerkkonfiguration angewendet!"
+
+#: /tmp/tkmon-templates//f4fee47896d47e984010ad12f9cc.php:65
+msgid "Static"
+msgstr "Statisch"
+
+#: /tmp/tkmon-templates//f4fee47896d47e984010ad12f9cc.php:69
+msgid "DHCP"
+msgstr "DHCP"
+
+#: /tmp/tkmon-templates//f4fee47896d47e984010ad12f9cc.php:77
+msgid "IP address"
+msgstr "IP Adresse"
+
+#: /tmp/tkmon-templates//f4fee47896d47e984010ad12f9cc.php:89
+msgid "Subnet mask"
+msgstr "Subnetzmaske"
+
+#: /tmp/tkmon-templates//f4fee47896d47e984010ad12f9cc.php:101
+msgid "Gateway"
+msgstr "Gateway"
+
+#: /tmp/tkmon-templates//f4fee47896d47e984010ad12f9cc.php:113
+msgid "Save"
+msgstr "Speichern"
+

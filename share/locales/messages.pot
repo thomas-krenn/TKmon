@@ -1,0 +1,110 @@
+#: /tmp/tkmon-templates//38ed91e972e568ed12a3cdb1106f.php:24
+msgid "Session expired"
+msgstr ""
+
+#: /tmp/tkmon-templates//38ed91e972e568ed12a3cdb1106f.php:31
+msgid "You are not logged in"
+msgstr ""
+
+#: /tmp/tkmon-templates//38ed91e972e568ed12a3cdb1106f.php:37
+msgid ""
+"The action you want to acquire need an authenticated user, please\n"
+"        <a href=\"%link_login%\">go to login page</a>\n"
+"        to enter your credentials again."
+msgstr ""
+
+#: /tmp/tkmon-templates//38ed91e972e568ed12a3cdb1106f.php:51
+#: /tmp/tkmon-templates//98bbdd7bd05f3e29f5a3bd3f6442.php:41
+#: /tmp/tkmon-templates//a0d6d2e237a639551da091320f44.php:73
+msgid "Login"
+msgstr ""
+
+#: /tmp/tkmon-templates//98bbdd7bd05f3e29f5a3bd3f6442.php:23
+msgid "You are logged out successfully!"
+msgstr ""
+
+#: /tmp/tkmon-templates//98bbdd7bd05f3e29f5a3bd3f6442.php:30
+msgid ""
+"You can now close the application or press the button\n"
+"        below to login again."
+msgstr ""
+
+#: /tmp/tkmon-templates//a0d6d2e237a639551da091320f44.php:25
+msgid ""
+"Howdy! This application is protected by password.\n"
+"        Please proceed by apply your credentials."
+msgstr ""
+
+#: /tmp/tkmon-templates//a0d6d2e237a639551da091320f44.php:36
+msgid ""
+"You are logged in successfully. You will be redirected\n"
+"        after a second. If not, please <a href=\"%link_home%\">\n"
+"        follow this link to proceed.</a>"
+msgstr ""
+
+#: /tmp/tkmon-templates//a0d6d2e237a639551da091320f44.php:60
+msgid "Username"
+msgstr ""
+
+#: /tmp/tkmon-templates//a0d6d2e237a639551da091320f44.php:65
+msgid "Password"
+msgstr ""
+
+#: /tmp/tkmon-templates//ed6b22ff38bc6f710a3c545de2a7.php:40
+msgid ""
+"Please press the following button to reboot your appliance. The\n"
+"        reboot will take a few minutes. After the platform is\n"
+"        available the interface reloads and you will be prompted for\n"
+"        your credentials to login."
+msgstr ""
+
+#: /tmp/tkmon-templates//ed6b22ff38bc6f710a3c545de2a7.php:50
+msgid "Warning"
+msgstr ""
+
+#: /tmp/tkmon-templates//ed6b22ff38bc6f710a3c545de2a7.php:54
+msgid "While rebooting no notifications for problems will be send to you."
+msgstr ""
+
+#: /tmp/tkmon-templates//ed6b22ff38bc6f710a3c545de2a7.php:64
+msgid "Reboot device!"
+msgstr ""
+
+#: /tmp/tkmon-templates//f4fee47896d47e984010ad12f9cc.php:27
+msgid ""
+"If any changes here you can not access your appliance anymore and you have "
+"to\n"
+"    reset the configuration to its default."
+msgstr ""
+
+#: /tmp/tkmon-templates//f4fee47896d47e984010ad12f9cc.php:52
+msgid "Success"
+msgstr ""
+
+#: /tmp/tkmon-templates//f4fee47896d47e984010ad12f9cc.php:56
+msgid "Your new network configuration hast been set and applied!"
+msgstr ""
+
+#: /tmp/tkmon-templates//f4fee47896d47e984010ad12f9cc.php:65
+msgid "Static"
+msgstr ""
+
+#: /tmp/tkmon-templates//f4fee47896d47e984010ad12f9cc.php:69
+msgid "DHCP"
+msgstr ""
+
+#: /tmp/tkmon-templates//f4fee47896d47e984010ad12f9cc.php:77
+msgid "IP address"
+msgstr ""
+
+#: /tmp/tkmon-templates//f4fee47896d47e984010ad12f9cc.php:89
+msgid "Subnet mask"
+msgstr ""
+
+#: /tmp/tkmon-templates//f4fee47896d47e984010ad12f9cc.php:101
+msgid "Gateway"
+msgstr ""
+
+#: /tmp/tkmon-templates//f4fee47896d47e984010ad12f9cc.php:113
+msgid "Save"
+msgstr ""

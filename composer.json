@@ -13,6 +13,7 @@
 
     "require": {
         "twig/twig": "1.11.*",
+        "twig/extensions": "1.*",
         "pimple/pimple": "1.0.*"
     },
 

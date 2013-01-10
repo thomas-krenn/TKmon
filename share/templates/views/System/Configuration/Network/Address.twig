@@ -4,8 +4,10 @@
 
 <div class="alert alert-error">
     <i class="icon-exclamation-sign"></i>
+    {% trans %}
     If any changes here you can not access your appliance anymore and you have to
     reset the configuration to its default.
+    {% endtrans %}
 </div>
 
 <form
@@ -23,35 +25,37 @@
     </div>
 
     <div id="ip-success" class="hidden alert alert-success">
-        <h4>Success!</h4>
+        <h4>{% trans "Success" %}!</h4>
+        {% trans %}
         Your new network configuration hast been set and applied!
+        {% endtrans %}
     </div>
 
     <fieldset>
         <label>Configuration type</label>
         <div class="btn-group" data-toggle="buttons-radio">
-            <button id="ip-static" type="button" class="btn btn-success" value="static">Static</button>
-            <button id="ip-dhcp" type="button" class="btn btn-success" value="dhcp">DHCP</button>
+            <button id="ip-static" type="button" class="btn btn-success" value="static">{% trans "Static" %}</button>
+            <button id="ip-dhcp" type="button" class="btn btn-success" value="dhcp">{% trans "DHCP" %}</button>
         </div>
     </fieldset>
 
     <fieldset class="container-spacer-down">
-        <label for="ip_address">IP address</label>
+        <label for="ip_address">{% trans "IP address" %}</label>
         <input type="text" name="ip_address" id="ip_address" value="{{ ip_address }}" />
     </fieldset>
 
     <fieldset>
-        <label for="ip_netmask">Subnet mask</label>
+        <label for="ip_netmask">{% trans "Subnet mask" %}</label>
         <input type="text" name="ip_netmask" id="ip_netmask" value="{{ ip_netmask }}" />
     </fieldset>
 
     <fieldset class="container-spacer-down">
-        <label for="ip_gateway">Gateway</label>
+        <label for="ip_gateway">{% trans "Gateway" %}</label>
         <input type="text" name="ip_gateway" id="ip_gateway" value="{{ ip_gateway }}" />
     </fieldset>
 
     <button type="submit" class="btn btn-primary">
-        Save
+        {% trans "Save" %}
     </button>
 
     <input type="hidden" name="ip_config" id="ip_config" value="{{ ip_config }}" />
