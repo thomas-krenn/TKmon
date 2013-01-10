@@ -22,7 +22,7 @@
 namespace TKMON\Model\System;
 
 /**
- * This a collection of common actions
+ * Model to deal with system name
  * @package TKMON\Model
  * @author Marius Hein <marius.hein@netways.de>
  */

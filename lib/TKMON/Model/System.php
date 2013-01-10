@@ -51,4 +51,16 @@ class System extends ApplicationModel
         $command->addPositionalArgument('INTERFACE='. $interface);
         $command->execute();
     }
+
+    /**
+     * Restart the running ntp daemon
+     */
+    public function restartNtpDaemon()
+    {
+        /** @var $command \NETWAYS\IO\Process */
+        $command = $this->container['command']->create('service');
+        $command->addPositionalArgument('ntp');
+        $command->addPositionalArgument('restart');
+        $command->execute();
+    }
 }

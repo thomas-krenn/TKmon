@@ -35,6 +35,10 @@ class Network extends \TKMON\Action\Base
      */
     private $primaryInterface = null;
 
+    /**
+     * Init function called from dispatcher
+     * @throws \TKMON\Exception\ModelException
+     */
     public function init()
     {
         $this->primaryInterface = $this->container['config']['system.interface'];
@@ -78,6 +82,13 @@ class Network extends \TKMON\Action\Base
         $template['ip_netmask'] = $ipModel->getIpNetmask();
         $template['ip_gateway'] = $ipModel->getIpGateway();
         $template['ip_config'] = $ipModel->getConfigType();
+
+        $ntpConfiguration = new \TKMON\Model\System\NtpConfiguration($this->container);
+        $ntpConfiguration->setMaxServers(3);
+        $ntpConfiguration->load();
+        $template['timeserver_1'] = $ntpConfiguration->getNtpServer(0);
+        $template['timeserver_2'] = $ntpConfiguration->getNtpServer(1);
+        $template['timeserver_3'] = $ntpConfiguration->getNtpServer(2);
 
         return $template;
     }
@@ -155,7 +166,7 @@ class Network extends \TKMON\Action\Base
             }
 
             if ($params->get('dns_nameserver3')) {
-                $dnsModel->setDnsServerItem(1, $params->get('dns_nameserver3'));
+                $dnsModel->setDnsServerItem(2, $params->get('dns_nameserver3'));
             }
 
             if ($params->get('dns_search')) {
@@ -208,6 +219,7 @@ class Network extends \TKMON\Action\Base
 
             $ipModel->write();
 
+            // Down and up again network interface
             $systemModel = new \TKMON\Model\System($this->container);
             $systemModel->restartNetworkInterfaces();
 
@@ -215,6 +227,46 @@ class Network extends \TKMON\Action\Base
 
         } catch (\Exception $e) {
             $response->addException($e);
+        }
+
+        return $response;
+    }
+
+    /**
+     * Action to change ntp server configuration
+     * @param \NETWAYS\Common\ArrayObject $params
+     * @return \TKMON\Mvc\Output\JsonResponse
+     */
+    public function actionChangeTimeSettings(\NETWAYS\Common\ArrayObject $params)
+    {
+        $response = new \TKMON\Mvc\Output\JsonResponse();
+        try {
+
+            // Validation not needed, sanitizing already done!
+
+            $serversFields = array('timeserver_1', 'timeserver_2', 'timeserver_3');
+
+            $ntpConfiguration = new \TKMON\Model\System\NtpConfiguration($this->container);
+            $ntpConfiguration->setMaxServers(count($serversFields));
+            $ntpConfiguration->load();
+            $ntpConfiguration->purgeServers();
+
+            foreach ($serversFields as $index => $server) {
+                if ($params->get($server)) {
+                    $ntpConfiguration->addNtpServer($params->get($server), $index);
+                }
+            }
+
+            $ntpConfiguration->write();
+
+            // Restart NTP daemon
+            $systemModel = new \TKMON\Model\System($this->container);
+            $systemModel->restartNtpDaemon();
+
+            $response->setSuccess(true);
+        } catch (\Exception $e) {
+            $response->addException($e);
+            $response->setSuccess(false);
         }
 
         return $response;
