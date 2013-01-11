@@ -1,0 +1,40 @@
+{% set username = user.getName() %}
+<div class="navbar  navbar-static-top">
+    <div class="navbar-inner">
+        <a class="brand" href="{{ web_link("Index/Index") }}">{{ app_name }}</a>
+
+        <ul class="nav">
+            <li><a href="#tkmon-about" data-toggle="modal">{% trans "About" %}</a></li>
+        </ul>
+
+        <ul class="nav pull-right">
+
+            <li class="dropdown">
+                {% include "widgets/LanguageSelector.twig" %}
+            </li>
+
+            <li>
+                <p class="navbar-text">
+                    {% trans %}
+                    Logged in as {{ username }}
+                    {% endtrans %}
+                </p>
+            </li>
+            {% if user.getAuthenticated == true %}
+                <li>
+                    <a href="{{ web_link("System/Login/Logout") }}">
+                        <i class="icon-lock"></i> {% trans "Logout" %}
+                    </a>
+                </li>
+            {% else %}
+                <li class="divider-vertical">
+                    <a href="{{ web_link("System/Login/Index") }}">
+                        <i class="icon-unlock"></i> {% trans "Login" %}
+                    </a>
+                </li>
+            {% endif %}
+        </ul>
+    </div>
+</div>
+
+{% include "widgets/About.twig" %}

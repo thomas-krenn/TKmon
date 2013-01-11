@@ -1,0 +1,241 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: 1.0\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2013-01-11 14:43+0100\n"
+"Last-Translator: Marius Hein <marius.hein@netways.de>\n"
+"Language-Team: German\n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: /tmp/tkmon-templates//38ed91e972e568ed12a3cdb1106f.php:24
+msgid "Session expired"
+msgstr "Login abgelaufen"
+
+#: /tmp/tkmon-templates//38ed91e972e568ed12a3cdb1106f.php:31
+msgid "You are not logged in"
+msgstr "Sie sind nicht mehr eingelogged"
+
+#: /tmp/tkmon-templates//38ed91e972e568ed12a3cdb1106f.php:37
+msgid ""
+"The action you want to acquire need an authenticated user, please\n"
+"        <a href=\"%link_login%\">go to login page</a>\n"
+"        to enter your credentials again."
+msgstr ""
+"Fuer die diesen Schritt muessen Sie eingelogged sein.\n"
+"Folgen Sie bitte <a href=\"\">diesem Link um sich anzumelden.</a>"
+
+#: /tmp/tkmon-templates//38ed91e972e568ed12a3cdb1106f.php:51
+#: /tmp/tkmon-templates//98bbdd7bd05f3e29f5a3bd3f6442.php:41
+#: /tmp/tkmon-templates//a0d6d2e237a639551da091320f44.php:73
+#: /tmp/tkmon-templates//b23ea6b58eea78ab951aa66f7c97.php:82
+msgid "Login"
+msgstr "Login"
+
+#: /tmp/tkmon-templates//3da4f7836cbb4c1c2096dfb69b2d.php:25
+msgid "Language"
+msgstr "Sprache"
+
+#: /tmp/tkmon-templates//4635ead9901ba61bfe916137bca9.php:26
+msgid ""
+"This panel is used to change security settings of your\n"
+"    appliance. Please select an appropriate tab to\n"
+"    change specific settings."
+msgstr ""
+"Einstellungen für Sicherheit. Bitte wählen Sie einen entsprechenden\n"
+"Tab um Ihre Einstellung vorzunehmen."
+
+#: /tmp/tkmon-templates//4635ead9901ba61bfe916137bca9.php:38
+msgid "User"
+msgstr "Benutzer"
+
+#: /tmp/tkmon-templates//4635ead9901ba61bfe916137bca9.php:42
+msgid "Icinga access"
+msgstr "Zugriff auf Icinga"
+
+#: /tmp/tkmon-templates//4635ead9901ba61bfe916137bca9.php:46
+msgid "SSH Access"
+msgstr "SSH Zugang"
+
+#: /tmp/tkmon-templates//4635ead9901ba61bfe916137bca9.php:54
+msgid "Change your your password"
+msgstr "Passwort ändern"
+
+#: /tmp/tkmon-templates//4635ead9901ba61bfe916137bca9.php:65
+#: /tmp/tkmon-templates//4635ead9901ba61bfe916137bca9.php:136
+#, fuzzy
+msgid "Success!"
+msgstr "Wunderbar!"
+
+#: /tmp/tkmon-templates//4635ead9901ba61bfe916137bca9.php:69
+msgid ""
+"Thank you for changing your password. Please do this regularly to\n"
+"                    increase security for this device!"
+msgstr ""
+"Vielen Dank. Ihr Passwort wurde geändert. Bitte ändern Sie\n"
+"regelmäßig Ihr Passwort um Sicherheitslücken zu vermeiden."
+
+#: /tmp/tkmon-templates//4635ead9901ba61bfe916137bca9.php:91
+msgid "Current password"
+msgstr "Aktuelles Passwort"
+
+#: /tmp/tkmon-templates//4635ead9901ba61bfe916137bca9.php:97
+msgid "New password"
+msgstr "Neues Passwort"
+
+#: /tmp/tkmon-templates//4635ead9901ba61bfe916137bca9.php:103
+msgid "Verification"
+msgstr "Neues Passwort (Nochmal)"
+
+#: /tmp/tkmon-templates//4635ead9901ba61bfe916137bca9.php:112
+msgid "Change password"
+msgstr "Ändern"
+
+#: /tmp/tkmon-templates//4635ead9901ba61bfe916137bca9.php:140
+msgid "User access has been modified successfully"
+msgstr "Benutzerzugriff angewandt"
+
+#: /tmp/tkmon-templates//4635ead9901ba61bfe916137bca9.php:148
+msgid "System access is"
+msgstr "Systemzugriff ist"
+
+#: /tmp/tkmon-templates//4635ead9901ba61bfe916137bca9.php:157
+msgid "Please <a href=\"#\" id=\"access-again-link\">click here</a> to change mode again."
+msgstr "Bitte klicken Sie <a href=\"#\" id=\"access-again-link\">hier</a> um den Zugriff wieder zu verändern."
+
+#: /tmp/tkmon-templates//4635ead9901ba61bfe916137bca9.php:177
+msgid "To change access please press the following button"
+msgstr "Um Zugriffsrechte zu verändern bitte klicken Sie auf die untere Schaltfläche"
+
+#: /tmp/tkmon-templates//4635ead9901ba61bfe916137bca9.php:194
+msgid "Enable"
+msgstr "Einschalten"
+
+#: /tmp/tkmon-templates//4635ead9901ba61bfe916137bca9.php:200
+msgid "System access (ssh/shell) for user %username% will be enabled."
+msgstr "Zugriff (ssh/shell) für %username% wird aktiviert."
+
+#: /tmp/tkmon-templates//4635ead9901ba61bfe916137bca9.php:210
+msgid "Disable"
+msgstr "Ausschalten"
+
+#: /tmp/tkmon-templates//4635ead9901ba61bfe916137bca9.php:216
+msgid "System access (ssh/shell) for user %username% will be disabled."
+msgstr "Zugriff (ssh/shell) für %username% wird deaktiviert."
+
+#: /tmp/tkmon-templates//98bbdd7bd05f3e29f5a3bd3f6442.php:23
+msgid "You are logged out successfully!"
+msgstr "Sie sind erfolgreich ausgelogged."
+
+#: /tmp/tkmon-templates//98bbdd7bd05f3e29f5a3bd3f6442.php:30
+msgid ""
+"You can now close the application or press the button\n"
+"        below to login again."
+msgstr "Sie können nun den Browser schließen oder sich neu anmelden."
+
+#: /tmp/tkmon-templates//a0d6d2e237a639551da091320f44.php:25
+msgid ""
+"Howdy! This application is protected by password.\n"
+"        Please proceed by apply your credentials."
+msgstr "Hi. Diese Anwendung ist Password geschützt. Bitte melden Sie sich an."
+
+#: /tmp/tkmon-templates//a0d6d2e237a639551da091320f44.php:36
+msgid ""
+"You are logged in successfully. You will be redirected\n"
+"        after a second. If not, please <a href=\"%link_home%\">\n"
+"        follow this link to proceed.</a>"
+msgstr ""
+"Log in erfolgreich. Sie werden weitergeleitet. Falls nicht klicken Sie\n"
+" bitte <a href=\"%link_home%\">auf diesen Link</a> um auf die \n"
+"Startseite zu gelangen."
+
+#: /tmp/tkmon-templates//a0d6d2e237a639551da091320f44.php:60
+msgid "Username"
+msgstr "Benutzername"
+
+#: /tmp/tkmon-templates//a0d6d2e237a639551da091320f44.php:65
+msgid "Password"
+msgstr "Passwort"
+
+#: /tmp/tkmon-templates//b23ea6b58eea78ab951aa66f7c97.php:35
+msgid "About"
+msgstr "Über uns"
+
+#: /tmp/tkmon-templates//b23ea6b58eea78ab951aa66f7c97.php:52
+msgid "Logged in as %username%"
+msgstr "Eingelogged als %username%"
+
+#: /tmp/tkmon-templates//b23ea6b58eea78ab951aa66f7c97.php:68
+msgid "Logout"
+msgstr "Ausloggen"
+
+#: /tmp/tkmon-templates//b659c5d31ed075398bcb158bbad2.php:31
+msgid "You are running"
+msgstr "Software Version ist"
+
+#: /tmp/tkmon-templates//ed6b22ff38bc6f710a3c545de2a7.php:40
+msgid ""
+"Please press the following button to reboot your appliance. The\n"
+"        reboot will take a few minutes. After the platform is\n"
+"        available the interface reloads and you will be prompted for\n"
+"        your credentials to login."
+msgstr ""
+"Bitte klicken Sie auf den Button um neu zu starten. Der Neustart\n"
+" dauert einige Minuten bis sich die Weboberfläche neu geladen hat.\n"
+" Danach müssen Sie sich neu einloggen."
+
+#: /tmp/tkmon-templates//ed6b22ff38bc6f710a3c545de2a7.php:50
+msgid "Warning"
+msgstr "Warnung"
+
+#: /tmp/tkmon-templates//ed6b22ff38bc6f710a3c545de2a7.php:54
+msgid "While rebooting no notifications for problems will be send to you."
+msgstr "Während dem Neustart werden keien Meldungen per Mail versandt."
+
+#: /tmp/tkmon-templates//ed6b22ff38bc6f710a3c545de2a7.php:64
+msgid "Reboot device!"
+msgstr "Neu Start!"
+
+#: /tmp/tkmon-templates//f4fee47896d47e984010ad12f9cc.php:27
+msgid ""
+"If any changes here you can not access your appliance anymore and you have to\n"
+"    reset the configuration to its default."
+msgstr ""
+"Nach Änderung erreichen Sie Ihre Appliance eventuell nicht mehr.\n"
+"Ist dies der Fall müssen die Die Appliance zurüksetzen."
+
+#: /tmp/tkmon-templates//f4fee47896d47e984010ad12f9cc.php:52
+msgid "Success"
+msgstr "Wunderbar!"
+
+#: /tmp/tkmon-templates//f4fee47896d47e984010ad12f9cc.php:56
+msgid "Your new network configuration hast been set and applied!"
+msgstr "Neue Netzwerkkonfiguration angewendet!"
+
+#: /tmp/tkmon-templates//f4fee47896d47e984010ad12f9cc.php:65
+msgid "Static"
+msgstr "Statisch"
+
+#: /tmp/tkmon-templates//f4fee47896d47e984010ad12f9cc.php:69
+msgid "DHCP"
+msgstr "DHCP"
+
+#: /tmp/tkmon-templates//f4fee47896d47e984010ad12f9cc.php:77
+msgid "IP address"
+msgstr "IP Adresse"
+
+#: /tmp/tkmon-templates//f4fee47896d47e984010ad12f9cc.php:89
+msgid "Subnet mask"
+msgstr "Subnetzmaske"
+
+#: /tmp/tkmon-templates//f4fee47896d47e984010ad12f9cc.php:101
+msgid "Gateway"
+msgstr "Gateway"
+
+#: /tmp/tkmon-templates//f4fee47896d47e984010ad12f9cc.php:113
+msgid "Save"
+msgstr "Speichern"
+

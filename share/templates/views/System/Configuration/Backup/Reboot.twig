@@ -14,22 +14,26 @@
         data-success-callback="reboot_callback"
         >
     <p>
+        {% trans %}
         Please press the following button to reboot your appliance. The
         reboot will take a few minutes. After the platform is
         available the interface reloads and you will be prompted for
         your credentials to login.
+        {% endtrans %}
     </p>
 
     <p>
-        <span class="label label-warning">Warning</span>&nbsp;While rebooting no
-        notifications for problems will be send to you.
+        <span class="label label-warning">{% trans "Warning" %}</span>
+        {% trans %}
+        While rebooting no notifications for problems will be send to you.
+        {% endtrans %}
     </p>
 
     <input type="hidden" name="reboot" value="1"/>
 
     <div class="container-spacer-down" id="reboot-submit">
         <button type="submit" class="btn btn-danger">
-            <i class="icon-warning-sign"></i> Reboot device!
+            <i class="icon-warning-sign"></i> {% trans "Reboot device!" %}
         </button>
     </div>
 

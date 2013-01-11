@@ -127,6 +127,7 @@ final class Web
                 );
 
                 $twig->addExtension(new \TKMON\Twig\Extension($c));
+                $twig->addExtension(new \Twig_Extensions_Extension_I18n());
 
                 return $twig;
             }
@@ -245,6 +246,33 @@ final class Web
                 return new \TKMON\Model\Command\Factory($c['config']);
             }
         );
+
+        /*
+         * Intl
+         */
+        $container['intl_class'] = '\NETWAYS\Intl\Gettext';
+
+        $container['intl'] = $container->share(
+            function($c) {
+                $gettextController = new $c['intl_class']();
+
+                $gettextController->setLocale($c['user']->getLocale());
+
+                $gettextController->addDomain(
+                    $c['config']['locale.domain'],
+                    $c['config']['locale.path']
+                );
+
+                $gettextController->setDefaultDomain($c['config']['locale.domain']);
+
+                return $gettextController;
+            }
+        );
+
+        // Dummy call to initialize internationalization
+        $container['intl'];
+
+
 
         echo $container['dispatcher']->dispatchRequest();
     }

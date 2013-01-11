@@ -1,7 +1,0 @@
-{% macro context_header(info, text, type) %}
-    <div class="alert alert-{{ type|default('info') }} }}">
-        <button type="button" class="close" data-dismiss="alert">&times;</button>
-        <h4>{{ info }}</h4>
-        {{ text }}
-    </div>
-{% endmacro %}

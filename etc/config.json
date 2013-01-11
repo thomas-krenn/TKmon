@@ -22,6 +22,14 @@
 
     "system.interface":     "eth0",
 
+    "locale.domain":        "messages",
+    "locale.path":          "{core.share_dir}/locales",
+    "locale.name":          "en_EN",
+    "locale.list": [
+        { "locale": "de_DE", "label": "Deutsch" },
+        { "locale": "en_EN", "label": "English" }
+    ],
+
     "command.config": {
         "chpasswd":  {
             "path": "/usr/sbin/chpasswd",

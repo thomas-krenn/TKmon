@@ -42,7 +42,7 @@ class System extends \TKMON\Action\Base
      * Simple ping action to determine we're online
      * @return \TKMON\Mvc\Output\JsonResponse
      */
-    public function actionPing()
+    public function actionPing(\NETWAYS\Common\ArrayObject $params)
     {
 
         $user = $this->container['user'];
@@ -57,6 +57,30 @@ class System extends \TKMON\Action\Base
                 'version' => $config->get('app.version.release')
             )
         );
+
+        return $response;
+    }
+
+    public function securityChangeLanguage()
+    {
+        return false;
+    }
+
+    public function actionChangeLanguage(\NETWAYS\Common\ArrayObject $params)
+    {
+        /** @var $user \TKMON\Model\User */
+        $user = $this->container['user'];
+
+        $response = new \TKMON\Mvc\Output\JsonResponse();
+
+        try {
+            $locale = $params->get('locale');
+            $user->setLocale($locale);
+            $response->addData(array('locale' => $locale));
+            $response->setSuccess(true);
+        } catch (Exception $e) {
+            $response->addException($e);
+        }
 
         return $response;
     }

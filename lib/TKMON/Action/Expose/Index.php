@@ -43,7 +43,7 @@ class Index extends \TKMON\Action\Base
      * Index page, say hellow to the world
      * @return \TKMON\Mvc\Output\TwigTemplate
      */
-    public function actionIndex()
+    public function actionIndex(\NETWAYS\Common\ArrayObject $params)
     {
         $view = new \TKMON\Mvc\Output\TwigTemplate($this->container['template']);
         $view->setTemplateName('views/Index.twig');

@@ -1,18 +1,21 @@
+{% set link_home = web_link("Index/Index") %}
 <div id="login-container">
     <div class="well">
+        {% trans %}
         Howdy! This application is protected by password.
         Please proceed by apply your credentials.
-        If you do not know your password anymore, please
-        <a href="{{ web_link('Reset') }}">follow this link to reset the password</a>.
+        {% endtrans %}
     </div>
 
     <div id="login-errors"></div>
 
     <div id="login-success" class="hidden">
         <div class="alert alert-success">
+        {% trans %}
         You are logged in successfully. You will be redirected
-        after a second. If not, please <a href="{{ web_link("Index/Index") }}">
+        after a second. If not, please <a href="{{ link_home }}">
         follow this link to proceed.</a>
+        {% endtrans %}
         </div>
     </div>
 
@@ -28,14 +31,14 @@
             data-success-callback="redirectHome"
      >
         <fieldset>
-            <label for="username">Username</label>
+            <label for="username">{% trans "Username" %}</label>
             <input type="text" id="username" name="username" />
-            <label for="password">Password</label>
+            <label for="password">{% trans "Password" %}</label>
             <input type="password" id="password" name="password" />
         </fieldset>
 
         <button type="submit" class="btn btn-primary">
-            <i class="icon-key"></i> Login
+            <i class="icon-key"></i> {% trans "Login" %}
         </button>
     </form>
 </div>

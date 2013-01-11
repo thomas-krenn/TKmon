@@ -41,47 +41,22 @@
     </head>
     <body>
         <!--[if lt IE 7]>
-            <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+            <p class="chromeframe">
+                You are using an <strong>outdated</strong> browser. Please
+                <a href="http://browsehappy.com/">upgrade your browser</a> or
+                <a href="http://www.google.com/chromeframe/?redirect=true">
+                    activate Google Chrome Frame
+                </a>
+                to improve your experience.
+            </p>
         <![endif]-->
 
         <div id="wrap">
-            <div class="navbar navbar-inverse navbar-fixed-top">
-                <div class="navbar-inner">
-                    <a class="brand" href="{{ web_link("Index/Index") }}">{{ app_name }}</a>
-
-                    <ul class="nav">
-                        <li><a href="#tkmon-about" data-toggle="modal">About</a></li>
-                    </ul>
-
-                    <ul class="nav pull-right">
-                        <li><p class="navbar-text">Logged in as {{ user.getName() }}</p></li>
-                    {% if user.getAuthenticated == true %}
-                        <li>
-                            <a href="{{ web_link("System/Login/Logout") }}">
-                                <i class="icon-lock"></i> Logout
-                            </a>
-                        </li>
-                    {% else %}
-                        <li class="divider-vertica">
-                            <a href="{{ web_link("System/Login/Index") }}">
-                                <i class="icon-unlock"></i> Login
-                            </a>
-                        </li>
-                    {% endif %}
-                    </ul>
-                </div>
-            </div>
-
-            {% include "views/about.twig" %}
+            {% include "widgets/Header.twig" %}
 
             <div class="container-fluid">
                 <div class="span2">
-                    <div class="nav-container">
-                    {% import "macros/menu.twig" as menu %}
-                    <ul class="nav nav-list">
-                    {{ menu.rendertree(navigation.getArrayCopy()) }}
-                    </ul>
-                    </div>
+                    {% include "widgets/Menu.twig" %}
                 </div>
 
                 <div class="span10">
