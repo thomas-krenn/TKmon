@@ -29,7 +29,15 @@ namespace TKMON\Model;
 class User extends ApplicationModel
 {
 
+    /**
+     * Hashing algo for passwords
+     */
     const HASH_ALGO = 'md5';
+
+    /**
+     * Session id for user locale
+     */
+    const NS_LOCALE = 'user.locale';
 
     /**
      * Session id for authenticated flag
@@ -383,5 +391,38 @@ class User extends ApplicationModel
         }
 
         return false;
+    }
+
+    public function getLocale()
+    {
+        /** @var $session \NETWAYS\Http\Session */
+        $session = $this->container['session'];
+
+        /** @var $config \NETWAYS\Common\Config */
+        $config = $this->container['config'];
+
+        $locale = $session[self::NS_LOCALE];
+
+        if (!$locale) {
+            $locale = $config->get('locale.name');
+        }
+
+        if (!$locale) {
+            throw new \TKMON\Exception\ModelException('Locale not properly configured');
+        }
+
+        return $locale;
+    }
+
+    public function setLocale($locale)
+    {
+        /** @var $session \NETWAYS\Http\Session */
+        $session = $this->container['session'];
+
+        /** @var $intl \NETWAYS\Intl\Gettext */
+        $intl = $this->container['intl'];
+
+        $intl->setLocale($locale);
+        $session[self::NS_LOCALE] = $locale;
     }
 }

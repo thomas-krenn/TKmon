@@ -1,0 +1,6 @@
+{% import "macros/menu.twig" as menu %}
+<div class="nav-container">
+    <ul class="nav nav-list">
+        {{ menu.rendertree(navigation.getArrayCopy()) }}
+    </ul>
+</div>

@@ -1,0 +1,36 @@
+{% set language_list = config.get('locale.list') %}
+<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+    {% trans "Language" %}
+    <b class="caret"></b>
+</a>
+<ul class="dropdown-menu" id="language-select">
+    {% for lang in language_list  %}
+    <li>
+        <a href="#" data-value="{{ lang.locale }}">{{ lang.label }}</a>
+    </li>
+    {% endfor %}
+</ul>
+
+<script>
+    require(['jquery', 'bootstrap'], function() {
+       "use strict";
+
+        var url = '{{ web_link("System/ChangeLanguage") }}';
+
+        $('#language-select a[data-value]').click(function(e) {
+
+            e.preventDefault();
+
+            $.ajax(url, {
+                data: JSON.stringify({
+                    locale: $(this).attr('data-value')
+                }),
+                dataType: 'JSON',
+                type: 'POST',
+                success: function() {
+                    window.location.reload();
+                }
+            });
+        });
+    });
+</script>

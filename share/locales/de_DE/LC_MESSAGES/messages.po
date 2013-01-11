@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2013-01-10 18:19+0100\n"
+"PO-Revision-Date: 2013-01-11 14:43+0100\n"
 "Last-Translator: Marius Hein <marius.hein@netways.de>\n"
 "Language-Team: German\n"
 "Language: de\n"
@@ -31,8 +31,100 @@ msgstr ""
 #: /tmp/tkmon-templates//38ed91e972e568ed12a3cdb1106f.php:51
 #: /tmp/tkmon-templates//98bbdd7bd05f3e29f5a3bd3f6442.php:41
 #: /tmp/tkmon-templates//a0d6d2e237a639551da091320f44.php:73
+#: /tmp/tkmon-templates//b23ea6b58eea78ab951aa66f7c97.php:82
 msgid "Login"
 msgstr "Login"
+
+#: /tmp/tkmon-templates//3da4f7836cbb4c1c2096dfb69b2d.php:25
+msgid "Language"
+msgstr "Sprache"
+
+#: /tmp/tkmon-templates//4635ead9901ba61bfe916137bca9.php:26
+msgid ""
+"This panel is used to change security settings of your\n"
+"    appliance. Please select an appropriate tab to\n"
+"    change specific settings."
+msgstr ""
+"Einstellungen für Sicherheit. Bitte wählen Sie einen entsprechenden\n"
+"Tab um Ihre Einstellung vorzunehmen."
+
+#: /tmp/tkmon-templates//4635ead9901ba61bfe916137bca9.php:38
+msgid "User"
+msgstr "Benutzer"
+
+#: /tmp/tkmon-templates//4635ead9901ba61bfe916137bca9.php:42
+msgid "Icinga access"
+msgstr "Zugriff auf Icinga"
+
+#: /tmp/tkmon-templates//4635ead9901ba61bfe916137bca9.php:46
+msgid "SSH Access"
+msgstr "SSH Zugang"
+
+#: /tmp/tkmon-templates//4635ead9901ba61bfe916137bca9.php:54
+msgid "Change your your password"
+msgstr "Passwort ändern"
+
+#: /tmp/tkmon-templates//4635ead9901ba61bfe916137bca9.php:65
+#: /tmp/tkmon-templates//4635ead9901ba61bfe916137bca9.php:136
+#, fuzzy
+msgid "Success!"
+msgstr "Wunderbar!"
+
+#: /tmp/tkmon-templates//4635ead9901ba61bfe916137bca9.php:69
+msgid ""
+"Thank you for changing your password. Please do this regularly to\n"
+"                    increase security for this device!"
+msgstr ""
+"Vielen Dank. Ihr Passwort wurde geändert. Bitte ändern Sie\n"
+"regelmäßig Ihr Passwort um Sicherheitslücken zu vermeiden."
+
+#: /tmp/tkmon-templates//4635ead9901ba61bfe916137bca9.php:91
+msgid "Current password"
+msgstr "Aktuelles Passwort"
+
+#: /tmp/tkmon-templates//4635ead9901ba61bfe916137bca9.php:97
+msgid "New password"
+msgstr "Neues Passwort"
+
+#: /tmp/tkmon-templates//4635ead9901ba61bfe916137bca9.php:103
+msgid "Verification"
+msgstr "Neues Passwort (Nochmal)"
+
+#: /tmp/tkmon-templates//4635ead9901ba61bfe916137bca9.php:112
+msgid "Change password"
+msgstr "Ändern"
+
+#: /tmp/tkmon-templates//4635ead9901ba61bfe916137bca9.php:140
+msgid "User access has been modified successfully"
+msgstr "Benutzerzugriff angewandt"
+
+#: /tmp/tkmon-templates//4635ead9901ba61bfe916137bca9.php:148
+msgid "System access is"
+msgstr "Systemzugriff ist"
+
+#: /tmp/tkmon-templates//4635ead9901ba61bfe916137bca9.php:157
+msgid "Please <a href=\"#\" id=\"access-again-link\">click here</a> to change mode again."
+msgstr "Bitte klicken Sie <a href=\"#\" id=\"access-again-link\">hier</a> um den Zugriff wieder zu verändern."
+
+#: /tmp/tkmon-templates//4635ead9901ba61bfe916137bca9.php:177
+msgid "To change access please press the following button"
+msgstr "Um Zugriffsrechte zu verändern bitte klicken Sie auf die untere Schaltfläche"
+
+#: /tmp/tkmon-templates//4635ead9901ba61bfe916137bca9.php:194
+msgid "Enable"
+msgstr "Einschalten"
+
+#: /tmp/tkmon-templates//4635ead9901ba61bfe916137bca9.php:200
+msgid "System access (ssh/shell) for user %username% will be enabled."
+msgstr "Zugriff (ssh/shell) für %username% wird aktiviert."
+
+#: /tmp/tkmon-templates//4635ead9901ba61bfe916137bca9.php:210
+msgid "Disable"
+msgstr "Ausschalten"
+
+#: /tmp/tkmon-templates//4635ead9901ba61bfe916137bca9.php:216
+msgid "System access (ssh/shell) for user %username% will be disabled."
+msgstr "Zugriff (ssh/shell) für %username% wird deaktiviert."
 
 #: /tmp/tkmon-templates//98bbdd7bd05f3e29f5a3bd3f6442.php:23
 msgid "You are logged out successfully!"
@@ -67,6 +159,22 @@ msgstr "Benutzername"
 #: /tmp/tkmon-templates//a0d6d2e237a639551da091320f44.php:65
 msgid "Password"
 msgstr "Passwort"
+
+#: /tmp/tkmon-templates//b23ea6b58eea78ab951aa66f7c97.php:35
+msgid "About"
+msgstr "Über uns"
+
+#: /tmp/tkmon-templates//b23ea6b58eea78ab951aa66f7c97.php:52
+msgid "Logged in as %username%"
+msgstr "Eingelogged als %username%"
+
+#: /tmp/tkmon-templates//b23ea6b58eea78ab951aa66f7c97.php:68
+msgid "Logout"
+msgstr "Ausloggen"
+
+#: /tmp/tkmon-templates//b659c5d31ed075398bcb158bbad2.php:31
+msgid "You are running"
+msgstr "Software Version ist"
 
 #: /tmp/tkmon-templates//ed6b22ff38bc6f710a3c545de2a7.php:40
 msgid ""

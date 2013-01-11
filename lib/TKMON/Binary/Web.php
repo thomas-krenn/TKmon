@@ -250,16 +250,29 @@ final class Web
         /*
          * Intl
          */
-        $gettextController = new \NETWAYS\Intl\Gettext();
+        $container['intl_class'] = '\NETWAYS\Intl\Gettext';
 
-        $gettextController->setLocale($container['config']['locale.name']);
+        $container['intl'] = $container->share(
+            function($c) {
+                $gettextController = new $c['intl_class']();
 
-        $gettextController->addDomain(
-            $container['config']['locale.domain'],
-            $container['config']['locale.path']
+                $gettextController->setLocale($c['user']->getLocale());
+
+                $gettextController->addDomain(
+                    $c['config']['locale.domain'],
+                    $c['config']['locale.path']
+                );
+
+                $gettextController->setDefaultDomain($c['config']['locale.domain']);
+
+                return $gettextController;
+            }
         );
 
-        $gettextController->setDefaultDomain($container['config']['locale.domain']);
+        // Dummy call to initialize internationalization
+        $container['intl'];
+
+
 
         echo $container['dispatcher']->dispatchRequest();
     }

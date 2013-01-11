@@ -74,6 +74,19 @@ class CgiParams
     }
 
     /**
+     * @return mixed
+     */
+    private function getJsonBody()
+    {
+        if ($this->getParameter('CONTENT_LENGTH', 0, 'header') > 0) {
+            $json = file_get_contents('php://input');
+            if ($json) {
+                return json_decode($json, true);
+            }
+        }
+    }
+
+    /**
      * How to get request data
      *
      * This method determines json data and converts HTTP RAW DATA into
@@ -83,13 +96,14 @@ class CgiParams
      */
     private function getRequestData()
     {
-        if (strpos($this->getParameter('CONTENT_TYPE', null, 'header'), 'application/json') === 0) {
-            $json = file_get_contents('php://input');
-            return json_decode($json, true);
+        $data = $this->getJsonBody();
+
+        if ($data === null) {
+            $data = array_merge($_POST, $_GET);
         }
 
         return filter_var_array(
-            array_merge($_POST, $_GET),
+            $data,
             FILTER_SANITIZE_STRING
         );
     }
