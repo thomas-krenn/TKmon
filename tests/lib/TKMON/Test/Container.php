@@ -17,9 +17,11 @@ class Container extends \Pimple
             return new $c['params_class'];
         });
 
-        $this['config_class'] = '\stdClass';
+        $this['config_class'] = '\NETWAYS\Common\ArrayObject';
         $this['config'] = $this->share(function($c) {
-            return new $c['config_class'];
+            $c = new $c['config_class'];
+            $c['app.version.release'] = 'tkmon-test-0.0.0';
+            return $c;
         });
 
         $this['template_loader'] = $this->share(function($c) {

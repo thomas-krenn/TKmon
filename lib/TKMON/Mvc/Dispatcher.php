@@ -195,6 +195,8 @@ class Dispatcher
     {
         try {
             $reflectionClass = $this->getActionReflection($this->class);
+
+            /** @var $object \TKMON\Action\Base */
             $object = $reflectionClass->newInstance();
 
             /*
@@ -226,6 +228,8 @@ class Dispatcher
                 $content = $reflectionMethod->invoke($object, $this->container['params']->getArrayObject('request'));
             }
 
+            $templateParams = $object->getTemplateParams();
+
             if (is_object($content) && $content instanceof \TKMON\Mvc\Output\DataInterface) {
                 if ($this->isAjaxRequest()) {
                     if ($content instanceof  \TKMON\Mvc\Output\Json) {
@@ -233,7 +237,7 @@ class Dispatcher
                     }
                     return $content->toString();
                 } else {
-                    return $this->renderTemplate($content->toString());
+                    return $this->renderTemplate($content->toString(), $templateParams);
                 }
             }
 
@@ -286,17 +290,18 @@ class Dispatcher
      * @param $content
      * @return string
      */
-    private function renderTemplate($content)
+    private function renderTemplate($content, array $templateParams)
     {
         $template = $this->container['template']->loadTemplate($this->container['config']->get('template.file'));
-        return $template->render(
-            array(
-                'content' => $content,
-                'user' => $this->container['user'],
-                'config' => $this->container['config'],
-                'navigation' => $this->container['navigation']
-            )
+
+        $templateParams = $templateParams + array(
+            'content' => $content,
+            'user' => $this->container['user'],
+            'config' => $this->container['config'],
+            'navigation' => $this->container['navigation']
         );
+
+        return $template->render($templateParams);
     }
 
     /**

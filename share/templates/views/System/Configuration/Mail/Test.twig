@@ -1,0 +1,43 @@
+<h4>{% trans "Test" %}</h4>
+
+<p>Send a test mail to verify your system is well configured!</p>
+
+<form
+    id="mail-test"
+    class="container-spacer-down"
+    action="{{ web_link("Testmail") }}"
+    data-ajax="form"
+    data-ajax-type="json"
+    data-error-target="#mail-test-errors"
+    data-success-frame="#mail-test-success"
+    >
+
+    <div id="mail-test-errors"></div>
+
+    <div id="mail-test-success" class="hidden alert alert-success">
+        <h4>{% trans "Success!" %}</h4>
+        <p>Mails was sent to recipient!</p>
+    </div>
+
+    <fieldset>
+        <label for="recipient">{% trans "Recipient" %}</label>
+        <input type="text" name="recipient" id="recipient" />
+    </fieldset>
+
+    <fieldset>
+        <label for="subject">{% trans "Subject" %}</label>
+        <input type="text" name="subject" id="subject" value="{% trans "Test mail from TKMON" %}" />
+    </fieldset>
+
+    <fieldset>
+        <label for="message">{% trans "Message" %}</label>
+        <textarea id="message" name="message" style="width: 400px; height: 100px;">Love many,trust frew, but always paddle your own canoe!</textarea>
+    </fieldset>
+
+    <div class="container-spacer-down">
+        <button type="submit" class="btn btn-primary">
+            <i class="icon-comment"></i> {% trans "Send" %}
+        </button>
+    </div>
+
+</form>

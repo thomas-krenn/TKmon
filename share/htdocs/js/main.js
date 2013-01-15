@@ -26,14 +26,12 @@ require([
     // Boilerplate and bootstrap
     // -------------------------
     "modernizr",
-    "jquery",
     "plugins",
-    "bootstrap",
 
     // -------------------------
     // TKMON scripts
     // -------------------------
     "TKMON/jquery/AjaxForm",
     "TKMON/jquery/AjaxContent",
-    "TKMON/jquery/TabUrl",
+    "TKMON/jquery/TabUrl"
 ]);

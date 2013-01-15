@@ -30,6 +30,8 @@ namespace TKMON\Action;
 abstract class Base
 {
 
+    private $templateParams = array();
+
     /**
      * Our DI container
      * @var \Pimple
@@ -69,5 +71,33 @@ abstract class Base
     public function init()
     {
         // DO NOTHING HERE
+    }
+
+    public function setTemplateParams(array $templateParams)
+    {
+        $this->templateParams = $templateParams;
+    }
+
+    public function getTemplateParams()
+    {
+        return $this->templateParams;
+    }
+
+    public function addTemplateParam($paramName, $paramValue)
+    {
+        $this->templateParams[$paramName] = $paramValue;
+    }
+
+    public function removeTemplateParam($paramName)
+    {
+        if (isset($this->templateParams[$paramName])) {
+            unset($this->templateParams[$paramName]);
+        }
+    }
+
+    public function purgeTemplateParams()
+    {
+        unset($this->templateParams);
+        $this->templateParams = array();
     }
 }
