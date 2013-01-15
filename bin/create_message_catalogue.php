@@ -23,7 +23,11 @@ $c = new \Pimple();
 
 $twig->addExtension(new \TKMON\Twig\Extension($c));
 
-$iterator = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($tplDir), RecursiveIteratorIterator::LEAVES_ONLY);
+$iterator = new RecursiveIteratorIterator(
+    new RecursiveDirectoryIterator($tplDir),
+    RecursiveIteratorIterator::LEAVES_ONLY
+);
+
 foreach ($iterator as $file) {
     // force compilation
     if ($file->isFile()) {
@@ -33,6 +37,16 @@ foreach ($iterator as $file) {
 
 exec('/usr/bin/find '. $tmpDir. ' -name \*php -exec mv {} '. $tmpDir. ' \\;');
 
-exec('/usr/bin/xgettext --default-domain=messages -p '. $dir. '/share/locales -o messages.pot --from-code=UTF-8 -n --omit-header -L PHP '. $tmpDir. '/*php');
+exec(
+    '/usr/bin/xgettext'
+    . ' --default-domain=messages -p '. $dir. '/share/locales -o messages.pot --from-code=UTF-8'
+    . ' -n --omit-header -L PHP '. $tmpDir. '/*php'
+);
+
+exec(
+    '/usr/bin/xgettext'
+    . ' --join-existing --default-domain=messages -p '. $dir. '/share/locales -o messages.pot'
+    . ' --from-code=UTF-8 -n --omit-header -L PHP $(find '. $dir. '/lib -name *php)'
+);
 
 exec('/bin/rm -rf '. $tmpDir);
