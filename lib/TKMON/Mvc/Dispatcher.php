@@ -195,6 +195,8 @@ class Dispatcher
     {
         try {
             $reflectionClass = $this->getActionReflection($this->class);
+
+            /** @var $object \TKMON\Action\Base */
             $object = $reflectionClass->newInstance();
 
             /*
@@ -226,6 +228,8 @@ class Dispatcher
                 $content = $reflectionMethod->invoke($object, $this->container['params']->getArrayObject('request'));
             }
 
+            $templateParams = $object->getTemplateParams();
+
             if (is_object($content) && $content instanceof \TKMON\Mvc\Output\DataInterface) {
                 if ($this->isAjaxRequest()) {
                     if ($content instanceof  \TKMON\Mvc\Output\Json) {
@@ -233,7 +237,7 @@ class Dispatcher
                     }
                     return $content->toString();
                 } else {
-                    return $this->renderTemplate($content->toString());
+                    return $this->renderTemplate($content->toString(), $templateParams);
                 }
             }
 
@@ -283,20 +287,28 @@ class Dispatcher
 
     /**
      * Renders the template
-     * @param $content
+     * @param $content The inner part of the template
+     * @param array $templateParams Assing values to outer template
      * @return string
      */
-    private function renderTemplate($content)
+    private function renderTemplate($content, array $templateParams = null)
     {
         $template = $this->container['template']->loadTemplate($this->container['config']->get('template.file'));
-        return $template->render(
-            array(
-                'content' => $content,
-                'user' => $this->container['user'],
-                'config' => $this->container['config'],
-                'navigation' => $this->container['navigation']
-            )
+
+        $default = array(
+            'content' => $content,
+            'user' => $this->container['user'],
+            'config' => $this->container['config'],
+            'navigation' => $this->container['navigation']
         );
+
+        if ($templateParams === null) {
+            $templateParams = $default;
+        } else {
+            $templateParams = $templateParams + $default;
+        }
+
+        return $template->render($templateParams);
     }
 
     /**

@@ -41,6 +41,7 @@ class Index extends \TKMON\Action\Base
 
     /**
      * Index page, say hellow to the world
+     * @param \NETWAYS\Common\ArrayObject $params
      * @return \TKMON\Mvc\Output\TwigTemplate
      */
     public function actionIndex(\NETWAYS\Common\ArrayObject $params)

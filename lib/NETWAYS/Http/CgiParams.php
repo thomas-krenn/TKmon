@@ -74,7 +74,11 @@ class CgiParams
     }
 
     /**
-     * @return mixed
+     * Json detector
+     *
+     * Tries to detect json in bad configured http requests
+     *
+     * @return string|null
      */
     private function getJsonBody()
     {

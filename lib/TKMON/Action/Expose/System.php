@@ -40,6 +40,7 @@ class System extends \TKMON\Action\Base
 
     /**
      * Simple ping action to determine we're online
+     * @param \NETWAYS\Common\ArrayObject $params
      * @return \TKMON\Mvc\Output\JsonResponse
      */
     public function actionPing(\NETWAYS\Common\ArrayObject $params)
@@ -61,11 +62,20 @@ class System extends \TKMON\Action\Base
         return $response;
     }
 
+    /**
+     * Configuration for change language action
+     * @return bool
+     */
     public function securityChangeLanguage()
     {
         return false;
     }
 
+    /**
+     * Ajax endpoint to change session language
+     * @param \NETWAYS\Common\ArrayObject $params
+     * @return \TKMON\Mvc\Output\JsonResponse
+     */
     public function actionChangeLanguage(\NETWAYS\Common\ArrayObject $params)
     {
         /** @var $user \TKMON\Model\User */

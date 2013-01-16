@@ -31,6 +31,12 @@ abstract class Base
 {
 
     /**
+     * Parameter holder for to configure outer template
+     * @var array
+     */
+    private $templateParams = array();
+
+    /**
      * Our DI container
      * @var \Pimple
      */
@@ -69,5 +75,58 @@ abstract class Base
     public function init()
     {
         // DO NOTHING HERE
+    }
+
+    /**
+     * Setter for templateParams
+     *
+     * Set the whole array
+     *
+     * @param array $templateParams
+     */
+    public function setTemplateParams(array $templateParams)
+    {
+        $this->templateParams = $templateParams;
+    }
+
+    /**
+     * Getter for templateParams
+     * @return array
+     */
+    public function getTemplateParams()
+    {
+        return $this->templateParams;
+    }
+
+    /**
+     * Add item to params
+     *
+     * @param string $paramName
+     * @param mixed $paramValue
+     */
+    public function addTemplateParam($paramName, $paramValue)
+    {
+        $this->templateParams[$paramName] = $paramValue;
+    }
+
+    /**
+     * Remove single item from params
+     *
+     * @param string $paramName
+     */
+    public function removeTemplateParam($paramName)
+    {
+        if (isset($this->templateParams[$paramName])) {
+            unset($this->templateParams[$paramName]);
+        }
+    }
+
+    /**
+     * Drop all params and start new
+     */
+    public function purgeTemplateParams()
+    {
+        unset($this->templateParams);
+        $this->templateParams = array();
     }
 }

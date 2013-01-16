@@ -1,3 +1,34 @@
+#: /tmp/tkmon-templates//12df31bcf19d0f3f1f0e39b3d761.php:20
+#: /tmp/tkmon-templates//53e134756b05184b0252ab49e735.php:47
+msgid "Test"
+msgstr ""
+
+#: /tmp/tkmon-templates//12df31bcf19d0f3f1f0e39b3d761.php:43
+#: /tmp/tkmon-templates//4635ead9901ba61bfe916137bca9.php:65
+#: /tmp/tkmon-templates//4635ead9901ba61bfe916137bca9.php:136
+msgid "Success!"
+msgstr ""
+
+#: /tmp/tkmon-templates//12df31bcf19d0f3f1f0e39b3d761.php:51
+msgid "Recipient"
+msgstr ""
+
+#: /tmp/tkmon-templates//12df31bcf19d0f3f1f0e39b3d761.php:59
+msgid "Subject"
+msgstr ""
+
+#: /tmp/tkmon-templates//12df31bcf19d0f3f1f0e39b3d761.php:63
+msgid "Test mail from TKMON"
+msgstr ""
+
+#: /tmp/tkmon-templates//12df31bcf19d0f3f1f0e39b3d761.php:70
+msgid "Message"
+msgstr ""
+
+#: /tmp/tkmon-templates//12df31bcf19d0f3f1f0e39b3d761.php:79
+msgid "Send"
+msgstr ""
+
 #: /tmp/tkmon-templates//38ed91e972e568ed12a3cdb1106f.php:24
 msgid "Session expired"
 msgstr ""
@@ -45,11 +76,6 @@ msgstr ""
 
 #: /tmp/tkmon-templates//4635ead9901ba61bfe916137bca9.php:54
 msgid "Change your your password"
-msgstr ""
-
-#: /tmp/tkmon-templates//4635ead9901ba61bfe916137bca9.php:65
-#: /tmp/tkmon-templates//4635ead9901ba61bfe916137bca9.php:136
-msgid "Success!"
 msgstr ""
 
 #: /tmp/tkmon-templates//4635ead9901ba61bfe916137bca9.php:69
@@ -106,6 +132,21 @@ msgstr ""
 
 #: /tmp/tkmon-templates//4635ead9901ba61bfe916137bca9.php:216
 msgid "System access (ssh/shell) for user %username% will be disabled."
+msgstr ""
+
+#: /tmp/tkmon-templates//53e134756b05184b0252ab49e735.php:22
+msgid "Mail settings"
+msgstr ""
+
+#: /tmp/tkmon-templates//53e134756b05184b0252ab49e735.php:29
+msgid ""
+"Change mail settings and send test mails to verify everything\n"
+"    works like expected!"
+msgstr ""
+
+#: /tmp/tkmon-templates//53e134756b05184b0252ab49e735.php:41
+#: /tmp/tkmon-templates//ed7744ab4631450327f024a19dbf.php:20
+msgid "Configuration"
 msgstr ""
 
 #: /tmp/tkmon-templates//98bbdd7bd05f3e29f5a3bd3f6442.php:23
@@ -212,4 +253,17 @@ msgstr ""
 
 #: /tmp/tkmon-templates//f4fee47896d47e984010ad12f9cc.php:113
 msgid "Save"
+msgstr ""
+
+#: /data/users/mhein/workspaces/tk-mon/tk-mon/lib/TKMON/Action/Expose/System/Configuration/Mail.php:36
+msgid "Mail config"
+msgstr ""
+
+#: /data/users/mhein/workspaces/tk-mon/tk-mon/lib/TKMON/Action/Expose/System/Configuration/Mail.php:53
+msgid "Email"
+msgstr ""
+
+#: /data/users/mhein/workspaces/tk-mon/tk-mon/lib/TKMON/Action/Expose/System/Configuration/Mail.php:59
+#: /data/users/mhein/workspaces/tk-mon/tk-mon/lib/TKMON/Action/Expose/System/Configuration/Mail.php:69
+msgid "Mandatory"
 msgstr ""

@@ -253,7 +253,7 @@ final class Web
         $container['intl_class'] = '\NETWAYS\Intl\Gettext';
 
         $container['intl'] = $container->share(
-            function($c) {
+            function ($c) {
                 $gettextController = new $c['intl_class']();
 
                 $gettextController->setLocale($c['user']->getLocale());

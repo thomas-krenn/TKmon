@@ -31,6 +31,19 @@ class ArrayObjectValidator extends ArrayObject
 {
 
     /**
+     * Validate mandatory settings
+     */
+    const VALIDATE_MANDATORY    = 'mandatory';
+
+    /**
+     * Predefine regexp configurations
+     * @var array
+     */
+    private static $regexp = array(
+        self::VALIDATE_MANDATORY    => '/^.+$/'
+    );
+
+    /**
      * Flag to throw an exception on validation error
      * @var bool
      */
@@ -57,13 +70,38 @@ class ArrayObjectValidator extends ArrayObject
     public function addValidator($field, $humanType, $type, $flags = null, $options = null)
     {
         $filter = new \stdClass();
-        $filter->type = $type;
+
         $filter->humanType = $humanType;
         $filter->flags = $flags;
-        $filter->options = $options;
         $filter->field = $field;
 
+        if (($regexp = $this->getRegexFromLocalType($type)) !== null) {
+            $filter->type = FILTER_VALIDATE_REGEXP;
+            $filter->options = array(
+                'regexp' => $regexp
+            );
+        } else {
+            $filter->type = $type;
+            $filter->options = $options;
+        }
+
+
         $this[$field] = $filter;
+    }
+
+    /**
+     * Detects if we using internal validation constants
+     *
+     * @param string $type
+     * @return null|string regexp string
+     */
+    private function getRegexFromLocalType($type)
+    {
+        if (isset(self::$regexp[$type])) {
+            return self::$regexp[$type];
+        }
+
+        return null;
     }
 
     /**
