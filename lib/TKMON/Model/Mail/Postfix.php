@@ -22,7 +22,7 @@
 namespace TKMON\Model\Mail;
 
 /**
- * This a collection of common actions
+ * Model to change postfix configuration
  * @package TKMON\Model
  * @author Marius Hein <marius.hein@netways.de>
  */
@@ -93,7 +93,7 @@ class Postfix extends \NETWAYS\Common\ArrayObject
 
     private function writeSetting(\SplFileObject $fo, $setting, $value)
     {
-        $fo->fwrite($setting. ' = '. $value. PHP_EOL);
+        $fo->fwrite($setting. ' = '. $value);
     }
 
     public function write()

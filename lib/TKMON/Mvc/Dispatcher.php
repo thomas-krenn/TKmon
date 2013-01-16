@@ -290,16 +290,22 @@ class Dispatcher
      * @param $content
      * @return string
      */
-    private function renderTemplate($content, array $templateParams)
+    private function renderTemplate($content, array $templateParams=null)
     {
         $template = $this->container['template']->loadTemplate($this->container['config']->get('template.file'));
 
-        $templateParams = $templateParams + array(
+        $default = array(
             'content' => $content,
             'user' => $this->container['user'],
             'config' => $this->container['config'],
             'navigation' => $this->container['navigation']
         );
+
+        if ($templateParams === null) {
+            $templateParams = $default;
+        } else {
+            $templateParams = $templateParams + $default;
+        }
 
         return $template->render($templateParams);
     }

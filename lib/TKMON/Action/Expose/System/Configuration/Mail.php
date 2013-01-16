@@ -34,6 +34,14 @@ class Mail extends \TKMON\Action\Base
         $template = new \TKMON\Mvc\Output\TwigTemplate($this->container['template']);
         $template->setTemplateName('views/System/Configuration/Mail.twig');
         $this->addTemplateParam('title', _('Mail config'));
+
+        $postfixModel = new \TKMON\Model\Mail\Postfix($this->container);
+        $postfixModel->load();
+        $template['relayhost'] = $postfixModel->getRelayHost();
+
+        $senderModel = new \TKMON\Model\Mail\Sender($this->container);
+        $template['sender'] = $senderModel->getSender();
+
         return $template;
     }
 
@@ -54,25 +62,9 @@ class Mail extends \TKMON\Action\Base
                 FILTER_VALIDATE_EMAIL
             );
 
-            $validator->addValidator(
-                'subject',
-                _('Mandatory'),
-                FILTER_VALIDATE_REGEXP,
-                FILTER_FLAG_NONE,
-                array(
-                    'regexp' => '/^.+$/'
-                )
-            );
+            $validator->addValidator('subject',_('Mandatory'), \NETWAYS\Common\ArrayObjectValidator::VALIDATE_MANDATORY);
 
-            $validator->addValidator(
-                'message',
-                _('Mandatory'),
-                FILTER_VALIDATE_REGEXP,
-                FILTER_FLAG_NONE,
-                array(
-                    'regexp' => '/^.+$/'
-                )
-            );
+            $validator->addValidator('message', _('Mandatory'), \NETWAYS\Common\ArrayObjectValidator::VALIDATE_MANDATORY);
 
             $validator->validateArrayObject($params);
 
@@ -97,8 +89,28 @@ class Mail extends \TKMON\Action\Base
         $response = new \TKMON\Mvc\Output\JsonResponse();
 
         try {
+            $validator = new \NETWAYS\Common\ArrayObjectValidator();
+            $validator->addValidator('sender', 'Email address', FILTER_VALIDATE_EMAIL);
+
+            if ($params->get('relayhost')) {
+                $validator->addValidator('relayhost', _('IP'), FILTER_VALIDATE_IP);
+            }
+
+            $validator->validateArrayObject($params);
+
+            $senderModel = new \TKMON\Model\Mail\Sender($this->container);
+            $senderModel->setSender($params->get('sender'));
+
+            $postfixModel = new \TKMON\Model\Mail\Postfix($this->container);
+            $postfixModel->load();
+            $postfixModel->setRelayHost($params->get('relayhost', ''));
+            $postfixModel->write();
+
+            $systemModel = new \TKMON\Model\System($this->container);
+            $systemModel->restartPostfix();
+
             $response->setSuccess(true);
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             $response->setSuccess(false);
             $response->addException($e);
         }

@@ -22,7 +22,7 @@
 namespace TKMON\Model\Mail;
 
 /**
- * This a collection of common actions
+ * Model to send mails with PHP
  * @package TKMON\Model
  * @author Marius Hein <marius.hein@netways.de>
  */

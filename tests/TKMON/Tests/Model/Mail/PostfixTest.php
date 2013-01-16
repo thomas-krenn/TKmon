@@ -36,4 +36,24 @@ class PostfixTest extends PHPUnit_Framework_TestCase
         $this->assertTrue(unlink(self::$configFile));
     }
 
+    /**
+     * @expectedException \TKMON\Exception\ModelException
+     */
+    public function testEmptyWrite()
+    {
+        $postfixConfig = new \TKMON\Model\Mail\Postfix(self::$container);
+        $postfixConfig->setConfigFile('/tmp/tkmon-does-not-exist-222.cf');
+        $postfixConfig->write();
+    }
+
+    /**
+     * @expectedException \TKMON\Exception\ModelException
+     */
+    public function testNotExistingLoad()
+    {
+        $postfixConfig = new \TKMON\Model\Mail\Postfix(self::$container);
+        $postfixConfig->setConfigFile('/tmp/tkmon-does-not-exist-111.cf');
+        $postfixConfig->load();
+    }
+
 }

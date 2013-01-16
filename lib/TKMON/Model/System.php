@@ -63,4 +63,16 @@ class System extends ApplicationModel
         $command->addPositionalArgument('restart');
         $command->execute();
     }
+
+    /**
+     * Restart postfix mail service
+     */
+    public function restartPostfix()
+    {
+        /** @var $command \NETWAYS\IO\Process */
+        $command = $this->container['command']->create('service');
+        $command->addPositionalArgument('postfix');
+        $command->addPositionalArgument('restart');
+        $command->execute();
+    }
 }
