@@ -30,12 +30,17 @@ namespace NETWAYS\Common;
 class ArrayObjectValidator extends ArrayObject
 {
 
-    const VALIDATE_HOST_OR_IP   = 'host_or_ip';
+    /**
+     * Validate mandatory settings
+     */
     const VALIDATE_MANDATORY    = 'mandatory';
 
+    /**
+     * Predefine regexp configurations
+     * @var array
+     */
     private static $regexp = array(
-        self::VALIDATE_MANDATORY    => '/^.+$/',
-        self::VALIDATE_HOST_OR_IP   => '/^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}|\w+\.?$/'
+        self::VALIDATE_MANDATORY    => '/^.+$/'
     );
 
     /**
@@ -90,7 +95,8 @@ class ArrayObjectValidator extends ArrayObject
      * @param string $type
      * @return null|string regexp string
      */
-    private function getRegexFromLocalType($type) {
+    private function getRegexFromLocalType($type)
+    {
         if (isset(self::$regexp[$type])) {
             return self::$regexp[$type];
         }

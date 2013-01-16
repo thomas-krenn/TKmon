@@ -393,6 +393,18 @@ class User extends ApplicationModel
         return false;
     }
 
+    /**
+     * Getter function for locale
+     *
+     * Try to determine current locale configured:
+     *
+     * - session
+     * - configuration
+     * - default
+     *
+     * @return string|null locale name e.g. de_DE
+     * @throws \TKMON\Exception\ModelException
+     */
     public function getLocale()
     {
         /** @var $session \NETWAYS\Http\Session */
@@ -414,6 +426,13 @@ class User extends ApplicationModel
         return $locale;
     }
 
+    /**
+     * Sets the current user locale
+     *
+     * And write them into session
+     *
+     * @param string $locale locale name e.g. de_DE
+     */
     public function setLocale($locale)
     {
         /** @var $session \NETWAYS\Http\Session */

@@ -29,6 +29,11 @@ namespace TKMON\Action\Expose\System\Configuration;
  */
 class Mail extends \TKMON\Action\Base
 {
+    /**
+     * Render index page
+     * @param \NETWAYS\Common\ArrayObject $params
+     * @return \TKMON\Mvc\Output\TwigTemplate
+     */
     public function actionIndex(\NETWAYS\Common\ArrayObject $params)
     {
         $template = new \TKMON\Mvc\Output\TwigTemplate($this->container['template']);
@@ -45,6 +50,11 @@ class Mail extends \TKMON\Action\Base
         return $template;
     }
 
+    /**
+     * Ajax action to send a mail
+     * @param \NETWAYS\Common\ArrayObject $params
+     * @return \TKMON\Mvc\Output\JsonResponse
+     */
     public function actionTestmail(\NETWAYS\Common\ArrayObject $params)
     {
         $response = new \TKMON\Mvc\Output\JsonResponse();
@@ -62,9 +72,17 @@ class Mail extends \TKMON\Action\Base
                 FILTER_VALIDATE_EMAIL
             );
 
-            $validator->addValidator('subject',_('Mandatory'), \NETWAYS\Common\ArrayObjectValidator::VALIDATE_MANDATORY);
+            $validator->addValidator(
+                'subject',
+                _('Mandatory'),
+                \NETWAYS\Common\ArrayObjectValidator::VALIDATE_MANDATORY
+            );
 
-            $validator->addValidator('message', _('Mandatory'), \NETWAYS\Common\ArrayObjectValidator::VALIDATE_MANDATORY);
+            $validator->addValidator(
+                'message',
+                _('Mandatory'),
+                \NETWAYS\Common\ArrayObjectValidator::VALIDATE_MANDATORY
+            );
 
             $validator->validateArrayObject($params);
 
@@ -84,6 +102,11 @@ class Mail extends \TKMON\Action\Base
         return $response;
     }
 
+    /**
+     * Ajax action to configure mail settings
+     * @param \NETWAYS\Common\ArrayObject $params
+     * @return \TKMON\Mvc\Output\JsonResponse
+     */
     public function actionConfigure(\NETWAYS\Common\ArrayObject $params)
     {
         $response = new \TKMON\Mvc\Output\JsonResponse();
@@ -92,6 +115,7 @@ class Mail extends \TKMON\Action\Base
             $validator = new \NETWAYS\Common\ArrayObjectValidator();
             $validator->addValidator('sender', 'Email address', FILTER_VALIDATE_EMAIL);
 
+            // Only validate if parameter exists
             if ($params->get('relayhost')) {
                 $validator->addValidator('relayhost', _('IP'), FILTER_VALIDATE_IP);
             }

@@ -29,23 +29,48 @@ namespace NETWAYS\Intl;
  */
 class Gettext
 {
-
+    /**
+     * Language domains
+     * @var array
+     */
     private $domains = array();
 
+    /**
+     * Encoding
+     * @var string
+     */
     private $encoding = 'UTF-8';
 
+    /**
+     * Current locale
+     * @var string
+     */
     private $locale;
 
+    /**
+     * Setter for encoding
+     * @param string $encoding
+     */
     public function setEncoding($encoding)
     {
         $this->encoding = $encoding;
     }
 
+    /**
+     * Getter for encoding
+     * @return string
+     */
     public function getEncoding()
     {
         return $this->encoding;
     }
 
+    /**
+     * Add a translation domain
+     * @param string $domain
+     * @param string $path
+     * @throws \NETWAYS\Common\Exception
+     */
     public function addDomain($domain, $path)
     {
 
@@ -63,6 +88,11 @@ class Gettext
         bind_textdomain_codeset($domain, $this->getEncoding());
     }
 
+    /**
+     * Set default domain
+     * @param string $domain
+     * @throws \NETWAYS\Common\Exception
+     */
     public function setDefaultDomain($domain)
     {
         if (!array_key_exists($domain, $this->domains)) {
@@ -72,6 +102,10 @@ class Gettext
         textdomain($domain);
     }
 
+    /**
+     * Set current locale
+     * @param string $locale
+     */
     public function setLocale($locale)
     {
         $this->locale = $locale;
@@ -84,9 +118,12 @@ class Gettext
         setlocale(LC_MESSAGES, $setTag);
     }
 
+    /**
+     * Get current locale
+     * @return string
+     */
     public function getLocale()
     {
         return $this->locale;
     }
-
 }

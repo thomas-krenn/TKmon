@@ -29,45 +29,86 @@ namespace TKMON\Model\Mail;
 class Postfix extends \NETWAYS\Common\ArrayObject
 {
 
+    /**
+     * Temp prefix for copy configurations around
+     */
     const TEMP_PREFIX = 'tkmon-postfix';
 
     /**
+     * DI configuration container
      * @var \Pimple
      */
     private $container;
 
+    /**
+     * Config file
+     * @var string
+     */
     private $configFile = '/etc/postfix/main.cf';
 
+    /**
+     * Relay host setting
+     * @var
+     */
     private $relayHost;
 
-    public function __construct(\Pimple $container) {
+    /**
+     * Creates a new object
+     * @param \Pimple $container
+     */
+    public function __construct(\Pimple $container)
+    {
         $this->container = $container;
     }
 
+    /**
+     * Map settings to getter and setter method
+     * @var array
+     */
     private static $mapLines = array(
         'relayhost' => 'RelayHost'
     );
 
+    /**
+     * Setter for config file
+     * @param $configFile
+     */
     public function setConfigFile($configFile)
     {
         $this->configFile = $configFile;
     }
 
+    /**
+     * Getter for config file
+     * @return string
+     */
     public function getConfigFile()
     {
         return $this->configFile;
     }
 
+    /**
+     * Setter for relay host
+     * @param $relayHost
+     */
     public function setRelayHost($relayHost)
     {
         $this->relayHost = $relayHost;
     }
 
+    /**
+     * Getter for relay host
+     * @return string|null
+     */
     public function getRelayHost()
     {
         return $this->relayHost;
     }
 
+    /**
+     * Load data from file into object
+     * @throws \TKMON\Exception\ModelException
+     */
     public function load()
     {
         if (!file_exists($this->getConfigFile())) {
@@ -91,11 +132,25 @@ class Postfix extends \NETWAYS\Common\ArrayObject
         }
     }
 
+    /**
+     * Setting writer
+     *
+     * Normalize syntax to write
+     *
+     * @param \SplFileObject $fo
+     * @param $setting
+     * @param $value
+     */
     private function writeSetting(\SplFileObject $fo, $setting, $value)
     {
         $fo->fwrite($setting. ' = '. $value);
     }
 
+    /**
+     * Write data to file
+     *
+     * @throws \TKMON\Exception\ModelException
+     */
     public function write()
     {
         if (!count($this)) {
@@ -110,7 +165,7 @@ class Postfix extends \NETWAYS\Common\ArrayObject
         /*
          * Write custom object configuration
          */
-        foreach (self::$mapLines as $setting=>$methodSuffix) {
+        foreach (self::$mapLines as $setting => $methodSuffix) {
             $method = 'get'. $methodSuffix;
             $this->writeSetting($fo, $setting, $this->$method());
         }

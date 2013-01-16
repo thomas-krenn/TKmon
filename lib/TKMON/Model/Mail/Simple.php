@@ -34,36 +34,43 @@ class Simple extends \TKMON\Model\ApplicationModel
     const MAX_LINE = 70;
 
     /**
-     * @var
+     * To address
+     * @var string
      */
     private $to;
 
     /**
-     * @var
+     * Body content
+     * @var string
      */
     private $content;
 
     /**
-     * @var
+     * Sender address
+     * @var string
      */
     private $sender;
 
     /**
-     * @var
+     * Mail subject
+     * @var string
      */
     private $subject;
 
     /**
+     * Array of additional headers
      * @var array
      */
     private $headers = array();
 
     /**
+     * Options passed to sendmail
      * @var array
      */
     private $options = array();
 
     /**
+     * Create a new object
      * @param \Pimple $container
      */
     public function __construct(\Pimple $container)
@@ -74,7 +81,7 @@ class Simple extends \TKMON\Model\ApplicationModel
     }
 
     /**
-     *
+     * Reset the object to unconfigured state
      */
     public function resetState()
     {
@@ -88,7 +95,8 @@ class Simple extends \TKMON\Model\ApplicationModel
     }
 
     /**
-     * @param $content
+     * Setter for mail content
+     * @param string $content
      */
     public function setContent($content)
     {
@@ -96,6 +104,10 @@ class Simple extends \TKMON\Model\ApplicationModel
     }
 
     /**
+     * Getter for mail content
+     *
+     * Prepare the content with RFC like wordwrap
+     *
      * @return string
      */
     public function getContent()
@@ -104,6 +116,7 @@ class Simple extends \TKMON\Model\ApplicationModel
     }
 
     /**
+     * Setter for subject
      * @param $subject
      */
     public function setSubject($subject)
@@ -112,6 +125,7 @@ class Simple extends \TKMON\Model\ApplicationModel
     }
 
     /**
+     * Getter for subject
      * @return mixed
      */
     public function getSubject()
@@ -120,6 +134,7 @@ class Simple extends \TKMON\Model\ApplicationModel
     }
 
     /**
+     * Setter for to address
      * @param $to
      */
     public function setTo($to)
@@ -128,6 +143,7 @@ class Simple extends \TKMON\Model\ApplicationModel
     }
 
     /**
+     * Getter for to address
      * @return mixed
      */
     public function getTo()
@@ -136,6 +152,10 @@ class Simple extends \TKMON\Model\ApplicationModel
     }
 
     /**
+     * Setter for sender
+     *
+     * Also sets header and sendmail options for envelope header
+     *
      * @param $sender
      */
     public function setSender($sender)
@@ -147,6 +167,7 @@ class Simple extends \TKMON\Model\ApplicationModel
     }
 
     /**
+     * Getter for sender
      * @return mixed
      */
     public function getSender()
@@ -155,16 +176,19 @@ class Simple extends \TKMON\Model\ApplicationModel
     }
 
     /**
+     * Normalizer header
      * @param $name
      * @return string
      */
-    private function normalizeHeaderName($name) {
+    private function normalizeHeaderName($name)
+    {
         return strtolower($name);
     }
 
     /**
-     * @param $name
-     * @param $value
+     * Add header to message
+     * @param string $name
+     * @param mixed $value
      */
     public function addHeader($name, $value)
     {
@@ -172,7 +196,7 @@ class Simple extends \TKMON\Model\ApplicationModel
     }
 
     /**
-     *
+     * Remove all headers
      */
     public function purgeHeaders()
     {
@@ -181,6 +205,7 @@ class Simple extends \TKMON\Model\ApplicationModel
     }
 
     /**
+     * Remove single item from headers
      * @param $name
      */
     public function removeHeader($name)
@@ -192,6 +217,7 @@ class Simple extends \TKMON\Model\ApplicationModel
     }
 
     /**
+     * Getter for all headers
      * @return array
      */
     public function getHeaders()
@@ -200,6 +226,7 @@ class Simple extends \TKMON\Model\ApplicationModel
     }
 
     /**
+     * Fix header name to match RFC
      * @param $name
      * @return string
      */
@@ -211,31 +238,33 @@ class Simple extends \TKMON\Model\ApplicationModel
     }
 
     /**
+     * Return headers as string
      * @return string
      */
     public function getHeaderAsString()
     {
         $out = array();
-        foreach ($this->headers as $name=>$value) {
+        foreach ($this->headers as $name => $value) {
             $out[] = $this->sanitizeHeaderName($name) . ': '. $value;
         }
         return implode("\r\n", $out);
     }
 
     /**
+     * Return sendmail options
      * @return string
      */
     public function getOptionsAsString()
     {
         $out = array();
-        foreach ($this->options as $switch=>$value) {
+        foreach ($this->options as $switch => $value) {
             $out[] = $switch. ' '. escapeshellarg($value);
         }
         return implode(' ', $out);
     }
 
     /**
-     *
+     * Send the mail to the air
      */
     public function sendMail()
     {

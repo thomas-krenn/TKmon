@@ -287,10 +287,11 @@ class Dispatcher
 
     /**
      * Renders the template
-     * @param $content
+     * @param $content The inner part of the template
+     * @param array $templateParams Assing values to outer template
      * @return string
      */
-    private function renderTemplate($content, array $templateParams=null)
+    private function renderTemplate($content, array $templateParams = null)
     {
         $template = $this->container['template']->loadTemplate($this->container['config']->get('template.file'));
 
