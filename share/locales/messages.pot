@@ -3,30 +3,49 @@
 msgid "Test"
 msgstr ""
 
-#: /tmp/tkmon-templates//12df31bcf19d0f3f1f0e39b3d761.php:43
+#: /tmp/tkmon-templates//12df31bcf19d0f3f1f0e39b3d761.php:26
+msgid "Send a test mail to verify your system is well configured!"
+msgstr ""
+
+#: /tmp/tkmon-templates//12df31bcf19d0f3f1f0e39b3d761.php:48
 #: /tmp/tkmon-templates//4635ead9901ba61bfe916137bca9.php:65
 #: /tmp/tkmon-templates//4635ead9901ba61bfe916137bca9.php:136
+#: /tmp/tkmon-templates//ed7744ab4631450327f024a19dbf.php:50
 msgid "Success!"
 msgstr ""
 
-#: /tmp/tkmon-templates//12df31bcf19d0f3f1f0e39b3d761.php:51
-msgid "Recipient"
+#: /tmp/tkmon-templates//12df31bcf19d0f3f1f0e39b3d761.php:52
+msgid "Mails was sent to recipient!"
 msgstr ""
 
 #: /tmp/tkmon-templates//12df31bcf19d0f3f1f0e39b3d761.php:59
+msgid "Recipient"
+msgstr ""
+
+#: /tmp/tkmon-templates//12df31bcf19d0f3f1f0e39b3d761.php:67
 msgid "Subject"
 msgstr ""
 
-#: /tmp/tkmon-templates//12df31bcf19d0f3f1f0e39b3d761.php:63
+#: /tmp/tkmon-templates//12df31bcf19d0f3f1f0e39b3d761.php:71
 msgid "Test mail from TKMON"
 msgstr ""
 
-#: /tmp/tkmon-templates//12df31bcf19d0f3f1f0e39b3d761.php:70
+#: /tmp/tkmon-templates//12df31bcf19d0f3f1f0e39b3d761.php:78
 msgid "Message"
 msgstr ""
 
-#: /tmp/tkmon-templates//12df31bcf19d0f3f1f0e39b3d761.php:79
+#: /tmp/tkmon-templates//12df31bcf19d0f3f1f0e39b3d761.php:87
 msgid "Send"
+msgstr ""
+
+#: /tmp/tkmon-templates//190c8a7cf8b7a0c47c09a61ba663.php:22
+#: /tmp/tkmon-templates//53e134756b05184b0252ab49e735.php:41
+#: /tmp/tkmon-templates//ed7744ab4631450327f024a19dbf.php:20
+msgid "Configuration"
+msgstr ""
+
+#: /tmp/tkmon-templates//190c8a7cf8b7a0c47c09a61ba663.php:29
+msgid "Settings from config file or auto generated through startup"
 msgstr ""
 
 #: /tmp/tkmon-templates//38ed91e972e568ed12a3cdb1106f.php:24
@@ -144,11 +163,6 @@ msgid ""
 "    works like expected!"
 msgstr ""
 
-#: /tmp/tkmon-templates//53e134756b05184b0252ab49e735.php:41
-#: /tmp/tkmon-templates//ed7744ab4631450327f024a19dbf.php:20
-msgid "Configuration"
-msgstr ""
-
 #: /tmp/tkmon-templates//98bbdd7bd05f3e29f5a3bd3f6442.php:23
 msgid "You are logged out successfully!"
 msgstr ""
@@ -216,6 +230,26 @@ msgstr ""
 msgid "Reboot device!"
 msgstr ""
 
+#: /tmp/tkmon-templates//ed7744ab4631450327f024a19dbf.php:26
+msgid "Change sender address and relay host"
+msgstr ""
+
+#: /tmp/tkmon-templates//ed7744ab4631450327f024a19dbf.php:54
+msgid "Mail config was written to device"
+msgstr ""
+
+#: /tmp/tkmon-templates//ed7744ab4631450327f024a19dbf.php:61
+msgid "Sender address"
+msgstr ""
+
+#: /tmp/tkmon-templates//ed7744ab4631450327f024a19dbf.php:73
+msgid "Relayhost"
+msgstr ""
+
+#: /tmp/tkmon-templates//ed7744ab4631450327f024a19dbf.php:85
+msgid "Save and restart mailserver"
+msgstr ""
+
 #: /tmp/tkmon-templates//f4fee47896d47e984010ad12f9cc.php:27
 msgid ""
 "If any changes here you can not access your appliance anymore and you have "
@@ -255,15 +289,19 @@ msgstr ""
 msgid "Save"
 msgstr ""
 
-#: /data/users/mhein/workspaces/tk-mon/tk-mon/lib/TKMON/Action/Expose/System/Configuration/Mail.php:36
+#: /data/users/mhein/workspaces/tk-mon/tk-mon/lib/TKMON/Action/Expose/System/Configuration/Mail.php:41
 msgid "Mail config"
 msgstr ""
 
-#: /data/users/mhein/workspaces/tk-mon/tk-mon/lib/TKMON/Action/Expose/System/Configuration/Mail.php:53
+#: /data/users/mhein/workspaces/tk-mon/tk-mon/lib/TKMON/Action/Expose/System/Configuration/Mail.php:71
 msgid "Email"
 msgstr ""
 
-#: /data/users/mhein/workspaces/tk-mon/tk-mon/lib/TKMON/Action/Expose/System/Configuration/Mail.php:59
-#: /data/users/mhein/workspaces/tk-mon/tk-mon/lib/TKMON/Action/Expose/System/Configuration/Mail.php:69
+#: /data/users/mhein/workspaces/tk-mon/tk-mon/lib/TKMON/Action/Expose/System/Configuration/Mail.php:77
+#: /data/users/mhein/workspaces/tk-mon/tk-mon/lib/TKMON/Action/Expose/System/Configuration/Mail.php:83
 msgid "Mandatory"
+msgstr ""
+
+#: /data/users/mhein/workspaces/tk-mon/tk-mon/lib/TKMON/Action/Expose/System/Configuration/Mail.php:120
+msgid "IP"
 msgstr ""

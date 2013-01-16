@@ -1,6 +1,10 @@
 <h4>{% trans "Test" %}</h4>
 
-<p>Send a test mail to verify your system is well configured!</p>
+<p>
+    {% trans %}
+    Send a test mail to verify your system is well configured!
+    {% endtrans %}
+</p>
 
 <form
     id="mail-test"
@@ -16,7 +20,7 @@
 
     <div id="mail-test-success" class="hidden alert alert-success">
         <h4>{% trans "Success!" %}</h4>
-        <p>Mails was sent to recipient!</p>
+        <p>{% trans "Mails was sent to recipient!" %}</p>
     </div>
 
     <fieldset>
