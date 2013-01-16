@@ -27,7 +27,7 @@ html, body {
     min-height: 100%;
     height: auto !important;
     height: 100%;
-    margin: 0 auto -50px;
+    margin: 0 auto -20px;
 }
 
 #push, #footer {
@@ -58,4 +58,16 @@ html, body {
 
 .container-spacer-down {
     margin-top: 20px;
+}
+
+table.settings-table {
+    border-collapse: collapse;
+    border: 1px #c0c0c0 solid;
+    min-width: 600px;
+}
+
+table.settings-table th, table.settings-table td {
+    vertical-align: top;
+    padding: 5px;
+    border: 1px #c0c0c0 solid;
 }

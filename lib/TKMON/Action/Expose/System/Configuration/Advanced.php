@@ -39,7 +39,34 @@ class Advanced extends \TKMON\Action\Base
     {
         $template = new \TKMON\Mvc\Output\TwigTemplate($this->container['template']);
         $template->setTemplateName('views/System/Configuration/Free.twig');
-        $template['config'] = $this->container['config'];
+
+        $settings = array();
+
+        /** @var $config \NETWAYS\Common\Config */
+        $config = $this->container['config'];
+
+        $ary = $config->getArrayCopy();
+
+        ksort($ary);
+
+        foreach ($ary as $name => $value) {
+
+            if (is_scalar($value)) {
+
+                if ($value === false) {
+                    $value = '[false]';
+                } elseif ($value === null) {
+                    $value = '[null]';
+                }
+
+                $settings[$name] = $value;
+            } else {
+                $settings[$name] = '<pre>'. print_r($value, true). '</pre>';
+            }
+        }
+
+        $template['settings'] = $settings;
+
         return $template;
     }
 }

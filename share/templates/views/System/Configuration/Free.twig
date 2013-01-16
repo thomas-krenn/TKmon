@@ -1,10 +1,22 @@
-<h2>Configuration</h2>
+<div class="page-header">
+    <h2>{%  trans "Configuration" %}</h2>
+</div>
 
-<table border="1" cellspacing="2" cellpadding="6">
-    {% for key,item in config %}
+<p>
+    {% trans %}
+    Settings from config file or auto generated through startup
+    {% endtrans %}
+</p>
+
+<table class="settings-table">
+    {% for key,item in settings %}
     <tr>
         <td>{{ key }}</td>
-        <td>{{ item }}</td>
+        <td>
+            {% autoescape false %}
+            {{ item }}
+            {% endautoescape %}
+        </td>
     </tr>
     {% endfor %}
 </table>
