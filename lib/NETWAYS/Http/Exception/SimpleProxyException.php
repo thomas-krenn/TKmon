@@ -19,45 +19,14 @@
  * @copyright 2012-2013 NETWAYS GmbH <info@netways.de>
  */
 
-namespace TKMON\Model;
+namespace NETWAYS\Http\Exception;
 
 /**
- * Abstract model for working with our DI container
- * @package TKMON\Model
+ * Simple proxy exception class
+ *
+ * @package NETWAYS\Common
  * @author Marius Hein <marius.hein@netways.de>
  */
-abstract class ApplicationModel implements \TKMON\Interfaces\ApplicationModelInterface
+class SimpleProxyException extends \NETWAYS\Common\Exception
 {
-    /**
-     * DI container
-     * @var \Pimple
-     */
-    protected $container;
-
-    /**
-     * Create a new object
-     * @param \Pimple $container
-     */
-    public function __construct(\Pimple $container)
-    {
-        $this->setContainer($container);
-    }
-
-    /**
-     * Setter for the DI container
-     * @param \Pimple $container
-     */
-    public function setContainer(\Pimple $container)
-    {
-        $this->container = $container;
-    }
-
-    /**
-     * Getter for the DI container
-     * @return \Pimple
-     */
-    public function getContainer()
-    {
-        return $this->container;
-    }
 }

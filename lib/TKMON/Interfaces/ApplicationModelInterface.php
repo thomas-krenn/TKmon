@@ -19,45 +19,30 @@
  * @copyright 2012-2013 NETWAYS GmbH <info@netways.de>
  */
 
-namespace TKMON\Model;
+namespace TKMON\Interfaces;
 
 /**
- * Abstract model for working with our DI container
- * @package TKMON\Model
+ * Base exception class
+ * @package TKMON\Interface
  * @author Marius Hein <marius.hein@netways.de>
  */
-abstract class ApplicationModel implements \TKMON\Interfaces\ApplicationModelInterface
+Interface ApplicationModelInterface
 {
-    /**
-     * DI container
-     * @var \Pimple
-     */
-    protected $container;
-
     /**
      * Create a new object
      * @param \Pimple $container
      */
-    public function __construct(\Pimple $container)
-    {
-        $this->setContainer($container);
-    }
+    public function __construct(\Pimple $container);
 
     /**
-     * Setter for the DI container
+     * Setter for DI container
      * @param \Pimple $container
      */
-    public function setContainer(\Pimple $container)
-    {
-        $this->container = $container;
-    }
+    public function setContainer(\Pimple $container);
 
     /**
-     * Getter for the DI container
+     * Getter for DI configuration
      * @return \Pimple
      */
-    public function getContainer()
-    {
-        return $this->container;
-    }
+    public function getContainer();
 }

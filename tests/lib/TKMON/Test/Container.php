@@ -87,6 +87,20 @@ class Container extends \Pimple
                 "mv": {
                     "path": "/bin/mv",
                     "sudo": false
+                },
+
+                "restart": {
+                    "path": "/sbin/restart",
+                    "sudo": false
+                },
+
+                "service": {
+                    "path": "/usr/sbin/service",
+                    "sudo": false
+                },
+
+                "htpasswd": {
+                    "path": "/usr/bin/htpasswd"
                 }
             }';
 

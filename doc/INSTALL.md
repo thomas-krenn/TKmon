@@ -18,7 +18,7 @@ To get the system running you'll need to have some mandatory things:
 
 #### Package install
 
-    apt-get install apache2 php5 php5-cli php5-sqlite libapache2-mod-php5 postfix
+    apt-get install apache2 php5 php5-cli php5-sqlite php5-curl libapache2-mod-php5 postfix
 
 #### Apache configuration
 
@@ -107,6 +107,27 @@ Tkmon runs a couple of commands with root privileges you need to allow for the w
     addgroup --system tkmonweb
     adduser www-data tkmonweb
     service apache2 restart
+
+### Install Icinga
+
+We'll install icinga with some special configurations and paths to get managed
+with the appliance.
+
+#### Install PPA repository
+
+    aptitude install python-software-properties
+    add-apt-repository ppa:formorer/icinga
+    aptitude update
+    aptitude install icinga
+
+#### Add TK admin user to icinga
+
+    cd /etc/icinga
+    # Add password from config.json
+    htpasswd -b htpasswd.users "tkadmin" "7RMan59XmN9t3FO2evmB"
+    # Add tkadmin to cgi.cfg
+    sed -i.BAK -e 's/icingaadmin/icingaadmin,tkadmin/g' cgi.cfg
+
 
 ### Done
 

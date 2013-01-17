@@ -1,6 +1,8 @@
 <?php
 
-class PostfixTest extends PHPUnit_Framework_TestCase
+namespace TKMON\Tests\Model\Mail;
+
+class PostfixTest extends \PHPUnit_Framework_TestCase
 {
 
     private static $container;

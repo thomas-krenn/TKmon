@@ -26,7 +26,7 @@ namespace TKMON\Model\Mail;
  * @package TKMON\Model
  * @author Marius Hein <marius.hein@netways.de>
  */
-class Postfix extends \NETWAYS\Common\ArrayObject
+class Postfix extends \NETWAYS\Common\ArrayObject implements \TKMON\Interfaces\ApplicationModelInterface
 {
 
     /**
@@ -60,6 +60,25 @@ class Postfix extends \NETWAYS\Common\ArrayObject
     {
         $this->container = $container;
     }
+
+    /**
+     * Setter for DI container
+     * @param \Pimple $container
+     */
+    public function setContainer(\Pimple $container)
+    {
+        $this->container = $container;
+    }
+
+    /**
+     * Getter for DI configuration
+     * @return \Pimple
+     */
+    public function getContainer()
+    {
+        return $this->container;
+    }
+
 
     /**
      * Map settings to getter and setter method

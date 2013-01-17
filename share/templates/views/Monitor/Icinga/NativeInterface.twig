@@ -1,0 +1,41 @@
+{% set access_href = web_link('System/Configuration/Security/Index#tab-access-icinga') %}
+<div class="page-header">
+    <h2>{%  trans "Icinga Interface" %}</h2>
+</div>
+
+<p>
+    {% trans %}
+    Access to the native icinga interface, running on your appliance.
+    {% endtrans %}
+</p>
+
+<div class="alert alert-info container-spacer-down">
+    <h4>{% trans "Note" %}</h4>
+    <p>
+        {% trans %}
+        This is only possible if you have enabled <a href="{{ access_href }}">icinga access in settings dialog</a>. You
+        have to apply your credentials again. This is necessary because it is a new web interface
+        you're opening.
+        {% endtrans %}
+    </p>
+</div>
+
+<table class="tkmon-properties-table container-spacer-down">
+    <tr>
+        <th>{% trans "Link" %}:</th>
+        <td>
+            <a href="{{ icinga_href }}">{{ icinga_href }}</a>
+            <a href="{{ icinga_href }}" class="btn btn-success">
+                <i class="icon-method"></i> {% trans "Goto" %}
+            </a>
+        </td>
+    </tr>
+    <tr>
+        <th>{% trans "User" %}:</th>
+        <td>{{ icinga_user }}</td>
+    </tr>
+    <tr>
+        <th>{% trans "Password" %}:</th>
+        <td>Your current password</td>
+    </tr>
+</table>
