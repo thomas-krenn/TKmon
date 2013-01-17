@@ -334,6 +334,7 @@ class User extends ApplicationModel
 
         $passwdModel = new \TKMON\Model\Apache\PasswordFile($this->container);
         $passwdModel->setPasswordFile($passwdFile);
+        $passwdModel->load();
         $passwdModel->addUser($icingaUser, $password);
         $passwdModel->write();
     }
