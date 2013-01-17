@@ -26,10 +26,12 @@ namespace TKMON\Model\Apache;
  * @package TKMON\Model
  * @author Marius Hein <marius.hein@netways.de>
  */
-class PasswordFile extends \NETWAYS\Common\ArrayObject
-implements \TKMON\Interfaces\ApplicationModelInterface
+class PasswordFile extends \NETWAYS\Common\ArrayObject implements \TKMON\Interfaces\ApplicationModelInterface
 {
 
+    /**
+     * Temp file prefix
+     */
     const TEMP_PREFIX = 'tkmon-htpasswd';
 
     /**
@@ -50,6 +52,10 @@ implements \TKMON\Interfaces\ApplicationModelInterface
      */
     private $container;
 
+    /**
+     * Create new object
+     * @param \Pimple $container
+     */
     public function __construct(\Pimple $container)
     {
         $this->container = $container;
@@ -74,28 +80,62 @@ implements \TKMON\Interfaces\ApplicationModelInterface
         return $this->container;
     }
 
+    /**
+     * Setter for password file
+     * @param $passwordFile
+     */
     public function setPasswordFile($passwordFile)
     {
         $this->passwordFile = $passwordFile;
     }
 
+    /**
+     * Getter for password file
+     * @return string
+     */
     public function getPasswordFile()
     {
         return $this->passwordFile;
     }
 
-    private function _addUser($username, $encryptedPassword)
+    /**
+     * Add user to struct
+     *
+     * Password will not converted to APR format
+     *
+     * @param $username
+     * @param $encryptedPassword
+     */
+    private function addUserRaw($username, $encryptedPassword)
     {
         $this[$username] = $encryptedPassword;
     }
 
+    /**
+     * Adds or changes a user
+     *
+     * Password will be converted to Apache APR hash format
+     *
+     * @param $username
+     * @param $plainPassword
+     */
     public function addUser($username, $plainPassword)
     {
         $encrypted = $this->encryptPassword($username, $plainPassword);
-        $this->_addUser($username, $encrypted);
+        $this->addUserRaw($username, $encrypted);
     }
 
-    private function encryptPassword($username ,$plainPassword)
+    /**
+     * Encrypt password
+     *
+     * Call htpasswd to do this
+     *
+     * @param $username
+     * @param $plainPassword
+     * @return mixed
+     * @throws \TKMON\Exception\ModelException
+     */
+    private function encryptPassword($username, $plainPassword)
     {
         /** @var $command \NETWAYS\IO\Process */
         $command = $this->container['command']->create('htpasswd');
@@ -115,6 +155,11 @@ implements \TKMON\Interfaces\ApplicationModelInterface
         throw new \TKMON\Exception\ModelException('Username consistency check failed');
     }
 
+    /**
+     * Assertion for existing file
+     *
+     * @throws \TKMON\Exception\ModelException
+     */
     private function assertPasswordFileExists()
     {
         if (!file_exists($this->getPasswordFile())) {
@@ -122,6 +167,9 @@ implements \TKMON\Interfaces\ApplicationModelInterface
         }
     }
 
+    /**
+     * Load data into object
+     */
     public function load()
     {
         $this->assertPasswordFileExists();
@@ -131,11 +179,15 @@ implements \TKMON\Interfaces\ApplicationModelInterface
         foreach ($fo as $line) {
             if ($line) {
                 $parts = explode(':', $line, 2);
-                $this->_addUser($parts[0], trim($parts[1]));
+                $this->addUserRaw($parts[0], trim($parts[1]));
             }
         }
     }
 
+    /**
+     * Writes data from object to file with sudo rights
+     * @throws \TKMON\Exception\ModelException
+     */
     public function write()
     {
         if (!$this->count()) {
@@ -158,6 +210,4 @@ implements \TKMON\Interfaces\ApplicationModelInterface
 
         unset($fo);
     }
-
-
 }

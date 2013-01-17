@@ -33,6 +33,8 @@
     "icinga.passwdfile": "/etc/icinga/htpasswd.users",
     "icinga.apacheconfig": "/etc/icinga/apache2.conf",
     "icinga.adminuser": "icingaadmin",
+    "icinga.tkuser": "tkadmin",
+    "icinga.tkpasswd": "7RMan59XmN9t3FO2evmB",
 
     "command.config": {
         "chpasswd":  {

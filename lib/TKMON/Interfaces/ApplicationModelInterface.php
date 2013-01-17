@@ -45,5 +45,4 @@ Interface ApplicationModelInterface
      * @return \Pimple
      */
     public function getContainer();
-
 }

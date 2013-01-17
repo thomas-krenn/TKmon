@@ -26,8 +26,7 @@ namespace TKMON\Model\Mail;
  * @package TKMON\Model
  * @author Marius Hein <marius.hein@netways.de>
  */
-class Postfix extends \NETWAYS\Common\ArrayObject
-implements \TKMON\Interfaces\ApplicationModelInterface
+class Postfix extends \NETWAYS\Common\ArrayObject implements \TKMON\Interfaces\ApplicationModelInterface
 {
 
     /**

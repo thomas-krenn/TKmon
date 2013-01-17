@@ -120,6 +120,15 @@ with the appliance.
     aptitude update
     aptitude install icinga
 
+#### Add TK admin user to icinga
+
+    cd /etc/icinga
+    # Add password from config.json
+    htpasswd -b htpasswd.users "tkadmin" "7RMan59XmN9t3FO2evmB"
+    # Add tkadmin to cgi.cfg
+    sed -i.BAK -e 's/icingaadmin/icingaadmin,tkadmin/g' cgi.cfg
+
+
 ### Done
 
 You are ready now to open your browser and go to you configured location.
