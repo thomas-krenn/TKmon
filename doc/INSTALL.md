@@ -108,6 +108,18 @@ Tkmon runs a couple of commands with root privileges you need to allow for the w
     adduser www-data tkmonweb
     service apache2 restart
 
+### Install Icinga
+
+We'll install icinga with some special configurations and paths to get managed
+with the appliance.
+
+#### Install PPA repository
+
+    aptitude install python-software-properties
+    add-apt-repository ppa:formorer/icinga
+    aptitude update
+    aptitude install icinga
+
 ### Done
 
 You are ready now to open your browser and go to you configured location.

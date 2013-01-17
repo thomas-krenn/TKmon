@@ -1,6 +1,6 @@
 <?php
 
-namespace TKMON\Tests\Mail;
+namespace TKMON\Tests\Model\Mail;
 
 class SimpleTest extends \PHPUnit_Framework_TestCase
 {

@@ -53,6 +53,7 @@ class Security extends \TKMON\Action\Base
      */
     public function actionChangePassword(\NETWAYS\Common\ArrayObject $params)
     {
+        /** @var $user \TKMON\Model\User */
         $user = $this->container['user'];
 
         $r = new \TKMON\Mvc\Output\JsonResponse();

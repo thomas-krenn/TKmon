@@ -310,6 +310,9 @@ class User extends ApplicationModel
         // Change on system level
         $this->changeSystemPassword($data[self::FIELD_NAME], $newPassword);
 
+        // Change icinga access
+        $this->changeIcingaPassword($newPassword);
+
         $newHash = hash_hmac(self::HASH_ALGO, $newPassword, $data[self::FIELD_SALT]);
 
         $db = $this->container['db'];
@@ -318,6 +321,21 @@ class User extends ApplicationModel
         $statement->bindValue(':id', $this->getId(), \PDO::PARAM_INT);
 
         return $statement->execute();
+    }
+
+    /**
+     * Change the http password of icinga admin
+     * @param string $password
+     */
+    private function changeIcingaPassword($password)
+    {
+        $icingaUser = $this->container['config']->get('icinga.adminuser', 'icingaadmin');
+        $passwdFile = $this->container['config']->get('icinga.passwdfile');
+
+        $passwdModel = new \TKMON\Model\Apache\PasswordFile($this->container);
+        $passwdModel->setPasswordFile($passwdFile);
+        $passwdModel->addUser($icingaUser, $password);
+        $passwdModel->write();
     }
 
     /**
