@@ -38,9 +38,9 @@ class PasswordFileTest extends \PHPUnit_Framework_TestCase
 
         $haystack = file_get_contents(self::$configFile);
 
-        $this->assertContains('user2:$apr', $haystack);
-        $this->assertContains('user5:$apr', $haystack);
-        $this->assertNotContains('user1:$apr', $haystack);
+        $this->assertContains('user2:', $haystack);
+        $this->assertContains('user5:', $haystack);
+        $this->assertNotContains('user1:', $haystack);
 
         $this->assertTrue(unlink(self::$configFile));
     }
