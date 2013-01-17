@@ -18,7 +18,7 @@ To get the system running you'll need to have some mandatory things:
 
 #### Package install
 
-    apt-get install apache2 php5 php5-cli php5-sqlite libapache2-mod-php5 postfix
+    apt-get install apache2 php5 php5-cli php5-sqlite php5-curl libapache2-mod-php5 postfix
 
 #### Apache configuration
 

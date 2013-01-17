@@ -35,6 +35,8 @@
     "icinga.adminuser": "icingaadmin",
     "icinga.tkuser": "tkadmin",
     "icinga.tkpasswd": "7RMan59XmN9t3FO2evmB",
+    "icinga.baseurl": "http://localhost",
+    "icinga.accessurl": "http://{web.domain}/icinga",
 
     "command.config": {
         "chpasswd":  {

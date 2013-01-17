@@ -6,7 +6,7 @@
     <p>Simple and fast monitoring based on Icinga</p>
     <p>
         {% if user.getAuthenticated() == true %}
-            <a href="{{ web_link('Monitor/StatusOverall') }}" class="btn btn-large btn-primary">
+            <a href="{{ web_link('Monitor/Icinga/Services') }}" class="btn btn-large btn-primary">
                 <i class="icon-warning-sign icon-2x"></i> Whats up
             </a>
             <a href="{{ web_link('Index/LearnMore') }}" class="btn btn-large btn-primary">

@@ -71,3 +71,75 @@ table.settings-table th, table.settings-table td {
     padding: 5px;
     border: 1px #c0c0c0 solid;
 }
+
+/** TKMON Properties table **/
+
+table.tkmon-properties-table {
+
+}
+
+table.tkmon-properties-table th {
+    background-color: #d9edf7;
+    border: 1px #c0c0c0 solid;
+    padding: 10px;
+    text-align: left;
+}
+
+table.tkmon-properties-table td {
+    background-color: #f1f1f1;
+    border: 1px #c0c0c0 solid;
+    padding: 10px;
+    text-align: left;
+}
+
+/** ICINGA STATUS TABLE **/
+
+table.icinga-status-table {
+    border-collapse: collapse;
+}
+
+table.icinga-status-table th, table.icinga-status-table td {
+    padding: 4px;
+    font-size: small;
+}
+
+table.icinga-status-table th {
+    background-color: #333333;
+    color: white;
+}
+
+table.icinga-status-table tr.odd {
+    background-color: #e7e7e7 !important;
+}
+
+table.icinga-status-table tr.even {
+    background-color: #bbc3bb !important;
+}
+
+/** ICINGA STATUS **/
+
+.icinga-status {
+    color: white;
+    text-align: center;
+    width: 70px;
+}
+
+.icinga-status-service {
+
+}
+
+.icinga-status-OK {
+    background-color: #00CC33;
+}
+
+.icinga-status-WARNING {
+    background-color: #ffa500;
+}
+
+.icinga-status-CRITICAL {
+
+}
+
+.icinga-status-UNKNOWN {
+
+}
