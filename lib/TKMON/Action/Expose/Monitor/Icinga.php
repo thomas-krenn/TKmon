@@ -22,7 +22,7 @@
 namespace TKMON\Action\Expose\Monitor;
 
 /**
- * Action handling login front interactions
+ * Action handle icinga views
  *
  * @package TKMON\Action
  * @author Marius Hein <marius.hein@netways.de>
