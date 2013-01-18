@@ -72,6 +72,18 @@ class SimpleProxy
     private $params = array();
 
     /**
+     * Content to return
+     * @var string
+     */
+    private $content;
+
+    /**
+     * Info after request
+     * @var array
+     */
+    private $info = array();
+
+    /**
      * Create a new object
      * @param string|null $baseUrl
      */
@@ -253,6 +265,25 @@ class SimpleProxy
     }
 
     /**
+     * Get an option
+     * @param string $option
+     * @return null|mixed
+     */
+    public function getOption($option)
+    {
+        if ($this->hasOption($option)) {
+            return $this->curlOptions[$option];
+        }
+
+        return null;
+    }
+
+    public function getOptions()
+    {
+        return $this->curlOptions;
+    }
+
+    /**
      * Normalize http header names
      * @param $name
      * @return string
@@ -267,7 +298,7 @@ class SimpleProxy
      * @param $name
      * @param $value
      */
-    private function addHttpHeader($name, $value)
+    public function addHttpHeader($name, $value)
     {
         $this->httpHeader[$this->normalizeHttpHeader($name)] = $value;
     }
@@ -276,7 +307,7 @@ class SimpleProxy
      * Remove a header
      * @param $name
      */
-    private function removeHttpHeader($name)
+    public function removeHttpHeader($name)
     {
         $name = $this->normalizeHttpHeader($name);
         if (array_key_exists($name, $this->httpHeader)) {
@@ -287,17 +318,18 @@ class SimpleProxy
     /**
      * Remove all headers
      */
-    private function purgeHttpHeader()
+    public function purgeHttpHeader()
     {
         unset($this->httpHeader);
         $this->httpHeader = array();
+        return curl_setopt($this->curlHandler, CURLOPT_HTTPHEADER, array());
     }
 
     /**
      * Build the whole URL
      * @return string
      */
-    private function createRequestUrl()
+    public function createRequestUrl()
     {
         $request = $this->getBaseUrl(). $this->getRequestUrl();
 
@@ -325,6 +357,8 @@ class SimpleProxy
 
         $this->setOption(CURLOPT_FOLLOWLOCATION, true);
         $this->setOption(CURLOPT_RETURNTRANSFER, true);
+        $this->setOption(CURLOPT_HEADER, false);
+        $this->setOption(CURLINFO_HEADER_OUT, true);
 
         if (count($this->httpAuth) === 2) {
             $this->setOption(CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
@@ -348,8 +382,51 @@ class SimpleProxy
      */
     public function getContent()
     {
+        if (!$this->content) {
+            $this->doRequest();
+        }
+
+        return $this->content;
+    }
+
+    /**
+     * Fires the request
+     */
+    public function doRequest()
+    {
         $this->writeOptions();
-        $content = curl_exec($this->curlHandler);
-        return $content;
+        $this->content = curl_exec($this->curlHandler);
+        $this->info = curl_getinfo($this->curlHandler);
+
+        $return = (int)$this->getInfo(CURLINFO_HTTP_CODE);
+
+        // Something went wrong
+        // 400 >= Client error
+        // 500 >= Server error
+        // http://httpstatus.es/
+
+        if ($return >= 500) {
+            throw new \NETWAYS\Http\Exception\SimpleProxyException('Server error: '. $return);
+        } elseif ($return >= 400) {
+            throw new \NETWAYS\Http\Exception\SimpleProxyException('Client error: '. $return);
+        }
+    }
+
+    /**
+     * @param null $type
+     * @return array|misc
+     * @throws Exception\SimpleProxyException
+     */
+    public function getInfo($type=null)
+    {
+        if (!count($this->info)) {
+            throw new \NETWAYS\Http\Exception\SimpleProxyException("No request was sent before");
+        }
+
+        if ($type) {
+            return curl_getinfo($this->curlHandler, $type);
+        }
+
+        return $this->info;
     }
 }
