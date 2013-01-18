@@ -136,6 +136,10 @@ table.icinga-status-table tr.even {
     background-color: #ffa500;
 }
 
+.icinga-status-PENDING {
+    background-color: #666;
+}
+
 .icinga-status-CRITICAL {
 
 }

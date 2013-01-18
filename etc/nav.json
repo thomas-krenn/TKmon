@@ -27,7 +27,7 @@
             },
 
             {
-                "title": "Services",
+                "title": "Servicestatus",
                 "description": "Icinga services view",
                 "href": "Monitor/Icinga/Services"
             }
