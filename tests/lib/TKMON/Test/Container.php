@@ -21,6 +21,7 @@ class Container extends \Pimple
         $this['config'] = $this->share(function($c) {
             $c = new $c['config_class'];
             $c['app.version.release'] = 'tkmon-test-0.0.0';
+            $c['icinga.freshness'] = 999999999999;
             return $c;
         });
 

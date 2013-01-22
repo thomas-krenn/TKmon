@@ -29,16 +29,41 @@ namespace TKMON\Action\Expose\Monitor;
  */
 class Daemon extends \TKMON\Action\Base
 {
-
+    /**
+     * Show index page and status information
+     * @param \NETWAYS\Common\ArrayObject $params
+     * @return \TKMON\Mvc\Output\TwigTemplate
+     */
     public function actionIndex(\NETWAYS\Common\ArrayObject $params)
     {
         $template = new \TKMON\Mvc\Output\TwigTemplate($this->container['template']);
         $template->setTemplateName('views/Monitor/Daemon/Status.twig');
 
-        $daemon = new \TKMON\Model\Icinga\Daemon($this->container);
-        $daemon->getStatusTimestamp();
-
         return $template;
     }
 
+    public function actionStatusLabel(\NETWAYS\Common\ArrayObject $params)
+    {
+        $string = '<span class="label label-warning">'
+            . _('Not running')
+            . '</span>';
+
+        try {
+            $daemon = new \TKMON\Model\Icinga\Daemon($this->container);
+            $daemon->load();
+
+            if ($daemon->daemonIsRunning() === true) {
+                $string = '<span class="label label-success">'
+                    . _('Running')
+                    . '</span>';
+            } else {
+
+            }
+        } catch (\Exception $e) {
+            // BYPASS
+        }
+
+        $output = new \TKMON\Mvc\Output\SimpleString($string);
+        return $output;
+    }
 }

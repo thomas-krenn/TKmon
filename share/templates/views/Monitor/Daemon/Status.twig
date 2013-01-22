@@ -8,6 +8,14 @@
     {% endtrans %}
 </p>
 
+<div class="alert alert-info container-spacer-down">
+    <h4>Status</h4>
+    {% trans %}
+    Currently your icinga daemon is
+    {% endtrans %}
+    : <span data-ajax-call="{{ web_link('StatusLabel') }}"></span>
+</div>
+
 <form>
 
 </form>

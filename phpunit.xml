@@ -22,6 +22,16 @@
          syntaxCheck="false"
          bootstrap="./tests/TestInit.php">
 
+    <groups>
+        <exclude>
+            <!--
+                LIVE tests only working if you have all
+                components installed
+            -->
+            <group>integration</group>
+        </exclude>
+    </groups>
+
 <testsuites>
     <testsuite name="NETWAYS library">
         <directory>./tests/NETWAYS/Tests</directory>
