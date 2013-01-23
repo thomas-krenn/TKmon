@@ -303,4 +303,20 @@ class Daemon extends \TKMON\Model\ApplicationModel
     {
         return $this->configInfo;
     }
+
+    public function restartIcinga()
+    {
+        if ($this->testConfiguration() === false) {
+            throw new \TKMON\Exception\ModelException('Could not validate configuration');
+        }
+
+        /** @var $restart \NETWAYS\IO\Process */
+        $restart = $this->container['command']->create('service');
+        $restart->createLangEnvironment('en_EN.UTF-8');
+        $restart->addEnvironment('PERL_BADLANG', 0);
+        $restart->addPositionalArgument('icinga');
+        $restart->addPositionalArgument('restart');
+        $restart->ignoreStdErr(true);
+        $restart->execute();
+    }
 }

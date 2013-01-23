@@ -30,6 +30,7 @@
         "use strict";
 
         var url = '{{ web_link("ConfigTest") }}';
+        var message_nothing = '{% trans "No reason found, everything is ok" %}';
 
         $('#icinga-test-configuration').click(function(event) {
 
@@ -55,7 +56,13 @@
                 $(button).find('i').addClass('icon-check');
                 if (data.success === true) {
                     $('#test-status span.label-success').removeClass('hidden');
-                    $('#test-output pre').html(data.data.join("\n"));
+
+                    if (data.data.length === 0) {
+                        $('#test-output pre').html(message_nothing);
+                    } else {
+                        $('#test-output pre').html(data.data.join("\n"));
+                    }
+
                     $('#test-output').removeClass('hidden');
                 } else {
                     $('#test-status span.label-important').removeClass('hidden');

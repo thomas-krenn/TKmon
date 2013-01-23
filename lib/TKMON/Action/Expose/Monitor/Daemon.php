@@ -90,11 +90,21 @@ class Daemon extends \TKMON\Action\Base
         }
 
         return $response;
+    }
 
+    public function actionRestartIcinga(\NETWAYS\Common\ArrayObject $params)
+    {
+        $daemon = new \TKMON\Model\Icinga\Daemon($this->container);
+        $response = new \TKMON\Mvc\Output\JsonResponse();
 
+        try {
+            $daemon->restartIcinga();
+            $response->setSuccess(true);
+        } catch (\Exception $e) {
+            $response->addException($e);
+            $response->setSuccess(false);
+        }
 
-
-
-
+        return $response;
     }
 }
