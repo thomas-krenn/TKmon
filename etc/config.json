@@ -31,12 +31,14 @@
     ],
 
     "icinga.passwdfile": "/etc/icinga/htpasswd.users",
+    "icinga.config": "/etc/icinga/icinga.cfg",
     "icinga.apacheconfig": "/etc/icinga/apache2.conf",
     "icinga.adminuser": "icingaadmin",
     "icinga.tkuser": "tkadmin",
     "icinga.tkpasswd": "7RMan59XmN9t3FO2evmB",
     "icinga.baseurl": "http://localhost",
     "icinga.accessurl": "http://{web.domain}/icinga",
+    "icinga.freshness": "20",
 
     "command.config": {
         "chpasswd":  {
@@ -81,6 +83,11 @@
 
         "htpasswd": {
             "path": "/usr/bin/htpasswd"
+        },
+
+        "icinga": {
+            "path": "/usr/sbin/icinga",
+            "sudo": true
         }
     }
 }

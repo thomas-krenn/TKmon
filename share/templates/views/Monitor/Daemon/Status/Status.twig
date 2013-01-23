@@ -1,0 +1,33 @@
+<h4>{% trans "Icinga status" %}</h4>
+
+<div class="alert alert-info container-spacer-down">
+    <h4>Status</h4>
+
+    <p class="container-spacer-down">
+        {% trans "Currently your icinga daemon is" %}: <span id="icinga-status-label" data-ajax-call="{{ web_link('StatusLabel') }}"></span>
+    </p>
+
+</div>
+
+<p class="container-spacer-down">
+    {% trans %}
+    Icinga is running if the daemon is available and the status file up-to-date.
+    {% endtrans %}
+    <br /><br />
+    {% trans %}
+    Press the following button to refresh the status:
+    {% endtrans %}
+    <a id="icinga-status-refresh" href="#" class="btn btn-primary">
+        <i class="icon-refresh"></i> {% trans "Refresh" %}
+    </a>
+</p>
+
+<script>
+    /*global $: false require:false */
+    require(['jquery', 'TKMON/jquery/AjaxContent'], function() {
+        "use strict";
+        $('#icinga-status-refresh').click(function() {
+            $(this).Html5AjaxContent("insert");
+        });
+    });
+</script>

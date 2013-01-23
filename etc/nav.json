@@ -20,6 +20,12 @@
 
         "items": [
             {
+                "title": "Icinga Daemon",
+                "description": "Icinga daemon control",
+                "href": "Monitor/Daemon/Index"
+
+            },
+            {
                 "title": "Icinga Interface",
                 "description": "Access to icinga",
                 "href": "Monitor/Icinga/Index"
@@ -27,7 +33,7 @@
             },
 
             {
-                "title": "Services",
+                "title": "Servicestatus",
                 "description": "Icinga services view",
                 "href": "Monitor/Icinga/Services"
             }

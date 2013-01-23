@@ -138,6 +138,12 @@ class Process
     private $wrapSudo=false;
 
     /**
+     * Flag to ignore STDERR output
+     * @var bool
+     */
+    private $ignoreStdErr=false;
+
+    /**
      * Create a new object
      * @param string $command
      */
@@ -206,6 +212,11 @@ class Process
         return $this->command;
     }
 
+    public function ignoreStdErr($flag = true)
+    {
+        $this->ignoreStdErr = (bool)$flag;
+    }
+
     /**
      * Set execution directory
      * '/' by default
@@ -266,7 +277,7 @@ class Process
     public function resetArguments()
     {
         $this->resetNamedArguments();
-        $this->resetPositionalrguments();
+        $this->resetPositionalArguments();
     }
 
     /**
@@ -289,6 +300,60 @@ class Process
         }
 
         return null;
+    }
+
+    /**
+     * Setter for environment
+     * @param array $environment
+     */
+    public function setEnvironment(array $environment)
+    {
+        $this->environment = $environment;
+    }
+
+    /**
+     * Add environment var
+     *
+     * @param string $name Name
+     * @param mixed $value Value
+     */
+    public function addEnvironment($name, $value)
+    {
+        $this->environment[$name] = $value;
+    }
+
+    /**
+     * Remove environment var
+     * @param string $name
+     */
+    public function removeEnvironment($name)
+    {
+        if (array_key_exists($name, $this->environment)) {
+            unset($this->environment[$name]);
+        }
+    }
+
+    /**
+     * Create language env vars
+     *
+     * Based on input locale e.g. en_EN.UTF-8
+     *
+     * @param string $locale
+     */
+    public function createLangEnvironment($locale)
+    {
+        $this->addEnvironment('LANGUAGE', $locale);
+        $this->addEnvironment('LC_ALL', $locale);
+        $this->addEnvironment('LANG', $locale);
+    }
+
+    /**
+     * Drop all environments
+     */
+    public function purgeEnvironment()
+    {
+        unset($this->environment);
+        $this->environment = array();
     }
 
     /**
@@ -441,7 +506,7 @@ class Process
 
         // Data is ready, we can throw exceptions
 
-        if ($this->processError) {
+        if ($this->processError && $this->ignoreStdErr === false) {
             throw new Exception\ProcessException('STDERR: '. $this->processError);
         }
 

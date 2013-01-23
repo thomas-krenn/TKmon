@@ -21,6 +21,10 @@ class Container extends \Pimple
         $this['config'] = $this->share(function($c) {
             $c = new $c['config_class'];
             $c['app.version.release'] = 'tkmon-test-0.0.0';
+
+            $c['icinga.freshness'] = 999999999999;
+            $c['icinga.config'] = '/etc/icinga/icinga.cfg';
+
             return $c;
         });
 
@@ -101,6 +105,10 @@ class Container extends \Pimple
 
                 "htpasswd": {
                     "path": "/usr/bin/htpasswd"
+                },
+
+                "icinga": {
+                    "path": "/usr/sbin/icinga"
                 }
             }';
 

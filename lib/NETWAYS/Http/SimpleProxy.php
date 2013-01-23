@@ -417,7 +417,7 @@ class SimpleProxy
      * @return array|misc
      * @throws Exception\SimpleProxyException
      */
-    public function getInfo($type=null)
+    public function getInfo($type = null)
     {
         if (!count($this->info)) {
             throw new \NETWAYS\Http\Exception\SimpleProxyException("No request was sent before");

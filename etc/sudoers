@@ -9,3 +9,4 @@
 %tkmonweb ALL=(ALL)NOPASSWD:/bin/hostname
 %tkmonweb ALL=(ALL)NOPASSWD:/sbin/restart
 %tkmonweb ALL=(ALL)NOPASSWD:/usr/sbin/service
+%tkmonweb ALL=(ALL)NOPASSWD:/usr/sbin/icinga

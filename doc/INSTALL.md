@@ -34,7 +34,13 @@ To get the system running you'll need to have some mandatory things:
 
 #### Run tests
 
+To run all possible unit tests type
+
     phpunit
+
+To run integration tests (where icinga and other resource files are installed) type
+
+     phpunit  --group integration
 
 ### Copy sources
 
@@ -127,6 +133,33 @@ with the appliance.
     htpasswd -b htpasswd.users "tkadmin" "7RMan59XmN9t3FO2evmB"
     # Add tkadmin to cgi.cfg
     sed -i.BAK -e 's/icingaadmin/icingaadmin,tkadmin/g' cgi.cfg
+
+#### Configure icinga
+
+    cd /etc/icinga
+    ln -s /path/to/tkmon/etc/icinga/ tkmon
+
+Change icinga.cfg as follows
+
+    diff -u  icinga.cfg.org icinga.cfg
+    --- icinga.cfg.org	2013-01-18 12:14:24.316237780 +0000
+    +++ icinga.cfg	2013-01-18 12:15:56.751081775 +0000
+    @@ -29,10 +29,9 @@
+     # Hint: Check the docs/wiki on how to monitor remote hosts with different
+     # transport methods and plugins
+
+    -# Debian uses by default a configuration directory where icinga-common,
+    -# other packages and the local admin can dump or link configuration
+    -# files into.
+    -cfg_dir=/etc/icinga/objects/
+    +cfg_dir=/etc/icinga/tkmon/base
+    +cfg_dir=/etc/icinga/tkmon/system
+    +cfg_dir=/etc/icinga/tkmon/custom
+
+     # Definitions for ido2db process checks
+     #cfg_file=/etc/icinga/objects/ido2db_check_proc.cfg
+
+
 
 
 ### Done
