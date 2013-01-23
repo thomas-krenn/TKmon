@@ -4,10 +4,8 @@ namespace TKMON\Tests\Mvc\Output;
 
 class JsonResponseTest extends \PHPUnit_Framework_TestCase
 {
-
     public function testCreate()
     {
-
         $test_data = array(
             'success' => false,
             'errors' => array(array(
@@ -31,4 +29,15 @@ class JsonResponseTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($equal, $res->toString());
     }
 
+    public function testSetData()
+    {
+        $test_data2 = array(
+            'OK1', array('OKAY2')
+        );
+
+        $res = new \TKMON\Mvc\Output\JsonResponse();
+        $res->setData($test_data2);
+
+        $this->assertEquals($test_data2, $res[\TKMON\Mvc\Output\JsonResponse::FIELD_DATA]);
+    }
 }

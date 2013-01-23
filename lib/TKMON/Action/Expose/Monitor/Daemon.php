@@ -42,6 +42,11 @@ class Daemon extends \TKMON\Action\Base
         return $template;
     }
 
+    /**
+     * Returns a small html label if the daemon is running
+     * @param \NETWAYS\Common\ArrayObject $params
+     * @return \TKMON\Mvc\Output\SimpleString
+     */
     public function actionStatusLabel(\NETWAYS\Common\ArrayObject $params)
     {
         $string = '<span class="label label-warning">'
@@ -65,5 +70,31 @@ class Daemon extends \TKMON\Action\Base
 
         $output = new \TKMON\Mvc\Output\SimpleString($string);
         return $output;
+    }
+
+    public function actionConfigTest(\NETWAYS\Common\ArrayObject $params)
+    {
+        $daemon = new \TKMON\Model\Icinga\Daemon($this->container);
+
+        $response = new \TKMON\Mvc\Output\JsonResponse();
+
+        if ($daemon->testConfiguration() === true) {
+            $response->setData($daemon->getConfigInfo());
+            $response->setSuccess(true);
+        } else {
+            $response->setSuccess(false);
+
+            foreach ($daemon->getConfigInfo() as $info) {
+                $response->addError($info, \TKMON\Mvc\Output\JsonResponse::REF_TYPE_SERVER, 'icinga');
+            }
+        }
+
+        return $response;
+
+
+
+
+
+
     }
 }

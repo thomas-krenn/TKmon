@@ -34,7 +34,13 @@ To get the system running you'll need to have some mandatory things:
 
 #### Run tests
 
+To run all possible unit tests type
+
     phpunit
+
+To run integration tests (where icinga and other resource files are installed) type
+
+     phpunit  --group integration
 
 ### Copy sources
 

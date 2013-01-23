@@ -31,6 +31,7 @@
     ],
 
     "icinga.passwdfile": "/etc/icinga/htpasswd.users",
+    "icinga.config": "/etc/icinga/icinga.cfg",
     "icinga.apacheconfig": "/etc/icinga/apache2.conf",
     "icinga.adminuser": "icingaadmin",
     "icinga.tkuser": "tkadmin",
@@ -82,6 +83,11 @@
 
         "htpasswd": {
             "path": "/usr/bin/htpasswd"
+        },
+
+        "icinga": {
+            "path": "/usr/sbin/icinga",
+            "sudo": true
         }
     }
 }

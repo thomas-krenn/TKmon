@@ -165,4 +165,60 @@ class DaemonTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue($data->daemonIsRunning());
         $this->assertLessThanOrEqual(20, $data->getCreatedDiffInSeconds());
     }
+
+    /**
+     * @group integration
+     */
+    public function testConfigValidationOK()
+    {
+        $data = new \TKMON\Model\Icinga\Daemon(self::$container);
+
+        $data->setConfigFile(self::$container['config']['icinga.config']);
+
+        $this->assertTrue($data->testConfiguration());
+
+        $message = implode(PHP_EOL, $data->getConfigInfo());
+
+        $this->assertContains('Warning', $message);
+        $this->assertCount(1, $data->getConfigInfo());
+    }
+
+    /**
+     * @group integration
+     * @expectedException \TKMON\Exception\ModelException
+     * @expectedExceptionMessage Icinga config does not exist
+     */
+    public function testConfigValidationNotExist()
+    {
+        $data = new \TKMON\Model\Icinga\Daemon(self::$container);
+
+        $data->setConfigFile('/does/not/exists/icinga.cfg.213123');
+
+        $data->testConfiguration();
+    }
+
+    /**
+     * @group integration
+     */
+    public function testConfigValidationError()
+    {
+
+        $testConfigFile = '/tmp/tkmon-icinga-config.txt';
+        $sourceFile = self::$dataPath. '/Data/Icinga/icinga.cfg';
+
+        copy($sourceFile, $testConfigFile);
+        $this->assertFileExists($testConfigFile);
+
+        $data = new \TKMON\Model\Icinga\Daemon(self::$container);
+
+        $data->setConfigFile($testConfigFile);
+
+        $this->assertFalse($data->testConfiguration());
+
+        $message = implode(PHP_EOL, $data->getConfigInfo());
+        $this->assertContains('Cannot open config file', $message);
+        $this->assertCount(1, $data->getConfigInfo());
+
+        $this->assertTrue(unlink($testConfigFile));
+    }
 }

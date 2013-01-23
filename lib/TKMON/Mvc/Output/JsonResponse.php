@@ -35,6 +35,10 @@ class JsonResponse extends Json
     const REF_EXCEPTION = 'exception';
     const REF_UNKNOWN = 'unknown';
 
+    const FIELD_SUCCESS = 'success';
+    const FIELD_ERRORS = 'errors';
+    const FIELD_DATA = 'data';
+
     /**
      * Creates a new object
      */
@@ -42,9 +46,9 @@ class JsonResponse extends Json
     {
         parent::__construct(
             array(
-                'success' => false,
-                'errors' => array(),
-                'data' => array()
+                self::FIELD_SUCCESS => false,
+                self::FIELD_ERRORS => array(),
+                self::FIELD_DATA => array()
             )
         );
     }
@@ -55,7 +59,7 @@ class JsonResponse extends Json
      */
     public function setSuccess($success = true)
     {
-        $this['success'] = $success;
+        $this[self::FIELD_SUCCESS] = (bool)$success;
     }
 
     /**
@@ -66,7 +70,7 @@ class JsonResponse extends Json
      */
     public function addError($message, $refType = self::REF_TYPE_SERVER, $ref = self::REF_UNKNOWN)
     {
-        $this['errors'][] = array(
+        $this[self::FIELD_ERRORS][] = array(
             'message' => $message,
             'reftype' => $refType,
             'ref' => $ref
@@ -88,6 +92,15 @@ class JsonResponse extends Json
      */
     public function addData(array $data)
     {
-        $this['data'][] = $data;
+        $this[self::FIELD_DATA][] = $data;
+    }
+
+    /**
+     * Set the whole data array
+     * @param array $data
+     */
+    public function setData(array $data)
+    {
+        $this[self::FIELD_DATA] = $data;
     }
 }

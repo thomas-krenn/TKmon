@@ -8,14 +8,30 @@
     {% endtrans %}
 </p>
 
-<div class="alert alert-info container-spacer-down">
-    <h4>Status</h4>
-    {% trans %}
-    Currently your icinga daemon is
-    {% endtrans %}
-    : <span data-ajax-call="{{ web_link('StatusLabel') }}"></span>
+<div class="tabbable">
+    <ul class="nav nav-tabs">
+        <li class="active">
+            <a href="#daemon-status" data-toggle="tab">{% trans "Status" %}</a>
+        </li>
+        <li>
+            <a href="#daemon-configuration" data-toggle="tab">{% trans "Test configuration" %}</a>
+        </li>
+        <li>
+            <a href="#daemon-restart" data-toggle="tab">{% trans "Restart Icinga" %}</a>
+        </li>
+    </ul>
+
+    <div class="tab-content">
+        <div class="tab-pane active" id="daemon-status">
+            {% include "views/Monitor/Daemon/Status/Status.twig" %}
+        </div>
+
+        <div class="tab-pane" id="daemon-configuration">
+            {% include "views/Monitor/Daemon/Status/Configuration.twig" %}
+        </div>
+
+        <div class="tab-pane" id="daemon-restart">
+            {% include "views/Monitor/Daemon/Status/Restart.twig" %}
+        </div>
+    </div>
 </div>
-
-<form>
-
-</form>

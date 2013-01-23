@@ -1,0 +1,71 @@
+<h4>{% trans "Icinga configuration test" %}</h4>
+
+<p>
+    {% trans %}
+    Press underlying button to verify the current configuration
+    {% endtrans %}
+</p>
+
+<div class="container-spacer-down">
+
+    <p id="test-status" class="hidden">
+        <strong>{% trans "Your configuration is" %}:</strong>
+        <span class="label label-success hidden">{% trans "valid" %}</span>
+        <span class="label label-important hidden">{% trans "invalid" %}</span>
+    </p>
+
+    <div id="test-output" class="hidden container-spacer-down">
+        <span class="label">{% trans "The reason behind" %}:</span><br /><br />
+        <pre></pre>
+    </div>
+</div>
+
+<button id="icinga-test-configuration" class="btn btn-danger container-spacer-down">
+    <i class="icon-check"></i> {% trans "Run test" %}
+</button>
+
+<script>
+    /*global $: false require:false */
+    require(['jquery', 'bootstrap'], function($) {
+        "use strict";
+
+        var url = '{{ web_link("ConfigTest") }}';
+
+        $('#icinga-test-configuration').click(function(event) {
+
+            $('#test-status').addClass('hidden');
+            $('#test-output').addClass('hidden');
+            $('#test-status span.label').addClass('hidden');
+
+            var button = $(this);
+
+            $.ajax({
+                url: url,
+                beforeSend: function() {
+                    $(button).addClass('disabled');
+                    $(button).find('i').removeClass('icon-check');
+                    $(button).find('i').addClass('icon-spinner');
+                    $(button).find('i').addClass('icon-spin');
+                }
+            }).done(function(data) {
+                $('#test-status').removeClass('hidden');
+                $(button).removeClass('disabled');
+                $(button).find('i').removeClass('icon-spinner');
+                $(button).find('i').removeClass('icon-spin');
+                $(button).find('i').addClass('icon-check');
+                if (data.success === true) {
+                    $('#test-status span.label-success').removeClass('hidden');
+                    $('#test-output pre').html(data.data.join("\n"));
+                    $('#test-output').removeClass('hidden');
+                } else {
+                    $('#test-status span.label-important').removeClass('hidden');
+                    $('#test-output pre').html("");
+                    data.errors.forEach(function(item) {
+                        $('#test-output pre').append(item.message + "\n");
+                    });
+                    $('#test-output').removeClass('hidden');
+                }
+            });
+        });
+    });
+</script>

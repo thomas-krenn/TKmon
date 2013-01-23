@@ -35,6 +35,18 @@ class Daemon extends \TKMON\Model\ApplicationModel
     private $statusFile = '/var/lib/icinga/status.dat';
 
     /**
+     * Config file of icinga
+     * @var string
+     */
+    private $configFile = '/etc/icinga/icinga.cfg';
+
+    /**
+     * Holds all errors
+     * @var array
+     */
+    private $configInfo = array();
+
+    /**
      * Creation tstamp
      * @var int
      */
@@ -68,6 +80,24 @@ class Daemon extends \TKMON\Model\ApplicationModel
     public function getStatusFile()
     {
         return $this->statusFile;
+    }
+
+    /**
+     * Setter of config file
+     * @param string $configFile
+     */
+    public function setConfigFile($configFile)
+    {
+        $this->configFile = $configFile;
+    }
+
+    /**
+     * Getter of config file
+     * @return string
+     */
+    public function getConfigFile()
+    {
+        return $this->configFile;
     }
 
     /**
@@ -236,5 +266,41 @@ class Daemon extends \TKMON\Model\ApplicationModel
                 $context = null;
             }
         }
+    }
+
+    public function testConfiguration()
+    {
+
+        if (!file_exists($this->getConfigFile())) {
+            throw new \TKMON\Exception\ModelException('Icinga config does not exist');
+        }
+
+        /** @var $icinga \NETWAYS\IO\Process */
+        $icinga = $this->container['command']->create('icinga');
+        $icinga->addNamedArgument('-v');
+        $icinga->addPositionalArgument($this->getConfigFile());
+
+        $return = true;
+
+        try {
+            $icinga->execute();
+
+        } catch (\NETWAYS\IO\Exception\ProcessException $e) {
+            $return = false;
+        }
+
+        $output = $icinga->getOutput();
+        $match = array();
+
+        if (preg_match_all('/^((Error|Warning):?\s.+)$/m', $output, $match)) {
+            $this->configInfo = $match[0];
+        }
+
+        return $return;
+    }
+
+    public function getConfigInfo()
+    {
+        return $this->configInfo;
     }
 }
