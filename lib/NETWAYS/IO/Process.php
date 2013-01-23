@@ -212,6 +212,10 @@ class Process
         return $this->command;
     }
 
+    /**
+     * Flag to ignore exceptions if STDERR is written
+     * @param bool $flag
+     */
     public function ignoreStdErr($flag = true)
     {
         $this->ignoreStdErr = (bool)$flag;

@@ -72,6 +72,11 @@ class Daemon extends \TKMON\Action\Base
         return $output;
     }
 
+    /**
+     * Trigger config test
+     * @param \NETWAYS\Common\ArrayObject $params
+     * @return \TKMON\Mvc\Output\JsonResponse
+     */
     public function actionConfigTest(\NETWAYS\Common\ArrayObject $params)
     {
         $daemon = new \TKMON\Model\Icinga\Daemon($this->container);
@@ -92,6 +97,11 @@ class Daemon extends \TKMON\Action\Base
         return $response;
     }
 
+    /**
+     * Trigger icinga restart
+     * @param \NETWAYS\Common\ArrayObject $params
+     * @return \TKMON\Mvc\Output\JsonResponse
+     */
     public function actionRestartIcinga(\NETWAYS\Common\ArrayObject $params)
     {
         $daemon = new \TKMON\Model\Icinga\Daemon($this->container);

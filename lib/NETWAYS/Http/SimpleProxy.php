@@ -278,6 +278,10 @@ class SimpleProxy
         return null;
     }
 
+    /**
+     * All cURL options
+     * @return array
+     */
     public function getOptions()
     {
         return $this->curlOptions;
@@ -413,6 +417,10 @@ class SimpleProxy
     }
 
     /**
+     * Returns info about the cURL request
+     *
+     * see php method curl_getinfo for more information
+     *
      * @param null $type
      * @return array|misc
      * @throws Exception\SimpleProxyException

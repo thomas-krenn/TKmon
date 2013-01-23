@@ -268,6 +268,15 @@ class Daemon extends \TKMON\Model\ApplicationModel
         }
     }
 
+    /**
+     * Test configuration
+     *
+     * Returns TRUE or FALSE.
+     * Call getConfigInfo() to get the output of testing
+     *
+     * @return bool
+     * @throws \TKMON\Exception\ModelException
+     */
     public function testConfiguration()
     {
 
@@ -299,11 +308,19 @@ class Daemon extends \TKMON\Model\ApplicationModel
         return $return;
     }
 
+    /**
+     * Array of config test information
+     * @return array
+     */
     public function getConfigInfo()
     {
         return $this->configInfo;
     }
 
+    /**
+     * Restart icinga daemon
+     * @throws \TKMON\Exception\ModelException
+     */
     public function restartIcinga()
     {
         if ($this->testConfiguration() === false) {
