@@ -24,7 +24,8 @@
     "autoload": {
         "psr-0": {
             "NETWAYS": "lib/",
-            "TKMON": "lib/"
+            "TKMON": "lib/",
+            "ICINGA": "lib/"
         }
     },
 
