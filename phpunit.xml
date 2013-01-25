@@ -40,6 +40,10 @@
     <testsuite name="TKMON library">
         <directory>./tests/TKMON/Tests</directory>
     </testsuite>
+
+    <testsuite name="ICINGA library">
+        <directory>./tests/ICINGA/Tests</directory>
+    </testsuite>
 </testsuites>
 
 </phpunit>

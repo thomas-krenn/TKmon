@@ -92,4 +92,16 @@ class ArrayObject extends \ArrayObject
     {
         return (array)$this->getArrayCopy();
     }
+
+    /**
+     * Copy properties
+     *
+     * @param \ArrayObject $object
+     */
+    public function fromArrayObject(\ArrayObject $object)
+    {
+        foreach ($object as $key => $val) {
+            $this->offsetSet($key, $val);
+        }
+    }
 }
