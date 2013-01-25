@@ -39,4 +39,45 @@ class HostServiceTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(file_get_contents($testFile), (string)$host);
     }
 
+    /**
+     * @expectedException ICINGA\Exception\ConfigException
+     * @expectedExceptionMessage $serviceDescription not set
+     */
+    public function testConfig1()
+    {
+        $service = new \ICINGA\Object\Service();
+        $service->assertObjectIsValid();
+    }
+
+    /**
+     * @expectedException ICINGA\Exception\ConfigException
+     * @expectedExceptionMessage $hostName not set
+     */
+    public function testConfig2()
+    {
+        $service = new \ICINGA\Object\Service();
+        $service->serviceDescription = 'LAOLA';
+        $service->assertObjectIsValid();
+    }
+
+    /**
+     * @expectedException ICINGA\Exception\ConfigException
+     * @expectedExceptionMessage $hostName not set
+     */
+    public function testConfig3()
+    {
+        $service = new \ICINGA\Object\Host();
+        $service->assertObjectIsValid();
+    }
+
+    /**
+     * @expectedException ICINGA\Exception\ConfigException
+     * @expectedExceptionMessage $address not set
+     */
+    public function testConfig4()
+    {
+        $service = new \ICINGA\Object\Host();
+        $service->hostName = 'LAOLA';
+        $service->assertObjectIsValid();
+    }
 }

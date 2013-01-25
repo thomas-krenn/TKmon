@@ -22,7 +22,7 @@
 namespace ICINGA\Exception;
 
 /**
- * Attribute exception class
+ * Exception for set errirs
  *
  * @package ICINGA
  * @author Marius Hein <marius.hein@netways.de>

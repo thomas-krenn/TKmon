@@ -144,6 +144,21 @@ abstract class Object extends \NETWAYS\Common\ArrayObject
     }
 
     /**
+     * Return a specific custom variable
+     * @param string $name
+     * @return mixed|null
+     */
+    public function getCustomVariable($name)
+    {
+        $name = $this->customVariableNameProcessor($name);
+        if ($this->hasCustomVariable($name)) {
+            return $this->customVariables[$name];
+        }
+
+        return null;
+    }
+
+    /**
      * Add single custom variable
      *
      * @param string $name
@@ -227,15 +242,20 @@ abstract class Object extends \NETWAYS\Common\ArrayObject
     /**
      * Add value to class
      *
-     * Asserts that the attribute exists on class
+     * Asserts that the attribute exists on class or
+     * set internal customvars
      *
      * @param mixed $offset
      * @param mixed $value
      */
     public function offsetSet($offset, $value)
     {
-        $this->assertAttributeExistence($offset);
-        parent::offsetSet($offset, $value);
+        if (strpos($offset, '_') === 0) {
+            $this->addCustomVariable(substr($offset, 1), $value);
+        } else {
+            $this->assertAttributeExistence($offset);
+            parent::offsetSet($offset, $value);
+        }
     }
 
     /**

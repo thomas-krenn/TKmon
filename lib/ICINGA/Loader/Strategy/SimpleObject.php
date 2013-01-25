@@ -19,14 +19,41 @@
  * @copyright 2012-2013 NETWAYS GmbH <info@netways.de>
  */
 
-namespace ICINGA\Exception;
+namespace ICINGA\Loader\Strategy;
 
 /**
- * Exception for write errors
+ * Simple loading strategy
+ *
+ * Loads everything into the object
  *
  * @package ICINGA
  * @author Marius Hein <marius.hein@netways.de>
  */
-class WriteException extends \ICINGA\Exception\BaseException
+class SimpleObject extends \NETWAYS\Common\ArrayObject implements \ICINGA\Interfaces\LoaderStrategyInterface
 {
+    public function beginLoading()
+    {
+        $this->clear();
+    }
+
+    public function finishLoading()
+    {
+        // PASS
+    }
+
+    public function newObject(\ICINGA\Object\Struct $object)
+    {
+        $cls = self::BASE_NAMESPACE. ucfirst($object->getObjectType());
+        if (class_exists($cls)) {
+            /** @var $targetObject \ICINGA\Base\Object */
+            $targetObject = new $cls();
+            $targetObject->fromArrayObject($object);
+            $this[$targetObject->getObjectIdentifier()] = $targetObject;
+        }
+    }
+
+    public function getObjects()
+    {
+        return $this;
+    }
 }

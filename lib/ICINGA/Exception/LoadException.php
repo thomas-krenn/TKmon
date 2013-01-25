@@ -22,11 +22,11 @@
 namespace ICINGA\Exception;
 
 /**
- * Exception for write errors
+ * Exception class for write loading issues
  *
  * @package ICINGA
  * @author Marius Hein <marius.hein@netways.de>
  */
-class WriteException extends \ICINGA\Exception\BaseException
+class LoadException extends BaseException
 {
 }

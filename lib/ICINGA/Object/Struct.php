@@ -19,14 +19,27 @@
  * @copyright 2012-2013 NETWAYS GmbH <info@netways.de>
  */
 
-namespace ICINGA\Exception;
+namespace ICINGA\Object;
 
 /**
- * Exception for write errors
+ * Struct to move data arround
+ *
+ * Voyager object with unknown properties
  *
  * @package ICINGA
  * @author Marius Hein <marius.hein@netways.de>
  */
-class WriteException extends \ICINGA\Exception\BaseException
+class Struct extends \NETWAYS\Common\ArrayObject
 {
+    private $objectType;
+
+    public function setObjectType($objectType)
+    {
+        $this->objectType = $objectType;
+    }
+
+    public function getObjectType()
+    {
+        return $this->objectType;
+    }
 }

@@ -27,58 +27,58 @@ namespace ICINGA\Object;
  * @package ICINGA
  * @author Marius Hein <marius.hein@netways.de>
  *
- * @property string hostName
- * @property string alias
- * @property string displayName
- * @property string address
- * @property string address5
- * @property string parents
- * @property string hostgroups
- * @property string checkCommand
- * @property string initialState
- * @property string maxCheckAttempts
- * @property string checkInterval
- * @property string retryInterval
- * @property string activeChecksEnabled
- * @property string passiveChecksEnabled
- * @property string checkPeriod
- * @property string obsessOverHost
- * @property string checkFreshness
- * @property string freshnessThreshold
- * @property string eventHandler
- * @property string eventHandlerEnabled
- * @property string lowFlapThreshold
- * @property string highFlapThreshold
- * @property string flapDetectionnabled
- * @property string flapDetectionOptions
- * @property string failurePredictionEnabled
- * @property string processPerfData
- * @property string retainStatusInformation
- * @property string retainNonstatusInformation
- * @property string contacts
- * @property string contactGroups
- * @property string notificationInterval
- * @property string firstNotificationNelay
- * @property string notificationPeriod
- * @property string notificationOptions
- * @property string notificationsEnabled
- * @property string stalkingPptions
- * @property string notes
- * @property string notesUrl
- * @property string actionUrl
- * @property string iconImage
- * @property string iconImageAlt
- * @property string statusmapImage
- * @property string 2dCoord
+ * @property string $hostName
+ * @property string $alias
+ * @property string $displayName
+ * @property string $address
+ * @property string $address5
+ * @property string $parents
+ * @property string $hostgroups
+ * @property string $checkCommand
+ * @property string $initialState
+ * @property string $maxCheckAttempts
+ * @property string $checkInterval
+ * @property string $retryInterval
+ * @property string $activeChecksEnabled
+ * @property string $passiveChecksEnabled
+ * @property string $checkPeriod
+ * @property string $obsessOverHost
+ * @property string $checkFreshness
+ * @property string $freshnessThreshold
+ * @property string $eventHandler
+ * @property string $eventHandlerEnabled
+ * @property string $lowFlapThreshold
+ * @property string $highFlapThreshold
+ * @property string $flapDetectionnabled
+ * @property string $flapDetectionOptions
+ * @property string $failurePredictionEnabled
+ * @property string $processPerfData
+ * @property string $retainStatusInformation
+ * @property string $retainNonstatusInformation
+ * @property string $contacts
+ * @property string $contactGroups
+ * @property string $notificationInterval
+ * @property string $firstNotificationNelay
+ * @property string $notificationPeriod
+ * @property string $notificationOptions
+ * @property string $notificationsEnabled
+ * @property string $stalkingPptions
+ * @property string $notes
+ * @property string $notesUrl
+ * @property string $actionUrl
+ * @property string $iconImage
+ * @property string $iconImageAlt
+ * @property string $statusmapImage
+ * @property string $2dCoord
  *
  */
 class Host extends \ICINGA\Base\Object
 {
     /**
      * Services for this host
-     * @var Service
+     * @var \NETWAYS\Common\ArrayObject|Service
      */
-    private $services=array();
+    private $services;
 
     /**
      * Create the object and configure the attributes
@@ -86,6 +86,8 @@ class Host extends \ICINGA\Base\Object
     public function __construct()
     {
         parent::__construct();
+
+        $this->services = new \NETWAYS\Common\ArrayObject();
 
         $this->addAttributes(
             array(
@@ -152,11 +154,11 @@ class Host extends \ICINGA\Base\Object
     public function assertObjectIsValid()
     {
         if (!$this->hostName) {
-            throw new \ICINGA\Exception\ConfigException('$hostName is not set');
+            throw new \ICINGA\Exception\ConfigException('$hostName not set');
         }
 
         if (!$this->address) {
-            throw new \ICINGA\Exception\ConfigException('$address is not set');
+            throw new \ICINGA\Exception\ConfigException('$address not set');
         }
     }
 
@@ -168,6 +170,20 @@ class Host extends \ICINGA\Base\Object
     {
         $service->setHost($this);
         $this->services[$service->serviceDescription] = $service;
+    }
+
+    /**
+     * Return service by name
+     * @param string $name
+     * @return Service|null
+     */
+    public function getService($name)
+    {
+        if ($this->services->offsetExists($name)) {
+            return $this->services->offsetGet($name);
+        }
+
+        return null;
     }
 
     /**

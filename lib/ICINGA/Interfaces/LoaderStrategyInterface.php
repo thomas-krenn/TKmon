@@ -19,14 +19,26 @@
  * @copyright 2012-2013 NETWAYS GmbH <info@netways.de>
  */
 
-namespace ICINGA\Exception;
+namespace ICINGA\Interfaces;
 
 /**
- * Exception for write errors
+ * Base strategy
+ *
+ * How to load objects into the loader container
  *
  * @package ICINGA
  * @author Marius Hein <marius.hein@netways.de>
  */
-class WriteException extends \ICINGA\Exception\BaseException
+interface LoaderStrategyInterface
 {
+
+    const BASE_NAMESPACE = '\\ICINGA\\Object\\';
+
+    public function beginLoading();
+
+    public function finishLoading();
+
+    public function newObject(\ICINGA\Object\Struct $object);
+
+    public function getObjects();
 }
