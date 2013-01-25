@@ -117,6 +117,9 @@ class FileSystemTest extends \PHPUnit_Framework_TestCase
 
         $md5 = exec("find $dir | xargs cat 2>/dev/null | md5sum | cut -d' ' -f1");
         $this->assertEquals('d7b82642f1a8953af470330761ae147e', $md5);
+
+        exec("/bin/rm -rf $dir");
+        $this->assertFalse(is_file($dir));
     }
 
     /**
