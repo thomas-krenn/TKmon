@@ -27,7 +27,7 @@ html, body {
     min-height: 100%;
     height: auto !important;
     height: 100%;
-    margin: 0 auto -20px;
+    margin: 0 auto -50px;
 }
 
 #push, #footer {
@@ -146,4 +146,24 @@ table.icinga-status-table tr.even {
 
 .icinga-status-UNKNOWN {
 
+}
+
+/** TKMON Data Table **/
+
+table.tkmon-data-table {
+    border-collapse: collapse;
+}
+
+table.tkmon-data-table th {
+    background-color: #0088cc;
+    color: white;
+    font-weight: bold;
+}
+
+table.tkmon-data-table th, table.tkmon-data-table td {
+    border: 1px #c0c0c0 solid;
+}
+
+table.tkmon-data-table td {
+    padding: 5px;
 }

@@ -1,0 +1,168 @@
+<div class="page-header">
+    <h2>{%  trans "Contacts" %}</h2>
+</div>
+
+<p>
+    {% trans %}
+    Maintain your contacts here. Add people who are responsible for system alerts.
+    {% endtrans %}
+</p>
+
+<div class="alert alert-info">
+    <h4>{% trans "Add new" %}</h4>
+    <div>
+        {% trans %}
+        Press the following button to add a new person:
+        {% endtrans %}
+
+        <button data-action="new" class="btn btn-success">
+            <i class="icon-plus"></i> {% trans "Add new" %}
+        </button>
+    </div>
+</div>
+
+<table class="tkmon-data-table">
+    <tr>
+        <th>{% trans "Name" %}</th>
+        <th>{% trans "Alias" %}</th>
+        <th>{% trans "Email Address" %}</th>
+        <th>&nbsp;</th>
+    </tr>
+    {% for contact in contacts %}
+    <tr>
+        <td>{{ contact.getContactName() }}</td>
+        <td>{{ contact.getAlias() }}</td>
+        <td>{{ contact.getEmail() }}</td>
+        <td>
+            <button data-action="edit" data-value="{{ contact.getObjectIdentifier() }}" class="btn btn-primary">
+                <i class="icon-edit"></i> {% trans "Edit" %}
+            </button>
+
+            <button data-action="remove" data-value="{{ contact.getObjectIdentifier() }}" class="btn btn-danger">
+                <i class="icon-remove"></i> {% trans "Remove" %}
+            </button>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+
+<div id="edit-dialog" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="edit-contacts"
+     aria-hidden="true">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 id="edit-contacts">
+            {% trans "Contacts" %}
+        </h3>
+    </div>
+    <div class="modal-body">
+
+        <div id="contact-errors"></div>
+
+        <div id="contact-success" class="alert alert-success hidden">
+            <h4>{% trans "Success!" %}</h4>
+            <div>
+                Data was written to icinga and is available on next restart
+            </div>
+        </div>
+
+        <form
+            id="contact-data"
+            class="container-spacer-down"
+            action="{{ web_link("Write") }}"
+            data-ajax="form"
+            data-ajax-type="json"
+            data-error-target="#contact-errors"
+            data-success-frame="#contact-success"
+            data-before-callback="XXX"
+            data-success-callback="callback_contact_written"
+        >
+
+            <input type="hidden" id="contact_name" name="contact_name" value="" />
+
+            <fieldset>
+                <label for="alias">
+                    {% trans "Name" %}
+                </label>
+                <input type="text" id="alias" name="alias" />
+            </fieldset>
+
+            <fieldset>
+                <label for="email">
+                    {% trans "Email address" %}
+                </label>
+                <input type="text" id="email" name="email" />
+            </fieldset>
+
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button class="btn" data-dismiss="modal" aria-hidden="true">
+            <i class="icon-remove"></i> {% trans "Close" %}
+        </button>
+        <button class="btn btn-primary" id="contact-submit">
+            <i class="icon-save"></i> {% trans "Save" %}
+        </button>
+    </div>
+</div>
+
+<script>
+    require(['jquery', 'bootstrap'], function() {
+        "use strict";
+
+        var dataUrl = '{{ web_link("Data") }}';
+
+        var showDialog = function(data) {
+
+            $('#contact-success').addClass('hidden');
+
+            $('#contact-errors *').remove();
+
+            if (data === null) {
+                $('#contact_name').val('###new###');
+                $('#alias').val('');
+                $('#email').val('');
+            } else {
+                $.each(data, function(key, val) {
+                    $('#' + key).val(val);
+                })
+            }
+
+            $('#edit-dialog').modal();
+        };
+
+        window.callback_contact_written = function() {
+            window.setTimeout(function() {
+                $('#edit-dialog').modal('hide');
+            }, 1200);
+        };;
+
+        $('button[data-action=edit]').click(function() {
+
+            var id = $(this).attr('data-value');
+
+            $.ajax(dataUrl, {
+                type: 'POST',
+                data: JSON.stringify({
+                    contact_name: id
+                }),
+                dataType: 'json',
+                success: function(data) {
+                    if (data && typeof(data) === "object") {
+                        if (data.success === true) {
+                            showDialog(data.data[0]);
+                        }
+                    }
+                }
+            });
+
+        });
+
+        $('button[data-action=new]').click(function() {
+            showDialog(null);
+        });
+
+        $('button#contact-submit').click(function() {
+            $('form#contact-data').submit();
+        });
+    });
+</script>

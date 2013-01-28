@@ -77,11 +77,15 @@ class FileSystem extends \NETWAYS\Common\ArrayObject
         $context = null;
 
         foreach ($fo as $line) {
+
+            // Remove unwanted content
+            $line = preg_replace('/[#;].+$/', '', $line);
+
             if ($context === null && preg_match('/define\s+(\w+)\s*\{/', $line, $match)) {
                 $context = new \ICINGA\Object\Struct();
                 $context->setObjectType($match[1]);
-            } elseif ($context && preg_match('/(\w+)\s+([^$\s]+)/', $line, $match)) {
-                $context[$match[1]] = $match[2];
+            } elseif ($context && preg_match('/(\w+)\s+([^$]+)/', $line, $match)) {
+                $context[$match[1]] = trim($match[2]);
             } elseif ($context && preg_match('/\}/', $line)) {
                 // Trigger interface
                 $this->strategy->newObject($context);

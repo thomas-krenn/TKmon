@@ -88,9 +88,9 @@ class JsonResponse extends Json
 
     /**
      * Add a data row to object
-     * @param array $data
+     * @param mixed $data
      */
-    public function addData(array $data)
+    public function addData($data)
     {
         $this[self::FIELD_DATA][] = $data;
     }

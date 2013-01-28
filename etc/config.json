@@ -40,6 +40,14 @@
     "icinga.accessurl": "http://{web.domain}/icinga",
     "icinga.freshness": "20",
 
+    "icinga.dir.base": "/etc/icinga/tkmon",
+    "icinga.dir.contact": "{icinga.dir.base}/system/contacts",
+
+    "icinga.record.contact": {
+        "use": "generic-contact",
+        "contactgroups": "tkmon-admin"
+    },
+
     "command.config": {
         "chpasswd":  {
             "path": "/usr/sbin/chpasswd",
