@@ -115,8 +115,20 @@ class FileSystemTest extends \PHPUnit_Framework_TestCase
         $loader->setPath($dir);
         $loader->write();
 
-        $md5 = exec("find $dir | xargs cat 2>/dev/null | md5sum | cut -d' ' -f1");
-        $this->assertEquals('d7b82642f1a8953af470330761ae147e', $md5);
+        $testFile1 = '/tmp/icinga-output-test/TEST1.1.cfg';
+        $testFile2 = '/tmp/icinga-output-test/TEST2.1.cfg';
+
+        $this->assertTrue(file_exists($testFile1));
+        $this->assertTrue(file_exists($testFile2));
+
+        $testContent1 = file_get_contents($testFile1);
+        $testContent2 = file_get_contents($testFile2);
+
+        $this->assertContains('    service_description           PING'. PHP_EOL, $testContent1);
+        $this->assertContains('    service_description           PROCS'. PHP_EOL, $testContent1);
+
+        $this->assertContains('    _TEST3                        CC'. PHP_EOL, $testContent2);
+        $this->assertContains('    _TEST4                        DD'. PHP_EOL, $testContent2);
 
         exec("/bin/rm -rf $dir");
         $this->assertFalse(is_file($dir));
