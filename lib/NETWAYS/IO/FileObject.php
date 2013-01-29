@@ -19,39 +19,22 @@
  * @copyright 2012-2013 NETWAYS GmbH <info@netways.de>
  */
 
-namespace ICINGA\Object;
+namespace NETWAYS\IO;
 
 /**
- * Struct to move data arround
- *
- * Voyager object with unknown properties
- *
- * @package ICINGA
+ * Specific implementation to FO
+ * @package NETWAYS\IO
  * @author Marius Hein <marius.hein@netways.de>
  */
-class Struct extends \NETWAYS\Common\ArrayObject
+class FileObject extends \SplFileObject
 {
     /**
-     * Object type
-     * @var string
+     * Integrate chmod on that file
+     * @param int $mode
+     * @return bool
      */
-    private $objectType;
-
-    /**
-     * Setter for object type
-     * @param string $objectType
-     */
-    public function setObjectType($objectType)
+    public function chmod($mode)
     {
-        $this->objectType = $objectType;
-    }
-
-    /**
-     * Getter for object type
-     * @return string
-     */
-    public function getObjectType()
-    {
-        return $this->objectType;
+        return chmod($this->getRealPath(), $mode);
     }
 }

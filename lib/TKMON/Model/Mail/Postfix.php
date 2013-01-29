@@ -192,6 +192,8 @@ class Postfix extends \NETWAYS\Common\ArrayObject implements \TKMON\Interfaces\A
 
         $fo->fflush();
 
+        $fo->chmod(0644);
+
         /** @var $mv \NETWAYS\IO\Process */
         $mv = $this->container['command']->create('mv');
         $mv->addPositionalArgument($fo->getRealPath());

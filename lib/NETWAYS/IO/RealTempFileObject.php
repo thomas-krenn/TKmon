@@ -26,7 +26,7 @@ namespace NETWAYS\IO;
  * @package NETWAYS\IO
  * @author Marius Hein <marius.hein@netways.de>
  */
-class RealTempFileObject extends \SplFileObject
+class RealTempFileObject extends FileObject
 {
     /**
      * Creates a new object

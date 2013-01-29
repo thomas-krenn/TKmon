@@ -153,7 +153,7 @@ Change icinga.cfg as follows
     -# files into.
     -cfg_dir=/etc/icinga/objects/
     +cfg_dir=/etc/icinga/tkmon/base
-    +cfg_dir=/etc/icinga/tkmon/system
+    +cfg_dir=/etc/icinga/tkmon/system/contacts
     +cfg_dir=/etc/icinga/tkmon/custom
 
      # Definitions for ido2db process checks

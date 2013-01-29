@@ -5,3 +5,4 @@ composer.lock
 vendor/
 composer.phar
 .vagrant
+etc/icinga/system/contacts/*cfg

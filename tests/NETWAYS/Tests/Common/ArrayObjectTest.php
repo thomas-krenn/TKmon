@@ -60,4 +60,27 @@ class ArrayObjectTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(array(1, 2, 3), (array)$o1);
     }
 
+    public function testMergeStdClass()
+    {
+        $a = new \NETWAYS\Common\ArrayObject();
+        $a['test1'] = 'AA';
+        $a['test2'] = 'BB';
+
+        $p = new \stdClass();
+        $p->test3 = 'CC';
+        $p->test4 = 'DD';
+
+        $a->mergeStdClass($p);
+
+        $test = array(
+            'test1' => 'AA',
+            'test2' => 'BB',
+            'test3' => 'CC',
+            'test4' => 'DD'
+        );
+
+        $this->assertEquals($test, $a->getArrayCopy());
+
+    }
+
 }

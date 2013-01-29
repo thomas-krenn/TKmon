@@ -53,7 +53,7 @@ class ArrayObjectValidatorTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException NETWAYS\Common\Exception\ValidatorException
+     * @expectedException \NETWAYS\Common\Exception\ValidatorException
      */
     public function testIntFail()
     {
@@ -72,4 +72,50 @@ class ArrayObjectValidatorTest extends \PHPUnit_Framework_TestCase
         $validator->validateArrayObject($object);
     }
 
+    /**
+     * @expectedException \NETWAYS\Common\Exception\ValidatorException
+     * @expectedExceptionMessage Validation of field field2 fails. (mandatory)
+     */
+    public function testMandarory()
+    {
+        $object = new \NETWAYS\Common\ArrayObject(array(
+            'field1' => 'AAA',
+            'field2' => null // FAIL
+        ));
+
+        $validator = new \NETWAYS\Common\ArrayObjectValidator();
+
+        $validator->addValidator(
+            'field1',
+            'mandatory',
+            \NETWAYS\Common\ArrayObjectValidator::VALIDATE_MANDATORY
+        );
+
+        $validator->addValidator(
+            'field2',
+            'mandatory',
+            \NETWAYS\Common\ArrayObjectValidator::VALIDATE_MANDATORY
+        );
+
+        $validator->validateArrayObject($object);
+    }
+
+    /**
+     * @expectedException NETWAYS\Common\Exception\ValidatorException
+     * @exoectedExceptionMessage Validation of field ip2 fails. (public ip)
+     */
+    public function testFlags()
+    {
+        $object = new \NETWAYS\Common\ArrayObject(array(
+            'ip1' => '193.17.26.2',
+            'ip2' => '192.168.10.1' // FAIL
+        ));
+
+        $validator = new \NETWAYS\Common\ArrayObjectValidator();
+
+        $validator->addValidator('ip1', 'public ip', FILTER_VALIDATE_IP, FILTER_FLAG_NO_PRIV_RANGE);
+        $validator->addValidator('ip2', 'public ip', FILTER_VALIDATE_IP, FILTER_FLAG_NO_PRIV_RANGE);
+
+        $validator->validateArrayObject($object);
+    }
 }

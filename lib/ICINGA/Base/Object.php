@@ -37,6 +37,38 @@ namespace ICINGA\Base;
  */
 abstract class Object extends \NETWAYS\Common\ArrayObject
 {
+
+    /**
+     * Create a object from attributes
+     *
+     * @param \NETWAYS\Common\ArrayObject $attributes
+     * @return \ICINGA\Base\Object
+     */
+    public static function createObjectFromArray(\NETWAYS\Common\ArrayObject $attributes)
+    {
+        $class = get_called_class();
+
+        $object = new $class();
+
+        if ($object instanceof Object) {
+            $object->fromArrayObject($attributes);
+        }
+
+        $object->assertObjectIsValid();
+
+        return $object;
+    }
+
+    /**
+     * Normalize object id's
+     * @param string $name
+     * @return string
+     */
+    protected static function normalizeIdentifierName($name)
+    {
+        return strtolower(str_replace(' ', '_', $name));
+    }
+
     /**
      * Name ob the object
      * @var string
@@ -411,6 +443,15 @@ abstract class Object extends \NETWAYS\Common\ArrayObject
      * @return string
      */
     abstract public function getObjectIdentifier();
+
+    /**
+     * Create an identified if nothing was set
+     * @throws \ICINGA\Exception\ConfigException
+     */
+    public function createObjectIdentifier()
+    {
+        throw new \ICINGA\Exception\ConfigException('Method not implemented');
+    }
 
     /**
      * Test the object before writing

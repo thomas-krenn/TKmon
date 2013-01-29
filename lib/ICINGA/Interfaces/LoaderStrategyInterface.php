@@ -32,13 +32,33 @@ namespace ICINGA\Interfaces;
 interface LoaderStrategyInterface
 {
 
+    /**
+     * Base namespace where our concrete objects resides in
+     */
     const BASE_NAMESPACE = '\\ICINGA\\Object\\';
 
+    /**
+     * Trigger when we start loading
+     * @return void
+     */
     public function beginLoading();
 
+    /**
+     * Trigger when we finished
+     * @return void
+     */
     public function finishLoading();
 
+    /**
+     * Trigger when we add a new object
+     * @param \ICINGA\Object\Struct $object
+     * @return void
+     */
     public function newObject(\ICINGA\Object\Struct $object);
 
+    /**
+     * Getter for all objects collected
+     * @return \NETWAYS\Common\ArrayObject
+     */
     public function getObjects();
 }

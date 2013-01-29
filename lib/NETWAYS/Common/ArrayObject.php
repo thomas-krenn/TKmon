@@ -104,4 +104,15 @@ class ArrayObject extends \ArrayObject
             $this->offsetSet($key, $val);
         }
     }
+
+    /**
+     * Merge stdClass properties into object
+     * @param \stdClass $object
+     */
+    public function mergeStdClass(\stdClass $object)
+    {
+        foreach ($object as $key => $val) {
+            $this[$key] = $val;
+        }
+    }
 }
