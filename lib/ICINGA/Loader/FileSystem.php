@@ -37,6 +37,8 @@ class FileSystem extends \NETWAYS\Common\ArrayObject
 
     private $path;
 
+    private $dropAllBeforeWrite = false;
+
     /**
      * @var \ICINGA\LoaderStrategyInterface
      */
@@ -50,6 +52,11 @@ class FileSystem extends \NETWAYS\Common\ArrayObject
     public function getPath()
     {
         return $this->path;
+    }
+
+    public function setDropAllFlag($dropAll=true)
+    {
+        $this->dropAllBeforeWrite = $dropAll;
     }
 
     /**
@@ -66,6 +73,23 @@ class FileSystem extends \NETWAYS\Common\ArrayObject
     public function getStrategy()
     {
         return $this->strategy;
+    }
+
+    public function dropAll()
+    {
+        $iterator = new \RegexIterator(
+            new \RecursiveIteratorIterator(
+                new \RecursiveDirectoryIterator($this->getPath(), \RecursiveDirectoryIterator::CURRENT_AS_FILEINFO)
+            ),
+            '/'. self::FILE_FILTER. '/'
+        );
+
+        /** @var $fileInfo \SplFileInfo */
+        $fileInfo = null;
+
+        foreach ($iterator as $fileInfo) {
+            unlink($fileInfo->getRealPath());
+        }
     }
 
     private function loadFile(\SplFileInfo $file)
@@ -137,6 +161,10 @@ class FileSystem extends \NETWAYS\Common\ArrayObject
 
         if (!file_exists($this->getPath())) {
             throw new \ICINGA\Exception\ConfigException('Could not write to path');
+        }
+
+        if ($this->dropAllBeforeWrite === true) {
+            $this->dropAll();
         }
 
         /** @var $object \ICINGA\Base\Object */

@@ -89,6 +89,21 @@ class Contact extends \ICINGA\Base\Object
     }
 
     /**
+     * Creates an object identified from alias
+     * @throws \ICINGA\Exception\ConfigException
+     */
+    public function createObjectIdentifier()
+    {
+        if ($this->alias) {
+            $this->contactName = parent::normalizeIdentifierName($this->alias);
+            return;
+        }
+
+        throw new \ICINGA\Exception\ConfigException('Alias is not set');
+    }
+
+
+    /**
      * Test the object before writing
      *
      * @throws \ICINGA\Exception\ConfigException

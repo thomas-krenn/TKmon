@@ -35,6 +35,7 @@ class Contacts extends \TKMON\Action\Base
 
         $contacts = new \TKMON\Model\Icinga\ContactData($this->container);
         $contacts->load();
+        $contacts->ksort();
 
         $template = new \TKMON\Mvc\Output\TwigTemplate($this->container['template']);
         $template->setTemplateName('views/Monitor/Icinga/Contacts/List.twig');
@@ -92,6 +93,49 @@ class Contacts extends \TKMON\Action\Base
             );
 
             $validator->validateArrayObject($params);
+
+            $record = $contacts->createContact($params);
+
+            if ($params['contact_name'] === '###new###') {
+                $record->createObjectIdentifier();
+                $contacts->setContact($record);
+            } else {
+                $contacts->updateContact($record);
+            }
+
+            $contacts->write();
+
+            $response->setSuccess(true);
+
+        } catch (\Exception $e) {
+            $response->addException($e);
+        }
+
+        return $response;
+    }
+
+    public function actionRemove(\NETWAYS\Common\ArrayObject $params)
+    {
+        $contacts = new \TKMON\Model\Icinga\ContactData($this->container);
+
+        $response = new \TKMON\Mvc\Output\JsonResponse();
+
+        try {
+            $contacts->load();
+
+            $validator = new \NETWAYS\Common\ArrayObjectValidator();
+
+            $validator->addValidator(
+                'contact_name',
+                'Mandatory',
+                \NETWAYS\Common\ArrayObjectValidator::VALIDATE_MANDATORY
+            );
+
+            $validator->validateArrayObject($params);
+
+            $contacts->removeContactByName($params['contact_name']);
+
+            $contacts->write();
 
             $response->setSuccess(true);
 

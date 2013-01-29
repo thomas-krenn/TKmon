@@ -40,6 +40,9 @@ class ContactData extends \ICINGA\Loader\FileSystem implements \TKMON\Interfaces
         $this->setStrategy($this->strategy);
 
         $this->setPath($this->container['config']['icinga.dir.contact']);
+
+
+        $this->setDropAllFlag(true);
     }
 
     /**
@@ -67,6 +70,51 @@ class ContactData extends \ICINGA\Loader\FileSystem implements \TKMON\Interfaces
         }
 
         throw new \ICINGA\Exception\AttributeException('Contact does not exist: '. $contactName);
+    }
+
+    public function setContact(\ICINGA\Object\Contact $contact)
+    {
+
+        if ($this->offsetExists($contact->getObjectIdentifier())) {
+            throw new \TKMON\Exception\ModelException('Contact already exists: '. $contact->getObjectIdentifier());
+        }
+
+        $this[$contact->getObjectIdentifier()] = $contact;
+    }
+
+    public function updateContact(\ICINGA\Object\Contact $contact)
+    {
+
+        $oid = $contact->getObjectIdentifier();
+
+        if ($this->offsetExists($oid) === false) {
+            throw new \TKMON\Exception\ModelException('Contact does not exist: '. $oid);
+        }
+
+        $this->offsetUnset($oid);
+
+        // Create new because of updates
+        $contact->createObjectIdentifier();
+
+        $this[$contact->getObjectIdentifier()] = $contact;
+    }
+
+    public function createContact(\NETWAYS\Common\ArrayObject $attributes)
+    {
+        $default = $this->container['config']['icinga.record.contact'];
+        $attributes->mergeStdClass($default);
+        $record = \ICINGA\Object\Contact::createObjectFromArray($attributes);
+
+        return $record;
+    }
+
+    public function removeContactByName($name)
+    {
+        if (!$this->offsetExists($name)) {
+            throw new \TKMON\Exception\ModelException('Contact does not exist: '. $name);
+        }
+
+        $this->offsetUnset($name);
     }
 
 }

@@ -73,4 +73,9 @@ class RealTempFileObject extends \SplFileObject
             unlink($fname);
         }
     }
+
+    public function chmod($mode)
+    {
+        return chmod($this->getRealPath(), $mode);
+    }
 }
