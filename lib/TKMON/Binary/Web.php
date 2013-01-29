@@ -51,7 +51,20 @@ final class Web
          */
         $container['lib_dir'] = $libdir;
         $container['root_dir'] = dirname($libdir);
-        $container['etc_dir'] = $container['root_dir'] . DIRECTORY_SEPARATOR . 'etc';
+
+        // etc directory, try to detect
+
+        $etcDirectory = DIRECTORY_SEPARATOR
+            . 'etc'
+            . DIRECTORY_SEPARATOR
+            . 'tkmon';
+
+        if (file_exists($etcDirectory)) {
+            $container['etc_dir'] = $etcDirectory;
+        } else {
+            $container['etc_dir'] = $container['root_dir'] . DIRECTORY_SEPARATOR . 'etc';
+        }
+
         $container['share_dir'] = $container['root_dir'] . DIRECTORY_SEPARATOR . 'share';
 
         /*
@@ -106,6 +119,7 @@ final class Web
                 $config->set('web.https', false); // TODO: This should be detected
 
                 $config->loadFile($c['etc_dir'] . DIRECTORY_SEPARATOR . 'config.json');
+
                 return $config;
             }
         );

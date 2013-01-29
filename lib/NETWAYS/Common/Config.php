@@ -138,6 +138,8 @@ class Config extends \ArrayObject
                     $this->offsetSet($index, $newval);
                 }
             }
+        } else {
+            throw new \NETWAYS\Common\Exception\ConfigException('File does not exist: '. $file);
         }
     }
 

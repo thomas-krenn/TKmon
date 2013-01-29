@@ -115,4 +115,13 @@ class LoaderTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(0, count($config4));
     }
 
+    /**
+     * @expectedException \NETWAYS\Common\Exception\ConfigException
+     * @expectedExceptionMessage File does not exist: /tmp/does-not/exists.json
+     */
+    public function testLoadSingleFile()
+    {
+        $config = new \NETWAYS\Common\Config();
+        $config->loadFile('/tmp/does-not/exists.json');
+    }
 }
