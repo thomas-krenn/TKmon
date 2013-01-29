@@ -49,6 +49,9 @@ namespace ICINGA\Object;
 class Contact extends \ICINGA\Base\Object
 {
 
+    /**
+     * Create and configure object
+     */
     public function __construct()
     {
         $this->addAttributes(

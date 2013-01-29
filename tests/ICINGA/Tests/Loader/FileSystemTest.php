@@ -130,6 +130,13 @@ class FileSystemTest extends \PHPUnit_Framework_TestCase
         $this->assertContains('    _TEST3                        CC'. PHP_EOL, $testContent2);
         $this->assertContains('    _TEST4                        DD'. PHP_EOL, $testContent2);
 
+        $loader->offsetUnset('TEST2.1');
+
+        $loader->setDropAllFlag(true);
+        $loader->write();
+
+        $this->assertFalse(file_exists('/tmp/icinga-output-test/TEST2.1.cfg'));
+
         exec("/bin/rm -rf $dir");
         $this->assertFalse(is_file($dir));
     }
@@ -143,6 +150,9 @@ class FileSystemTest extends \PHPUnit_Framework_TestCase
         $strategy = new \ICINGA\Loader\Strategy\HostServiceObjects();
         $loader = new \ICINGA\Loader\FileSystem();
         $loader->setStrategy($strategy);
+
+        $this->assertInstanceOf('\ICINGA\Interfaces\LoaderStrategyInterface', $loader->getStrategy());
+
         $loader->load();
     }
 

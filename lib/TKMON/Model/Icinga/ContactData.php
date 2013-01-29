@@ -28,10 +28,22 @@ namespace TKMON\Model\Icinga;
  */
 class ContactData extends \ICINGA\Loader\FileSystem implements \TKMON\Interfaces\ApplicationModelInterface
 {
+    /**
+     * DI Container
+     * @var \Pimple
+     */
     private $container;
 
+    /**
+     * Prefedined strategy object
+     * @var \ICINGA\Loader\Strategy\SimpleObject
+     */
     private $strategy;
 
+    /**
+     * Creates a new object
+     * @param \Pimple $container
+     */
     public function __construct(\Pimple $container)
     {
         $this->setContainer($container);
@@ -63,6 +75,12 @@ class ContactData extends \ICINGA\Loader\FileSystem implements \TKMON\Interfaces
         return $this->container;
     }
 
+    /**
+     * Returns the contact by name
+     * @param string $contactName
+     * @return \ICINGA\Object\Contact
+     * @throws \ICINGA\Exception\AttributeException
+     */
     public function getContact($contactName)
     {
         if ($this->offsetExists($contactName)) {
@@ -72,6 +90,11 @@ class ContactData extends \ICINGA\Loader\FileSystem implements \TKMON\Interfaces
         throw new \ICINGA\Exception\AttributeException('Contact does not exist: '. $contactName);
     }
 
+    /**
+     * Sets a new contact
+     * @param \ICINGA\Object\Contact $contact
+     * @throws \TKMON\Exception\ModelException
+     */
     public function setContact(\ICINGA\Object\Contact $contact)
     {
 
@@ -82,6 +105,11 @@ class ContactData extends \ICINGA\Loader\FileSystem implements \TKMON\Interfaces
         $this[$contact->getObjectIdentifier()] = $contact;
     }
 
+    /**
+     * Updates an existing contact
+     * @param \ICINGA\Object\Contact $contact
+     * @throws \TKMON\Exception\ModelException
+     */
     public function updateContact(\ICINGA\Object\Contact $contact)
     {
 
@@ -99,6 +127,11 @@ class ContactData extends \ICINGA\Loader\FileSystem implements \TKMON\Interfaces
         $this[$contact->getObjectIdentifier()] = $contact;
     }
 
+    /**
+     * Creates an contact record from attributes
+     * @param \NETWAYS\Common\ArrayObject $attributes
+     * @return \ICINGA\Object\Contact
+     */
     public function createContact(\NETWAYS\Common\ArrayObject $attributes)
     {
         $default = $this->container['config']['icinga.record.contact'];
@@ -108,6 +141,11 @@ class ContactData extends \ICINGA\Loader\FileSystem implements \TKMON\Interfaces
         return $record;
     }
 
+    /**
+     * Remove contact by name
+     * @param $name
+     * @throws \TKMON\Exception\ModelException
+     */
     public function removeContactByName($name)
     {
         if (!$this->offsetExists($name)) {
@@ -116,5 +154,4 @@ class ContactData extends \ICINGA\Loader\FileSystem implements \TKMON\Interfaces
 
         $this->offsetUnset($name);
     }
-
 }

@@ -29,7 +29,11 @@ namespace TKMON\Action\Expose\Monitor\Icinga;
  */
 class Contacts extends \TKMON\Action\Base
 {
-
+    /**
+     * Display edit form
+     * @param \NETWAYS\Common\ArrayObject $params
+     * @return \TKMON\Mvc\Output\TwigTemplate
+     */
     public function actionEdit(\NETWAYS\Common\ArrayObject $params)
     {
 
@@ -44,6 +48,11 @@ class Contacts extends \TKMON\Action\Base
         return $template;
     }
 
+    /**
+     * Ajax data action
+     * @param \NETWAYS\Common\ArrayObject $params
+     * @return \TKMON\Mvc\Output\JsonResponse
+     */
     public function actionData(\NETWAYS\Common\ArrayObject $params)
     {
         $contacts = new \TKMON\Model\Icinga\ContactData($this->container);
@@ -63,6 +72,11 @@ class Contacts extends \TKMON\Action\Base
         return $response;
     }
 
+    /**
+     * Json Api write data
+     * @param \NETWAYS\Common\ArrayObject $params
+     * @return \TKMON\Mvc\Output\JsonResponse
+     */
     public function actionWrite(\NETWAYS\Common\ArrayObject $params)
     {
         $contacts = new \TKMON\Model\Icinga\ContactData($this->container);
@@ -114,6 +128,11 @@ class Contacts extends \TKMON\Action\Base
         return $response;
     }
 
+    /**
+     * Json Api, remove contact
+     * @param \NETWAYS\Common\ArrayObject $params
+     * @return \TKMON\Mvc\Output\JsonResponse
+     */
     public function actionRemove(\NETWAYS\Common\ArrayObject $params)
     {
         $contacts = new \TKMON\Model\Icinga\ContactData($this->container);
@@ -145,5 +164,4 @@ class Contacts extends \TKMON\Action\Base
 
         return $response;
     }
-
 }

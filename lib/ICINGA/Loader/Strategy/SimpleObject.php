@@ -31,16 +31,26 @@ namespace ICINGA\Loader\Strategy;
  */
 class SimpleObject extends \NETWAYS\Common\ArrayObject implements \ICINGA\Interfaces\LoaderStrategyInterface
 {
+    /**
+     * Do nothing here
+     */
     public function beginLoading()
     {
         $this->clear();
     }
 
+    /**
+     * Do nothing here
+     */
     public function finishLoading()
     {
         // PASS
     }
 
+    /**
+     * Collect everything
+     * @param \ICINGA\Object\Struct $object
+     */
     public function newObject(\ICINGA\Object\Struct $object)
     {
         $cls = self::BASE_NAMESPACE. ucfirst($object->getObjectType());
@@ -52,6 +62,10 @@ class SimpleObject extends \NETWAYS\Common\ArrayObject implements \ICINGA\Interf
         }
     }
 
+    /**
+     * Return all objects collected
+     * @return SimpleObject|\NETWAYS\Common\ArrayObject
+     */
     public function getObjects()
     {
         return $this;

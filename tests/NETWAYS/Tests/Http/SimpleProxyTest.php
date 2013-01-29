@@ -47,6 +47,20 @@ class SimpleProxyTest extends \PHPUnit_Framework_TestCase
         $proxy->unsetOption(CURLOPT_TIMEOUT);
         $this->assertFalse($proxy->hasOption(CURLOPT_TIMEOUT));
 
+        $proxy->setHttpAuth('test1', 'test2');
+
+        try {
+            $proxy->doRequest();
+        } catch (\NETWAYS\Http\Exception\SimpleProxyException $e) {
+            // PASS
+        }
+
+        $options = $proxy->getOptions();
+        $this->assertArrayHasKey(10005, $options);
+        $this->assertArrayHasKey(10018, $options);
+
+        $this->assertNull($proxy->getOption(98989892222));
+
         $proxy->purgeOptions();
         $this->assertFalse($proxy->hasOption(CURLOPT_FRESH_CONNECT));
         $this->assertFalse($proxy->hasOption(CURLOPT_USERAGENT));

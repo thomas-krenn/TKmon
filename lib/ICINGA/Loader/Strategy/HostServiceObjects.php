@@ -33,27 +33,40 @@ class HostServiceObjects implements \ICINGA\Interfaces\LoaderStrategyInterface
 {
 
     /**
+     * Store for hosts
+     *
      * @var \NETWAYS\Common\ArrayObject
      */
     private $hosts;
 
     /**
+     * Store for services
+     *
      * @var \NETWAYS\Common\ArrayObject
      */
     private $services;
 
+    /**
+     * Creates a new strategy
+     */
     public function __construct()
     {
         $this->hosts = new \NETWAYS\Common\ArrayObject();
         $this->services = new \NETWAYS\Common\ArrayObject();
     }
 
+    /**
+     * Begin loading, clear objects
+     */
     public function beginLoading()
     {
         $this->hosts->clear();
         $this->services->clear();
     }
 
+    /**
+     * Build dependencies
+     */
     public function finishLoading()
     {
         /** @var $service \ICINGA\Object\Service */
@@ -67,6 +80,10 @@ class HostServiceObjects implements \ICINGA\Interfaces\LoaderStrategyInterface
         }
     }
 
+    /**
+     * Trigger  to fill object trees
+     * @param \ICINGA\Object\Struct $object
+     */
     public function newObject(\ICINGA\Object\Struct $object)
     {
         $cls = self::BASE_NAMESPACE. ucfirst($object->getObjectType());
@@ -83,6 +100,10 @@ class HostServiceObjects implements \ICINGA\Interfaces\LoaderStrategyInterface
         }
     }
 
+    /**
+     * Return all collected hosts
+     * @return \NETWAYS\Common\ArrayObject
+     */
     public function getObjects()
     {
         return $this->hosts;

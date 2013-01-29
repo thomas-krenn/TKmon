@@ -31,35 +31,63 @@ namespace ICINGA\Loader;
  */
 class FileSystem extends \NETWAYS\Common\ArrayObject
 {
+    /**
+     * Filter for the iterator
+     */
     const FILE_FILTER = '\.cfg$';
 
+    /**
+     * Suffix when create files
+     */
     const FILE_SUFFIX = '.cfg';
 
+    /**
+     * Path to load from
+     * @var string
+     */
     private $path;
 
+    /**
+     * Flag to drop all data before write
+     * @var bool
+     */
     private $dropAllBeforeWrite = false;
 
     /**
+     * Strategy to use
      * @var \ICINGA\LoaderStrategyInterface
      */
     private $strategy;
 
+    /**
+     * Setter for the path
+     * @param string $path
+     */
     public function setPath($path)
     {
         $this->path = $path;
     }
 
+    /**
+     * Getter for the path
+     * @return string
+     */
     public function getPath()
     {
         return $this->path;
     }
 
-    public function setDropAllFlag($dropAll=true)
+    /**
+     * Flag setter to drop all before load
+     * @param bool $dropAll
+     */
+    public function setDropAllFlag($dropAll = true)
     {
         $this->dropAllBeforeWrite = $dropAll;
     }
 
     /**
+     * Setter for strategy
      * @param \ICINGA\LoaderStrategyInterface $strategy
      */
     public function setStrategy($strategy)
@@ -68,6 +96,7 @@ class FileSystem extends \NETWAYS\Common\ArrayObject
     }
 
     /**
+     * Getter for strategy
      * @return \ICINGA\LoaderStrategyInterface
      */
     public function getStrategy()
@@ -75,6 +104,12 @@ class FileSystem extends \NETWAYS\Common\ArrayObject
         return $this->strategy;
     }
 
+    /**
+     * Drop all files
+     *
+     * Thia is needed if you use this as database. Drop all first,
+     * then write again
+     */
     public function dropAll()
     {
         $iterator = new \RegexIterator(
@@ -92,6 +127,10 @@ class FileSystem extends \NETWAYS\Common\ArrayObject
         }
     }
 
+    /**
+     * Loads a single file into object
+     * @param \SplFileInfo $file
+     */
     private function loadFile(\SplFileInfo $file)
     {
         $fo = $file->openFile('r');
@@ -120,6 +159,11 @@ class FileSystem extends \NETWAYS\Common\ArrayObject
         unset($fo);
     }
 
+    /**
+     * Loads the directory
+     * @throws \ICINGA\Exception\LoadException
+     * @throws \ICINGA\Exception\ConfigException
+     */
     public function load()
     {
         if (is_dir($this->getPath()) === false) {
@@ -156,6 +200,11 @@ class FileSystem extends \NETWAYS\Common\ArrayObject
         $this->fromArrayObject($this->strategy->getObjects());
     }
 
+    /**
+     * Writes tree to file system
+     * @throws \ICINGA\Exception\WriteException
+     * @throws \ICINGA\Exception\ConfigException
+     */
     public function write()
     {
 
