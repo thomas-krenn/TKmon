@@ -44,10 +44,19 @@ class DirectoryAccess extends \TKMON\Model\ApplicationModel
      */
     const ORDER_DENY_ALLOW = 'Deny,Allow';
 
+    /**
+     * All value for restriction blocks
+     */
     const FROM_ALL = 'all';
 
+    /**
+     * Restriction for localhost
+     */
     const FROM_LOCALHOST = '127.0.0.0/255.0.0.0 ::1/128';
 
+    /**
+     * Remove restriction, just blank null
+     */
     const FROM_NULL = null;
 
     /**
@@ -241,7 +250,7 @@ class DirectoryAccess extends \TKMON\Model\ApplicationModel
                     $this->setOrder($values);
                 } elseif ($type === 'allow from') {
                     $this->setAllowFrom($values);
-                } elseif($type === 'deny from') {
+                } elseif ($type === 'deny from') {
                     $this->setDenyFrom($values);
                 }
 

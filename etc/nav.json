@@ -25,6 +25,11 @@
                 "href": "Monitor/Icinga/Services"
             },
             {
+                "title": "Log",
+                "description": "Icinga log output",
+                "href": "Monitor/Icinga/Logs"
+            },
+            {
                 "title": "Contacts",
                 "description": "Edit contacts",
                 "href": "Monitor/Icinga/Contacts/Edit"

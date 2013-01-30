@@ -81,4 +81,15 @@ class StatusData extends \TKMON\Model\ApplicationModel
         $this->proxy->setRequestUrl('/cgi-bin/icinga/status.cgi');
         return $this->createObjectData();
     }
+
+    /**
+     * Return a eventlog stream
+     * @return \stdClass
+     */
+    public function getEventLog()
+    {
+        $this->proxy->setRequestUrl('/cgi-bin/icinga/showlog.cgi');
+        $this->proxy->addParam('limit', 200);
+        return $this->createObjectData();
+    }
 }

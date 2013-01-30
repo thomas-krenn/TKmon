@@ -131,22 +131,14 @@ class Security extends \TKMON\Action\Base
         return $response;
     }
 
-    public function actionIcingaAccess(\NETWAYS\Common\ArrayObject $params)
-    {
-        $directoryAccess = new \TKMON\Model\Apache\DirectoryAccess($this->container);
-        $directoryAccess->load();
-
-        if ($directoryAccess->publicAccess() === true) {
-            return  new \TKMON\Mvc\Output\SimpleString(
-                '<span class="label label-success">'. _('Enabled'). '</span>'
-            );
-        }
-
-        return  new \TKMON\Mvc\Output\SimpleString(
-            '<span class="label label-important">'. _('Disabled'). '</span>'
-        );
-    }
-
+    /**
+     * Json API endpoint
+     *
+     * Change icinga interface access
+     *
+     * @param \NETWAYS\Common\ArrayObject $params
+     * @return \TKMON\Mvc\Output\JsonResponse
+     */
     public function actionChangeIcingaAccess(\NETWAYS\Common\ArrayObject $params)
     {
         $directoryAccess = new \TKMON\Model\Apache\DirectoryAccess($this->container);

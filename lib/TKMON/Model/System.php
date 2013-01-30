@@ -76,6 +76,11 @@ class System extends ApplicationModel
         $command->execute();
     }
 
+    /**
+     * Reloads apache
+     *
+     * Restart is not possible because of loosing the connection
+     */
     public function restartApache()
     {
         /** @var $command \NETWAYS\IO\Process */

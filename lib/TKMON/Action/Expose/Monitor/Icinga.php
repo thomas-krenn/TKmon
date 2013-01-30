@@ -62,4 +62,18 @@ class Icinga extends \TKMON\Action\Base
         $template['data'] = $icingaModel->getServiceStatus();
         return $template;
     }
+
+    /**
+     * Show event log
+     * @param \NETWAYS\Common\ArrayObject $params
+     * @return \TKMON\Mvc\Output\TwigTemplate
+     */
+    public function actionLogs(\NETWAYS\Common\ArrayObject $params)
+    {
+        $icingaModel = new \TKMON\Model\Icinga\StatusData($this->container);
+        $template = new \TKMON\Mvc\Output\TwigTemplate($this->container['template']);
+        $template->setTemplateName('views/Monitor/Icinga/EventLog.twig');
+        $template['data'] = $icingaModel->getEventLog();
+        return $template;
+    }
 }
