@@ -63,6 +63,27 @@ class DirectoryAccess extends \TKMON\Model\ApplicationModel
     private $file;
 
     /**
+     * Array of data lines
+     * @var array
+     */
+    private $lines = array();
+
+    /**
+     * Creates a new object
+     *
+     * Configure to allowAll setting
+     *
+     * @param \Pimple $container
+     */
+    public function __construct(\Pimple $container)
+    {
+        parent::__construct($container);
+
+        // Default config
+        $this->allowAll();
+    }
+
+    /**
      * Setter for from network
      * @param string $from
      */
@@ -136,9 +157,77 @@ class DirectoryAccess extends \TKMON\Model\ApplicationModel
 
     /**
      * Rewrites the file
+     * @throws \TKMON\Exception\ModelException
      */
     public function rewrite()
     {
+        if (!file_exists($this->getFile())) {
+            throw new \TKMON\Exception\ModelException('Config file does not exist');
+        }
 
+        $this->load();
+        $this->write();
+    }
+
+    /**
+     * Load
+     *
+     * Load data into object and change access policy
+     */
+    private function load()
+    {
+        $this->lines = array();
+
+        $fo = new \NETWAYS\IO\FileObject($this->getFile(), 'r');
+        $block = false;
+        
+        foreach ($fo as $line) {
+            if (strpos(strtolower($line), '<directory') !== false) {
+                $block = true;
+            } elseif ($block === true && strpos(strtolower($line), '</directory') !== false) {
+
+                if ($this->getOrder()) {
+                    $this->lines[] = chr(9). 'Order '. $this->getOrder(). PHP_EOL;
+                }
+
+                if ($this->getFrom()) {
+                    $this->lines[] = chr(9). 'Allow From '. $this->getFrom(). PHP_EOL;
+                }
+
+                $block = false;
+            } elseif ($block === true && preg_match('/(Order|Allow from)/i', $line)) {
+                $line = '';
+            }
+
+            if ($line) {
+                $this->lines[] = $line;
+            }
+        }
+
+        unset($fo);
+    }
+
+    /**
+     * Write
+     *
+     * Write to temp and move to original location
+     */
+    private function write()
+    {
+        $fo = new \NETWAYS\IO\RealTempFileObject(self::TEMP_PREFIX, 'w');
+
+        foreach ($this->lines as $line) {
+            $fo->fwrite($line);
+        }
+
+        $fo->fflush();
+
+        /** @var $move \NETWAYS\IO\Process */
+        $move = $this->container['command']->create('mv');
+        $move->addPositionalArgument($fo->getRealPath());
+        $move->addPositionalArgument($this->getFile());
+        $move->execute();
+
+        unset($fo);
     }
 }
