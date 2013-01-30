@@ -67,7 +67,7 @@ class DirectoryAccessTest extends \PHPUnit_Framework_TestCase
         $da->setFile(self::$configFile);
         $da->load();
         $da->setOrder(\TKMON\Model\Apache\DirectoryAccess::ORDER_DENY_ALLOW);
-        $da->setFrom('10.17.0.0/16');
+        $da->setAllowFrom('10.17.0.0/16');
         $da->write();
 
         $this->assertFileEquals(self::$dataPath. '/httpd-config1-test3.conf', $da->getFile());
@@ -115,6 +115,31 @@ class DirectoryAccessTest extends \PHPUnit_Framework_TestCase
         $da->load();
 
         $this->assertEquals('Deny,Allow', $da->getOrder());
-        $this->assertEquals('123.123.123.1/32', $da->getFrom());
+        $this->assertEquals('123.123.123.1/32', $da->getAllowFrom());
+    }
+
+    public function testSetting()
+    {
+        $da = new \TKMON\Model\Apache\DirectoryAccess(self::$container);
+
+        // Auto DI configuration
+        $this->assertEquals('/test/apache/config', $da->getFile());
+
+        $da->setFile(self::$dataPath. '/httpd-config2.conf');
+        $da->load();
+
+        $this->assertFalse($da->publicAccess());
+
+        $da->setAllowFrom(\TKMON\Model\Apache\DirectoryAccess::FROM_ALL);
+
+        $this->assertFalse($da->publicAccess());
+
+        $da->setOrder(\TKMON\Model\Apache\DirectoryAccess::ORDER_ALLOW_DENY);
+
+        $this->assertFalse($da->publicAccess());
+
+        $da->setDenyFrom(\TKMON\Model\Apache\DirectoryAccess::FROM_NULL); // DROP FLAG
+
+        $this->assertTrue($da->publicAccess());
     }
 }

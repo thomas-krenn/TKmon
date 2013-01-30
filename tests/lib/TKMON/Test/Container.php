@@ -25,6 +25,8 @@ class Container extends \Pimple
             $c['icinga.freshness'] = 999999999999;
             $c['icinga.config'] = '/etc/icinga/icinga.cfg';
 
+            $c['icinga.apacheconfig'] = '/test/apache/config';
+
             return $c;
         });
 

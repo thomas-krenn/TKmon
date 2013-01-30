@@ -43,6 +43,10 @@ class Security extends \TKMON\Action\Base
         $output['system_enabled'] = $user->getSystemAccess();
         $output['user'] = $user;
 
+        $directoryAccess = new \TKMON\Model\Apache\DirectoryAccess($this->container);
+        $directoryAccess->load();
+        $output['icinga_enabled'] = (int)$directoryAccess->publicAccess();
+
         return $output;
     }
 
@@ -85,12 +89,12 @@ class Security extends \TKMON\Action\Base
 
         if ($user->getSystemAccess() === true) {
             return  new \TKMON\Mvc\Output\SimpleString(
-                '<span class="label label-success">Enabled</span>'
+                '<span class="label label-success">'. _('Enabled'). '</span>'
             );
         }
 
         return  new \TKMON\Mvc\Output\SimpleString(
-            '<span class="label label-important">Disabled</span>'
+            '<span class="label label-important">'. _('Disabled'). '</span>'
         );
 
     }
@@ -121,6 +125,65 @@ class Security extends \TKMON\Action\Base
             }
         } catch (\Exception $e) {
             $response->setSuccess(false);
+            $response->addException($e);
+        }
+
+        return $response;
+    }
+
+    public function actionIcingaAccess(\NETWAYS\Common\ArrayObject $params)
+    {
+        $directoryAccess = new \TKMON\Model\Apache\DirectoryAccess($this->container);
+        $directoryAccess->load();
+
+        if ($directoryAccess->publicAccess() === true) {
+            return  new \TKMON\Mvc\Output\SimpleString(
+                '<span class="label label-success">'. _('Enabled'). '</span>'
+            );
+        }
+
+        return  new \TKMON\Mvc\Output\SimpleString(
+            '<span class="label label-important">'. _('Disabled'). '</span>'
+        );
+    }
+
+    public function actionChangeIcingaAccess(\NETWAYS\Common\ArrayObject $params)
+    {
+        $directoryAccess = new \TKMON\Model\Apache\DirectoryAccess($this->container);
+        $response = new \TKMON\Mvc\Output\JsonResponse();
+
+        try {
+            $directoryAccess->load();
+
+            $validator = new \NETWAYS\Common\ArrayObjectValidator();
+
+            $validator->addValidator(
+                'icinga-access',
+                'flag 0/1',
+                FILTER_VALIDATE_REGEXP,
+                null,
+                array(
+                    'regexp' => '/^(0|1)$/i'
+                )
+            );
+
+            $validator->validateArrayObject($params);
+
+            if ($params->get('icinga-access', 0) == 1) {
+                $directoryAccess->allowAll();
+            } else {
+                $directoryAccess->allowLocalhostOnly();
+            }
+
+            $directoryAccess->write();
+
+            $system = new \TKMON\Model\System($this->container);
+            $system->restartApache();
+
+            $response->addData((int)$directoryAccess->publicAccess());
+            $response->setSuccess(true);
+
+        } catch (\Exception $e) {
             $response->addException($e);
         }
 

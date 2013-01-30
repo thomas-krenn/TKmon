@@ -44,6 +44,12 @@ class DirectoryAccess extends \TKMON\Model\ApplicationModel
      */
     const ORDER_DENY_ALLOW = 'Deny,Allow';
 
+    const FROM_ALL = 'all';
+
+    const FROM_LOCALHOST = '127.0.0.0/255.0.0.0 ::1/128';
+
+    const FROM_NULL = null;
+
     /**
      * Access ordering
      * @var string
@@ -54,13 +60,19 @@ class DirectoryAccess extends \TKMON\Model\ApplicationModel
      * Access restriction
      * @var string
      */
-    private $from;
+    private $allowFrom;
+
+    /**
+     * Deny block
+     * @var string
+     */
+    private $denyFrom;
 
     /**
      * File to parse / rewrite
      * @var string
      */
-    private $file;
+    private $file = '/etc/icinga/apache2.conf';
 
     /**
      * Array of data lines
@@ -81,24 +93,49 @@ class DirectoryAccess extends \TKMON\Model\ApplicationModel
 
         // Default config
         $this->allowAll();
+
+        /** @var $config \NETWAYS\Common\Config */
+        $config = $this->container['config'];
+
+        if (($file = $config->get('icinga.apacheconfig', null)) !== null) {
+            $this->setFile($file);
+        }
     }
 
     /**
      * Setter for from network
      * @param string $from
      */
-    public function setFrom($from)
+    public function setAllowFrom($from)
     {
-        $this->from = $from;
+        $this->allowFrom = $from;
     }
 
     /**
      * Getter for from
      * @return string
      */
-    public function getFrom()
+    public function getAllowFrom()
     {
-        return $this->from;
+        return $this->allowFrom;
+    }
+
+    /**
+     * Setter deny block
+     * @param string $denyFrom
+     */
+    public function setDenyFrom($denyFrom)
+    {
+        $this->denyFrom = $denyFrom;
+    }
+
+    /**
+     * Getter deny block
+     * @return string
+     */
+    public function getDenyFrom()
+    {
+        return $this->denyFrom;
     }
 
     /**
@@ -124,7 +161,8 @@ class DirectoryAccess extends \TKMON\Model\ApplicationModel
      */
     public function allowLocalhostOnly()
     {
-        $this->setFrom('localhost');
+        $this->setAllowFrom(self::FROM_LOCALHOST);
+        $this->setDenyFrom(self::FROM_ALL);
         $this->setOrder(self::ORDER_DENY_ALLOW);
     }
 
@@ -133,8 +171,26 @@ class DirectoryAccess extends \TKMON\Model\ApplicationModel
      */
     public function allowAll()
     {
-        $this->setFrom('all');
+        $this->setAllowFrom('all');
+        $this->setDenyFrom(self::FROM_NULL);
         $this->setOrder(self::ORDER_ALLOW_DENY);
+    }
+
+    /**
+     * Test if the directory is world readable
+     * @return bool
+     */
+    public function publicAccess()
+    {
+        $order = strtolower($this->getOrder());
+        $from = strtolower($this->getAllowFrom());
+        $deny = $this->getDenyFrom();
+
+        if (preg_match('/allow,\s*deny/', $order) && $from === 'all' && $deny === null) {
+            return true;
+        }
+
+        return false;
     }
 
     /**
@@ -176,7 +232,7 @@ class DirectoryAccess extends \TKMON\Model\ApplicationModel
                 $block = true;
             } elseif ($block === true && strpos(strtolower($line), '</directory') !== false) {
                 $block = false;
-            } elseif ($block === true && preg_match('/(Order|Allow from)\s([^$]+)$/i', $line, $match)) {
+            } elseif ($block === true && preg_match('/(Order|Allow from|Deny from)\s([^$]+)$/i', $line, $match)) {
 
                 $type = strtolower($match[1]);
                 $values = trim($match[2]);
@@ -184,7 +240,9 @@ class DirectoryAccess extends \TKMON\Model\ApplicationModel
                 if ($type === 'order') {
                     $this->setOrder($values);
                 } elseif ($type === 'allow from') {
-                    $this->setFrom($values);
+                    $this->setAllowFrom($values);
+                } elseif($type === 'deny from') {
+                    $this->setDenyFrom($values);
                 }
 
                 $line = '';
@@ -226,8 +284,12 @@ class DirectoryAccess extends \TKMON\Model\ApplicationModel
                     $fo->fwrite(chr(9). 'Order '. $this->getOrder(). PHP_EOL);
                 }
 
-                if ($this->getFrom()) {
-                    $fo->fwrite(chr(9). 'Allow From '. $this->getFrom(). PHP_EOL);
+                if ($this->getAllowFrom()) {
+                    $fo->fwrite(chr(9). 'Allow From '. $this->getAllowFrom(). PHP_EOL);
+                }
+
+                if ($this->getDenyFrom()) {
+                    $fo->fwrite(chr(9). 'Deny From '. $this->getDenyFrom(). PHP_EOL);
                 }
 
                 $block = false;
