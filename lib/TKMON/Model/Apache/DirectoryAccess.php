@@ -156,46 +156,37 @@ class DirectoryAccess extends \TKMON\Model\ApplicationModel
     }
 
     /**
-     * Rewrites the file
-     * @throws \TKMON\Exception\ModelException
+     * Load
+     *
+     * Load data into object and change access policy
      */
-    public function rewrite()
+    public function load()
     {
         if (!file_exists($this->getFile())) {
             throw new \TKMON\Exception\ModelException('Config file does not exist');
         }
 
-        $this->load();
-        $this->write();
-    }
-
-    /**
-     * Load
-     *
-     * Load data into object and change access policy
-     */
-    private function load()
-    {
         $this->lines = array();
 
         $fo = new \NETWAYS\IO\FileObject($this->getFile(), 'r');
         $block = false;
-        
+        $match = array();
         foreach ($fo as $line) {
             if (strpos(strtolower($line), '<directory') !== false) {
                 $block = true;
             } elseif ($block === true && strpos(strtolower($line), '</directory') !== false) {
-
-                if ($this->getOrder()) {
-                    $this->lines[] = chr(9). 'Order '. $this->getOrder(). PHP_EOL;
-                }
-
-                if ($this->getFrom()) {
-                    $this->lines[] = chr(9). 'Allow From '. $this->getFrom(). PHP_EOL;
-                }
-
                 $block = false;
-            } elseif ($block === true && preg_match('/(Order|Allow from)/i', $line)) {
+            } elseif ($block === true && preg_match('/(Order|Allow from)\s([^$]+)$/i', $line, $match)) {
+
+                $type = strtolower($match[1]);
+                $values = trim($match[2]);
+
+                if ($type === 'order') {
+                    $this->setOrder($values);
+                } elseif ($type === 'allow from') {
+                    $this->setFrom($values);
+                }
+
                 $line = '';
             }
 
@@ -212,11 +203,36 @@ class DirectoryAccess extends \TKMON\Model\ApplicationModel
      *
      * Write to temp and move to original location
      */
-    private function write()
+    public function write()
     {
+
+        if (!file_exists($this->getFile())) {
+            throw new \TKMON\Exception\ModelException('Config file does not exist');
+        }
+
+        if (!count($this->lines)) {
+            throw new \TKMON\Exception\ModelException('No data loaded before');
+        }
+
         $fo = new \NETWAYS\IO\RealTempFileObject(self::TEMP_PREFIX, 'w');
+        $block = false;
 
         foreach ($this->lines as $line) {
+            if ($block === false && strpos(strtolower($line), '<directory') !== false) {
+                $block = true;
+            } elseif ($block === true && strpos(strtolower($line), '</directory') !== false) {
+
+                if ($this->getOrder()) {
+                    $fo->fwrite(chr(9). 'Order '. $this->getOrder(). PHP_EOL);
+                }
+
+                if ($this->getFrom()) {
+                    $fo->fwrite(chr(9). 'Allow From '. $this->getFrom(). PHP_EOL);
+                }
+
+                $block = false;
+            }
+
             $fo->fwrite($line);
         }
 

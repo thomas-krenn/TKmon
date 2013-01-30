@@ -37,9 +37,9 @@ class DirectoryAccessTest extends \PHPUnit_Framework_TestCase
 
         $da = new \TKMON\Model\Apache\DirectoryAccess(self::$container);
         $da->setFile(self::$configFile);
+        $da->load();
         $da->allowLocalhostOnly();
-
-        $da->rewrite();
+        $da->write();
 
         $this->assertFileEquals(self::$dataPath. '/httpd-config1-test1.conf', $da->getFile());
     }
@@ -51,9 +51,9 @@ class DirectoryAccessTest extends \PHPUnit_Framework_TestCase
 
         $da = new \TKMON\Model\Apache\DirectoryAccess(self::$container);
         $da->setFile(self::$configFile);
+        $da->load();
         $da->allowAll();
-
-        $da->rewrite();
+        $da->write();
 
         $this->assertFileEquals(self::$dataPath. '/httpd-config1-test2.conf', $da->getFile());
     }
@@ -65,11 +65,10 @@ class DirectoryAccessTest extends \PHPUnit_Framework_TestCase
 
         $da = new \TKMON\Model\Apache\DirectoryAccess(self::$container);
         $da->setFile(self::$configFile);
-
+        $da->load();
         $da->setOrder(\TKMON\Model\Apache\DirectoryAccess::ORDER_DENY_ALLOW);
         $da->setFrom('10.17.0.0/16');
-
-        $da->rewrite();
+        $da->write();
 
         $this->assertFileEquals(self::$dataPath. '/httpd-config1-test3.conf', $da->getFile());
     }
@@ -82,6 +81,40 @@ class DirectoryAccessTest extends \PHPUnit_Framework_TestCase
     {
         $da = new \TKMON\Model\Apache\DirectoryAccess(self::$container);
         $da->setFile('/does/not/exists');
-        $da->rewrite(); // KA-BOOM
+        $da->load();
+    }
+
+    /**
+     * @expectedException \TKMON\Exception\ModelException
+     * @expectedExceptionMessage Config file does not exist
+     */
+    public function testAccessError2()
+    {
+        $da = new \TKMON\Model\Apache\DirectoryAccess(self::$container);
+        $da->setFile(self::$configFile);
+        $da->load();
+        $da->setFile('/does/not/exists');
+        $da->write();
+    }
+
+    /**
+     * @expectedException \TKMON\Exception\ModelException
+     * @expectedExceptionMessage No data loaded before
+     */
+    public function testAccessError3()
+    {
+        $da = new \TKMON\Model\Apache\DirectoryAccess(self::$container);
+        $da->setFile(self::$configFile);
+        $da->write();
+    }
+
+    public function testRead1()
+    {
+        $da = new \TKMON\Model\Apache\DirectoryAccess(self::$container);
+        $da->setFile(self::$dataPath. '/httpd-config2.conf');
+        $da->load();
+
+        $this->assertEquals('Deny,Allow', $da->getOrder());
+        $this->assertEquals('123.123.123.1/32', $da->getFrom());
     }
 }
