@@ -1,0 +1,43 @@
+<h4>{% trans "Change your your password" %}</h4>
+
+<div id="change-errors">
+
+</div>
+
+<div id="change-success" class="hidden">
+    <div class="alert alert-success">
+        <h4>{% trans "Success!" %}</h4>
+        {% trans %}
+        Thank you for changing your password. Please do this regularly to
+        increase security for this device!
+        {% endtrans %}
+    </div>
+</div>
+
+<form
+        id="form-change-password"
+        action="{{ web_link("ChangePassword") }}"
+        data-ajax="form"
+        data-ajax-type="json"
+        data-form-focus-first="#current_password"
+        data-form-reset="true"
+        data-error-target="#change-errors"
+        data-success-frame="#change-success"
+        >
+    <fieldset>
+        <label for="current_password">{% trans "Current password" %}</label>
+        <input id="current_password" type="password" name="current_password" />
+
+        <label for="password">{% trans "New password" %}</label>
+        <input id="password" type="password" name="password" />
+
+        <label for="password_verify">{% trans "Verification" %}</label>
+        <input id="password_verify" type="password" name="password_verify" />
+    </fieldset>
+
+    <div class="container-spacer-down">
+        <button type="submit" class="btn btn-primary">
+            <i class="icon-key"></i> {% trans "Change password" %}
+        </button>
+    </div>
+</form>

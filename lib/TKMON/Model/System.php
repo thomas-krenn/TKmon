@@ -75,4 +75,13 @@ class System extends ApplicationModel
         $command->addPositionalArgument('restart');
         $command->execute();
     }
+
+    public function restartApache()
+    {
+        /** @var $command \NETWAYS\IO\Process */
+        $command = $this->container['command']->create('service');
+        $command->addPositionalArgument('apache2');
+        $command->addPositionalArgument('reload');
+        $command->execute();
+    }
 }

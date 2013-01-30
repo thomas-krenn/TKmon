@@ -131,7 +131,7 @@
                                 if (that.attr("data-success-callback")) {
                                     var cb = that.attr("data-success-callback");
                                     if (typeof (window[cb]) === 'function') {
-                                        window[cb].call(that);
+                                        window[cb].call(that, struct);
                                     }
                                 }
 

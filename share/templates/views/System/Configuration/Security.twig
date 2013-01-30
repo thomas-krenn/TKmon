@@ -20,136 +20,15 @@
     </ul>
     <div class="tab-content">
         <div class="tab-pane active" id="tab-user">
-
-            <h4>{% trans "Change your your password" %}</h4>
-
-            <div id="change-errors">
-
-            </div>
-
-            <div id="change-success" class="hidden">
-                <div class="alert alert-success">
-                    <h4>{% trans "Success!" %}</h4>
-                    {% trans %}
-                    Thank you for changing your password. Please do this regularly to
-                    increase security for this device!
-                    {% endtrans %}
-                </div>
-            </div>
-
-            <form
-                    id="form-change-password"
-                    action="{{ web_link("ChangePassword") }}"
-                    data-ajax="form"
-                    data-ajax-type="json"
-                    data-form-focus-first="#current_password"
-                    data-form-reset="true"
-                    data-error-target="#change-errors"
-                    data-success-frame="#change-success"
-            >
-                <fieldset>
-                    <label for="current_password">{% trans "Current password" %}</label>
-                    <input id="current_password" type="password" name="current_password" />
-
-                    <label for="password">{% trans "New password" %}</label>
-                    <input id="password" type="password" name="password" />
-
-                    <label for="password_verify">{% trans "Verification" %}</label>
-                    <input id="password_verify" type="password" name="password_verify" />
-                </fieldset>
-
-                <div class="container-spacer-down">
-                    <button type="submit" class="btn btn-primary">
-                        <i class="icon-key"></i> {% trans "Change password" %}
-                    </button>
-                </div>
-            </form>
+            {% include "views/System/Configuration/Security/User.twig" %}
         </div>
 
         <div class="tab-pane" id="tab-access-icinga">
-            <h3>Icinga access</h3>
-
-            <code>FEATURE IS MISSING</code>
+            {% include "views/System/Configuration/Security/IcingaAccess.twig" %}
         </div>
 
         <div class="tab-pane" id="tab-access-ssh">
-            <h3>SSH access</h3>
-
-            <div id="access-errors">
-
-            </div>
-
-            <div id="access-success" class="hidden">
-                <div class="alert alert-success">
-                    <h4>{% trans "Success!" %}</h4>
-                    {% trans "User access has been modified successfully" %}
-                </div>
-            </div>
-
-            <p>
-                {% trans "System access is" %}: <span data-ajax-call="{{ web_link("SystemAccess") }}"></span>
-            </p>
-
-            <p id="access-again" class="hidden">
-                {% trans %}
-                Please <a href="#" id="access-again-link">click here</a> to change mode again.
-                {% endtrans %}
-            </p>
-
-            <form
-                id="form-system-access"
-                action="{{ web_link("ChangeSystemAccess") }}"
-                data-ajax="form"
-                data-ajax-type="json"
-                data-form-reset="true"
-                data-error-target="#access-errors"
-                data-success-frame="#access-success"
-                data-success-callback="access_success_callback"
-                >
-
-                <h4>{% trans "To change access please press the following button" %}</h4>
-
-                <p>
-                {% set username = user.getName() %}
-                {% if system_enabled == false %}
-                    <input type="hidden" name="access" value="1" />
-                    <button type="submit" class="btn btn-success">
-                        <i class="icon-unlock"></i> {% trans "Enable" %}
-                    </button>
-                    <p>
-                        {% trans %}
-                        System access (ssh/shell) for user {{ username }} will be enabled.
-                        {% endtrans %}
-                    </p>
-                {% else %}
-                    <input type="hidden" name="access" value="0" />
-                    <button type="submit" class="btn btn-danger">
-                        <i class="icon-lock"></i> {% trans "Disable" %}
-                    </button>
-                    <p>
-                        {% trans %}
-                        System access (ssh/shell) for user {{ username }} will be disabled.
-                        {% endtrans %}
-                    </p>
-                {% endif %}
-                </p
-            </form>
-
-            <script>
-                var access_success_callback = function() {
-                    $("#form-system-access").remove();
-                    $("#access-again").removeClass("hidden");
-                    $(document).Html5AjaxContent("insert");
-
-                    // Reload with hash
-                    $("#access-again-link").click(function(e) {
-                        e.preventDefault();
-                        var url = "{{ web_link('Index#tab-access-ssh') }}";
-                        location.href = url;
-                        location.reload();
-                    });
-                }
-            </script>
+            {% include "views/System/Configuration/Security/SshAccess.twig" %}
         </div>
     </div>
 </div>

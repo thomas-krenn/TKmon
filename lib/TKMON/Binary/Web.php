@@ -33,12 +33,20 @@ final class Web
      */
     public static function run()
     {
+
         $dirname = dirname(__FILE__);
         $libdir = dirname(dirname($dirname));
+
+        // -------------------------------------------------------------------------------------------------------------
+        // Default PHP settings
+        // -------------------------------------------------------------------------------------------------------------
 
         // Be brave my friend!
         ini_set('display_errors', true);
         ini_set('error_reporting', E_ALL);
+
+        // Default file permissions 644
+        umask(0022);
 
         $container = new \Pimple();
 
