@@ -27,7 +27,7 @@ namespace NETWAYS\Chain\Interfaces;
  * @package NETWAYS\Chain
  * @author Marius Hein <marius.hein@netways.de>
  */
-interface  CommandInterface
+interface CommandInterface
 {
     /**
      * Create a new command

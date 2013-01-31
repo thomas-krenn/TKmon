@@ -30,10 +30,21 @@ namespace NETWAYS\Chain;
 abstract class ReflectionHandler implements \NETWAYS\Chain\Interfaces\HandlerInterface
 {
 
+    /**
+     * Prefix of public methods to cal
+     */
     const COMMAND_METHOD_PREFIX = 'command';
 
+    /**
+     * Object reflector
+     * @var \ReflectionObject
+     */
     private $reflection;
 
+    /**
+     * Called when a command was called
+     * @param Interfaces\CommandInterface $command
+     */
     public function processRequest(\NETWAYS\Chain\Interfaces\CommandInterface $command)
     {
         if (!$this->reflection instanceof \ReflectionObject) {
@@ -49,5 +60,4 @@ abstract class ReflectionHandler implements \NETWAYS\Chain\Interfaces\HandlerInt
             $reflectionMethod->invokeArgs($this, $command->getArguments());
         }
     }
-
 }

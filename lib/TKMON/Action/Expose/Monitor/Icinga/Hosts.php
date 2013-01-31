@@ -27,7 +27,7 @@ namespace TKMON\Action\Expose\Monitor\Icinga;
  * @package TKMON\Action
  * @author Marius Hein <marius.hein@netways.de>
  */
-class Hosts  extends \TKMON\Action\Base
+class Hosts extends \TKMON\Action\Base
 {
     public function actionEdit(\NETWAYS\Common\ArrayObject $params)
     {

@@ -72,11 +72,9 @@ class Command extends \NETWAYS\Common\ArrayObject implements \NETWAYS\Chain\Inte
     public function getArguments()
     {
         $out = array();
-        foreach ($this as $key=>&$val) {
+        foreach ($this as $key => &$val) {
             $out[$key] =& $val;
         }
         return $out;
     }
-
-
 }

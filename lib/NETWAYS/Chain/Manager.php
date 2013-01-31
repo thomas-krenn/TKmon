@@ -31,6 +31,11 @@ namespace NETWAYS\Chain;
  */
 class Manager extends \SplObjectStorage implements \NETWAYS\Chain\Interfaces\ManagerInterface
 {
+
+    /**
+     * Flag if we want to throw exceptions
+     * @var bool
+     */
     private $stopOnFirstHandlerException=false;
 
     /**
@@ -95,6 +100,4 @@ class Manager extends \SplObjectStorage implements \NETWAYS\Chain\Interfaces\Man
     {
         $this->stopOnFirstHandlerException = (bool)$flag;
     }
-
-
 }

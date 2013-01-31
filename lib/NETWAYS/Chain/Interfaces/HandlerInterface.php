@@ -29,5 +29,11 @@ namespace NETWAYS\Chain\Interfaces;
  */
 interface HandlerInterface
 {
+    /**
+     * Call interface for a handler
+     *
+     * @param CommandInterface $command
+     * @return void
+     */
     public function processRequest(\NETWAYS\Chain\Interfaces\CommandInterface $command);
 }
