@@ -19,27 +19,18 @@
  * @copyright 2012-2013 NETWAYS GmbH <info@netways.de>
  */
 
-namespace TKMON\Action\Expose\Monitor\Icinga;
+namespace TKMON\Form\Field;
 
 /**
- * Action handle contacts views
+ * Base field
  *
- * @package TKMON\Action
+ * @package TKMON\Form
  * @author Marius Hein <marius.hein@netways.de>
  */
-class Hosts extends \TKMON\Action\Base
+class Text extends \TKMON\Form\Field
 {
-    public function actionEdit(\NETWAYS\Common\ArrayObject $params)
+    protected function getTemplateName()
     {
-        $template = new \TKMON\Mvc\Output\TwigTemplate($this->container['template']);
-        $template->setTemplateName('views/Monitor/Icinga/Hosts/List.twig');
-
-        /** @var $hostData \TKMON\Model\Icinga\HostData */
-        $hostData = $this->container['hostData'];
-
-        $template['host_attributes'] = $hostData->getEditableAttributes();
-        $template['host_customvars'] = $hostData->getCustomVariables();
-
-        return $template;
+        return 'fields/Text.twig';
     }
 }

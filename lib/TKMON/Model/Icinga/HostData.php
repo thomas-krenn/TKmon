@@ -26,7 +26,7 @@ namespace TKMON\Model\Icinga;
  * @package TKMON\Model
  * @author Marius Hein <marius.hein@netways.de>
  */
-class HostData extends \ICINGA\Loader\FileSystem implements \TKMON\Interfaces\ApplicationModelInterface
+class HostData extends \ICINGA\Loader\FileSystem implements \TKMON\Interfaces\ApplicationModelInterface, \NETWAYS\Chain\Interfaces\ManagerInterface
 {
     /**
      * DI container
@@ -41,12 +41,26 @@ class HostData extends \ICINGA\Loader\FileSystem implements \TKMON\Interfaces\Ap
     private $strategy;
 
     /**
+     * All command handler registered
+     * @var \SplObjectStorage
+     */
+    private $handlers;
+
+    /**
+     * Flag if we throw attached handler errors immediately
+     * @var bool
+     */
+    private $stopOnFirstHandlerException=false;
+
+    /**
      * Create a new object
      * @param \Pimple $container
      */
     public function __construct(\Pimple $container)
     {
         $this->setContainer($container);
+
+        $this->handlers = new \SplObjectStorage();
 
         $this->strategy = new \ICINGA\Loader\Strategy\HostServiceObjects();
         $this->setStrategy($this->strategy);
@@ -69,5 +83,150 @@ class HostData extends \ICINGA\Loader\FileSystem implements \TKMON\Interfaces\Ap
     public function getContainer()
     {
         return $this->container;
+    }
+
+    /**
+     * Add a handler to chain
+     *
+     * @param \NETWAYS\Chain\Interfaces\HandlerInterface $handler
+     * @return void
+     */
+    public function appendHandlerToChain(\NETWAYS\Chain\Interfaces\HandlerInterface $handler)
+    {
+        $this->handlers->attach($handler);
+    }
+
+    /**
+     * Remove handler from chain
+     * @param \NETWAYS\Chain\Interfaces\HandlerInterface $handler
+     * @return void
+     */
+    public function removeHandlerFromChain(\NETWAYS\Chain\Interfaces\HandlerInterface $handler)
+    {
+        $this->handlers->detach($handler);
+    }
+
+    /**
+     * Run the request
+     * @param \NETWAYS\Chain\Interfaces\CommandInterface $command
+     * @throws mixed
+     * @throws \NETWAYS\Chain\Exception\HandlerException
+     * @return boolean
+     */
+    public function processRequest(\NETWAYS\Chain\Interfaces\CommandInterface $command)
+    {
+        /** @var $handler \NETWAYS\Chain\Interfaces\HandlerInterface */
+        $handler = null;
+
+        /** @var $handlerExceptions array|\Exception */
+        $handlerExceptions = array();
+        foreach ($this->handlers as $handler) {
+            try {
+                $handler->processRequest($command);
+            } catch (\NETWAYS\Chain\Exception\HandlerException $e) {
+                if ($this->stopOnFirstHandlerException === true) {
+                    throw $e;
+                } else {
+                    $handlerExceptions[] = $e;
+                }
+            }
+        }
+
+        if (count($handlerExceptions)) {
+            $exception = array_pop($handlerExceptions);
+            throw $exception;
+        }
+    }
+
+    /**
+     * Configure the chain what happens on error
+     * @param boolean $flag
+     * @return void
+     */
+    public function stopOnFirstHandlerException($flag)
+    {
+        $this->stopOnFirstHandlerException = (bool)$flag;
+    }
+
+    /**
+     * Call a command
+     * @param string $commandName
+     * @param mixed $arg1
+     */
+    protected function callCommand($commandName)
+    {
+        $arguments = func_get_args();
+        $commandName = array_shift($arguments);
+
+        $command = new \NETWAYS\Chain\Command($commandName);
+        $command->fromArray($arguments);
+        $this->processRequest($command); // Make the request
+    }
+
+    /**
+     * Creates a host
+     * @param \NETWAYS\Common\ArrayObject $attributes
+     * @return \ICINGA\Object\Host
+     */
+    public function createHost(\NETWAYS\Common\ArrayObject $attributes)
+    {
+        $record = \ICINGA\Object\Host::createObjectFromArray($attributes);
+
+        $this->callCommand('createHost', $record);
+
+        return $record;
+    }
+
+    /**
+     * Return default attributes
+     * @return \NETWAYS\Common\ArrayObject
+     */
+    public function getEditableAttributes()
+    {
+        $attributes = new \NETWAYS\Common\ArrayObject();
+        $this->callCommand('defaultEditableAttributes', $attributes);
+
+        /** @var $attribute \TKMON\Form\Field */
+        $attribute = null;
+        foreach ($attributes as $attribute) {
+            $attribute->setTemplate($this->container['template']);
+        }
+
+        return $attributes;
+    }
+
+    /**
+     * Return a list of editable custom variables to add
+     * @return \NETWAYS\Common\ArrayObject
+     */
+    public function getCustomVariables()
+    {
+        $attributes = new \NETWAYS\Common\ArrayObject();
+        $this->callCommand('defaultCustomVariables', $attributes);
+
+        /** @var $attribute \TKMON\Form\Field */
+        $attribute = null;
+        foreach ($attributes as $attribute) {
+            $attribute->setTemplate($this->container['template']);
+            $attribute->setNamePrefix('cf_');
+        }
+
+        return $attributes;
+    }
+
+
+    /**
+     * @return \NETWAYS\Common\ArrayObjectValidator
+     */
+    public function createValidator()
+    {
+        $validator = new \NETWAYS\Common\ArrayObjectValidator();
+
+        $validator->addValidator();
+
+        // Notify others
+        $this->callCommand('createValidator', $validator);
+
+        return $validator;
     }
 }

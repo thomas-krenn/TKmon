@@ -49,6 +49,10 @@
         "contactgroups": "tkmon-admin"
     },
 
+    "icinga.record.host": {
+        "use": "generic-host"
+    },
+
     "command.config": {
         "chpasswd":  {
             "path": "/usr/sbin/chpasswd",

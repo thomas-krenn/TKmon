@@ -119,5 +119,14 @@ class Container extends \Pimple
 
             return $factory;
         });
+
+        $this['hostData'] = function($c) {
+            $hostData = new \TKMON\Model\Icinga\HostData($c);
+
+            // Registering default attribute handler
+            $hostData->appendHandlerToChain(new \TKMON\Extension\Host\DefaultAttributes($c));
+
+            return $hostData;
+        };
     }
 }

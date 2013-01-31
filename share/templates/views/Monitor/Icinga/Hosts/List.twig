@@ -7,3 +7,110 @@
     Maintain hosts and services here.
     {% endtrans %}
 </p>
+
+<div class="alert alert-info">
+    <h4>{% trans "Add new" %}</h4>
+    <div>
+        {% trans %}
+        Press the following button to add a new host:
+        {% endtrans %}
+
+        <button data-action="new" class="btn btn-success">
+            <i class="icon-plus"></i> {% trans "Add new" %}
+        </button>
+
+        <br /><br />
+
+        <p>
+            {% trans %}
+            Please <a href="{{ restart_url }}">restart your icinga instance</a> that changes take effect.
+            {% endtrans %}
+        </p>
+    </div>
+</div>
+
+<table id="host-data-table" class="tkmon-data-table">
+    <tr>
+        <th>{% trans "Name" %}</th>
+        <th>{% trans "Alias" %}</th>
+        <th>{% trans "Address" %}</th>
+        <th>&nbsp;</th>
+    </tr>
+</table>
+
+<div id="edit-dialog" class="hide">
+
+    <form>
+
+    <div class="pull-left" style="margin-left: 20px;">
+
+        <h4>{% trans "Basic attributes" %}</h4>
+        {% for field in host_attributes %}
+            {% autoescape false %}
+            {{ field }}
+            {% endautoescape %}
+        {% endfor %}
+    </div>
+
+    <div class="pull-left" style="margin-left: 20px;">
+
+        <h4>{% trans "Customfields" %}</h4>
+        {% for field in host_customvars %}
+            {% autoescape false %}
+            {{ field }}
+            {% endautoescape %}
+        {% endfor %}
+    </div>
+
+    <div class="clearfix"></div>
+
+    <div class="alert alert-info container-spacer-down">
+
+        <div>
+        {% trans "Ready to create? Press one of the following buttons:" %}
+        </div>
+
+        <div class="container-spacer-down">
+            <button id="button-cancel" class="btn">
+                <i class="icon-remove"></i> {% trans "Cancel" %}
+            </button>
+
+            <button type="submit" id="button-save" class="btn btn-primary">
+                <i class="icon-plus"></i> {% trans "Create" %}
+            </button>
+        </div>
+
+        <div class="clearfix"></div>
+    </div>
+
+    </form>
+</div>
+
+<script>
+    require(['jquery', 'bootstrap'], function() {
+        "use strict";
+
+        var showDialog = function(data, mode) {
+            var test = $('#host-data-table').hasClass('hide');
+            if (!mode) {
+                mode = (!test==true) ? 'show' : 'hide';
+            }
+
+            if (mode === 'hide') {
+                $('#host-data-table').removeClass('hide');
+                $('#edit-dialog').addClass('hide');
+            } else {
+                $('#host-data-table').addClass('hide');
+                $('#edit-dialog').removeClass('hide');
+            }
+        }
+
+        $('button[data-action=new]').click(function() {
+            showDialog(null);
+        });
+
+        $('button#button-cancel').click(function() {
+            showDialog('hide');
+        });
+    });
+</script>
