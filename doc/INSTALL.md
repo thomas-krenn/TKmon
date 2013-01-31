@@ -154,6 +154,7 @@ Change icinga.cfg as follows
     -cfg_dir=/etc/icinga/objects/
     +cfg_dir=/etc/icinga/tkmon/base
     +cfg_dir=/etc/icinga/tkmon/system/contacts
+    +cfg_dir=/etc/icinga/tkmon/system/hosts
     +cfg_dir=/etc/icinga/tkmon/custom
 
      # Definitions for ido2db process checks

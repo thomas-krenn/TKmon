@@ -2,6 +2,9 @@
     {% for link in links %}
     {%  if link.hide == false %}
 
+    {% if link.type == 'divider' %}
+        <li class="divider"></li>
+    {% else %}
         <li class="{{ link.class }}">
 
         {% if link.type == 'header' %}
@@ -17,6 +20,7 @@
         {% endif %}
         </li>
 
+    {% endif %}
     {% endif %}
     {% endfor %}
 {% endmacro %}

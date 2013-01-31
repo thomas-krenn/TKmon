@@ -30,9 +30,20 @@
                 "href": "Monitor/Icinga/Logs"
             },
             {
+                "type": "divider"
+            },
+            {
+                "title": "Hosts",
+                "description": "Edit hosts",
+                "href": "Monitor/Icinga/Hosts/Edit"
+            },
+            {
                 "title": "Contacts",
                 "description": "Edit contacts",
                 "href": "Monitor/Icinga/Contacts/Edit"
+            },
+            {
+                "type": "divider"
             },
             {
                 "title": "Icinga Daemon",
