@@ -80,7 +80,33 @@ class ArrayObjectTest extends \PHPUnit_Framework_TestCase
         );
 
         $this->assertEquals($test, $a->getArrayCopy());
+    }
 
+    public function testFromArray()
+    {
+        $o = new \NETWAYS\Common\ArrayObject(array(
+            'a' => true
+        ));
+
+        $o->fromArray(array(
+            'b' => true,
+            'c' => true
+        ));
+
+        $this->assertEquals(
+            array(
+                'a' => true,
+                'b' => true,
+                'c' => true
+            ),
+            (array)$o
+        );
+
+        $string = (string)$o;
+
+        $this->assertContains('[storage:ArrayObject:private] => Array', $string);
+        $this->assertContains('[a] => 1'. PHP_EOL, $string);
+        $this->assertContains('[c] => 1'. PHP_EOL, $string);
     }
 
 }

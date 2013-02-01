@@ -308,6 +308,7 @@ final class Web
 
             // Thomas krenn specific attributes
             $hostData->appendHandlerToChain(new \TKMON\Extension\Host\ThomasKrennAttributes());
+
             return $hostData;
         };
 

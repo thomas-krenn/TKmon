@@ -65,6 +65,8 @@ class HostData extends \ICINGA\Loader\FileSystem implements \TKMON\Interfaces\Ap
         $this->strategy = new \ICINGA\Loader\Strategy\HostServiceObjects();
         $this->setStrategy($this->strategy);
         $this->setPath($this->container['config']['icinga.dir.host']);
+
+        $this->setDropAllFlag(true);
     }
 
     /**
@@ -164,26 +166,14 @@ class HostData extends \ICINGA\Loader\FileSystem implements \TKMON\Interfaces\Ap
     }
 
     /**
-     * Creates a host
-     * @param \NETWAYS\Common\ArrayObject $attributes
-     * @return \ICINGA\Object\Host
-     */
-    public function createHost(\NETWAYS\Common\ArrayObject $attributes)
-    {
-        $record = \ICINGA\Object\Host::createObjectFromArray($attributes);
-
-        $this->callCommand('createHost', $record);
-
-        return $record;
-    }
-
-    /**
      * Return default attributes
      * @return \NETWAYS\Common\ArrayObject
      */
     public function getEditableAttributes()
     {
         $attributes = new \NETWAYS\Common\ArrayObject();
+
+        // Notify others
         $this->callCommand('defaultEditableAttributes', $attributes);
 
         /** @var $attribute \TKMON\Form\Field */
@@ -202,6 +192,8 @@ class HostData extends \ICINGA\Loader\FileSystem implements \TKMON\Interfaces\Ap
     public function getCustomVariables()
     {
         $attributes = new \NETWAYS\Common\ArrayObject();
+
+        // Notify others
         $this->callCommand('defaultCustomVariables', $attributes);
 
         /** @var $attribute \TKMON\Form\Field */
@@ -222,11 +214,99 @@ class HostData extends \ICINGA\Loader\FileSystem implements \TKMON\Interfaces\Ap
     {
         $validator = new \NETWAYS\Common\ArrayObjectValidator();
 
-        $validator->addValidator();
+        /** @var $field \TKMON\Form\Field */
+        $field = null;
+
+        foreach ($this->getEditableAttributes() as $field) {
+            $validator->addValidatorObject($field->getValidator());
+        }
+
+        foreach ($this->getCustomVariables() as $field) {
+            $validator->addValidatorObject($field->getValidator());
+        }
 
         // Notify others
         $this->callCommand('createValidator', $validator);
 
         return $validator;
+    }
+
+    public function write()
+    {
+        $this->callCommand('beforeWrite', $this);
+        parent::write();
+        $this->callCommand('write', $this);
+    }
+
+    // ------------------------------------------------------------------------
+    // Data api
+    // ------------------------------------------------------------------------
+
+    /**
+     * Creates a host
+     * @param \NETWAYS\Common\ArrayObject $attributes
+     * @return \ICINGA\Object\Host
+     */
+    public function createHost(\NETWAYS\Common\ArrayObject $attributes)
+    {
+
+        $default = $this->container['config']['icinga.record.host'];
+        $attributes->mergeStdClass($default);
+
+        $record = \ICINGA\Object\Host::createObjectFromArray($attributes);
+
+        $this->callCommand('createHost', $record);
+
+        return $record;
+    }
+
+    public function updateHost(\ICINGA\Object\Host $host)
+    {
+
+        $oid = $host->getObjectIdentifier();
+
+        if ($this->offsetExists($oid) === false) {
+            throw new \TKMON\Exception\ModelException('Host does not existt: '. $oid);
+        }
+
+        $this->callCommand('beforeHostUpdate', $host);
+
+        $this[$oid] = $host;
+
+        $this->callCommand('hostUpdate', $host);
+    }
+
+    public function setHost(\ICINGA\Object\Host $host)
+    {
+        $oid = $host->getObjectIdentifier();
+
+        if ($this->offsetExists($oid)) {
+            throw new \TKMON\Exception\ModelException('Host exists: '. $oid);
+        }
+
+        $this[$oid] = $host;
+
+        $this->callCommand('beforeHostCreate', $host);
+
+        $this->callCommand('hostCreate', $host);
+    }
+
+    public function getHost($identifier)
+    {
+        if ($this->offsetExists($identifier) === false) {
+            throw new \TKMON\Exception\ModelException('Host does not exist: '. $identifier);
+        }
+
+        /** @var $host \ICINGA\Object\Host */
+        return $this->offsetGet($identifier);
+    }
+
+    public function removeHostByName($identifier)
+    {
+        if ($this->offsetExists($identifier) === false) {
+            throw new \TKMON\Exception\ModelException('Host does not exist: '. $identifier);
+        }
+
+        $this->offsetUnset($identifier);
     }
 }

@@ -58,12 +58,15 @@ class ValidatorObject
      */
     const VALIDATE_MANDATORY    = 'mandatory';
 
+    const VALIDATE_ANYTHING    = 'anything';
+
     /**
      * Predefine regexp configurations
      * @var array
      */
     private static $regexp = array(
-        self::VALIDATE_MANDATORY    => '/^.+$/'
+        self::VALIDATE_MANDATORY    => '/^.+$/',
+        self::VALIDATE_ANYTHING     => '/^.*$/'
     );
 
     /**

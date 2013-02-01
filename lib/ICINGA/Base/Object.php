@@ -38,6 +38,40 @@ namespace ICINGA\Base;
 abstract class Object extends \NETWAYS\Common\ArrayObject
 {
 
+    const CUSTOM_VARIABLE_PREFIX = 'cf_';
+
+    /**
+     * Removed all custom variables
+     *
+     * And return an array
+     *
+     * @param \NETWAYS\Common\ArrayObject $attributes
+     * @return array
+     */
+    private static function extractCustomVariables(\NETWAYS\Common\ArrayObject $attributes)
+    {
+        $out = array();
+        $unset = array();
+        $match = array();
+
+        foreach ($attributes as $key=>$val) {
+            if (preg_match('/^'. self::CUSTOM_VARIABLE_PREFIX. '(.+)$/', $key, $match)) {
+                $out[$match[1]] = $val;
+                $unset[] = $key;
+            }
+        }
+
+        /*
+         * Extra step: Modifying the iterator while iterating throws
+         * notice
+         */
+        foreach ($unset as $unsetVal) {
+            $attributes->offsetUnset($unsetVal);
+        }
+
+        return $out;
+    }
+
     /**
      * Create a object from attributes
      *
@@ -51,10 +85,10 @@ abstract class Object extends \NETWAYS\Common\ArrayObject
         $object = new $class();
 
         if ($object instanceof Object) {
+            $customVariables = self::extractCustomVariables($attributes);
             $object->fromArrayObject($attributes);
+            $object->addCustomVariables($customVariables);
         }
-
-        $object->assertObjectIsValid();
 
         return $object;
     }
@@ -453,10 +487,41 @@ abstract class Object extends \NETWAYS\Common\ArrayObject
         throw new \ICINGA\Exception\ConfigException('Method not implemented');
     }
 
+    public function createDataVoyager($withCustomVariables=false)
+    {
+        $obj = new \stdClass();
+
+        foreach ($this->getAttributes() as $attr) {
+            $obj->{$attr} = $this[$attr];
+        }
+
+        if ($withCustomVariables === true) {
+            foreach ($this->getCustomVariables() as $key=>$val) {
+                $obj->{ self::CUSTOM_VARIABLE_PREFIX. strtolower($key) } = $val;
+            }
+        }
+
+        return $obj;
+    }
+
     /**
      * Test the object before writing
      *
      * @return void
      */
     abstract public function assertObjectIsValid();
+
+    /**
+     * @param \ArrayObject $object
+     */
+    public function fromArrayObject(\ArrayObject $object)
+    {
+        $customVars = self::extractCustomVariables($object);
+
+        parent::fromArrayObject($object);
+
+        $this->addCustomVariables($customVars);
+    }
+
+
 }

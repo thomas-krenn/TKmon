@@ -1,3 +1,4 @@
+{% set restart_url=web_link('Monitor/Daemon/Index#daemon-restart') %}
 <div class="page-header">
     <h2>{%  trans "Hosts" %}</h2>
 </div>
@@ -33,14 +34,77 @@
     <tr>
         <th>{% trans "Name" %}</th>
         <th>{% trans "Alias" %}</th>
+        <th>{% trans "No. services" %}</th>
         <th>{% trans "Address" %}</th>
         <th>&nbsp;</th>
     </tr>
+
+    {% if hosts.count() == 0 %}
+        <tr>
+
+            <td colspan="4">
+                {% trans "No hosts defined, click the button on top to create one!" %}
+            </td>
+
+        </tr>
+    {% endif %}
+
+    {% for host in hosts %}
+
+        <tr>
+            <td>{{ host.getHostName() }}</td>
+            <td>{{ host.getAlias() }}</td>
+            <td>{{ host.getServices().count() }}</td>
+            <td>{{ host.getAddress() }}</td>
+            <td>
+
+                <button data-action="edit"  data-value="{{ host.getObjectIdentifier() }}" class="btn btn-primary">
+                    <i class="icon-edit"></i> {% trans "Edit" %}
+                </button>
+
+                <div class="btn-group">
+
+                    <a href="#" data-toggle="dropdown"  class="btn btn-danger dropdown-toggle">
+                        <i class="icon-remove"></i> {% trans "Remove" %}
+                        <span class="caret"></span>
+                    </a>
+
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="#" data-action="remove" data-value="{{ host.getObjectIdentifier() }}">{% trans "Yes, delete please" %}</a>
+                        </li>
+                    </ul>
+
+                </div>
+
+            </td>
+        </tr>
+
+    {% endfor %}
 </table>
 
 <div id="edit-dialog" class="hide">
 
-    <form>
+    <div id="host-errors"></div>
+
+    <div id="host-success" class="alert alert-success hidden">
+        <h4>{% trans "Success!" %}</h4>
+        <div>
+            Data was written to icinga and is available on next restart
+        </div>
+    </div>
+
+    <form
+        id="host-data"
+        class="container-spacer-down"
+        action="{{ web_link("Write") }}"
+        data-ajax="form"
+        data-ajax-type="json"
+        data-error-target="#host-errors"
+        data-success-frame="#host-success"
+        data-before-callback="XXX"
+        data-success-callback="callback_hosts_written"
+    >
 
     <div class="pull-left" style="margin-left: 20px;">
 
@@ -76,12 +140,14 @@
             </button>
 
             <button type="submit" id="button-save" class="btn btn-primary">
-                <i class="icon-plus"></i> {% trans "Create" %}
+                <i class="icon-plus"></i> {% trans "Save" %}
             </button>
         </div>
 
         <div class="clearfix"></div>
     </div>
+
+        <input type="hidden" name="action" id="action" value="create" />
 
     </form>
 </div>
@@ -90,11 +156,50 @@
     require(['jquery', 'bootstrap'], function() {
         "use strict";
 
+        var fillForm = function(data) {
+            var test = !!(typeof(data) === "object" && data !== null);
+
+            // Reset the form or fill in the voyager object
+            $('#host-data *[name]').each(function(elementIndex, element) {
+                if (test) {
+                    var name = $(element).attr("name");
+                    var val = (name in data) ? data[name] : "";
+                    $(element).val(val);
+                } else {
+                    $(element).val("");
+                }
+            });
+
+            // Fix edit or create state
+            if (test && ('host_name' in data)) {
+                $('#host-data input[name=action]').val("edit");
+                $('#host-data input[name=host_name]').attr('readonly', 'readonly');
+
+            } else {
+                $('#host-data input[name=action]').val("create");
+                $('#host-data input[name=host_name]').removeAttr('readonly');
+            }
+
+            // Reset the displays
+            $('#host-success').addClass('hidden');
+            $('#host-errors *').remove();
+        };
+
+        window.callback_hosts_written = function() {
+            window.setTimeout(function() {
+                showDialog();
+                window.history.go(0);
+            }, 1500);
+        };
+
         var showDialog = function(data, mode) {
             var test = $('#host-data-table').hasClass('hide');
+
             if (!mode) {
                 mode = (!test==true) ? 'show' : 'hide';
             }
+
+            fillForm(data);
 
             if (mode === 'hide') {
                 $('#host-data-table').removeClass('hide');
@@ -107,6 +212,44 @@
 
         $('button[data-action=new]').click(function() {
             showDialog(null);
+        });
+
+        $('a[data-action=remove]').click(function(e) {
+            e.preventDefault();
+            var dataUrl = '{{ web_link("Remove") }}';
+            var id = $(this).attr('data-value');
+
+            $.ajax(dataUrl, {
+                type: 'POST',
+                data: JSON.stringify({
+                    host_name: id
+                }),
+                dataType: 'json',
+                success: function(data) {
+                    window.history.go(0);
+                }
+            });
+        });
+
+        $('button[data-action=edit]').click(function(e) {
+            e.preventDefault();
+            var dataUrl = '{{ web_link("Data") }}';
+            var id = $(this).attr('data-value');
+
+            $.ajax(dataUrl, {
+                type: 'POST',
+                data: JSON.stringify({
+                    host_name: id
+                }),
+                dataType: 'json',
+                success: function(data) {
+                    if (data && typeof(data) === "object") {
+                        if (data.success === true) {
+                            showDialog(data.data[0]);
+                        }
+                    }
+                }
+            });
         });
 
         $('button#button-cancel').click(function() {

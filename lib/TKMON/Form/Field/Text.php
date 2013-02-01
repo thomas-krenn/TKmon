@@ -29,8 +29,33 @@ namespace TKMON\Form\Field;
  */
 class Text extends \TKMON\Form\Field
 {
+    /**
+     * Template for a simple text box
+     * @return string
+     */
     protected function getTemplateName()
     {
         return 'fields/Text.twig';
+    }
+
+    /**
+     * Creates and returns a simple string validator
+     *
+     * @return \NETWAYS\Common\ValidatorObject
+     */
+    public function getValidator()
+    {
+        $validator = \NETWAYS\Common\ValidatorObject::Create(
+            $this->getNamePrefix(). $this->getName(),
+            $this->getLabel(),
+            \NETWAYS\Common\ValidatorObject::VALIDATE_MANDATORY
+        );
+
+        if ($this->getMandatory() === false) {
+            $validator->setType(\NETWAYS\Common\ValidatorObject::VALIDATE_ANYTHING);
+            $validator->setMandatory(false);
+        }
+
+        return $validator;
     }
 }

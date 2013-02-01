@@ -53,6 +53,10 @@
         "use": "generic-host"
     },
 
+    "icinga.record.service": {
+        "use": "generic-service"
+    },
+
     "command.config": {
         "chpasswd":  {
             "path": "/usr/sbin/chpasswd",

@@ -37,16 +37,31 @@ abstract class Field
 
     private $validator;
 
+    private $mandatory=true;
+
     /**
      * @var \Twig_Environment
      */
     private $template;
 
-    public function __construct($name, $label)
+    public function __construct($name, $label, $mandatory=true)
     {
         $this->setName($name);
         $this->setLabel($label);
+        $this->setMandatory($mandatory);
     }
+
+    public function setMandatory($mandatory)
+    {
+        $this->mandatory = $mandatory;
+    }
+
+    public function getMandatory()
+    {
+        return $this->mandatory;
+    }
+
+
 
     public function setLabel($label)
     {
@@ -115,5 +130,16 @@ abstract class Field
         return $this->toString();
     }
 
+    /**
+     * Path to a rendering template
+     *
+     * @return string
+     */
     abstract protected function getTemplateName();
+
+    /**
+     * Create a suitable validation object for this
+     * @return \NETWAYS\Common\ValidatorObject
+     */
+    abstract public function getValidator();
 }

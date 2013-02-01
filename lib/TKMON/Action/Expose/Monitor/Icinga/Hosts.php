@@ -36,10 +36,125 @@ class Hosts extends \TKMON\Action\Base
 
         /** @var $hostData \TKMON\Model\Icinga\HostData */
         $hostData = $this->container['hostData'];
+        $hostData->load();
 
         $template['host_attributes'] = $hostData->getEditableAttributes();
         $template['host_customvars'] = $hostData->getCustomVariables();
+        $template['hosts'] = $hostData;
 
         return $template;
+    }
+
+    public function actionData(\NETWAYS\Common\ArrayObject $params)
+    {
+        $response = new \TKMON\Mvc\Output\JsonResponse();
+
+        try {
+
+            $validator = new \NETWAYS\Common\ArrayObjectValidator();
+
+            $validator->addValidatorObject(
+                \NETWAYS\Common\ValidatorObject::Create(
+                    'host_name',
+                    'Host ID',
+                    \NETWAYS\Common\ValidatorObject::VALIDATE_MANDATORY
+                )
+            );
+
+            $validator->validateArrayObject($params);
+
+            /** @var $hostData \TKMON\Model\Icinga\HostData */
+            $hostData = $this->container['hostData'];
+            $hostData->load();
+
+            $response->addData($hostData->getHost($params['host_name'])->createDataVoyager(true));
+            $response->setSuccess(true);
+        } catch (\Exception $e) {
+            $response->addException($e);
+        }
+
+        return $response;
+    }
+
+    public function actionWrite(\NETWAYS\Common\ArrayObject $params)
+    {
+        $response = new \TKMON\Mvc\Output\JsonResponse();
+
+        try {
+            /** @var $hostData \TKMON\Model\Icinga\HostData */
+            $hostData = $this->container['hostData'];
+            $hostData->load();
+
+            $validator = $hostData->createValidator();
+
+            $validator->addValidatorObject(
+                \NETWAYS\Common\ValidatorObject::Create(
+                    'action',
+                    'internal action: create|edit',
+                    FILTER_VALIDATE_REGEXP,
+                    null,
+                    array(
+                        'regexp' => '/^(create|edit)$/'
+                    )
+                )
+            );
+
+            $validator->validateArrayObject($params);
+
+            $action = $params['action'];
+            $params->offsetUnset('action');
+
+            /** @var $host \ICINGA\Object\Host */
+            $host = null;
+
+            if ($action === 'create') {
+                $host = $hostData->createHost($params);
+                $hostData->setHost($host);
+            } elseif ($action === 'edit') {
+                $host = $hostData->getHost($params['host_name']);
+                $host->fromArrayObject($params);
+                $hostData->updateHost($host);
+            } else {
+                throw new \TKMON\Exception\ModelException('Unknown form action: '. $action);
+            }
+
+            $hostData->write();
+
+            $response->setSuccess(true);
+        } catch (\Exception $e) {
+            $response->addException($e);
+        }
+
+        return $response;
+    }
+
+    public function actionRemove(\NETWAYS\Common\ArrayObject $params)
+    {
+        $response = new \TKMON\Mvc\Output\JsonResponse();
+        try {
+            $validator = new \NETWAYS\Common\ArrayObjectValidator();
+            $validator->addValidatorObject(
+                \NETWAYS\Common\ValidatorObject::Create(
+                    'host_name',
+                    'Host identifier',
+                    \NETWAYS\Common\ValidatorObject::VALIDATE_MANDATORY
+                )
+            );
+            $validator->validateArrayObject($params);
+
+            $hostData = $this->container['hostData'];
+            $hostData->load();
+
+            /** @var $hostData \TKMON\Model\Icinga\HostData */
+            $hostData->removeHostByName($params['host_name']);
+
+            $hostData->write();
+
+            $response->setSuccess(true);
+        } catch (\Exception $e) {
+            $response->addException($e);
+        }
+
+        return $response;
     }
 }

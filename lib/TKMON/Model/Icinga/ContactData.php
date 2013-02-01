@@ -53,7 +53,6 @@ class ContactData extends \ICINGA\Loader\FileSystem implements \TKMON\Interfaces
 
         $this->setPath($this->container['config']['icinga.dir.contact']);
 
-
         $this->setDropAllFlag(true);
     }
 

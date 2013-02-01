@@ -127,6 +127,13 @@ class ArrayObject extends \ArrayObject
         }
     }
 
+    /**
+     * Returns a print_r
+     *
+     * Allows (string) conversions with out any errors
+     *
+     * @return string
+     */
     public function __toString() {
         return print_r($this, true);
     }

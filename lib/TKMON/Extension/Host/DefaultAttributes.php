@@ -79,5 +79,24 @@ class DefaultAttributes extends \NETWAYS\Chain\ReflectionHandler implements \TKM
         ));
     }
 
-    // public function commandDefaultCustomVariables(\NETWAYS\Common\ArrayObject $attributes)
+    /**
+     * Add a simple ping check to host before creation
+     *
+     * @param \ICINGA\Object\Host $host
+     */
+    public function commandBeforeHostCreate(\ICINGA\Object\Host $host)
+    {
+        $serviceModel = new \TKMON\Model\Icinga\ServiceData($this->container);
+
+        $pingConfiguration = new \NETWAYS\Common\ArrayObject(
+            array(
+                'service_description'   => 'net-ping',
+                'check_command'         => 'check_ping!20,20%!40,40%'
+            )
+        );
+
+        $service = $serviceModel->createService($pingConfiguration);
+
+        $host->addService($service);
+    }
 }

@@ -60,8 +60,21 @@ class Contacts extends \TKMON\Action\Base
         $response = new \TKMON\Mvc\Output\JsonResponse();
 
         try {
+
+            $validator = new \NETWAYS\Common\ArrayObjectValidator();
+
+            $validator->addValidatorObject(
+                \NETWAYS\Common\ValidatorObject::Create(
+                    'contact_name',
+                    'Contact ID',
+                    \NETWAYS\Common\ValidatorObject::VALIDATE_MANDATORY
+                )
+            );
+
+            $validator->validateArrayObject($params);
+
             $contacts->load();
-            $response->addData($contacts->getContact($params->get('contact_name')));
+            $response->addData($contacts->getContact($params->get('contact_name'))->createDataVoyager(true));
             $response->setSuccess(true);
 
         } catch (\Exception $e) {
