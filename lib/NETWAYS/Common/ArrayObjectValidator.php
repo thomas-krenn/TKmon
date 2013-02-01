@@ -36,14 +36,6 @@ class ArrayObjectValidator extends ArrayObject
     const VALIDATE_MANDATORY    = 'mandatory';
 
     /**
-     * Predefine regexp configurations
-     * @var array
-     */
-    private static $regexp = array(
-        self::VALIDATE_MANDATORY    => '/^.+$/'
-    );
-
-    /**
      * Flag to throw an exception on validation error
      * @var bool
      */
@@ -61,6 +53,7 @@ class ArrayObjectValidator extends ArrayObject
     /**
      * Adds a new validator
      *
+     * @deprecated
      * @param string $field Field within the array
      * @param string $humanType Description which occurs in exception/error text
      * @param $type PHP VALIDATION_FILTER constant
@@ -69,39 +62,18 @@ class ArrayObjectValidator extends ArrayObject
      */
     public function addValidator($field, $humanType, $type, $flags = null, $options = null)
     {
-        $filter = new \stdClass();
-
-        $filter->humanType = $humanType;
-        $filter->flags = $flags;
-        $filter->field = $field;
-
-        if (($regexp = $this->getRegexFromLocalType($type)) !== null) {
-            $filter->type = FILTER_VALIDATE_REGEXP;
-            $filter->options = array(
-                'regexp' => $regexp
-            );
-        } else {
-            $filter->type = $type;
-            $filter->options = $options;
-        }
-
-
-        $this[$field] = $filter;
+        $validator = ValidatorObject::create($field, $humanType, $type, $flags, $options);
+        $this->addValidatorObject($validator);
     }
 
     /**
-     * Detects if we using internal validation constants
-     *
-     * @param string $type
-     * @return null|string regexp string
+     * Add validator object to validator
+     * 
+     * @param ValidatorObject $object
      */
-    private function getRegexFromLocalType($type)
+    public function addValidatorObject(ValidatorObject $object)
     {
-        if (isset(self::$regexp[$type])) {
-            return self::$regexp[$type];
-        }
-
-        return null;
+        $this[$object->getField()] = $object;
     }
 
     /**
@@ -113,10 +85,21 @@ class ArrayObjectValidator extends ArrayObject
     public function validateArrayObject(\ArrayObject $object)
     {
         $iterator = new \RecursiveIteratorIterator(new \RecursiveArrayIterator($object));
+        $got = array();
+
+        /*
+         * Testing existing values
+         */
+
         $return = true;
         foreach ($iterator as $field => $val) {
             if ($this->offsetExists($field)) {
+
+                /** @var $validator ValidatorObject */
                 $validator = $this[$field];
+
+                $got[] = $validator;
+
                 $test = $this->validateValue($validator, $val);
 
                 if ($test === false && $return === true) {
@@ -125,36 +108,65 @@ class ArrayObjectValidator extends ArrayObject
             }
         }
 
+        /*
+         * Testing mandatory objects
+         */
+        foreach ($this as $validator) {
+            if (in_array($validator, $got) === false) {
+                $this->validateMandatory($validator);
+            }
+        }
+
         return $return;
     }
 
     /**
+     * Validate mandatory fields
+     * @param ValidatorObject $validator
+     * @throws Exception\ValidatorException
+     */
+    private function validateMandatory(\NETWAYS\Common\ValidatorObject $validator)
+    {
+        if ($validator->isMandatory()) {
+            if ($this->throwException === true) {
+                throw new \NETWAYS\Common\Exception\ValidatorException(
+                    'Validation of field '
+                    . $validator->getField()
+                    . ' failed ('
+                    . $validator->getHumanDescription()
+                    . '). This field is mandatory'
+                );
+            }
+        }
+    }
+
+    /**
      * Single validator
-     * @param \stdClass $validator
+     * @param \NETWAYS\Common\ValidatorObject $validator
      * @param mixed $value
      * @return bool
      * @throws Exception\ValidatorException
      */
-    private function validateValue(\stdClass $validator, $value)
+    private function validateValue(\NETWAYS\Common\ValidatorObject $validator, $value)
     {
         $options = array();
-        if (isset($validator->options)) {
-            $options['options'] = $validator->options;
+        if ($validator->hasOptions()) {
+            $options['options'] = $validator->getOptions();
         }
 
-        if (isset($validator->flags)) {
-            $options['flags'] = $validator->flags;
+        if ($validator->hasFlags()) {
+            $options['flags'] = $validator->getFlags();
         }
 
-        $return = filter_var($value, $validator->type, $options);
+        $return = filter_var($value, $validator->getType(), $options);
 
         if ($return !== $value) {
             if ($this->throwException === true) {
                 throw new \NETWAYS\Common\Exception\ValidatorException(
                     'Validation of field '
-                    . $validator->field
-                    . ' fails. ('
-                    . $validator->humanType
+                    . $validator->getField()
+                    . ' failed. ('
+                    . $validator->getHumanDescription()
                     . ')'
                 );
             }

@@ -115,4 +115,27 @@ class ArrayObject extends \ArrayObject
             $this[$key] = $val;
         }
     }
+
+    /**
+     * Copy array data to this object
+     * @param array $values
+     */
+    public function fromArray(array $values)
+    {
+        foreach ($values as $key => $value) {
+            $this[$key] = $value;
+        }
+    }
+
+    /**
+     * Returns a print_r
+     *
+     * Allows (string) conversions with out any errors
+     *
+     * @return string
+     */
+    public function __toString()
+    {
+        return print_r($this, true);
+    }
 }

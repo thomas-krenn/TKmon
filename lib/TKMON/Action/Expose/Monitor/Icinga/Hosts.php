@@ -27,36 +27,36 @@ namespace TKMON\Action\Expose\Monitor\Icinga;
  * @package TKMON\Action
  * @author Marius Hein <marius.hein@netways.de>
  */
-class Contacts extends \TKMON\Action\Base
+class Hosts extends \TKMON\Action\Base
 {
     /**
-     * Display edit form
+     * Show main display
      * @param \NETWAYS\Common\ArrayObject $params
      * @return \TKMON\Mvc\Output\TwigTemplate
      */
     public function actionEdit(\NETWAYS\Common\ArrayObject $params)
     {
-
-        $contacts = new \TKMON\Model\Icinga\ContactData($this->container);
-        $contacts->load();
-        $contacts->ksort();
-
         $template = new \TKMON\Mvc\Output\TwigTemplate($this->container['template']);
-        $template->setTemplateName('views/Monitor/Icinga/Contacts/List.twig');
-        $template['contacts'] = $contacts;
+        $template->setTemplateName('views/Monitor/Icinga/Hosts/List.twig');
+
+        /** @var $hostData \TKMON\Model\Icinga\HostData */
+        $hostData = $this->container['hostData'];
+        $hostData->load();
+
+        $template['host_attributes'] = $hostData->getEditableAttributes();
+        $template['host_customvars'] = $hostData->getCustomVariables();
+        $template['hosts'] = $hostData;
 
         return $template;
     }
 
     /**
-     * Ajax data action
+     * Ajax data end point
      * @param \NETWAYS\Common\ArrayObject $params
      * @return \TKMON\Mvc\Output\JsonResponse
      */
     public function actionData(\NETWAYS\Common\ArrayObject $params)
     {
-        $contacts = new \TKMON\Model\Icinga\ContactData($this->container);
-
         $response = new \TKMON\Mvc\Output\JsonResponse();
 
         try {
@@ -65,20 +65,21 @@ class Contacts extends \TKMON\Action\Base
 
             $validator->addValidatorObject(
                 \NETWAYS\Common\ValidatorObject::create(
-                    'contact_name',
-                    'Contact ID',
+                    'host_name',
+                    'Host ID',
                     \NETWAYS\Common\ValidatorObject::VALIDATE_MANDATORY
                 )
             );
 
             $validator->validateArrayObject($params);
 
-            $contacts->load();
-            $response->addData($contacts->getContact($params->get('contact_name'))->createDataVoyager(true));
-            $response->setSuccess(true);
+            /** @var $hostData \TKMON\Model\Icinga\HostData */
+            $hostData = $this->container['hostData'];
+            $hostData->load();
 
+            $response->addData($hostData->getHost($params['host_name'])->createDataVoyager(true));
+            $response->setSuccess(true);
         } catch (\Exception $e) {
-            $response->setSuccess(false);
             $response->addException($e);
         }
 
@@ -86,54 +87,57 @@ class Contacts extends \TKMON\Action\Base
     }
 
     /**
-     * Json Api write data
+     * Ajax write endpoint
+     *
      * @param \NETWAYS\Common\ArrayObject $params
      * @return \TKMON\Mvc\Output\JsonResponse
+     * @throws \TKMON\Exception\ModelException
      */
     public function actionWrite(\NETWAYS\Common\ArrayObject $params)
     {
-        $contacts = new \TKMON\Model\Icinga\ContactData($this->container);
-
         $response = new \TKMON\Mvc\Output\JsonResponse();
 
         try {
-            $contacts->load();
+            /** @var $hostData \TKMON\Model\Icinga\HostData */
+            $hostData = $this->container['hostData'];
+            $hostData->load();
 
-            $validator = new \NETWAYS\Common\ArrayObjectValidator();
+            $validator = $hostData->createValidator();
 
-            $validator->addValidator(
-                'contact_name',
-                'Mandatory',
-                \NETWAYS\Common\ArrayObjectValidator::VALIDATE_MANDATORY
-            );
-
-            $validator->addValidator(
-                'alias',
-                'Mandatory',
-                \NETWAYS\Common\ArrayObjectValidator::VALIDATE_MANDATORY
-            );
-
-            $validator->addValidator(
-                'email',
-                'Email',
-                FILTER_VALIDATE_EMAIL
+            $validator->addValidatorObject(
+                \NETWAYS\Common\ValidatorObject::create(
+                    'action',
+                    'internal action: create|edit',
+                    FILTER_VALIDATE_REGEXP,
+                    null,
+                    array(
+                        'regexp' => '/^(create|edit)$/'
+                    )
+                )
             );
 
             $validator->validateArrayObject($params);
 
-            $record = $contacts->createContact($params);
+            $action = $params['action'];
+            $params->offsetUnset('action');
 
-            if ($params['contact_name'] === '###new###') {
-                $record->createObjectIdentifier();
-                $contacts->setContact($record);
+            /** @var $host \ICINGA\Object\Host */
+            $host = null;
+
+            if ($action === 'create') {
+                $host = $hostData->createHost($params);
+                $hostData->setHost($host);
+            } elseif ($action === 'edit') {
+                $host = $hostData->getHost($params['host_name']);
+                $host->fromArrayObject($params);
+                $hostData->updateHost($host);
             } else {
-                $contacts->updateContact($record);
+                throw new \TKMON\Exception\ModelException('Unknown form action: '. $action);
             }
 
-            $contacts->write();
+            $hostData->write();
 
             $response->setSuccess(true);
-
         } catch (\Exception $e) {
             $response->addException($e);
         }
@@ -142,35 +146,33 @@ class Contacts extends \TKMON\Action\Base
     }
 
     /**
-     * Json Api, remove contact
+     * Ajax remove endpoint
      * @param \NETWAYS\Common\ArrayObject $params
      * @return \TKMON\Mvc\Output\JsonResponse
      */
     public function actionRemove(\NETWAYS\Common\ArrayObject $params)
     {
-        $contacts = new \TKMON\Model\Icinga\ContactData($this->container);
-
         $response = new \TKMON\Mvc\Output\JsonResponse();
-
         try {
-            $contacts->load();
-
             $validator = new \NETWAYS\Common\ArrayObjectValidator();
-
-            $validator->addValidator(
-                'contact_name',
-                'Mandatory',
-                \NETWAYS\Common\ArrayObjectValidator::VALIDATE_MANDATORY
+            $validator->addValidatorObject(
+                \NETWAYS\Common\ValidatorObject::create(
+                    'host_name',
+                    'Host identifier',
+                    \NETWAYS\Common\ValidatorObject::VALIDATE_MANDATORY
+                )
             );
-
             $validator->validateArrayObject($params);
 
-            $contacts->removeContactByName($params['contact_name']);
+            $hostData = $this->container['hostData'];
+            $hostData->load();
 
-            $contacts->write();
+            /** @var $hostData \TKMON\Model\Icinga\HostData */
+            $hostData->removeHostByName($params['host_name']);
+
+            $hostData->write();
 
             $response->setSuccess(true);
-
         } catch (\Exception $e) {
             $response->addException($e);
         }

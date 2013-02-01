@@ -42,10 +42,19 @@
 
     "icinga.dir.base": "/etc/icinga/tkmon",
     "icinga.dir.contact": "{icinga.dir.base}/system/contacts",
+    "icinga.dir.host": "{icinga.dir.base}/system/hosts",
 
     "icinga.record.contact": {
         "use": "generic-contact",
         "contactgroups": "tkmon-admin"
+    },
+
+    "icinga.record.host": {
+        "use": "generic-host"
+    },
+
+    "icinga.record.service": {
+        "use": "generic-service"
     },
 
     "command.config": {

@@ -294,7 +294,23 @@ final class Web
         // Dummy call to initialize internationalization
         $container['intl'];
 
+        // --------------------------------------------------------------------
+        // Factories
+        // --------------------------------------------------------------------
 
+        // Application specific models
+
+        $container['hostData'] = function ($c) {
+            $hostData = new \TKMON\Model\Icinga\HostData($c);
+
+            // Registering default attribute handler
+            $hostData->appendHandlerToChain(new \TKMON\Extension\Host\DefaultAttributes($c));
+
+            // Thomas krenn specific attributes
+            $hostData->appendHandlerToChain(new \TKMON\Extension\Host\ThomasKrennAttributes());
+
+            return $hostData;
+        };
 
         echo $container['dispatcher']->dispatchRequest();
     }
