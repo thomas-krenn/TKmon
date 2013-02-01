@@ -28,11 +28,19 @@ namespace TKMON\Model\Icinga;
  */
 class ServiceData extends \TKMON\Model\ApplicationModel
 {
-
     // ------------------------------------------------------------------------
     // Data api
     // ------------------------------------------------------------------------
 
+    /**
+     * Create a service
+     *
+     * - Based on parameter attributes
+     * - Added default values from config
+     *
+     * @param \NETWAYS\Common\ArrayObject $attributes
+     * @return \ICINGA\Base\Object
+     */
     public function createService(\NETWAYS\Common\ArrayObject $attributes)
     {
         $default = $this->container['config']['icinga.record.service'];
@@ -40,5 +48,4 @@ class ServiceData extends \TKMON\Model\ApplicationModel
         $service = \ICINGA\Object\Service::createObjectFromArray($attributes);
         return $service;
     }
-
 }

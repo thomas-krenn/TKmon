@@ -30,10 +30,16 @@ namespace TKMON\Extension\Host;
 class DefaultAttributes extends \NETWAYS\Chain\ReflectionHandler implements \TKMON\Interfaces\ApplicationModelInterface
 {
     /**
+     * DI container
+     *
      * @var \Pimple
      */
     private $container;
 
+    /**
+     * Create a new object extender
+     * @param \Pimple $container
+     */
     public function __construct(\Pimple $container)
     {
         $this->setContainer($container);
@@ -61,6 +67,13 @@ class DefaultAttributes extends \NETWAYS\Chain\ReflectionHandler implements \TKM
     // COMMAND METHOD API
     // ------------------------------------------------------------------------
 
+    /**
+     * Hook for creation
+     *
+     * Add default attributes from configuration
+     *
+     * @param \ICINGA\Object\Host $host
+     */
     public function commandCreateHost(\ICINGA\Object\Host $host)
     {
         $default = $this->container['config']['icinga.record.host'];
@@ -70,17 +83,26 @@ class DefaultAttributes extends \NETWAYS\Chain\ReflectionHandler implements \TKM
         }
     }
 
+    /**
+     * Define default edit attributes
+     *
+     * @param \NETWAYS\Common\ArrayObject $attributes
+     */
     public function commandDefaultEditableAttributes(\NETWAYS\Common\ArrayObject $attributes)
     {
-        $attributes->fromArray(array(
-            'host_name' => new \TKMON\Form\Field\Text('host_name', _('Hostname')),
-            'alias'     => new \TKMON\Form\Field\Text('alias', _('Alias')),
-            'address'   => new \TKMON\Form\Field\Text('address', _('IP address'))
-        ));
+        $attributes->fromArray(
+            array(
+                'host_name' => new \TKMON\Form\Field\Text('host_name', _('Hostname')),
+                'alias'     => new \TKMON\Form\Field\Text('alias', _('Alias')),
+                'address'   => new \TKMON\Form\Field\Text('address', _('IP address'))
+            )
+        );
     }
 
     /**
      * Add a simple ping check to host before creation
+     *
+     * TODO: Build a catalogue to do this
      *
      * @param \ICINGA\Object\Host $host
      */

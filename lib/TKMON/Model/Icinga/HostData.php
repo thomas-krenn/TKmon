@@ -26,7 +26,8 @@ namespace TKMON\Model\Icinga;
  * @package TKMON\Model
  * @author Marius Hein <marius.hein@netways.de>
  */
-class HostData extends \ICINGA\Loader\FileSystem implements \TKMON\Interfaces\ApplicationModelInterface, \NETWAYS\Chain\Interfaces\ManagerInterface
+class HostData extends \ICINGA\Loader\FileSystem implements \TKMON\Interfaces\ApplicationModelInterface,
+\NETWAYS\Chain\Interfaces\ManagerInterface
 {
     /**
      * DI container
@@ -151,9 +152,12 @@ class HostData extends \ICINGA\Loader\FileSystem implements \TKMON\Interfaces\Ap
     }
 
     /**
-     * Call a command
+     * Call a command.
+     *
+     * Additional arguments are allowed to distribute to
+     * object neighbours
+     *
      * @param string $commandName
-     * @param mixed $arg1
      */
     protected function callCommand($commandName)
     {
@@ -208,6 +212,10 @@ class HostData extends \ICINGA\Loader\FileSystem implements \TKMON\Interfaces\Ap
 
 
     /**
+     * Create a validator
+     *
+     * Build from main attributes and custom variables
+     *
      * @return \NETWAYS\Common\ArrayObjectValidator
      */
     public function createValidator()
@@ -231,6 +239,11 @@ class HostData extends \ICINGA\Loader\FileSystem implements \TKMON\Interfaces\Ap
         return $validator;
     }
 
+    /**
+     * Write data to fs
+     *
+     * But call our object neighbours before
+     */
     public function write()
     {
         $this->callCommand('beforeWrite', $this);
@@ -260,6 +273,11 @@ class HostData extends \ICINGA\Loader\FileSystem implements \TKMON\Interfaces\Ap
         return $record;
     }
 
+    /**
+     * Update a host
+     * @param \ICINGA\Object\Host $host
+     * @throws \TKMON\Exception\ModelException
+     */
     public function updateHost(\ICINGA\Object\Host $host)
     {
 
@@ -276,6 +294,11 @@ class HostData extends \ICINGA\Loader\FileSystem implements \TKMON\Interfaces\Ap
         $this->callCommand('hostUpdate', $host);
     }
 
+    /**
+     * Create a new host
+     * @param \ICINGA\Object\Host $host
+     * @throws \TKMON\Exception\ModelException
+     */
     public function setHost(\ICINGA\Object\Host $host)
     {
         $oid = $host->getObjectIdentifier();
@@ -291,6 +314,12 @@ class HostData extends \ICINGA\Loader\FileSystem implements \TKMON\Interfaces\Ap
         $this->callCommand('hostCreate', $host);
     }
 
+    /**
+     * Get a host
+     * @param string $identifier host_name attribute
+     * @return mixed
+     * @throws \TKMON\Exception\ModelException
+     */
     public function getHost($identifier)
     {
         if ($this->offsetExists($identifier) === false) {
@@ -301,6 +330,11 @@ class HostData extends \ICINGA\Loader\FileSystem implements \TKMON\Interfaces\Ap
         return $this->offsetGet($identifier);
     }
 
+    /**
+     * Remove a host by host_name
+     * @param string $identifier host_name attribute
+     * @throws \TKMON\Exception\ModelException
+     */
     public function removeHostByName($identifier)
     {
         if ($this->offsetExists($identifier) === false) {

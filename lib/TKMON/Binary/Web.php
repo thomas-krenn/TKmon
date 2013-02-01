@@ -300,7 +300,7 @@ final class Web
 
         // Application specific models
 
-        $container['hostData'] = function($c) {
+        $container['hostData'] = function ($c) {
             $hostData = new \TKMON\Model\Icinga\HostData($c);
 
             // Registering default attribute handler

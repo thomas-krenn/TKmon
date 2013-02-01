@@ -64,7 +64,7 @@ class Contacts extends \TKMON\Action\Base
             $validator = new \NETWAYS\Common\ArrayObjectValidator();
 
             $validator->addValidatorObject(
-                \NETWAYS\Common\ValidatorObject::Create(
+                \NETWAYS\Common\ValidatorObject::create(
                     'contact_name',
                     'Contact ID',
                     \NETWAYS\Common\ValidatorObject::VALIDATE_MANDATORY

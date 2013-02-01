@@ -45,7 +45,7 @@ class Text extends \TKMON\Form\Field
      */
     public function getValidator()
     {
-        $validator = \NETWAYS\Common\ValidatorObject::Create(
+        $validator = \NETWAYS\Common\ValidatorObject::create(
             $this->getNamePrefix(). $this->getName(),
             $this->getLabel(),
             \NETWAYS\Common\ValidatorObject::VALIDATE_MANDATORY

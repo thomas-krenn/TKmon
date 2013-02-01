@@ -170,7 +170,7 @@ class ArrayObjectValidatorTest extends \PHPUnit_Framework_TestCase
         $validator->addValidatorObject($f2);
 
         // *** III ***
-        $f3 = \NETWAYS\Common\ValidatorObject::Create(
+        $f3 = \NETWAYS\Common\ValidatorObject::create(
             'f3',
             'Double',
             FILTER_VALIDATE_FLOAT

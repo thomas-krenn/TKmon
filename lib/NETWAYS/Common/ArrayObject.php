@@ -134,7 +134,8 @@ class ArrayObject extends \ArrayObject
      *
      * @return string
      */
-    public function __toString() {
+    public function __toString()
+    {
         return print_r($this, true);
     }
 }

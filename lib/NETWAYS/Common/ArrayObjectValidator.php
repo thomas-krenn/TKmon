@@ -53,6 +53,7 @@ class ArrayObjectValidator extends ArrayObject
     /**
      * Adds a new validator
      *
+     * @deprecated
      * @param string $field Field within the array
      * @param string $humanType Description which occurs in exception/error text
      * @param $type PHP VALIDATION_FILTER constant
@@ -61,10 +62,15 @@ class ArrayObjectValidator extends ArrayObject
      */
     public function addValidator($field, $humanType, $type, $flags = null, $options = null)
     {
-        $validator = ValidatorObject::Create($field, $humanType, $type, $flags, $options);
+        $validator = ValidatorObject::create($field, $humanType, $type, $flags, $options);
         $this->addValidatorObject($validator);
     }
 
+    /**
+     * Add validator object to validator
+     * 
+     * @param ValidatorObject $object
+     */
     public function addValidatorObject(ValidatorObject $object)
     {
         $this[$object->getField()] = $object;

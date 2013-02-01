@@ -29,6 +29,11 @@ namespace TKMON\Action\Expose\Monitor\Icinga;
  */
 class Hosts extends \TKMON\Action\Base
 {
+    /**
+     * Show main display
+     * @param \NETWAYS\Common\ArrayObject $params
+     * @return \TKMON\Mvc\Output\TwigTemplate
+     */
     public function actionEdit(\NETWAYS\Common\ArrayObject $params)
     {
         $template = new \TKMON\Mvc\Output\TwigTemplate($this->container['template']);
@@ -45,6 +50,11 @@ class Hosts extends \TKMON\Action\Base
         return $template;
     }
 
+    /**
+     * Ajax data end point
+     * @param \NETWAYS\Common\ArrayObject $params
+     * @return \TKMON\Mvc\Output\JsonResponse
+     */
     public function actionData(\NETWAYS\Common\ArrayObject $params)
     {
         $response = new \TKMON\Mvc\Output\JsonResponse();
@@ -54,7 +64,7 @@ class Hosts extends \TKMON\Action\Base
             $validator = new \NETWAYS\Common\ArrayObjectValidator();
 
             $validator->addValidatorObject(
-                \NETWAYS\Common\ValidatorObject::Create(
+                \NETWAYS\Common\ValidatorObject::create(
                     'host_name',
                     'Host ID',
                     \NETWAYS\Common\ValidatorObject::VALIDATE_MANDATORY
@@ -76,6 +86,13 @@ class Hosts extends \TKMON\Action\Base
         return $response;
     }
 
+    /**
+     * Ajax write endpoint
+     *
+     * @param \NETWAYS\Common\ArrayObject $params
+     * @return \TKMON\Mvc\Output\JsonResponse
+     * @throws \TKMON\Exception\ModelException
+     */
     public function actionWrite(\NETWAYS\Common\ArrayObject $params)
     {
         $response = new \TKMON\Mvc\Output\JsonResponse();
@@ -88,7 +105,7 @@ class Hosts extends \TKMON\Action\Base
             $validator = $hostData->createValidator();
 
             $validator->addValidatorObject(
-                \NETWAYS\Common\ValidatorObject::Create(
+                \NETWAYS\Common\ValidatorObject::create(
                     'action',
                     'internal action: create|edit',
                     FILTER_VALIDATE_REGEXP,
@@ -128,13 +145,18 @@ class Hosts extends \TKMON\Action\Base
         return $response;
     }
 
+    /**
+     * Ajax remove endpoint
+     * @param \NETWAYS\Common\ArrayObject $params
+     * @return \TKMON\Mvc\Output\JsonResponse
+     */
     public function actionRemove(\NETWAYS\Common\ArrayObject $params)
     {
         $response = new \TKMON\Mvc\Output\JsonResponse();
         try {
             $validator = new \NETWAYS\Common\ArrayObjectValidator();
             $validator->addValidatorObject(
-                \NETWAYS\Common\ValidatorObject::Create(
+                \NETWAYS\Common\ValidatorObject::create(
                     'host_name',
                     'Host identifier',
                     \NETWAYS\Common\ValidatorObject::VALIDATE_MANDATORY

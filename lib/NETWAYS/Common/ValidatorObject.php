@@ -31,8 +31,17 @@ namespace NETWAYS\Common;
  */
 class ValidatorObject
 {
-
-    public static function Create($field, $humanDescription, $type, $flags = null, $options = null)
+    /**
+     * Builder to create validator objects
+     *
+     * @param string $field
+     * @param string $humanDescription
+     * @param string|int $type
+     * @param int|null $flags
+     * @param array|null $options
+     * @return ValidatorObject
+     */
+    public static function create($field, $humanDescription, $type, $flags = null, $options = null)
     {
         $class = __CLASS__;
 
@@ -42,7 +51,7 @@ class ValidatorObject
         $validator->setHumanDescription($humanDescription);
         $validator->setType($type);
 
-        if  ($flags) {
+        if ($flags) {
             $validator->setFlags($flags);
         }
 
@@ -58,6 +67,9 @@ class ValidatorObject
      */
     const VALIDATE_MANDATORY    = 'mandatory';
 
+    /**
+     * Anything regex, not mandatory
+     */
     const VALIDATE_ANYTHING    = 'anything';
 
     /**
@@ -210,6 +222,8 @@ class ValidatorObject
     }
 
     /**
+     * Setter for orig type
+     *
      * @param mixed $origType
      */
     public function setOrigType($origType)
@@ -218,6 +232,8 @@ class ValidatorObject
     }
 
     /**
+     * Getter for orig type
+     *
      * @return mixed
      */
     public function getOrigType()
@@ -307,6 +323,11 @@ class ValidatorObject
         return (count($this->getOptions()) > 0) ? true : false;
     }
 
+    /**
+     * Test if validator has flags
+     *
+     * @return bool
+     */
     public function hasFlags()
     {
         if ($this->getFlags() !== null) {

@@ -10,7 +10,7 @@ class ValidatorObjectTest extends \PHPUnit_Framework_TestCase
         $data = new \NETWAYS\Common\ArrayObject();
         $data['test1'] = 0xf;
 
-        $o = \NETWAYS\Common\ValidatorObject::Create(
+        $o = \NETWAYS\Common\ValidatorObject::create(
             'test1',
             'test2',
             FILTER_VALIDATE_INT,

@@ -29,71 +29,130 @@ namespace TKMON\Form;
  */
 abstract class Field
 {
+    /**
+     * Label
+     * @var string
+     */
     private $label;
 
+    /**
+     * Name (parameter name)
+     * @var string
+     */
     private $name;
 
+    /**
+     * Prefix
+     *
+     * Can be configured later that the name
+     *
+     * @var string
+     */
     private $namePrefix;
 
-    private $validator;
-
+    /**
+     * Flag indicates that field is mandatory
+     *
+     * - Controls the validator
+     *
+     * @var bool
+     */
     private $mandatory=true;
 
     /**
+     * Template environment
+     *
      * @var \Twig_Environment
      */
     private $template;
 
-    public function __construct($name, $label, $mandatory=true)
+    /**
+     * Creates new field
+     * @param string $name
+     * @param string $label
+     * @param bool $mandatory
+     */
+    public function __construct($name, $label, $mandatory = true)
     {
         $this->setName($name);
         $this->setLabel($label);
         $this->setMandatory($mandatory);
     }
 
+    /**
+     * Setter for mandatory
+     * @param bool $mandatory
+     */
     public function setMandatory($mandatory)
     {
         $this->mandatory = $mandatory;
     }
 
+    /**
+     * Getter for mandatory
+     * @return bool
+     */
     public function getMandatory()
     {
         return $this->mandatory;
     }
 
-
-
+    /**
+     * Setter for label
+     * @param string $label
+     */
     public function setLabel($label)
     {
         $this->label = $label;
     }
 
+    /**
+     * Getter for label
+     * @return string
+     */
     public function getLabel()
     {
         return $this->label;
     }
 
+    /**
+     * Setter for name
+     * @param string $name
+     */
     public function setName($name)
     {
         $this->name = $name;
     }
 
-    public function setNamePrefix($namePrefix)
-    {
-        $this->namePrefix = $namePrefix;
-    }
-
-    public function getNamePrefix()
-    {
-        return $this->namePrefix;
-    }
-
+    /**
+     * Getter for name
+     * @return string
+     */
     public function getName()
     {
         return $this->name;
     }
 
     /**
+     * Setter for the name prefix
+     * @param $namePrefix
+     */
+    public function setNamePrefix($namePrefix)
+    {
+        $this->namePrefix = $namePrefix;
+    }
+
+    /**
+     * Getter for the name prefix
+     * @return string
+     */
+    public function getNamePrefix()
+    {
+        return $this->namePrefix;
+    }
+
+    /**
+     * Setter for template environment
      * @param \Twig_Environment $template
      */
     public function setTemplate($template)
@@ -102,6 +161,7 @@ abstract class Field
     }
 
     /**
+     * Getter for template environment
      * @return \Twig_Environment
      */
     public function getTemplate()
@@ -109,6 +169,13 @@ abstract class Field
         return $this->template;
     }
 
+    /**
+     * Compile field to html
+     *
+     * Ensures that error exception text is in the output
+     *
+     * @return string
+     */
     public function toString()
     {
         $template = new \TKMON\Mvc\Output\TwigTemplate($this->template);
@@ -125,6 +192,10 @@ abstract class Field
         }
     }
 
+    /**
+     * Magic function
+     * @return string
+     */
     public function __toString()
     {
         return $this->toString();
@@ -132,7 +203,6 @@ abstract class Field
 
     /**
      * Path to a rendering template
-     *
      * @return string
      */
     abstract protected function getTemplateName();

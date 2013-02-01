@@ -54,7 +54,7 @@ abstract class Object extends \NETWAYS\Common\ArrayObject
         $unset = array();
         $match = array();
 
-        foreach ($attributes as $key=>$val) {
+        foreach ($attributes as $key => $val) {
             if (preg_match('/^'. self::CUSTOM_VARIABLE_PREFIX. '(.+)$/', $key, $match)) {
                 $out[$match[1]] = $val;
                 $unset[] = $key;
@@ -487,7 +487,15 @@ abstract class Object extends \NETWAYS\Common\ArrayObject
         throw new \ICINGA\Exception\ConfigException('Method not implemented');
     }
 
-    public function createDataVoyager($withCustomVariables=false)
+    /**
+     * Create a object
+     *
+     * Which can be used to transport the data to ajax services
+     *
+     * @param bool $withCustomVariables
+     * @return \stdClass
+     */
+    public function createDataVoyager($withCustomVariables = false)
     {
         $obj = new \stdClass();
 
@@ -496,7 +504,7 @@ abstract class Object extends \NETWAYS\Common\ArrayObject
         }
 
         if ($withCustomVariables === true) {
-            foreach ($this->getCustomVariables() as $key=>$val) {
+            foreach ($this->getCustomVariables() as $key => $val) {
                 $obj->{ self::CUSTOM_VARIABLE_PREFIX. strtolower($key) } = $val;
             }
         }
@@ -512,6 +520,10 @@ abstract class Object extends \NETWAYS\Common\ArrayObject
     abstract public function assertObjectIsValid();
 
     /**
+     * Fill object from array object
+     *
+     * Loads default attributes and custom variables
+     *
      * @param \ArrayObject $object
      */
     public function fromArrayObject(\ArrayObject $object)
@@ -522,6 +534,4 @@ abstract class Object extends \NETWAYS\Common\ArrayObject
 
         $this->addCustomVariables($customVars);
     }
-
-
 }
