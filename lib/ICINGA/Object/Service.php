@@ -74,9 +74,14 @@ class Service extends \ICINGA\Base\Object
 
     /**
      * Host
-     * @var Host
+     * @var \Icinga\Object\Host
      */
     private $host;
+
+    /**
+     * @var \Icinga\Object\Command
+     */
+    private $command;
 
     /**
      * Creates and configures the new object
@@ -166,7 +171,6 @@ class Service extends \ICINGA\Base\Object
      */
     public function setHost(Host $host)
     {
-        $this->hostName = $host->hostName;
         $this->host = $host;
     }
 
@@ -178,4 +182,38 @@ class Service extends \ICINGA\Base\Object
     {
         return $this->host;
     }
+
+    /**
+     * Setter for command
+     * @param \Icinga\Object\Command $command
+     */
+    public function setCommand(\Icinga\Object\Command $command)
+    {
+        $this->command = $command;
+    }
+
+    /**
+     * Getter for command
+     * @return \Icinga\Object\Command
+     */
+    public function getCommand()
+    {
+        return $this->command;
+    }
+
+    /**
+     * Update object dependencies
+     */
+    public function updateDependencies()
+    {
+        if ($this->host) {
+            $this->hostName = $this->host->hostName;
+        }
+
+        if ($this->command) {
+            $this->checkCommand = $this->command->getCheckCommand();
+        }
+    }
+
+
 }

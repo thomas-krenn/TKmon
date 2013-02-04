@@ -57,6 +57,8 @@
         "use": "generic-service"
     },
 
+    "icinga.catalogue.services.default": "{core.etc_dir}/default-services.json",
+
     "command.config": {
         "chpasswd":  {
             "path": "/usr/sbin/chpasswd",

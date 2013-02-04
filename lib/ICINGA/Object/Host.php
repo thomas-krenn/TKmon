@@ -22,7 +22,7 @@
 namespace ICINGA\Object;
 
 /**
- * Object class
+ * Host class
  *
  * @package ICINGA
  * @author Marius Hein <marius.hein@netways.de>

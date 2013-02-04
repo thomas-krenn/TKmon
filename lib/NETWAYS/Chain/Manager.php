@@ -100,4 +100,24 @@ class Manager extends \SplObjectStorage implements \NETWAYS\Chain\Interfaces\Man
     {
         $this->stopOnFirstHandlerException = (bool)$flag;
     }
+
+    /**
+     * Call a command.
+     *
+     * Abstract call function to build command objects and fires
+     *
+     * Additional arguments are allowed to distribute to
+     * object neighbours
+     *
+     * @param string $commandName
+     */
+    public function callCommand($commandName)
+    {
+        $arguments = func_get_args();
+        $commandName = array_shift($arguments);
+
+        $command = new \NETWAYS\Chain\Command($commandName);
+        $command->fromArray($arguments);
+        $this->processRequest($command); // Make the request
+    }
 }

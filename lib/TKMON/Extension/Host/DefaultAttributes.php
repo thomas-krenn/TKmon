@@ -79,7 +79,7 @@ class DefaultAttributes extends \NETWAYS\Chain\ReflectionHandler implements \TKM
         $default = $this->container['config']['icinga.record.host'];
 
         if ($default instanceof \stdClass) {
-            $host->mergeStdClass($default);
+            $host->fromVoyagerObject($default);
         }
     }
 
@@ -94,7 +94,7 @@ class DefaultAttributes extends \NETWAYS\Chain\ReflectionHandler implements \TKM
             array(
                 'host_name' => new \TKMON\Form\Field\Text('host_name', _('Hostname')),
                 'alias'     => new \TKMON\Form\Field\Text('alias', _('Alias')),
-                'address'   => new \TKMON\Form\Field\Text('address', _('IP address'))
+                'address'   => new \TKMON\Form\Field\IpAddress('address', _('IP address'))
             )
         );
     }

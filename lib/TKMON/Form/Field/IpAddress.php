@@ -19,33 +19,29 @@
  * @copyright 2012-2013 NETWAYS GmbH <info@netways.de>
  */
 
-namespace TKMON\Model\Icinga;
+namespace TKMON\Form\Field;
 
 /**
- * Model handle service creation
- * @package TKMON\Model
+ * Field for ip addresses
+ *
+ * @package TKMON\Form
  * @author Marius Hein <marius.hein@netways.de>
  */
-class ServiceData extends \TKMON\Model\ApplicationModel
+class IpAddress extends Text
 {
-    // ------------------------------------------------------------------------
-    // Data api
-    // ------------------------------------------------------------------------
-
-    /**
-     * Create a service
-     *
-     * - Based on parameter attributes
-     * - Added default values from config
-     *
-     * @param \NETWAYS\Common\ArrayObject $attributes
-     * @return \ICINGA\Base\Object
-     */
-    public function createService(\NETWAYS\Common\ArrayObject $attributes)
+    public function getValidator()
     {
-        $default = $this->container['config']['icinga.record.service'];
-        $attributes->fromVoyagerObject($default);
-        $service = \ICINGA\Object\Service::createObjectFromArray($attributes);
-        return $service;
+        $validator = \NETWAYS\Common\ValidatorObject::create(
+            $this->getNamePrefix(). $this->getName(),
+            $this->getLabel(),
+            FILTER_VALIDATE_IP
+        );
+
+        if ($this->getMandatory() === false) {
+            $validator->setMandatory(false);
+        }
+
+        return $validator;
     }
+
 }

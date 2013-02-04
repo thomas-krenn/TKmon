@@ -19,33 +19,39 @@
  * @copyright 2012-2013 NETWAYS GmbH <info@netways.de>
  */
 
-namespace TKMON\Model\Icinga;
+namespace ICINGA\Base;
 
 /**
- * Model handle service creation
- * @package TKMON\Model
+ * Base catalogue data provider
+ *
+ * @package ICINGA
  * @author Marius Hein <marius.hein@netways.de>
  */
-class ServiceData extends \TKMON\Model\ApplicationModel
+abstract class CatalogueProvider extends \NETWAYS\Chain\ReflectionHandler
 {
-    // ------------------------------------------------------------------------
-    // Data api
-    // ------------------------------------------------------------------------
+    /**
+     * Initialize the provider
+     *
+     * - make ready
+     * - throw errors
+     *
+     * @return void
+     */
+    abstract public function commandInitialize();
 
     /**
-     * Create a service
-     *
-     * - Based on parameter attributes
-     * - Added default values from config
-     *
-     * @param \NETWAYS\Common\ArrayObject $attributes
-     * @return \ICINGA\Base\Object
+     * Query for items in this catalogue
+     * @param \NETWAYS\Common\ArrayObject $result
+     * @param string $query
+     * @return void
      */
-    public function createService(\NETWAYS\Common\ArrayObject $attributes)
-    {
-        $default = $this->container['config']['icinga.record.service'];
-        $attributes->fromVoyagerObject($default);
-        $service = \ICINGA\Object\Service::createObjectFromArray($attributes);
-        return $service;
-    }
+    abstract public function commandQuery(\NETWAYS\Common\ArrayObject $result, $query);
+
+    /**
+     * Return a ready to use item
+     * @param \stdClass $voyager
+     * @param string $name unique item id
+     * @return void
+     */
+    abstract public function commandGetItem(\stdClass $voyager, $name);
 }
