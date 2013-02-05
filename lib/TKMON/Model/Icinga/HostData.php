@@ -317,7 +317,7 @@ class HostData extends \ICINGA\Loader\FileSystem implements \TKMON\Interfaces\Ap
     /**
      * Get a host
      * @param string $identifier host_name attribute
-     * @return mixed
+     * @return \ICINGA\Object\Host
      * @throws \TKMON\Exception\ModelException
      */
     public function getHost($identifier)
@@ -342,5 +342,30 @@ class HostData extends \ICINGA\Loader\FileSystem implements \TKMON\Interfaces\Ap
         }
 
         $this->offsetUnset($identifier);
+    }
+
+    /**
+     * Return a couple of hosts
+     *
+     * @param string $query query
+     * @return \ICINGA\Object\Host[]
+     */
+    public function searchHost($query)
+    {
+        $query = strtolower($query);
+        $cb = function($item) use ($query) {
+
+            if (!($item instanceof \ICINGA\Object\Host)) {
+                return false;
+            }
+
+            return
+                strpos(strtolower($item->hostName), $query) !== false
+                || strpos(strtolower($item->alias), $query) !== false
+                || strpos(strtolower($item->displayName), $query) !== false
+                || strpos(strtolower($item->address), $query) !== false;
+        };
+
+        return array_filter($this->getArrayCopy(), $cb);
     }
 }

@@ -4,6 +4,7 @@
     "data": [
         {
             "service_description": "net-ping",
+            "display_name": "Ping check",
             "check_command": {
                 "command_name": "check_ping",
                 "arguments": [
@@ -34,6 +35,7 @@
         },
         {
             "service_description": "net-tcp",
+            "display_name": "TCP Port",
             "check_command": {
                 "command_name": "check_tcp",
                 "arguments": [
@@ -56,8 +58,10 @@
         },
         {
             "service_description": "net-udp",
+            "display_name": "UDP Port",
             "check_command": {
                 "command_name": "check_udp",
+                "display_name": "UDP Port",
                 "arguments": [
                     {
                         "label": "UDP Port",
@@ -78,6 +82,7 @@
         },
         {
             "service_description": "net-http",
+            "display_name": "Http response",
             "check_command": {
                 "command_name": "check_http",
                 "arguments": null
@@ -93,6 +98,7 @@
         },
         {
             "service_description": "net-httpname",
+            "display_name": "Http response (hostname)",
             "check_command": {
                 "command_name": "check_httpname",
                 "arguments": null
@@ -108,6 +114,7 @@
         },
         {
             "service_description": "net-http2",
+            "display_name": "Http response (vhost)",
             "check_command": {
                 "command_name": "check_http2",
                 "argument": [
@@ -142,6 +149,7 @@
         },
         {
             "service_description": "net-https",
+            "display_name": "Https response",
             "check_command": {
                 "command_name": "check_https",
                 "arguments": null

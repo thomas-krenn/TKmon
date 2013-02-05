@@ -38,6 +38,11 @@
                 "href": "Monitor/Icinga/Hosts/Edit"
             },
             {
+                "title": "Services",
+                "description": "Edit services",
+                "href": "Monitor/Icinga/Services/Edit"
+            },
+            {
                 "title": "Contacts",
                 "description": "Edit contacts",
                 "href": "Monitor/Icinga/Contacts/Edit"

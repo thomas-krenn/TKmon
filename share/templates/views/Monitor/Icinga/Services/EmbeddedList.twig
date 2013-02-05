@@ -1,0 +1,60 @@
+{% set hostName = host.getHostName() %}
+<h3>
+    {% trans %}
+    Services for {{ hostName }}
+    {% endtrans %}
+</h3>
+
+<div class="container-spacer-down alert alert-info">
+    Click on the following button to add services to host:
+    <button data-action="new" class="btn btn-success">
+        <i class="icon-plus"></i> {% trans "Add service" %}
+    </button>
+</div>
+
+<table class="tkmon-data-table">
+
+    <tr>
+        <th>{% trans "Name" %}</th>
+        <th>{% trans "Display name" %}</th>
+        <th>&nbsp;</th>
+    </tr>
+
+    {% if services.count() == 0 %}
+
+    <tr>
+        <td colspan="3">
+            {% trans %}
+            No services defined for this host. Click on the 'Add' button to do so.
+            {% endtrans %}
+        </td>
+    </tr>
+
+    {% endif %}
+
+    {% for service in services %}
+    <tr>
+        <td>{{ service.getServiceDescription() }}</td>
+        <td>{{ service.getDisplayName() }}</td>
+
+        <td style="max-width: 40px; text-align: center;">
+            <button data-action="edit"  data-value="{{ service.getServiceDescription() }}" class="btn btn-primary">
+                <i class="icon-edit"></i> {% trans "Edit" %}
+            </button>
+
+            <div class="btn-group">
+                <a href="#" data-toggle="dropdown"  class="btn btn-danger dropdown-toggle">
+                    <i class="icon-remove"></i> {% trans "Remove" %}
+                    <span class="caret"></span>
+                </a>
+
+                <ul class="dropdown-menu">
+                    <li>
+                        <a href="#" data-action="remove" data-value="{{ service.getServiceDescription() }}">{% trans "Yes, delete please" %}</a>
+                    </li>
+                </ul>
+            </div>
+        </td>
+    </tr>
+    {% endfor %}
+</table>

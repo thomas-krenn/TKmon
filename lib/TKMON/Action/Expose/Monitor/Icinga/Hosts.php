@@ -179,4 +179,35 @@ class Hosts extends \TKMON\Action\Base
 
         return $response;
     }
+
+    public function actionSearch(\NETWAYS\Common\ArrayObject $params)
+    {
+        $response = new \TKMON\Mvc\Output\JsonResponse();
+        try {
+            $validator = new \NETWAYS\Common\ArrayObjectValidator();
+
+            $validator->addValidatorObject(
+                \NETWAYS\Common\ValidatorObject::create(
+                    'q',
+                    'Query',
+                    \NETWAYS\Common\ValidatorObject::VALIDATE_MANDATORY
+                )
+            );
+
+            $validator->validateArrayObject($params);
+
+            /** @var $hostData \TKMON\Model\Icinga\HostData */
+            $hostData = $this->container['hostData'];
+            $hostData->load();
+
+            $response->setData($hostData->searchHost($params['q']));
+
+            $response->setSuccess(true);
+
+        } catch (\Exception $e) {
+            $response->addException($e);
+        }
+
+        return $response;
+    }
 }

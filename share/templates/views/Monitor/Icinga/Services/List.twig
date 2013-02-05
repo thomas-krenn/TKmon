@@ -1,0 +1,62 @@
+<div class="page-header">
+    <h2>{%  trans "Services" %}</h2>
+</div>
+
+<p>
+    {% trans %}
+    Maintain services for hosts here.
+    {% endtrans %}
+</p>
+
+<div class="alert alert-info">
+    <h4>Start over</h4>
+    Please select a host to edit its services:
+
+    <form id="host-select">
+        <div class="input-append">
+            <input name="hostname" id="hostname" class="span3" type="text" placeholder="Hostname" />
+            <button type="submit" class="btn btn-success">
+                <i class="icon-pencil"></i> {% trans "Go" %}
+            </button>
+        </div>
+    </form>
+</div>
+
+<div class="container-spacer-down">
+
+    <!-- Placeholder see contentUpdateHandler() -->
+    <div id="services-grid"></div>
+
+    <div id="services-create" class="hide">
+        <h3>Edit services</h3>
+
+        <div class="alert alert-info">
+            <p>
+                {% trans %}
+                Ready to write? Press write button to do so or cancel to abort.
+                {% endtrans %}
+            </p>
+
+            <button data-action="create-cancel" class="btn">
+                <i class="icon-remove"></i> {% trans "Cancel" %}
+            </button>
+
+            <button data-action="create-write" class="btn btn-primary">
+                <i class="icon-ok"></i> {% trans "Write" %}
+            </button>
+        </div>
+    </div>
+</div>
+
+<script>
+    require(['TKMON/service/Editor'], function() {
+        $(document).serviceEditor({
+            hostName:   '{{ hostName }}',
+            searchUrl:  '{{ web_link('Monitor/Icinga/Hosts/Search') }}',
+            listUrl:    '{{ web_link("EmbeddedList") }}',
+            removeUrl:  '{{ web_link('Remove') }}'
+        });
+
+
+    });
+</script>

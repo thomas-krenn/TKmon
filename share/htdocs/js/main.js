@@ -33,5 +33,6 @@ require([
     // -------------------------
     "TKMON/jquery/AjaxForm",
     "TKMON/jquery/AjaxContent",
-    "TKMON/jquery/TabUrl"
+    "TKMON/jquery/TabUrl",
+    "TKMON/jquery/ErrorPopover"
 ]);

@@ -152,14 +152,16 @@ class Dispatcher
         $config = $this->container['config'];
 
         if ($config->get('web.rewrite', false) === true) {
-            return '/'. preg_replace(
+            $uri = '/'. preg_replace(
                 '@^'. preg_quote($config['web.path'], '@'). '@',
                 '',
                 $params->getParameter('REQUEST_URI', null, 'header')
             );
 
             // We do not need CGI params here
-            return preg_replace('@\?[^$]+$@', '', $uri);
+            $uri = preg_replace('@\?[^$]+$@', '', $uri);
+
+            return $uri;
         } else {
             if ($params->hasParameter('path')) {
                 return $params->getParameter('path');
