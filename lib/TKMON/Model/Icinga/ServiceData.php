@@ -33,19 +33,28 @@ class ServiceData extends \TKMON\Model\ApplicationModel
     // ------------------------------------------------------------------------
 
     /**
-     * Create a service
+     * Creates a service
      *
-     * - Based on parameter attributes
-     * - Added default values from config
+     * - From catalogue calues
+     * - Add defaults from config
      *
-     * @param \NETWAYS\Common\ArrayObject $attributes
-     * @return \ICINGA\Base\Object
+     * @param string $catalogueName
+     * @return \ICINGA\Object\Service
+     * @throws \TKMON\Exception\ModelException
      */
-    public function createService(\NETWAYS\Common\ArrayObject $attributes)
+    public function createServiceFromCatalogue($catalogueName)
     {
-        $default = $this->container['config']['icinga.record.service'];
-        $attributes->fromVoyagerObject($default);
-        $service = \ICINGA\Object\Service::createObjectFromArray($attributes);
-        return $service;
+        /** @var $catalogue \ICINGA\Catalogue\Services */
+        $catalogue = $this->container['serviceCatalogue'];
+
+        $service = $catalogue->getItem($catalogueName);
+
+        if ($service instanceof \ICINGA\Object\Service) {
+            $default = $this->container['config']['icinga.record.service'];
+            $service->fromVoyagerObject($default);
+            return $service;
+        }
+
+        throw new \TKMON\Exception\ModelException('Service not found in catalogue: '. $catalogueName);
     }
 }

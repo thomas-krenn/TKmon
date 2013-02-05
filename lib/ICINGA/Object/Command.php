@@ -42,6 +42,8 @@ class Command extends \ICINGA\Base\Object
     const ARGUMENT_SEPARATOR = '!';
 
     /**
+     * An array of argument objects
+     *
      * @var \ICINGA\Base\CommandArgument[]
      */
     private $arguments = array();
@@ -79,6 +81,10 @@ class Command extends \ICINGA\Base\Object
         return $this->arguments;
     }
 
+    /**
+     * Add single argument to object
+     * @param \ICINGA\Base\CommandArgument $argument
+     */
     public function addArgument(\ICINGA\Base\CommandArgument $argument)
     {
         $this->arguments[] = $argument;
@@ -162,7 +168,7 @@ class Command extends \ICINGA\Base\Object
     }
 
     /**
-     *
+     * Get valid string for service check_command property
      */
     public function getCheckCommand()
     {

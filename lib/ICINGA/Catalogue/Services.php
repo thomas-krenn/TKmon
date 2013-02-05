@@ -30,8 +30,10 @@ namespace ICINGA\Catalogue;
 class Services extends \ICINGA\Base\Catalogue
 {
     /**
-     * @param $name
-     * @return mixed
+     * Build a ready to service object
+     *
+     * @param string $name
+     * @return \ICINGA\Object\Service
      */
     public function getItem($name)
     {
@@ -60,6 +62,16 @@ class Services extends \ICINGA\Base\Catalogue
         }
 
         $service->setCommand($command);
+
+        if (isset($catalogueAttributes->tags)) {
+            $service->addCustomVariable('tags', implode(', ', $catalogueAttributes->tags));
+        }
+
+        foreach (array('name', 'label', 'description') as $attribute) {
+            if (isset($catalogueAttributes->{$attribute})) {
+                $service->addCustomVariable($attribute, $catalogueAttributes->{$attribute});
+            }
+        }
 
         return $service;
     }

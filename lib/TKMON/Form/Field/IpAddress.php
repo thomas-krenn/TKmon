@@ -29,6 +29,10 @@ namespace TKMON\Form\Field;
  */
 class IpAddress extends Text
 {
+    /**
+     * Create an ip validator
+     * @return \NETWAYS\Common\ValidatorObject
+     */
     public function getValidator()
     {
         $validator = \NETWAYS\Common\ValidatorObject::create(
@@ -43,5 +47,4 @@ class IpAddress extends Text
 
         return $validator;
     }
-
 }

@@ -79,6 +79,10 @@ class Service extends \ICINGA\Base\Object
     private $host;
 
     /**
+     * A Command object
+     *
+     * To handle values on commands with meta data
+     *
      * @var \Icinga\Object\Command
      */
     private $command;
@@ -214,6 +218,4 @@ class Service extends \ICINGA\Base\Object
             $this->checkCommand = $this->command->getCheckCommand();
         }
     }
-
-
 }

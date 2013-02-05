@@ -42,7 +42,6 @@ class JsonFiles extends \ICINGA\Base\CatalogueProvider
     private $data = array();
 
     /**
-     *
      * Index of unique object names
      *
      * @var array
@@ -50,6 +49,8 @@ class JsonFiles extends \ICINGA\Base\CatalogueProvider
     private $index = array();
 
     /**
+     * Set files to load
+     *
      * @param array|string $files
      */
     public function setFiles($files)
@@ -58,6 +59,8 @@ class JsonFiles extends \ICINGA\Base\CatalogueProvider
     }
 
     /**
+     * Getter for giles
+     *
      * @return array|string
      */
     public function getFiles()
@@ -65,11 +68,20 @@ class JsonFiles extends \ICINGA\Base\CatalogueProvider
         return $this->files;
     }
 
+    /**
+     * Add a single file to load
+     * @param string $file
+     */
     public function addFile($file)
     {
         $this->files[] = $file;
     }
 
+    /**
+     * Resets data and index
+     *
+     * To load new values into object
+     */
     public function resetData()
     {
         unset($this->data);
@@ -85,7 +97,8 @@ class JsonFiles extends \ICINGA\Base\CatalogueProvider
      * - make ready
      * - throw errors
      *
-     * @return viud
+     * @throws \NETWAYS\Chain\Exception\HandlerException
+     * @return void
      */
     public function commandInitialize()
     {
@@ -107,7 +120,6 @@ class JsonFiles extends \ICINGA\Base\CatalogueProvider
             $this->index[$entry->_catalogue_attributes->name] = $index;
         }
     }
-
 
     /**
      * Query for items
@@ -147,5 +159,4 @@ class JsonFiles extends \ICINGA\Base\CatalogueProvider
             $voyager->data = $this->data[$this->index[$name]];
         }
     }
-
 }

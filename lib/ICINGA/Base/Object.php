@@ -507,10 +507,15 @@ abstract class Object extends \NETWAYS\Common\ArrayObject
 
     /**
      * Method called to build all dependent data
+     *
+     * This is needed to change attributes lazy before
+     * it's needed
+     *
      */
     public function updateDependencies()
     {
         // PASS
+        // Implementation in child objects used in parent
     }
 
     /**

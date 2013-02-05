@@ -60,7 +60,6 @@ class CommandArgument
      */
     private $value;
 
-
     /**
      * Command argument builder shortcut
      * @param null|mixed $value
@@ -70,8 +69,13 @@ class CommandArgument
      * @param null|string $validation
      * @return \ICINGA\Base\CommandArgument
      */
-    public static function create($value = null, $argument = null, $label = null, $description = null, $validation = null)
-    {
+    public static function create(
+        $value = null,
+        $argument = null,
+        $label = null,
+        $description = null,
+        $validation = null
+    ) {
         $commandArgument = new CommandArgument();
 
         if ($value) {
