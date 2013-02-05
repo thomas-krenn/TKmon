@@ -264,7 +264,7 @@ class HostData extends \ICINGA\Loader\FileSystem implements \TKMON\Interfaces\Ap
     {
 
         $default = $this->container['config']['icinga.record.host'];
-        $attributes->mergeStdClass($default);
+        $attributes->fromVoyagerObject($default);
 
         $record = \ICINGA\Object\Host::createObjectFromArray($attributes);
 

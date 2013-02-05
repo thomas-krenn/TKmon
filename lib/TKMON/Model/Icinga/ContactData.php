@@ -134,7 +134,7 @@ class ContactData extends \ICINGA\Loader\FileSystem implements \TKMON\Interfaces
     public function createContact(\NETWAYS\Common\ArrayObject $attributes)
     {
         $default = $this->container['config']['icinga.record.contact'];
-        $attributes->mergeStdClass($default);
+        $attributes->fromVoyagerObject($default);
         $record = \ICINGA\Object\Contact::createObjectFromArray($attributes);
 
         return $record;

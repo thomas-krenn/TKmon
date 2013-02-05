@@ -79,7 +79,7 @@ class DefaultAttributes extends \NETWAYS\Chain\ReflectionHandler implements \TKM
         $default = $this->container['config']['icinga.record.host'];
 
         if ($default instanceof \stdClass) {
-            $host->mergeStdClass($default);
+            $host->fromVoyagerObject($default);
         }
     }
 
@@ -94,7 +94,7 @@ class DefaultAttributes extends \NETWAYS\Chain\ReflectionHandler implements \TKM
             array(
                 'host_name' => new \TKMON\Form\Field\Text('host_name', _('Hostname')),
                 'alias'     => new \TKMON\Form\Field\Text('alias', _('Alias')),
-                'address'   => new \TKMON\Form\Field\Text('address', _('IP address'))
+                'address'   => new \TKMON\Form\Field\IpAddress('address', _('IP address'))
             )
         );
     }
@@ -110,14 +110,7 @@ class DefaultAttributes extends \NETWAYS\Chain\ReflectionHandler implements \TKM
     {
         $serviceModel = new \TKMON\Model\Icinga\ServiceData($this->container);
 
-        $pingConfiguration = new \NETWAYS\Common\ArrayObject(
-            array(
-                'service_description'   => 'net-ping',
-                'check_command'         => 'check_ping!20,20%!40,40%'
-            )
-        );
-
-        $service = $serviceModel->createService($pingConfiguration);
+        $service = $serviceModel->createServiceFromCatalogue('net-ping');
 
         $host->addService($service);
     }

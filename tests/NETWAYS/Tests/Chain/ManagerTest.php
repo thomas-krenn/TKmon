@@ -4,6 +4,8 @@ namespace NETWAYS\Tests\Chain;
 
 require 'DummyHandler1.php';
 require 'DummyReflectionHandler1.php';
+require 'DummyReflectionHandler2.php';
+require 'DataStruct.php';
 
 class ManagerTest extends \PHPUnit_Framework_TestCase
 {
@@ -91,5 +93,24 @@ class ManagerTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals(5, $command['a']);
         $this->assertEquals(8, $command['b']);
+    }
+
+    public function testChain5()
+    {
+        $manager = new \NETWAYS\Chain\Manager();
+
+        $manager->appendHandlerToChain(new DummyReflectionHandler2());
+        $manager->appendHandlerToChain(new DummyReflectionHandler2());
+        $manager->appendHandlerToChain(new DummyReflectionHandler2());
+        $manager->appendHandlerToChain(new DummyReflectionHandler2());
+        $manager->appendHandlerToChain(new DummyReflectionHandler2());
+        $manager->appendHandlerToChain(new DummyReflectionHandler2());
+
+        $ds = new DataStruct();
+
+        $manager->callCommand('fibunacci', $ds);
+
+        $this->assertEquals(13, $ds->a);
+        $this->assertEquals(21, $ds->b);
     }
 }

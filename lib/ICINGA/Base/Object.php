@@ -94,6 +94,19 @@ abstract class Object extends \NETWAYS\Common\ArrayObject
     }
 
     /**
+     * Creates from an unstructured data voyager
+     *
+     * @param \stdClass $object
+     * @return \NETWAYS\Common\ArrayObject
+     */
+    public static function createFromDataVoyager(\stdClass $object)
+    {
+        $data = new \NETWAYS\Common\ArrayObject();
+        $data->fromVoyagerObject($object);
+        return self::createObjectFromArray($data);
+    }
+
+    /**
      * Normalize object id's
      * @param string $name
      * @return string
@@ -381,6 +394,7 @@ abstract class Object extends \NETWAYS\Common\ArrayObject
             if ($id === 'set') {
                 $this[$attribute] = $arguments[0];
             } elseif ($id === 'get') {
+                $this->updateDependencies();
                 return $this[$attribute];
             }
         }
@@ -398,6 +412,7 @@ abstract class Object extends \NETWAYS\Common\ArrayObject
      */
     public function __get($name)
     {
+        $this->updateDependencies();
         return $this[$this->attributeNameProcessor($name)];
     }
 
@@ -424,7 +439,10 @@ abstract class Object extends \NETWAYS\Common\ArrayObject
      */
     public function toString()
     {
-        $this->assertObjectIsValid();
+
+        $this->updateDependencies(); // Make sure object data is ready
+
+        $this->assertObjectIsValid(); // Check if we can use this object
 
         $out = '';
 
@@ -488,6 +506,19 @@ abstract class Object extends \NETWAYS\Common\ArrayObject
     }
 
     /**
+     * Method called to build all dependent data
+     *
+     * This is needed to change attributes lazy before
+     * it's needed
+     *
+     */
+    public function updateDependencies()
+    {
+        // PASS
+        // Implementation in child objects used in parent
+    }
+
+    /**
      * Create a object
      *
      * Which can be used to transport the data to ajax services
@@ -498,6 +529,8 @@ abstract class Object extends \NETWAYS\Common\ArrayObject
     public function createDataVoyager($withCustomVariables = false)
     {
         $obj = new \stdClass();
+
+        $this->updateDependencies();
 
         foreach ($this->getAttributes() as $attr) {
             $obj->{$attr} = $this[$attr];

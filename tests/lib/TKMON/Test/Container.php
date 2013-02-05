@@ -12,6 +12,9 @@ class Container extends \Pimple
         $this['etc_dir'] = '';
         $this['share_dir'] = '';
 
+        // Testing only
+        $this['test_dir'] = dirname(dirname(dirname(__DIR__)));
+
         $this['params_class'] = '\stdClass';
         $this['params'] = $this->share(function($c) {
             return new $c['params_class'];
@@ -120,13 +123,19 @@ class Container extends \Pimple
             return $factory;
         });
 
-        $this['hostData'] = function($c) {
+        $this['hostData'] = function ($c) {
             $hostData = new \TKMON\Model\Icinga\HostData($c);
 
             // Registering default attribute handler
             $hostData->appendHandlerToChain(new \TKMON\Extension\Host\DefaultAttributes($c));
 
             return $hostData;
+        };
+
+        $container['serviceCatalogue'] = function ($c) {
+            $catalogue = new \ICINGA\Catalogue\Services();
+
+            return $catalogue;
         };
     }
 }

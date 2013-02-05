@@ -70,7 +70,7 @@ class ArrayObjectTest extends \PHPUnit_Framework_TestCase
         $p->test3 = 'CC';
         $p->test4 = 'DD';
 
-        $a->mergeStdClass($p);
+        $a->fromVoyagerObject($p);
 
         $test = array(
             'test1' => 'AA',

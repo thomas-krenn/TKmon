@@ -106,10 +106,10 @@ class ArrayObject extends \ArrayObject
     }
 
     /**
-     * Merge stdClass properties into object
+     * Add stdClass properties into object
      * @param \stdClass $object
      */
-    public function mergeStdClass(\stdClass $object)
+    public function fromVoyagerObject(\stdClass $object)
     {
         foreach ($object as $key => $val) {
             $this[$key] = $val;

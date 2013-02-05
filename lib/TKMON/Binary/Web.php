@@ -312,6 +312,21 @@ final class Web
             return $hostData;
         };
 
+        $container['serviceCatalogue'] = $container->share(
+            function ($c) {
+                $catalogue = new \ICINGA\Catalogue\Services();
+
+                $jsonProvider = new \ICINGA\Catalogue\Provider\JsonFiles();
+                $jsonProvider->addFile($c['config']['icinga.catalogue.services.default']);
+
+                $catalogue->appendHandlerToChain($jsonProvider);
+
+                $catalogue->makeReady();
+
+                return $catalogue;
+            }
+        );
+
         echo $container['dispatcher']->dispatchRequest();
     }
 }
