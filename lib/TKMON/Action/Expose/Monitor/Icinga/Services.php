@@ -79,6 +79,94 @@ class Services extends \TKMON\Action\Base
         return $response;
     }
 
+    public function actionEmbeddedCreate(\NETWAYS\Common\ArrayObject $params)
+    {
+        $response = new \TKMON\Mvc\Output\JsonResponse();
+
+        try {
+
+            $validator = new \NETWAYS\Common\ArrayObjectValidator();
+            $validator->addValidatorObject(
+                \NETWAYS\Common\ValidatorObject::create(
+                    'serviceCatalogueId',
+                    'serviceCatalogueId',
+                    \NETWAYS\Common\ValidatorObject::VALIDATE_MANDATORY
+                )
+            );
+
+            $validator->addValidatorObject(
+                \NETWAYS\Common\ValidatorObject::create(
+                    'hostName',
+                    'hostName',
+                    \NETWAYS\Common\ValidatorObject::VALIDATE_MANDATORY
+                )
+            );
+
+            $validator->validateArrayObject($params);
+
+            $template = new \TKMON\Mvc\Output\TwigTemplate($this->container['template']);
+            $template->setTemplateName('views/Monitor/Icinga/Services/EmbeddedCreate.twig');
+
+            /** @var $hostData \TKMON\Model\Icinga\HostData */
+            $hostData = $this->container['hostData'];
+            $hostData->load();
+
+            $host = $hostData->getHost($params['hostName']);
+
+            /** @var $serviceCatalogue \ICINGA\Catalogue\Services */
+            $serviceCatalogue = $this->container['serviceCatalogue'];
+
+            $item = $serviceCatalogue->getItem($params['serviceCatalogueId']);
+
+            $check = $host->getService($item->serviceDescription);
+
+            if ($check instanceof \ICINGA\Object\Service) {
+                throw new \TKMON\Exception\ModelException(_('Service already exists on host: '. $check->serviceDescription));
+            }
+
+            $template['service'] = $item;
+            $template['host'] = $host;
+
+            $response->addData($template->toString());
+
+            $response->setSuccess();
+        } catch (\Exception $e) {
+            $response->addException($e);
+        }
+
+        return $response;
+    }
+
+    public function actionCatalogueSearch(\NETWAYS\Common\ArrayObject $params)
+    {
+        $response = new \TKMON\Mvc\Output\JsonResponse();
+
+        try {
+            $validator = new \NETWAYS\Common\ArrayObjectValidator();
+
+            $validator->addValidatorObject(
+                \NETWAYS\Common\ValidatorObject::create(
+                    'q',
+                    'Query',
+                    \NETWAYS\Common\ValidatorObject::VALIDATE_MANDATORY
+                )
+            );
+
+            $validator->validateArrayObject($params);
+
+            /** @var $serviceCatalogue \ICINGA\Catalogue\Services */
+            $serviceCatalogue = $this->container['serviceCatalogue'];
+            $result = $serviceCatalogue->query($params['q']);
+
+            $response->setData($result->getArrayCopy());
+            $response->setSuccess(true);
+        } catch (\Exception $e) {
+            $response->addException($e);
+        }
+
+        return $response;
+    }
+
     public function actionRemove(\NETWAYS\Common\ArrayObject $params)
     {
         $response = new \TKMON\Mvc\Output\JsonResponse();

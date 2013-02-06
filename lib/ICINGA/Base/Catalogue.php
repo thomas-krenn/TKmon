@@ -69,7 +69,7 @@ abstract class Catalogue extends \NETWAYS\Chain\Manager
             return $object->data;
         }
 
-        throw new \ICINGA\Exception\AttributeException('Not type of stdClass');
+        throw new \ICINGA\Exception\AttributeException('Object not in catalogue: '. $name);
     }
 
     /**

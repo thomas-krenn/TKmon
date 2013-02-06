@@ -117,7 +117,7 @@
             "display_name": "Http response (vhost)",
             "check_command": {
                 "command_name": "check_http2",
-                "argument": [
+                "arguments": [
                     {
                         "label": "Hostname (VHOST)",
                         "description": "VHost to check on this host address",

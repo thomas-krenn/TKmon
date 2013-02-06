@@ -1,0 +1,51 @@
+
+<div>
+    <form id="service-create">
+
+        <div class="pull-left" style="margin-left: 20px;">
+
+            <h5>{% trans "Default attributes" %}</h5>
+
+            <fieldset>
+                <label for="host_name">{% trans "Hostname" %}</label>
+                <input type="text" id="host_name" name="host_name" readonly="readonly" value="{{ host.getHostName() }}" />
+            </fieldset>
+
+            <fieldset>
+                <label for="service_description">{% trans "Service description" %}</label>
+                <input type="text" id="service_description" name="service_description" readonly="readonly" value="{{ service.getServiceDescription() }}" />
+            </fieldset>
+
+            <fieldset>
+                <label for="display_name">{% trans "Display name" %}</label>
+                <input type="text" id="display_name" name="display_name"  value="{{ service.getDisplayName() }}" />
+            </fieldset>
+
+        </div>
+
+        <div class="pull-left" style="margin-left: 20px;">
+
+            <h5>{% trans "Check command" %}</h5>
+
+            .... DONG
+        </div>
+
+        <div class="pull-left" style="margin-left: 20px;">
+
+            <h5>{% trans "Custom variables" %}</h5>
+
+            {% set cv = service.getCustomVariables() %}
+            {% for name,val in cv %}
+                {% set frmname = "CV_" + name %}
+
+                <fieldset>
+                    <label for="{{ frmname }}">{{ name }}</label>
+                    <input type="text" id="{{ frmname }}" name="{{ frmname }}" value="{{ val }}" readonly="readonly" />
+                </fieldset>
+            {% endfor %}
+        </div>
+
+
+        <div class="clearfix"></div>
+    </form>
+</div>

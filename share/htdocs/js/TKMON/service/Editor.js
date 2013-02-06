@@ -1,4 +1,3 @@
-
 /**
  * This file is part of TKMON
  *
@@ -23,25 +22,41 @@
 (function () {
     "use strict";
 
-    define(['jquery', 'bootstrap'], function () {
+    define([
+        'jquery',
+        'bootstrap',
+        'TKMON/service/TypeAhead',
+        'TKMON/host/TypeAhead',
+        'TKMON/jquery/UpdateHandler'
+    ], function () {
         "use strict";
 
         var currentHost;
-        var searchUrl;
+        var hostSearchUrl;
+        var serviceSearchUrl;
         var listUrl;
+        var createFormUrl;
         var removeUrl;
 
+        /**
+         * Setter for current host_name
+         * @param {String} hostName
+         */
         var setCurrentHost = function (hostName) {
             currentHost = hostName;
         };
 
+        /**
+         * Get current host_name
+         * @return {String}
+         */
         var getCurrentHost = function () {
             return currentHost;
         };
 
         /**
          * Toggle the create window
-         *
+         * @param {String} mode You can use show or hide
          * @param {Object} data
          */
         var toggleCreateWindow = function (mode, data) {
@@ -52,76 +67,24 @@
             // DO SOMETHING USEFUL
 
             if (mode === 'show') {
+                $('#serviceCatalogueId').val("");
+
                 $('#services-grid').addClass('hide');
                 $('#services-create').removeClass('hide');
+
+                $('#serviceCatalogueId').focus();
             } else {
                 $('#services-grid').removeClass('hide');
                 $('#services-create').addClass('hide');
             }
         };
 
-        /**
-         * Type processor for combo field
-         *
-         * @param {String} q
-         * @param {Function} process
-         */
-        var typeAheadSource = function (q, process) {
-            $.ajax(searchUrl, {
-                type:'POST',
-                data:JSON.stringify({
-                    q:q
-                }),
-                dataType:'json',
-                success:function (data) {
-                    if (data && data.success == true) {
-                        var out = []
-                        $.each(data.data, function (key, value) {
-                            out.push(key);
-                        });
-                        process(out);
-                    }
-                }
-            });
-        };
-
-        /**
-         * Load an embedded grid into the placeholder
-         *
-         * @param {String} hostName
-         */
         var contentUpdateHandler = function (hostName) {
+            setCurrentHost(hostName);
 
-            setCurrentHost();
-
-            if (typeof(hostName) === "undefined") {
-                return;
-            }
-
-            $.ajax(listUrl, {
-                type:'POST',
-                data:JSON.stringify({
-                    hostName:hostName
-                }),
-                dataType:'json',
-                success:function (data) {
-                    $('#services-grid *').remove();
-                    if (data && data.success === true) {
-
-                        setCurrentHost(hostName);
-
-                        $('#services-grid').html(data.data[0]);
-                    } else {
-                        var content = '<div class="alert alert-error">';
-                        content += '<h4>Error</h4>';
-                        $.each(data.errors, function (key, o) {
-                            content += '<p class="container-spacer-down">' + o.message + '</p>';
-                        });
-                        content += '</h4>';
-                        $('#services-grid').html(content);
-                    }
-                }
-            })
+            $('#services-grid').update(listUrl, {
+                hostName: hostName
+            });
         };
 
         // --------------------------------------------------------------------
@@ -154,9 +117,16 @@
             }
         });
 
+        $('#service-search').submit(function (e) {
+            e.preventDefault();
+            var that = $(this);
+            var data = JSON.parse($(this).serializeJson());
+            data.hostName = getCurrentHost();
+            $('#services-data').update(createFormUrl, data);
+        });
+
         /**
          * Live handler (dom created later on) for removing action
-         *
          * @param {Event} e
          */
         $('#services-grid').on('click', 'a[data-action=remove]', function (e) {
@@ -197,18 +167,31 @@
         // Initialize
         // --------------------------------------------------------------------
 
-        // Install typeahead on textfield
-        $('#hostname').typeahead({
-            source:typeAheadSource,
-            matcher:function () {
-                return true;
-            }
-        });
+        var doInitialize = function() {
 
+            // Install typeahead on textfield
+            $('#hostname').hostTypeAhead({
+                url: hostSearchUrl
+            });
+
+            // Install typeahead on textfield
+            $('#serviceCatalogueId').serviceTypeAhead({
+                url: serviceSearchUrl
+            });
+        };
+
+        /**
+         * jQuery plugin serviceEditor
+         * @param {Object} options
+         */
         $.fn.serviceEditor = function(options) {
-            searchUrl = options.searchUrl;
+            hostSearchUrl = options.hostSearchUrl;
+            serviceSearchUrl = options.serviceSearchUrl;
             removeUrl = options.removeUrl;
             listUrl = options.listUrl;
+            createFormUrl = options.createFormUrl;
+
+            doInitialize();
 
             if (options.hostName) {
                 contentUpdateHandler(options.hostName);

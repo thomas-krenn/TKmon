@@ -60,6 +60,8 @@ html, body {
     margin-top: 20px;
 }
 
+/** Settings table **/
+
 table.settings-table {
     border-collapse: collapse;
     border: 1px #c0c0c0 solid;
@@ -167,4 +169,19 @@ table.tkmon-data-table th, table.tkmon-data-table td {
 
 table.tkmon-data-table td {
     padding: 5px;
+}
+
+/** TKMON service typeahead plugin **/
+
+div.tkmon-catalogue-item {
+    margin-botton: 2px;
+}
+
+div.tkmon-catalogue-item div.item-name {
+    font-weight: bolder;
+    border-bottom: 1px #c0c0c0 solid;
+}
+
+div.tkmon-catalogue-item div.item-description {
+    font-size: small;
 }
