@@ -61,7 +61,6 @@
             "display_name": "UDP Port",
             "check_command": {
                 "command_name": "check_udp",
-                "display_name": "UDP Port",
                 "arguments": [
                     {
                         "label": "UDP Port",
