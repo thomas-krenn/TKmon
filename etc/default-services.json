@@ -4,6 +4,7 @@
     "data": [
         {
             "service_description": "net-ping",
+            "display_name": "Ping check",
             "check_command": {
                 "command_name": "check_ping",
                 "arguments": [
@@ -34,6 +35,7 @@
         },
         {
             "service_description": "net-tcp",
+            "display_name": "TCP Port",
             "check_command": {
                 "command_name": "check_tcp",
                 "arguments": [
@@ -56,14 +58,27 @@
         },
         {
             "service_description": "net-udp",
+            "display_name": "UDP Port",
             "check_command": {
-                "command_name": "check_udp",
+                "command_name": "check_udp_send_expect",
                 "arguments": [
                     {
                         "label": "UDP Port",
                         "description": "Integer value of UDP port to test",
                         "validation": "port",
                         "argument": "-p"
+                    },
+                    {
+                        "label": "Send string",
+                        "description": "String, what to send",
+                        "validation": "string",
+                        "argument": "-s"
+                    },
+                    {
+                        "label": "Expect string",
+                        "description": "String, what to expect as answer",
+                        "validation": "string",
+                        "argument": "-e"
                     }
                 ]
             },
@@ -71,13 +86,14 @@
                 "tags": ["remote", "udp", "port", "network"],
                 "name": "net-udp",
                 "label": "UDP port check",
-                "description": "Check udp port reaction",
+                "description": "Check udp port reaction (derived from debian default)",
                 "defined": true,
-                "defined_in": "/etc/nagios-plugins/config/tcp_udp.cfg"
+                "defined_in": "/etc/icinga/tkmon/base/05-check-commands.cfg"
             }
         },
         {
             "service_description": "net-http",
+            "display_name": "Http response",
             "check_command": {
                 "command_name": "check_http",
                 "arguments": null
@@ -93,6 +109,7 @@
         },
         {
             "service_description": "net-httpname",
+            "display_name": "Http response (hostname)",
             "check_command": {
                 "command_name": "check_httpname",
                 "arguments": null
@@ -108,9 +125,10 @@
         },
         {
             "service_description": "net-http2",
+            "display_name": "Http response (vhost)",
             "check_command": {
                 "command_name": "check_http2",
-                "argument": [
+                "arguments": [
                     {
                         "label": "Hostname (VHOST)",
                         "description": "VHost to check on this host address",
@@ -142,6 +160,7 @@
         },
         {
             "service_description": "net-https",
+            "display_name": "Https response",
             "check_command": {
                 "command_name": "check_https",
                 "arguments": null

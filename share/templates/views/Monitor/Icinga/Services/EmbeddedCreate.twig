@@ -1,0 +1,71 @@
+{% set restart_url = web_link('Monitor/Daemon/Index#daemon-restart') %}
+<div>
+
+    <div id="embedded-create-errors"></div>
+
+    <div id="embedded-create-success" class="alert alert-success hide">
+        <h4>{% trans "Success" %}</h4>
+        {% trans %}
+        Service was written to disk. Please <a href="{{ restart_url }}">to go daemon settings</a>
+        and restart your icinga instance
+        {% endtrans %}
+    </div>
+
+    <form id="service-embedded-create">
+
+        <div class="pull-left" style="margin-left: 20px;">
+
+            <h5>{% trans "Default attributes" %}</h5>
+
+            <fieldset>
+                <label for="host_name">{% trans "Hostname" %}</label>
+                <input type="text" id="host_name" name="host_name" readonly="readonly" value="{{ host.getHostName() }}" />
+            </fieldset>
+
+            <fieldset>
+                <label for="service_description">{% trans "Service description" %}</label>
+                {% if mode == "edit"  %}
+                    <input type="text" id="service_description" name="service_description" readonly="readonly" value="{{ service.getServiceDescription() }}" />
+                {% else %}
+                    <input type="text" id="service_description" name="service_description" value="{{ service.getServiceDescription() }}" />
+                {% endif %}
+            </fieldset>
+
+            <fieldset>
+                <label for="display_name">{% trans "Display name" %}</label>
+                <input type="text" id="display_name" name="display_name"  value="{{ service.getDisplayName() }}" />
+            </fieldset>
+
+        </div>
+
+        {% if arguments %}
+        <div class="pull-left" style="margin-left: 20px;">
+
+            <h5>{% trans "Check command" %}</h5>
+
+            {% autoescape false %}
+            {% for field in arguments %}
+                {{ field }}
+            {% endfor %}
+            {% endautoescape %}
+        </div>
+        {% endif %}
+
+        <div class="pull-left" style="margin-left: 20px;">
+
+            <h5>{% trans "Custom variables" %}</h5>
+
+            {% set cv = service.getCustomVariables() %}
+            {% for name,val in cv %}
+                <fieldset>
+                    {% set lname = name|lower %}
+                    <label for="cv_{{ lname }}">{{ name }}</label>
+                    <input type="text" id="cv_{{ lname }}" name="cv_{{ lname }}" value="{{ val }}" readonly="readonly" />
+                </fieldset>
+            {% endfor %}
+        </div>
+
+
+        <div class="clearfix"></div>
+    </form>
+</div>

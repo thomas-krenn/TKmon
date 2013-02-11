@@ -1,0 +1,86 @@
+<div class="page-header">
+    <h2>{%  trans "Services" %}</h2>
+</div>
+
+<p>
+    {% trans %}
+    Maintain services for hosts here.
+    {% endtrans %}
+</p>
+
+<div class="alert alert-info">
+    <h4>{% trans "Start over" %}</h4>
+
+    {% trans "Please select a host to edit its services:" %}
+
+    <form id="host-select">
+        <div class="input-append">
+            <input name="hostname" id="hostname" class="span3" type="text" placeholder="Hostname" autocomplete="off" />
+            <button type="submit" class="btn btn-success">
+                <i class="icon-pencil"></i> {% trans "Go" %}
+            </button>
+        </div>
+    </form>
+</div>
+
+<div class="container-spacer-down">
+
+    <!-- Placeholder see contentUpdateHandler() -->
+    <div id="services-grid"></div>
+
+    <div id="services-create" class="hide">
+        <h3>Edit services</h3>
+
+        <div id="service-search-container" class="alert alert-info">
+
+            <h4>{% trans "Search" %}</h4>
+
+            {% trans "Search for services in our catalogue:" %}
+
+            <form id="service-search">
+                <div class="input-append">
+                    <input name="serviceCatalogueId" id="serviceCatalogueId" class="span3" type="text" placeholder="Service" autocomplete="off" />
+                    <button type="submit" class="btn btn-success">
+                        <i class="icon-pencil"></i> {% trans "Add" %}
+                    </button>
+                </div>
+                <i>{% trans "Type something like Web, Port, HTTP or things like that" %}</i>
+            </form>
+        </div>
+
+        <div id="services-data">
+
+        </div>
+
+        <div class="alert alert-info">
+            <p>
+                {% trans %}
+                Ready to write? Press write button to do so or cancel to abort.
+                {% endtrans %}
+            </p>
+
+            <button data-action="create-cancel" class="btn">
+                <i class="icon-remove"></i> {% trans "Cancel" %}
+            </button>
+
+            <button data-action="create-write" class="btn btn-primary">
+                <i class="icon-ok"></i> {% trans "Write" %}
+            </button>
+        </div>
+    </div>
+</div>
+
+<script>
+    require(['TKMON/service/Editor'], function() {
+        $(document).serviceEditor({
+            hostName:           '{{ hostName }}',
+            hostSearchUrl:      '{{ web_link('Monitor/Icinga/Hosts/Search') }}',
+            serviceSearchUrl:   '{{ web_link('Monitor/Icinga/Services/CatalogueSearch') }}',
+            addServiceUrl:      '{{ web_link('Monitor/Icinga/Services/Write') }}',
+            listUrl:            '{{ web_link("EmbeddedList") }}',
+            createFormUrl:      '{{ web_link("EmbeddedCreate") }}',
+            editFormUrl:      '{{ web_link("EmbeddedEdit") }}',
+            removeUrl:          '{{ web_link('Remove') }}'
+        });
+    });
+</script>

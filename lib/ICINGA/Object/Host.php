@@ -188,7 +188,7 @@ class Host extends \ICINGA\Base\Object
 
     /**
      * Return array of services
-     * @return array|Service
+     * @return Service[]
      */
     public function getServices()
     {

@@ -31,12 +31,12 @@
     {% endif %}
 
 
-        <td>{{ row.host_name }}</td>
-        <td>{{ row.service_description }}</td>
+        <td style="white-space: nowrap">{{ row.host_name }}</td>
+        <td style="white-space: nowrap">{{ row.service_description }}</td>
         <td class="{{ icinga.service_status_class(row.status) }}">
             {{ icinga.service_status(row.status) }}
         </td>
-        <td>{{ row.last_check }}</td>
+        <td style="white-space: nowrap">{{ row.last_check }}</td>
         <td>{{ row.duration }}</td>
         <td>{{ row.attempts }}</td>
         <td>{{ row.status_information }}</td>

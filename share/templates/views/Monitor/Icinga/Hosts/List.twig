@@ -54,16 +54,31 @@
         <tr>
             <td>{{ host.getHostName() }}</td>
             <td>{{ host.getAlias() }}</td>
-            <td>{{ host.getServices().count() }}</td>
-            <td>{{ host.getAddress() }}</td>
             <td>
 
+                {% if host.getServices().count() <= 0 %}
+                    <span class="badge badge-important">
+                        {{ host.getServices().count() }}
+                    </span>
+                {% else %}
+                    <span class="badge badge-success">
+                        {{ host.getServices().count() }}
+                    </span>
+                {% endif %}
+
+
+            </td>
+            <td>{{ host.getAddress() }}</td>
+            <td style="max-width: 180px; text-align: center;">
                 <button data-action="edit"  data-value="{{ host.getObjectIdentifier() }}" class="btn btn-primary">
                     <i class="icon-edit"></i> {% trans "Edit" %}
                 </button>
 
-                <div class="btn-group">
+                <button data-action="service" data-value="{{ host.getObjectIdentifier() }}" class="btn btn-success">
+                    <i class="icon-wrench"></i> {%  trans "Services" %}
+                </button>
 
+                <div class="btn-group">
                     <a href="#" data-toggle="dropdown"  class="btn btn-danger dropdown-toggle">
                         <i class="icon-remove"></i> {% trans "Remove" %}
                         <span class="caret"></span>
@@ -74,9 +89,7 @@
                             <a href="#" data-action="remove" data-value="{{ host.getObjectIdentifier() }}">{% trans "Yes, delete please" %}</a>
                         </li>
                     </ul>
-
                 </div>
-
             </td>
         </tr>
 
@@ -229,6 +242,16 @@
                     window.history.go(0);
                 }
             });
+        });
+
+        $('button[data-action=service]').click(function(e) {
+            e.preventDefault();
+            var editUrl = '{{ web_link("Monitor/Icinga/Services/Edit") }}';
+            var id = $(this).attr('data-value');
+
+            editUrl += '?' + $.param({hostName: id});
+
+            window.location.href = editUrl;
         });
 
         $('button[data-action=edit]').click(function(e) {
