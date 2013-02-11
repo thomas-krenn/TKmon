@@ -353,7 +353,7 @@ class HostData extends \ICINGA\Loader\FileSystem implements \TKMON\Interfaces\Ap
     public function searchHost($query)
     {
         $query = strtolower($query);
-        $cb = function($item) use ($query) {
+        $cb = function ($item) use ($query) {
 
             if (!($item instanceof \ICINGA\Object\Host)) {
                 return false;

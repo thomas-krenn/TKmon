@@ -180,6 +180,12 @@ class Hosts extends \TKMON\Action\Base
         return $response;
     }
 
+    /**
+     * Endpoint to search for hosts
+     *
+     * @param \NETWAYS\Common\ArrayObject $params
+     * @return \TKMON\Mvc\Output\JsonResponse
+     */
     public function actionSearch(\NETWAYS\Common\ArrayObject $params)
     {
         $response = new \TKMON\Mvc\Output\JsonResponse();

@@ -22,7 +22,7 @@
 (function () {
     "use strict";
 
-    require(['jquery'], function ($) {
+    require(['jquery', 'serializeJSON'], function ($) {
 
         var selector = '[data-ajax="form"]';
 
@@ -227,17 +227,26 @@
          * @return {String}
          */
         $.fn.serializeJson = function(option) {
-            var $this = $(this);
-            var data = $this.serializeArray();
-            var out = {};
+            var data = $(this).serializeJSON();
+            return JSON.stringify(data);
+        };
 
-            // TODO: Nested keys not implemented
-            for (var i in data) {
-                out[data[i].name] = data[i].value;
-            }
-
-            return JSON.stringify(out);
-        }
+        $.fn.serializeObject = function()
+        {
+            var o = {};
+            var a = this.serializeArray();
+            $.each(a, function() {
+                if (o[this.name]) {
+                    if (!o[this.name].push) {
+                        o[this.name] = [o[this.name]];
+                    }
+                    o[this.name].push(this.value || '');
+                } else {
+                    o[this.name] = this.value || '';
+                }
+            });
+            return o;
+        };
 
         /*
          * Auto gemeration of ajax forms to write only html in forms

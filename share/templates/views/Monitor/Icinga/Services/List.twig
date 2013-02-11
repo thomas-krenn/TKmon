@@ -31,7 +31,7 @@
     <div id="services-create" class="hide">
         <h3>Edit services</h3>
 
-        <div class="alert alert-info">
+        <div id="service-search-container" class="alert alert-info">
 
             <h4>{% trans "Search" %}</h4>
 
@@ -76,11 +76,11 @@
             hostName:           '{{ hostName }}',
             hostSearchUrl:      '{{ web_link('Monitor/Icinga/Hosts/Search') }}',
             serviceSearchUrl:   '{{ web_link('Monitor/Icinga/Services/CatalogueSearch') }}',
+            addServiceUrl:      '{{ web_link('Monitor/Icinga/Services/Write') }}',
             listUrl:            '{{ web_link("EmbeddedList") }}',
             createFormUrl:      '{{ web_link("EmbeddedCreate") }}',
+            editFormUrl:      '{{ web_link("EmbeddedEdit") }}',
             removeUrl:          '{{ web_link('Remove') }}'
         });
-
-
     });
 </script>

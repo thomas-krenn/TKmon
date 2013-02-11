@@ -67,6 +67,20 @@ abstract class Field
     private $template;
 
     /**
+     * Value of the field
+     *
+     * @var string
+     */
+    private $value;
+
+    /**
+     * Additional description of field
+     *
+     * @var string
+     */
+    private $description;
+
+    /**
      * Creates new field
      * @param string $name
      * @param string $label
@@ -170,6 +184,42 @@ abstract class Field
     }
 
     /**
+     * Setter for value
+     * @param string $value
+     */
+    public function setValue($value)
+    {
+        $this->value = $value;
+    }
+
+    /**
+     * Getter for value
+     * @return string
+     */
+    public function getValue()
+    {
+        return $this->value;
+    }
+
+    /**
+     * Setter for description
+     * @param string $description
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+    }
+
+    /**
+     * Getter for description
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
      * Compile field to html
      *
      * Ensures that error exception text is in the output
@@ -184,6 +234,11 @@ abstract class Field
 
         $template['name'] = $this->getNamePrefix(). $this->getName();
         $template['label'] = $this->getLabel();
+        $template['value'] = $this->getValue();
+
+        if ($this->getDescription()) {
+            $template['description'] = $this->getDescription();
+        }
 
         try {
             return $template->toString();

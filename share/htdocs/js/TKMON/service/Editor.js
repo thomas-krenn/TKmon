@@ -25,6 +25,7 @@
     define([
         'jquery',
         'bootstrap',
+        'serializeJSON',
         'TKMON/service/TypeAhead',
         'TKMON/host/TypeAhead',
         'TKMON/jquery/UpdateHandler'
@@ -36,6 +37,8 @@
         var serviceSearchUrl;
         var listUrl;
         var createFormUrl;
+        var editFormUrl;
+        var addServiceUrl;
         var removeUrl;
 
         /**
@@ -67,8 +70,9 @@
             // DO SOMETHING USEFUL
 
             if (mode === 'show') {
+                $('#services-data *').remove();
                 $('#serviceCatalogueId').val("");
-
+                $('div#service-search-container').removeClass('hide');
                 $('#services-grid').addClass('hide');
                 $('#services-create').removeClass('hide');
 
@@ -163,6 +167,71 @@
             toggleCreateWindow();
         });
 
+        $('#services-create').on('click', 'button[data-action=create-write],a[data-action=create-write]', function (e) {
+            e.preventDefault();
+            $('form#service-embedded-create').submit();
+        });
+
+
+        $('#services-data').on('submit', 'form#service-embedded-create', function(e) {
+            e.preventDefault();
+
+            $('div#embedded-create-errors *').remove();
+            $('div#embedded-create-success').addClass('hide');
+
+            var values = JSON.stringify($(this).serializeJSON());
+
+            var handleError = function(data) {
+                if (data && typeof(data) === "object") {
+                    var html = '';
+                    $.each(data.errors, function(index, obj) {
+                        html += '<div class="alert alert-error">'
+                            + '<h4>'
+                            + "Error"
+                            + '</h4>'
+                            + obj.message
+                            + '</div>';
+                    });
+                    $('div#embedded-create-errors').html(html);
+                }
+            };
+
+            var handleSuccess = function(data) {
+                if (data && typeof(data) === "object") {
+                    if (data.success === true) {
+                        $('div#embedded-create-success').removeClass('hide');
+                        window.setTimeout(function() {
+                            toggleCreateWindow();
+                            contentUpdateHandler(getCurrentHost());
+                        }, 1500);
+                    } else {
+                        handleError(data);
+                    }
+                }
+            };
+
+            $.ajax(addServiceUrl, {
+                type: 'POST',
+                data: values,
+                dataType: 'json',
+                success: handleSuccess
+            });
+        });
+
+        $('#services-grid').on('click', 'button[data-action=edit],a[data-action=edit]', function (e) {
+            e.preventDefault();
+            var id = $(this).attr('data-value');
+            toggleCreateWindow();
+            $('div#service-search-container').addClass('hide');
+
+            var data = {
+                hostName: getCurrentHost(),
+                serviceDescription: id
+            };
+
+            $('#services-data').update(editFormUrl, data);
+        });
+
         // --------------------------------------------------------------------
         // Initialize
         // --------------------------------------------------------------------
@@ -190,6 +259,8 @@
             removeUrl = options.removeUrl;
             listUrl = options.listUrl;
             createFormUrl = options.createFormUrl;
+            addServiceUrl = options.addServiceUrl;
+            editFormUrl = options.editFormUrl;
 
             doInitialize();
 

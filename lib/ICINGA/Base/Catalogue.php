@@ -66,7 +66,8 @@ abstract class Catalogue extends \NETWAYS\Chain\Manager
         $this->callCommand('getItem', $object, $name);
 
         if ($object->data instanceof \stdClass) {
-            return $object->data;
+            $obj = clone($object->data);
+            return $obj;
         }
 
         throw new \ICINGA\Exception\AttributeException('Object not in catalogue: '. $name);

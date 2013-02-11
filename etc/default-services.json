@@ -60,13 +60,25 @@
             "service_description": "net-udp",
             "display_name": "UDP Port",
             "check_command": {
-                "command_name": "check_udp",
+                "command_name": "check_udp_send_expect",
                 "arguments": [
                     {
                         "label": "UDP Port",
                         "description": "Integer value of UDP port to test",
                         "validation": "port",
                         "argument": "-p"
+                    },
+                    {
+                        "label": "Send string",
+                        "description": "String, what to send",
+                        "validation": "string",
+                        "argument": "-s"
+                    },
+                    {
+                        "label": "Expect string",
+                        "description": "String, what to expect as answer",
+                        "validation": "string",
+                        "argument": "-e"
                     }
                 ]
             },
@@ -74,9 +86,9 @@
                 "tags": ["remote", "udp", "port", "network"],
                 "name": "net-udp",
                 "label": "UDP port check",
-                "description": "Check udp port reaction",
+                "description": "Check udp port reaction (derived from debian default)",
                 "defined": true,
-                "defined_in": "/etc/nagios-plugins/config/tcp_udp.cfg"
+                "defined_in": "/etc/icinga/tkmon/base/05-check-commands.cfg"
             }
         },
         {

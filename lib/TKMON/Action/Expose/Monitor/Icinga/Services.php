@@ -29,6 +29,11 @@ namespace TKMON\Action\Expose\Monitor\Icinga;
  */
 class Services extends \TKMON\Action\Base
 {
+    /**
+     * Method to display main entry screen
+     * @param \NETWAYS\Common\ArrayObject $params
+     * @return \TKMON\Mvc\Output\TwigTemplate
+     */
     public function actionEdit(\NETWAYS\Common\ArrayObject $params)
     {
         $template = new \TKMON\Mvc\Output\TwigTemplate($this->container['template']);
@@ -39,6 +44,11 @@ class Services extends \TKMON\Action\Base
         return $template;
     }
 
+    /**
+     * Renders an embedded service list for a host
+     * @param \NETWAYS\Common\ArrayObject $params
+     * @return \TKMON\Mvc\Output\JsonResponse
+     */
     public function actionEmbeddedList(\NETWAYS\Common\ArrayObject $params)
     {
         $response = new \TKMON\Mvc\Output\JsonResponse();
@@ -79,6 +89,72 @@ class Services extends \TKMON\Action\Base
         return $response;
     }
 
+    /**
+     * Renders en embedded edit form
+     * @param \NETWAYS\Common\ArrayObject $params
+     * @return \TKMON\Mvc\Output\JsonResponse
+     */
+    public function actionEmbeddedEdit(\NETWAYS\Common\ArrayObject $params)
+    {
+        $response = new \TKMON\Mvc\Output\JsonResponse();
+
+        try {
+
+            $validator = new \NETWAYS\Common\ArrayObjectValidator();
+            $validator->addValidatorObject(
+                \NETWAYS\Common\ValidatorObject::create(
+                    'serviceDescription',
+                    'serviceDescription',
+                    \NETWAYS\Common\ValidatorObject::VALIDATE_MANDATORY
+                )
+            );
+
+            $validator->addValidatorObject(
+                \NETWAYS\Common\ValidatorObject::create(
+                    'hostName',
+                    'hostName',
+                    \NETWAYS\Common\ValidatorObject::VALIDATE_MANDATORY
+                )
+            );
+
+            $validator->validateArrayObject($params);
+
+            $template = new \TKMON\Mvc\Output\TwigTemplate($this->container['template']);
+            $template->setTemplateName('views/Monitor/Icinga/Services/EmbeddedCreate.twig');
+
+            /** @var $hostData \TKMON\Model\Icinga\HostData */
+            $hostData = $this->container['hostData'];
+            $hostData->load();
+
+            $host = $hostData->getHost($params['hostName']);
+
+            $service = $host->getService($params['serviceDescription']);
+
+            $template['mode'] = 'edit';
+            $template['service'] = $service;
+            $template['host'] = $host;
+
+            $serviceData = new \TKMON\Model\Icinga\ServiceData($this->container);
+
+            $catalogueId = $service->getCustomVariable('name'); // Internal reference to catalogue
+
+            $template['arguments'] = $serviceData->getCommandArgumentFieldsReadyValues($service, $catalogueId);
+
+            $response->addData($template->toString());
+
+            $response->setSuccess(true);
+        } catch (\Exception $e) {
+            $response->addException($e);
+        }
+
+        return $response;
+    }
+
+    /**
+     * Renders an embedded creation form
+     * @param \NETWAYS\Common\ArrayObject $params
+     * @return \TKMON\Mvc\Output\JsonResponse
+     */
     public function actionEmbeddedCreate(\NETWAYS\Common\ArrayObject $params)
     {
         $response = new \TKMON\Mvc\Output\JsonResponse();
@@ -116,16 +192,15 @@ class Services extends \TKMON\Action\Base
             /** @var $serviceCatalogue \ICINGA\Catalogue\Services */
             $serviceCatalogue = $this->container['serviceCatalogue'];
 
+            $serviceData = new \TKMON\Model\Icinga\ServiceData($this->container);
+
             $item = $serviceCatalogue->getItem($params['serviceCatalogueId']);
 
             $check = $host->getService($item->serviceDescription);
 
-            if ($check instanceof \ICINGA\Object\Service) {
-                throw new \TKMON\Exception\ModelException(_('Service already exists on host: '. $check->serviceDescription));
-            }
-
             $template['service'] = $item;
             $template['host'] = $host;
+            $template['arguments'] = $serviceData->getCommandArgumentFields($params['serviceCatalogueId']);
 
             $response->addData($template->toString());
 
@@ -137,6 +212,11 @@ class Services extends \TKMON\Action\Base
         return $response;
     }
 
+    /**
+     * Ajax endpoint to search the services catalogue
+     * @param \NETWAYS\Common\ArrayObject $params
+     * @return \TKMON\Mvc\Output\JsonResponse
+     */
     public function actionCatalogueSearch(\NETWAYS\Common\ArrayObject $params)
     {
         $response = new \TKMON\Mvc\Output\JsonResponse();
@@ -167,6 +247,11 @@ class Services extends \TKMON\Action\Base
         return $response;
     }
 
+    /**
+     * Remove service for a host
+     * @param \NETWAYS\Common\ArrayObject $params
+     * @return \TKMON\Mvc\Output\JsonResponse
+     */
     public function actionRemove(\NETWAYS\Common\ArrayObject $params)
     {
         $response = new \TKMON\Mvc\Output\JsonResponse();
@@ -204,6 +289,105 @@ class Services extends \TKMON\Action\Base
 
             $hostData->updateHost($host);
 
+            $hostData->write();
+
+            $response->setSuccess(true);
+
+        } catch (\Exception $e) {
+            $response->addException($e);
+        }
+
+        return $response;
+    }
+
+    /**
+     * Write add/edit services for a host (ajax)
+     *
+     * - Also write data to disk
+     *
+     * @param \NETWAYS\Common\ArrayObject $params
+     * @return \TKMON\Mvc\Output\JsonResponse
+     */
+    public function actionWrite(\NETWAYS\Common\ArrayObject $params)
+    {
+        $response = new \TKMON\Mvc\Output\JsonResponse();
+
+        try {
+
+            // ----------------------------------------------------------------
+            // Validation of needed arguments
+            // ----------------------------------------------------------------
+
+            $validator = new \NETWAYS\Common\ArrayObjectValidator();
+
+            $validator->addValidatorObject(
+                \NETWAYS\Common\ValidatorObject::create(
+                    'host_name',
+                    _('Hostname'),
+                    \NETWAYS\Common\ValidatorObject::VALIDATE_MANDATORY
+                )
+            );
+
+            $validator->addValidatorObject(
+                \NETWAYS\Common\ValidatorObject::create(
+                    'service_description',
+                    _('Servicename'),
+                    \NETWAYS\Common\ValidatorObject::VALIDATE_MANDATORY
+                )
+            );
+
+            $validator->addValidatorObject(
+                \NETWAYS\Common\ValidatorObject::create(
+                    'cv_name',
+                    _('Catalogue identifier'),
+                    \NETWAYS\Common\ValidatorObject::VALIDATE_MANDATORY
+                )
+            );
+
+            $validator->validateArrayObject($params);
+
+            $catalogueName = $params['cv_name'];
+
+            $hostName = $params['host_name'];
+
+            // ----------------------------------------------------------------
+            // Validation of arguments (if any)
+            // ----------------------------------------------------------------
+
+            $serviceData = new \TKMON\Model\Icinga\ServiceData($this->container);
+
+            $arguments = new \NETWAYS\Common\ArrayObject();
+
+
+            if ($params->offsetExists('arguments')) {
+                $arguments->fromArray($params['arguments']);
+                $argumentValidator = $serviceData->createValidator($catalogueName);
+                $argumentValidator->validateArrayObject($arguments);
+            }
+
+            // ----------------------------------------------------------------
+            // Good, prepare to write
+            // ----------------------------------------------------------------
+
+            /** @var $hostData \TKMON\Model\Icinga\HostData */
+            $hostData = $this->container['hostData'];
+            $hostData->load();
+
+            $host = $hostData->getHost($hostName);
+
+            $service = $serviceData->createServiceFromCatalogueWithArgumentValues($catalogueName, $arguments);
+
+            // Overriding data from html form
+            $service->serviceDescription = $params['service_description'];
+            $service->displayName = $params['display_name'];
+
+            // Glue
+            $host->addService($service);
+
+            // Bada ...
+            $hostData->updateHost($host);
+
+            // BOOM!
             $hostData->write();
 
             $response->setSuccess(true);
