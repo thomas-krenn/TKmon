@@ -2,7 +2,7 @@ var/db/default.sqlite
 .build
 .idea/workspace.xml
 composer.lock
-vendor/
+/vendor/
 composer.phar
 .vagrant
 etc/icinga/system/contacts/*cfg
