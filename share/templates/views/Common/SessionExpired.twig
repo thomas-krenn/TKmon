@@ -1,0 +1,22 @@
+{% set link_login = web_link('System/Login/Index') %}
+<div class="page-header">
+    <h2>{% trans "Session expired" %}</h2>
+</div>
+
+<div class="alert alert-error">
+    <h4><i class="icon-warning-sign icon-2x"></i> {% trans "You are not logged in" %}</h4>
+
+    <p class="container-spacer-down">
+        {% trans %}
+        The action you want to acquire need an authenticated user, please
+        <a href="{{ link_login  }}">go to login page</a>
+        to enter your credentials again.
+        {% endtrans %}
+    </p>
+
+    <div class="container-spacer-down">
+        <a class="btn btn-large btn-danger" href="{{ link_login }}">
+            <i class="icon-lock icon-2x"></i> {% trans "Login" %}
+        </a>
+    </div>
+</div>

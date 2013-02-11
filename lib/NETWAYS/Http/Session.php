@@ -1,5 +1,5 @@
 <?php
-/*
+/**
  * This file is part of TKMON
  *
  * TKMON is free software: you can redistribute it and/or modify
@@ -14,6 +14,9 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with TKMON.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ * @author Marius Hein <marius.hein@netways.de>
+ * @copyright 2012-2013 NETWAYS GmbH <info@netways.de>
  */
 
 namespace NETWAYS\Http;
@@ -25,7 +28,6 @@ namespace NETWAYS\Http;
  */
 class Session implements \ArrayAccess, \Countable
 {
-
     /**
      * Session name
      * @var string
@@ -156,7 +158,7 @@ class Session implements \ArrayAccess, \Countable
      */
     public function isConfigured()
     {
-        return ($this->name && $this->path && ($this->lifetime > 0) && $this->domain) ? true : false;
+        return ($this->name && ($this->lifetime > 0) && $this->domain) ? true : false;
     }
 
     /**
@@ -167,9 +169,13 @@ class Session implements \ArrayAccess, \Countable
     public function start()
     {
         if ($this->isConfigured() === true) {
-            session_set_cookie_params($this->getLifetime(), $this->getPath(),
-                $this->getDomain(), $this->getIsSecured(), true);
-
+            session_set_cookie_params(
+                $this->getLifetime(),
+                $this->getPath(),
+                $this->getDomain(),
+                $this->getIsSecured(),
+                true
+            );
 
             session_name($this->getName());
             return session_start();
@@ -186,6 +192,10 @@ class Session implements \ArrayAccess, \Countable
         session_regenerate_id(true);
     }
 
+    /**
+     * Returns the current session id
+     * @return string
+     */
     public function getSessionId()
     {
         return session_id();
@@ -196,8 +206,15 @@ class Session implements \ArrayAccess, \Countable
      */
     public function destroySession()
     {
-        setcookie($this->getName(), '', -3600, $this->getPath(),
-            $this->getDomain(), $this->getIsSecured(), true);
+        setcookie(
+            $this->getName(),
+            '',
+            -3600,
+            $this->getPath(),
+            $this->getDomain(),
+            $this->getIsSecured(),
+            true
+        );
         session_destroy();
         unset($_SESSION);
         $_SESSION=array(); // Throw errors if not

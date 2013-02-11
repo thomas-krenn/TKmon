@@ -1,0 +1,62 @@
+<h4>Time settings</h4>
+
+<p>Use this panel to change time server settings or leave it as is is.</p>
+
+<div id="time-errors">
+
+</div>
+
+<div id="time-success" class="hidden alert alert-success">
+    <h4>Success!</h4>
+    <p>Time configuration has been written and daemon has been restarted!</p>
+</div>
+
+<form
+    id="time-form"
+    class="container-spacer-down"
+    action="{{ web_link("ChangeTimeSettings") }}"
+    data-ajax="form"
+    data-ajax-type="json"
+    data-error-target="#time-errors"
+    data-success-frame="#time-success"
+    data-before-callback="time_call_before"
+    data-complete-callback="time_call_complete"
+    >
+
+    <fieldset>
+        <label for="timeserver_1">Timeserver 1</label>
+        <input type="text" name="timeserver_1" id="timeserver_1" value="{{ timeserver_1 }}" />
+    </fieldset>
+
+    <fieldset>
+        <label for="timeserver_2">Timeserver 2</label>
+        <input type="text" name="timeserver_2" id="timeserver_2" value="{{ timeserver_2 }}" />
+    </fieldset>
+
+    <fieldset>
+        <label for="timeserver_1">Timeserver 3</label>
+        <input type="text" name="timeserver_3" id="timeserver_3" value="{{ timeserver_3 }}" />
+    </fieldset>
+
+    <div class="container-spacer-down">
+        <button id="time-submit" type="submit" class="btn btn-primary">
+            <i class="icon-save"></i> Save
+        </button>
+    </div>
+
+    <script>
+        require(['jquery', 'bootstrap'], function() {
+
+            var icon = $('#time-submit i');
+
+            window.time_call_before = function() {
+                $(icon).removeClass('icon-save').addClass('icon-refresh icon-spin');
+            };
+
+            window.time_call_complete = function() {
+                $(icon).addClass('icon-save').removeClass('icon-refresh icon-spin');
+            };
+        });
+    </script>
+
+</form>

@@ -1,20 +1,12 @@
 <?php
-namespace NETWAYS;
+// Composer snippet
+require dirname(__DIR__). DIRECTORY_SEPARATOR. 'vendor'. DIRECTORY_SEPARATOR. 'autoload.php';
 
-final class TestKit {
-    public static function init() {
-        $s = DIRECTORY_SEPARATOR;
-        $dir = dirname(dirname(__FILE__));
-        $libdir = $dir. $s. 'lib';
+// Test mocks
 
-        require_once $libdir. $s. 'NETWAYS'. $s. 'Common'. $s. 'ClassLoader.php';
+define(
+    'TEST_LIB_DIR',
+    'lib'. DIRECTORY_SEPARATOR. 'TKMON'. DIRECTORY_SEPARATOR. 'Test'
+);
 
-        $classLoader = new \NETWAYS\Common\ClassLoader('NETWAYS', $libdir);
-        $classLoader->register();
-
-        $classLoader = new \NETWAYS\Common\ClassLoader('TKMON', $libdir);
-        $classLoader->register();
-    }
-}
-
-TestKit::init();
+require TEST_LIB_DIR. DIRECTORY_SEPARATOR. 'Container.php';

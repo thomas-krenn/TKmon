@@ -1,0 +1,56 @@
+<h4>{% trans "Restart icinga" %}</h4>
+
+<p>{% trans "Use the following button to restart icinga." %}</p>
+
+<div class="alert alert-info">
+    <h4>{% trans "Note" %}</h4>
+    <p>
+        {% trans %}
+        We will not restart the daemon if configuration check fails!
+        {% endtrans %}
+    </p>
+</div>
+
+<form
+    id="restart-form"
+    class="container-spacer-down"
+    action="{{ web_link("RestartIcinga") }}"
+    data-ajax="form"
+    data-ajax-type="json"
+    data-error-target="#restart-errors"
+    data-success-frame="#restart-success"
+    data-before-callback="restart_call_before"
+    data-complete-callback="restart_call_complete"
+>
+
+    <div id="restart-errors">
+
+    </div>
+
+    <div id="restart-success" class="hidden alert alert-success">
+        <h4>{% trans "Success" %}!</h4>
+        {% trans %}
+        Icinga has been restarted successfully
+        {% endtrans %}
+    </div>
+
+    <button id="restart-submit" type="submit" class="btn btn-danger">
+        <i class="icon-refresh"></i> {% trans "Restart Icinga" %}
+    </button>
+
+</form>
+
+<script>
+    require(['jquery', 'bootstrap'], function() {
+
+        var icon = $('#restart-submit i');
+
+        window.restart_call_before = function() {
+            $(icon).addClass('icon-spin');
+        };
+
+        window.restart_call_complete = function() {
+            $(icon).removeClass('icon-spin');
+        };
+    });
+</script>

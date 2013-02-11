@@ -1,0 +1,77 @@
+<h3>SSH access</h3>
+
+<div id="ssh-access-errors">
+
+</div>
+
+<div id="ssh-access-success" class="hidden">
+    <div class="alert alert-success">
+        <h4>{% trans "Success!" %}</h4>
+        {% trans "User access has been modified successfully" %}
+    </div>
+</div>
+
+<p>
+    {% trans "System access is" %}: <span data-ajax-call="{{ web_link("SystemAccess") }}"></span>
+</p>
+
+<p id="ssh-access-again" class="hidden">
+    {% trans %}
+    Please <a href="#" id="ssh-access-again-link">click here</a> to change mode again.
+    {% endtrans %}
+</p>
+
+<form
+        id="form-system-access"
+        action="{{ web_link("ChangeSystemAccess") }}"
+        data-ajax="form"
+        data-ajax-type="json"
+        data-form-reset="true"
+        data-error-target="#ssh-access-errors"
+        data-success-frame="#ssh-access-success"
+        data-success-callback="access_success_callback"
+>
+
+    <h4>{% trans "To change access please press the following button" %}</h4>
+
+
+        {% set username = user.getName() %}
+        {% if system_enabled == false %}
+        <input type="hidden" name="access" value="1" />
+        <button type="submit" class="btn btn-success">
+            <i class="icon-unlock"></i> {% trans "Enable" %}
+        </button>
+    <p class="container-spacer-down">
+        {% trans %}
+        System access (ssh/shell) for user {{ username }} will be enabled.
+        {% endtrans %}
+    </p>
+    {% else %}
+        <input type="hidden" name="access" value="0" />
+        <button type="submit" class="btn btn-danger">
+            <i class="icon-lock"></i> {% trans "Disable" %}
+        </button>
+        <p class="container-spacer-down">
+            {% trans %}
+            System access (ssh/shell) for user {{ username }} will be disabled.
+            {% endtrans %}
+        </p>
+    {% endif %}
+
+</form>
+
+<script>
+    var access_success_callback = function() {
+        $("#form-system-access").remove();
+        $("#ssh-access-again").removeClass("hidden");
+        $(document).Html5AjaxContent("insert");
+
+        // Reload with hash
+        $("#ssh-access-again-link").click(function(e) {
+            e.preventDefault();
+            var url = "{{ web_link('Index#tab-access-ssh') }}";
+            location.href = url;
+            location.reload();
+        });
+    }
+</script>

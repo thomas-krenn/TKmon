@@ -1,0 +1,16 @@
+<div id="login-container">
+    <div class="alert alert-success">
+        <p>{% trans "You are logged out successfully!" %}</p>
+    </div>
+
+    <p>
+        {% trans %}
+        You can now close the application or press the button
+        below to login again.
+        {% endtrans %}
+    </p>
+
+    <a href="{{ web_link('System/Login/Index') }}" class="btn btn-primary">
+        <i class="icon-key"></i> {% trans "Login" %}
+    </a>
+</div>

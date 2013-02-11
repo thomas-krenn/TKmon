@@ -1,0 +1,26 @@
+{% macro rendertree(links) %}
+    {% for link in links %}
+    {%  if link.hide == false %}
+
+    {% if link.type == 'divider' %}
+        <li class="divider"></li>
+    {% else %}
+        <li class="{{ link.class }}">
+
+        {% if link.type == 'header' %}
+            {{ link.title }}
+        {% else %}
+            <a href="{{ web_link(link.href) }}">{{ link.title }}</a>
+        {% endif %}
+
+        {% if link.items %}
+            <ul class="nav nav-list">
+                {{ _self.rendertree(link.items) }}
+            </ul>
+        {% endif %}
+        </li>
+
+    {% endif %}
+    {% endif %}
+    {% endfor %}
+{% endmacro %}

@@ -1,5 +1,5 @@
 <?php
-/*
+/**
  * This file is part of TKMON
  *
  * TKMON is free software: you can redistribute it and/or modify
@@ -14,6 +14,9 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with TKMON.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ * @author Marius Hein <marius.hein@netways.de>
+ * @copyright 2012-2013 NETWAYS GmbH <info@netways.de>
  */
 
 namespace TKMON\Model\Database;
@@ -77,17 +80,24 @@ class Importer
      * Tests if the database file exists
      * @return bool
      */
-    public function databaseExists() {
+    public function databaseExists()
+    {
         return is_file($this->database);
     }
 
     /**
      * Imports the default schema into a database
      */
-    public function createDefaultDatabase() {
-        $pdo = new \PDO('sqlite:'. $this->getDatabase(), null, null, array(
-            \PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION
-        ));
+    public function createDefaultDatabase()
+    {
+        $pdo = new \PDO(
+            'sqlite:' . $this->getDatabase(),
+            null,
+            null,
+            array(
+                \PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION
+            )
+        );
 
         $pdo->exec(file_get_contents($this->getSchema()));
 

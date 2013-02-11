@@ -1,0 +1,102 @@
+<h3>Icinga access</h3>
+
+<div id="icinga-access-errors">
+
+</div>
+
+<div id="icinga-access-success" class="hidden">
+    <div class="alert alert-success">
+        <h4>{% trans "Success!" %}</h4>
+        {% trans "Access to icinga has been modified successfully" %}
+    </div>
+</div>
+
+<p>
+    {% trans "Access to icinga is" %}: <span id="icinga-access-status" class="label">...</span>
+</p>
+
+<h4>{% trans "To change access please press the following button" %}</h4>
+
+<form
+        id="form-icinga-access"
+        action="{{ web_link("ChangeIcingaAccess") }}"
+        data-ajax="form"
+        data-ajax-type="json"
+        data-form-reset="false"
+        data-error-target="#icinga-access-errors"
+        data-success-frame="#icinga-access-success"
+        data-success-callback="icinga_success_callback"
+        data-before-callback="icinga_call_before"
+        data-complete-callback="icinga_call_complete"
+>
+
+    <button id="icinga-access-button" class="btn">
+        <i class="icon-constant"></i> <span>MESSAGE</span>
+    </button>
+
+    <input type="hidden" name="icinga-access" id="icinga-access" value="" />
+
+    <p class="container-spacer-down" id="icinga-access-message">...</p>
+
+</form>
+
+<script>
+    require(['jquery', 'bootstrap'], function() {
+        "use strict";
+
+        var currentAccess = JSON.parse("{{ icinga_enabled }}");
+
+        var messages = [
+            '{% trans "Icinga access will be <strong>enabled</strong> for user icingaadmin." %}',
+            '{% trans "Icinga access will be <strong>disabled</strong> for user icingaadmin." %}'
+        ];
+
+        var labels = [
+            '{% trans "Enable" %}',
+            '{% trans "Disable" %}'
+        ];
+
+        var labelsStatus = [
+            '{% trans "Enabled" %}',
+            '{% trans "Disabled" %}'
+        ];
+
+        var icons = ['icon-ok', 'icon-off'];
+
+        var btnCls = ['btn-success', 'btn-danger'];
+
+        var labelCls = ['label-success', 'label-important'];
+
+        var btn = $('#icinga-access-button');
+
+        var changeAccessDisplay = function(hasAccess) {
+            var index = parseInt(hasAccess, 10);
+            var negativeIndex = !(index)+0;
+
+            $('#icinga-access-message').html(messages[index]);
+            $('#icinga-access-status').html(labelsStatus[negativeIndex]).removeClass().addClass('label ' + labelCls[negativeIndex]);
+            $('#icinga-access').val(negativeIndex);
+            $(btn).removeClass().addClass('btn ' + btnCls[index]);
+            $(btn).find('i').removeClass().addClass(icons[index]);
+            $(btn).find('span').html(labels[index]);
+        };
+
+        window.icinga_success_callback = function(struct) {
+            if (typeof(struct.data[0]) === "number") {
+                console.log(!struct.data[0]+0);
+                changeAccessDisplay(struct.data[0]);
+            }
+        };
+
+        window.icinga_call_before = function() {
+            $(btn).find('i').data('old', $(btn).find('i').attr('class'));
+            $(btn).find('i').removeClass().addClass('icon-spinner icon-spin');
+        };
+
+        window.icinga_call_complete = function() {
+            $(btn).find('i').removeClass().addClass($(btn).find('i').data('old'));
+        };
+
+        changeAccessDisplay(currentAccess);
+    });
+</script>

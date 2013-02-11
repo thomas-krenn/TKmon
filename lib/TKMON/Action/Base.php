@@ -1,5 +1,5 @@
 <?php
-/*
+/**
  * This file is part of TKMON
  *
  * TKMON is free software: you can redistribute it and/or modify
@@ -14,6 +14,9 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with TKMON.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ * @author Marius Hein <marius.hein@netways.de>
+ * @copyright 2012-2013 NETWAYS GmbH <info@netways.de>
  */
 
 namespace TKMON\Action;
@@ -27,14 +30,20 @@ namespace TKMON\Action;
 abstract class Base
 {
 
-    const FLAG_SECURITY = 1;
+    /**
+     * Parameter holder for to configure outer template
+     * @var array
+     */
+    private $templateParams = array();
 
     /**
+     * Our DI container
      * @var \Pimple
      */
     protected $container;
 
     /**
+     * Setter for DI container
      * @param \Pimple $container
      */
     public function setContainer($container)
@@ -43,6 +52,7 @@ abstract class Base
     }
 
     /**
+     * Getter for DI container
      * @return \Pimple
      */
     public function getContainer()
@@ -51,21 +61,72 @@ abstract class Base
     }
 
     /**
-     * @param string $name name of the template
-     * @return \Twig_Template
+     * Return the parameter holder
+     * @return \NETWAYS\Http\CgiParams
      */
-    public function createTemplate($name) {
-        return $this->container['template']->loadTemplate($name);
+    protected function getParameterHolder()
+    {
+        return $this->container['params'];
     }
 
     /**
-     * Return flags of this action
-     * @return array
+     * Initialize method after action is configured
      */
-    public function getFlags() {
-        return array();
+    public function init()
+    {
+        // DO NOTHING HERE
     }
 
-    abstract public function getActions();
+    /**
+     * Setter for templateParams
+     *
+     * Set the whole array
+     *
+     * @param array $templateParams
+     */
+    public function setTemplateParams(array $templateParams)
+    {
+        $this->templateParams = $templateParams;
+    }
 
+    /**
+     * Getter for templateParams
+     * @return array
+     */
+    public function getTemplateParams()
+    {
+        return $this->templateParams;
+    }
+
+    /**
+     * Add item to params
+     *
+     * @param string $paramName
+     * @param mixed $paramValue
+     */
+    public function addTemplateParam($paramName, $paramValue)
+    {
+        $this->templateParams[$paramName] = $paramValue;
+    }
+
+    /**
+     * Remove single item from params
+     *
+     * @param string $paramName
+     */
+    public function removeTemplateParam($paramName)
+    {
+        if (isset($this->templateParams[$paramName])) {
+            unset($this->templateParams[$paramName]);
+        }
+    }
+
+    /**
+     * Drop all params and start new
+     */
+    public function purgeTemplateParams()
+    {
+        unset($this->templateParams);
+        $this->templateParams = array();
+    }
 }

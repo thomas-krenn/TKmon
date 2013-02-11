@@ -1,0 +1,33 @@
+<div class="page-header">
+    <h2>{%  trans "Mail settings" %}</h2>
+</div>
+
+<p>
+    {% trans %}
+    Change mail settings and send test mails to verify everything
+    works like expected!
+    {% endtrans %}
+</p>
+
+<br />
+
+<div class="tabbable">
+    <ul class="nav nav-tabs">
+        <li class="active">
+            <a href="#mail-config" data-toggle="tab">{% trans "Configuration" %}</a>
+        </li>
+        <li>
+            <a href="#mail-test" data-toggle="tab">{% trans "Test" %}</a>
+        </li>
+    </ul>
+
+    <div class="tab-content">
+        <div class="tab-pane active" id="mail-config">
+            {% include "views/System/Configuration/Mail/Config.twig" %}
+        </div>
+
+        <div class="tab-pane" id="mail-test">
+            {% include "views/System/Configuration/Mail/Test.twig" %}
+        </div>
+    </div>
+</div>

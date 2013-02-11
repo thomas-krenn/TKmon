@@ -1,53 +1,93 @@
 <?php
+/**
+ * This file is part of TKMON
+ *
+ * TKMON is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * TKMON is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with TKMON.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ * @author Marius Hein <marius.hein@netways.de>
+ * @copyright 2012-2013 NETWAYS GmbH <info@netways.de>
+ */
 
 namespace TKMON\Model;
 
 /**
  * This is the current user
+ * @package TKMON\Model
+ * @author Marius Hein <marius.hein@netways.de>
  */
-class User
+class User extends ApplicationModel
 {
+
+    /**
+     * Hashing algo for passwords
+     */
+    const HASH_ALGO = 'md5';
+
+    /**
+     * Session id for user locale
+     */
+    const NS_LOCALE = 'user.locale';
 
     /**
      * Session id for authenticated flag
      */
-    const NS_AUTHENTICATED='user.authenticated';
+    const NS_AUTHENTICATED = 'user.authenticated';
 
     /**
      * Session id for id flag
      */
-    const NS_USERID='user.id';
-
-    const FIELD_ID='id';
-    const FIELD_NAME='name';
-    const FIELD_PASSWORD='password';
-    const FIELD_SALT='salt';
+    const NS_USERID = 'user.id';
 
     /**
-     * @var \Pimple
+     * Field tag id
      */
-    protected $container;
+    const FIELD_ID = 'id';
+
     /**
+     * Field tag name
+     */
+    const FIELD_NAME = 'name';
+
+    /**
+     * Field tag password
+     */
+    const FIELD_PASSWORD = 'password';
+
+    /**
+     * Field tag salt
+     */
+    const FIELD_SALT = 'salt';
+    /**
+     * Flag if the user if authenticated
      * @var bool
      */
-    protected $authenticated=false;
+    protected $authenticated = false;
+
     /**
-     * @var
+     * Name of the user (loginname)
+     * @var string
      */
     protected $name;
+
     /**
-     * @var
+     * User id in database
+     * @var int
      */
     protected $id;
 
     /**
-     * @param \Pimple $container
-     */
-    public function __construct(\Pimple $container) {
-        $this->container = $container;
-    }
-
-    /**
+     * Setter for authenticated flag
      * @param bool $authenticated
      */
     public function setAuthenticated($authenticated)
@@ -56,30 +96,15 @@ class User
     }
 
     /**
+     * Getter for authenticated flag
      * @return bool
      */
     public function getAuthenticated()
     {
         return $this->authenticated;
     }
-
     /**
-     * @param \Pimple $container
-     */
-    public function setContainer($container)
-    {
-        $this->container = $container;
-    }
-
-    /**
-     * @return \Pimple
-     */
-    public function getContainer()
-    {
-        return $this->container;
-    }
-
-    /**
+     * Setter for id
      * @param int $id
      */
     public function setId($id)
@@ -88,6 +113,7 @@ class User
     }
 
     /**
+     * Getter for id
      * @return int
      */
     public function getId()
@@ -96,6 +122,7 @@ class User
     }
 
     /**
+     * Setter for name
      * @param string $name
      */
     public function setName($name)
@@ -104,6 +131,7 @@ class User
     }
 
     /**
+     * Getter for name
      * @return string
      */
     public function getName()
@@ -111,7 +139,15 @@ class User
         return $this->name;
     }
 
-    public function initialize() {
+    /**
+     * Initialize the user
+     *
+     * Checks if we have a current session and loads userdata
+     * from session into the object. If no valid session there
+     * we create one for you with context 'guest'
+     */
+    public function initialize()
+    {
         $session = $this->container['session'];
         if ($session->offsetExists(self::NS_AUTHENTICATED)) {
             $this->setAuthenticated((bool)$session->offsetGet(self::NS_AUTHENTICATED));
@@ -129,16 +165,29 @@ class User
         }
     }
 
-    public function write() {
+    /**
+     * Write data to session object
+     */
+    public function write()
+    {
         $session = $this->container['session'];
         $session[self::NS_USERID] = $this->getId();
         $session[self::NS_AUTHENTICATED] = $this->getAuthenticated();
     }
 
-    private function getUserData($fieldValue, $fieldName=self::FIELD_ID) {
+    /**
+     * Return database row as as annay
+     * @param string $fieldValue fieldContent
+     * @param string $fieldName Database field
+     * @return bool|array
+     */
+    private function getUserData($fieldValue, $fieldName = self::FIELD_ID)
+    {
         $db = $this->container['db'];
-        $statement = $db->prepare('SELECT * from user where '
-            . $fieldName. '=:value LIMIT 1;');
+        $statement = $db->prepare(
+            'SELECT * from user where '
+            . $fieldName . '=:value LIMIT 1;'
+        );
 
         $statement->bindValue(':value', $fieldValue, \PDO::PARAM_STR);
         $re = $statement->execute();
@@ -150,12 +199,24 @@ class User
         return false;
     }
 
-    private function applyDataToObject(array $data) {
+    /**
+     * Apply data from array to the object
+     * @param array $data
+     */
+    private function applyDataToObject(array $data)
+    {
         $this->setId($data[self::FIELD_ID]);
         $this->setName($data[self::FIELD_NAME]);
     }
 
-    public function doAuthenticate($username, $password) {
+    /**
+     * Tries to authenticate
+     * @param string $username
+     * @param string $password
+     * @throws \TKMON\Exception\UserException
+     */
+    public function doAuthenticate($username, $password)
+    {
 
         if (!$username) {
             throw new \TKMON\Exception\UserException('Username is mandatory.');
@@ -166,10 +227,15 @@ class User
         }
 
         $data = $this->getUserData($username, self::FIELD_NAME);
-        if (is_array($data) === true) {
-            $check_password = hash_hmac('md5', $password, $data[self::FIELD_SALT]);
 
-            if ($check_password === $data[self::FIELD_PASSWORD]) {
+        if (is_array($data) === true) {
+            $check_password = hash_hmac(self::HASH_ALGO, $password, $data[self::FIELD_SALT]);
+
+            if ($this->testPassword(
+                $password,
+                $data[self::FIELD_PASSWORD],
+                $data[self::FIELD_SALT]
+            ) === true) {
                 $this->setAuthenticated(true);
                 $this->applyDataToObject($data);
                 $this->write();
@@ -177,6 +243,224 @@ class User
             }
         }
 
-        throw new \TKMON\Exception\UserException('Could not authenticate user: '. $username);
+        throw new \TKMON\Exception\UserException('Could not authenticate user: ' . $username);
+    }
+
+    /**
+     * Tests current user password
+     * @param string $password
+     * @return bool Success or not
+     */
+    public function testCurrentPassword($password)
+    {
+        $data = $this->getUserData($this->getId());
+        if (is_array($data)) {
+            return $this->testPassword(
+                $password,
+                $data[self::FIELD_PASSWORD],
+                $data[self::FIELD_SALT]
+            );
+        }
+
+        return false;
+    }
+
+    /**
+     * Change the password
+     *
+     * @param string $currentPassword
+     * @param string $newPassword
+     * @param string $verification
+     * @return bool
+     * @throws \TKMON\Exception\UserException
+     */
+    public function changePassword($currentPassword, $newPassword, $verification)
+    {
+
+        if ($this->getAuthenticated()===false || !$this->getId()) {
+            throw new \TKMON\Exception\UserException('User not initialized and authenticated');
+        }
+
+        if (!$currentPassword) {
+            throw new \TKMON\Exception\UserException('Current password is mandatory');
+        }
+
+        if (!$newPassword) {
+            throw new \TKMON\Exception\UserException('New password is mandatory');
+        }
+
+        if (!$verification) {
+            throw new \TKMON\Exception\UserException('Verification is mandatory');
+        }
+
+        if ($newPassword !== $verification) {
+            throw new \TKMON\Exception\UserException('Password does not match');
+        }
+
+        if ($this->testCurrentPassword($currentPassword) === false) {
+            throw new \TKMON\Exception\UserException('Your current password is wrong');
+        }
+
+        if ($currentPassword === $newPassword) {
+            throw new \TKMON\Exception\UserException('Old and new password are the same!');
+        }
+
+        $data = $this->getUserData($this->getId());
+
+        // Change on system level
+        $this->changeSystemPassword($data[self::FIELD_NAME], $newPassword);
+
+        // Change icinga access
+        $this->changeIcingaPassword($newPassword);
+
+        $newHash = hash_hmac(self::HASH_ALGO, $newPassword, $data[self::FIELD_SALT]);
+
+        $db = $this->container['db'];
+        $statement = $db->prepare('UPDATE user SET password=:password WHERE ID=:id;');
+        $statement->bindValue(':password', $newHash, \PDO::PARAM_STR);
+        $statement->bindValue(':id', $this->getId(), \PDO::PARAM_INT);
+
+        return $statement->execute();
+    }
+
+    /**
+     * Change the http password of icinga admin
+     * @param string $password
+     */
+    private function changeIcingaPassword($password)
+    {
+        $icingaUser = $this->container['config']->get('icinga.adminuser', 'icingaadmin');
+        $passwdFile = $this->container['config']->get('icinga.passwdfile');
+
+        $passwdModel = new \TKMON\Model\Apache\PasswordFile($this->container);
+        $passwdModel->setPasswordFile($passwdFile);
+        $passwdModel->load();
+        $passwdModel->addUser($icingaUser, $password);
+        $passwdModel->write();
+    }
+
+    /**
+     * Change password on system
+     *
+     * Use with caution: No validation here!
+     *
+     * @param string $username
+     * @param string $password
+     */
+    private function changeSystemPassword($username, $password)
+    {
+        $command = $this->container['command']->create('chpasswd');
+        $command->setInput($username. ':'. $password);
+
+        $command->execute();
+    }
+
+    /**
+     * Class wide password teste method
+     *
+     * @param string $testPassword
+     * @param string $passwordHash
+     * @param string $passwordSalt
+     * @return bool Success or not
+     */
+    private function testPassword($testPassword, $passwordHash, $passwordSalt)
+    {
+        $check = hash_hmac(self::HASH_ALGO, $testPassword, $passwordSalt);
+
+        if ($passwordHash === $check) {
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
+     * Control system access for that user
+     * @param boolean $flag
+     */
+    public function controlSystemAccess($flag)
+    {
+        $command = $this->container['command']->create('usermod');
+        $command->addPositionalArgument($this->getName());
+
+        if ($flag === true) {
+            $command->addNamedArgument('--unlock');
+        } elseif ($flag === false) {
+            $command->addNamedArgument('--lock');
+        }
+
+        $command->execute();
+    }
+
+    /**
+     * Getter for system access status
+     * @return bool
+     */
+    public function getSystemAccess()
+    {
+        $command = $this->container['command']->create('passwd');
+        $command->addNamedArgument('--status');
+        $command->addPositionalArgument($this->container['user']->getName());
+        $command->execute();
+
+        $data = explode(' ', $command->getOutput());
+
+        if ($data[1] === 'P') {
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
+     * Getter function for locale
+     *
+     * Try to determine current locale configured:
+     *
+     * - session
+     * - configuration
+     * - default
+     *
+     * @return string|null locale name e.g. de_DE
+     * @throws \TKMON\Exception\ModelException
+     */
+    public function getLocale()
+    {
+        /** @var $session \NETWAYS\Http\Session */
+        $session = $this->container['session'];
+
+        /** @var $config \NETWAYS\Common\Config */
+        $config = $this->container['config'];
+
+        $locale = $session[self::NS_LOCALE];
+
+        if (!$locale) {
+            $locale = $config->get('locale.name');
+        }
+
+        if (!$locale) {
+            throw new \TKMON\Exception\ModelException('Locale not properly configured');
+        }
+
+        return $locale;
+    }
+
+    /**
+     * Sets the current user locale
+     *
+     * And write them into session
+     *
+     * @param string $locale locale name e.g. de_DE
+     */
+    public function setLocale($locale)
+    {
+        /** @var $session \NETWAYS\Http\Session */
+        $session = $this->container['session'];
+
+        /** @var $intl \NETWAYS\Intl\Gettext */
+        $intl = $this->container['intl'];
+
+        $intl->setLocale($locale);
+        $session[self::NS_LOCALE] = $locale;
     }
 }

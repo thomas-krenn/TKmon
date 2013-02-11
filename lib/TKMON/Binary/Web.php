@@ -1,5 +1,5 @@
 <?php
-/*
+/**
  * This file is part of TKMON
  *
  * TKMON is free software: you can redistribute it and/or modify
@@ -14,6 +14,9 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with TKMON.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ * @author Marius Hein <marius.hein@netways.de>
+ * @copyright 2012-2013 NETWAYS GmbH <info@netways.de>
  */
 
 namespace TKMON\Binary;
@@ -30,33 +33,22 @@ final class Web
      */
     public static function run()
     {
+
         $dirname = dirname(__FILE__);
         $libdir = dirname(dirname($dirname));
+
+        // -------------------------------------------------------------------------------------------------------------
+        // Default PHP settings
+        // -------------------------------------------------------------------------------------------------------------
 
         // Be brave my friend!
         ini_set('display_errors', true);
         ini_set('error_reporting', E_ALL);
 
-        require $libdir . DIRECTORY_SEPARATOR . 'Pimple' . DIRECTORY_SEPARATOR . 'Pimple.php';
-
-        require $libdir . DIRECTORY_SEPARATOR . 'NETWAYS' . DIRECTORY_SEPARATOR . 'Common'
-            . DIRECTORY_SEPARATOR . 'ClassLoader.php';
-
-        require $libdir . DIRECTORY_SEPARATOR . 'Twig' . DIRECTORY_SEPARATOR . 'lib'
-            . DIRECTORY_SEPARATOR . 'Twig' . DIRECTORY_SEPARATOR . 'Autoloader.php';
+        // Default file permissions 644
+        umask(0022);
 
         $container = new \Pimple();
-
-        // Loader for NETWAYS
-        $loader = new \NETWAYS\Common\ClassLoader('NETWAYS', $libdir);
-        $loader->register();
-
-        // Loader for TKMON
-        $loader = new \NETWAYS\Common\ClassLoader('TKMON', $libdir);
-        $loader->register();
-
-        // Loader for Twig
-        \Twig_Autoloader::register();
 
         // -------------------------------------------------------------------------------------------------------------
         // Build our environment to deliver content to the world
@@ -67,90 +59,150 @@ final class Web
          */
         $container['lib_dir'] = $libdir;
         $container['root_dir'] = dirname($libdir);
-        $container['etc_dir'] = $container['root_dir'] . DIRECTORY_SEPARATOR . 'etc';
+
+        // etc directory, try to detect
+
+        $etcDirectory = DIRECTORY_SEPARATOR
+            . 'etc'
+            . DIRECTORY_SEPARATOR
+            . 'tkmon';
+
+        if (file_exists($etcDirectory)) {
+            $container['etc_dir'] = $etcDirectory;
+        } else {
+            $container['etc_dir'] = $container['root_dir'] . DIRECTORY_SEPARATOR . 'etc';
+        }
+
         $container['share_dir'] = $container['root_dir'] . DIRECTORY_SEPARATOR . 'share';
 
         /*
          * Cgi Params
          */
         $container['params_class'] = 'NETWAYS\Http\CgiParams';
-        $container['params'] = $container->share(function ($c) {
-            return new $c['params_class']();
-        });
+        $container['params'] = $container->share(
+            function ($c) {
+                return new $c['params_class']();
+            }
+        );
 
         /**
          * Configuration object
          */
         $container['config_class'] = 'NETWAYS\Common\Config';
-        $container['config'] = $container->share(function ($c) {
-            $params = $c['params'];
+        $container['config'] = $container->share(
+            function ($c) {
+                $params = $c['params'];
 
-            $config = new $c['config_class'];
+                $config = new $c['config_class'];
 
-            // Path settings
-            $config->set('core.root_dir', $c['root_dir']);
-            $config->set('core.lib_dir', $c['lib_dir']);
-            $config->set('core.etc_dir', $c['etc_dir']);
-            $config->set('core.share_dir', $c['share_dir']);
-            $config->set('core.template_dir', '{core.share_dir}/templates');
-            $config->set('core.var_dir', '{core.root_dir}/var');
-            $config->set('core.cache_dir', '{core.root_dir}/var/cache');
+                // Path settings
+                $config->set('core.root_dir', $c['root_dir']);
+                $config->set('core.lib_dir', $c['lib_dir']);
+                $config->set('core.etc_dir', $c['etc_dir']);
+                $config->set('core.share_dir', $c['share_dir']);
+                $config->set('core.template_dir', '{core.share_dir}/templates');
+                $config->set('core.var_dir', '{core.root_dir}/var');
+                $config->set('core.cache_dir', '{core.root_dir}/var/cache');
 
-            // Web settings
-            $filename = basename($params->getParameter('SCRIPT_FILENAME', null, 'header'));
-            $path = str_replace($filename, '', $params->getParameter('SCRIPT_NAME', null, 'header'));
+                // Web settings
+                $filename = basename($params->getParameter('SCRIPT_FILENAME', null, 'header'));
+                $path = str_replace($filename, '', $params->getParameter('SCRIPT_NAME', null, 'header'));
 
-            $config->set('web.path', $path);
-            $config->set('web.script', $path . $filename);
-            $config->set('web.img_path', '{web.path}/img');
-            $config->set('web.port', $params->getParameter('SERVER_PORT', null, 'header'));
-            $config->set('web.domain', $params->getParameter('SERVER_NAME', null, 'header'));
-            $config->set('web.https', false); // TODO: This should be detected
+                $requestUri = $params->getParameter('REQUEST_URI', null, 'header');
 
-            $config->loadFile($c['etc_dir'] . DIRECTORY_SEPARATOR . 'config.json');
-            return $config;
-        });
+                // rewrite in progress (e.g. mod_rewrite/apache2)
+                // Set ENV variable TKMON_USE_REWRITE to On
+                if (getenv('TKMON_USE_REWRITE') && getenv('TKMON_USE_REWRITE') === 'On') {
+                    $filename = '';
+                    $config->set('web.rewrite', true);
+                } else {
+                    $config->set('web.rewrite', false);
+                }
+
+                $config->set('web.path', $path);
+                $config->set('web.script', $path . $filename);
+                $config->set('web.img_path', '{web.path}img');
+                $config->set('web.port', $params->getParameter('SERVER_PORT', null, 'header'));
+                $config->set('web.domain', $params->getParameter('SERVER_NAME', null, 'header'));
+                $config->set('web.https', false); // TODO: This should be detected
+
+                $config->loadFile($c['etc_dir'] . DIRECTORY_SEPARATOR . 'config.json');
+
+                return $config;
+            }
+        );
 
         /*
          * Template engine
          */
-        $container['template_loader'] = $container->share(function ($c) {
-            return new \Twig_Loader_Filesystem($c['config']->get('core.template_dir'));
-        });
+        $container['template_loader'] = $container->share(
+            function ($c) {
+                return new \Twig_Loader_Filesystem($c['config']->get('core.template_dir'));
+            }
+        );
 
-        $container['template'] = $container->share(function ($c) {
-            $twig = new \Twig_Environment($c['template_loader'], array(// 'cache' => $c['config']->get('core.cache_dir')
-            ));
+        $container['template'] = $container->share(
+            function ($c) {
+                $twig = new \Twig_Environment(
+                    $c['template_loader'],
+                    array() // 'cache' => $c['config']->get('core.cache_dir')
+                );
 
-            $twig->addExtension(new \TKMON\Twig\Extension($c));
+                $twig->addExtension(new \TKMON\Twig\Extension($c));
+                $twig->addExtension(new \Twig_Extensions_Extension_I18n());
 
-            return $twig;
-        });
+                return $twig;
+            }
+        );
 
         /*
          * Database
          */
-        $container['db_class'] = '\PDO';
+        $container['db'] = $container->share(
+            function ($c) {
+                $config = $c['config'];
 
-        $container['db'] = $container->share(function ($c) {
-            $config = $c['config'];
+                $builder = new \TKMON\Model\Database\DebConfBuilder();
 
-            $importer = new \TKMON\Model\Database\Importer();
-            $importer->setDatabase($config['db.file']);
-            $importer->setSchema($config['db.schema']);
+                if ($config['db.debconf.use'] === true) {
+                    $builder->loadFromFile($config['db.debconf.file']);
+                } else {
+                    $builder->setType($config['db.type']);
+                    $builder->setBasePath($config['db.basepath']);
+                    $builder->setName($config['db.name']);
+                }
 
-            if (!$importer->databaseExists()) {
-                $importer->createDefaultDatabase();
+                if ($config['db.autocreate'] === true) {
+                    $file = $builder->getBasePath(). DIRECTORY_SEPARATOR. $builder->getName();
+                    $importer = new \TKMON\Model\Database\Importer();
+                    $importer->setDatabase($file);
+                    $importer->setSchema($config['db.schema']);
+                    if (!$importer->databaseExists()) {
+                        $importer->createDefaultDatabase();
+                    }
+                }
+
+                $dbo = $builder->buildConnection();
+
+                // Load additional settings from database
+                $pdoLoader = new \NETWAYS\Common\Config\PDOLoader($dbo);
+                $pdoLoader->setTable('config');
+                $pdoLoader->setKeyColumn('name');
+                $pdoLoader->setValueColumn('value');
+
+                $c['config']->load($pdoLoader);
+
+                // Configure persister to write data back
+                $pdoPersister = new \NETWAYS\Common\Config\PDOPersister($dbo);
+                $pdoPersister->setTable('config');
+                $pdoPersister->setKeyColumn('name');
+                $pdoPersister->setValueColumn('value');
+
+                $c['config']->setPersister($pdoPersister);
+
+                return $dbo;
             }
-
-            return new $c['db_class']($config->get('db.dsn'), null, null,
-                array(
-                    \PDO::ATTR_PERSISTENT => true,
-                    \PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION,
-                    \PDO::ATTR_CASE => \PDO::CASE_LOWER,
-                    \PDO::ATTR_DEFAULT_FETCH_MODE => \PDO::FETCH_ASSOC
-                ));
-        });
+        );
 
         // Trigger the database object to have it ready imported
         $container['db'];
@@ -159,40 +211,124 @@ final class Web
          * Session
          */
         $container['session_class'] = 'NETWAYS\Http\Session';
-        $container['session'] = $container->share(function ($c) {
-            $config = $c['config'];
+        $container['session'] = $container->share(
+            function ($c) {
+                $config = $c['config'];
 
-            $session = new $c['session_class']();
-            $session->setName($config->get('session.name'));
-            $session->setLifetime($config->get('session.lifetime'));
-            $session->setDomain($config->get('web.domain'));
-            $session->setIsSecured($config->get('web.https'));
-            $session->setPath($config->get('web.path'));
+                $session = new $c['session_class']();
+                $session->setName($config->get('session.name'));
+                $session->setLifetime($config->get('session.lifetime'));
+                $session->setDomain($config->get('web.domain'));
+                $session->setIsSecured($config->get('web.https'));
+                $session->setPath($config->get('web.path'));
 
-            $session->start();
+                $session->start();
 
-            return $session;
-        });
+                return $session;
+            }
+        );
 
         /*
          * User
          */
         $container['user_class'] = '\TKMON\Model\User';
-        $container['user'] = $container->share(function ($c) {
-            $user = new \TKMON\Model\User($c);
-            $user->initialize();
-            return $user;
-        });
+        $container['user'] = $container->share(
+            function ($c) {
+                $user = new \TKMON\Model\User($c);
+                $user->initialize();
+                return $user;
+            }
+        );
 
         /*
          * Dispatcher
          */
         $container['dispatcher_class'] = '\TKMON\Mvc\Dispatcher';
-        $container['dispatcher'] = $container->share(function ($c) {
-            return new $c['dispatcher_class']($c);
-        });
+        $container['dispatcher'] = $container->share(
+            function ($c) {
+                return new $c['dispatcher_class']($c);
+            }
+        );
+
+        /*
+         * Navigation
+         */
+        $container['navigation'] = $container->share(
+            function ($c) {
+                $container = new \TKMON\Navigation\Container($c['user']);
+                $container->loadFile($c['config']['navigation.data']);
+                $container->setUri($c['dispatcher']->getUri());
+                return $container;
+            }
+        );
+
+        /*
+         * Command factory
+         */
+        $container['command'] = $container->share(
+            function ($c) {
+                return new \TKMON\Model\Command\Factory($c['config']);
+            }
+        );
+
+        /*
+         * Intl
+         */
+        $container['intl_class'] = '\NETWAYS\Intl\Gettext';
+
+        $container['intl'] = $container->share(
+            function ($c) {
+                $gettextController = new $c['intl_class']();
+
+                $gettextController->setLocale($c['user']->getLocale());
+
+                $gettextController->addDomain(
+                    $c['config']['locale.domain'],
+                    $c['config']['locale.path']
+                );
+
+                $gettextController->setDefaultDomain($c['config']['locale.domain']);
+
+                return $gettextController;
+            }
+        );
+
+        // Dummy call to initialize internationalization
+        $container['intl'];
+
+        // --------------------------------------------------------------------
+        // Factories
+        // --------------------------------------------------------------------
+
+        // Application specific models
+
+        $container['hostData'] = function ($c) {
+            $hostData = new \TKMON\Model\Icinga\HostData($c);
+
+            // Registering default attribute handler
+            $hostData->appendHandlerToChain(new \TKMON\Extension\Host\DefaultAttributes($c));
+
+            // Thomas krenn specific attributes
+            $hostData->appendHandlerToChain(new \TKMON\Extension\Host\ThomasKrennAttributes());
+
+            return $hostData;
+        };
+
+        $container['serviceCatalogue'] = $container->share(
+            function ($c) {
+                $catalogue = new \ICINGA\Catalogue\Services();
+
+                $jsonProvider = new \ICINGA\Catalogue\Provider\JsonFiles();
+                $jsonProvider->addFile($c['config']['icinga.catalogue.services.default']);
+
+                $catalogue->appendHandlerToChain($jsonProvider);
+
+                $catalogue->makeReady();
+
+                return $catalogue;
+            }
+        );
 
         echo $container['dispatcher']->dispatchRequest();
     }
-
 }

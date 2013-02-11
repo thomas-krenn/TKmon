@@ -1,0 +1,56 @@
+<h4>{% trans "Configuration" %}</h4>
+
+<p>
+    {% trans %}
+    Change sender address and relay host
+    {% endtrans %}
+</p>
+
+<form
+    id="mail-config"
+    class="container-spacer-down"
+    action="{{ web_link("Configure") }}"
+    data-ajax="form"
+    data-ajax-type="json"
+    data-error-target="#mail-config-errors"
+    data-success-frame="#mail-config-success"
+    data-before-callback="config_call_before"
+    data-complete-callback="config_call_complete"
+    >
+
+    <div id="mail-config-errors"></div>
+
+    <div id="mail-config-success" class="alert alert-success hidden">
+        <h4>{% trans "Success!" %}</h4>
+        <p>{% trans "Mail config was written to device" %}</p>
+    </div>
+
+    <fieldset>
+        <label for="sender">{% trans "Sender address" %}</label>
+        <input type="text" name="sender" id="sender" value="{{ sender }}" />
+    </fieldset>
+
+    <fieldset>
+        <label for="relayhost">{% trans "Relayhost" %}</label>
+        <input type="text" name="relayhost" id="relayhost" value="{{ relayhost }}" />
+    </fieldset>
+
+    <button type="submit" id="config-submit" class="btn btn-primary container-spacer-down">
+        <i class="icon-save"></i> {% trans "Save and restart mailserver" %}
+    </button>
+
+    <script>
+        require(['jquery', 'bootstrap'], function() {
+
+            var icon = $('#config-submit i');
+
+            window.config_call_before = function() {
+                $(icon).removeClass('icon-save').addClass('icon-refresh icon-spin');
+            };
+
+            window.config_call_complete = function() {
+                $(icon).addClass('icon-save').removeClass('icon-refresh icon-spin');
+            };
+        });
+    </script>
+</form>

@@ -1,5 +1,5 @@
 <?php
-/*
+/**
  * This file is part of TKMON
  *
  * TKMON is free software: you can redistribute it and/or modify
@@ -14,6 +14,9 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with TKMON.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ * @author Marius Hein <marius.hein@netways.de>
+ * @copyright 2012-2013 NETWAYS GmbH <info@netways.de>
  */
 
 namespace TKMON\Action\Expose\System;
@@ -26,27 +29,50 @@ namespace TKMON\Action\Expose\System;
  */
 class Login extends \TKMON\Action\Base
 {
-    public function getActions()
+
+    /**
+     * Security flag for index action
+     * @return bool
+     */
+    public function securityIndex()
     {
-        return array('Index', 'Login', 'Logout');
+        return false;
     }
 
-    public function actionIndex()
+    /**
+     * Show login box
+     * @param \NETWAYS\Common\ArrayObject $params
+     * @return \TKMON\Mvc\Output\TwigTemplate
+     */
+    public function actionIndex(\NETWAYS\Common\ArrayObject $params)
     {
         $output = new \TKMON\Mvc\Output\TwigTemplate($this->container['template']);
-        $output->setTemplateName('forms/login.html');
+        $output->setTemplateName('forms/login.twig');
         return $output;
     }
 
-    public function actionLogin()
+    /**
+     * Security flag for logout;
+     * @return bool
+     */
+    public function securityLogin()
     {
-        $params = $this->container['params'];
+        return false;
+    }
+
+    /**
+     * Login request as ajax
+     * @param \NETWAYS\Common\ArrayObject $params
+     * @return \TKMON\Mvc\Output\JsonResponse
+     */
+    public function actionLogin(\NETWAYS\Common\ArrayObject $params)
+    {
         $user = $this->container['user'];
 
         $r = new \TKMON\Mvc\Output\JsonResponse();
 
         try {
-            $user->doAuthenticate($params->getParameter('username'), $params->getParameter('password'));
+            $user->doAuthenticate($params->get('username'), $params->get('password'));
             $user->write();
             $r->setSuccess(true);
         } catch (\TKMON\Exception\UserException $e) {
@@ -59,13 +85,18 @@ class Login extends \TKMON\Action\Base
         return $r;
     }
 
-    public function actionLogout()
+    /**
+     * Logout request
+     * @param \NETWAYS\Common\ArrayObject $params
+     * @return \TKMON\Mvc\Output\TwigTemplate
+     */
+    public function actionLogout(\NETWAYS\Common\ArrayObject $params)
     {
         $session = $this->container['session'];
         $session->destroySession();
 
         $template = new \TKMON\Mvc\Output\TwigTemplate($this->container['template']);
-        $template->setTemplateName('forms/logout.html');
+        $template->setTemplateName('forms/logout.twig');
         return $template;
     }
 }

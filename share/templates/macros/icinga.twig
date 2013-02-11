@@ -1,0 +1,5 @@
+{% macro service_status_class(status) %}icinga-status icinga-status-service icinga-status-{{ status|upper }}{% endmacro %}
+
+{% macro service_status(status) %}
+    {{ status|upper }}
+{% endmacro %}

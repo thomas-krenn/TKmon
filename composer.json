@@ -1,0 +1,42 @@
+{
+    "name": "tkmon/tkmon-web",
+
+    "description": "Simple icinga web frontend for small environments",
+
+    "version": "0.0.0",
+
+    "type": "library",
+
+    "homepage": "http://www.netways.de",
+
+    "minimum-stability": "dev",
+
+    "require": {
+        "twig/twig": "1.11.*",
+        "twig/extensions": "1.*",
+        "pimple/pimple": "1.0.*"
+    },
+
+    "license": [
+        "GPL-3.0"
+    ],
+
+    "autoload": {
+        "psr-0": {
+            "NETWAYS": "lib/",
+            "TKMON": "lib/",
+            "ICINGA": "lib/"
+        }
+    },
+
+    "authors": [{
+        "name": "Marius Hein",
+        "email": "marius.hein@netways.de",
+        "homepage": "http://www.netways.de",
+        "role": "Developer"
+    }],
+
+    "support": {
+        "email": "info@netways.de"
+    }
+}

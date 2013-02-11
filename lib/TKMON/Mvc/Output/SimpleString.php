@@ -1,5 +1,5 @@
 <?php
-/*
+/**
  * This file is part of TKMON
  *
  * TKMON is free software: you can redistribute it and/or modify
@@ -14,6 +14,9 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with TKMON.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ * @author Marius Hein <marius.hein@netways.de>
+ * @copyright 2012-2013 NETWAYS GmbH <info@netways.de>
  */
 
 namespace TKMON\Mvc\Output;
@@ -27,26 +30,44 @@ namespace TKMON\Mvc\Output;
 class SimpleString implements DataInterface
 {
     /**
+     * String data
      * @var string
      */
     protected $data;
 
     /**
+     * Create a new object
      * @param string $string
      */
-    public function __construct($string) {
+    public function __construct($string)
+    {
         $this->data = $string;
     }
 
-    public function __toString() {
+    /**
+     * Convert the object to string
+     * @return string
+     */
+    public function __toString()
+    {
         return $this->data;
     }
 
-    public function toString() {
+    /**
+     * Convert the object to string
+     * @return string
+     */
+    public function toString()
+    {
         return $this->data;
     }
 
-    public function getData() {
+    /**
+     * Return the current string
+     * @return string
+     */
+    public function getData()
+    {
         return $this->data;
     }
 }

@@ -1,0 +1,9 @@
+<fieldset>
+    <label for="{{ name }}">{{ label }}</label>
+    <input type="text" name="{{ name }}" id="{{ name }}" value="{{ value }}" />
+    {% if description %}
+        <p>
+            <i>{{ description }}</i>
+        </p>
+    {% endif %}
+</fieldset>

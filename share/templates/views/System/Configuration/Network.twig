@@ -1,0 +1,48 @@
+<div class="page-header">
+    <h2>Network</h2>
+</div>
+
+<p>
+    Change the IP address if this device and configure network related settings
+    on this mask.
+</p>
+
+<br />
+
+<div class="tabbable">
+
+    <ul class="nav nav-tabs">
+        <li class="active">
+            <a href="#tab-device" data-toggle="tab">Device</a>
+        </li>
+        <li>
+            <a href="#tab-ip" data-toggle="tab">Address</a>
+        </li>
+        <li>
+            <a href="#tab-dns" data-toggle="tab">DNS</a>
+        </li>
+        <li>
+            <a href="#tab-time" data-toggle="tab">Time</a>
+        </li>
+    </ul>
+
+    <div class="tab-content">
+
+        <div class="tab-pane active" id="tab-device">
+            {% include "views/System/Configuration/Network/DeviceName.twig" %}
+        </div>
+
+        <div class="tab-pane" id="tab-ip">
+            {% include "views/System/Configuration/Network/Address.twig" %}
+        </div>
+
+        <div class="tab-pane" id="tab-dns">
+            {% include "views/System/Configuration/Network/Dns.twig" %}
+        </div>
+
+        <div class="tab-pane" id="tab-time">
+            {% include "views/System/Configuration/Network/Time.twig" %}
+        </div>
+    </div>
+
+</div>

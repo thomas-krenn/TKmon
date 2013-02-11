@@ -1,0 +1,20 @@
+# Define object srv1.localdomain.local (host)
+define host {
+    host_name                     srv1.localdomain.local
+    display_name                  Test Server 1
+    address                       127.0.0.1
+}
+
+# Define object srv1.localdomain.local_linux-disk (service)
+define service {
+    service_description           linux-disk
+    check_command                 check-disk|12%|12%
+    host_name                     srv1.localdomain.local
+}
+
+# Define object srv1.localdomain.local_linux-procs (service)
+define service {
+    service_description           linux-procs
+    check_command                 check-procs|100|200
+    host_name                     srv1.localdomain.local
+}

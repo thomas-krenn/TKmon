@@ -1,5 +1,5 @@
 <?php
-/*
+/**
  * This file is part of TKMON
  *
  * TKMON is free software: you can redistribute it and/or modify
@@ -14,6 +14,9 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with TKMON.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ * @author Marius Hein <marius.hein@netways.de>
+ * @copyright 2012-2013 NETWAYS GmbH <info@netways.de>
  */
 
 namespace NETWAYS\Common;
@@ -26,6 +29,10 @@ namespace NETWAYS\Common;
  */
 class ArrayObject extends \ArrayObject
 {
+    /**
+     * Creates a new object of this type
+     * @param array $data
+     */
     public function __construct(array $data = null)
     {
         if ($data !== null) {
@@ -84,5 +91,51 @@ class ArrayObject extends \ArrayObject
     public function getAll()
     {
         return (array)$this->getArrayCopy();
+    }
+
+    /**
+     * Copy properties
+     *
+     * @param \ArrayObject $object
+     */
+    public function fromArrayObject(\ArrayObject $object)
+    {
+        foreach ($object as $key => $val) {
+            $this->offsetSet($key, $val);
+        }
+    }
+
+    /**
+     * Add stdClass properties into object
+     * @param \stdClass $object
+     */
+    public function fromVoyagerObject(\stdClass $object)
+    {
+        foreach ($object as $key => $val) {
+            $this[$key] = $val;
+        }
+    }
+
+    /**
+     * Copy array data to this object
+     * @param array $values
+     */
+    public function fromArray(array $values)
+    {
+        foreach ($values as $key => $value) {
+            $this[$key] = $value;
+        }
+    }
+
+    /**
+     * Returns a print_r
+     *
+     * Allows (string) conversions with out any errors
+     *
+     * @return string
+     */
+    public function __toString()
+    {
+        return print_r($this, true);
     }
 }
