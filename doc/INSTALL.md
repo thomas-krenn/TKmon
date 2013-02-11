@@ -160,8 +160,32 @@ Change icinga.cfg as follows
      # Definitions for ido2db process checks
      #cfg_file=/etc/icinga/objects/ido2db_check_proc.cfg
 
+Fix some privileges. This is needed to allow www-data (the apache) to write into
+our config directories. And apache is writing or configuration now.
 
+    chown -R www-data:www-data /path/to/tkmon/etc/icinga/
 
+### Packaging fixes
+
+#### Database
+
+The default database configuration for source package is something like this
+(config.json, debconf related part):
+
+    "db.autocreate":        true,
+    "db.debconf.use":       false,
+    "db.debconf.file":      "{core.etc_dir}/config-db.php",
+
+This means that configuration is taken from config.json (paths, files) and a
+default datase is created for you. To create your own database change setting
+to this please:
+
+    "db.autocreate":        false,
+    "db.debconf.use":       true,
+    "db.debconf.file":      "/etc/tkmon/config-db.php",
+
+This uses the config-db.php file to configure your connection and switch
+db autocreation off.
 
 ### Done
 

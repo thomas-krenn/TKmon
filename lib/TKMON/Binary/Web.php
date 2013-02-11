@@ -158,29 +158,31 @@ final class Web
         /*
          * Database
          */
-        $container['db_class'] = '\PDO';
-
         $container['db'] = $container->share(
             function ($c) {
                 $config = $c['config'];
 
-                $importer = new \TKMON\Model\Database\Importer();
-                $importer->setDatabase($config['db.file']);
-                $importer->setSchema($config['db.schema']);
+                $builder = new \TKMON\Model\Database\DebConfBuilder();
 
-                if (!$importer->databaseExists()) {
-                    $importer->createDefaultDatabase();
+                if ($config['db.debconf.use'] === true) {
+                    $builder->loadFromFile($config['db.debconf.file']);
+                } else {
+                    $builder->setType($config['db.type']);
+                    $builder->setBasePath($config['db.basepath']);
+                    $builder->setName($config['db.name']);
                 }
 
-                $dbo =  new $c['db_class']($config->get('db.dsn'), null, null,
-                    array(
-                        \PDO::ATTR_PERSISTENT => true,
-                        \PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION,
-                        \PDO::ATTR_CASE => \PDO::CASE_LOWER,
-                        \PDO::ATTR_DEFAULT_FETCH_MODE => \PDO::FETCH_ASSOC
-                    ));
+                if ($config['db.autocreate'] === true) {
+                    $file = $builder->getBasePath(). DIRECTORY_SEPARATOR. $builder->getName();
+                    $importer = new \TKMON\Model\Database\Importer();
+                    $importer->setDatabase($file);
+                    $importer->setSchema($config['db.schema']);
+                    if (!$importer->databaseExists()) {
+                        $importer->createDefaultDatabase();
+                    }
+                }
 
-                $dbo->exec('PRAGMA temp_store=MEMORY; PRAGMA journal_mode=MEMORY;');
+                $dbo = $builder->buildConnection();
 
                 // Load additional settings from database
                 $pdoLoader = new \NETWAYS\Common\Config\PDOLoader($dbo);

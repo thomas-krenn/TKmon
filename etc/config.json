@@ -17,8 +17,13 @@
     "app.version.release":  "{app.name}-{app.version.major}.{app.version.minor}.{app.version.patch}",
 
     "db.schema":            "{core.etc_dir}/database.sql",
-    "db.file":              "{core.var_dir}/db/default.sqlite",
-    "db.dsn":               "sqlite:{db.file}",
+    "db.basepath":          "{core.var_dir}/db",
+    "db.name":              "default.sqlite",
+    "db.type":               "sqlite",
+
+    "db.autocreate":        true,
+    "db.debconf.use":       false,
+    "db.debconf.file":      "{core.etc_dir}/config-db.php",
 
     "system.interface":     "eth0",
 
