@@ -49,6 +49,18 @@ class JsonFiles extends \ICINGA\Base\CatalogueProvider
     private $index = array();
 
     /**
+     * Cache manager
+     * @var \NETWAYS\Cache\Manager
+     */
+    private $cacheManager;
+
+    /**
+     * Cache identifier
+     * @var string
+     */
+    private $cacheIdentifier;
+
+    /**
      * Set files to load
      *
      * @param array|string $files
@@ -104,20 +116,27 @@ class JsonFiles extends \ICINGA\Base\CatalogueProvider
     {
         $this->resetData();
 
-        foreach ($this->getFiles() as $file) {
-            if (file_exists($file)) {
-                $data = json_decode(file_get_contents($file), false);
+        if ($this->isCached()) {
+            $this->loadFromCache();
+        } else {
 
-                if (isset($data->data) && is_array($data->data)) {
-                    $this->data = array_merge($this->data, $data->data);
+            foreach ($this->getFiles() as $file) {
+                if (file_exists($file)) {
+                    $data = json_decode(file_get_contents($file), false);
+
+                    if (isset($data->data) && is_array($data->data)) {
+                        $this->data = array_merge($this->data, $data->data);
+                    }
+                } else {
+                    throw new \NETWAYS\Chain\Exception\HandlerException('Could not load file: '. $file);
                 }
-            } else {
-                throw new \NETWAYS\Chain\Exception\HandlerException('Could not load file: '. $file);
             }
-        }
 
-        foreach ($this->data as $index => $entry) {
-            $this->index[$entry->_catalogue_attributes->name] = $index;
+            foreach ($this->data as $index => $entry) {
+                $this->index[$entry->_catalogue_attributes->name] = $index;
+            }
+
+            $this->writeToCache();
         }
     }
 
@@ -157,6 +176,76 @@ class JsonFiles extends \ICINGA\Base\CatalogueProvider
     {
         if (array_key_exists($name, $this->index)) {
             $voyager->data = $this->data[$this->index[$name]];
+        }
+    }
+
+    /**
+     * Setter for cache interface
+     *
+     * @param \NETWAYS\Cache\Manager $cache
+     * @param $identifier
+     */
+    public function setCacheInterface(\NETWAYS\Cache\Manager $cache, $identifier)
+    {
+        $this->cacheManager = $cache;
+        $this->cacheIdentifier = $identifier;
+    }
+
+    /**
+     * Getter for cache interface
+     *
+     * @return \NETWAYS\Cache\Manager
+     */
+    public function getCacheManager()
+    {
+        return $this->cacheManager;
+    }
+
+    /**
+     * Getter for cache identifier
+     *
+     * @return string
+     */
+    public function getCacheIdentifier()
+    {
+        return $this->cacheIdentifier;
+    }
+
+    /**
+     * Test if our data is cached
+     * @return bool
+     */
+    public function isCached()
+    {
+        if ($this->getCacheManager()) {
+            return $this->getCacheManager()->hasItem($this->getCacheIdentifier());
+        }
+
+        return false;
+    }
+
+    /**
+     * Load data from cache into the object
+     */
+    public function loadFromCache()
+    {
+        if ($this->getCacheManager()) {
+            $data = $this->getCacheManager()->retrieveItem($this->getCacheIdentifier());
+            $this->data = (array)$data->data;
+            $this->index = (array)$data->index;
+        }
+    }
+
+    /**
+     * Write data from object to cache
+     */
+    public function writeToCache()
+    {
+        if ($this->getCacheManager()) {
+            $data = new \stdClass();
+            $data->data = $this->data;
+            $data->index = $this->index;
+            $this->getCacheManager()->storeItem($data, $this->getCacheIdentifier());
         }
     }
 }

@@ -14,3 +14,14 @@
         <i class="icon-key"></i> {% trans "Login" %}
     </a>
 </div>
+
+<script>
+    (function() {
+        "use strict";
+        var url = '{{ web_link('Index/Index') }}';
+
+        window.setTimeout(function() {
+            window.location.href = url;
+        }, 1000);
+    })();
+</script>

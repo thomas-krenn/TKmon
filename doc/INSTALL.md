@@ -18,13 +18,29 @@ To get the system running you'll need to have some mandatory things:
 
 #### Package install
 
-    apt-get install apache2 php5 php5-cli php5-sqlite php5-curl libapache2-mod-php5 postfix
+    apt-get install apache2 php5 php5-cli php5-sqlite php5-curl php5-xcache libapache2-mod-php5 postfix
 
 #### Testinstall IPMI Plugin
     cd /root
     wget "http://ftp.us.debian.org/debian/pool/main/n/nagios-plugins-contrib/nagios-plugins-contrib_4.20120702_amd64.deb" -O nagios-plugins-contrib_4.20120702_amd64.deb
     dpkg -i nagios-plugins-contrib_4.20120702_amd64.deb
     apt-get install libipc-run-perl freeipmi-tools
+
+#### PHP configuration
+
+Enable XCache variable cache.
+
+A cache is needed to cache the service catalogues. This catalogues are loaded once at first start. After that, data resides in apache memory.
+
+    # grep var_ /etc/php5/conf.d/xcache.ini
+    xcache.var_size  =            16M
+    xcache.var_count =             1
+    xcache.var_slots =            8K
+    xcache.var_ttl   =             0
+    xcache.var_maxttl   =          0
+    xcache.var_gc_interval =     300
+
+Important is to set xcache.var_size to 16M. Restart apache after that.
 
 #### Apache configuration
 

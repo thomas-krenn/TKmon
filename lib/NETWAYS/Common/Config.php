@@ -27,7 +27,7 @@ namespace NETWAYS\Common;
  * @package NETWAYS\Common
  * @author Marius Hein <marius.hein@netways.de>
  */
-class Config extends \ArrayObject
+class Config extends ArrayObject
 {
 
     /**
@@ -41,6 +41,20 @@ class Config extends \ArrayObject
      * @var bool
      */
     private $allowUpdate = true;
+
+    /**
+     * Cache manager to speedup loading
+     *
+     * @var \NETWAYS\Cache\Manager
+     */
+    private $cacheManager;
+
+    /**
+     * Cache name
+     *
+     * @var string
+     */
+    private $cacheIdentifier;
 
     /**
      * Setter for a persister
@@ -230,5 +244,81 @@ class Config extends \ArrayObject
             }
         }
         return $val;
+    }
+
+    /**
+     * Setter for cache interface
+     * @param \NETWAYS\Cache\Manager $cache
+     * @param $name
+     */
+    public function setCacheInterface(\NETWAYS\Cache\Manager $cache, $name)
+    {
+        $this->cacheManager = $cache;
+        $this->cacheIdentifier = $name;
+    }
+
+    /**
+     * Getter for cache interface
+     *
+     * @return \NETWAYS\Cache\Manager
+     */
+    public function getCacheInterface()
+    {
+        return $this->cacheManager;
+    }
+
+    /**
+     * Getter for cache identifier
+     *
+     * @return string
+     */
+    public function getCacheIdentifier()
+    {
+        return $this->cacheIdentifier;
+    }
+
+    /**
+     * Test if the data is cached
+     *
+     * @return bool
+     */
+    public function isCached()
+    {
+        if ($this->getCacheInterface()) {
+            return $this->getCacheInterface()->hasItem($this->getCacheIdentifier());
+        }
+
+        return false;
+    }
+
+    /**
+     * Load data from cache into the object
+     */
+    public function loadFromCache()
+    {
+        if ($this->getCacheInterface()) {
+            $data = $this->getCacheInterface()->retrieveItem($this->getCacheIdentifier());
+            $this->fromArray($data);
+        }
+    }
+
+    /**
+     * Write data from cache to object
+     */
+    public function writeToCache()
+    {
+        if ($this->getCacheInterface()) {
+            $this->getCacheInterface()->storeItem($this->getArrayCopy(), $this->getCacheIdentifier());
+        }
+    }
+
+    /**
+     * Drop all data from cache
+     */
+    public function invalidateCache()
+    {
+        if ($this->getCacheInterface()) {
+            $this->getCacheInterface()->removeItem($this->getCacheIdentifier());
+        }
     }
 }

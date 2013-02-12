@@ -156,6 +156,17 @@ final class Web
         );
 
         /*
+         * Cache
+         */
+        $container['cache'] = $container->share(
+            function ($c) {
+                $provider = new \NETWAYS\Cache\Provider\XCache();
+                $cache = new \NETWAYS\Cache\Manager($provider);
+                return $cache;
+            }
+        );
+
+        /*
          * Database
          */
         $container['db'] = $container->share(
@@ -255,10 +266,10 @@ final class Web
          */
         $container['navigation'] = $container->share(
             function ($c) {
-                $container = new \TKMON\Navigation\Container($c['user']);
-                $container->loadFile($c['config']['navigation.data']);
-                $container->setUri($c['dispatcher']->getUri());
-                return $container;
+                $navigation = new \TKMON\Navigation\Container($c['user']);
+                $navigation->loadFile($c['config']['navigation.data']);
+                $navigation->setUri($c['dispatcher']->getUri());
+                return $navigation;
             }
         );
 
@@ -323,6 +334,8 @@ final class Web
                 $catalogue = new \ICINGA\Catalogue\Services();
 
                 $jsonData = new \ICINGA\Catalogue\Provider\JsonFiles();
+                $jsonData->setCacheInterface($c['cache'], 'tkmon.catalogue.services');
+
                 $jsonData->addFile($config['icinga.catalogue.services.json.default']);
                 $jsonData->addFile($config['icinga.catalogue.services.json.custom']);
 

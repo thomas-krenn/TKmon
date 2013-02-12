@@ -74,6 +74,11 @@ class Login extends \TKMON\Action\Base
         try {
             $user->doAuthenticate($params->get('username'), $params->get('password'));
             $user->write();
+
+            /** @var $navigation \TKMON\Navigation\Container */
+            // $navigation = $this->container['navigation'];
+            // $navigation->invalidateCache();
+
             $r->setSuccess(true);
         } catch (\TKMON\Exception\UserException $e) {
             $r->setSuccess(false);
@@ -95,8 +100,13 @@ class Login extends \TKMON\Action\Base
         $session = $this->container['session'];
         $session->destroySession();
 
+        /** @var $navigation \TKMON\Navigation\Container */
+        // $navigation = $this->container['navigation'];
+        // $navigation->invalidateCache();
+
         $template = new \TKMON\Mvc\Output\TwigTemplate($this->container['template']);
         $template->setTemplateName('forms/logout.twig');
+
         return $template;
     }
 }
