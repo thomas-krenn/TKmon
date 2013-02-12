@@ -47,14 +47,14 @@ class Local extends \NETWAYS\Common\ArrayObject implements \NETWAYS\Cache\Interf
 
 
     /**
-     * Stores an item on the provider
+     * Persist the item
      * @param mixed $item
-     * @param string|null $identifier
-     * @return bool If the operation was successful
+     * @param null $identifier
+     * @return bool
      */
     public function storeItem($item, $identifier = null)
     {
-        $this->set($item, $identifier);
+        $this->set($identifier, $item);
         return true;
     }
 
