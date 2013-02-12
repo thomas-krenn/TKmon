@@ -75,9 +75,7 @@ class Login extends \TKMON\Action\Base
             $user->doAuthenticate($params->get('username'), $params->get('password'));
             $user->write();
 
-            /** @var $navigation \TKMON\Navigation\Container */
-            // $navigation = $this->container['navigation'];
-            // $navigation->invalidateCache();
+            $this->container['config']['app.login.counter'] += 1;
 
             $r->setSuccess(true);
         } catch (\TKMON\Exception\UserException $e) {

@@ -16,6 +16,8 @@
 
     "app.version.release":  "{app.name}-{app.version.major}.{app.version.minor}.{app.version.patch}",
 
+    "app.login.counter":    0,
+
     "db.schema":            "{core.etc_dir}/database.sql",
     "db.basepath":          "{core.var_dir}/db",
     "db.name":              "default.sqlite",
