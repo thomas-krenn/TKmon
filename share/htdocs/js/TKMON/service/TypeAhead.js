@@ -17,7 +17,7 @@
  * @author Marius Hein <marius.hein@netways.de>
  * @copyright 2012-2013 NETWAYS GmbH <info@netways.de>
  */
-/*global require:true*/
+/*global define:true*/
 
 (function () {
     "use strict";
@@ -26,7 +26,6 @@
      * @
      */
     define(['jquery', 'bootstrap'], function () {
-        "use strict";
 
         var dataUrl;
 
@@ -47,9 +46,9 @@
                 }),
                 dataType:'json',
                 success:function (data) {
-                    if (data && data.success == true) {
-                        var out = []
-                        $.each(data.data, function (key, value) {
+                    if (data && data.success === true) {
+                        var out = [];
+                        $.each(data.data, function (key) {
                             out.push(key);
                         });
                         process(out);

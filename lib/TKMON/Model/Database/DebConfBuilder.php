@@ -29,8 +29,15 @@ namespace TKMON\Model\Database;
  */
 class DebConfBuilder
 {
+    /**
+     * Database type sqlite
+     */
     const TYPE_SQLITE = 'sqlite';
 
+    /**
+     * Map which setter configures a parameter
+     * @var string[]
+     */
     private static $setterMap = array(
         'dbuser'    => 'setUser',
         'dbpass'    => 'setPassword',
@@ -41,10 +48,21 @@ class DebConfBuilder
         'dbtype'    => 'setType'
     );
 
+    /**
+     * Returns reflection
+     *
+     * Between database types and connection creators
+     *
+     * @var callback[]
+     */
     private static $connectionMap = array(
         self::TYPE_SQLITE => 'createSqLiteConnection'
     );
 
+    /**
+     * Set of default options applies to every connection
+     * @var int[]
+     */
     private static $defaultOptions = array(
         \PDO::ATTR_PERSISTENT           => true,
         \PDO::ATTR_ERRMODE              => \PDO::ERRMODE_EXCEPTION,
@@ -52,90 +70,175 @@ class DebConfBuilder
         \PDO::ATTR_DEFAULT_FETCH_MODE   => \PDO::FETCH_ASSOC
     );
 
+    /**
+     * Database user
+     * @var string
+     */
     private $user;
 
+    /**
+     * Database password
+     * @var string
+     */
     private $password;
 
+    /**
+     * Database path
+     * @var string
+     */
     private $basePath;
 
+    /**
+     * Database name
+     * @var string
+     */
     private $name;
 
+    /**
+     * Database server
+     * @var string
+     */
     private $server;
 
+    /**
+     * Database port
+     * @var int
+     */
     private $port;
 
+    /**
+     * Database type
+     * @var string
+     */
     private $type;
 
     /**
+     * Real connection object
      * @var \PDO
      */
     private $connection;
 
+    /**
+     * Setter for basePath
+     * @param string $basePath
+     */
     public function setBasePath($basePath)
     {
         $this->basePath = $basePath;
     }
 
+    /**
+     * Getter for basePath
+     * @return string
+     */
     public function getBasePath()
     {
         return $this->basePath;
     }
 
+    /**
+     * Setter for database name
+     * @param string $name
+     */
     public function setName($name)
     {
         $this->name = $name;
     }
 
+    /**
+     * Getter for name
+     * @return string
+     */
     public function getName()
     {
         return $this->name;
     }
 
+    /**
+     * Setter for password
+     * @param string $password
+     */
     public function setPassword($password)
     {
         $this->password = $password;
     }
 
+    /**
+     * Getter for password
+     * @return string
+     */
     public function getPassword()
     {
         return $this->password;
     }
 
+    /**
+     * Setter for port
+     * @param int $port
+     */
     public function setPort($port)
     {
         $this->port = $port;
     }
 
+    /**
+     * Getter for port
+     * @return int
+     */
     public function getPort()
     {
         return $this->port;
     }
 
+    /**
+     * Setter for server
+     * @param string $server
+     */
     public function setServer($server)
     {
         $this->server = $server;
     }
 
+    /**
+     * Getter for server
+     * @return string
+     */
     public function getServer()
     {
         return $this->server;
     }
 
+    /**
+     * Setter for type
+     * @param string $type
+     */
     public function setType($type)
     {
         $this->type = $type;
     }
 
+    /**
+     * Getter for type
+     * @return string
+     */
     public function getType()
     {
         return $this->type;
     }
 
+    /**
+     * Setter for user
+     * @param string $user
+     */
     public function setUser($user)
     {
         $this->user = $user;
     }
 
+    /**
+     * Getter for user
+     * @return string
+     */
     public function getUser()
     {
         return $this->user;
@@ -155,14 +258,19 @@ class DebConfBuilder
 
         require $file;
 
-        foreach(self::$setterMap as $var => $setter) {
+        foreach (self::$setterMap as $var => $setter) {
             if (isset(${$var})) {
                 $this->$setter(${$var});
             }
         }
     }
 
-    private function assertTypeConstants() {
+    /**
+     * Assert that we use supported database type
+     * @throws \TKMON\Exception\ModelException
+     */
+    private function assertTypeConstants()
+    {
         if ($this->getType() !== self::TYPE_SQLITE) {
             throw new \TKMON\Exception\ModelException('Database type is not supported: '. $this->getType());
         }

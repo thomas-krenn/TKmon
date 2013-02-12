@@ -17,7 +17,7 @@
  * @author Marius Hein <marius.hein@netways.de>
  * @copyright 2012-2013 NETWAYS GmbH <info@netways.de>
  */
-/*global require:true*/
+/*global define:true*/
 
 (function () {
     "use strict";
@@ -30,7 +30,6 @@
         'TKMON/host/TypeAhead',
         'TKMON/jquery/UpdateHandler'
     ], function () {
-        "use strict";
 
         var currentHost;
         var hostSearchUrl;
@@ -62,7 +61,7 @@
          * @param {String} mode You can use show or hide
          * @param {Object} data
          */
-        var toggleCreateWindow = function (mode, data) {
+        var toggleCreateWindow = function (mode) {
             if (!mode) {
                 mode = $('#services-create').hasClass('hide') ? 'show' : 'hide';
             }
@@ -123,7 +122,6 @@
 
         $('#service-search').submit(function (e) {
             e.preventDefault();
-            var that = $(this);
             var data = JSON.parse($(this).serializeJson());
             data.hostName = getCurrentHost();
             $('#services-data').update(createFormUrl, data);
@@ -134,6 +132,7 @@
          * @param {Event} e
          */
         $('#services-grid').on('click', 'a[data-action=remove]', function (e) {
+            e.preventDefault();
             var id = $(this).attr('data-value');
             var that = $(this);
 
@@ -185,12 +184,9 @@
                 if (data && typeof(data) === "object") {
                     var html = '';
                     $.each(data.errors, function(index, obj) {
-                        html += '<div class="alert alert-error">'
-                            + '<h4>'
-                            + "Error"
-                            + '</h4>'
-                            + obj.message
-                            + '</div>';
+                        html += '<div class="alert alert-error">' +
+                            '<h4>' + "Error" + '</h4>' +
+                            obj.message + '</div>';
                     });
                     $('div#embedded-create-errors').html(html);
                 }

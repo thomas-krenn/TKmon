@@ -17,7 +17,7 @@
  * @author Marius Hein <marius.hein@netways.de>
  * @copyright 2012-2013 NETWAYS GmbH <info@netways.de>
  */
-/*global require:true*/
+/*global define:true*/
 
 (function () {
     "use strict";
@@ -56,7 +56,7 @@
                     if (data && typeof data === "object" && data.success === true) {
                         $.each(data.data, function(index, content) {
                             $(that).append('<div class="container-spacer-down">' + content + '</div>');
-                        })
+                        });
                     } else {
                         var content = '<div class="alert alert-error">';
                         content += '<h4>Error</h4>';
@@ -74,7 +74,7 @@
             }
 
             $.ajax(options.url, xhrOptions);
-        }
+        };
 
     });
 

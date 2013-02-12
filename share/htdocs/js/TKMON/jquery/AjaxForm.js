@@ -226,7 +226,7 @@
          * @param option
          * @return {String}
          */
-        $.fn.serializeJson = function(option) {
+        $.fn.serializeJson = function() {
             var data = $(this).serializeJSON();
             return JSON.stringify(data);
         };
