@@ -1,0 +1,58 @@
+{
+    "type": "service",
+    "version": "1.0",
+    "description": "Services catalogue for custom checks",
+    "data": [
+        {
+            "service_description": "net-udp",
+            "display_name": "UDP Port",
+            "check_command": {
+                "command_name": "check_udp_send_expect",
+                "arguments": [
+                    {
+                        "label": "UDP Port",
+                        "description": "Integer value of UDP port to test",
+                        "validation": "port",
+                        "argument": "-p"
+                    },
+                    {
+                        "label": "Send string",
+                        "description": "String, what to send",
+                        "validation": "string",
+                        "argument": "-s"
+                    },
+                    {
+                        "label": "Expect string",
+                        "description": "String, what to expect as answer",
+                        "validation": "string",
+                        "argument": "-e"
+                    }
+                ]
+            },
+            "_catalogue_attributes": {
+                "tags": ["remote", "udp", "port", "network"],
+                "name": "net-udp",
+                "label": "UDP port check",
+                "description": "Check udp port reaction (derived from debian default)",
+                "defined": true,
+                "defined_in": "/etc/icinga/tkmon/base/05-check-commands.cfg"
+            }
+        },
+        {
+            "service_description": "ipmi-tkmon-custom1",
+            "display_name": "IPMI CustomVars",
+            "check_command": {
+                "command_name": "check_ipmi_tkmon_custom1",
+                "arguments": null
+            },
+            "_catalogue_attributes": {
+                "tags": ["remote", "ipmi", "hardware", "tkmon"],
+                "name": "ipmi-tkmon-custom1",
+                "label": "IPMI check with customvars",
+                "description": "Check all IPMI parameters with customvars",
+                "defined": true,
+                "defined_in": "/etc/icinga/tkmon/base/05-check-commands.cfg"
+            }
+        }
+    ]
+}

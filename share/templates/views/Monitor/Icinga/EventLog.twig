@@ -26,7 +26,7 @@
 
 <div class="container-spacer-down"></div>
 
-<table class="icinga-status-table">
+<table class="tkmon-data-table">
 
     <tr>
         <th>{% trans "Timestamp" %}</th>
@@ -40,8 +40,10 @@
     <tr class="even">
 {% endif %}
 
-        <td>{{ entry.date_time }}</td>
-        <td>{{ entry.log_entry }}</td>
+        <td style="white-space: nowrap;">{{ entry.date_time }}</td>
+        <td>
+                {{ entry.log_entry }}
+        </td>
     </tr>
 {% endfor %}
 

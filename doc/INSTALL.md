@@ -20,6 +20,12 @@ To get the system running you'll need to have some mandatory things:
 
     apt-get install apache2 php5 php5-cli php5-sqlite php5-curl libapache2-mod-php5 postfix
 
+#### Testinstall IPMI Plugin
+    cd /root
+    wget "http://ftp.us.debian.org/debian/pool/main/n/nagios-plugins-contrib/nagios-plugins-contrib_4.20120702_amd64.deb" -O nagios-plugins-contrib_4.20120702_amd64.deb
+    dpkg -i nagios-plugins-contrib_4.20120702_amd64.deb
+    apt-get install libipc-run-perl freeipmi-tools
+
 #### Apache configuration
 
     cp etc/httpd.conf /etc/apache2/conf.d/tkmon.conf

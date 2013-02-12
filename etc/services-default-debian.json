@@ -1,6 +1,7 @@
 {
     "type": "service",
     "version": "1.0",
+    "description": "Template for checks defined in nagios-plugins packages",
     "data": [
         {
             "service_description": "net-ping",
@@ -54,41 +55,6 @@
                 "description": "Check tcp port reaction",
                 "defined": true,
                 "defined_in": "/etc/nagios-plugins/config/tcp_udp.cfg"
-            }
-        },
-        {
-            "service_description": "net-udp",
-            "display_name": "UDP Port",
-            "check_command": {
-                "command_name": "check_udp_send_expect",
-                "arguments": [
-                    {
-                        "label": "UDP Port",
-                        "description": "Integer value of UDP port to test",
-                        "validation": "port",
-                        "argument": "-p"
-                    },
-                    {
-                        "label": "Send string",
-                        "description": "String, what to send",
-                        "validation": "string",
-                        "argument": "-s"
-                    },
-                    {
-                        "label": "Expect string",
-                        "description": "String, what to expect as answer",
-                        "validation": "string",
-                        "argument": "-e"
-                    }
-                ]
-            },
-            "_catalogue_attributes": {
-                "tags": ["remote", "udp", "port", "network"],
-                "name": "net-udp",
-                "label": "UDP port check",
-                "description": "Check udp port reaction (derived from debian default)",
-                "defined": true,
-                "defined_in": "/etc/icinga/tkmon/base/05-check-commands.cfg"
             }
         },
         {

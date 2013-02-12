@@ -316,12 +316,17 @@ final class Web
 
         $container['serviceCatalogue'] = $container->share(
             function ($c) {
+
+                /** @var $config \NETWAYS\Common\Config */
+                $config = $c['config'];
+
                 $catalogue = new \ICINGA\Catalogue\Services();
 
-                $jsonProvider = new \ICINGA\Catalogue\Provider\JsonFiles();
-                $jsonProvider->addFile($c['config']['icinga.catalogue.services.default']);
+                $jsonData = new \ICINGA\Catalogue\Provider\JsonFiles();
+                $jsonData->addFile($config['icinga.catalogue.services.json.default']);
+                $jsonData->addFile($config['icinga.catalogue.services.json.custom']);
 
-                $catalogue->appendHandlerToChain($jsonProvider);
+                $catalogue->appendHandlerToChain($jsonData);
 
                 $catalogue->makeReady();
 

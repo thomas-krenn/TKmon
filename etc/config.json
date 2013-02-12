@@ -62,7 +62,8 @@
         "use": "generic-service"
     },
 
-    "icinga.catalogue.services.default": "{core.etc_dir}/default-services.json",
+    "icinga.catalogue.services.json.default": "{core.etc_dir}/services-default-debian.json",
+    "icinga.catalogue.services.json.custom": "{core.etc_dir}/services-custom.json",
 
     "command.config": {
         "chpasswd":  {

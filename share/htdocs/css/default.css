@@ -94,30 +94,6 @@ table.tkmon-properties-table td {
     text-align: left;
 }
 
-/** ICINGA STATUS TABLE **/
-
-table.icinga-status-table {
-    border-collapse: collapse;
-}
-
-table.icinga-status-table th, table.icinga-status-table td {
-    padding: 4px;
-    font-size: small;
-}
-
-table.icinga-status-table th {
-    background-color: #333333;
-    color: white;
-}
-
-table.icinga-status-table tr.odd {
-    background-color: #e7e7e7 !important;
-}
-
-table.icinga-status-table tr.even {
-    background-color: #bbc3bb !important;
-}
-
 /** ICINGA STATUS **/
 
 .icinga-status {
@@ -147,7 +123,7 @@ table.icinga-status-table tr.even {
 }
 
 .icinga-status-UNKNOWN {
-
+    background-color: #c0c0c0;
 }
 
 /** TKMON Data Table **/
@@ -165,6 +141,20 @@ table.tkmon-data-table th {
 
 table.tkmon-data-table th, table.tkmon-data-table td {
     border: 1px #c0c0c0 solid;
+}
+
+table.tkmon-data-table td.spacer-column {
+    border: none;
+    height: 5px;
+    line-height: 5px;
+}
+
+table.tkmon-data-table td.host-column {
+    font-weight: bolder;
+}
+
+table.tkmon-data-table td.output-column {
+    text-align: right;
 }
 
 table.tkmon-data-table td {
