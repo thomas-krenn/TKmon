@@ -139,6 +139,45 @@
                 "defined": true,
                 "defined_in": "/etc/nagios-plugins/config/http.cfg"
             }
+        },
+        {
+            "service_description": "net-ssh",
+            "display_name": "SSH test",
+            "check_command": {
+                "command_name": "check_ssh",
+                "arguments": null
+            },
+            "_catalogue_attributes": {
+                "tags": ["remote", "tcp", "web", "network", "ssh"],
+                "name": "net-ssh",
+                "label": "SSH Test",
+                "description": "Test for ssh (standard port)",
+                "defined": true,
+                "defined_in": "/etc/nagios-plugins/config/ssh.cfg"
+            }
+        },
+        {
+            "service_description": "net-ssh-port",
+            "display_name": "SSH test port",
+            "check_command": {
+                "command_name": "check_ssh_port",
+                "arguments": [
+                    {
+                        "label": "SSH Port",
+                        "description": "Integer port where ssh is listening on",
+                        "validation": "port",
+                        "argument": "-p"
+                    }
+                ]
+            },
+            "_catalogue_attributes": {
+                "tags": ["remote", "tcp", "web", "network", "ssh"],
+                "name": "net-ssh-port",
+                "label": "SSH Test",
+                "description": "Test for ssh (specific port)",
+                "defined": true,
+                "defined_in": "/etc/nagios-plugins/config/ssh.cfg"
+            }
         }
     ]
 }
