@@ -34,6 +34,10 @@ namespace ICINGA\Base;
  * @property string use Template or active object
  * @method string getUse()
  * @method void setUse(string $value)
+ *
+ * @property string name Template or active object
+ * @method string getName()
+ * @method void setName(string $value)
  */
 abstract class Object extends \NETWAYS\Common\ArrayObject
 {
@@ -128,7 +132,8 @@ abstract class Object extends \NETWAYS\Common\ArrayObject
      */
     protected $attributes = array(
         'register',
-        'use'
+        'use',
+        'name'
     );
 
     /**
@@ -442,7 +447,9 @@ abstract class Object extends \NETWAYS\Common\ArrayObject
 
         $this->updateDependencies(); // Make sure object data is ready
 
-        $this->assertObjectIsValid(); // Check if we can use this object
+        if ($this->register !== '0') {
+            $this->assertObjectIsValid(); // Check if we can use this object
+        }
 
         $out = '';
 

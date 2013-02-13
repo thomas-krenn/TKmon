@@ -33,6 +33,64 @@ class Configuration extends \TKMON\Action\Base
     {
         $template = new \TKMON\Mvc\Output\TwigTemplate($this->container['template']);
         $template->setTemplateName('views/ThomasKrenn/Alert/Configuration/Index.twig');
+
+        $contactInfo = new \TKMON\Model\ThomasKrenn\ContactInfo($this->container);
+        $contactInfo->load();
+
+        $template['authkey'] = $contactInfo->getAuthKey();
+        $template['email'] = $contactInfo->getEmail();
+        $template['person'] = $contactInfo->getPerson();
+
         return $template;
+    }
+
+    public function actionUpdate(\NETWAYS\Common\ArrayObject $params)
+    {
+        $response = new \TKMON\Mvc\Output\JsonResponse();
+        try {
+
+            $validator = new \NETWAYS\Common\ArrayObjectValidator();
+
+            $validator->addValidatorObject(
+                \NETWAYS\Common\ValidatorObject::create(
+                    'person',
+                    _('Person'),
+                    \NETWAYS\Common\ValidatorObject::VALIDATE_MANDATORY
+                )
+            );
+
+            $validator->addValidatorObject(
+                \NETWAYS\Common\ValidatorObject::create(
+                    'email',
+                    _('email'),
+                    FILTER_VALIDATE_EMAIL
+                )
+            );
+
+            $validator->addValidatorObject(
+                \NETWAYS\Common\ValidatorObject::create(
+                    'authkey',
+                    _('Auth key'),
+                    \NETWAYS\Common\ValidatorObject::VALIDATE_MANDATORY
+                )
+            );
+
+            $validator->validateArrayObject($params);
+
+            $contactInfo = new \TKMON\Model\ThomasKrenn\ContactInfo($this->container);
+            $contactInfo->load();
+
+            $contactInfo->setAuthKey($params['authkey']);
+            $contactInfo->setEmail($params['email']);
+            $contactInfo->setPerson($params['person']);
+
+            $contactInfo->write();
+
+            $response->setSuccess(true);
+        } catch (\Exception $e) {
+            $response->addException($e);
+        }
+
+        return $response;
     }
 }

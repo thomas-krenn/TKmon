@@ -149,7 +149,11 @@ class Service extends \ICINGA\Base\Object
      */
     public function getObjectIdentifier()
     {
-        return $this->hostName. '_'. $this->serviceDescription;
+        if ($this->register !== '0') {
+            return $this->hostName. '_'. $this->serviceDescription; // Real host
+        } else {
+            return $this->hostName. '_'. $this->name; // Template
+        }
     }
 
 

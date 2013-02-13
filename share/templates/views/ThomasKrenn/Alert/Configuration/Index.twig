@@ -1,3 +1,72 @@
+{% set tk_info_link = 'http://www.thomas-krenn.com' %}
+{% set tk_privacy_link = 'http://www.thomas-krenn.com' %}
+{% set restart_link = web_link('Monitor/Daemon/Index#daemon-restart') %}
+
+
 <div class="page-header">
     <h2>{% trans "Alert settings" %}</h2>
 </div>
+
+<div class="alert alert-info">
+    {% trans %}
+    Here you can configure your support subscription for ThomasKrenn Monitoring service. Click the
+    <a href="{{ tk_info_link }}">following link to get more information</a>.
+    {% endtrans %}
+</div>
+
+<p>
+{% trans %}
+    All data betwenn your environment and ThomasKrenn will be encrypted. Read more on
+    our <strong><a href="{{ tk_privacy_link }}">Privacy Submission Policy</a></strong>.
+{% endtrans %}
+</p>
+
+<div id="alert-config-errors"></div>
+
+<div id="alert-config-success" class="alert alert-success hidden">
+    <h4>{% trans "Success" %}</h4>
+    <p>
+        {% trans %}
+            Changes have been written to disk.
+            <a href="{{ restart_link }}">Please restart your Icinga instance afterwards.</a>
+        {% endtrans %}
+    </p>
+</div>
+
+<form
+    class="container-spacer-down"
+    action="{{ web_link("Update") }}"
+    data-ajax="form"
+    data-ajax-type="json"
+    data-error-target="#alert-config-errors"
+    data-success-frame="#alert-config-success"
+    data-before-callback="XXX"
+    data-complete-callback="YYY"
+>
+
+    <fieldset>
+        <label for="person">{% trans "Contact person" %}</label>
+        <input type="text" name="person" id="person" value="{{ person }}" />
+    </fieldset>
+
+    <fieldset>
+        <label for="email">{% trans "Email address" %}</label>
+        <input type="text" name="email" id="email" value="{{ email }}" />
+    </fieldset>
+
+    <fieldset>
+        <label for="authkey">{% trans "Auth key" %}</label>
+        <input type="text" name="authkey" id="authkey" value="{{ authkey }}" />
+    </fieldset>
+
+    <p class="container-spacer-down">
+        {% trans %}
+            When ready, press button to commit.
+        {% endtrans %}
+
+        <button type="submit" class="btn btn-primary">
+            <i class="icon-save"></i> {% trans "Write" %}
+        </button>
+    </p>
+
+</form>
