@@ -101,5 +101,19 @@
                 "href": "System/Configuration/Backup/Index"
             }
         ]
+    },
+
+    {
+        "title": "Thomas Krenn",
+        "description": "TKMON specific settings",
+        "type": "header",
+
+        "items": [
+            {
+                "title": "Alerts",
+                "description": "Alert settings",
+                "href": "ThomasKrenn/Alert/Configuration/Index"
+            }
+        ]
     }
 ]

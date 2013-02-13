@@ -144,7 +144,12 @@ class Host extends \ICINGA\Base\Object
      */
     public function getObjectIdentifier()
     {
-        return $this->getHostName();
+        // If this is not a template
+        if ($this->register !== '0') {
+            return $this->getHostName();
+        } else {
+            return $this->getName();
+        }
     }
 
     /**

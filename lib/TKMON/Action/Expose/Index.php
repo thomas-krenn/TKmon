@@ -49,6 +49,7 @@ class Index extends \TKMON\Action\Base
         $view = new \TKMON\Mvc\Output\TwigTemplate($this->container['template']);
         $view->setTemplateName('views/Index.twig');
         $view['user'] = $this->container['user'];
+        $view['config'] = $this->container['config'];
         return $view;
     }
 

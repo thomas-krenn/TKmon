@@ -16,6 +16,8 @@
 
     "app.version.release":  "{app.name}-{app.version.major}.{app.version.minor}.{app.version.patch}",
 
+    "app.login.counter":    0,
+
     "db.schema":            "{core.etc_dir}/database.sql",
     "db.basepath":          "{core.var_dir}/db",
     "db.name":              "default.sqlite",
@@ -48,6 +50,9 @@
     "icinga.dir.base": "/etc/icinga/tkmon",
     "icinga.dir.contact": "{icinga.dir.base}/system/contacts",
     "icinga.dir.host": "{icinga.dir.base}/system/hosts",
+    "icinga.dir.template": "{icinga.dir.base}/system/templates",
+
+    "thomaskrenn.template.host": "thomas-krenn-host",
 
     "icinga.record.contact": {
         "use": "generic-contact",
@@ -55,7 +60,7 @@
     },
 
     "icinga.record.host": {
-        "use": "generic-host"
+        "use": "thomas-krenn-host"
     },
 
     "icinga.record.service": {
