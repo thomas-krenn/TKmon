@@ -1,7 +1,7 @@
 import sys
 
 from tkalert.options import MyOptions, MyOptionIsMandatoryError
-from tkalert.data import HeartbeatObject, AlertObject, NotACategoryError
+from tkalert.data import HeartbeatObject, AlertObject, map_alert_object_to_arguments
 
 def main():
     """Main script to trigger alerting
@@ -19,6 +19,12 @@ def main():
             xml_object = HeartbeatObject()
         elif options.type == "service":
             xml_object = AlertObject()
+
+        xml_object.set_authkey(options.auth)
+        xml_object.set_date('NOT A DATE')
+
+        if options.type == "service":
+            map_alert_object_to_arguments(options, xml_object)
 
         print(xml_object)
 

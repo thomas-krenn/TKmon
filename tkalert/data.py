@@ -6,11 +6,7 @@ from xml.dom.minidom import Document
 
 from tkalert.settings import AUTH_CATEGORY, XML_INTERFACE_VERSION
 
-__all__ = ['NotACategoryError', 'HeartbeatObject', 'AlertObject']
-
-
-class NotACategoryError(Exception):
-    pass
+__all__ = ['HeartbeatObject', 'AlertObject', 'map_alert_object_to_arguments']
 
 
 class XmlStructure(Document):
@@ -43,8 +39,7 @@ class XmlStructure(Document):
         self.date_node.appendChild(node)
 
     def __str__(self):
-
-        return self.toxml('UTF-8')
+        return self.toprettyxml(encoding="UTF-8")
 
 
 class HeartbeatObject(XmlStructure):
@@ -53,7 +48,7 @@ class HeartbeatObject(XmlStructure):
 
 
 class AlertObject(XmlStructure):
-    _host_list = ['name', 'ip', 'operating-system', 'server-serial']
+    _host_list = ['name', 'ip', 'status', 'operating-system', 'server-serial']
 
     _service_list = ['name', 'status', 'plugin-output', 'perfdata',
                      'duration', 'component-serial', 'component-name']
@@ -77,3 +72,39 @@ class AlertObject(XmlStructure):
 
         self.root_node.appendChild(self.host_node)
         self.root_node.appendChild(self.service_node)
+
+    def set_service_value(self, key, value):
+        node = self._service_items[key]
+        text = self.createCDATASection(value)
+        node.appendChild(text)
+
+    def set_host_value(self, key, value):
+        node = self._host_items[key]
+        text = self.createCDATASection(value)
+        node.appendChild(text)
+
+SERVICE_MAP = {
+    'service': 'name',
+    'servicestatus': 'status',
+    'output': 'plugin-output',
+    'perf': 'perfdata',
+    'duration': 'duration',
+    'componentserial': 'component-serial',
+    'componentname': 'component-name'
+}
+
+HOST_MAP = {
+    'host': 'name',
+    'ip': 'ip',
+    'hoststatus': 'status',
+    'os': 'operating-system',
+    'serial': 'server-serial'
+}
+
+def map_alert_object_to_arguments(options, xml):
+    for attrib_name, xml_key in SERVICE_MAP.items():
+        if getattr(options, attrib_name) is not None:
+            xml.set_service_value(xml_key, getattr(options, attrib_name))
+    for attrib_name, xml_key in HOST_MAP.items():
+        if getattr(options, attrib_name) is not None:
+            xml.set_host_value(xml_key, getattr(options, attrib_name))
