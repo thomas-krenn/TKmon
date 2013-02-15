@@ -20,7 +20,8 @@ class MyOptions(OptionParser):
     _my_groups = [
         ('general', 'Alert', 'General settings'),
         ('host', 'Host data', 'All data that belongs to the host'),
-        ('service', 'Service data', 'Data from failing service')
+        ('service', 'Service data', 'Data from failing service'),
+        ('debug', 'Debug settings', 'Test data and results')
     ]
 
     _my_type_choices = ('heartbeat', 'service')
@@ -45,6 +46,17 @@ class MyOptions(OptionParser):
         {'name': '--contact-mail',
          'dest': 'mail',
          'help': 'Mail address',
+         'group': 'general'},
+        {'name': '--date',
+         'dest': 'date',
+         'help': 'Timestamp of alert (optional)',
+         'optional': True,
+         'metavar': 'UNIXEPOCH',
+         'group': 'general'},
+        {'name': '--gnupg-config',
+         'dest': 'gnupgconfig',
+         'help': 'Path to configuration file',
+         'metavar': 'FILE',
          'group': 'general'},
 
         {'name': '--host',
@@ -87,6 +99,8 @@ class MyOptions(OptionParser):
          'group': 'service'},
         {'name': '--duration',
          'dest': 'duration',
+         'type': 'int',
+         'metavar': 'SECONDS',
          'help': 'Seconds since occurrence',
          'group': 'service'},
         {'name': '--component-serial',
@@ -98,11 +112,30 @@ class MyOptions(OptionParser):
          'dest': 'componentname',
          'help': 'Name of failed component (if any)',
          'optional': True,
-         'group': 'service'}
+         'group': 'service'},
+
+        {'name': '--dump-xml',
+         'metavar': 'FILE',
+         'dest': 'dumpxml',
+         'help': 'Dump xml data to FILE',
+         'optional': True,
+         'group': 'debug'},
+        {'name': '--verbose',
+         'dest': 'verbose',
+         'action': 'store_true',
+         'help': 'More verbose output',
+         'optional': True,
+         'group': 'debug'},
+        {'name': '--disable-gpg-encryption',
+         'dest': 'noenc',
+         'optional': True,
+         'action': 'store_true',
+         'help': 'Send unencrypted mail (WARNING)',
+         'group': 'debug'}
     ]
 
-    def __init__(self):
-        OptionParser.__init__(self)
+    def __init__(self, *args, **kwargs):
+        OptionParser.__init__(self, *args, **kwargs)
         groups = self._create_groups(self._my_groups)
         self._add_my_options(self._my_options, groups)
 

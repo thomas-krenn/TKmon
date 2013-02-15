@@ -1,3 +1,5 @@
+import log
+
 
 __name__ = 'tkalert'
 __version__ = '0.0.0'

@@ -1,15 +1,16 @@
 """
     module:: data
 """
-
+from datetime import datetime
 from xml.dom.minidom import Document
 
-from tkalert.settings import AUTH_CATEGORY, XML_INTERFACE_VERSION
+from tkalert.settings import AUTH_CATEGORY, XML_INTERFACE_VERSION, XML_DATE_FORMAT
 
 __all__ = ['HeartbeatObject', 'AlertObject', 'map_alert_object_to_arguments']
 
 
 class XmlStructure(Document):
+    """Class to build xml structures for alert objects"""
     def __init__(self, type):
         Document.__init__(self)
         self.root_node = self.createElement(type)
@@ -20,34 +21,113 @@ class XmlStructure(Document):
 
         self.date_node = self.createElement('date')
 
+        self.contact_name_node = self.createElement('contact-name')
+        self.contact_mail_node = self.createElement('contact-mail')
+
         self.root_node.appendChild(self.authkey_node)
         self.root_node.appendChild(self.date_node)
+        self.root_node.appendChild(self.contact_name_node)
+        self.root_node.appendChild(self.contact_mail_node)
+
         self.appendChild(self.root_node)
 
+    def get_type(self):
+        """Getter for object type
+
+        Returns:
+            Object type, e.g. heartbeat or service (String)
+        """
+        return self.root_node.nodeName
+
     def get_authkey(self):
+        """Getter for authkey
+
+        Returns:
+            Name of authkey (string)
+        """
         return self.authkey_node.nodeValue
 
     def set_authkey(self, value):
+        """Setter for authkey
+            Args:
+                value (string)
+        """
         node = self.createTextNode(value)
         self.authkey_node.appendChild(node)
 
     def get_date(self):
+        """Getter for date
+
+            Returns:
+                date (string)
+        """
         return self.date_node.nodeValue
 
+    def set_date_to_now(self):
+        """Sets current date"""
+        now = datetime.now()
+        self.set_date(now)
+
     def set_date(self, value):
-        node = self.createTextNode(value)
+        """Setter for date
+
+            Args:
+                date (string) iso formatted date
+        """
+        textDate = value.strftime(XML_DATE_FORMAT)
+        node = self.createTextNode(textDate)
         self.date_node.appendChild(node)
 
+    def set_contact_name(self, value):
+        """Setter for contact name
+
+         Args:
+            value (string) name of contact person
+        """
+        node = self.createTextNode(value)
+        self.contact_name_node.appendChild(node)
+
+    def get_contact_name(self):
+        """Getter for contact name
+
+        Returns: contact name (string)
+        """
+        return self.contact_name_node.nodeValue
+
+    def set_contact_email(self, value):
+        """Setter for contact email
+        Args:
+            value (string) email address of contact person
+        """
+        node = self.createTextNode(value)
+        self.contact_mail_node.appendChild(node)
+
+    def get_contact_email(self):
+
+        return self.contact_mail_node.nodeValue
+
     def __str__(self):
-        return self.toprettyxml(encoding="UTF-8")
+        """ String representation of this object
+
+        Returns:
+            XML output (string)
+        """
+        return self.toprettyxml(indent='  ', encoding="UTF-8")
 
 
 class HeartbeatObject(XmlStructure):
+    """Heartbeat object, configured type"""
     def __init__(self):
         XmlStructure.__init__(self, 'heartbeat')
 
 
 class AlertObject(XmlStructure):
+    """Structure for an alert
+
+    This object holds information about host / service details
+
+    """
+
     _host_list = ['name', 'ip', 'status', 'operating-system', 'server-serial']
 
     _service_list = ['name', 'status', 'plugin-output', 'perfdata',
@@ -58,6 +138,7 @@ class AlertObject(XmlStructure):
     _service_items = {}
 
     def __init__(self):
+        """Create a new object"""
         XmlStructure.__init__(self, 'alert')
         self.host_node = self.createElement('host')
         self.service_node = self.createElement('service')
@@ -74,14 +155,29 @@ class AlertObject(XmlStructure):
         self.root_node.appendChild(self.service_node)
 
     def set_service_value(self, key, value):
+        """Set service values
+
+        Args:
+            key (string) data key which is a xml element
+            value (string) node content
+
+        """
         node = self._service_items[key]
-        text = self.createCDATASection(value)
+        text = self.createCDATASection(str(value))
         node.appendChild(text)
 
     def set_host_value(self, key, value):
+        """Set host values
+
+        Args:
+            key (string) data key which is a xml element
+            value (string) node content
+
+        """
         node = self._host_items[key]
-        text = self.createCDATASection(value)
+        text = self.createCDATASection(str(value))
         node.appendChild(text)
+
 
 SERVICE_MAP = {
     'service': 'name',
@@ -101,7 +197,17 @@ HOST_MAP = {
     'serial': 'server-serial'
 }
 
+
 def map_alert_object_to_arguments(options, xml):
+    """Attribute mapper
+
+    Maps attributes from OptionParser to xml object (AlertObject)
+
+    Args:
+        options (OptionParser)
+        xml (AlertObject)
+
+    """
     for attrib_name, xml_key in SERVICE_MAP.items():
         if getattr(options, attrib_name) is not None:
             xml.set_service_value(xml_key, getattr(options, attrib_name))
