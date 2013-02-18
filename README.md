@@ -18,6 +18,7 @@ Installation
 
 We're using python setup tools here, to install just simple type (as root)
 
+    $ aptitude install python-setuptools # INSTALL python-setuptools
     $ python setup.py install
 
 ### Test binary
