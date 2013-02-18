@@ -26,7 +26,8 @@ from datetime import datetime
 import tkalert
 import logging
 from tkalert.options import MyOptions, MyOptionIsMandatoryError
-from tkalert.data import HeartbeatObject, AlertObject, map_alert_object_to_arguments
+from tkalert.data import HeartbeatObject, AlertObject, \
+    map_alert_object_to_arguments
 from tkalert.settings import MAIL_SERVER, MAIL_TARGET_ADDRESS, GNUPG_KEY
 from tkalert.mail import Mailer
 from tkalert.gnupg import GnupgCommand
@@ -97,8 +98,8 @@ def main():
         mailer.content = data
         mailer.send()
 
-    except MyOptionIsMandatoryError as e:
-        print(e.message + "\n")
+    except MyOptionIsMandatoryError as mandatory_error:
+        print(mandatory_error.message + "\n")
         myoptions.print_usage()
         return 255
     return 0

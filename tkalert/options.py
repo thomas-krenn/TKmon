@@ -21,8 +21,16 @@
 
 from optparse import OptionParser, OptionGroup
 
-__all__ = ["MyOptions", "MyOptionIsMandatoryError"]
+__all__ = ["MyOptions", "MyOptionIsMandatoryError",
+           "MANDATORY_HEARTBEAT", "MANDATORY_SERVICE"]
 
+MANDATORY_ALL = ('type', 'auth', 'person', 'mail')
+
+MANDATORY_HEARTBEAT = MANDATORY_ALL
+
+MANDATORY_SERVICE = MANDATORY_ALL + ('host', 'ip', 'hoststatus', 'os', 'serial',
+    'service', 'servicestatus', 'output', 'perf', 'duration', 'componentserial',
+    'componentname')
 
 class MyOptionIsMandatoryError(Exception):
     """Mandatory exception"""
@@ -152,26 +160,53 @@ class MyOptions(OptionParser):
     ]
 
     def __init__(self, *args, **kwargs):
+        """Create an OptionParser object"""
         OptionParser.__init__(self, *args, **kwargs)
         groups = self._create_groups(self._my_groups)
         self._add_my_options(self._my_options, groups)
 
     def parse_args(self, *args, **kwargs):
+        """Parse arguments
+
+        :rtype : object
+
+        Note: Same as base class but checks mandatory arguments
+
+        """
         (options, args) = OptionParser.parse_args(self, *args, **kwargs)
 
-        for item in self._my_options:
-
-            if options.type == "heartbeat" and item['dest'] != "auth":
-                continue
-
-            if 'optional' in item and item['optional'] is True:
-                continue
-
-            if getattr(options, item['dest']) is None:
-                raise MyOptionIsMandatoryError('Option is mandatory: ' +
-                                               item['name'])
+        if options.type == "heartbeat":
+            self._test_mandatory_options(options, MANDATORY_HEARTBEAT)
+        elif options.type == "service":
+            self._test_mandatory_options(options, MANDATORY_SERVICE)
 
         return options, args
+
+    def _test_mandatory_options(self, options, list):
+        """Test mandatory arguments in result object
+
+        Args:
+         options (object) result object
+         list (tuple) test keys
+
+        """
+        for test in list:
+            if getattr(options, test) is None:
+                option = self.__get_option_dict(test)
+                raise MyOptionIsMandatoryError('Option is mandatory: %(name)s (%(dest)s)' % option)
+
+    def __get_option_dict(self, dest_name):
+        """Return option configuration
+
+        Args:
+            dest_name (string) name of option configuration
+
+        Returns: Configuration of option (dict)
+
+        """
+        for item in self._my_options:
+            if item['dest'] == dest_name:
+                return item
 
     def _create_groups(self, data):
         """Create OptionGroup based on dict

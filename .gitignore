@@ -1,3 +1,4 @@
 *.pyc
 .idea*
 *~
+/gnupg/random_seed
