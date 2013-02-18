@@ -3,4 +3,6 @@
 *~
 gnupg/random_seed
 .build/
+build/
+dist/
 *egg-info/
