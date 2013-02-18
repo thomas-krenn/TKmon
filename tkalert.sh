@@ -1,3 +1,5 @@
+#!/bin/sh
+
 # Copyright (C) 2013 NETWAYS GmbH, http://netways.de
 #
 # This file is part of TKALERT (http://www.thomas-krenn.com/).
@@ -15,15 +17,19 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
-"""
-    module:: tkalert
-"""
+set -o nounset
 
-import tkalert.log
+SCRIPT=$(readlink -f "$0")
+DIR=$(dirname "$SCRIPT")
+ENV=/usr/bin/env
+MODULE=tkalert.bin.alert
+GNUPG_CONFIG=$DIR/gnupg/gnupg.conf
 
-__name__ = 'tkalert'
-__version__ = '0.0.1'
-__author__ = 'NETWAYS GmbH'
-__contact__ = 'info@netways.de'
-__url__ = 'https://www.netways.org'
-__description__ = 'Sending alerts to thomas krenn monitoring services'
+# Testing for package install
+if [ -e /etc/tkalert/gnupg.conf ]; then
+    GNUPG_CONFIG=/etc/tkalert/gnupg.conf
+fi
+
+$ENV PYTHONPATH=$DIR python -m $MODULE - --gnupg-config=$GNUPG_CONFIG $@
+
+exit $?
