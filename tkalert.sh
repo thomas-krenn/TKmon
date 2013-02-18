@@ -25,4 +25,11 @@ ENV=/usr/bin/env
 MODULE=tkalert.bin.alert
 GNUPG_CONFIG=$DIR/gnupg/gnupg.conf
 
+# Testing for package install
+if [ -e /etc/tkalert/gnupg.conf ]; then
+    GNUPG_CONFIG=/etc/tkalert/gnupg.conf
+fi
+
 $ENV PYTHONPATH=$DIR python -m $MODULE - --gnupg-config=$GNUPG_CONFIG $@
+
+exit $?
