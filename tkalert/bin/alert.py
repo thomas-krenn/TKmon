@@ -39,7 +39,7 @@ def main():
             int. The return code
     """
 
-    myoptions = MyOptions(usage="%prog --type=<heartbeat|alert> [--help]",
+    myoptions = MyOptions(usage="%prog --type=<heartbeat|service> [--help]",
                           version="%prog " + tkalert.__version__)
 
     try:
