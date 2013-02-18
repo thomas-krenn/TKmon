@@ -1,4 +1,6 @@
 *.pyc
 .idea*
 *~
-/gnupg/random_seed
+gnupg/random_seed
+.build/
+*egg-info/
