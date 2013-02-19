@@ -1,4 +1,4 @@
-TKALERT v0.0.2
+TKALERT v0.0.3
 
 TKALERT
 =======
