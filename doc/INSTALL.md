@@ -14,6 +14,11 @@ To get the system running you'll need to have some mandatory things:
 * Extensions installed: pdo-sqlite
 * Apache2
 
+To get a working base monitoring you'll also need:
+
+* tkalert
+* IPMI checkplugin (nagios-plugins-contrib with ipmi perl version)
+
 ### Ubuntu install
 
 #### Package install
@@ -175,6 +180,7 @@ Change icinga.cfg as follows
     -# files into.
     -cfg_dir=/etc/icinga/objects/
     +cfg_dir=/etc/icinga/tkmon/base
+    +cfg_dir=/etc/icinga/tkmon/system/templates
     +cfg_dir=/etc/icinga/tkmon/system/contacts
     +cfg_dir=/etc/icinga/tkmon/system/hosts
     +cfg_dir=/etc/icinga/tkmon/custom
