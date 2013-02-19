@@ -28,9 +28,15 @@
     {% endtrans %}
     </p>
 
-    <a href="" class="btn btn-success">{% trans "Reload" %}</a>
-    <a href="{{ link_problems }}" class="btn btn-danger">{% trans "Problems only" %}</a>
-    <a href="{{ web_link('Services') }}" class="btn btn-info">{% trans "All" %}</a>
+    <a href="" class="btn btn-success">
+        <i class="icon-refresh"></i> {% trans "Reload" %}
+    </a>
+    <a href="{{ link_problems }}" class="btn btn-danger">
+        <i class="icon-exclamation-sign"></i> {% trans "Problems only" %}
+    </a>
+    <a href="{{ web_link('Services') }}" class="btn btn-info">
+        <i class="icon-asterisk"></i> {% trans "All" %}
+    </a>
 </div>
 
 <div class="container-spacer-down"></div>
