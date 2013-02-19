@@ -59,6 +59,7 @@ final class Web
          */
         $container['lib_dir'] = $libdir;
         $container['root_dir'] = dirname($libdir);
+        $container['tmp_dir'] = sys_get_temp_dir();
 
         // etc directory, try to detect
 
@@ -169,7 +170,8 @@ final class Web
         /*
          * Database
          */
-        $container['db'] = $container->share(
+
+        $container['dbbuilder'] = $container->share(
             function ($c) {
                 $config = $c['config'];
 
@@ -182,6 +184,15 @@ final class Web
                     $builder->setBasePath($config['db.basepath']);
                     $builder->setName($config['db.name']);
                 }
+
+                return $builder;
+            }
+        );
+
+        $container['db'] = $container->share(
+            function ($c) {
+                $config = $c['config'];
+                $builder = $c['dbbuilder'];
 
                 if ($config['db.autocreate'] === true) {
                     $file = $builder->getBasePath(). DIRECTORY_SEPARATOR. $builder->getName();

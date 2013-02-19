@@ -1,0 +1,38 @@
+<h2>{% trans "Backup configuration" %}</h2>
+
+<div class="alert alert-info container-spacer-down">
+    <h4>{% trans "What happens here?" %}</h4>
+    {% trans  %}
+    Download you current configuration here. This includes changed icinga
+    configuration and settings of your web application
+    {% endtrans  %}
+</div>
+
+<form id="save-configuration" action="{{ web_link('System/Configuration/Backup/DownloadConfiguration') }}">
+    <fieldset>
+        <label for="password">{% trans "Password" %}</label>
+        <input type="text" name="password" id="password" />
+        <br /><i>{% trans "You can protect your configuration with password" %}</i>
+    </fieldset>
+
+    <br /><br />
+
+    <button type="submit" class="btn btn-success">
+        <i class="icon-cloud-download"></i> {% trans "Download configuration" %}
+    </button>
+</form>
+
+<iframe id="dl-target" class=""></iframe>
+
+<script>
+    require(['jquery'], function($) {
+        "use strict";
+
+        $('#save-configuration').submit(function(e) {
+            e.preventDefault();
+            var values = $(this).serializeJSON();
+            var url = $(this).attr('action') + '?' + $.param(values);
+            $('#dl-target').attr('src', url);
+        });
+    })
+</script>

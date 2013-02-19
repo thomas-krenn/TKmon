@@ -66,4 +66,26 @@ class Backup extends \TKMON\Action\Base
 
         return $response;
     }
+
+    public function actionDownloadConfiguration(\NETWAYS\Common\ArrayObject $params)
+    {
+        $exporter = new \TKMON\Model\System\Configuration\Exporter($this->container);
+
+        $fileName = $this->container['tmp_dir'].
+            DIRECTORY_SEPARATOR.
+            strftime('%Y%m%d').
+            '-'. time().
+            '-'. posix_getpid().
+            '-dump.zip';
+
+        $exporter->setFile($fileName);
+
+        if ($params->get('password')) {
+            $exporter->setPassword($params->get('password'));
+        }
+
+        $exporter->toFile();
+
+        exit(0);
+    }
 }
