@@ -37,8 +37,8 @@ class ThomasKrennAttributes extends \NETWAYS\Chain\ReflectionHandler
     {
         $attributes->fromArray(
             array(
-                'serial'          => new \TKMON\Form\Field\Text('serial', _('Serial')),
-                'os'              => new \TKMON\Form\Field\Text('os', _('Operating system'), false),
+                'serial'          => new \TKMON\Form\Field\Text('serial', _('Serial')), // Mandatory for tkalert
+                'os'              => new \TKMON\Form\Field\Text('os', _('Operating system')), // Mandatory for tkalert
                 'ipmi_user'       => new \TKMON\Form\Field\Text('ipmi_user', _('IPMI user'), false),
                 'ipmi_password'   => new \TKMON\Form\Field\Text('ipmi_password', _('IPMI password'), false),
                 'ipmi_ip'         => new \TKMON\Form\Field\Text('ipmi_ip', _('IPMI ip address'), false),

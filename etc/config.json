@@ -64,7 +64,7 @@
     },
 
     "icinga.record.service": {
-        "use": "generic-service"
+        "use": "thomas-krenn-service"
     },
 
     "icinga.catalogue.services.json.default": "{core.etc_dir}/services-default-debian.json",
