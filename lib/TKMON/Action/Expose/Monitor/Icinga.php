@@ -59,7 +59,7 @@ class Icinga extends \TKMON\Action\Base
         $icingaModel = new \TKMON\Model\Icinga\StatusData($this->container);
         $template = new \TKMON\Mvc\Output\TwigTemplate($this->container['template']);
         $template->setTemplateName('views/Monitor/Icinga/ServiceStatus.twig');
-        $template['data'] = $icingaModel->getServiceStatus();
+        $template['data'] = $icingaModel->getServiceStatus($params->get('servicestatustypes', null));
         return $template;
     }
 
