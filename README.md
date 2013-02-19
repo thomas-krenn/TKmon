@@ -51,7 +51,7 @@ This means if you call this with user icinga you have to change permissions of t
 If you do not want to do this, you have to create a sudoers entry to allow user nagios to
 execute tkalert.sh as root (Add the following line to your /etc/sudoers)
 
-    nagios    ALL=(ALL:ALL)    /usr/local/bin/tkalert.sh
+    nagios    ALL=(ALL:ALL)    NOPASSWD:/usr/local/bin/tkalert.sh
 
 On Ubuntu / Debian use the tool visudo to to this:
 
@@ -146,11 +146,11 @@ To use this alerter script it's best to create master hosts with customvars. Aft
 
     define command{
             command_name    notify-service-by-thomaskrenn
-            command_line    /usr/local/bin/tkalert.sh \
+            command_line    /usr/bin/sudo /usr/local/bin/tkalert.sh \
                 --type="service" \
                 --auth-key="$_HOSTAUTH_KEY$" \
                 --contact-person="$_HOSTCONTACT_NAME$" \
-                --contact-mail="$_HOSTCONTACT_MAIL$"\
+                --contact-mail="$_HOSTCONTACT_MAIL$" \
                 \
                 --host="$HOSTALIAS$" \
                 --host-status="$HOSTSTATE$" \
@@ -171,6 +171,43 @@ To use this alerter script it's best to create master hosts with customvars. Aft
 
 This is a quite small example, please have a look on the [Thomas Krenn Wiki for further information]
 (http://www.thomas-krenn.com/)
+
+
+Use as an heartbeat checkplugin
+-------------------------------
+
+You can also send heartbeat messages to Thomas Krenn, this is done by integrate the alerter as an
+check plugin to your icinga system.
+
+Use a configuration like this and call the heartbeat check every 24 hours to notify Thomas Krenn
+that you're alive.
+
+        define host {
+            name                        tkmon-host
+            use                         generic-host
+            _AUTH_KEY                   a-8745987348745
+            _CONTACT_NAME               Jean Luc Picard
+            _CONTACT_MAIL               jpicard@starfleet.foo
+        }
+
+        define command {
+            command_name                check_tkalert_heartbeat
+            command_line                /usr/bin/sudo /usr/local/bin/tkalert.sh \
+                --type="heartbeat" \
+                --auth-key="$_HOSTAUTH_KEY$" \
+                --contact-person="$_HOSTCONTACT_NAME$" \
+                --contact-mail="$_HOSTCONTACT_MAIL$" \
+                --check
+        }
+
+        define service {
+            use                         generic-service
+            host_name                   CONCRETE_HOST
+            check_command               check_tkalert_heartbeat
+            check_interval              86400
+        }
+
+
 
 Command reference
 =================
@@ -197,6 +234,9 @@ To refine settings you can set optional arguments
 
     --date=UNIXEPOCH                    Use this option to refine check date.
                                         Otherwise it will be set to NOW()
+    --check                             Return a check plugin outpu, e.g.
+                                        tkalert/0.0.2 sent heartbeat - OK|runtime=0.1348s
+
 
 Debug arguments
 ---------------
@@ -211,3 +251,4 @@ To debug settings and so how things work
                                         filesystem.
     --disable-gpg-encryption            Do not encrypt output. Take care that you
                                         only choose this for debug purposes.
+    --override-target-mail=MAIL         Send mail to this address, not to configured one

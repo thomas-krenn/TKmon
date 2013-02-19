@@ -83,6 +83,11 @@ class MyOptions(OptionParser):
          'help': 'Path to configuration file',
          'metavar': 'FILE',
          'group': 'general'},
+        {'name': '--check',
+         'dest': 'checkplugin',
+         'action': 'store_true',
+         'help': 'Use this script as a check plugin',
+         'group': 'general'},
 
         {'name': '--host',
          'dest': 'host',
@@ -156,6 +161,11 @@ class MyOptions(OptionParser):
          'optional': True,
          'action': 'store_true',
          'help': 'Send unencrypted mail (WARNING)',
+         'group': 'debug'},
+        {'name': '--override-target-mail',
+         'help': 'Send the mail to this address',
+         'dest': 'targetmail',
+         'metavar': 'MAIL',
          'group': 'debug'}
     ]
 

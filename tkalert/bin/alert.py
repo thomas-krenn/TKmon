@@ -20,6 +20,7 @@
 """
 
 import sys
+import time
 
 from datetime import datetime
 
@@ -28,7 +29,7 @@ import logging
 from tkalert.options import MyOptions, MyOptionIsMandatoryError
 from tkalert.data import HeartbeatObject, AlertObject, \
     map_alert_object_to_arguments
-from tkalert.settings import MAIL_SERVER, MAIL_TARGET_ADDRESS, GNUPG_KEY
+from tkalert.settings import MAIL_SERVER, MAIL_TARGET_ADDRESS, GNUPG_KEY, VERSION_STRING
 from tkalert.mail import Mailer
 from tkalert.gnupg import GnupgCommand
 
@@ -38,6 +39,8 @@ def main():
         Returns:
             int. The return code
     """
+
+    time_start = time.time()
 
     myoptions = MyOptions(usage="%prog --type=<heartbeat|service> [--help]",
                           version="%prog " + tkalert.__version__)
@@ -81,8 +84,6 @@ def main():
                 file_handle.write(str(xml_object))
             return 0
 
-        data = ""
-
         if options.noenc is True:
             data = str(xml_object)
         else:
@@ -91,12 +92,26 @@ def main():
 
         mailer = Mailer()
         mailer.server = MAIL_SERVER
-        mailer.receiver = MAIL_TARGET_ADDRESS
+
+        if options.targetmail is not None:
+            log.debug('Override target mail address: %s', options.targetmail)
+            mailer.receiver = options.targetmail
+        else:
+            mailer.receiver = MAIL_TARGET_ADDRESS
+
         mailer.sender = options.mail
         mailer.sender_name = options.person
         mailer.alert_type = options.type
         mailer.content = data
         mailer.send()
+
+        time_run = time.time() - time_start
+
+        log.info('Runtime %.4f seconds', time_run)
+
+        if options.checkplugin is True:
+            output = "%s sent %s - OK|runtime=%.4fs" % (VERSION_STRING, options.type, time_run, )
+            print (output)
 
     except MyOptionIsMandatoryError as mandatory_error:
         print(mandatory_error.message + "\n")
