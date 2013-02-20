@@ -41,6 +41,12 @@ class Exporter extends Base
     private $password;
 
     /**
+     * Directory export structure is created (if any)
+     * @var string
+     */
+    private $tmpDir;
+
+    /**
      * @param string $file
      */
     public function setFile($file)
@@ -72,13 +78,52 @@ class Exporter extends Base
         return $this->password;
     }
 
+    public function cleanUp()
+    {
+
+        if (!$this->getFile() && !$this->tmpDir) {
+            return;
+        }
+
+        /** @var $rm \NETWAYS\IO\Process */
+        $rm = $this->container['command']->create('rm');
+        $rm->addNamedArgument('-rf');
+
+        if ($this->getFile()) {
+            $rm->addPositionalArgument($this->getFile());
+        }
+
+        if ($this->tmpDir) {
+            $rm->addPositionalArgument($this->tmpDir);
+        }
+
+        $rm->execute();
+    }
+
     public function toFile()
     {
         $paths = $this->createTempStruct();
+
+        $this->tmpDir = $paths->base;
+
         $this->exportDatabase($paths->db);
         $this->exportIcingaConfig($paths->icinga);
         $this->exportSoftwareConfig($paths->config);
         $this->writeManifest($paths->base);
+
+        /** @var $zip \NETWAYS\IO\Process */
+        $zip = $this->container['command']->create('zip');
+
+        $zip->setWorkDirectory($paths->base);
+
+        if ($this->getPassword()) {
+            $zip->addNamedArgument('--password', $this->getPassword());
+        }
+
+        $zip->addNamedArgument('-r', $this->getFile());
+        $zip->addPositionalArgument('.');
+
+        $zip->execute();
     }
 
     private function writeManifest($targetDir)
@@ -86,6 +131,11 @@ class Exporter extends Base
         $manifest = new Manifest($this->container);
         $manifest->setSoftwareVersion($this->container['config']['app.version.full']);
         $manifest->createFromDirectory($targetDir);
+
+        if ($this->getPassword()) {
+            $manifest->hasPassword(true);
+        }
+
         $manifest->writeToFile($targetDir. DIRECTORY_SEPARATOR. self::FILE_META_NAME);
     }
 

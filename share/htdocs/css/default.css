@@ -175,3 +175,11 @@ div.tkmon-catalogue-item div.item-name {
 div.tkmon-catalogue-item div.item-description {
     font-size: small;
 }
+
+/** Sub frames **/
+
+iframe.iframe-seamless {
+    border: none;
+    width: 100%;
+    height: 100px;
+}

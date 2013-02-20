@@ -69,22 +69,35 @@ class Backup extends \TKMON\Action\Base
 
     public function actionDownloadConfiguration(\NETWAYS\Common\ArrayObject $params)
     {
+
         $exporter = new \TKMON\Model\System\Configuration\Exporter($this->container);
 
-        $fileName = $this->container['tmp_dir'].
-            DIRECTORY_SEPARATOR.
-            strftime('%Y%m%d').
-            '-'. time().
-            '-'. posix_getpid().
-            '-dump.zip';
+        try {
 
-        $exporter->setFile($fileName);
+            $fileName = $this->container['tmp_dir'].
+                DIRECTORY_SEPARATOR.
+                strftime('%Y%m%d').
+                '-'. time().
+                '-'. posix_getpid().
+                '-dump.zip';
 
-        if ($params->get('password')) {
-            $exporter->setPassword($params->get('password'));
+            $exporter->setFile($fileName);
+
+            if ($params->get('password')) {
+                $exporter->setPassword($params->get('password'));
+            }
+
+            $exporter->toFile();
+
+            header('Content-disposition: attachment; filename='. basename($fileName));
+            header('Content-type: application/octet-stream');
+            readfile($fileName);
+
+        } catch (\Exception $e) {
+            printf('<h4>Error</h4><code>%s</code>', nl2br($e->getMessage()));
         }
 
-        $exporter->toFile();
+        $exporter->cleanUp();
 
         exit(0);
     }

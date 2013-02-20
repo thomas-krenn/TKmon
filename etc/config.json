@@ -129,6 +129,21 @@
         "cp": {
             "path": "/bin/cp",
             "sudo": false
+        },
+
+        "zip": {
+            "path": "/usr/bin/zip",
+            "sudo": false
+        },
+
+        "unzip": {
+            "path": "/usr/bin/unzip",
+            "sudo": false
+        },
+
+        "rm": {
+            "path": "/bin/rm",
+            "sudo": false
         }
     }
 }

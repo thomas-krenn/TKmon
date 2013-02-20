@@ -23,7 +23,8 @@ To get a working base monitoring you'll also need:
 
 #### Package install
 
-    apt-get install apache2 php5 php5-cli php5-sqlite php5-curl php5-xcache libapache2-mod-php5 postfix
+    apt-get install apache2 php5 php5-cli php5-sqlite php5-curl php5-xcache libapache2-mod-php5 postfix \
+        sqlite3 zip unzip
 
 #### Testinstall IPMI Plugin
     cd /root
