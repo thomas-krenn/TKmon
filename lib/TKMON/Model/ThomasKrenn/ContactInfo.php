@@ -39,6 +39,10 @@ class ContactInfo extends \ICINGA\Loader\FileSystem implements \TKMON\Interfaces
         'AuthKey'           => 'tkmon_authkey'
     );
 
+    /**
+     * Default service template attributes
+     * @var string[]
+     */
     private static $defaultAttributes = array(
         'name'              => 'thomas-krenn-host',
         'use'               => 'generic-host',
@@ -90,6 +94,10 @@ class ContactInfo extends \ICINGA\Loader\FileSystem implements \TKMON\Interfaces
      */
     private $strategy;
 
+    /**
+     * Create a new object
+     * @param \Pimple $container
+     */
     public function __construct(\Pimple $container)
     {
         $this->setContainer($container);
@@ -126,6 +134,7 @@ class ContactInfo extends \ICINGA\Loader\FileSystem implements \TKMON\Interfaces
     }
 
     /**
+     * Setter for authKey
      * @param string $authKey
      */
     public function setAuthKey($authKey)
@@ -134,6 +143,7 @@ class ContactInfo extends \ICINGA\Loader\FileSystem implements \TKMON\Interfaces
     }
 
     /**
+     * Getter for authKey
      * @return string
      */
     public function getAuthKey()
@@ -142,6 +152,7 @@ class ContactInfo extends \ICINGA\Loader\FileSystem implements \TKMON\Interfaces
     }
 
     /**
+     * Setter for email
      * @param string $email
      */
     public function setEmail($email)
@@ -150,6 +161,7 @@ class ContactInfo extends \ICINGA\Loader\FileSystem implements \TKMON\Interfaces
     }
 
     /**
+     * Getter for email
      * @return string
      */
     public function getEmail()
@@ -158,6 +170,7 @@ class ContactInfo extends \ICINGA\Loader\FileSystem implements \TKMON\Interfaces
     }
 
     /**
+     * Setter for person
      * @param string $person
      */
     public function setPerson($person)
@@ -166,6 +179,7 @@ class ContactInfo extends \ICINGA\Loader\FileSystem implements \TKMON\Interfaces
     }
 
     /**
+     * Getter for person
      * @return string
      */
     public function getPerson()
@@ -174,6 +188,7 @@ class ContactInfo extends \ICINGA\Loader\FileSystem implements \TKMON\Interfaces
     }
 
     /**
+     * Setter for objectName
      * @param string $objectName
      */
     public function setObjectName($objectName)
@@ -182,6 +197,7 @@ class ContactInfo extends \ICINGA\Loader\FileSystem implements \TKMON\Interfaces
     }
 
     /**
+     * Getter for objectName
      * @return string
      */
     public function getObjectName()
@@ -190,6 +206,7 @@ class ContactInfo extends \ICINGA\Loader\FileSystem implements \TKMON\Interfaces
     }
 
     /**
+     * Setter for object
      * @param \ICINGA\Object\Host $object
      */
     public function setObject(\ICINGA\Object\Host $object)
@@ -198,6 +215,7 @@ class ContactInfo extends \ICINGA\Loader\FileSystem implements \TKMON\Interfaces
     }
 
     /**
+     * Getter for object
      * @return \ICINGA\Object\Host
      */
     public function getObject()
@@ -205,6 +223,14 @@ class ContactInfo extends \ICINGA\Loader\FileSystem implements \TKMON\Interfaces
         return $this->object;
     }
 
+    /**
+     * Load
+     *
+     * - Load data from directory
+     * - Extract our needed service
+     * - Configure object
+     *
+     */
     public function load()
     {
         parent::load();
@@ -227,6 +253,9 @@ class ContactInfo extends \ICINGA\Loader\FileSystem implements \TKMON\Interfaces
         }
     }
 
+    /**
+     * Write template to disk
+     */
     public function write()
     {
         $host = $this->getObject();

@@ -67,17 +67,22 @@ class Backup extends \TKMON\Action\Base
         return $response;
     }
 
+    /**
+     * Download configuration dump
+     * @param \NETWAYS\Common\ArrayObject $params
+     */
     public function actionDownloadConfiguration(\NETWAYS\Common\ArrayObject $params)
     {
 
         $exporter = new \TKMON\Model\System\Configuration\Exporter($this->container);
 
         try {
-
+            list($seconds, $micros) = explode('.', microtime(true));
             $fileName = $this->container['tmp_dir'].
                 DIRECTORY_SEPARATOR.
                 strftime('%Y%m%d').
-                '-'. time().
+                '-'. $seconds.
+                '-'. $micros.
                 '-'. posix_getpid().
                 '-dump.zip';
 

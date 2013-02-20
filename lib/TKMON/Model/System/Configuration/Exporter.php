@@ -47,6 +47,7 @@ class Exporter extends Base
     private $tmpDir;
 
     /**
+     * Setter for file
      * @param string $file
      */
     public function setFile($file)
@@ -55,6 +56,7 @@ class Exporter extends Base
     }
 
     /**
+     * Getter for file
      * @return string
      */
     public function getFile()
@@ -63,6 +65,7 @@ class Exporter extends Base
     }
 
     /**
+     * Setter for password
      * @param string $password
      */
     public function setPassword($password)
@@ -71,6 +74,7 @@ class Exporter extends Base
     }
 
     /**
+     * Getter for password
      * @return string
      */
     public function getPassword()
@@ -78,6 +82,9 @@ class Exporter extends Base
         return $this->password;
     }
 
+    /**
+     * Clean up fs if something was created
+     */
     public function cleanUp()
     {
 
@@ -100,6 +107,9 @@ class Exporter extends Base
         $rm->execute();
     }
 
+    /**
+     * Export all to file
+     */
     public function toFile()
     {
         $paths = $this->createTempStruct();
@@ -126,6 +136,10 @@ class Exporter extends Base
         $zip->execute();
     }
 
+    /**
+     * Write manifest for directory
+     * @param string $targetDir
+     */
     private function writeManifest($targetDir)
     {
         $manifest = new Manifest($this->container);
@@ -139,6 +153,10 @@ class Exporter extends Base
         $manifest->writeToFile($targetDir. DIRECTORY_SEPARATOR. self::FILE_META_NAME);
     }
 
+    /**
+     * Export database dump
+     * @param string $targetDir
+     */
     private function exportDatabase($targetDir)
     {
         /** @var $dbBuilder \TKMON\Model\Database\DebConfBuilder */
@@ -156,6 +174,10 @@ class Exporter extends Base
         file_put_contents($targetFile, $sqlite->getOutput());
     }
 
+    /**
+     * Export icinga configuration
+     * @param string $targetDir
+     */
     private function exportIcingaConfig($targetDir)
     {
         $exportDir = $this->container['config']['icinga.dir.base'];
@@ -168,6 +190,10 @@ class Exporter extends Base
         $copy->execute();
     }
 
+    /**
+     * Export tkmon config
+     * @param string $targetDir
+     */
     private function exportSoftwareConfig($targetDir)
     {
         $sourceDir = $this->container['etc_dir'];
@@ -179,5 +205,4 @@ class Exporter extends Base
             }
         }
     }
-
 }

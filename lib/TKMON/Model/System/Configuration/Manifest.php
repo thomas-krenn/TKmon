@@ -121,7 +121,8 @@ class Manifest extends Base
      * Configure object from directory
      * @param string $targetDir Directory to load from
      */
-    public function createFromDirectory($targetDir) {
+    public function createFromDirectory($targetDir)
+    {
 
         $this->baseDir = $targetDir;
 
@@ -336,7 +337,7 @@ class Manifest extends Base
      * Flag setter for password
      * @param bool $flag
      */
-    public function hasPassword($flag=true)
+    public function hasPassword($flag = true)
     {
         $this->password = $flag;
     }
@@ -348,7 +349,7 @@ class Manifest extends Base
     public function toDataVoyager()
     {
         $object = new \stdClass();
-        foreach (self::$dataMap as $attribute=>$map) {
+        foreach (self::$dataMap as $attribute => $map) {
             $getter = 'get'. ucfirst($map);
             $object->{$attribute} = $this->$getter();
         }
@@ -361,7 +362,7 @@ class Manifest extends Base
      */
     public function fromDataVoyager(\stdClass $object)
     {
-        foreach ($object as $property=>$value) {
+        foreach ($object as $property => $value) {
             if (array_key_exists($property, self::$dataMap)) {
                 $setter = 'set'. ucfirst(self::$dataMap[$property]);
                 $this->$setter($value);

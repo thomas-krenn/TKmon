@@ -73,11 +73,10 @@ class StatusData extends \TKMON\Model\ApplicationModel
 
     /**
      * Fetch current service status
-
      * @param null|int $servicestatustypes
      * @return \stdClass
      */
-    public function getServiceStatus($servicestatustypes=null)
+    public function getServiceStatus($servicestatustypes = null)
     {
 
         $requestUri = '/cgi-bin/icinga/status.cgi';
