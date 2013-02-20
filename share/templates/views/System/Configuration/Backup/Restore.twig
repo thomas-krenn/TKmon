@@ -1,0 +1,101 @@
+<h2>{% trans "Restore configuration" %}</h2>
+
+<div class="alert alert-info container-spacer-down">
+    <h4>{% trans "Repair your appliance" %}</h4>
+    <p>
+
+    {% trans  %}
+    If you have a configuration dump of your appliance you can restore settings, this includes:
+    {% endtrans  %}
+
+    </p>
+
+    <ul>
+        <li>{% trans "Icinga configuration (hosts, services)" %}</li>
+        <li>{% trans "Software settings (database, configuration files)" %}</li>
+        <li>{% trans "Operating system (IP, dns, mail)" %}</li>
+    </ul>
+
+
+</div>
+
+<div class="alert alert-danger">
+    <h4>{% trans "Warning" %}</h4>
+    <p>
+        {% trans %}
+        After restore, appliance will reboot to complete system changes. Keep in mind that the system is
+        not reachable through network (ip changes) and your icinga instance is not able to monitor
+        your environment!
+        {% endtrans %}
+    </p>
+</div>
+
+<form id="restore-configuration">
+
+    <h4>
+        {% trans %}
+        1. Select a file by clicking on the button
+        {% endtrans %}
+    </h4>
+
+    <div class="fileupload fileupload-new" data-provides="fileupload">
+        <span class="btn btn-file">
+            <span class="fileupload-new">{% trans "Select file" %}</span>
+            <span class="fileupload-exists">{% trans "Change" %}</span>
+            <input id="file" name="file" type="file" />
+        </span>
+        <span class="fileupload-preview"></span>
+
+        <a href="#" class="close fileupload-exists" data-dismiss="fileupload" style="float: none">×</a>
+    </div>
+
+    <h4 class="container-spacer-down-2x">
+        {% trans %}
+        2. Enter password for file or leave blank
+        {% endtrans %}
+    </h4>
+
+    <fieldset>
+        <label for="password">{% trans "Password" %}</label>
+        <input type="text" name="password" id="password" />
+    </fieldset>
+
+    <h4 class="container-spacer-down">
+        {% trans %}
+        3. Think about and commit your action!
+        {% endtrans %}
+    </h4>
+
+    <button type="submit" class="btn btn-danger">
+        <i class="icon-cloud-upload"></i> {% trans "Restore!" %}
+    </button>
+</form>
+
+<script>
+    require(['jquery'], function($) {
+        "use strict";
+
+
+        var restoreUrl = '{{ web_link("System/Configuration/RestoreConfiguration") }}';
+
+        $('#restore-configuration').submit(function(e) {
+            e.preventDefault();
+            var filesInput = $(this).find('input[type=file]');
+            var files = filesInput[0];
+            var filesList = files.files;
+            var file = filesList[0];
+
+            if (file) {
+                var reader = new FileReader();
+                reader.readAsBinaryString(file);
+
+                var xhr = new XMLHttpRequest(),
+                upload = xhr.upload;
+
+                xhr.open('POST', restoreUrl);
+
+                xhr.send(file);
+            }
+        })
+    });
+</script>

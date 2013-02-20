@@ -106,4 +106,9 @@ class Backup extends \TKMON\Action\Base
 
         exit(0);
     }
+
+    public function actionRestoreConfiguration(\NETWAYS\Common\ArrayObject $params)
+    {
+
+    }
 }

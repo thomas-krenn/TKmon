@@ -60,6 +60,10 @@ html, body {
     margin-top: 20px;
 }
 
+.container-spacer-down-2x {
+    margin-top: 40px;
+}
+
 /** Settings table **/
 
 table.settings-table {
