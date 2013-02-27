@@ -31,6 +31,6 @@ XML_DATE_FORMAT = '%a %b %d %H:%M:%S %Y'
 
 MAIL_SERVER = 'localhost'
 
-MAIL_TARGET_ADDRESS = 'monitoring@thomas-krenn.com'
+MAIL_TARGET_ADDRESS = 'monitor@thomas-krenn.com'
 
 GNUPG_KEY = '0x9B6B1E58'
