@@ -74,16 +74,16 @@ class StatusData extends \TKMON\Model\ApplicationModel
     /**
      * Fetch current service status
 
-     * @param null|int $servicestatustypes
+     * @param null|int $serviceStatusTypes
      * @return \stdClass
      */
-    public function getServiceStatus($servicestatustypes=null)
+    public function getServiceStatus($serviceStatusTypes = null)
     {
 
         $requestUri = '/cgi-bin/icinga/status.cgi';
 
-        if ($servicestatustypes !== null) {
-            $this->proxy->addParam('servicestatustypes', (int)$servicestatustypes);
+        if ($serviceStatusTypes !== null) {
+            $this->proxy->addParam('servicestatustypes', (int)$serviceStatusTypes);
         }
 
         $this->proxy->setRequestUrl($requestUri);

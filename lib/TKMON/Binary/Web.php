@@ -33,10 +33,6 @@ final class Web
      */
     public static function run()
     {
-
-        $dirname = dirname(__FILE__);
-        $libdir = dirname(dirname($dirname));
-
         // -------------------------------------------------------------------------------------------------------------
         // Default PHP settings
         // -------------------------------------------------------------------------------------------------------------
@@ -57,10 +53,8 @@ final class Web
         /*
          * Paths environment
          */
-        $container['lib_dir'] = $libdir;
-        $container['root_dir'] = dirname($libdir);
-
-        // etc directory, try to detect
+        $container['temp_dir'] = sys_get_temp_dir();
+        $container['root_dir'] = dirname(dirname(dirname(dirname(__FILE__))));
 
         $etcDirectory = DIRECTORY_SEPARATOR
             . 'etc'
@@ -73,7 +67,15 @@ final class Web
             $container['etc_dir'] = $container['root_dir'] . DIRECTORY_SEPARATOR . 'etc';
         }
 
-        $container['share_dir'] = $container['root_dir'] . DIRECTORY_SEPARATOR . 'share';
+        /**
+         * Directory creator
+         */
+        $container['directoryCreator'] = $container->share(
+            function ($c) {
+                $creator = new \TKMON\Model\Misc\DirectoryCreator();
+                return $creator;
+            }
+        );
 
         /*
          * Cgi Params
@@ -96,13 +98,11 @@ final class Web
                 $config = new $c['config_class'];
 
                 // Path settings
+                // root_dir and etc_dir are automatically detected based
+                // on system. Rest is configured on config.json
                 $config->set('core.root_dir', $c['root_dir']);
-                $config->set('core.lib_dir', $c['lib_dir']);
                 $config->set('core.etc_dir', $c['etc_dir']);
-                $config->set('core.share_dir', $c['share_dir']);
-                $config->set('core.template_dir', '{core.share_dir}/templates');
-                $config->set('core.var_dir', '{core.root_dir}/var');
-                $config->set('core.cache_dir', '{core.root_dir}/var/cache');
+                $config->set('core.temp_dir', $c['temp_dir']);
 
                 // Web settings
                 $filename = basename($params->getParameter('SCRIPT_FILENAME', null, 'header'));
@@ -128,6 +128,13 @@ final class Web
 
                 $config->loadFile($c['etc_dir'] . DIRECTORY_SEPARATOR . 'config.json');
 
+                // Add var and cache to dir builder
+                /** @var $creator \TKMON\Model\Misc\DirectoryCreator */
+                $creator = $c['directoryCreator'];
+                $creator->addPath($config->get('core.var_dir'));
+                $creator->addPath($config->get('core.cache_dir'));
+                $creator->addPath($config->get('template.cache_dir'));
+
                 return $config;
             }
         );
@@ -143,9 +150,16 @@ final class Web
 
         $container['template'] = $container->share(
             function ($c) {
+
+                $attributes = array();
+
+                if ($c['config']->get('template.cache', false) === true) {
+                    $attributes['cache'] = $c['config']->get('template.cache_dir');
+                }
+
                 $twig = new \Twig_Environment(
                     $c['template_loader'],
-                    array() // 'cache' => $c['config']->get('core.cache_dir')
+                    $attributes
                 );
 
                 $twig->addExtension(new \TKMON\Twig\Extension($c));
@@ -182,6 +196,12 @@ final class Web
                     $builder->setBasePath($config['db.basepath']);
                     $builder->setName($config['db.name']);
                 }
+
+                // Add database to dir builder
+                /** @var $creator \TKMON\Model\Misc\DirectoryCreator */
+                $creator = $c['directoryCreator'];
+                $creator->addPath($builder->getBasePath());
+                $creator->createPaths();
 
                 if ($config['db.autocreate'] === true) {
                     $file = $builder->getBasePath(). DIRECTORY_SEPARATOR. $builder->getName();

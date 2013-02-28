@@ -29,6 +29,11 @@ namespace TKMON\Action\Expose\ThomasKrenn\Alert;
  */
 class Configuration extends \TKMON\Action\Base
 {
+    /**
+     * Display alerter configuration form
+     * @param \NETWAYS\Common\ArrayObject $params
+     * @return \TKMON\Mvc\Output\TwigTemplate
+     */
     public function actionIndex(\NETWAYS\Common\ArrayObject $params)
     {
         $template = new \TKMON\Mvc\Output\TwigTemplate($this->container['template']);
@@ -44,6 +49,11 @@ class Configuration extends \TKMON\Action\Base
         return $template;
     }
 
+    /**
+     * Update alerter configuration
+     * @param \NETWAYS\Common\ArrayObject $params
+     * @return \TKMON\Mvc\Output\JsonResponse
+     */
     public function actionUpdate(\NETWAYS\Common\ArrayObject $params)
     {
         $response = new \TKMON\Mvc\Output\JsonResponse();
