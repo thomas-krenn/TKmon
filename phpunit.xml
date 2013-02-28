@@ -20,7 +20,7 @@
          processIsolation="false"
          stopOnFailure="false"
          syntaxCheck="false"
-         bootstrap="./tests/TestInit.php">
+         bootstrap="./test/TestInit.php">
 
     <groups>
         <exclude>
@@ -34,15 +34,15 @@
 
 <testsuites>
     <testsuite name="NETWAYS library">
-        <directory>./tests/NETWAYS/Tests</directory>
+        <directory>./test/NETWAYS/Tests</directory>
     </testsuite>
 
     <testsuite name="TKMON library">
-        <directory>./tests/TKMON/Tests</directory>
+        <directory>./test/TKMON/Tests</directory>
     </testsuite>
 
     <testsuite name="ICINGA library">
-        <directory>./tests/ICINGA/Tests</directory>
+        <directory>./test/ICINGA/Tests</directory>
     </testsuite>
 </testsuites>
 
