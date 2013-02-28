@@ -109,6 +109,33 @@ class Backup extends \TKMON\Action\Base
 
     public function actionRestoreConfiguration(\NETWAYS\Common\ArrayObject $params)
     {
+        $response = new \TKMON\Mvc\Output\JsonResponse();
 
+        try {
+            $password = $params->get('password');
+
+            /** @var $params \NETWAYS\Http\CgiParams */
+            $params = $this->container['params'];
+            $contentType = $params->getParameter('CONTENT_TYPE', null, 'header');
+
+            if ($contentType != 'application/zip') {
+                throw new \TKMON\Exception\ModelException('Content type is not application/zip');
+            }
+
+            $zipFile = new \TKMON\Model\System\Configuration\ZipFile($this->container);
+
+            if ($password) {
+                $zipFile->setPassword($password);
+            }
+
+            $directory = $zipFile->extractStandardInToDisk();
+
+            $response->setSuccess(true);
+
+        } catch (\Exception $e) {
+            $response->addException($e);
+        }
+
+        return $response;
     }
 }

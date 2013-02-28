@@ -75,11 +75,15 @@
     require(['jquery'], function($) {
         "use strict";
 
-
-        var restoreUrl = '{{ web_link("System/Configuration/RestoreConfiguration") }}';
-
         $('#restore-configuration').submit(function(e) {
             e.preventDefault();
+            var restoreUrl = '{{ web_link("System/Configuration/Backup/RestoreConfiguration") }}';
+            var password = $(this).find('input#password').val();
+
+            if (password) {
+                restoreUrl += '?password=' + encodeURIComponent(password);
+            }
+
             var filesInput = $(this).find('input[type=file]');
             var files = filesInput[0];
             var filesList = files.files;
@@ -93,7 +97,7 @@
                 upload = xhr.upload;
 
                 xhr.open('POST', restoreUrl);
-
+                xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest'); // Add this header because this is an ajax request
                 xhr.send(file);
             }
         })
