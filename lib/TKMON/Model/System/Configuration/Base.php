@@ -48,7 +48,7 @@ class Base extends \TKMON\Model\ApplicationModel
         'config-db.php',
         'config.json',
         'nav.json',
-        'services-custom-json',
+        'services-custom.json',
         'services-default-debian.json'
     );
 

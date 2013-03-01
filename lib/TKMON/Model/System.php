@@ -89,4 +89,14 @@ class System extends ApplicationModel
         $command->addPositionalArgument('reload');
         $command->execute();
     }
+
+    public function chownRecursiveToApache($dir)
+    {
+        /** @var $chown \NETWAYS\IO\Process */
+        $chown = $this->container['command']->create('chown');
+        $chown->addNamedArgument('-R');
+        $chown->addPositionalArgument($this->container['config']['system.apache_owner']);
+        $chown->addPositionalArgument($dir);
+        $chown->execute();
+    }
 }

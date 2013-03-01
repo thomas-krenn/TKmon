@@ -29,6 +29,7 @@
     "db.debconf.file":      "{core.etc_dir}/config-db.php",
 
     "system.interface":     "eth0",
+    "system.apache_owner":  "www-data.www-data",
 
     "locale.domain":        "messages",
     "locale.path":          "{core.share_dir}/locales",
@@ -128,7 +129,7 @@
 
         "cp": {
             "path": "/bin/cp",
-            "sudo": false
+            "sudo": true
         },
 
         "zip": {
@@ -143,7 +144,12 @@
 
         "rm": {
             "path": "/bin/rm",
-            "sudo": false
+            "sudo": true
+        },
+
+        "chown": {
+            "path": "/bin/chown",
+            "sudo": true
         }
     }
 }

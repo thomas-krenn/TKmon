@@ -130,6 +130,9 @@ class Backup extends \TKMON\Action\Base
 
             $directory = $zipFile->extractStandardInToDisk();
 
+            $importer = new \TKMON\Model\System\Configuration\Importer($this->container);
+            $importer->fromDirectory($directory, (($password) ? true : false));
+
             $response->setSuccess(true);
 
         } catch (\Exception $e) {

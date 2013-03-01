@@ -139,6 +139,12 @@ class Manifest extends Base
         $iterator = $this->createDirectoryIterator($targetDir);
 
         foreach ($iterator as $fileInfo) {
+
+            // Ignore manifest file
+            if ($fileInfo->getFilename() === self::FILE_META_NAME) {
+                continue;
+            }
+
             $file = str_replace($targetDir, '', $fileInfo->getRealPath());
             $this->fileList[] = $file;
         }
@@ -162,6 +168,12 @@ class Manifest extends Base
         $hashes = array();
 
         foreach ($iterator as $fileInfo) {
+
+            // Ignore manifest file
+            if ($fileInfo->getFilename() === self::FILE_META_NAME) {
+                continue;
+            }
+
             $hashes[] = sha1(file_get_contents($fileInfo->getRealPath()));
         }
 
@@ -367,6 +379,52 @@ class Manifest extends Base
                 $setter = 'set'. ucfirst(self::$dataMap[$property]);
                 $this->$setter($value);
             }
+        }
+    }
+
+    /**
+     * Loads from a manifest file
+     * @param string $fileName
+     */
+    public function fromJsonFile($fileName)
+    {
+
+        $voyager = json_decode(file_get_contents($fileName));
+
+        $tstamp = $voyager->created;
+
+        $object = new \DateTime($tstamp);
+
+        $voyager->created = $object;
+
+        $this->fromDataVoyager($voyager);
+    }
+
+    /**
+     * Test if objects are the same
+     * @param Manifest $toTest
+     * @throws \TKMON\Exception\ModelException
+     */
+    public function assertEquality(Manifest $toTest)
+    {
+        $errors = array();
+        foreach (self::$dataMap as $accessor => $propertyName) {
+
+            if ($accessor === 'created' || $accessor === 'baseDir') {
+                continue;
+            }
+
+            $getter = 'get'. ucfirst($propertyName);
+
+            if ($this->$getter() !== $toTest->$getter()) {
+                $errors[] = $accessor;
+            }
+        }
+
+        if (count($errors)) {
+            throw new \TKMON\Exception\ModelException(
+                'Manifest errors in following properties: '. implode(', ', $errors)
+            );
         }
     }
 

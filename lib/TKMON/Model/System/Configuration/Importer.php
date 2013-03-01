@@ -29,9 +29,157 @@ namespace TKMON\Model\System\Configuration;
 class Importer extends Base
 {
 
-    public function fromDirectory($dir)
+    public function fromDirectory($dir, $hasPasswordFlag = false)
     {
 
+        // Okay, if something goes wrong, an exception is throws
+        $manifest = $this->getManifest($dir, $hasPasswordFlag);
+
+        $paths = $this->createPathsStruct($dir, $manifest);
+
+        if ($paths->db) {
+            $this->importDatabase($paths->db);
+        }
+
+        if ($paths->icinga) {
+            $this->importIcingaConfig($paths->icinga);
+        }
+
+        if ($paths->config) {
+            $this->importSoftwareConfig($paths->config);
+        }
+
+        /**
+         * @todo System is missing here
+         */
     }
 
+    /**
+     * Test manifest
+     *
+     * - Creates manifest from dir
+     * - Tests equality from manifest file
+     * - Return object from file
+     *
+     * @param $dir
+     * @param bool $hasPasswordFlag
+     * @return Manifest
+     * @throws \TKMON\Exception\ModelException
+     */
+    private function getManifest($dir, $hasPasswordFlag = false)
+    {
+        $fileName = $dir. DIRECTORY_SEPARATOR. self::FILE_META_NAME;
+
+        if (!file_exists($fileName)) {
+            throw new \TKMON\Exception\ModelException('Manifest does not exist!');
+        }
+
+        $manifest1 = new Manifest($this->container);
+        $manifest1->createFromDirectory($dir);
+        $manifest1->setSoftwareVersion($this->container['config']['app.version.full']);
+        $manifest1->setPassword($hasPasswordFlag);
+
+        $manifest2 = new Manifest($this->container);
+        $manifest2->fromJsonFile($fileName);
+
+        $manifest2->assertEquality($manifest1);
+
+        return $manifest2;
+    }
+
+    private function createPathsStruct($basePath, Manifest $manifest)
+    {
+        $parts = $manifest->getSubObjects();
+        $out = new \stdClass();
+
+        foreach ($parts as $sub) {
+            $new = $basePath. DIRECTORY_SEPARATOR. $sub;
+            if (is_dir($new)) {
+                $out->{$sub} = $new;
+            }
+        }
+
+        return $out;
+    }
+
+    private function importDatabase($dir)
+    {
+        $dumpFile = $dir. DIRECTORY_SEPARATOR. self::FILE_DB_NAME;
+
+        if (!file_exists($dumpFile)) {
+            throw new \TKMON\Exception\ModelException(
+                'Import DB failed: Source file could not be found ('. $dumpFile. ')'
+            );
+        }
+
+        $dbBuilder = $this->container['dbbuilder'];
+        $dbFile = $dbBuilder->getBasePath(). DIRECTORY_SEPARATOR. $dbBuilder->getName();
+
+        /** @var $mv \NETWAYS\IO\Process */
+        $mv = $this->container['command']->create('mv');
+        $mv->addPositionalArgument($dbFile);
+        $mv->addPositionalArgument(sys_get_temp_dir()); // Backup
+        $mv->execute();
+
+        /** @var $sqlite \NETWAYS\IO\Process */
+        $sqlite = $this->container['command']->create('sqlite3');
+        $sqlite->addPositionalArgument($dbFile);
+        $sqlite->setInput(file_get_contents($dumpFile));
+        $sqlite->execute();
+    }
+
+    private function importIcingaConfig($dir)
+    {
+        $baseDir = $this->container['config']['icinga.dir.base'];
+        $dirName = basename($baseDir);
+
+        $sourceDir = $dir. DIRECTORY_SEPARATOR. $dirName;
+
+        if (!is_dir($sourceDir)) {
+            throw new \TKMON\Exception\ModelException('Icinga source config dir not found: '. $sourceDir);
+        }
+
+        /** @var $rm \NETWAYS\IO\Process */
+        $rm = $this->container['command']->create('rm');
+        $rm->addNamedArgument('-rf');
+        $rm->addPositionalArgument($baseDir);
+        $rm->execute();
+
+        /** @var $cp \NETWAYS\IO\Process */
+        $cp = $this->container['command']->create('cp');
+        $cp->addNamedArgument('-rf');
+        $cp->addPositionalArgument($sourceDir);
+        $cp->addPositionalArgument($baseDir);
+        $cp->execute();
+
+        $system = new \TKMON\Model\System($this->container);
+        $system->chownRecursiveToApache($baseDir);
+    }
+
+    private function importSoftwareConfig($targetDir)
+    {
+        $etcDir = $this->container['config']['core.etc_dir'];
+        foreach (self::$systemConfigFiles as $configFile) {
+            $sourceFile = $targetDir. DIRECTORY_SEPARATOR. $configFile;
+            $targetFile = $etcDir. DIRECTORY_SEPARATOR. $configFile;
+
+            if (file_exists($targetFile)) {
+                /** @var $rm \NETWAYS\IO\Process */
+                $rm = $this->container['command']->create('rm');
+                $rm->addNamedArgument('-f');
+                $rm->addPositionalArgument($targetFile);
+                $rm->execute();
+            }
+
+            /** @var $cp \NETWAYS\IO\Process */
+            $cp = $this->container['command']->create('cp');
+            $cp->addNamedArgument('-f');
+            $cp->addPositionalArgument($sourceFile);
+            $cp->addPositionalArgument($targetFile);
+            $cp->execute();
+
+            $system = new \TKMON\Model\System($this->container);
+            $system->chownRecursiveToApache($etcDir);
+        }
+    }
 }
