@@ -1,6 +1,6 @@
 {
-    "core.lib_dir":         "{core.root_dir}/lib",
-    "core.share_dir":       "{core.root_dir}/share",
+    "core.lib_dir":         "{core.root_dir}/lib/tkmon",
+    "core.share_dir":       "{core.root_dir}/share/tkmon",
     "core.template_dir":    "{core.share_dir}/templates",
     "core.var_dir":         "{core.temp_dir}/tkmon",
     "core.cache_dir":       "{core.var_dir}/cache",

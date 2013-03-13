@@ -50,7 +50,7 @@ Important is to set xcache.var_size to 16M. Restart apache after that.
 
 #### Apache configuration
 
-    cp etc/httpd.conf /etc/apache2/conf.d/tkmon.conf
+    cp etc/apache2/conf.d/tkmon.conf /etc/apache2/conf.d/tkmon.conf
     a2enmod rewrite
     /etc/init.d/apache2 restart
 
@@ -76,10 +76,11 @@ Copy the sources to a safe place, e.g. /opt/tkmon-web or /usr/local/src/tkmon-we
 
 ### Fix privileges
 
-Make shure to give important directories write access for the web server.
+Make shure to give important directories write access for the web server. The webserver creates
+the 'var' structure itself if not present. Make sure to precreate var directories
 
-    chown -R www-data.www-data var/cache var/db
-    chmod 755 var/cache/db
+    {core.var_dir}/cache
+    {core.var_dir}/db
 
 The webserver needs to write data into theese directories.
 
@@ -118,22 +119,13 @@ system clean from unpackaged third-party tools:
 
 Thats is. The software is ready to run
 
-### Apache configuration
-
-You need only a simple vhost to expose the project to air:
-
-    <VirtualHost _default_:80>
-        DirectoryIndex index.php
-        DocumentRoot /data/users/mhein/workspaces/tk-mon/tk-mon/share/htdocs
-    </VirtualHost>
-
 ### Sudoers file
 
 Tkmon runs a couple of commands with root privileges you need to allow for the web user.
 
 #### Copy sudoers
 
-    cp etc/sudoers /etc/sudoers.d/tkmon
+    cp etc/sudoers.d/tkmon /etc/sudoers.d/tkmon
     chmod 440 /etc/sudoers.d/tkmon
 
 #### Add admin group and allow web user
@@ -215,6 +207,23 @@ to this please:
 
 This uses the config-db.php file to configure your connection and switch
 db autocreation off.
+
+#### JSON core variables
+
+To fix FHS directories tkmon checks if /etc/tkmon exists and use this directory for configuration. If you
+want to rewrite the pats for packaging examine config.json for the core objects:
+
+    "core.lib_dir":         "{core.root_dir}/lib/tkmon",
+    "core.share_dir":       "{core.root_dir}/share/tkmon",
+    "core.template_dir":    "{core.share_dir}/templates",
+    "core.var_dir":         "{core.temp_dir}/tkmon",
+    "core.cache_dir":       "{core.var_dir}/cache",
+
+Also you can override some hidden settings:
+
+    "core.root_dir":        "",
+    "core.etc_dir":         "",
+    "core.tmp_dir":         "",
 
 ### Done
 

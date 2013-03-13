@@ -58,7 +58,7 @@ final class Web
          * Paths environment
          */
         $container['temp_dir'] = sys_get_temp_dir();
-        $container['root_dir'] = dirname(dirname(dirname(dirname(__FILE__))));
+        $container['root_dir'] = dirname(dirname(dirname(dirname(dirname(__FILE__)))));
 
         $etcDirectory = DIRECTORY_SEPARATOR
             . 'etc'
@@ -68,7 +68,9 @@ final class Web
         if (file_exists($etcDirectory)) {
             $container['etc_dir'] = $etcDirectory;
         } else {
-            $container['etc_dir'] = $container['root_dir'] . DIRECTORY_SEPARATOR . 'etc';
+            $container['etc_dir'] = $container['root_dir']
+                . DIRECTORY_SEPARATOR. 'etc'
+                . DIRECTORY_SEPARATOR. 'tkmon';
         }
 
         /**
