@@ -26,9 +26,6 @@ namespace TKMON\Model\System\Configuration;
  * @package TKMON\Model
  * @author Marius Hein <marius.hein@netways.de>
  */
-/**
- *
- */
 class ZipFile extends Base
 {
     /**

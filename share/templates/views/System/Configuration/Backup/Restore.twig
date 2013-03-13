@@ -1,3 +1,4 @@
+{% set home_link = web_link("Index/Index") %}
 <h2>{% trans "Restore configuration" %}</h2>
 
 <div class="alert alert-info container-spacer-down">
@@ -28,6 +29,10 @@
         your environment!
         {% endtrans %}
     </p>
+</div>
+
+<div id="restore-message-target">
+
 </div>
 
 <form id="restore-configuration">
@@ -75,8 +80,96 @@
     require(['jquery'], function($) {
         "use strict";
 
+        var form = $('#restore-configuration');
+        var messageTarget = $('#restore-message-target');
+
+        /**
+         * Finish handler, append messages to stack
+         *
+         * @param {boolean} success Flag of operational success
+         * @param {string} message
+         * @param {string} subCls sub bootstrap alert class e.g. info error or success
+         */
+        var messageHandler = function(success, message, subCls) {
+            var ele = document.createElement('div');
+            $(ele).addClass('alert');
+
+            if (typeof subCls === 'undefined') {
+                if (success === true) {
+                    subCls = 'success';
+                } else {
+                    subCls = 'error';
+                }
+            }
+            $(ele).addClass('alert-' + subCls);
+
+            $(ele).html(message);
+
+            $(messageTarget).append(ele);
+
+            return ele;
+        };
+
+        var startHandler = function() {
+            $(messageTarget).find('*').remove();
+            $(form).addClass('hide');
+        };
+
+        var finishHandler = function() {
+            $(form).removeClass('hide');
+        };
+
+        var rebootStatus = null;
+
+        var rebootCheckInterval = 1000;
+
+        var rebootTimer = function() {
+            $.ajax("{{ web_link('System/Ping') }}", {
+                success: function() {
+                    if (rebootStatus && rebootStatus === 'DOWN') {
+                        rebootStatus = 'UP';
+
+                        var link = '{{ home_link }}';
+                        var message = '{% trans 'System is up again, redirecting home. If not, please manually go to ' %} ' +
+                                '<a href="' + link + '">Index</a>';
+
+                        messageHandler(true, message);
+
+                        window.setInterval(function () {
+                            location.href = link;
+                        }, 1000);
+                    }
+                },
+                error: function() {
+                    if (!rebootStatus) {
+                        messageHandler(false, '{% trans "System is down" %}');
+                        rebootStatus = 'DOWN';
+                    }
+                }
+            });
+
+            if (!rebootStatus || rebootStatus !== 'UP') {
+                window.setTimeout(rebootTimer, rebootCheckInterval);
+            }
+        };
+
+        var rebootHandler = function() {
+            var rebootUrl = '{{ web_link("ApplianceReboot") }}';
+            $.ajax(rebootUrl, {
+                dataType: 'json',
+                data: JSON.stringify({reboot: 1}),
+                type: 'POST',
+                async: false
+            });
+
+            messageHandler(true, '{% trans "System going down" %}', 'info');
+
+            window.setTimeout(rebootTimer, rebootCheckInterval);
+        };
+
         $('#restore-configuration').submit(function(e) {
             e.preventDefault();
+            startHandler();
             var restoreUrl = '{{ web_link("System/Configuration/Backup/RestoreConfiguration") }}';
             var password = $(this).find('input#password').val();
 
@@ -90,15 +183,51 @@
             var file = filesList[0];
 
             if (file) {
+                var infoElement = messageHandler(true, '{% trans "Upload file:" %}' + '&nbsp;<span>0%</span>');
+
                 var reader = new FileReader();
                 reader.readAsBinaryString(file);
 
-                var xhr = new XMLHttpRequest(),
-                upload = xhr.upload;
+                var xhr = new XMLHttpRequest();
+                var upload = xhr.upload;
+
+                upload.addEventListener('progress', function(e) {
+                    if (e.lengthComputable) {
+                        var percentage = Math.round((e.loaded * 100) / e.total);
+                        $(infoElement).find('span').html(percentage + '%');
+                    }
+                });
+
+                upload.addEventListener('load', function(e) {
+                    messageHandler(true, '{% trans "Begin configuration restore" %}', 'info');
+                });
+
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState === this.DONE) {
+                        var response = JSON.parse(xhr.responseText);
+                        if (typeof response === "object" && "success" in response) {
+                            if (response.success !== true) {
+                                var messages = [];
+                                $.each(response.errors, function(key, errObj) {
+                                    messages.push(errObj.message);
+                                });
+
+                                messageHandler(false, messages.join(', '));
+                                finishHandler();
+                            } else {
+                                messageHandler(true, '{% trans "Config restored, initiating reboot. Please be patient for at least 5 minutes" %}', 'info');
+                                rebootHandler();
+                            }
+                        }
+                    }
+                };
 
                 xhr.open('POST', restoreUrl);
                 xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest'); // Add this header because this is an ajax request
                 xhr.send(file);
+            } else {
+                messageHandler(false, '{% trans "File is missing" %}');
+                finishHandler();
             }
         })
     });

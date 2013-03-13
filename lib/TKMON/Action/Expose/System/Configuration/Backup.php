@@ -21,6 +21,9 @@
 
 namespace TKMON\Action\Expose\System\Configuration;
 
+use NETWAYS\IO\Exception\ProcessException;
+use TKMON\Exception\ModelException;
+
 /**
  * Action to handle basic configuration tasks
  *
@@ -107,6 +110,14 @@ class Backup extends \TKMON\Action\Base
         exit(0);
     }
 
+    /**
+     * Restore system configuration
+     *
+     * @param \NETWAYS\Common\ArrayObject $params
+     * @return \TKMON\Mvc\Output\JsonResponse
+     * @throws \Exception|\NETWAYS\IO\Exception\ProcessException
+     * @throws \TKMON\Exception\ModelException
+     */
     public function actionRestoreConfiguration(\NETWAYS\Common\ArrayObject $params)
     {
         $response = new \TKMON\Mvc\Output\JsonResponse();
@@ -128,7 +139,16 @@ class Backup extends \TKMON\Action\Base
                 $zipFile->setPassword($password);
             }
 
-            $directory = $zipFile->extractStandardInToDisk();
+            try {
+                $directory = $zipFile->extractStandardInToDisk();
+            } catch (ProcessException $e) {
+                $msg = $e->getMessage();
+                if (strpos($msg, 'password') !== false) {
+                    throw new ModelException(_('Password is empty or does not match'));
+                }
+
+                throw $e;
+            }
 
             $importer = new \TKMON\Model\System\Configuration\Importer($this->container);
             $importer->fromDirectory($directory, (($password) ? true : false));

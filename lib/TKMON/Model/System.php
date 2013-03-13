@@ -90,6 +90,13 @@ class System extends ApplicationModel
         $command->execute();
     }
 
+    /**
+     * Change owner to apache owner
+     *
+     * - recursively
+     *
+     * @param string $dir target directory
+     */
     public function chownRecursiveToApache($dir)
     {
         /** @var $chown \NETWAYS\IO\Process */

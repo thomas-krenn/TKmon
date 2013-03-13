@@ -68,7 +68,11 @@ class RealTempFileObject extends FileObject
     public function __destruct()
     {
         $fname = $this->getRealPath();
-        if (is_file($fname)) {
+        /*
+         * Switched from is_file to file_exists, output from
+         * is_file is cached and not the real situation on disk
+         */
+        if (file_exists($fname)) {
             $this->fflush();
             unlink($fname);
         }

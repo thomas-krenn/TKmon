@@ -29,6 +29,14 @@ namespace TKMON\Model\System\Configuration;
 class Importer extends Base
 {
 
+    /**
+     * Import configuration from disk
+     *
+     * This is used after extracting the zip file
+     *
+     * @param string $dir
+     * @param bool $hasPasswordFlag
+     */
     public function fromDirectory($dir, $hasPasswordFlag = false)
     {
 
@@ -87,6 +95,15 @@ class Importer extends Base
         return $manifest2;
     }
 
+    /**
+     * Create a struct of paths
+     *
+     * Based on manifest and real base path
+     *
+     * @param string $basePath
+     * @param Manifest $manifest
+     * @return \stdClass
+     */
     private function createPathsStruct($basePath, Manifest $manifest)
     {
         $parts = $manifest->getSubObjects();
@@ -102,6 +119,11 @@ class Importer extends Base
         return $out;
     }
 
+    /**
+     * Import database from directory
+     * @param string $dir
+     * @throws \TKMON\Exception\ModelException
+     */
     private function importDatabase($dir)
     {
         $dumpFile = $dir. DIRECTORY_SEPARATOR. self::FILE_DB_NAME;
@@ -128,6 +150,11 @@ class Importer extends Base
         $sqlite->execute();
     }
 
+    /**
+     * Import icinga configuration from directory
+     * @param string $dir
+     * @throws \TKMON\Exception\ModelException
+     */
     private function importIcingaConfig($dir)
     {
         $baseDir = $this->container['config']['icinga.dir.base'];
@@ -156,6 +183,10 @@ class Importer extends Base
         $system->chownRecursiveToApache($baseDir);
     }
 
+    /**
+     * Import system (TKMON) configuration
+     * @param string $targetDir
+     */
     private function importSoftwareConfig($targetDir)
     {
         $etcDir = $this->container['config']['core.etc_dir'];
