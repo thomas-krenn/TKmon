@@ -74,6 +74,30 @@ class CgiParams
     }
 
     /**
+     * Test if content type suites for json
+     * @return bool
+     */
+    private function isJsonContentType()
+    {
+        static $testHeaders = array(
+            'application/x-www-form-urlencoded',
+            'application/json',
+            'text/x-json',
+            'text/plain'
+        );
+
+        $headerSource = $this->getParameter('CONTENT_TYPE', null, 'header');
+
+        foreach ($testHeaders as $header) {
+            if (strpos($headerSource, $header) !== false) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    /**
      * Json detector
      *
      * Tries to detect json in bad configured http requests
@@ -82,7 +106,7 @@ class CgiParams
      */
     private function getJsonBody()
     {
-        if ($this->getParameter('CONTENT_LENGTH', 0, 'header') > 0) {
+        if ($this->isJsonContentType() && $this->getParameter('CONTENT_LENGTH', 0, 'header') > 0) {
             $json = file_get_contents('php://input');
             if ($json) {
                 return json_decode($json, true);

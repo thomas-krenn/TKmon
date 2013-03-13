@@ -21,6 +21,9 @@
 
 namespace TKMON\Action\Expose\System\Configuration;
 
+use NETWAYS\IO\Exception\ProcessException;
+use TKMON\Exception\ModelException;
+
 /**
  * Action to handle basic configuration tasks
  *
@@ -60,6 +63,98 @@ class Backup extends \TKMON\Action\Base
             } else {
                 throw new \TKMON\Exception\ModelException("Not properly parametrized: Action ApplianceReboot");
             }
+        } catch (\Exception $e) {
+            $response->addException($e);
+        }
+
+        return $response;
+    }
+
+    /**
+     * Download configuration dump
+     * @param \NETWAYS\Common\ArrayObject $params
+     */
+    public function actionDownloadConfiguration(\NETWAYS\Common\ArrayObject $params)
+    {
+
+        $exporter = new \TKMON\Model\System\Configuration\Exporter($this->container);
+
+        try {
+            list($seconds, $micros) = explode('.', microtime(true));
+            $fileName = $this->container['tmp_dir'].
+                DIRECTORY_SEPARATOR.
+                strftime('%Y%m%d').
+                '-'. $seconds.
+                '-'. $micros.
+                '-'. posix_getpid().
+                '-dump.zip';
+
+            $exporter->setFile($fileName);
+
+            if ($params->get('password')) {
+                $exporter->setPassword($params->get('password'));
+            }
+
+            $exporter->toFile();
+
+            header('Content-disposition: attachment; filename='. basename($fileName));
+            header('Content-type: application/octet-stream');
+            readfile($fileName);
+
+        } catch (\Exception $e) {
+            printf('<h4>Error</h4><code>%s</code>', nl2br($e->getMessage()));
+        }
+
+        $exporter->cleanUp();
+
+        exit(0);
+    }
+
+    /**
+     * Restore system configuration
+     *
+     * @param \NETWAYS\Common\ArrayObject $params
+     * @return \TKMON\Mvc\Output\JsonResponse
+     * @throws \Exception|\NETWAYS\IO\Exception\ProcessException
+     * @throws \TKMON\Exception\ModelException
+     */
+    public function actionRestoreConfiguration(\NETWAYS\Common\ArrayObject $params)
+    {
+        $response = new \TKMON\Mvc\Output\JsonResponse();
+
+        try {
+            $password = $params->get('password');
+
+            /** @var $params \NETWAYS\Http\CgiParams */
+            $params = $this->container['params'];
+            $contentType = $params->getParameter('CONTENT_TYPE', null, 'header');
+
+            if ($contentType != 'application/zip') {
+                throw new \TKMON\Exception\ModelException('Content type is not application/zip');
+            }
+
+            $zipFile = new \TKMON\Model\System\Configuration\ZipFile($this->container);
+
+            if ($password) {
+                $zipFile->setPassword($password);
+            }
+
+            try {
+                $directory = $zipFile->extractStandardInToDisk();
+            } catch (ProcessException $e) {
+                $msg = $e->getMessage();
+                if (strpos($msg, 'password') !== false) {
+                    throw new ModelException(_('Password is empty or does not match'));
+                }
+
+                throw $e;
+            }
+
+            $importer = new \TKMON\Model\System\Configuration\Importer($this->container);
+            $importer->fromDirectory($directory, (($password) ? true : false));
+
+            $response->setSuccess(true);
+
         } catch (\Exception $e) {
             $response->addException($e);
         }

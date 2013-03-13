@@ -30,7 +30,7 @@ namespace TKMON\Action\Expose\ThomasKrenn\Alert;
 class Configuration extends \TKMON\Action\Base
 {
     /**
-     * Display alerter configuration form
+     * Show main index for ThomasKrenn alert settings
      * @param \NETWAYS\Common\ArrayObject $params
      * @return \TKMON\Mvc\Output\TwigTemplate
      */
@@ -50,7 +50,7 @@ class Configuration extends \TKMON\Action\Base
     }
 
     /**
-     * Update alerter configuration
+     * Ajax endpoint to write ThomasKrenn alert configuration
      * @param \NETWAYS\Common\ArrayObject $params
      * @return \TKMON\Mvc\Output\JsonResponse
      */

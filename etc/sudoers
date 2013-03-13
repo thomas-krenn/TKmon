@@ -10,3 +10,6 @@
 %tkmonweb ALL=(ALL)NOPASSWD:/sbin/restart
 %tkmonweb ALL=(ALL)NOPASSWD:/usr/sbin/service
 %tkmonweb ALL=(ALL)NOPASSWD:/usr/sbin/icinga
+%tkmonweb ALL=(ALL)NOPASSWD:/bin/rm
+%tkmonweb ALL=(ALL)NOPASSWD:/bin/cp
+%tkmonweb ALL=(ALL)NOPASSWD:/bin/chown

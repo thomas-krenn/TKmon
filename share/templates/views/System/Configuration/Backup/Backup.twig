@@ -1,0 +1,93 @@
+{% set login_link=web_link('System/Login/Index') %}
+<h2>{% trans "Backup configuration" %}</h2>
+
+<div class="alert alert-info container-spacer-down">
+    <h4>{% trans "What happens here?" %}</h4>
+    {% trans  %}
+    Download you current configuration here. This includes changed icinga
+    configuration and settings of your web application
+    {% endtrans  %}
+</div>
+
+<form id="save-configuration" action="{{ web_link('System/Configuration/Backup/DownloadConfiguration') }}">
+    <fieldset>
+        <label for="password">{% trans "Password" %}</label>
+        <input type="text" name="password" id="password" />
+        <br /><i>{% trans "You can protect your configuration with password" %}</i>
+    </fieldset>
+
+    <br /><br />
+
+    <button type="submit" class="btn btn-success">
+        <i class="icon-cloud-download"></i> {% trans "Download configuration" %}
+    </button>
+</form>
+
+<div id="save-display" class="container-spacer-down alert alert-info hide">
+    <p>
+        {% trans %}
+        Download successfully started. If not, please press the  button underneath.
+        {% endtrans %}
+        <br />
+        <a href="" class="btn btn-success">
+            <i class="icon-cloud-download"></i> {% trans "Download" %}
+        </a>
+    </p>
+</div>
+
+<div id="session-modal" class="modal hide fade">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h3>{% trans "Session expired" %}</h3>
+    </div>
+    <div class="modal-body">
+
+        <p>
+            {% trans %}
+            Your session has expired, <a href="{{ login_link }}">please log
+            in and try again</a>!
+
+            (You will be redirected after 3 seconds)
+            {% endtrans %}
+        </p>
+    </div>
+</div>
+
+<iframe id="dl-target" class="iframe-seamless" seamless="seamless"></iframe>
+
+<script>
+    require(['jquery'], function($) {
+        "use strict";
+
+        var pingUrl = '{{ web_link("System/Ping") }}';
+
+        $('#save-configuration').submit(function(e) {
+            e.preventDefault();
+            var values = $(this).serializeJSON();
+            var url = $(this).attr('action') + '?' + $.param(values);
+
+            $('#save-display').addClass('hide');
+
+            // Test if we are logged in
+            $.ajax(pingUrl, {
+                action: 'POST',
+                dataType: 'json',
+                success: function(data) {
+                    if (typeof(data) === "object" && data.success===true) {
+                        if (data.data[0].user !== false) {
+                            $('#save-display').removeClass('hide').find('a').attr('href', url);
+                            $('#save-configuration').addClass('hide');
+
+                            $('#dl-target').attr('src', url);
+                        } else {
+                            $('#session-modal').modal();
+                            window.setTimeout(function() {
+                                window.location.href = '{{ login_link }}';
+                            }, 3000)
+                        }
+                    }
+                }
+            });
+        });
+    })
+</script>
