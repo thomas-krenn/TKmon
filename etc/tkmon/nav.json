@@ -1,0 +1,119 @@
+[
+    {
+        "title": "Basic",
+        "type": "header",
+        "allowGuest": true,
+        "items": [
+            {
+                "title": "Home",
+                "description": "Go home",
+                "href": "Index/Index",
+                "allowGuest": true
+            }
+        ]
+    },
+
+    {
+        "title": "Monitoring",
+        "description": "Monitoring views",
+        "type": "header",
+
+        "items": [
+            {
+                "title": "Servicestatus",
+                "description": "Icinga services view",
+                "href": "Monitor/Icinga/Services"
+            },
+            {
+                "title": "Log",
+                "description": "Icinga log output",
+                "href": "Monitor/Icinga/Logs"
+            },
+            {
+                "type": "divider"
+            },
+            {
+                "title": "Hosts",
+                "description": "Edit hosts",
+                "href": "Monitor/Icinga/Hosts/Edit"
+            },
+            {
+                "title": "Services",
+                "description": "Edit services",
+                "href": "Monitor/Icinga/Services/Edit"
+            },
+            {
+                "title": "Contacts",
+                "description": "Edit contacts",
+                "href": "Monitor/Icinga/Contacts/Edit"
+            },
+            {
+                "type": "divider"
+            },
+            {
+                "title": "Icinga Daemon",
+                "description": "Icinga daemon control",
+                "href": "Monitor/Daemon/Index"
+
+            },
+            {
+                "title": "Icinga Interface",
+                "description": "Access to icinga",
+                "href": "Monitor/Icinga/Index"
+
+            }
+        ]
+    },
+
+    {
+        "title": "System",
+        "description": "System settings",
+        "type": "header",
+
+        "items": [
+            {
+                "title": "Security",
+                "description": "Configure access, https",
+                "href": "System/Configuration/Security/Index"
+            },
+
+            {
+                "title": "Mail",
+                "description": "Configure gateway and sender",
+                "href": "System/Configuration/Mail/Index"
+            },
+
+            {
+                "title": "Network",
+                "description": "Configure IP settings",
+                "href": "System/Configuration/Network/Index"
+            },
+
+            {
+                "title": "Free Settings",
+                "description": "Free config",
+                "href": "System/Configuration/Advanced/Free"
+            },
+
+            {
+                "title": "Backup/Restore",
+                "description": "Backup and restore",
+                "href": "System/Configuration/Backup/Index"
+            }
+        ]
+    },
+
+    {
+        "title": "Thomas Krenn",
+        "description": "TKMON specific settings",
+        "type": "header",
+
+        "items": [
+            {
+                "title": "Alerts",
+                "description": "Alert settings",
+                "href": "ThomasKrenn/Alert/Configuration/Index"
+            }
+        ]
+    }
+]

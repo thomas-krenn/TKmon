@@ -1,0 +1,24 @@
+<div id="tkmon-about" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="tkmon-about" aria-hidden="true">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h3>{{ app_name }}</h3>
+    </div>
+    <div class="modal-body">
+        <p>{% trans "You are running" %} <span class="label label-info">{{ config.get('app.version.release') }}</span></p>
+        <p>{{ config.get('app.copyright') }}</p>
+        <p>
+
+            <a href="http://www.netways.de/" class="btn btn-success">
+                <i class="icon-link"></i> Goto NETWAYS
+            </a>
+
+            <a href="http://www.thomas-krenn.com/" class="btn btn-success">
+                <i class="icon-link"></i> Goto Thomas-Krenn
+            </a>
+
+        </p>
+    </div>
+    <div class="modal-footer">
+        <a href="#" class="btn btn-primary" data-dismiss="modal" aria-hidden="true">Close</a>
+    </div>
+</div>

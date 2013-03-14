@@ -1,9 +1,9 @@
-var/db/default.sqlite
 .build
-.idea/workspace.xml
+.idea/
 composer.lock
 /vendor/
 composer.phar
 .vagrant
 etc/icinga/system/contacts/*cfg
 etc/icinga/system/hosts/*cfg
+var/

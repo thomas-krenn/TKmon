@@ -1,15 +1,15 @@
 {
-    "name": "tkmon/tkmon-web",
+    "name": "netways/tkmon-web",
 
     "description": "Simple icinga web frontend for small environments",
 
-    "version": "0.0.0",
+    "version": "1.0",
 
     "type": "library",
 
     "homepage": "http://www.netways.de",
 
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
 
     "require": {
         "twig/twig": "1.11.*",
@@ -23,9 +23,9 @@
 
     "autoload": {
         "psr-0": {
-            "NETWAYS": "lib/",
-            "TKMON": "lib/",
-            "ICINGA": "lib/"
+            "NETWAYS": "lib/tkmon",
+            "TKMON": "lib/tkmon",
+            "ICINGA": "lib/tkmon"
         }
     },
 

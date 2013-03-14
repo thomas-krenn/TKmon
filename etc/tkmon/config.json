@@ -1,0 +1,163 @@
+{
+    "core.lib_dir":         "{core.root_dir}/lib/tkmon",
+    "core.share_dir":       "{core.root_dir}/share/tkmon",
+    "core.template_dir":    "{core.share_dir}/templates",
+    "core.var_dir":         "{core.temp_dir}/tkmon",
+    "core.cache_dir":       "{core.var_dir}/cache",
+
+    "session.name":         "tkmon-loggin-session",
+    "session.lifetime":     3600,
+
+    "template.file":        "main.twig",
+    "template.cache":       true,
+    "template.cache_dir":   "{core.temp_dir}/tkmon-templates",
+
+    "navigation.data":      "{core.etc_dir}/nav.json",
+
+    "mvc.action.namespace": "\\TKMON\\Action\\Expose",
+
+    "app.version.major":    1,
+    "app.version.minor":    0,
+    "app.version.patch":    0,
+    "app.version.full":     "{app.version.major}.{app.version.minor}.{app.version.patch}",
+    "app.name":             "tkmon",
+    "app.copyright":        "(c) NETWAYS GmbH | Thomas-Krenn.AG 2012-2013",
+
+    "app.version.release":  "{app.name}-{app.version.full}",
+
+    "app.login.counter":    0,
+
+    "db.schema":            "{core.etc_dir}/database.sql",
+    "db.basepath":          "{core.var_dir}/db",
+    "db.name":              "default.sqlite",
+    "db.type":               "sqlite",
+
+    "db.autocreate":        true,
+    "db.debconf.use":       false,
+    "db.debconf.file":      "{core.etc_dir}/config-db.php",
+
+    "system.interface":     "eth0",
+    "system.apache_owner":  "www-data.www-data",
+
+    "locale.domain":        "messages",
+    "locale.path":          "{core.share_dir}/locales",
+    "locale.name":          "en_EN",
+    "locale.list": [
+        { "locale": "de_DE", "label": "Deutsch" },
+        { "locale": "en_EN", "label": "English" }
+    ],
+
+    "icinga.passwdfile": "/etc/icinga/htpasswd.users",
+    "icinga.config": "/etc/icinga/icinga.cfg",
+    "icinga.apacheconfig": "/etc/icinga/apache2.conf",
+    "icinga.adminuser": "icingaadmin",
+    "icinga.tkuser": "tkadmin",
+    "icinga.tkpasswd": "7RMan59XmN9t3FO2evmB",
+    "icinga.baseurl": "http://localhost",
+    "icinga.accessurl": "http://{web.domain}/icinga",
+    "icinga.freshness": "20",
+
+    "icinga.dir.base": "/etc/icinga/tkmon",
+    "icinga.dir.contact": "{icinga.dir.base}/system/contacts",
+    "icinga.dir.host": "{icinga.dir.base}/system/hosts",
+    "icinga.dir.template": "{icinga.dir.base}/system/templates",
+
+    "thomaskrenn.template.host": "thomas-krenn-host",
+
+    "icinga.record.contact": {
+        "use": "generic-contact",
+        "contactgroups": "tkmon-admin"
+    },
+
+    "icinga.record.host": {
+        "use": "thomas-krenn-host"
+    },
+
+    "icinga.record.service": {
+        "use": "thomas-krenn-service"
+    },
+
+    "icinga.catalogue.services.json.default": "{core.etc_dir}/services-default-debian.json",
+    "icinga.catalogue.services.json.custom": "{core.etc_dir}/services-custom.json",
+
+    "command.config": {
+        "chpasswd":  {
+            "path": "/usr/sbin/chpasswd",
+            "sudo": true
+        },
+
+        "usermod": {
+            "path": "/usr/sbin/usermod",
+            "sudo": true
+        },
+
+        "passwd": {
+            "path": "/usr/bin/passwd",
+            "sudo": true
+        },
+
+        "reboot": {
+            "path": "/sbin/reboot",
+            "sudo": true
+        },
+
+        "hostname": {
+            "path": "/bin/hostname",
+            "sudo": true
+        },
+
+        "mv": {
+            "path": "/bin/mv",
+            "sudo": true
+        },
+
+        "restart": {
+            "path": "/sbin/restart",
+            "sudo": true
+        },
+
+        "service": {
+            "path": "/usr/sbin/service",
+            "sudo": true
+        },
+
+        "htpasswd": {
+            "path": "/usr/bin/htpasswd"
+        },
+
+        "icinga": {
+            "path": "/usr/sbin/icinga",
+            "sudo": true
+        },
+
+        "sqlite3": {
+            "path": "/usr/bin/sqlite3",
+            "sudo": false
+        },
+
+        "cp": {
+            "path": "/bin/cp",
+            "sudo": true
+        },
+
+        "zip": {
+            "path": "/usr/bin/zip",
+            "sudo": false
+        },
+
+        "unzip": {
+            "path": "/usr/bin/unzip",
+            "sudo": false
+        },
+
+        "rm": {
+            "path": "/bin/rm",
+            "sudo": true
+        },
+
+        "chown": {
+            "path": "/bin/chown",
+            "sudo": true
+        }
+    }
+}

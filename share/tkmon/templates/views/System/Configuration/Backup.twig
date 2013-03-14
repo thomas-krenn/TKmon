@@ -1,0 +1,31 @@
+<div class="page-header">
+    <h2>Backup / Restore</h2>
+</div>
+
+<div class="tabbable">
+    <ul class="nav nav-tabs">
+        <li class="active">
+            <a href="#tab-reboot" data-toggle="tab">Reboot</a>
+        </li>
+        <li>
+            <a href="#tab-backup" data-toggle="tab">Backup</a>
+        </li>
+        <li>
+            <a href="#tab-restore" data-toggle="tab">Restore</a>
+        </li>
+    </ul>
+
+    <div class="tab-content">
+        <div class="tab-pane active" id="tab-reboot">
+            {% include "views/System/Configuration/Backup/Reboot.twig" %}
+        </div>
+
+        <div class="tab-pane" id="tab-backup">
+            {% include "views/System/Configuration/Backup/Backup.twig" %}
+        </div>
+
+        <div class="tab-pane" id="tab-restore">
+            {% include "views/System/Configuration/Backup/Restore.twig" %}
+        </div>
+    </div>
+</div>

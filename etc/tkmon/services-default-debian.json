@@ -1,0 +1,183 @@
+{
+    "type": "service",
+    "version": "1.0",
+    "description": "Template for checks defined in nagios-plugins packages",
+    "data": [
+        {
+            "service_description": "net-ping",
+            "display_name": "Ping check",
+            "check_command": {
+                "command_name": "check_ping",
+                "arguments": [
+                    {
+                        "label": "Warning threshold",
+                        "description": "In form <0000,000%>, <miliseconds rtt>,<percent rta><%>",
+                        "validation": "string",
+                        "argument": "-w",
+                        "value": "5000,100%"
+                    },
+                    {
+                        "label": "Warning threshold",
+                        "description": "In form <0000,000%>, <miliseconds rtt>,<percent rta><%>",
+                        "validation": "string",
+                        "argument": "-c",
+                        "value": "5000,100%"
+                    }
+                ]
+            },
+            "_catalogue_attributes": {
+                "tags": ["remote", "ping", "network"],
+                "name": "net-ping",
+                "label": "Ping check",
+                "description": "Check packet loss and round trip time",
+                "defined": true,
+                "defined_in": "/etc/nagios-plugins/config/ping.cfg"
+            }
+        },
+        {
+            "service_description": "net-tcp",
+            "display_name": "TCP Port",
+            "check_command": {
+                "command_name": "check_tcp",
+                "arguments": [
+                    {
+                        "label": "TCP Port",
+                        "description": "Integer value of TCP port to test",
+                        "validation": "port",
+                        "argument": "-p"
+                    }
+                ]
+            },
+            "_catalogue_attributes": {
+                "tags": ["remote", "tcp", "port", "network"],
+                "name": "net-tcp",
+                "label": "TCP port check",
+                "description": "Check tcp port reaction",
+                "defined": true,
+                "defined_in": "/etc/nagios-plugins/config/tcp_udp.cfg"
+            }
+        },
+        {
+            "service_description": "net-http",
+            "display_name": "Http response",
+            "check_command": {
+                "command_name": "check_http",
+                "arguments": null
+            },
+            "_catalogue_attributes": {
+                "tags": ["remote", "tcp", "web", "network", "http"],
+                "name": "net-http",
+                "label": "HTTP response",
+                "description": "Test http server (address)",
+                "defined": true,
+                "defined_in": "/etc/nagios-plugins/config/http.cfg"
+            }
+        },
+        {
+            "service_description": "net-httpname",
+            "display_name": "Http response (hostname)",
+            "check_command": {
+                "command_name": "check_httpname",
+                "arguments": null
+            },
+            "_catalogue_attributes": {
+                "tags": ["remote", "tcp", "web", "network", "http"],
+                "name": "net-httpname",
+                "label": "HTTP response by name",
+                "description": "Test http server (hostname)",
+                "defined": true,
+                "defined_in": "/etc/nagios-plugins/config/http.cfg"
+            }
+        },
+        {
+            "service_description": "net-http2",
+            "display_name": "Http response (vhost)",
+            "check_command": {
+                "command_name": "check_http2",
+                "arguments": [
+                    {
+                        "label": "Hostname (VHOST)",
+                        "description": "VHost to check on this host address",
+                        "validation": "hostname",
+                        "argument": "-H"
+                    },
+                    {
+                        "label": "Warning threshold",
+                        "description": "Seconds to resolve the request",
+                        "validation": "double",
+                        "argument": "-w"
+                    },
+                    {
+                        "label": "Critical threshold",
+                        "description": "Seconds to resolve the request",
+                        "validation": "double",
+                        "argument": "-c"
+                    }
+                ]
+            },
+            "_catalogue_attributes": {
+                "tags": ["remote", "tcp", "web", "network", "http"],
+                "name": "net-http2",
+                "label": "HTTP response",
+                "description": "Test http server (different vhosts and thresholds)",
+                "defined": true,
+                "defined_in": "/etc/nagios-plugins/config/http.cfg"
+            }
+        },
+        {
+            "service_description": "net-https",
+            "display_name": "Https response",
+            "check_command": {
+                "command_name": "check_https",
+                "arguments": null
+            },
+            "_catalogue_attributes": {
+                "tags": ["remote", "tcp", "web", "network", "http", "https"],
+                "name": "net-https",
+                "label": "HTTP response",
+                "description": "Test https server (address)",
+                "defined": true,
+                "defined_in": "/etc/nagios-plugins/config/http.cfg"
+            }
+        },
+        {
+            "service_description": "net-ssh",
+            "display_name": "SSH test",
+            "check_command": {
+                "command_name": "check_ssh",
+                "arguments": null
+            },
+            "_catalogue_attributes": {
+                "tags": ["remote", "tcp", "web", "network", "ssh"],
+                "name": "net-ssh",
+                "label": "SSH Test",
+                "description": "Test for ssh (standard port)",
+                "defined": true,
+                "defined_in": "/etc/nagios-plugins/config/ssh.cfg"
+            }
+        },
+        {
+            "service_description": "net-ssh-port",
+            "display_name": "SSH test port",
+            "check_command": {
+                "command_name": "check_ssh_port",
+                "arguments": [
+                    {
+                        "label": "SSH Port",
+                        "description": "Integer port where ssh is listening on",
+                        "validation": "port",
+                        "argument": "-p"
+                    }
+                ]
+            },
+            "_catalogue_attributes": {
+                "tags": ["remote", "tcp", "web", "network", "ssh"],
+                "name": "net-ssh-port",
+                "label": "SSH Test",
+                "description": "Test for ssh (specific port)",
+                "defined": true,
+                "defined_in": "/etc/nagios-plugins/config/ssh.cfg"
+            }
+        }
+    ]
+}

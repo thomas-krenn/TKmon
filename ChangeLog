@@ -1,0 +1,32 @@
+tk-mon 1.0 (2013-03-14)
+
+First stable release, determine milestone 1
+
+    * #2104 Release 1.0
+    * #2102 Package compliance PT II
+    * #2070 Package compliance PT I
+    * #2046 Caches f￼r Nav,Catalogues
+    * #2032 FHS Compliance Konfiguration
+    * #1978 I10N und L18N Unterst￼tzung
+    * #1444 Interface Framework
+    * #1442 Trennung der Konfiguration
+    * #1438 Neustart System
+    * #1436 Neustart Monitorig
+    * #1434 Sicherung und Wiederherstellung
+    * #1432 Pflege von Services
+    * #1430 Pflege von Hosts
+    * #1428 Pflege von Kontakten
+    * #1426 Icinga Ansicht Logs
+    * #1424 Icinga Ansicht Services
+    * #1422 Konfiguration Grundsystem
+    * #1420 Konfiguration Sicherheit
+    * #1418 Konfiguration Mail
+    * #1416 Konfiguration Netzwerk
+    * #1414 Erster Start
+    * #1402 Webinterface
+
+tk-mon 0.0.1 (2013-02-11)
+
+This is a preview release to test packaging and misc concepts
+
+    * Initial release

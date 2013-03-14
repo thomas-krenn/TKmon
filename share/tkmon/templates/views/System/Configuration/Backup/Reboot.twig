@@ -1,0 +1,109 @@
+<h2>{% trans "Reboot system" %}</h2>
+
+<div id="reboot-error">
+
+</div>
+
+<form
+        id="form-reboot"
+        action="{{ web_link("ApplianceReboot") }}"
+        data-ajax="form"
+        data-ajax-type="json"
+        data-form-focus-first="#current_password"
+        data-error-target="#reboot-error"
+        data-success-callback="reboot_callback"
+        >
+    <p>
+        {% trans %}
+        Please press the following button to reboot your appliance. The
+        reboot will take a few minutes. After the platform is
+        available the interface reloads and you will be prompted for
+        your credentials to login.
+        {% endtrans %}
+    </p>
+
+    <p>
+        <span class="label label-warning">{% trans "Warning" %}</span>
+        {% trans %}
+        While rebooting no notifications for problems will be send to you.
+        {% endtrans %}
+    </p>
+
+    <input type="hidden" name="reboot" value="1"/>
+
+    <div class="container-spacer-down" id="reboot-submit">
+        <button type="submit" class="btn btn-danger">
+            <i class="icon-warning-sign"></i> {% trans "Reboot device!" %}
+        </button>
+    </div>
+
+    <div id="reboot-response" class="hidden container-spacer-down">
+        <div id="reboot-response-template" class="hidden alert"></div>
+    </div>
+</form>
+
+<script>
+    (function () {
+        "use strict";
+
+        var status = null;
+
+        /**
+         * Add a new message to response frame
+         * @param {String} content Content in the alert box
+         * @param {String} type Class suffix, e.g. success, warning
+         */
+        var add_response = function (content, type) {
+            type = (type) ? 'alert-' + type : 'alert-success';
+            var item = $('#reboot-response-template').clone();
+            $(item).removeClass('hidden');
+            $(item).addClass(type);
+            $(item).append(content);
+            $("#reboot-response").append(item);
+        };
+
+        /**
+         * Request timer, pings the application the
+         * display the status on the page
+         */
+        var request_timer = function () {
+            $.ajax("{{ web_link('System/Ping') }}")
+                    .done(function () {
+                        if (status && status === 'DOWN') {
+                            add_response('System is up again, going home. '
+                                    + 'If not, <a href="{{ web_link("Index/Index") }}">'
+                                    + 'click here to do manually</a>.', 'success');
+                            status = 'UP';
+
+                            window.setInterval(function () {
+                                location.href = "{{ web_link('Index/Index') }}";
+                            }, 1000);
+                        }
+                    })
+
+                    .fail(function () {
+                        if (!status) {
+                            add_response('System is down', 'warning');
+                            status = 'DOWN';
+                        }
+                    });
+
+            if (!status || status !== 'UP') {
+                window.setTimeout(request_timer, 1000);
+            }
+        }
+
+        /**
+         * Reboot callback, called from json form
+         */
+        var reboot_callback = function () {
+            $("#reboot-response").removeClass("hidden");
+            $("#reboot-submit").remove();
+            add_response("Reboot sent, waiting to go down");
+            window.setTimeout(request_timer, 1000);
+        };
+
+        // Export
+        window.reboot_callback = reboot_callback;
+    })();
+</script>

@@ -1,0 +1,89 @@
+{% set link_ok = web_link('Services?servicestatustypes=2') %}
+{% set link_warning = web_link('Services?servicestatustypes=4') %}
+{% set link_critical = web_link('Services?servicestatustypes=16') %}
+{% set link_unknown = web_link('Services?servicestatustypes=8') %}
+{% set link_problems = web_link('Services?servicestatustypes=29') %}
+{% set link_pending = web_link('Services?servicestatustypes=1') %}
+
+{% import "macros/icinga.twig" as icinga %}
+<div class="page-header">
+    <h2>{%  trans "Service Status" %}</h2>
+</div>
+
+<h4>
+    {% trans %}
+    List of currently monitored services
+    {% endtrans %}
+</h4>
+
+<div class="alert alert-info">
+    <p>
+    {% trans %}
+        Press the button to reload view or restrict the view:
+            <a href="{{ link_ok }}">OK</a>,
+            <a href="{{ link_warning }}">WARNING</a>,
+            <a href="{{ link_critical }}">CRITICAL</a>,
+            <a href="{{ link_unknown }}">UNKNOWN</a> or
+            <a href="{{ link_pending }}">PENDING</a>
+    {% endtrans %}
+    </p>
+
+    <a href="" class="btn btn-success">
+        <i class="icon-refresh"></i> {% trans "Reload" %}
+    </a>
+    <a href="{{ link_problems }}" class="btn btn-danger">
+        <i class="icon-exclamation-sign"></i> {% trans "Problems only" %}
+    </a>
+    <a href="{{ web_link('Services') }}" class="btn btn-info">
+        <i class="icon-asterisk"></i> {% trans "All" %}
+    </a>
+</div>
+
+<div class="container-spacer-down"></div>
+
+<table class="tkmon-data-table">
+
+    <tr>
+        <th>{% trans "Hostname" %}</th>
+        <th>{% trans "Service" %}</th>
+        <th>{% trans "Status" %}</th>
+        <th>{% trans "Last check" %}</th>
+        <th>{% trans "Duration" %}</th>
+        <th>{% trans "Attempt" %}</th>
+    </tr>
+
+{% if data.status.service_status|length == 0 %}
+    <tr>
+        <td colspan="6" style="text-align: center">
+            {% trans %}
+                Sorry, no objects found
+            {% endtrans %}
+        </td>
+    </tr>
+{% endif %}
+
+{% for row in data.status.service_status %}
+
+    <tr>
+
+        <td class="host-column" style="white-space: nowrap">{{ row.host_name }}</td>
+        <td style="white-space: nowrap">{{ row.service_description }}</td>
+        <td class="{{ icinga.service_status_class(row.status) }}">
+            {{ icinga.service_status(row.status) }}
+        </td>
+        <td style="white-space: nowrap">{{ row.last_check }}</td>
+        <td>{{ row.duration }}</td>
+        <td>{{ row.attempts }}</td>
+    </tr>
+    <tr>
+        <td colspan="6" class="output-column">
+            <code>
+                {{ row.status_information }}
+            </code>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="6" class="spacer-column">&nbsp;</td>
+    </tr>
+{% endfor %}
+</table>
