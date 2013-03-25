@@ -57,7 +57,7 @@ final class Web
         /*
          * Paths environment
          */
-        $container['temp_dir'] = sys_get_temp_dir();
+        $container['tmp_dir'] = sys_get_temp_dir();
         $container['root_dir'] = dirname(dirname(dirname(dirname(dirname(__FILE__)))));
 
         $etcDirectory = DIRECTORY_SEPARATOR
@@ -108,7 +108,7 @@ final class Web
                 // on system. Rest is configured on config.json
                 $config->set('core.root_dir', $c['root_dir']);
                 $config->set('core.etc_dir', $c['etc_dir']);
-                $config->set('core.temp_dir', $c['temp_dir']);
+                $config->set('core.temp_dir', $c['tmp_dir']);
 
                 // Web settings
                 $filename = basename($params->getParameter('SCRIPT_FILENAME', null, 'header'));
@@ -189,7 +189,7 @@ final class Web
         /*
          * Database
          */
-        $container['db'] = $container->share(
+        $container['dbbuilder'] = $container->share(
             function ($c) {
                 $config = $c['config'];
 
@@ -203,11 +203,14 @@ final class Web
                     $builder->setName($config['db.name']);
                 }
 
-                // Add database to dir builder
-                /** @var $creator \TKMON\Model\Misc\DirectoryCreator */
-                $creator = $c['directoryCreator'];
-                $creator->addPath($builder->getBasePath());
-                $creator->createPaths();
+                return $builder;
+            }
+        );
+
+        $container['db'] = $container->share(
+            function ($c) {
+                $config = $c['config'];
+                $builder = $c['dbbuilder'];
 
                 if ($config['db.autocreate'] === true) {
                     $file = $builder->getBasePath(). DIRECTORY_SEPARATOR. $builder->getName();
@@ -240,6 +243,9 @@ final class Web
                 return $dbo;
             }
         );
+
+        // Trigger the database object to have it ready imported
+        $container['db'];
 
         // Trigger the database object to have it ready imported
         $container['db'];
