@@ -78,6 +78,7 @@ final class ASimpleDummyScopedRunnerForTKMon
                 $path = '';
             }
 
+            $paths[] = self::alFile($path, 'lib', 'tkmon', self::VENDOR_DIRECTORY);
             $paths[] = self::alFile($path, 'lib', self::VENDOR_DIRECTORY);
             $paths[] = self::alFile($path, self::VENDOR_DIRECTORY);
         }
