@@ -209,8 +209,18 @@ final class Web
 
         $container['db'] = $container->share(
             function ($c) {
+                /** @var $config \NETWAYS\Common\Config */
                 $config = $c['config'];
+                /** @var $builder \TKMON\Model\Database\DebConfBuilder */
                 $builder = $c['dbbuilder'];
+
+                /** @var $creator \TKMON\Model\Misc\DirectoryCreator */
+                $creator = $c['directoryCreator'];
+                $creator->addPath($builder->getBasePath());
+
+                // Call path creator to create missing paths:
+                // - All paths should exist before database is needed
+                $creator->createPaths();
 
                 if ($config['db.autocreate'] === true) {
                     $file = $builder->getBasePath(). DIRECTORY_SEPARATOR. $builder->getName();
