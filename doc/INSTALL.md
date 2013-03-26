@@ -74,11 +74,6 @@ To run integration tests (where icinga and other resource files are installed) t
 
 Copy the sources to a safe place, e.g. /opt/tkmon-web or /usr/local/src/tkmon-web
 
-### Fix privileges
-
-Make shure to give important directories write access for the web server. The webserver creates
-the 'var' structure itself if not present. Make sure to precreate var directories
-
     {core.var_dir}/cache
     {core.var_dir}/db
 

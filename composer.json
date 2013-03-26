@@ -17,6 +17,10 @@
         "pimple/pimple": "1.0.*"
     },
 
+    "config": {
+        "vendor-dir": "lib/tkmon/vendor"
+    },
+
     "license": [
         "GPL-3.0"
     ],

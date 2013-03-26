@@ -1,9 +1,9 @@
 .build
 .idea/
 composer.lock
-/vendor/
 composer.phar
 .vagrant
+lib/tkmon/vendor
 etc/icinga/system/contacts/*cfg
 etc/icinga/system/hosts/*cfg
 var/
