@@ -1,6 +1,14 @@
 <?php
 // Composer snippet
-require dirname(__DIR__). DIRECTORY_SEPARATOR. 'vendor'. DIRECTORY_SEPARATOR. 'autoload.php';
+require dirname(__DIR__)
+    . DIRECTORY_SEPARATOR
+    . 'lib'
+    . DIRECTORY_SEPARATOR
+    . 'tkmon'
+    . DIRECTORY_SEPARATOR
+    . 'vendor'
+    . DIRECTORY_SEPARATOR
+    . 'autoload.php';
 
 // Test mocks
 

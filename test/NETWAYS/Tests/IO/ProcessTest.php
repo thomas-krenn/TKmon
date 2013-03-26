@@ -100,7 +100,7 @@ class ProcessTest extends \PHPUnit_Framework_TestCase
 
     public function testMisc()
     {
-        $proc = new \NETWAYS\IO\Process('/bin/ls');
+        $proc = new \NETWAYS\IO\Process('/bin/true');
         $proc->addPositionalArgument('/tmp');
         $proc->execute();
 
