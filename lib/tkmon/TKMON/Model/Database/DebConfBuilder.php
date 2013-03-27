@@ -32,7 +32,7 @@ class DebConfBuilder
     /**
      * Database type sqlite
      */
-    const TYPE_SQLITE = 'sqlite';
+    const TYPE_SQLITE = 'sqlite3';
 
     /**
      * Map which setter configures a parameter

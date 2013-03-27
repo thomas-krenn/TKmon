@@ -27,10 +27,10 @@
 
     "app.login.counter":    0,
 
-    "db.schema":            "{core.etc_dir}/database.sql",
+    "db.schema":            "{core.etc_dir}/sqlite3",
     "db.basepath":          "{core.var_dir}/db",
     "db.name":              "default.sqlite",
-    "db.type":               "sqlite",
+    "db.type":               "sqlite3",
 
     "db.autocreate":        true,
     "db.debconf.use":       false,

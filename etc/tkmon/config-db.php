@@ -5,4 +5,4 @@ $basepath='/tmp/tkmon';
 $dbname='tkmon';
 $dbserver='';
 $dbport='';
-$dbtype='sqlite';
+$dbtype='sqlite3';
