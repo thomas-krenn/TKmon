@@ -1,3 +1,13 @@
+tk-mon 1.1.0 (2013-03-27)
+
+Pre-release of milestone 2 with folowing features
+
+	* FIX #2172 TestInit does not complaint to vendor path
+	* FIX #2186 Package compliance Database SQLITE
+	* #2186 Package compliance Database SQLITE
+	* #2162 Package compliance III
+	* #2164 Change doc format to ASCII doc
+
 tk-mon 1.0.2 (2013-03-26)
 
 Hotfix milestone 1
