@@ -31,8 +31,16 @@ class DebConfBuilder
 {
     /**
      * Database type sqlite
+     * @var string
      */
-    const TYPE_SQLITE = 'sqlite3';
+    const TYPE_SQLITE = 'sqlite';
+
+    /**
+     * Database type sqlite3
+     * Which is the same as sqlite
+     * @var string
+     */
+    const TYPE_SQLITE3 = 'sqlite3';
 
     /**
      * Map which setter configures a parameter
@@ -56,7 +64,8 @@ class DebConfBuilder
      * @var callback[]
      */
     private static $connectionMap = array(
-        self::TYPE_SQLITE => 'createSqLiteConnection'
+        self::TYPE_SQLITE   => 'createSqLiteConnection',
+        self::TYPE_SQLITE3  => 'createSqLiteConnection'
     );
 
     /**
@@ -271,7 +280,7 @@ class DebConfBuilder
      */
     private function assertTypeConstants()
     {
-        if ($this->getType() !== self::TYPE_SQLITE) {
+        if (array_key_exists($this->getType(), self::$connectionMap) === false) {
             throw new \TKMON\Exception\ModelException('Database type is not supported: '. $this->getType());
         }
     }
