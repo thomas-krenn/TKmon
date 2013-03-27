@@ -90,6 +90,25 @@ class JsonFiles extends \ICINGA\Base\CatalogueProvider
     }
 
     /**
+     * Add directory of files to object
+     *
+     * The directory is recursively parsed files *.json files
+     *
+     * @param string $dir directory
+     */
+    public function addDir($dir)
+    {
+        $directory = new \RecursiveDirectoryIterator($dir);
+        $iterator = new \RecursiveIteratorIterator($directory);
+        $regex = new \RegexIterator($iterator, '/^.+\.json/i', \RecursiveRegexIterator::MATCH);
+
+        /** @var $file \SplFileInfo **/
+        foreach ($regex as $file) {
+            $this->addFile($file->getRealPath());
+        }
+    }
+
+    /**
      * Resets data and index
      *
      * To load new values into object

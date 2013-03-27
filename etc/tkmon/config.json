@@ -77,8 +77,7 @@
         "use": "thomas-krenn-service"
     },
 
-    "icinga.catalogue.services.json.default": "{core.etc_dir}/services-default-debian.json",
-    "icinga.catalogue.services.json.custom": "{core.etc_dir}/services-custom.json",
+    "icinga.catalogue.services.json.dir": "{core.etc_dir}/service-catalogues",
 
     "command.config": {
         "chpasswd":  {
