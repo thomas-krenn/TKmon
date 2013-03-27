@@ -378,8 +378,10 @@ final class Web
                 $jsonData = new \ICINGA\Catalogue\Provider\JsonFiles();
                 $jsonData->setCacheInterface($c['cache'], 'tkmon.catalogue.services');
 
-                $jsonData->addFile($config['icinga.catalogue.services.json.default']);
-                $jsonData->addFile($config['icinga.catalogue.services.json.custom']);
+                // Add directory of json files to stack
+                $dir = $config['icinga.catalogue.services.json.dir'];
+                $jsonData->addDir($dir);
+
 
                 $catalogue->appendHandlerToChain($jsonData);
 

@@ -17,44 +17,42 @@
  * @author Marius Hein <marius.hein@netways.de>
  * @copyright 2012-2013 NETWAYS GmbH <info@netways.de>
  */
-/*global require:true*/
+/*global define:true*/
 
 (function () {
     "use strict";
 
+    /**
+     * @
+     */
     define(['jquery', 'bootstrap'], function () {
-        "use strict";
 
+        /**
+         * @type {String}
+         */
         var dataUrl;
-        var labels = {};
-        var data = [];
 
-        var resetData = function() {
-            data = [];
-            labels = {};
-        };
-
-        var buildData = function(result) {
-            var sub;
-            $.each(result, function(key, obj) {
-                sub = obj._catalogue_attributes;
-                data.push(sub.name);
-                labels[sub.name] = sub;
-            });
-        };
-
-        var getData = function() {
-            return data;
-        };
-
+        /**
+         * Setter for url
+         * @param {String} url
+         */
         var setUrl = function(url) {
             dataUrl = url;
         };
 
+        /**
+         * Getter for URL
+         * @returns {String}
+         */
         var getUrl = function() {
             return dataUrl;
         };
 
+        /**
+         * Source processor
+         * @param {String} q Query
+         * @param {Function} process Bootstrap data processor
+         */
         var source = function (q, process) {
 
             $.ajax(getUrl(), {
@@ -63,50 +61,39 @@
                     q: q
                 }),
                 dataType:'json',
-                success:function (result) {
-                    resetData();
-                    if (result && result.success == true) {
-                        buildData(result.data);
-                        process(getData());
+                success:function (data) {
+                    if (data && data.success === true) {
+                        var out = [];
+                        $.each(data.data, function (key) {
+                            out.push(key);
+                        });
+                        process(out);
                     }
                 }
             });
         };
 
+        /**
+         * What to dispaly
+         * @returns {boolean}
+         */
         var matcher = function() {
             return true;
         };
 
-        var highlighter = function(item) {
-            var out = '';
-            var o = labels[item];
-
-            out += '<div class="tkmon-catalogue-item">';
-            out += '<div class="item-name">';
-            out += o.label + ' (' + o.name + ')';
-            out += '</div>';
-            out += '<div class="item-description">';
-            out += o.description;
-            out += '</div>';
-            out += '</div>';
-
-            return out;
-        };
-
         /**
-         * jQuery typeahead plugin (bootstrap) for services
+         * jQuery typeahead plugin (bootstrap) for hosts
          *
-         * @name serviceTypeAhead
+         * @name hostTypeAhead
          * @class
          * @memberOf jQuery.fn
          * @param {Object} options
          */
-        $.fn.serviceTypeAhead = function(options) {
+        $.fn.hostTypeAhead = function(options) {
             setUrl(options.url);
             $(this).typeahead({
                 source: source,
-                matcher: matcher,
-                highlighter: highlighter
+                matcher: matcher
             });
         };
     });
