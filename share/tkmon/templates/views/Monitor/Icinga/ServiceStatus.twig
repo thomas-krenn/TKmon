@@ -37,6 +37,9 @@
     <a href="{{ web_link('Services') }}" class="btn btn-info">
         <i class="icon-asterisk"></i> {% trans "All" %}
     </a>
+
+    <!-- Target refresh counter goes into -->
+    <div id="site-refresh" class="container-spacer-down"></div>
 </div>
 
 <div class="container-spacer-down"></div>
@@ -87,3 +90,22 @@
     </tr>
 {% endfor %}
 </table>
+
+<script>
+    require(['TKMON/jquery/SiteRefreshTimer'], function() {
+        /*
+         * setTimeout is a hack. Because we're too fast for require.js
+         * ticks that deps are not loaded.
+         *
+         * @todo Update require.js to (maybe) fixed version
+         */
+        window.setTimeout(function() {
+            $('#site-refresh').siteRefreshTimer({
+                timeout: parseInt('{{ config.get('view.refresh') }}', 10),
+                secondsLabel: '{% trans "seconds" %}',
+                stopLabel: '',
+                initialLabel: '{% trans "Reload page in" %}'
+            });
+        },  30);
+    });
+</script>
