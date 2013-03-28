@@ -400,6 +400,8 @@ core.var_dir::
 core.cache_dir::
 session.name::
 session.lifetime::
+view.refresh (int)::
+    Time in seconds for auto reload views, e.g. services or event log.
 template.file::
 template.cache::
 template.cache_dir::

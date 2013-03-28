@@ -8,6 +8,8 @@
     "session.name":         "tkmon-loggin-session",
     "session.lifetime":     3600,
 
+    "view.refresh":         90,
+
     "template.file":        "main.twig",
     "template.cache":       true,
     "template.cache_dir":   "{core.temp_dir}/tkmon-templates",

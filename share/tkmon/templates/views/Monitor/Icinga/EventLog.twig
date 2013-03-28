@@ -63,7 +63,7 @@
          */
         window.setTimeout(function() {
             $('#site-refresh').siteRefreshTimer({
-                timeout: 90,
+                timeout: parseInt('{{ config.get('view.refresh') }}', 10),
                 secondsLabel: '{% trans "seconds" %}',
                 stopLabel: '',
                 initialLabel: '{% trans "Reload page in" %}'

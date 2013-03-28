@@ -60,6 +60,7 @@ class Icinga extends \TKMON\Action\Base
         $template = new \TKMON\Mvc\Output\TwigTemplate($this->container['template']);
         $template->setTemplateName('views/Monitor/Icinga/ServiceStatus.twig');
         $template['data'] = $icingaModel->getServiceStatus($params->get('servicestatustypes', null));
+        $template['config'] = $this->container['config'];
         return $template;
     }
 
@@ -74,6 +75,7 @@ class Icinga extends \TKMON\Action\Base
         $template = new \TKMON\Mvc\Output\TwigTemplate($this->container['template']);
         $template->setTemplateName('views/Monitor/Icinga/EventLog.twig');
         $template['data'] = $icingaModel->getEventLog();
+        $template['config'] = $this->container['config'];
         return $template;
     }
 }
