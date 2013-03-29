@@ -1,3 +1,4 @@
+{% set restart_url=web_link('Monitor/Daemon/Index#daemon-restart') %}
 <div class="page-header">
     <h2>{%  trans "Services" %}</h2>
 </div>
@@ -21,6 +22,12 @@
             </button>
         </div>
     </form>
+
+    <p>
+        {% trans %}
+        Please <a href="{{ restart_url }}">restart your icinga instance</a> that changes take effect.
+        {% endtrans %}
+    </p>
 </div>
 
 <div class="container-spacer-down">
