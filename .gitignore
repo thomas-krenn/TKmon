@@ -8,4 +8,4 @@ lib/tkmon/vendor
 etc/icinga/system/contacts/*cfg
 etc/icinga/system/hosts/*cfg
 var/
-
+debian/

@@ -2,7 +2,7 @@
 
 <p>
     {% trans %}
-    Press underlying button to verify the current configuration
+    Press the underlying button to verify the current configuration.
     {% endtrans %}
 </p>
 
@@ -30,7 +30,7 @@
         "use strict";
 
         var url = '{{ web_link("ConfigTest") }}';
-        var message_nothing = '{% trans "No reason found, everything is ok" %}';
+        var message_nothing = '{% trans "No reason found, everything is ok." %}';
 
         $('#icinga-test-configuration').click(function(event) {
 
