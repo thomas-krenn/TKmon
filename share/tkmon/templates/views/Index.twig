@@ -10,7 +10,7 @@
             <h4>{% trans "Welcome" %}</h4>
             <p>
             {% trans %}
-                Seems that you're here the first time. If you have a ThomasKrenn Service Subscription, please
+                Seems that you're here the first time. If you have a Thomas Krenn Service Subscription, please
                 goto <a href="{{ config_link }}">Alert Settings Page</a> and enter your credentials.
 
                 After that your monitoring service is equipped with Thomas Krenn support power! (<a href="{{ tk_info_link }}">
@@ -24,8 +24,8 @@
 {% endif %}
 
 <div class="hero-unit">
-    <h1>Welcome to TKMON.</h1>
-    <p>Simple and fast monitoring based on Icinga</p>
+    <h1>Welcome to TKmon.</h1>
+    <p>Simple and fast monitoring based on Icinga.</p>
     <p>
         {% if user.getAuthenticated() == true %}
             <a href="{{ web_link('Monitor/Icinga/Services') }}" class="btn btn-large btn-primary">

@@ -8,6 +8,8 @@
     "session.name":         "tkmon-loggin-session",
     "session.lifetime":     3600,
 
+    "view.refresh":         90,
+
     "template.file":        "main.twig",
     "template.cache":       true,
     "template.cache_dir":   "{core.temp_dir}/tkmon-templates",
@@ -18,9 +20,9 @@
 
     "app.version.major":    1,
     "app.version.minor":    1,
-    "app.version.patch":    0,
+    "app.version.patch":    1,
     "app.version.full":     "{app.version.major}.{app.version.minor}.{app.version.patch}",
-    "app.name":             "tkmon",
+    "app.name":             "TKmon",
     "app.copyright":        "(c) NETWAYS GmbH | Thomas-Krenn.AG 2012-2013",
 
     "app.version.release":  "{app.name}-{app.version.full}",
@@ -41,10 +43,15 @@
 
     "locale.domain":        "messages",
     "locale.path":          "{core.share_dir}/locales",
-    "locale.name":          "en_EN",
+    "locale.name":          "en_US",
     "locale.list": [
-        { "locale": "de_DE", "label": "Deutsch" },
-        { "locale": "en_EN", "label": "English" }
+        { "locale": "de_DE", "label": "German" },
+        { "locale": "en_US", "label": "English" },
+        { "locale": "it_IT", "label": "Italian" },
+        { "locale": "pl_PL", "label": "Polish" },
+        { "locale": "es_ES", "label": "Spanish" },
+        { "locale": "cs_CZ", "label": "Czech" },
+        { "locale": "nl_NL", "label": "Dutch" }
     ],
 
     "icinga.passwdfile": "/etc/icinga/htpasswd.users",

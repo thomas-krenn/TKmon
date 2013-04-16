@@ -1,11 +1,39 @@
 <?php
+/**
+ * This file is part of TKMON
+ *
+ * TKMON is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * TKMON is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with TKMON.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ * @author Marius Hein <marius.hein@netways.de>
+ * @copyright 2012-2013 NETWAYS GmbH <info@netways.de>
+ */
+
+// ----------------------------------------------------------------------------
+// This binary create the default message catalogue
+// Based on Twig PHP templates and PHP source code
+// ----------------------------------------------------------------------------
+
+// Display errors outside any logs
+ini_set('display_errors', '1');
+ini_set('error_reporting', E_ALL);
 
 $ds = DIRECTORY_SEPARATOR;
 $dir = dirname(__dir__);
 
-require $dir. $ds. 'vendor'. $ds. 'autoload.php';
+require implode($ds, array($dir, 'lib', 'tkmon', 'vendor', 'autoload.php'));
 
-$tplDir = $dir. $ds. 'share'. $ds. 'templates';
+$tplDir = $dir. $ds. 'share'. $ds. 'tkmon'. $ds. 'templates';
 
 $tmpDir = $ds. 'tmp'. $ds. 'tkmon-templates'. $ds;
 
@@ -39,14 +67,14 @@ exec('/usr/bin/find '. $tmpDir. ' -name \*php -exec mv {} '. $tmpDir. ' \\;');
 
 exec(
     '/usr/bin/xgettext'
-    . ' --default-domain=messages -p '. $dir. '/share/locales -o messages.pot --from-code=UTF-8'
+    . ' --default-domain=messages -p '. $dir. '/share/tkmon/locales -o messages.pot --from-code=UTF-8'
     . ' -n --omit-header -L PHP '. $tmpDir. '/*php'
 );
 
 exec(
     '/usr/bin/xgettext'
-    . ' --join-existing --default-domain=messages -p '. $dir. '/share/locales -o messages.pot'
-    . ' --from-code=UTF-8 -n --omit-header -L PHP $(find '. $dir. '/lib -name *php)'
+    . ' --join-existing --default-domain=messages -p '. $dir. '/share/tkmon/locales -o messages.pot'
+    . ' --from-code=UTF-8 -n --omit-header -L PHP $(find '. $dir. '/lib/tkmon -name *php)'
 );
 
 exec('/bin/rm -rf '. $tmpDir);
