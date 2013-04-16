@@ -22,7 +22,7 @@
     "app.version.minor":    1,
     "app.version.patch":    0,
     "app.version.full":     "{app.version.major}.{app.version.minor}.{app.version.patch}",
-    "app.name":             "tkmon",
+    "app.name":             "TKmon",
     "app.copyright":        "(c) NETWAYS GmbH | Thomas-Krenn.AG 2012-2013",
 
     "app.version.release":  "{app.name}-{app.version.full}",
