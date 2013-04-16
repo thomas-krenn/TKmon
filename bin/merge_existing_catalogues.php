@@ -26,7 +26,7 @@
 $ds = DIRECTORY_SEPARATOR;
 $dir = dirname(__dir__);
 
-$localesDir = $dir. $ds. 'share'. $ds. 'locales';
+$localesDir = $dir. $ds. 'share'. $ds. 'tkmon'. $ds. 'locales';
 
 $baseCatalogue = $localesDir. $ds. 'messages.pot';
 
