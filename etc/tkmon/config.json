@@ -45,8 +45,13 @@
     "locale.path":          "{core.share_dir}/locales",
     "locale.name":          "en_EN",
     "locale.list": [
-        { "locale": "de_DE", "label": "Deutsch" },
-        { "locale": "en_EN", "label": "English" }
+        { "locale": "de_DE", "label": "German" },
+        { "locale": "en_EN", "label": "English" },
+        { "locale": "it_IT", "label": "Italian" },
+        { "locale": "pl_PL", "label": "Polish" },
+        { "locale": "es_ES", "label": "Spanish" },
+        { "locale": "cs_CZ", "label": "Czech" },
+        { "locale": "nl_NL", "label": "Dutch" }
     ],
 
     "icinga.passwdfile": "/etc/icinga/htpasswd.users",
