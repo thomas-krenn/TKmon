@@ -1,6 +1,20 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: TKmon\n"
+"PO-Revision-Date: 2013-04-16 16:12+0100\n"
+"Last-Translator: Marius Hein <marius.hein@netways.de>\n"
+"Language-Team: Italian\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"POT-Creation-Date: \n"
+"X-Generator: Poedit 1.5.4\n"
+
 #: /tmp/tkmon-templates//0763a4e78cf65b5df61411bf5e22.php:39
 msgid "Welcome"
-msgstr ""
+msgstr "Benvenuto"
 
 #: /tmp/tkmon-templates//0763a4e78cf65b5df61411bf5e22.php:44
 msgid ""
