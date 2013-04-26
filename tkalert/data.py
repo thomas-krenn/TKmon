@@ -128,10 +128,12 @@ class XmlStructure(Document):
     def __str__(self):
         """ String representation of this object
 
+        Removed prettypring to reduce parsing errors
+
         Returns:
             XML output (string)
         """
-        return self.toprettyxml(indent='  ', encoding="UTF-8")
+        return self.toxml(encoding="UTF-8")
 
 
 class HeartbeatObject(XmlStructure):
