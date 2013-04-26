@@ -22,15 +22,22 @@
 import tkalert
 
 VERSION_STRING = "%s/%s" % (tkalert.__name__, tkalert.__version__)
+"Version of tkalert"
 
 AUTH_CATEGORY = 'Monitoring'
+"XML auth category, no change needed"
 
 XML_INTERFACE_VERSION = tkalert.__version__
+"Version number of xml format"
 
 XML_DATE_FORMAT = '%a %b %d %H:%M:%S %Y'
+"Date formatting string used in xml output"
 
 MAIL_SERVER = 'localhost'
+"Mailserver used"
 
 MAIL_TARGET_ADDRESS = 'monitor@thomas-krenn.com'
+"Target adress, where the mails to to"
 
-GNUPG_KEY = '0x9B6B1E58'
+GNUPG_KEY = '0x584F819C'
+"GPG key id, which key is used to encrypt the mail"
