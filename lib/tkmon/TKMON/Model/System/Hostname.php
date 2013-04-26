@@ -172,14 +172,15 @@ class Hostname extends \TKMON\Model\ApplicationModel
     {
         $data = explode('.', $fullHostname, 2);
 
-        if (!is_array($data) || count($data) !== 2) {
-            throw new \TKMON\Exception\ModelException('Not a valid hostname: '. $fullHostname);
+        $hostName = array_shift($data);
+        $this->setHostname($hostName);
+
+        $domainName = array_shift($data);
+        if ($domainName) {
+            $this->setDomainName($domainName);
+        } else {
+            $this->domainName = null;
         }
-
-        list($host, $domain) = $data;
-
-        $this->setHostname($host);
-        $this->setDomainName($domain);
     }
 
     /**
@@ -194,11 +195,13 @@ class Hostname extends \TKMON\Model\ApplicationModel
             throw new \TKMON\Exception\ModelException('hostname not set');
         }
 
-        if (!$this->domainName) {
-            throw new \TKMON\Exception\ModelException('domainName not set');
+        $out = $this->hostname;
+
+        if ($this->domainName) {
+            $out .= '.'. $this->domainName;
         }
 
-        return $this->hostname. '.'. $this->domainName;
+        return $out;
     }
 
     /**
