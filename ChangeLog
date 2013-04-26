@@ -1,3 +1,10 @@
+TKMON 1.0 (2013-04-26)
+
+   * #2320 Change Public Key
+   * #2294 Harmonize EOL handling for CDATA sections
+   * #2064 Wrong email address
+   * #1406 Keep Alive Information
+
 TKMON 0.0.1 (2013-02-18)
 
     * Initial release of the project
