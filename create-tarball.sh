@@ -1,3 +1,5 @@
+#!/bin/sh
+
 # Copyright (C) 2013 NETWAYS GmbH, http://netways.de
 #
 # This file is part of TKALERT (http://www.thomas-krenn.com/).
@@ -15,15 +17,27 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
-"""
-    module:: tkalert
-"""
+set -o nounset
 
-import tkalert.log
+DIR=$(pwd)
+VERSION=$(cat VERSION)
+PACKAGE=tkalert-$VERSION
+FILE=$DIR/$PACKAGE.tar.gz
+GIT=$(which git)
+GZ=$(which gzip)
 
-__name__ = 'tkalert'
-__version__ = '1.0'
-__author__ = 'NETWAYS GmbH'
-__contact__ = 'info@netways.de'
-__url__ = 'https://www.netways.org'
-__description__ = 'Sending alerts to thomas krenn monitoring services'
+if [ ! -x "$GIT" ]; then
+    echo "Could not find git"
+    exit 1
+fi
+
+if [ ! -x "$GZ" ]; then
+    echo "Could not find gz"
+    exit 1
+fi
+
+$GIT archive --format=tar --prefix=$PACKAGE/ HEAD | $GZ -c > $FILE
+
+echo "Created $FILE"
+
+exit 0

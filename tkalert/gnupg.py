@@ -63,6 +63,10 @@ class GnupgCommand(object):
         (output, errdata) = proc.communicate(input=data)
 
         if (errdata):
-            LOG.error(errdata)
+            raise GnupgCommandException(errdata)
 
         return output
+
+class GnupgCommandException(Exception):
+    """Gnupg error"""
+    pass

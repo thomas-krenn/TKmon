@@ -31,7 +31,7 @@ from tkalert.data import HeartbeatObject, AlertObject, \
     map_alert_object_to_arguments
 from tkalert.settings import MAIL_SERVER, MAIL_TARGET_ADDRESS, GNUPG_KEY, VERSION_STRING
 from tkalert.mail import Mailer
-from tkalert.gnupg import GnupgCommand
+from tkalert.gnupg import GnupgCommand, GnupgCommandException
 
 
 def main():
@@ -88,7 +88,11 @@ def main():
             data = str(xml_object)
         else:
             gpg = GnupgCommand(options.gnupgconfig)
-            data = gpg.crypt_ascii(GNUPG_KEY, str(xml_object))
+            try:
+                data = gpg.crypt_ascii(GNUPG_KEY, str(xml_object))
+            except GnupgCommandException as e:
+                log.error(e.message)
+                return 255
 
         mailer = Mailer()
         mailer.server = MAIL_SERVER
