@@ -15,12 +15,12 @@ REST endpoints.
 Theoretical part behind
 -----------------------
 
-To get a catalogue service work you'll up to three parts:
+To get a catalogue service work you'll need up to three parts:
 
 Catalogue definition
 ~~~~~~~~~~~~~~~~~~~~
 
-This is me meta description for the service, contains data like name,
+This is a meta description for the service, contains data like name,
 description of tags. Also parameters which can be configured (warning
 thresholds, ports, hosts, passwords and such things).
 
@@ -43,14 +43,14 @@ This is a example definition:
         "arguments": [
             {
                 "label": "Warning threshold",
-                "description": "In form <0000,000%>, <miliseconds rtt>,<percent rta><%>",
+                "description": "In form <0000,000%>, <milliseconds rtt>,<percent rta><%>",
                 "validation": "string",
                 "argument": "-w",
                 "value": "5000,100%"
             },
             {
-                "label": "Warning threshold",
-                "description": "In form <0000,000%>, <miliseconds rtt>,<percent rta><%>",
+                "label": "Critical threshold",
+                "description": "In form <0000,000%>, <milliseconds rtt>,<percent rta><%>",
                 "validation": "string",
                 "argument": "-c",
                 "value": "5000,100%"
@@ -199,7 +199,7 @@ The directory is configured in config.json:
 "icinga.catalogue.services.json.dir": "{core.etc_dir}/service-catalogues",
 -------------------------------------------------------------------------------
 
-This directory holds every JSON files. Per default you have to files:
+This directory holds every JSON files. Per default you have two files:
 
 services-default-debian.json::
     Contains most remote services from nagios-plugins package
@@ -347,14 +347,14 @@ Following keys are used:
     Long description for the user (type string)
 
 **validation** (unused)::
-    What type of value a user should enter (type string). Not this is not used
+    What type of value a user should enter (type string). This is not used
     at present but maybe later on. Value should be something like this: integer,
     double, string, port, hostname
 
 **argument** (unused)::
     Which argument is used for the plugin, e.g. '-p' for
-    'check_tcp -H 127.0.0.1 -p 80'. This also not used in the moment, but
-    maybe later for user documentation or automatically creation of command
+    'check_tcp -H 127.0.0.1 -p 80'. This is also not used at the moment, but
+    maybe later for user documentation or automatic creation of command
     definitions
 
 Meta attributes
