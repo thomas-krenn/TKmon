@@ -53,6 +53,58 @@
                 "defined": true,
                 "defined_in": "/etc/icinga/tkmon/base/05-check-commands.cfg"
             }
+        },
+        {
+            "service_description": "vmware-esxi-hardware",
+            "display_name": "VMware ESXi hardware check",
+            "check_command": {
+                "command_name": "check_esxi_hardware",
+                "arguments": [
+                    {
+                        "label": "Username",
+                        "description": "Username to access ESXi server. Don't use a root/Administrator user for that!",
+                        "validation": "string",
+                        "argument": "-U"
+                    },
+                    {
+                        "label": "Password",
+                        "description": "Password to access ESXi server. Don't use a root/Administrator user for that!",
+                        "validation": "string",
+                        "argument": "-P"
+                    }
+                ]
+            },
+            "_catalogue_attributes": {
+                "tags": ["remote", "vmware", "esx", "esxi"],
+                "name": "vmware-esxi-hardware",
+                "label": "VMware ESXi hardware check",
+                "description": "Checks the hardware status of a Vmware ESXi host",
+                "defined": true,
+                "defined_in": "/etc/nagios-plugins/config/vmware_esxi.cfg"
+            }
+        },
+        {
+            "service_description": "nrpe-check",
+            "display_name": "NRPE check",
+            "check_command": {
+                "command_name": "check_nrpe_1arg",
+                "arguments": [
+                    {
+                        "label": "command",
+                        "description": "Name of the command that the remote NRPE daemon should run",
+                        "validation": "string",
+                        "argument": "-c"
+                    }
+                ]
+            },
+            "_catalogue_attributes": {
+                "tags": ["remote", "nrpe"],
+                "name": "nrpe-check",
+                "label": "NRPE check",
+                "description": "Checks the status of a service check defined on a host running NRPE daemon.",
+                "defined": true,
+                "defined_in": "/etc/nagios-plugins/config/check_nrpe.cfg"
+            }
         }
     ]
 }
