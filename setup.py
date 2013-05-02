@@ -34,7 +34,7 @@ setup(
         ('/etc/tkalert', ['gnupg/gnupg.conf',
                           'gnupg/pubring.gpg',
                           'gnupg/secring.gpg',
-                          'gnupg/tkalert-pub.key',
+                          'gnupg/thomaskrenn-584F819C-pub.asc',
                           'gnupg/trustdb.gpg']),
         ('/usr/local/bin', ['tkalert.sh'])
     ]
