@@ -21,6 +21,8 @@
 
 namespace TKMON\Binary;
 
+use TKMON\Model\User;
+
 /**
  * Executor class to run the web stack in a function scope
  * @package TKMON\Binary
@@ -390,7 +392,9 @@ final class Web
                 return $catalogue;
             }
         );
-
+        /** @var User $user */
+        $user = $container['user'];
+        var_dump($user->getLocale());
         echo $container['dispatcher']->dispatchRequest();
     }
 }
