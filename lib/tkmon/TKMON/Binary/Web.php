@@ -21,6 +21,7 @@
 
 namespace TKMON\Binary;
 
+use NETWAYS\Intl\SimpleTranslator;
 use TKMON\Model\User;
 
 /**
@@ -380,6 +381,9 @@ final class Web
                 $jsonData = new \ICINGA\Catalogue\Provider\JsonFiles();
                 $jsonData->setCacheInterface($c['cache'], 'tkmon.catalogue.services');
 
+                $simpleTranslator = new SimpleTranslator($c['user']->getLocale());
+                $jsonData->setTranslator($simpleTranslator);
+
                 // Add directory of json files to stack
                 $dir = $config['icinga.catalogue.services.json.dir'];
                 $jsonData->addDir($dir);
@@ -392,9 +396,9 @@ final class Web
                 return $catalogue;
             }
         );
-        /** @var User $user */
-        $user = $container['user'];
-        var_dump($user->getLocale());
+
+        $container['serviceCatalogue'];
+
         echo $container['dispatcher']->dispatchRequest();
     }
 }
