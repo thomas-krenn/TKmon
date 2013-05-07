@@ -11,19 +11,28 @@
                 "arguments": [
                     {
                         "label": "UDP Port",
-                        "description": "Integer value of UDP port to test",
+                        "description": {
+                            "en_US": "Integer value of UDP port to test",
+                            "de_DE": "Integer UDP Port"
+                        },
                         "validation": "port",
                         "argument": "-p"
                     },
                     {
                         "label": "Send string",
-                        "description": "String, what to send",
+                        "description": {
+                            "en_US": "String, what to send",
+                            "de_DE": "String, gesendet zum Ziel"
+                        },
                         "validation": "string",
                         "argument": "-s"
                     },
                     {
                         "label": "Expect string",
-                        "description": "String, what to expect as answer",
+                        "description": {
+                            "en_US": "String, what to expect as answer",
+                            "de_DE": "String, Rückgabe"
+                        },
                         "validation": "string",
                         "argument": "-e"
                     }
@@ -32,8 +41,14 @@
             "_catalogue_attributes": {
                 "tags": ["remote", "udp", "port", "network"],
                 "name": "net-udp",
-                "label": "UDP port check",
-                "description": "Check udp port reaction (derived from debian default)",
+                "label": {
+                    "en_US": "UDP port check",
+                    "de_DE": "UDP port Test"
+                },
+                "description": {
+                    "en_US": "Check udp port reaction (derived from debian default)",
+                    "de_DE": "UDP Port mit spezifischen String (abgeleitet von Debian Standard)"
+                },
                 "defined": true,
                 "defined_in": "/etc/icinga/tkmon/base/05-check-commands.cfg"
             }
@@ -48,8 +63,14 @@
             "_catalogue_attributes": {
                 "tags": ["remote", "ipmi", "hardware", "tkmon"],
                 "name": "ipmi-tkmon-custom1",
-                "label": "IPMI check with customvars",
-                "description": "Check all IPMI parameters with customvars",
+                "label": {
+                    "en_US": "IPMI check with customvars",
+                    "de_DE": "IPMI test mit Customvars"
+                },
+                "description": {
+                    "en_US": "Check all IPMI parameters with customvars",
+                    "de_DE": "Testen aller IPMI Parameter mit Customvars"
+                },
                 "defined": true,
                 "defined_in": "/etc/icinga/tkmon/base/05-check-commands.cfg"
             }

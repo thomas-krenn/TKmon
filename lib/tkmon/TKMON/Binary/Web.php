@@ -21,6 +21,9 @@
 
 namespace TKMON\Binary;
 
+use NETWAYS\Intl\SimpleTranslator;
+use TKMON\Model\User;
+
 /**
  * Executor class to run the web stack in a function scope
  * @package TKMON\Binary
@@ -378,6 +381,9 @@ final class Web
                 $jsonData = new \ICINGA\Catalogue\Provider\JsonFiles();
                 $jsonData->setCacheInterface($c['cache'], 'tkmon.catalogue.services');
 
+                $simpleTranslator = new SimpleTranslator($c['user']->getLocale());
+                $jsonData->setTranslator($simpleTranslator);
+
                 // Add directory of json files to stack
                 $dir = $config['icinga.catalogue.services.json.dir'];
                 $jsonData->addDir($dir);
@@ -390,6 +396,8 @@ final class Web
                 return $catalogue;
             }
         );
+
+        $container['serviceCatalogue'];
 
         echo $container['dispatcher']->dispatchRequest();
     }
