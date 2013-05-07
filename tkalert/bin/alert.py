@@ -42,7 +42,7 @@ def main():
 
     time_start = time.time()
 
-    myoptions = MyOptions(usage="%prog --type=<heartbeat|service> [--help]",
+    myoptions = MyOptions(usage="%prog --type=<heartbeat|service|test> [--help]",
                           version="%prog " + tkalert.__version__)
 
     try:
@@ -56,7 +56,7 @@ def main():
 
         xml_object = None
 
-        if options.type == "heartbeat":
+        if options.type == "heartbeat" or options.type == "test" :
             log.info('Creating heartbeat object')
             xml_object = HeartbeatObject()
         elif options.type == "service":
@@ -102,6 +102,9 @@ def main():
             mailer.receiver = options.targetmail
         else:
             mailer.receiver = MAIL_TARGET_ADDRESS
+
+        if options.type == "test":
+            mailer.test_mode = True
 
         mailer.sender = options.mail
         mailer.sender_name = options.person

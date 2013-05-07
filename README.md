@@ -221,7 +221,8 @@ Mandatory arguments
 Some options are mandatory or evercall these are:
 
     --type=ALERTTYPE                    What to send. A 'service' problem or
-                                        just a 'heartbeat'
+                                        just a 'heartbeat'. If you want to trigger
+                                        a bounce mail, use mode 'test'.
     --auth-key=TK AUTH KEY              Your authkey from Thomas Krenn
     --contact-person=NAME               Person of interest.
     --contact-mail                      Who is reposible for service problems,
