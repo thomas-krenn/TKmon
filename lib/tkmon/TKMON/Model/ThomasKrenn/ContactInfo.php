@@ -22,7 +22,9 @@
 namespace TKMON\Model\ThomasKrenn;
 
 /**
- * Abstract model for working with our DI container
+ * Model for reading and writing ThomasKrenn contact info
+ * data
+ *
  * @package TKMON\Model
  * @author Marius Hein <marius.hein@netways.de>
  */

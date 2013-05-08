@@ -388,7 +388,6 @@ final class Web
                 $dir = $config['icinga.catalogue.services.json.dir'];
                 $jsonData->addDir($dir);
 
-
                 $catalogue->appendHandlerToChain($jsonData);
 
                 $catalogue->makeReady();
@@ -396,8 +395,6 @@ final class Web
                 return $catalogue;
             }
         );
-
-        $container['serviceCatalogue'];
 
         echo $container['dispatcher']->dispatchRequest();
     }

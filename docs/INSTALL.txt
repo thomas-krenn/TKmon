@@ -66,6 +66,20 @@ To get IPMI checks working, please install new IPMI perl version of the debien t
 # apt-get install libipc-run-perl freeipmi-tools
 -------------------------------------------------------------------------------
 
+Testinstall TKALERT
+^^^^^^^^^^^^^^^^^^^
+
+Checkout the latest git release and install with python setup tools:
+
+-------------------------------------------------------------------------------
+# cd /usr/local/src
+# git clone git://git.netways.org/thomas-krenn/tkalert.git
+# cd tkalert
+# python setup.py install
+-------------------------------------------------------------------------------
+
+For more information see tkalert/README.md
+
 PHP configuration
 ^^^^^^^^^^^^^^^^^
 Enable XCache variable cache.

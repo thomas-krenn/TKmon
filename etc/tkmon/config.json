@@ -164,6 +164,11 @@
         "chown": {
             "path": "/bin/chown",
             "sudo": true
+        },
+
+        "tkalert.sh": {
+            "path": "/usr/local/bin/tkalert.sh",
+            "sudo": true
         }
     }
 }

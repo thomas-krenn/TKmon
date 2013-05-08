@@ -1,0 +1,23 @@
+<div class="page-header">
+    <h2>{% trans "Alert settings" %}</h2>
+</div>
+
+<div class="tabbable">
+    <ul class="nav nav-tabs" id="alert-configuration-tabs">
+        <li class="active">
+            <a href="#tab-setting" data-toggle="tab">{% trans "Settings" %}</a>
+        </li>
+        <li>
+            <a href="#tab-test" data-toggle="tab">{% trans "Test" %}</a>
+        </li>
+    </ul>
+
+    <div class="tab-content">
+        <div class="tab-pane active" id="tab-setting">
+            {% include "views/ThomasKrenn/Alert/Configuration/Setting.twig" %}
+        </div>
+        <div class="tab-pane" id="tab-test">
+            {% include "views/ThomasKrenn/Alert/Configuration/Test.twig" %}
+        </div>
+    </div>
+</div>

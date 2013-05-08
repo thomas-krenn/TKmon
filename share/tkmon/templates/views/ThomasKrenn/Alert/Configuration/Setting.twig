@@ -2,10 +2,7 @@
 {% set tk_privacy_link = 'http://www.thomas-krenn.com' %}
 {% set restart_link = web_link('Monitor/Daemon/Index#daemon-restart') %}
 
-
-<div class="page-header">
-    <h2>{% trans "Alert settings" %}</h2>
-</div>
+<h2>{% trans "Settings" %}</h2>
 
 <div class="alert alert-info">
     {% trans %}
@@ -40,8 +37,6 @@
     data-ajax-type="json"
     data-error-target="#alert-config-errors"
     data-success-frame="#alert-config-success"
-    data-before-callback="XXX"
-    data-complete-callback="YYY"
 >
 
     <fieldset>
