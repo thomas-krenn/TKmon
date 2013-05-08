@@ -97,6 +97,10 @@ class Alert extends ApplicationModel
      */
     private $prepared = false;
 
+    /**
+     * Creates new alert model
+     * @param \Pimple $container
+     */
     public function __construct(\Pimple $container)
     {
         parent::__construct($container);
@@ -158,6 +162,7 @@ class Alert extends ApplicationModel
     }
 
     /**
+     * Setter for type
      * @param string $type
      */
     public function setType($type)
@@ -166,6 +171,7 @@ class Alert extends ApplicationModel
     }
 
     /**
+     * Getter for type
      * @return string
      */
     public function getType()
