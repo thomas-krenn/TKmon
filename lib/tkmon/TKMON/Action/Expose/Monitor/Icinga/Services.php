@@ -21,6 +21,8 @@
 
 namespace TKMON\Action\Expose\Monitor\Icinga;
 
+use TKMON\Model\Icinga\ServiceData;
+
 /**
  * Action handle contacts views
  *
@@ -134,7 +136,8 @@ class Services extends \TKMON\Action\Base
             $template['service'] = $service;
             $template['host'] = $host;
 
-            $serviceData = new \TKMON\Model\Icinga\ServiceData($this->container);
+            /** @var ServiceData $serviceData */
+            $serviceData = $this->container['serviceData'];
 
             $catalogueId = $service->getCustomVariable('name'); // Internal reference to catalogue
 
@@ -192,7 +195,7 @@ class Services extends \TKMON\Action\Base
             /** @var $serviceCatalogue \ICINGA\Catalogue\Services */
             $serviceCatalogue = $this->container['serviceCatalogue'];
 
-            $serviceData = new \TKMON\Model\Icinga\ServiceData($this->container);
+            $serviceData = $this->container['serviceData'];
 
             $item = $serviceCatalogue->getItem($params['serviceCatalogueId']);
 
@@ -354,10 +357,10 @@ class Services extends \TKMON\Action\Base
             // Validation of arguments (if any)
             // ----------------------------------------------------------------
 
-            $serviceData = new \TKMON\Model\Icinga\ServiceData($this->container);
+            /** @var ServiceData $serviceData */
+            $serviceData = $this->container['serviceData'];
 
             $arguments = new \NETWAYS\Common\ArrayObject();
-
 
             if ($params->offsetExists('arguments')) {
                 $arguments->fromArray($params['arguments']);
