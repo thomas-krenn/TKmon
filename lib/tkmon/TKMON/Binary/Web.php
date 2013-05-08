@@ -30,6 +30,7 @@ use NETWAYS\Common\Config\PDOPersister;
 use NETWAYS\Intl\SimpleTranslator;
 use TKMON\Extension\Host\DefaultAttributes;
 use TKMON\Extension\Host\ThomasKrennAttributes;
+use TKMON\Extension\Service\ThomasKrennNotification;
 use TKMON\Model\Command\Factory;
 use TKMON\Model\Database\DebConfBuilder;
 use TKMON\Model\Database\Importer;
@@ -377,17 +378,32 @@ final class Web
         $container['hostData'] = function ($c) {
             $hostData = new HostData($c);
 
-            // Registering default attribute handler
+            /*
+             * Registering default attribute handler
+             *
+             * Add service ping to every service
+             */
             $hostData->appendHandlerToChain(new DefaultAttributes($c));
 
-            // Thomas krenn specific attributes
-            $hostData->appendHandlerToChain(new ThomasKrennAttributes());
+            /*
+             * Thomas krenn specific attributes
+             *
+             * Appends customfields to services to fit IPMI and SNMP checks
+             * Changes notification templates if a service needs reporting
+             * to Thomas Krenn
+             */
+            $hostData->appendHandlerToChain(new ThomasKrennAttributes($c));
 
             return $hostData;
         };
 
         $container['serviceData'] = function ($c) {
             $serviceData = new ServiceData($c);
+
+            /*
+             * Adds icinga templates to services if notification is needed
+             */
+            $serviceData->appendHandlerToChain(new ThomasKrennNotification($c));
             return $serviceData;
         };
 

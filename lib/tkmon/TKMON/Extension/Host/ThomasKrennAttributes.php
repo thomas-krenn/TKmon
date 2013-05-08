@@ -21,14 +21,50 @@
 
 namespace TKMON\Extension\Host;
 
+use ICINGA\Object\Host;
+use TKMON\Interfaces\ApplicationModelInterface;
+
 /**
  * Attributes for ThomasKrenn products
  *
  * @package TKMON\Model
  * @author Marius Hein <marius.hein@netways.de>
  */
-class ThomasKrennAttributes extends \NETWAYS\Chain\ReflectionHandler
+class ThomasKrennAttributes extends \NETWAYS\Chain\ReflectionHandler implements ApplicationModelInterface
 {
+    /**
+     * DI container
+     * @var \Pimple
+     */
+    private $container;
+
+    /**
+     * Create a new object
+     * @param \Pimple $container
+     */
+    public function __construct(\Pimple $container)
+    {
+        $this->setContainer($container);
+    }
+
+    /**
+     * Setter for DI container
+     * @param \Pimple $container
+     */
+    public function setContainer(\Pimple $container)
+    {
+        $this->container = $container;
+    }
+
+    /**
+     * Getter for DI configuration
+     * @return \Pimple
+     */
+    public function getContainer()
+    {
+        return $this->container;
+    }
+
     /**
      * Adding ThomasKrenn specific attributes to mask
      * @param \NETWAYS\Common\ArrayObject $attributes
@@ -45,5 +81,35 @@ class ThomasKrennAttributes extends \NETWAYS\Chain\ReflectionHandler
                 'snmp_community'  => new \TKMON\Form\Field\Text('snmp_community', _('SNMP community'), false)
             )
         );
+    }
+
+    /**
+     * Command hook before a host is created
+     * @param Host $host
+     */
+    public function commandBeforeHostCreate(Host $host)
+    {
+        $this->updateHostTemplate($host);
+    }
+
+    /**
+     * Command hook before a host is update
+     * @param Host $host
+     */
+    public function commandBeforeHostUpdate(Host $host)
+    {
+        $this->updateHostTemplate($host);
+    }
+
+    /**
+     * Change used template to use tk service
+     *
+     * Dispatch function for different commands
+     *
+     * @param Host $host
+     */
+    public function updateHostTemplate(Host $host)
+    {
+        $host->setUse($this->container['config']['thomaskrenn.icinga.template.host']);
     }
 }

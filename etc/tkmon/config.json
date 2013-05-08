@@ -70,6 +70,7 @@
     "icinga.dir.template": "{icinga.dir.base}/system/templates",
 
     "thomaskrenn.template.host": "thomas-krenn-host",
+    "thomaskrenn.template.service": "thomas-krenn-service",
 
     "icinga.record.contact": {
         "use": "generic-contact",
@@ -77,14 +78,17 @@
     },
 
     "icinga.record.host": {
-        "use": "thomas-krenn-host"
+        "use": "tkmon-base-host"
     },
 
     "icinga.record.service": {
-        "use": "thomas-krenn-service"
+        "use": "tkmon-base-service"
     },
 
     "icinga.catalogue.services.json.dir": "{core.etc_dir}/service-catalogues",
+
+    "thomaskrenn.icinga.template.host": "thomas-krenn-host",
+    "thomaskrenn.icinga.template.service": "thomas-krenn-service",
 
     "command.config": {
         "chpasswd":  {

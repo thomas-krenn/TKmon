@@ -21,6 +21,9 @@
 
 namespace TKMON\Model\Icinga;
 
+use ICINGA\Object\Service;
+use NETWAYS\Common\ArrayObject;
+
 /**
  * Model handle service creation
  * @package TKMON\Model
@@ -28,6 +31,12 @@ namespace TKMON\Model\Icinga;
  */
 class ServiceData extends \TKMON\Model\ApplicationModel implements \NETWAYS\Chain\Interfaces\ManagerInterface
 {
+    /**
+     * Command for "beforeCreate"
+     * @var string
+     */
+    const HOOK_BEFORE_CREATE = 'beforeServiceWrite';
+
     /**
      * All command handler registered
      * @var \SplObjectStorage
@@ -257,5 +266,15 @@ class ServiceData extends \TKMON\Model\ApplicationModel implements \NETWAYS\Chai
         $command = new \NETWAYS\Chain\Command($commandName);
         $command->fromArray($arguments);
         $this->processRequest($command); // Make the request
+    }
+
+    /**
+     * hook interface
+     * @param Service $service
+     * @param ArrayObject $params
+     */
+    public function hookBeforeCreate(Service $service, ArrayObject $params)
+    {
+        $this->callCommand(self::HOOK_BEFORE_CREATE, $service, $params);
     }
 }

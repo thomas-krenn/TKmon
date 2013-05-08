@@ -143,6 +143,17 @@ class Services extends \TKMON\Action\Base
 
             $template['arguments'] = $serviceData->getCommandArgumentFieldsReadyValues($service, $catalogueId);
 
+            /*
+             * Thomas Krenn flag if we want to switch on notification
+             * @todo No function to extend this
+             */
+            $meta = $this->container['serviceCatalogue']->getAttributes($catalogueId);
+            if (isset($meta->tk_notify) && $meta->tk_notify === true) {
+                $template['tk_notify'] = true;
+                $template['tk_notify_default'] =
+                    isset($meta->tk_notify_default) ? (boolean) $meta->tk_notify_default : true;
+            }
+
             $response->addData($template->toString());
 
             $response->setSuccess(true);
@@ -199,7 +210,16 @@ class Services extends \TKMON\Action\Base
 
             $item = $serviceCatalogue->getItem($params['serviceCatalogueId']);
 
-            $check = $host->getService($item->serviceDescription);
+            /*
+             * Thomas Krenn flag if we want to switch on notification
+             * @todo No function to extend this
+             */
+            $meta = $serviceCatalogue->getAttributes($params['serviceCatalogueId']);
+            if (isset($meta->tk_notify) && $meta->tk_notify === true) {
+                $template['tk_notify'] = true;
+                $template['tk_notify_default'] =
+                    isset($meta->tk_notify_default) ? (boolean) $meta->tk_notify_default : true;
+            }
 
             $template['service'] = $item;
             $template['host'] = $host;
@@ -357,9 +377,6 @@ class Services extends \TKMON\Action\Base
             // Validation of arguments (if any)
             // ----------------------------------------------------------------
 
-            /** @var ServiceData $serviceData */
-            $serviceData = $this->container['serviceData'];
-
             $arguments = new \NETWAYS\Common\ArrayObject();
 
             if ($params->offsetExists('arguments')) {
@@ -378,11 +395,18 @@ class Services extends \TKMON\Action\Base
 
             $host = $hostData->getHost($hostName);
 
+            /** @var ServiceData $serviceData */
+            $serviceData = $this->container['serviceData'];
             $service = $serviceData->createServiceFromCatalogueWithArgumentValues($catalogueName, $arguments);
+
+
 
             // Overriding data from html form
             $service->serviceDescription = $params['service_description'];
             $service->displayName = $params['display_name'];
+
+            // Rewrite
+            $serviceData->hookBeforeCreate($service, $params);
 
             // Glue
             $host->addService($service);

@@ -72,7 +72,9 @@
                     "de_DE": "Testen aller IPMI Parameter mit Customvars"
                 },
                 "defined": true,
-                "defined_in": "/etc/icinga/tkmon/base/05-check-commands.cfg"
+                "defined_in": "/etc/icinga/tkmon/base/05-check-commands.cfg",
+                "tk_notify": true,
+                "tk_notify_default": true
             }
         },
         {

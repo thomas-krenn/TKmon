@@ -65,7 +65,33 @@
             {% endfor %}
         </div>
 
-
         <div class="clearfix"></div>
+
+        {#
+            Thomas Krenn settings for notification
+
+            @todo Make this extensible
+        #}
+        {% if tk_notify == true %}
+            <div class="container-spacer-down">
+                <div class="alert">
+                    {% trans %}
+                    This service will be notified to Thomas Krenn. Set flag to <strong>Yes</strong> if you want to use.
+                    {% endtrans %}
+                </div>
+                <fieldset>
+                    <label for="tk_notify">{% trans "Report errors to Thomas Krenn" %}:</label>
+                    <select id="tk_notify" name="tk_notify">
+                        {% if tk_notify_default == true %}
+                            <option selected="selected" value="1">{% trans "Yes, please" %}</option>
+                            <option value="0">{% trans "No, thanks" %}</option>
+                        {% else %}
+                            <option value="1">{% trans "Yes, please" %}</option>
+                            <option selected="selected" value="0">{% trans "No, thanks" %}</option>
+                        {% endif %}
+                    </select>
+                </fieldset>
+            </div>
+        {% endif %}
     </form>
 </div>

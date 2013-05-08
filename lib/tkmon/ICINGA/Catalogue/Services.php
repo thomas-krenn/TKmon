@@ -75,4 +75,15 @@ class Services extends \ICINGA\Base\Catalogue
 
         return $service;
     }
+
+    /**
+     * Get catalog meta information
+     * @param string $name
+     * @return \stdClass
+     */
+    public function getAttributes($name)
+    {
+        $struct = parent::getItem($name);
+        return $struct->_catalogue_attributes;
+    }
 }

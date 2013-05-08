@@ -307,9 +307,9 @@ class HostData extends \ICINGA\Loader\FileSystem implements \TKMON\Interfaces\Ap
             throw new \TKMON\Exception\ModelException('Host exists: '. $oid);
         }
 
-        $this[$oid] = $host;
-
         $this->callCommand('beforeHostCreate', $host);
+
+        $this[$oid] = $host;
 
         $this->callCommand('hostCreate', $host);
     }
