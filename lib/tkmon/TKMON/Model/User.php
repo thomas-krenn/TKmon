@@ -294,7 +294,7 @@ class User extends ApplicationModel
         }
 
         if ($newPassword !== $verification) {
-            throw new \TKMON\Exception\UserException('Password does not match');
+            throw new \TKMON\Exception\UserException('Passwords do not match');
         }
 
         if ($this->testCurrentPassword($currentPassword) === false) {
@@ -302,7 +302,7 @@ class User extends ApplicationModel
         }
 
         if ($currentPassword === $newPassword) {
-            throw new \TKMON\Exception\UserException('Old and new password are the same!');
+            throw new \TKMON\Exception\UserException('Old and new password are the same');
         }
 
         $data = $this->getUserData($this->getId());
