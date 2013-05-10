@@ -133,27 +133,45 @@
             }
         },
         {
-            "service_description": "nrpe-check",
-            "display_name": "NRPE check",
+            "service_description": "adaptec-raid-remote",
+            "display_name": "Adaptec RAID Remote (NRPE)",
             "check_command": {
                 "command_name": "check_nrpe_1arg",
-                "arguments": [
+                 "arguments": [
                     {
                         "label": "command",
                         "description": "Name of the command that the remote NRPE daemon should run",
                         "validation": "string",
-                        "argument": "-c"
+                        "argument": "-c",
+			"value": "check_adaptec_raid"
                     }
                 ]
             },
             "_catalogue_attributes": {
-                "tags": ["remote", "nrpe"],
-                "name": "nrpe-check",
-                "label": "NRPE check",
-                "description": "Checks the status of a service check defined on a host running NRPE daemon.",
+                "tags": ["remote", "Adaptec", "RAID"],
+                "name": "adaptec-raid-remote",
+                "label": "Adaptec RAID",
+                "description": "Checks the Adaptec RAID",
                 "defined": true,
                 "defined_in": "/etc/nagios-plugins/config/check_nrpe.cfg"
             }
+        },
+        {
+            "service_description": "adaptec-raid-local",
+            "display_name": "Adaptec RAID Local",
+            "check_command": {
+                "command_name": "check_adaptec_raid",
+                 "arguments": null
+            },
+            "_catalogue_attributes": {
+                "tags": ["local", "Adaptec", "RAID"],
+                "name": "adaptec-raid-local",
+                "label": "Adaptec RAID",
+                "description": "Checks the Adaptec RAID",
+                "defined": true,
+                "defined_in": "/etc/nagios-plugins/config/check_adaptec.cfg"
+            }
         }
     ]
+
 }

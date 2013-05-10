@@ -246,6 +246,53 @@
                 "defined": true,
                 "defined_in": "/etc/nagios-plugins/config/ssh.cfg"
             }
+        },
+        {
+            "service_description": "nrpe-check",
+            "display_name": "NRPE check",
+            "check_command": {
+                "command_name": "check_nrpe_1arg",
+                "arguments": [
+                    {
+                        "label": "command",
+                        "description": "Name of the command that the remote NRPE daemon should run",
+                        "validation": "string",
+                        "argument": "-c"
+                    }
+                ]
+            },
+            "_catalogue_attributes": {
+                "tags": ["remote", "nrpe"],
+                "name": "nrpe-check",
+                "label": "NRPE check",
+                "description": "Checks the status of a service check defined on a host running NRPE daemon.",
+                "defined": true,
+                "defined_in": "/etc/nagios-plugins/config/check_nrpe.cfg"
+            }
+        },
+        {
+            "service_description": "linux-software-raid-remote",
+            "display_name": "Linux Software RAID Remote (NRPE)",
+            "check_command": {
+                "command_name": "check_nrpe_1arg",
+                 "arguments": [
+                    {
+                        "label": "command",
+                        "description": "Name of the command that the remote NRPE daemon should run",
+                        "validation": "string",
+                        "argument": "-c",
+			"value": "check_linux_raid"
+                    }
+                ]
+            },
+            "_catalogue_attributes": {
+                "tags": ["remote", "software RAID"],
+                "name": "linux-software-raid-remote",
+                "label": "Linux Software RAID Remote (NRPE)",
+                "description": "Checks the linux software RAID",
+                "defined": true,
+                "defined_in": "/etc/nagios-plugins/config/check_nrpe.cfg"
+            }
         }
     ]
 }
