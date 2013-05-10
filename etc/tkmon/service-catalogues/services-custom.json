@@ -11,19 +11,28 @@
                 "arguments": [
                     {
                         "label": "UDP Port",
-                        "description": "Integer value of UDP port to test",
+                        "description": {
+                            "en_US": "Integer value of UDP port to test",
+                            "de_DE": "Integer UDP Port"
+                        },
                         "validation": "port",
                         "argument": "-p"
                     },
                     {
                         "label": "Send string",
-                        "description": "String, what to send",
+                        "description": {
+                            "en_US": "String, what to send",
+                            "de_DE": "String, gesendet zum Ziel"
+                        },
                         "validation": "string",
                         "argument": "-s"
                     },
                     {
                         "label": "Expect string",
-                        "description": "String, what to expect as answer",
+                        "description": {
+                            "en_US": "String, what to expect as answer",
+                            "de_DE": "String, Rückgabe"
+                        },
                         "validation": "string",
                         "argument": "-e"
                     }
@@ -32,8 +41,14 @@
             "_catalogue_attributes": {
                 "tags": ["remote", "udp", "port", "network"],
                 "name": "net-udp",
-                "label": "UDP port check",
-                "description": "Check udp port reaction (derived from debian default)",
+                "label": {
+                    "en_US": "UDP port check",
+                    "de_DE": "UDP port Test"
+                },
+                "description": {
+                    "en_US": "Check udp port reaction (derived from debian default)",
+                    "de_DE": "UDP Port mit spezifischen String (abgeleitet von Debian Standard)"
+                },
                 "defined": true,
                 "defined_in": "/etc/icinga/tkmon/base/05-check-commands.cfg"
             }
@@ -48,10 +63,44 @@
             "_catalogue_attributes": {
                 "tags": ["remote", "ipmi", "hardware", "tkmon"],
                 "name": "ipmi-tkmon-custom1",
-                "label": "IPMI check with customvars",
-                "description": "Check all IPMI parameters with customvars",
+                "label": {
+                    "en_US": "IPMI check with customvars",
+                    "de_DE": "IPMI test mit Customvars"
+                },
+                "description": {
+                    "en_US": "Check all IPMI parameters with customvars",
+                    "de_DE": "Testen aller IPMI Parameter mit Customvars"
+                },
                 "defined": true,
-                "defined_in": "/etc/icinga/tkmon/base/05-check-commands.cfg"
+                "defined_in": "/etc/icinga/tkmon/base/05-check-commands.cfg",
+
+                "links": [{
+                    "name": "IPMI Wiki",
+                    "href": {
+                        "en_US": "http://www.thomas-krenn.com/en/wiki/IPMI_Sensor_Monitoring_Plugin",
+                        "de_DE": "http://www.thomas-krenn.com/de/wiki/IPMI_Sensor_Monitoring_Plugin"
+                    },
+                    "description": {
+                        "en_US": "Official IPMI wiki article from Thomas Krenn",
+                        "de_DE": "Offizieller IPMI wiki Artikel von Thomas Krenn"
+                    }
+                }, {
+                    "name": "GIT Repository",
+                    "href": "http://git.thomas-krenn.com/?p=check_ipmi_sensor_v3.git;a=summary",
+                    "description": "Thomas Krenn GIT repository for check_ipmi_sensor"
+                }],
+
+                "doc": {
+                    "en_US": [
+                        "<h4>IPMI Sensor Monitoring Plugin</h4>",
+                        "<p>Using this plugin, the hardware status of a server can be monitored by Nagios",
+                        "or Icinga. As specific examples, fan rotation speeds, temperatures, voltages,",
+                        "power consumption, power supply performance and more will be monitored.</p>"
+                    ]
+                },
+
+                "tk_notify": true,
+                "tk_notify_default": true
             }
         },
         {

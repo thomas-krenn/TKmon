@@ -1,0 +1,39 @@
+{% macro docBox(doc, serviceDescription) %}
+    {% set desc=serviceDescription %}
+    <div class="doc-docbox-container">
+        <button class="btn btn-info">
+            <i class="icon-book"></i>
+            {% trans "Documentation" %}
+            <span class="caret"></span>
+        </button>
+
+        <div class="modal hide fade">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h3>
+                    {% trans %}
+                        Documentation for {{ desc }}
+                    {% endtrans %}
+                </h3>
+            </div>
+            <div class="modal-body">
+                {% autoescape false %}
+                    {{ doc }}
+                {% endautoescape %}
+            </div>
+            <div class="modal-footer">
+            <button class="btn btn-primary" data-dismiss="modal" aria-hidden="true">
+                <i class="icon-remove"></i>
+                {% trans "Close" %}
+            </button>
+        </div>
+        </div>
+    </div>
+    <script>
+        require(['jquery', 'bootstrap'], function() {
+            $('div.doc-docbox-container button:first').click(function() {
+                $(this).parent().find('div:first').modal();
+            });
+        });
+    </script>
+{% endmacro %}

@@ -2,7 +2,7 @@
 
 <p>
     {% trans %}
-    Send a test mail to verify your system is well configured!
+    Send a test email to verify the setup of your email configuration.
     {% endtrans %}
 </p>
 
@@ -20,7 +20,7 @@
 
     <div id="mail-test-success" class="hidden alert alert-success">
         <h4>{% trans "Success!" %}</h4>
-        <p>{% trans "Mails was sent to recipient!" %}</p>
+        <p>{% trans "Email has been sent to the recipient." %}</p>
     </div>
 
     <fieldset>
@@ -30,12 +30,12 @@
 
     <fieldset>
         <label for="subject">{% trans "Subject" %}</label>
-        <input type="text" name="subject" id="subject" value="{% trans "Test mail from TKMON" %}" />
+        <input type="text" name="subject" id="subject" value="{% trans "Test mail from TKmon" %}" />
     </fieldset>
 
     <fieldset>
         <label for="message">{% trans "Message" %}</label>
-        <textarea id="message" name="message" style="width: 400px; height: 100px;">Love many, trust few, but always paddle your own canoe!</textarea>
+        <textarea id="message" name="message" style="width: 400px; height: 100px;">This is a test email sent from your TKmon system.</textarea>
     </fieldset>
 
     <div class="container-spacer-down">

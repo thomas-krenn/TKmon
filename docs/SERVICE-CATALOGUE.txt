@@ -400,6 +400,24 @@ Keys
     If **defined** this key shows where. Later use to document the
     check more clearly.
 
+**links** (array of objects)::
+    Adds links to the service. Each sub objects must have following
+    items: **href**, **name**, **description**. Every part can be
+    translated with the model explained in appendix **D**.
+
+**doc** (array of objects or array)::
+    Inline doc strings to provide basic information for service
+    checks. HTML can be used, multiline is done via **array**
+    notation. See appendix **F** for more information.
+
+***tk_notify*** (boolean)::
+    Thomas Krenn notification flag, if set this service can
+    reported to Thomas Krenn.
+
+***tk_notify_default*** (boolean)::
+    Default of notification set. Set to **true** the widget is selected
+    to **Yes, report this service to Thomas Krenn**
+
 Appendix
 --------
 
@@ -532,5 +550,97 @@ define service {
     _NAME                         net-udp
     _LABEL                        UDP port check
     _DESCRIPTION                  Check udp port reaction (derived from debian default)
+}
+-------------------------------------------------------------------------------
+
+D: Using localized description and labels
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+As default you can use object to provide translations for specific tags. Every
+tag can be used but only **label** or **description* is meaningful.
+
+Default language is **en_US** (If langague is not found or not defined).
+
+The language locales are defined in **config.js** in setting **locale.list**.
+
+Do not
+
+Do not use this feature for **service_description** or **display_name**. These
+keys are software specific identifier and must be simple and in english.
+
+How to use that
+^^^^^^^^^^^^^^^
+
+-------------------------------------------------------------------------------
+{
+    "label": {
+        "en_US": "UDP Port to test",
+        "de_DE": "UDP Port welcher getestet werden soll
+    },
+    "description": {
+        "en_US": "Integer value of UDP port to test",
+        "de_DE": "Nummer des UDP Ports"
+    },
+    "validation": "port",
+    "argument": "-p"
+},
+-------------------------------------------------------------------------------
+
+E: Using links for service description
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Useful links can be configured within service catalogue with the attribute
+**links**. The example below show a mixed translated selection of links for
+the IPMI plugin.
+
+-------------------------------------------------------------------------------
+"_catalogue_attributes": {
+    "links": [{
+        "name": "IPMI Wiki",
+        "href": {
+            "en_US": "http://www.thomas-krenn.com/en/wiki/IPMI_Sensor_Monitoring_Plugin",
+            "de_DE": "http://www.thomas-krenn.com/de/wiki/IPMI_Sensor_Monitoring_Plugin"
+        },
+        "description": {
+            "en_US": "Official IPMI wiki article from Thomas Krenn",
+            "de_DE": "Offizieller IPMI wiki Artikel von Thomas Krenn"
+        }
+    }, {
+        "name": "GIT Repository",
+        "href": "http://git.thomas-krenn.com/?p=check_ipmi_sensor_v3.git;a=summary",
+        "description": "Thomas Krenn GIT repository for check_ipmi_sensor"
+    }]
+}
+-------------------------------------------------------------------------------
+
+F: Use inline documentation
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+With translation:
+^^^^^^^^^^^^^^^^^
+
+-------------------------------------------------------------------------------
+"_catalogue_attributes": {
+    "doc": {
+        "en_US": [
+            "<h4>IPMI Sensor Monitoring Plugin</h4>",
+            "<p>Using this plugin, the hardware status of a server can be monitored by Nagios",
+            "or Icinga. As specific examples, fan rotation speeds, temperatures, voltages,",
+            "power consumption, power supply performance and more will be monitored.</p>"
+        ]
+    }
+}
+-------------------------------------------------------------------------------
+
+Without translation:
+^^^^^^^^^^^^^^^^^^^^
+-------------------------------------------------------------------------------
+"_catalogue_attributes": {
+    "doc": [
+            "<h4>IPMI Sensor Monitoring Plugin</h4>",
+            "<p>Using this plugin, the hardware status of a server can be monitored by Nagios",
+            "or Icinga. As specific examples, fan rotation speeds, temperatures, voltages,",
+            "power consumption, power supply performance and more will be monitored.</p>"
+    ]
 }
 -------------------------------------------------------------------------------

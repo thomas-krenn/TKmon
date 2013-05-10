@@ -1,12 +1,39 @@
+tk-mon 1.2.0 (2013-04-13)
+
+    * #2379 Mask passwords in free settings
+    * #2377 Config changes for release
+    * #2329 Textual changes PT I
+    * FIX #2195 Text and Typo I
+    * FIX #2188 Test Failed/182 database type sqlite
+    * FIX #2186 Package compliance Database SQLITE
+    * FIX #2172 TestInit does not complaint to vendor path
+    * #2164 Change doc format to ASCII doc
+    * #2162 Package compliance III
+    * #2160 Prepare translations
+    * #2158 REST API wiki link for hosts
+    * #2156 TK vendor heartbeat mail
+    * #2154 Selective notification handling
+    * #2152 Auto refresh for monitoring views
+    * #2150 JSON catalogue multi language	mhein
+    * #2148 JSON catalogue inline doc	mhein
+    * #2144 JSON catalogue link feature
+    * #2142 Doc for service calatogues
+    * FIX #2373 Service catalogues does not respect command value
+    * FIX #2292 Language Fixes PT I
+    * FIX #2290 Restore does not work, directory error
+    * FIX #2284 Network configuration validation error
+    * FIX #2282 Network configuration interfaces file ownership
+    * FIX #2280 Harmonize spelling
+
 tk-mon 1.1.0 (2013-03-27)
 
 Pre-release of milestone 2 with folowing features
 
-	* FIX #2172 TestInit does not complaint to vendor path
-	* FIX #2186 Package compliance Database SQLITE
-	* #2186 Package compliance Database SQLITE
-	* #2162 Package compliance III
-	* #2164 Change doc format to ASCII doc
+    * FIX #2172 TestInit does not complaint to vendor path
+    * FIX #2186 Package compliance Database SQLITE
+    * #2186 Package compliance Database SQLITE
+    * #2162 Package compliance III
+    * #2164 Change doc format to ASCII doc
 
 tk-mon 1.0.2 (2013-03-26)
 

@@ -21,13 +21,21 @@
 
 namespace TKMON\Extension\Host;
 
+use ICINGA\Object\Host;
+use NETWAYS\Chain\ReflectionHandler;
+use NETWAYS\Common\ArrayObject;
+use TKMON\Form\Field\IpAddress;
+use TKMON\Form\Field\Text;
+use TKMON\Interfaces\ApplicationModelInterface;
+use TKMON\Model\Icinga\ServiceData;
+
 /**
  * Extending host creation
  *
  * @package TKMON\Model
  * @author Marius Hein <marius.hein@netways.de>
  */
-class DefaultAttributes extends \NETWAYS\Chain\ReflectionHandler implements \TKMON\Interfaces\ApplicationModelInterface
+class DefaultAttributes extends ReflectionHandler implements ApplicationModelInterface
 {
     /**
      * DI container
@@ -74,7 +82,7 @@ class DefaultAttributes extends \NETWAYS\Chain\ReflectionHandler implements \TKM
      *
      * @param \ICINGA\Object\Host $host
      */
-    public function commandCreateHost(\ICINGA\Object\Host $host)
+    public function commandCreateHost(Host $host)
     {
         $default = $this->container['config']['icinga.record.host'];
 
@@ -88,13 +96,13 @@ class DefaultAttributes extends \NETWAYS\Chain\ReflectionHandler implements \TKM
      *
      * @param \NETWAYS\Common\ArrayObject $attributes
      */
-    public function commandDefaultEditableAttributes(\NETWAYS\Common\ArrayObject $attributes)
+    public function commandDefaultEditableAttributes(ArrayObject $attributes)
     {
         $attributes->fromArray(
             array(
-                'host_name' => new \TKMON\Form\Field\Text('host_name', _('Hostname')),
-                'alias'     => new \TKMON\Form\Field\Text('alias', _('Alias')),
-                'address'   => new \TKMON\Form\Field\IpAddress('address', _('IP address'))
+                'host_name' => new Text('host_name', _('Hostname')),
+                'alias'     => new Text('alias', _('Alias')),
+                'address'   => new IpAddress('address', _('IP address'))
             )
         );
     }
@@ -106,9 +114,10 @@ class DefaultAttributes extends \NETWAYS\Chain\ReflectionHandler implements \TKM
      *
      * @param \ICINGA\Object\Host $host
      */
-    public function commandBeforeHostCreate(\ICINGA\Object\Host $host)
+    public function commandBeforeHostCreate(Host $host)
     {
-        $serviceModel = new \TKMON\Model\Icinga\ServiceData($this->container);
+        /** @var ServiceData $serviceModel */
+        $serviceModel = $this->container['serviceData'];
 
         $service = $serviceModel->createServiceFromCatalogue('net-ping');
 

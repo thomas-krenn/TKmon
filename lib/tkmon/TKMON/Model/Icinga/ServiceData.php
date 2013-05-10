@@ -21,13 +21,45 @@
 
 namespace TKMON\Model\Icinga;
 
+use ICINGA\Object\Service;
+use NETWAYS\Common\ArrayObject;
+
 /**
  * Model handle service creation
  * @package TKMON\Model
  * @author Marius Hein <marius.hein@netways.de>
  */
-class ServiceData extends \TKMON\Model\ApplicationModel
+class ServiceData extends \TKMON\Model\ApplicationModel implements \NETWAYS\Chain\Interfaces\ManagerInterface
 {
+    /**
+     * Command for "beforeCreate"
+     * @var string
+     */
+    const HOOK_BEFORE_CREATE = 'beforeServiceWrite';
+
+    /**
+     * All command handler registered
+     * @var \SplObjectStorage
+     */
+    private $handlers;
+
+    /**
+     * Flag if we throw attached handler errors immediately
+     * @var bool
+     */
+    private $stopOnFirstHandlerException=false;
+
+    /**
+     * Create a new object
+     * @param \Pimple $container
+     */
+    public function __construct(\Pimple $container)
+    {
+        parent::__construct($container);
+        $this->handlers = new \SplObjectStorage();
+    }
+
+
     // ------------------------------------------------------------------------
     // Data api
     // ------------------------------------------------------------------------
@@ -99,6 +131,7 @@ class ServiceData extends \TKMON\Model\ApplicationModel
             $field = new \TKMON\Form\Field\Text($nameBase. '[]', $argument->getLabel());
             $field->setDescription($argument->getDescription());
             $field->setTemplate($this->container['template']);
+            $field->setValue($argument->getValue());
             $out[] = $field;
         }
 
@@ -157,5 +190,96 @@ class ServiceData extends \TKMON\Model\ApplicationModel
         }
 
         return $validator;
+    }
+
+    /**
+     * Add a handler to chain
+     *
+     * @param \NETWAYS\Chain\Interfaces\HandlerInterface $handler
+     * @return void
+     */
+    public function appendHandlerToChain(\NETWAYS\Chain\Interfaces\HandlerInterface $handler)
+    {
+        $this->handlers->attach($handler);
+    }
+
+    /**
+     * Remove handler from chain
+     * @param \NETWAYS\Chain\Interfaces\HandlerInterface $handler
+     * @return void
+     */
+    public function removeHandlerFromChain(\NETWAYS\Chain\Interfaces\HandlerInterface $handler)
+    {
+        $this->handlers->detach($handler);
+    }
+
+    /**
+     * Run the request
+     * @param \NETWAYS\Chain\Interfaces\CommandInterface $command
+     * @throws mixed
+     * @throws \NETWAYS\Chain\Exception\HandlerException
+     * @return boolean
+     */
+    public function processRequest(\NETWAYS\Chain\Interfaces\CommandInterface $command)
+    {
+        /** @var $handler \NETWAYS\Chain\Interfaces\HandlerInterface */
+        $handler = null;
+
+        /** @var $handlerExceptions array|\Exception */
+        $handlerExceptions = array();
+        foreach ($this->handlers as $handler) {
+            try {
+                $handler->processRequest($command);
+            } catch (\NETWAYS\Chain\Exception\HandlerException $e) {
+                if ($this->stopOnFirstHandlerException === true) {
+                    throw $e;
+                } else {
+                    $handlerExceptions[] = $e;
+                }
+            }
+        }
+
+        if (count($handlerExceptions)) {
+            $exception = array_pop($handlerExceptions);
+            throw $exception;
+        }
+    }
+
+    /**
+     * Configure the chain what happens on error
+     * @param boolean $flag
+     * @return void
+     */
+    public function stopOnFirstHandlerException($flag)
+    {
+        $this->stopOnFirstHandlerException = (bool)$flag;
+    }
+
+    /**
+     * Call a command.
+     *
+     * Additional arguments are allowed to distribute to
+     * object neighbours
+     *
+     * @param string $commandName
+     */
+    protected function callCommand($commandName)
+    {
+        $arguments = func_get_args();
+        $commandName = array_shift($arguments);
+
+        $command = new \NETWAYS\Chain\Command($commandName);
+        $command->fromArray($arguments);
+        $this->processRequest($command); // Make the request
+    }
+
+    /**
+     * hook interface
+     * @param Service $service
+     * @param ArrayObject $params
+     */
+    public function hookBeforeCreate(Service $service, ArrayObject $params)
+    {
+        $this->callCommand(self::HOOK_BEFORE_CREATE, $service, $params);
     }
 }

@@ -33,7 +33,7 @@ namespace ICINGA\Base;
  *
  * @property string use Template or active object
  * @method string getUse()
- * @method void setUse(string $value)
+ * @method void setUse(\string $value)
  *
  * @property string name Template or active object
  * @method string getName()

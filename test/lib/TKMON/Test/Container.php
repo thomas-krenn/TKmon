@@ -30,6 +30,10 @@ class Container extends \Pimple
 
             $c['icinga.apacheconfig'] = '/test/apache/config';
 
+            $c['icinga.dir.template'] = '/etc/icinga/tkmon/system/templates';
+            $c['thomaskrenn.template.host'] = 'thomas-krenn-host';
+            $c['thomaskrenn.rest.serial'] = 'https://www.thomas-krenn.com/api/serials';
+            $c['thomaskrenn.rest.product'] = 'https://www.thomas-krenn.com/api/products';
             return $c;
         });
 
@@ -114,6 +118,11 @@ class Container extends \Pimple
 
                 "icinga": {
                     "path": "/usr/sbin/icinga"
+                },
+
+                "tkalert.sh": {
+                    "path": "/usr/local/bin/tkalert.sh",
+                    "sudo": false
                 }
             }';
 

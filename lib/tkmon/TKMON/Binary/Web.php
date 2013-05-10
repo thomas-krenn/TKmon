@@ -21,6 +21,26 @@
 
 namespace TKMON\Binary;
 
+use ICINGA\Catalogue\Provider\JsonFiles;
+use ICINGA\Catalogue\Services;
+use NETWAYS\Cache\Manager;
+use NETWAYS\Cache\Provider\XCache;
+use NETWAYS\Common\Config\PDOLoader;
+use NETWAYS\Common\Config\PDOPersister;
+use NETWAYS\Intl\SimpleTranslator;
+use TKMON\Extension\Host\DefaultAttributes;
+use TKMON\Extension\Host\ThomasKrennAttributes;
+use TKMON\Extension\Service\ThomasKrennNotification;
+use TKMON\Model\Command\Factory;
+use TKMON\Model\Database\DebConfBuilder;
+use TKMON\Model\Database\Importer;
+use TKMON\Model\Icinga\HostData;
+use TKMON\Model\Icinga\ServiceData;
+use TKMON\Model\Misc\DirectoryCreator;
+use TKMON\Model\User;
+use TKMON\Navigation\Container;
+use TKMON\Twig\Extension;
+
 /**
  * Executor class to run the web stack in a function scope
  * @package TKMON\Binary
@@ -78,7 +98,7 @@ final class Web
          */
         $container['directoryCreator'] = $container->share(
             function ($c) {
-                $creator = new \TKMON\Model\Misc\DirectoryCreator();
+                $creator = new DirectoryCreator();
                 return $creator;
             }
         );
@@ -168,7 +188,7 @@ final class Web
                     $attributes
                 );
 
-                $twig->addExtension(new \TKMON\Twig\Extension($c));
+                $twig->addExtension(new Extension($c));
                 $twig->addExtension(new \Twig_Extensions_Extension_I18n());
 
                 return $twig;
@@ -180,8 +200,8 @@ final class Web
          */
         $container['cache'] = $container->share(
             function ($c) {
-                $provider = new \NETWAYS\Cache\Provider\XCache();
-                $cache = new \NETWAYS\Cache\Manager($provider);
+                $provider = new XCache();
+                $cache = new Manager($provider);
                 return $cache;
             }
         );
@@ -193,7 +213,7 @@ final class Web
             function ($c) {
                 $config = $c['config'];
 
-                $builder = new \TKMON\Model\Database\DebConfBuilder();
+                $builder = new DebConfBuilder();
 
                 if ($config['db.debconf.use'] === true) {
                     $builder->loadFromFile($config['db.debconf.file']);
@@ -224,7 +244,7 @@ final class Web
 
                 if ($config['db.autocreate'] === true) {
                     $file = $builder->getBasePath(). DIRECTORY_SEPARATOR. $builder->getName();
-                    $importer = new \TKMON\Model\Database\Importer();
+                    $importer = new Importer();
                     $importer->setDatabase($file);
                     $importer->setSchema($config['db.schema']);
                     if (!$importer->databaseExists()) {
@@ -235,7 +255,7 @@ final class Web
                 $dbo = $builder->buildConnection();
 
                 // Load additional settings from database
-                $pdoLoader = new \NETWAYS\Common\Config\PDOLoader($dbo);
+                $pdoLoader = new PDOLoader($dbo);
                 $pdoLoader->setTable('config');
                 $pdoLoader->setKeyColumn('name');
                 $pdoLoader->setValueColumn('value');
@@ -243,7 +263,7 @@ final class Web
                 $c['config']->load($pdoLoader);
 
                 // Configure persister to write data back
-                $pdoPersister = new \NETWAYS\Common\Config\PDOPersister($dbo);
+                $pdoPersister = new PDOPersister($dbo);
                 $pdoPersister->setTable('config');
                 $pdoPersister->setKeyColumn('name');
                 $pdoPersister->setValueColumn('value');
@@ -287,7 +307,7 @@ final class Web
         $container['user_class'] = '\TKMON\Model\User';
         $container['user'] = $container->share(
             function ($c) {
-                $user = new \TKMON\Model\User($c);
+                $user = new User($c);
                 $user->initialize();
                 return $user;
             }
@@ -308,7 +328,7 @@ final class Web
          */
         $container['navigation'] = $container->share(
             function ($c) {
-                $navigation = new \TKMON\Navigation\Container($c['user']);
+                $navigation = new Container($c['user']);
                 $navigation->loadFile($c['config']['navigation.data']);
                 $navigation->setUri($c['dispatcher']->getUri());
                 return $navigation;
@@ -320,7 +340,7 @@ final class Web
          */
         $container['command'] = $container->share(
             function ($c) {
-                return new \TKMON\Model\Command\Factory($c['config']);
+                return new Factory($c['config']);
             }
         );
 
@@ -356,15 +376,35 @@ final class Web
         // Application specific models
 
         $container['hostData'] = function ($c) {
-            $hostData = new \TKMON\Model\Icinga\HostData($c);
+            $hostData = new HostData($c);
 
-            // Registering default attribute handler
-            $hostData->appendHandlerToChain(new \TKMON\Extension\Host\DefaultAttributes($c));
+            /*
+             * Registering default attribute handler
+             *
+             * Add service ping to every service
+             */
+            $hostData->appendHandlerToChain(new DefaultAttributes($c));
 
-            // Thomas krenn specific attributes
-            $hostData->appendHandlerToChain(new \TKMON\Extension\Host\ThomasKrennAttributes());
+            /*
+             * Thomas krenn specific attributes
+             *
+             * Appends customfields to services to fit IPMI and SNMP checks
+             * Changes notification templates if a service needs reporting
+             * to Thomas Krenn
+             */
+            $hostData->appendHandlerToChain(new ThomasKrennAttributes($c));
 
             return $hostData;
+        };
+
+        $container['serviceData'] = function ($c) {
+            $serviceData = new ServiceData($c);
+
+            /*
+             * Adds icinga templates to services if notification is needed
+             */
+            $serviceData->appendHandlerToChain(new ThomasKrennNotification($c));
+            return $serviceData;
         };
 
         $container['serviceCatalogue'] = $container->share(
@@ -373,15 +413,17 @@ final class Web
                 /** @var $config \NETWAYS\Common\Config */
                 $config = $c['config'];
 
-                $catalogue = new \ICINGA\Catalogue\Services();
+                $catalogue = new Services();
 
-                $jsonData = new \ICINGA\Catalogue\Provider\JsonFiles();
+                $jsonData = new JsonFiles();
                 $jsonData->setCacheInterface($c['cache'], 'tkmon.catalogue.services');
+
+                $simpleTranslator = new SimpleTranslator($c['user']->getLocale());
+                $jsonData->setTranslator($simpleTranslator);
 
                 // Add directory of json files to stack
                 $dir = $config['icinga.catalogue.services.json.dir'];
                 $jsonData->addDir($dir);
-
 
                 $catalogue->appendHandlerToChain($jsonData);
 

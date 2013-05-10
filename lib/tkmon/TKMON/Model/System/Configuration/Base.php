@@ -41,18 +41,6 @@ class Base extends \TKMON\Model\ApplicationModel
     );
 
     /**
-     * List of config files being exported
-     * @var string[]
-     */
-    protected static $systemConfigFiles = array(
-        'config-db.php',
-        'config.json',
-        'nav.json',
-        'services-custom.json',
-        'services-default-debian.json'
-    );
-
-    /**
      * Create a temp directory
      * @return string
      */

@@ -202,12 +202,12 @@ class Exporter extends Base
     private function exportSoftwareConfig($targetDir)
     {
         $sourceDir = $this->container['etc_dir'];
-        foreach (self::$systemConfigFiles as $subFile) {
-            $configFile = $sourceDir. DIRECTORY_SEPARATOR. $subFile;
-            $targetFile = $targetDir. DIRECTORY_SEPARATOR. $subFile;
-            if (file_exists($configFile)) {
-                copy($configFile, $targetFile);
-            }
-        }
+
+        /** @var $copy \NETWAYS\IO\Process */
+        $copy = $this->container['command']->create('cp');
+        $copy->addNamedArgument('-rf');
+        $copy->addPositionalArgument($sourceDir. DIRECTORY_SEPARATOR);
+        $copy->addPositionalArgument($targetDir);
+        $copy->execute();
     }
 }

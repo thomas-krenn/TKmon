@@ -4,8 +4,8 @@
 <div class="alert alert-info container-spacer-down">
     <h4>{% trans "What happens here?" %}</h4>
     {% trans  %}
-    Download you current configuration here. This includes changed Icinga
-    configuration and settings of your web application
+    Download you current TKmon configuration here. This includes changed Icinga
+    configurations and TKmon settings.
     {% endtrans  %}
 </div>
 
@@ -13,7 +13,7 @@
     <fieldset>
         <label for="password">{% trans "Password" %}</label>
         <input type="text" name="password" id="password" />
-        <br /><i>{% trans "You can protect your configuration with password" %}</i>
+        <br /><i>{% trans "You can protect your backup configuration file with a password." %}</i>
     </fieldset>
 
     <br /><br />
@@ -26,7 +26,7 @@
 <div id="save-display" class="container-spacer-down alert alert-info hide">
     <p>
         {% trans %}
-        Download successfully started. If not, please press the  button underneath.
+        Download successfully started. If not, please press the button underneath.
         {% endtrans %}
         <br />
         <a href="" class="btn btn-success">

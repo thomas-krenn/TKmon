@@ -50,6 +50,18 @@ class System extends ApplicationModel
         $command->addPositionalArgument('network-interface');
         $command->addPositionalArgument('INTERFACE='. $interface);
         $command->execute();
+
+        /*
+         * Testing for Thomas Krenn issue script and
+         * start if available
+         */
+
+        $file = '/etc/init/tkmon-issue.conf';
+        if (file_exists($file)) {
+            $command = $this->container['command']->create('start');
+            $command->addPositionalArgument('tkmon-issue');
+            $command->execute();
+        }
     }
 
     /**

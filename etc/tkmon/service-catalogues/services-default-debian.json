@@ -11,14 +11,20 @@
                 "arguments": [
                     {
                         "label": "Warning threshold",
-                        "description": "In form <0000,000%>, <miliseconds rtt>,<percent rta><%>",
+                        "description": {
+                            "en_US": "In form <0000,000%>, <miliseconds rtt>,<percent rta><%>",
+                            "de_DE": "In der form <0000,000%>, <miliseconds rtt>,<percent rta><%>"
+                        },
                         "validation": "string",
                         "argument": "-w",
                         "value": "5000,100%"
                     },
                     {
-                        "label": "Warning threshold",
-                        "description": "In form <0000,000%>, <miliseconds rtt>,<percent rta><%>",
+                        "label": "Critical threshold",
+                        "description": {
+                            "en_US": "In form <0000,000%>, <miliseconds rtt>,<percent rta><%>",
+                            "de_DE": "In der Form <0000,000%>, <miliseconds rtt>,<percent rta><%>"
+                        },
                         "validation": "string",
                         "argument": "-c",
                         "value": "5000,100%"
@@ -28,8 +34,14 @@
             "_catalogue_attributes": {
                 "tags": ["remote", "ping", "network"],
                 "name": "net-ping",
-                "label": "Ping check",
-                "description": "Check packet loss and round trip time",
+                "label": {
+                    "en_US": "Ping check",
+                    "de_DE": "Ping check"
+                },
+                "description": {
+                    "en_US": "Check packet loss and round trip time",
+                    "de_DE": "Prüfen auf Paketverlust und Laufzeiten"
+                },
                 "defined": true,
                 "defined_in": "/etc/nagios-plugins/config/ping.cfg"
             }
@@ -42,7 +54,10 @@
                 "arguments": [
                     {
                         "label": "TCP Port",
-                        "description": "Integer value of TCP port to test",
+                        "description": {
+                            "en_US": "Integer value of TCP port to test",
+                            "de_DE": "Integer Wert für einen TCP Port"
+                        },
                         "validation": "port",
                         "argument": "-p"
                     }
@@ -51,8 +66,13 @@
             "_catalogue_attributes": {
                 "tags": ["remote", "tcp", "port", "network"],
                 "name": "net-tcp",
-                "label": "TCP port check",
-                "description": "Check tcp port reaction",
+                "label": {
+                    "en_US": "TCP port check",
+                    "de_DE": "Erreichbarkeit eines TCP Ports"
+                },
+                "description": {
+                    "en_US": "Check tcp port reaction"
+                },
                 "defined": true,
                 "defined_in": "/etc/nagios-plugins/config/tcp_udp.cfg"
             }
@@ -67,15 +87,21 @@
             "_catalogue_attributes": {
                 "tags": ["remote", "tcp", "web", "network", "http"],
                 "name": "net-http",
-                "label": "HTTP response",
-                "description": "Test http server (address)",
+                "label": {
+                    "en_US": "HTTP response",
+                    "de_DE": "HTTP Erreichbarkeit"
+                },
+                "description": {
+                    "en_US": "Test http server (address)",
+                    "de_DE": "HTTP Server testen (nach IP Adresse)"
+                },
                 "defined": true,
                 "defined_in": "/etc/nagios-plugins/config/http.cfg"
             }
         },
         {
             "service_description": "net-httpname",
-            "display_name": "Http response (hostname)",
+            "display_name": "HTTP Erreichbarkeit (Hostname)",
             "check_command": {
                 "command_name": "check_httpname",
                 "arguments": null
@@ -83,8 +109,13 @@
             "_catalogue_attributes": {
                 "tags": ["remote", "tcp", "web", "network", "http"],
                 "name": "net-httpname",
-                "label": "HTTP response by name",
-                "description": "Test http server (hostname)",
+                "label": {
+                    "en_US": "HTTP response by name",
+                    "de_DE": "HTTP Erreichbarkeit (Hostname)"
+                },
+                "description": {
+                    "en_US": "Test http server (hostname)"
+                },
                 "defined": true,
                 "defined_in": "/etc/nagios-plugins/config/http.cfg"
             }
@@ -97,29 +128,46 @@
                 "arguments": [
                     {
                         "label": "Hostname (VHOST)",
-                        "description": "VHost to check on this host address",
+                        "description": {
+                            "en_US": "VHost to check on this host address",
+                            "de_DE": "VHost name für die Hostadresse"
+                        },
                         "validation": "hostname",
                         "argument": "-H"
                     },
                     {
                         "label": "Warning threshold",
-                        "description": "Seconds to resolve the request",
+                        "description": {
+                            "en_US": "Seconds to resolve the request",
+                            "de_DE": "Erreichbarkeit in Sekunden"
+                        },
                         "validation": "double",
-                        "argument": "-w"
+                        "argument": "-w",
+                        "value": 5
                     },
                     {
                         "label": "Critical threshold",
-                        "description": "Seconds to resolve the request",
+                        "description": {
+                            "en_US": "Seconds to resolve the request",
+                            "de_DE": "Erreichbarkeit in Sekunden"
+                        },
                         "validation": "double",
-                        "argument": "-c"
+                        "argument": "-c",
+                        "value": 10
                     }
                 ]
             },
             "_catalogue_attributes": {
                 "tags": ["remote", "tcp", "web", "network", "http"],
                 "name": "net-http2",
-                "label": "HTTP response",
-                "description": "Test http server (different vhosts and thresholds)",
+                "label": {
+                    "en_US": "HTTP response",
+                    "de_DE": "HTTP Erreichbarkeit"
+                },
+                "description": {
+                    "en_US": "Test http server (different vhosts and thresholds)",
+                    "de_DE": "Test HTTP Server (VHost und Schwellwerte)"
+                },
                 "defined": true,
                 "defined_in": "/etc/nagios-plugins/config/http.cfg"
             }
@@ -134,8 +182,14 @@
             "_catalogue_attributes": {
                 "tags": ["remote", "tcp", "web", "network", "http", "https"],
                 "name": "net-https",
-                "label": "HTTP response",
-                "description": "Test https server (address)",
+                "label": {
+                    "en_US": "HTTP response",
+                    "de_DE": "HTTPS Erreichbarkeit"
+                },
+                "description": {
+                    "en_US": "Test https server (address)",
+                    "de_DE": "Test HTTPS Erreichbarkeit (Addresse)"
+                },
                 "defined": true,
                 "defined_in": "/etc/nagios-plugins/config/http.cfg"
             }
@@ -150,8 +204,14 @@
             "_catalogue_attributes": {
                 "tags": ["remote", "tcp", "web", "network", "ssh"],
                 "name": "net-ssh",
-                "label": "SSH Test",
-                "description": "Test for ssh (standard port)",
+                "label": {
+                    "en_US": "SSH Test",
+                    "de_DE": "SSH Erreichbarkeit"
+                },
+                "description": {
+                    "en_US": "Test for ssh (standard port)",
+                    "de_DE": "Test SSH Zugange (Standard Port 22)"
+                },
                 "defined": true,
                 "defined_in": "/etc/nagios-plugins/config/ssh.cfg"
             }
@@ -164,7 +224,10 @@
                 "arguments": [
                     {
                         "label": "SSH Port",
-                        "description": "Integer port where ssh is listening on",
+                        "description": {
+                            "en_US": "Integer port where ssh is listening on",
+                            "de_DE": "Integer Port vom SSH Dienst"
+                        },
                         "validation": "port",
                         "argument": "-p"
                     }
@@ -173,8 +236,13 @@
             "_catalogue_attributes": {
                 "tags": ["remote", "tcp", "web", "network", "ssh"],
                 "name": "net-ssh-port",
-                "label": "SSH Test",
-                "description": "Test for ssh (specific port)",
+                "label": {
+                    "en_US": "SSH Test"
+                },
+                "description": {
+                    "en_US": "Test for ssh (specific port)",
+                    "de_DE": "SSH Erreichbarkeit (nicht standardisierter Port)"
+                },
                 "defined": true,
                 "defined_in": "/etc/nagios-plugins/config/ssh.cfg"
             }

@@ -21,6 +21,9 @@
 
 namespace TKMON\Action\Expose\Monitor\Icinga;
 
+use NETWAYS\Intl\SimpleTranslator;
+use TKMON\Model\Icinga\ServiceData;
+
 /**
  * Action handle contacts views
  *
@@ -134,11 +137,16 @@ class Services extends \TKMON\Action\Base
             $template['service'] = $service;
             $template['host'] = $host;
 
-            $serviceData = new \TKMON\Model\Icinga\ServiceData($this->container);
+            /** @var ServiceData $serviceData */
+            $serviceData = $this->container['serviceData'];
 
             $catalogueId = $service->getCustomVariable('name'); // Internal reference to catalogue
 
             $template['arguments'] = $serviceData->getCommandArgumentFieldsReadyValues($service, $catalogueId);
+
+            $meta = $this->container['serviceCatalogue']->getAttributes($catalogueId);
+
+            $this->additionalMetaProcessing($template, $meta);
 
             $response->addData($template->toString());
 
@@ -192,11 +200,14 @@ class Services extends \TKMON\Action\Base
             /** @var $serviceCatalogue \ICINGA\Catalogue\Services */
             $serviceCatalogue = $this->container['serviceCatalogue'];
 
-            $serviceData = new \TKMON\Model\Icinga\ServiceData($this->container);
+            /** @var ServiceData $serviceData */
+            $serviceData = $this->container['serviceData'];
 
             $item = $serviceCatalogue->getItem($params['serviceCatalogueId']);
 
-            $check = $host->getService($item->serviceDescription);
+            $meta = $serviceCatalogue->getAttributes($params['serviceCatalogueId']);
+
+            $this->additionalMetaProcessing($template, $meta);
 
             $template['service'] = $item;
             $template['host'] = $host;
@@ -210,6 +221,32 @@ class Services extends \TKMON\Action\Base
         }
 
         return $response;
+    }
+
+    /**
+     * Process catalogue meta data and template vars
+     * @param \TKMON\Mvc\Output\TwigTemplate $template
+     * @param \stdClass $meta
+     */
+    private function additionalMetaProcessing(\TKMON\Mvc\Output\TwigTemplate $template, \stdClass $meta)
+    {
+        /*
+         * Thomas Krenn flag if we want to switch on notification
+         * @todo No function to extend this
+         */
+        if (isset($meta->tk_notify) && $meta->tk_notify === true) {
+            $template['tk_notify'] = true;
+            $template['tk_notify_default'] =
+                isset($meta->tk_notify_default) ? (boolean) $meta->tk_notify_default : true;
+        }
+
+        if (isset($meta->links)) {
+            $template['links'] = $meta->links;
+        }
+
+        if (isset($meta->doc)) {
+            $template['doc'] = SimpleTranslator::textProcessor($meta->doc);
+        }
     }
 
     /**
@@ -344,6 +381,9 @@ class Services extends \TKMON\Action\Base
                 )
             );
 
+            /** @var ServiceData $serviceData */
+            $serviceData = $this->container['serviceData'];
+
             $validator->validateArrayObject($params);
 
             $catalogueName = $params['cv_name'];
@@ -354,10 +394,7 @@ class Services extends \TKMON\Action\Base
             // Validation of arguments (if any)
             // ----------------------------------------------------------------
 
-            $serviceData = new \TKMON\Model\Icinga\ServiceData($this->container);
-
             $arguments = new \NETWAYS\Common\ArrayObject();
-
 
             if ($params->offsetExists('arguments')) {
                 $arguments->fromArray($params['arguments']);
@@ -377,9 +414,14 @@ class Services extends \TKMON\Action\Base
 
             $service = $serviceData->createServiceFromCatalogueWithArgumentValues($catalogueName, $arguments);
 
+
+
             // Overriding data from html form
             $service->serviceDescription = $params['service_description'];
             $service->displayName = $params['display_name'];
+
+            // Rewrite
+            $serviceData->hookBeforeCreate($service, $params);
 
             // Glue
             $host->addService($service);

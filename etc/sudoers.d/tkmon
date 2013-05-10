@@ -13,3 +13,5 @@
 %tkmonweb ALL=(ALL)NOPASSWD:/bin/rm
 %tkmonweb ALL=(ALL)NOPASSWD:/bin/cp
 %tkmonweb ALL=(ALL)NOPASSWD:/bin/chown
+%tkmonweb ALL=(ALL)NOPASSWD:/sbin/start
+%tkmonweb ALL=(ALL)NOPASSWD:/usr/local/bin/tkalert.sh

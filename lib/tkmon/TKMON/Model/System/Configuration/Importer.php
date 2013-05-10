@@ -190,27 +190,15 @@ class Importer extends Base
     private function importSoftwareConfig($targetDir)
     {
         $etcDir = $this->container['config']['core.etc_dir'];
-        foreach (self::$systemConfigFiles as $configFile) {
-            $sourceFile = $targetDir. DIRECTORY_SEPARATOR. $configFile;
-            $targetFile = $etcDir. DIRECTORY_SEPARATOR. $configFile;
 
-            if (file_exists($targetFile)) {
-                /** @var $rm \NETWAYS\IO\Process */
-                $rm = $this->container['command']->create('rm');
-                $rm->addNamedArgument('-f');
-                $rm->addPositionalArgument($targetFile);
-                $rm->execute();
-            }
+        /** @var $copy \NETWAYS\IO\Process */
+        $copy = $this->container['command']->create('cp');
+        $copy->addNamedArgument('-rf');
+        $copy->addPositionalArgument($targetDir. DIRECTORY_SEPARATOR. 'tkmon'. DIRECTORY_SEPARATOR);
+        $copy->addPositionalArgument($etcDir. DIRECTORY_SEPARATOR. '..'. DIRECTORY_SEPARATOR);
+        $copy->execute();
 
-            /** @var $cp \NETWAYS\IO\Process */
-            $cp = $this->container['command']->create('cp');
-            $cp->addNamedArgument('-f');
-            $cp->addPositionalArgument($sourceFile);
-            $cp->addPositionalArgument($targetFile);
-            $cp->execute();
-
-            $system = new \TKMON\Model\System($this->container);
-            $system->chownRecursiveToApache($etcDir);
-        }
+        $system = new \TKMON\Model\System($this->container);
+        $system->chownRecursiveToApache($etcDir);
     }
 }

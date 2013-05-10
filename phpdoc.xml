@@ -11,6 +11,8 @@
         <template name="responsive" />
     </transformations>
     <files>
-        <directory>./lib</directory>
+        <directory>./lib/tkmon/NETWAYS</directory>
+        <directory>./lib/tkmon/ICINGA</directory>
+        <directory>./lib/tkmon/TKMON</directory>
     </files>
 </phpdoc>

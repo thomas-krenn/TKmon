@@ -21,6 +21,8 @@
 
 namespace ICINGA\Catalogue\Provider;
 
+use NETWAYS\Intl\SimpleTranslator;
+
 /**
  * Query for data in json files
  *
@@ -59,6 +61,11 @@ class JsonFiles extends \ICINGA\Base\CatalogueProvider
      * @var string
      */
     private $cacheIdentifier;
+
+    /**
+     * @var SimpleTranslator
+     */
+    private $translator = null;
 
     /**
      * Set files to load
@@ -138,7 +145,6 @@ class JsonFiles extends \ICINGA\Base\CatalogueProvider
         if ($this->isCached()) {
             $this->loadFromCache();
         } else {
-
             foreach ($this->getFiles() as $file) {
                 if (file_exists($file)) {
                     $data = json_decode(file_get_contents($file), false);
@@ -151,13 +157,51 @@ class JsonFiles extends \ICINGA\Base\CatalogueProvider
                 }
             }
 
-            foreach ($this->data as $index => $entry) {
+            foreach ($this->data as $index => &$entry) {
+                $this->languageProcessing($entry);
                 $this->index[$entry->_catalogue_attributes->name] = $index;
             }
 
             $this->writeToCache();
         }
     }
+
+    /**
+     * Tests an object for translation information
+     * @param \stdClass $object
+     * @param $name
+     * @return bool
+     */
+    private function testLanguageObject(\stdClass $object, $name)
+    {
+        $check = false;
+        foreach ($object as $name => $value) {
+            if (preg_match('/^\w{2}_\w{2,}$/', $name) && (is_string($value) || is_array($value))) {
+                $check = true;
+                break;
+            }
+        }
+        return $check;
+    }
+
+    /**
+     * Recursive language processing
+     * @param $object
+     */
+    private function languageProcessing($object)
+    {
+        foreach ($object as $attribute => $value) {
+
+            if ($value instanceof \stdClass && $this->testLanguageObject($value, $attribute)) {
+                $object->{$attribute} = $this->getTranslator()->translate($value);
+            }
+
+            if (is_array($value) || $value instanceof \stdClass) {
+                $this->languageProcessing($value);
+            }
+        }
+    }
+
 
     /**
      * Query for items
@@ -237,7 +281,23 @@ class JsonFiles extends \ICINGA\Base\CatalogueProvider
     public function isCached()
     {
         if ($this->getCacheManager()) {
-            return $this->getCacheManager()->hasItem($this->getCacheIdentifier());
+            $identifier = $this->getCacheIdentifier();
+            $check = $this->getCacheManager()->hasItem($identifier);
+
+            /*
+             * Test if the used locale is cached, else drop the cache
+             * and let main create the new data
+             */
+            if ($this->getTranslator()) {
+                if ($this->getCacheManager()->hasItem($identifier. '.locale')) {
+                    $locale = $this->getCacheManager()->retrieveItem($identifier. '.locale');
+                    $check = $check && ($this->getTranslator()->getLocale() == $locale);
+                } else {
+                    $check = false;
+                }
+            }
+
+            return $check;
         }
 
         return false;
@@ -261,10 +321,33 @@ class JsonFiles extends \ICINGA\Base\CatalogueProvider
     public function writeToCache()
     {
         if ($this->getCacheManager()) {
+            $identifier = $this->getCacheIdentifier();
             $data = new \stdClass();
             $data->data = $this->data;
             $data->index = $this->index;
-            $this->getCacheManager()->storeItem($data, $this->getCacheIdentifier());
+            $this->getCacheManager()->storeItem($data, $identifier);
+
+            if ($this->getTranslator()) {
+                $this->getCacheManager()->storeItem($this->getTranslator(), $identifier. '.locale');
+            }
         }
+    }
+
+    /**
+     * Setter for simple translator
+     * @param \NETWAYS\Intl\SimpleTranslator $translator
+     */
+    public function setTranslator(SimpleTranslator $translator)
+    {
+        $this->translator = $translator;
+    }
+
+    /**
+     * Getter for simple translator
+     * @return \NETWAYS\Intl\SimpleTranslator
+     */
+    public function getTranslator()
+    {
+        return $this->translator;
     }
 }

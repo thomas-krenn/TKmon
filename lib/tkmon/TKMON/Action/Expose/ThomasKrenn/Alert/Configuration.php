@@ -21,6 +21,11 @@
 
 namespace TKMON\Action\Expose\ThomasKrenn\Alert;
 
+use NETWAYS\Common\ArrayObjectValidator;
+use TKMON\Model\ThomasKrenn\Alert;
+use TKMON\Model\ThomasKrenn\ContactInfo;
+use TKMON\Mvc\Output\JsonResponse;
+
 /**
  * Configure Settings for ThomasKrenn Alert Generator
  *
@@ -37,7 +42,7 @@ class Configuration extends \TKMON\Action\Base
     public function actionIndex(\NETWAYS\Common\ArrayObject $params)
     {
         $template = new \TKMON\Mvc\Output\TwigTemplate($this->container['template']);
-        $template->setTemplateName('views/ThomasKrenn/Alert/Configuration/Index.twig');
+        $template->setTemplateName('views/ThomasKrenn/Alert/Configuration.twig');
 
         $contactInfo = new \TKMON\Model\ThomasKrenn\ContactInfo($this->container);
         $contactInfo->load();
@@ -101,6 +106,49 @@ class Configuration extends \TKMON\Action\Base
             $response->addException($e);
         }
 
+        return $response;
+    }
+
+    /**
+     * Calls tkalert script for testing
+     * @param \NETWAYS\Common\ArrayObject $params
+     * @return JsonResponse
+     */
+    public function actionTest(\NETWAYS\Common\ArrayObject $params)
+    {
+        $response = new JsonResponse();
+
+        try {
+
+            $validator = new ArrayObjectValidator();
+
+            $validator->addValidatorObject(
+                \NETWAYS\Common\ValidatorObject::create(
+                    'run',
+                    _('Run flag'),
+                    \NETWAYS\Common\ValidatorObject::VALIDATE_MANDATORY
+                )
+            );
+
+            $validator->validateArrayObject($params);
+
+            if ($params['run'] == '1') {
+                $contactInfo = new ContactInfo($this->container);
+
+                $alerter = new Alert($this->container);
+                $alerter->configureByContactInfo($contactInfo);
+                $alerter->setType(Alert::TYPE_TEST);
+                $alerter->commit();
+                $response->setSuccess();
+            } else {
+                $response->addError(_('CGI parameter run=1 is missing to start the test'));
+            }
+
+        } catch (\Exception $e) {
+            $response->addException($e);
+        }
+
+        $response->addError('OH OH something happend');
         return $response;
     }
 }

@@ -1,0 +1,50 @@
+<h2>{% trans "Test" %}</h2>
+
+<div class="alert alert-info">
+    {% trans %}
+    Use this dialog to test your configuration. A heartbeat email will be bounced
+    back to your contact email address to ensure all settings work as expected.
+    {% endtrans %}
+</div>
+
+<div class="alert container-spacer-down">
+    {% trans %}
+    Just press 'Test' to start the validation of your configuration, no more parameters are needed.
+    {% endtrans %}
+</div>
+
+<div id="alert-test-errors"></div>
+
+<div id="alert-test-success" class="alert alert-success hidden">
+    <h4>{% trans "Success" %}</h4>
+    <p>
+        {% trans %}
+        Email was sent successfully. Please check your email account
+        <a href="#" id="test-switch-tab">configured here</a>. If everything
+        is correct you will receive an email immediately.
+        {% endtrans %}
+    </p>
+</div>
+
+<form
+        class="container-spacer-down"
+        action="{{ web_link("Test") }}"
+        data-ajax="form"
+        data-ajax-type="json"
+        data-error-target="#alert-test-errors"
+        data-success-frame="#alert-test-success"
+>
+
+    <button type="submit" class="btn btn-primary">
+        <i class="icon-save"></i> {% trans "Test" %}
+    </button>
+
+    <input type="hidden" name="run" value="1" />
+</form>
+<script>
+    require(['jquery', 'bootstrap'], function() {
+        $('#test-switch-tab').click(function() {
+            $('#alert-configuration-tabs').find('a[href=#tab-setting]').tab('show');
+        });
+    });
+</script>

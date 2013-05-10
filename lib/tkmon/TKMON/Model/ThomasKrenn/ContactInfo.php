@@ -22,7 +22,9 @@
 namespace TKMON\Model\ThomasKrenn;
 
 /**
- * Abstract model for working with our DI container
+ * Model for reading and writing ThomasKrenn contact info
+ * data
+ *
  * @package TKMON\Model
  * @author Marius Hein <marius.hein@netways.de>
  */
@@ -265,6 +267,11 @@ class ContactInfo extends \ICINGA\Loader\FileSystem implements \TKMON\Interfaces
         foreach (self::$defaultAttributes as $attribute => $value) {
             $host->{ $attribute } = $value;
         }
+
+        // Write config into db for later use ...
+        $this->container['config']['thomaskrenn.alert.authkey'] = $this->getAuthKey();
+        $this->container['config']['thomaskrenn.alert.person'] = $this->getPerson();
+        $this->container['config']['thomaskrenn.alert.email'] = $this->getEmail();
 
         parent::write();
     }
