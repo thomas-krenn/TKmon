@@ -53,7 +53,9 @@ class Advanced extends \TKMON\Action\Base
 
             if (is_scalar($value)) {
 
-                if ($value === false) {
+                if (preg_match('/(authkey|tkpasswd)$/', $name)) {
+                    $value = '<strong>********</strong>';
+                } elseif ($value === false) {
                     $value = '[false]';
                 } elseif ($value === null) {
                     $value = '[null]';
