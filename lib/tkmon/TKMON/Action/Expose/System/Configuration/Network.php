@@ -21,6 +21,8 @@
 
 namespace TKMON\Action\Expose\System\Configuration;
 
+use NETWAYS\Common\ValidatorObject;
+
 /**
  * Network settings
  *
@@ -137,18 +139,15 @@ class Network extends \TKMON\Action\Base
         try {
             $validator = new \NETWAYS\Common\ArrayObjectValidator();
             $validator->throwOnErrors(true);
+
             $validator->addValidator('dns_nameserver1', 'IP address', FILTER_VALIDATE_IP);
             $validator->addValidator('dns_nameserver2', 'IP address', FILTER_VALIDATE_IP);
             $validator->addValidator('dns_nameserver3', 'IP address', FILTER_VALIDATE_IP);
-            $validator->addValidator(
-                'dns_search',
-                'Host',
-                FILTER_VALIDATE_REGEXP,
-                null,
-                array(
-                    'regexp' => '/^\w+\.\w+/'
-                )
+
+            $validator->addValidatorObject(
+                ValidatorObject::create('dns_search', 'DNS suffix', ValidatorObject::VALIDATE_MANDATORY)
             );
+
             $validator->validateArrayObject($params);
 
             $systemModel = new \TKMON\Model\System($this->container);
@@ -207,7 +206,7 @@ class Network extends \TKMON\Action\Base
                 $validator->addValidator('ip_netmask', 'IP', FILTER_VALIDATE_IP);
                 $validator->addValidator('ip_gateway', 'IP', FILTER_VALIDATE_IP);#
             }
-            
+
             $validator->validateArrayObject($params);
 
             $ipModel = new \TKMON\Model\System\IpAddress($this->container);
