@@ -92,6 +92,10 @@
     "thomaskrenn.rest.serial": "https://www.thomas-krenn.com/api/serials",
     "thomaskrenn.rest.product": "https://www.thomas-krenn.com/api/products/",
 
+    "thomaskrenn.alert.authkey": "",
+    "thomaskrenn.alert.person": "",
+    "thomaskrenn.alert.email": "",
+
     "command.config": {
         "chpasswd":  {
             "path": "/usr/sbin/chpasswd",
