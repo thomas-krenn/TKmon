@@ -110,7 +110,7 @@
 
         "items": [
             {
-                "title": "Alerts",
+                "title": "Call home",
                 "description": "Alert settings",
                 "href": "ThomasKrenn/Alert/Configuration/Index"
             }
