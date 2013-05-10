@@ -369,6 +369,7 @@ class Interfaces extends \TKMON\Model\ApplicationModel implements \ArrayAccess, 
         $interfacesFile = new \NETWAYS\IO\RealTempFileObject(self::TEMP_PREFIX, 'w');
         $interfacesFile->fwrite(implode(PHP_EOL, $lines));
         $interfacesFile->fflush();
+        $interfacesFile->chmod(0644);
 
         /** @var $mv \NETWAYS\IO\Process **/
         $mv = $this->container['command']->create('mv');
