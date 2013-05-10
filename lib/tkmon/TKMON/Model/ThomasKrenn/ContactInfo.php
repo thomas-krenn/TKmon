@@ -268,6 +268,11 @@ class ContactInfo extends \ICINGA\Loader\FileSystem implements \TKMON\Interfaces
             $host->{ $attribute } = $value;
         }
 
+        // Write config into db for later use ...
+        $this->container['config']['thomaskrenn.alert.authkey'] = $this->getAuthKey();
+        $this->container['config']['thomaskrenn.alert.person'] = $this->getPerson();
+        $this->container['config']['thomaskrenn.alert.email'] = $this->getEmail();
+
         parent::write();
     }
 }
