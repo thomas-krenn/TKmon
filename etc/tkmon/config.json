@@ -11,7 +11,7 @@
     "view.refresh":         90,
 
     "template.file":        "main.twig",
-    "template.cache":       false,
+    "template.cache":       true,
     "template.cache_dir":   "{core.temp_dir}/tkmon-templates",
 
     "navigation.data":      "{core.etc_dir}/nav.json",

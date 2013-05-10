@@ -127,6 +127,7 @@ class ServiceData extends \TKMON\Model\ApplicationModel implements \NETWAYS\Chai
             $field = new \TKMON\Form\Field\Text($nameBase. '[]', $argument->getLabel());
             $field->setDescription($argument->getDescription());
             $field->setTemplate($this->container['template']);
+            $field->setValue($argument->getValue());
             $out[] = $field;
         }
 

@@ -20,7 +20,7 @@
                         "value": "5000,100%"
                     },
                     {
-                        "label": "Warning threshold",
+                        "label": "Critical threshold",
                         "description": {
                             "en_US": "In form <0000,000%>, <miliseconds rtt>,<percent rta><%>",
                             "de_DE": "In der Form <0000,000%>, <miliseconds rtt>,<percent rta><%>"
@@ -142,7 +142,8 @@
                             "de_DE": "Erreichbarkeit in Sekunden"
                         },
                         "validation": "double",
-                        "argument": "-w"
+                        "argument": "-w",
+                        "value": 5
                     },
                     {
                         "label": "Critical threshold",
@@ -151,7 +152,8 @@
                             "de_DE": "Erreichbarkeit in Sekunden"
                         },
                         "validation": "double",
-                        "argument": "-c"
+                        "argument": "-c",
+                        "value": 10
                     }
                 ]
             },

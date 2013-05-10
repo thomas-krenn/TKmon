@@ -200,6 +200,7 @@ class Services extends \TKMON\Action\Base
             /** @var $serviceCatalogue \ICINGA\Catalogue\Services */
             $serviceCatalogue = $this->container['serviceCatalogue'];
 
+            /** @var ServiceData $serviceData */
             $serviceData = $this->container['serviceData'];
 
             $item = $serviceCatalogue->getItem($params['serviceCatalogueId']);
@@ -380,6 +381,9 @@ class Services extends \TKMON\Action\Base
                 )
             );
 
+            /** @var ServiceData $serviceData */
+            $serviceData = $this->container['serviceData'];
+
             $validator->validateArrayObject($params);
 
             $catalogueName = $params['cv_name'];
@@ -408,8 +412,6 @@ class Services extends \TKMON\Action\Base
 
             $host = $hostData->getHost($hostName);
 
-            /** @var ServiceData $serviceData */
-            $serviceData = $this->container['serviceData'];
             $service = $serviceData->createServiceFromCatalogueWithArgumentValues($catalogueName, $arguments);
 
 
