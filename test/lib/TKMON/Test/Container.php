@@ -32,6 +32,8 @@ class Container extends \Pimple
 
             $c['icinga.dir.template'] = '/etc/icinga/tkmon/system/templates';
             $c['thomaskrenn.template.host'] = 'thomas-krenn-host';
+            $c['thomaskrenn.rest.serial'] = 'https://www.thomas-krenn.com/api/serials';
+            $c['thomaskrenn.rest.product'] = 'https://www.thomas-krenn.com/api/products';
             return $c;
         });
 
