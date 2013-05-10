@@ -195,7 +195,7 @@ class Importer extends Base
         $copy = $this->container['command']->create('cp');
         $copy->addNamedArgument('-rf');
         $copy->addPositionalArgument($targetDir. DIRECTORY_SEPARATOR. 'tkmon'. DIRECTORY_SEPARATOR);
-        $copy->addPositionalArgument($etcDir);
+        $copy->addPositionalArgument($etcDir. DIRECTORY_SEPARATOR. '..'. DIRECTORY_SEPARATOR);
         $copy->execute();
 
         $system = new \TKMON\Model\System($this->container);
