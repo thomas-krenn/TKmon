@@ -198,17 +198,22 @@ class Network extends \TKMON\Action\Base
         $response = new \TKMON\Mvc\Output\JsonResponse();
         try {
 
+            $ipConfig = $params['ip_config'];
+
             $validator = new \NETWAYS\Common\ArrayObjectValidator();
-            $validator->addValidator('ip_address', 'IP', FILTER_VALIDATE_IP);
-            $validator->addValidator('ip_netmask', 'IP', FILTER_VALIDATE_IP);
-            $validator->addValidator('ip_gateway', 'IP', FILTER_VALIDATE_IP);
+
+            if ($ipConfig == \TKMON\Model\System\IpAddress::TYPE_STATIC) {
+                $validator->addValidator('ip_address', 'IP', FILTER_VALIDATE_IP);
+                $validator->addValidator('ip_netmask', 'IP', FILTER_VALIDATE_IP);
+                $validator->addValidator('ip_gateway', 'IP', FILTER_VALIDATE_IP);#
+            }
+            
             $validator->validateArrayObject($params);
 
             $ipModel = new \TKMON\Model\System\IpAddress($this->container);
             $ipModel->setInterfaceName($this->primaryInterface);
             $ipModel->load();
-            
-            $ipConfig = $params['ip_config'];
+
             $ipModel->setConfigType($ipConfig);
             
             if ($ipConfig == \TKMON\Model\System\IpAddress::TYPE_STATIC) {
