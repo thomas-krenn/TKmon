@@ -143,15 +143,20 @@ class Services extends \TKMON\Action\Base
 
             $template['arguments'] = $serviceData->getCommandArgumentFieldsReadyValues($service, $catalogueId);
 
+            $meta = $this->container['serviceCatalogue']->getAttributes($catalogueId);
+
             /*
              * Thomas Krenn flag if we want to switch on notification
              * @todo No function to extend this
              */
-            $meta = $this->container['serviceCatalogue']->getAttributes($catalogueId);
             if (isset($meta->tk_notify) && $meta->tk_notify === true) {
                 $template['tk_notify'] = true;
                 $template['tk_notify_default'] =
                     isset($meta->tk_notify_default) ? (boolean) $meta->tk_notify_default : true;
+            }
+
+            if (isset($meta->links)) {
+                $template['links'] = $meta->links;
             }
 
             $response->addData($template->toString());
@@ -210,15 +215,20 @@ class Services extends \TKMON\Action\Base
 
             $item = $serviceCatalogue->getItem($params['serviceCatalogueId']);
 
+            $meta = $serviceCatalogue->getAttributes($params['serviceCatalogueId']);
+
             /*
              * Thomas Krenn flag if we want to switch on notification
              * @todo No function to extend this
              */
-            $meta = $serviceCatalogue->getAttributes($params['serviceCatalogueId']);
             if (isset($meta->tk_notify) && $meta->tk_notify === true) {
                 $template['tk_notify'] = true;
                 $template['tk_notify_default'] =
                     isset($meta->tk_notify_default) ? (boolean) $meta->tk_notify_default : true;
+            }
+
+            if (isset($meta->links)) {
+                $template['links'] = $meta->links;
             }
 
             $template['service'] = $item;
