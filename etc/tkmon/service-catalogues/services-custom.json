@@ -73,6 +73,23 @@
                 },
                 "defined": true,
                 "defined_in": "/etc/icinga/tkmon/base/05-check-commands.cfg",
+
+                "links": [{
+                    "name": "IPMI Wiki",
+                    "href": {
+                        "en_US": "http://www.thomas-krenn.com/en/wiki/IPMI_Sensor_Monitoring_Plugin",
+                        "de_DE": "http://www.thomas-krenn.com/de/wiki/IPMI_Sensor_Monitoring_Plugin"
+                    },
+                    "description": {
+                        "en_US": "Official IPMI wiki article from Thomas Krenn",
+                        "de_DE": "Offizieller IPMI wiki Artikel von Thomas Krenn"
+                    }
+                }, {
+                    "name": "GIT Repository",
+                    "href": "http://git.thomas-krenn.com/?p=check_ipmi_sensor_v3.git;a=summary",
+                    "description": "Thomas Krenn GIT repository for check_ipmi_sensor"
+                }],
+
                 "tk_notify": true,
                 "tk_notify_default": true
             }

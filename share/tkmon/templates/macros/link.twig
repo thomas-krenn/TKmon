@@ -1,0 +1,35 @@
+{% macro linkBox(links) %}
+    <div class="link-linkbox-container">
+        <button class="btn btn-info">
+            <i class="icon-external-link"></i>
+            {% trans "Useful links" %}
+            <span class="caret"></span>
+        </button>
+
+        <div class="hide">
+            {% for link in links %}
+                <div>
+                    <a target="_blank" href="{{ link.href }}">
+                        <i class="icon-external-link"></i>
+                        {{ link.name }}
+                    </a>
+                    {% if link.description %}
+                    - {{ link.description }}
+                    {% endif %}
+                    <br />
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    <script>
+        require(['jquery', 'bootstrap'], function() {
+
+            $('div.link-linkbox-container button:first').popover({
+                html: true,
+                title: '{% trans "Useful links" %}',
+                content: $('div.link-linkbox-container div:first').html(),
+                container: 'body'
+            });
+        });
+    </script>
+{% endmacro %}

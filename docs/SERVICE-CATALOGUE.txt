@@ -400,6 +400,11 @@ Keys
     If **defined** this key shows where. Later use to document the
     check more clearly.
 
+**links** (array of objects)::
+    Adds links to the service. Each sub objects must have following
+    items: **href**, **name**, **description**. Every part can be
+    translated with the model explained in appendix **D**.
+
 ***tk_notify*** (boolean)::
     Thomas Krenn notification flag, if set this service can
     reported to Thomas Krenn.
@@ -574,4 +579,31 @@ How to use that
     "validation": "port",
     "argument": "-p"
 },
+-------------------------------------------------------------------------------
+
+E: Using links for service description
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Useful links can be configured within service catalogue with the attribute
+**links**. The example below show a mixed translated selection of links for
+the IPMI plugin.
+
+-------------------------------------------------------------------------------
+"_catalogue_attributes": {
+    "links": [{
+        "name": "IPMI Wiki",
+        "href": {
+            "en_US": "http://www.thomas-krenn.com/en/wiki/IPMI_Sensor_Monitoring_Plugin",
+            "de_DE": "http://www.thomas-krenn.com/de/wiki/IPMI_Sensor_Monitoring_Plugin"
+        },
+        "description": {
+            "en_US": "Official IPMI wiki article from Thomas Krenn",
+            "de_DE": "Offizieller IPMI wiki Artikel von Thomas Krenn"
+        }
+    }, {
+        "name": "GIT Repository",
+        "href": "http://git.thomas-krenn.com/?p=check_ipmi_sensor_v3.git;a=summary",
+        "description": "Thomas Krenn GIT repository for check_ipmi_sensor"
+    }]
+}
 -------------------------------------------------------------------------------

@@ -1,5 +1,16 @@
+{% from "macros/link.twig" import linkBox %}
 {% set restart_url = web_link('Monitor/Daemon/Index#daemon-restart') %}
 <div>
+
+    {% if links %}
+        <div class="alert alert-info">
+            {% trans %}
+            Here you can find further information about the check:
+            {% endtrans %}
+
+            {{ linkBox(links) }}
+        </div>
+    {% endif %}
 
     <div id="embedded-create-errors"></div>
 

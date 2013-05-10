@@ -78,7 +78,7 @@ class Services extends \ICINGA\Base\Catalogue
 
     /**
      * Get catalog meta information
-     * @param string $name
+     * @param string $name catalogueId
      * @return \stdClass
      */
     public function getAttributes($name)
