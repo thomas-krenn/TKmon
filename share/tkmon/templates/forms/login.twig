@@ -45,8 +45,10 @@
 
 <script>
     var redirectHome = function() {
+        $('#login').remove('*');
+
         setTimeout(function() {
             window.location.href='{{ web_link("Index/Index") }}';
         }, 1000);
-    }
+    };
 </script>
