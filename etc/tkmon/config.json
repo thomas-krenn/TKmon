@@ -179,6 +179,11 @@
         "tkalert.sh": {
             "path": "/usr/local/bin/tkalert.sh",
             "sudo": true
+        },
+
+        "start": {
+            "path": "/sbin/start",
+            "sudo": true
         }
     }
 }
