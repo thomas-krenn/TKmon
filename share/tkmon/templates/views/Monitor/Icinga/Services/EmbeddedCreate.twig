@@ -1,17 +1,29 @@
 {% from "macros/link.twig" import linkBox %}
+{% from "macros/doc.twig" import docBox %}
 {% set restart_url = web_link('Monitor/Daemon/Index#daemon-restart') %}
 <div>
 
-    {% if links %}
-        <div class="alert alert-info">
-            {% trans %}
-            Here you can find further information about the check:
-            {% endtrans %}
+    {% if links or doc %}
 
-            {{ linkBox(links) }}
+        <div class="alert">
+        {% trans %}
+            Looking for further information? Check the resources below
+        {% endtrans %}
         </div>
-    {% endif %}
 
+        <div>
+        {% if links %}
+            {{ linkBox(links) }}
+        {% endif %}
+
+        {% if doc %}
+            {{ docBox(doc, service.getDisplayName()) }}
+        {% endif %}
+        </div>
+
+        <div class="container-spacer-down"></div>
+
+    {% endif %}
     <div id="embedded-create-errors"></div>
 
     <div id="embedded-create-success" class="alert alert-success hide">

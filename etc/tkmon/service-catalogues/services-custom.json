@@ -90,6 +90,15 @@
                     "description": "Thomas Krenn GIT repository for check_ipmi_sensor"
                 }],
 
+                "doc": {
+                    "en_US": [
+                        "<h4>IPMI Sensor Monitoring Plugin</h4>",
+                        "<p>Using this plugin, the hardware status of a server can be monitored by Nagios",
+                        "or Icinga. As specific examples, fan rotation speeds, temperatures, voltages,",
+                        "power consumption, power supply performance and more will be monitored.</p>"
+                    ]
+                },
+
                 "tk_notify": true,
                 "tk_notify_default": true
             }

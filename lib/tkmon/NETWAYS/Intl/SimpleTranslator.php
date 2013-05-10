@@ -37,6 +37,7 @@ class SimpleTranslator
     const DEFAULT_LOCALE = 'en_US';
 
     /**
+     * Default locale used when specific one not found
      * @var string
      */
     private $defaultLocale = null;
@@ -84,6 +85,7 @@ class SimpleTranslator
     }
 
     /**
+     * Setter for locale
      * @param string $locale
      */
     public function setLocale($locale)
@@ -92,11 +94,30 @@ class SimpleTranslator
     }
 
     /**
+     * Getter for locale
      * @return string
      */
     public function getLocale()
     {
         return $this->locale;
+    }
+
+    /**
+     * Makes data to string
+     *
+     * @param mixed $data
+     * @throws Exception\SimpleTranslatorException
+     * @return string
+     */
+    public static function textProcessor($data)
+    {
+        if (is_array($data)) {
+            return implode(' ', $data);
+        } elseif (is_scalar($data)) {
+            return (string)$data;
+        }
+
+        throw new SimpleTranslatorException('Data not supported');
     }
 
     /**
@@ -112,9 +133,9 @@ class SimpleTranslator
         }
 
         if ($this->getLocale() !== null && isset($textStruct->{$this->getLocale()})) {
-            return $textStruct->{$this->getLocale()};
+            return self::textProcessor($textStruct->{$this->getLocale()});
         } elseif (isset($textStruct->{$this->getDefaultLocale()})) {
-            return $textStruct->{$this->getDefaultLocale()};
+            return self::textProcessor($textStruct->{$this->getDefaultLocale()});
         } else {
             throw new SimpleTranslatorException(
                 'Locale not found: '

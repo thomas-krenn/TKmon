@@ -198,3 +198,13 @@ iframe.iframe-seamless {
 .jquery-refresh-timer .timer-info {
     margin: 0 5px 0 0;
 }
+
+/** Marco styles **/
+
+.link-linkbox-container {
+    display: inline;
+}
+
+.doc-docbox-container {
+    display: inline;
+}

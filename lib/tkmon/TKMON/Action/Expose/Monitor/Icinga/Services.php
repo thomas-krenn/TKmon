@@ -21,6 +21,7 @@
 
 namespace TKMON\Action\Expose\Monitor\Icinga;
 
+use NETWAYS\Intl\SimpleTranslator;
 use TKMON\Model\Icinga\ServiceData;
 
 /**
@@ -145,19 +146,7 @@ class Services extends \TKMON\Action\Base
 
             $meta = $this->container['serviceCatalogue']->getAttributes($catalogueId);
 
-            /*
-             * Thomas Krenn flag if we want to switch on notification
-             * @todo No function to extend this
-             */
-            if (isset($meta->tk_notify) && $meta->tk_notify === true) {
-                $template['tk_notify'] = true;
-                $template['tk_notify_default'] =
-                    isset($meta->tk_notify_default) ? (boolean) $meta->tk_notify_default : true;
-            }
-
-            if (isset($meta->links)) {
-                $template['links'] = $meta->links;
-            }
+            $this->additionalMetaProcessing($template, $meta);
 
             $response->addData($template->toString());
 
@@ -217,19 +206,7 @@ class Services extends \TKMON\Action\Base
 
             $meta = $serviceCatalogue->getAttributes($params['serviceCatalogueId']);
 
-            /*
-             * Thomas Krenn flag if we want to switch on notification
-             * @todo No function to extend this
-             */
-            if (isset($meta->tk_notify) && $meta->tk_notify === true) {
-                $template['tk_notify'] = true;
-                $template['tk_notify_default'] =
-                    isset($meta->tk_notify_default) ? (boolean) $meta->tk_notify_default : true;
-            }
-
-            if (isset($meta->links)) {
-                $template['links'] = $meta->links;
-            }
+            $this->additionalMetaProcessing($template, $meta);
 
             $template['service'] = $item;
             $template['host'] = $host;
@@ -243,6 +220,32 @@ class Services extends \TKMON\Action\Base
         }
 
         return $response;
+    }
+
+    /**
+     * Process catalogue meta data and template vars
+     * @param \TKMON\Mvc\Output\TwigTemplate $template
+     * @param \stdClass $meta
+     */
+    private function additionalMetaProcessing(\TKMON\Mvc\Output\TwigTemplate $template, \stdClass $meta)
+    {
+        /*
+         * Thomas Krenn flag if we want to switch on notification
+         * @todo No function to extend this
+         */
+        if (isset($meta->tk_notify) && $meta->tk_notify === true) {
+            $template['tk_notify'] = true;
+            $template['tk_notify_default'] =
+                isset($meta->tk_notify_default) ? (boolean) $meta->tk_notify_default : true;
+        }
+
+        if (isset($meta->links)) {
+            $template['links'] = $meta->links;
+        }
+
+        if (isset($meta->doc)) {
+            $template['doc'] = SimpleTranslator::textProcessor($meta->doc);
+        }
     }
 
     /**

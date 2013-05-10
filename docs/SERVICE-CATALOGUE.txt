@@ -405,6 +405,11 @@ Keys
     items: **href**, **name**, **description**. Every part can be
     translated with the model explained in appendix **D**.
 
+**doc** (array of objects or array)::
+    Inline doc strings to provide basic information for service
+    checks. HTML can be used, multiline is done via **array**
+    notation. See appendix **F** for more information.
+
 ***tk_notify*** (boolean)::
     Thomas Krenn notification flag, if set this service can
     reported to Thomas Krenn.
@@ -605,5 +610,37 @@ the IPMI plugin.
         "href": "http://git.thomas-krenn.com/?p=check_ipmi_sensor_v3.git;a=summary",
         "description": "Thomas Krenn GIT repository for check_ipmi_sensor"
     }]
+}
+-------------------------------------------------------------------------------
+
+F: Use inline documentation
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+With translation:
+^^^^^^^^^^^^^^^^^
+
+-------------------------------------------------------------------------------
+"_catalogue_attributes": {
+    "doc": {
+        "en_US": [
+            "<h4>IPMI Sensor Monitoring Plugin</h4>",
+            "<p>Using this plugin, the hardware status of a server can be monitored by Nagios",
+            "or Icinga. As specific examples, fan rotation speeds, temperatures, voltages,",
+            "power consumption, power supply performance and more will be monitored.</p>"
+        ]
+    }
+}
+-------------------------------------------------------------------------------
+
+Without translation:
+^^^^^^^^^^^^^^^^^^^^
+-------------------------------------------------------------------------------
+"_catalogue_attributes": {
+    "doc": [
+            "<h4>IPMI Sensor Monitoring Plugin</h4>",
+            "<p>Using this plugin, the hardware status of a server can be monitored by Nagios",
+            "or Icinga. As specific examples, fan rotation speeds, temperatures, voltages,",
+            "power consumption, power supply performance and more will be monitored.</p>"
+    ]
 }
 -------------------------------------------------------------------------------

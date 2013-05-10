@@ -176,7 +176,7 @@ class JsonFiles extends \ICINGA\Base\CatalogueProvider
     {
         $check = false;
         foreach ($object as $name => $value) {
-            if (preg_match('/^\w{2}_\w{2,}$/', $name) && is_string($value)) {
+            if (preg_match('/^\w{2}_\w{2,}$/', $name) && (is_string($value) || is_array($value))) {
                 $check = true;
                 break;
             }
