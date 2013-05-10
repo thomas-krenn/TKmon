@@ -46,12 +46,7 @@
     "locale.name":          "en_US",
     "locale.list": [
         { "locale": "de_DE", "label": "German" },
-        { "locale": "en_US", "label": "English" },
-        { "locale": "it_IT", "label": "Italian" },
-        { "locale": "pl_PL", "label": "Polish" },
-        { "locale": "es_ES", "label": "Spanish" },
-        { "locale": "cs_CZ", "label": "Czech" },
-        { "locale": "nl_NL", "label": "Dutch" }
+        { "locale": "en_US", "label": "English" }
     ],
 
     "icinga.passwdfile": "/etc/icinga/htpasswd.users",
@@ -61,7 +56,7 @@
     "icinga.tkuser": "tkadmin",
     "icinga.tkpasswd": "7RMan59XmN9t3FO2evmB",
     "icinga.baseurl": "http://localhost",
-    "icinga.accessurl": "http://{web.domain}/icinga",
+    "icinga.accessurl": "https://{web.domain}/icinga",
     "icinga.freshness": "20",
 
     "icinga.dir.base": "/etc/icinga/tkmon",

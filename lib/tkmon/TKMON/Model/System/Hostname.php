@@ -34,6 +34,7 @@ class Hostname extends \TKMON\Model\ApplicationModel
 
     const FILE_HOSTS = '/etc/hosts';
     const FILE_HOST_NAME = '/etc/hostname';
+    const FILE_MAILNAME = '/etc/mailname';
 
     /**
      * Filename of hostname file
@@ -46,6 +47,12 @@ class Hostname extends \TKMON\Model\ApplicationModel
      * @var string
      */
     private $hostsFile = self::FILE_HOSTS;
+
+    /**
+     * Mailname file (e.g. postfix)
+     * @var string
+     */
+    private $mailnameFile = self::FILE_MAILNAME;
 
     /**
      * hostname / device name
@@ -163,6 +170,24 @@ class Hostname extends \TKMON\Model\ApplicationModel
     }
 
     /**
+     * Setter for mailname file
+     * @param string $mailnameFile
+     */
+    public function setMailnameFile($mailnameFile)
+    {
+        $this->mailnameFile = $mailnameFile;
+    }
+
+    /**
+     * Getter for mailname file
+     * @return string
+     */
+    public function getMailnameFile()
+    {
+        return $this->mailnameFile;
+    }
+
+    /**
      * Sets the host and domain together
      * @param $fullHostname
      * @throws \TKMON\Exception\ModelException
@@ -254,6 +279,7 @@ class Hostname extends \TKMON\Model\ApplicationModel
         $hostsFile = new \NETWAYS\IO\RealTempFileObject(self::TEMP_PREFIX, 'w');
         $hostsFile->fwrite($this->getHostsContent());
         $hostsFile->fflush();
+        $hostsFile->chmod(0644);
 
         $mv->addPositionalArgument($hostsFile->getRealPath());
         $mv->addPositionalArgument($this->getHostsFile());
@@ -263,9 +289,21 @@ class Hostname extends \TKMON\Model\ApplicationModel
         $hostnameFile = new \NETWAYS\IO\RealTempFileObject(self::TEMP_PREFIX, 'w');
         $hostnameFile->fwrite($this->getHostnameContent());
         $hostnameFile->fflush();
+        $hostnameFile->chmod(0644);
 
         $mv->addPositionalArgument($hostnameFile->getRealPath());
         $mv->addPositionalArgument($this->getHostnameFile());
+        $mv->execute();
+        $mv->resetPositionalArguments();
+
+        $mailnameFile = new \NETWAYS\IO\RealTempFileObject(self::TEMP_PREFIX, 'w');
+        $mailnameFile->fwrite($this->getCombined());
+        $mailnameFile->fflush();
+        $mailnameFile->chmod(0644);
+
+        // Also update /etc/mailname for postfix
+        $mv->addPositionalArgument($mailnameFile->getRealPath());
+        $mv->addPositionalArgument($this->getMailnameFile());
         $mv->execute();
 
         /** @var $hostname \NETWAYS\IO\Process **/

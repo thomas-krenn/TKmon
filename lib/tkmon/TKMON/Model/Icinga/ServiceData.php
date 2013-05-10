@@ -49,6 +49,10 @@ class ServiceData extends \TKMON\Model\ApplicationModel implements \NETWAYS\Chai
      */
     private $stopOnFirstHandlerException=false;
 
+    /**
+     * Create a new object
+     * @param \Pimple $container
+     */
     public function __construct(\Pimple $container)
     {
         parent::__construct($container);
