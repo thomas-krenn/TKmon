@@ -22,7 +22,10 @@
 namespace TKMON\Extension\Host;
 
 use ICINGA\Object\Host;
+use NETWAYS\Intl\Exception\SimpleTranslatorException;
+use TKMON\Exception\ModelException;
 use TKMON\Interfaces\ApplicationModelInterface;
+use TKMON\Model\ThomasKrenn\RestInterface;
 
 /**
  * Attributes for ThomasKrenn products
@@ -32,6 +35,54 @@ use TKMON\Interfaces\ApplicationModelInterface;
  */
 class ThomasKrennAttributes extends \NETWAYS\Chain\ReflectionHandler implements ApplicationModelInterface
 {
+    /**
+     * CustomVariable name for serial
+     * @var string
+     */
+    const CV_SERIAL = 'serial';
+
+    /**
+     * CustomVariable name for operating system
+     * @var string
+     */
+    const CV_OS = 'os';
+
+    /**
+     * CustomVariable name for Thomas Krenn wiki link
+     * @var string
+     */
+    const CV_TK_WIKI_LINK = 'tk_wiki_link';
+
+    /**
+     * CustomVariable name for Thomas Krenn product title
+     * @var string
+     */
+    const CV_TK_PRODUCT_TITLE = 'tk_product_title';
+
+    /**
+     * CustomVariable name for IPMI ip
+     * @var string
+     */
+    const CV_IPMI_IP = 'ipmi_ip';
+
+    /**
+     * CustomVariable name for IPMI user
+     * @var string
+     */
+    const CV_IPMI_USER = 'ipmi_user';
+
+    /**
+     * CustomVariable name for IPMI password
+     * @var string
+     */
+    const CV_IPMI_PASSWORD = 'ipmi_password';
+
+    /**
+     * CustomVariable name for SNMP community
+     * @var string
+     */
+    const CV_SNMP_COMMUNITY = 'snmp_community';
+
     /**
      * DI container
      * @var \Pimple
@@ -73,12 +124,55 @@ class ThomasKrennAttributes extends \NETWAYS\Chain\ReflectionHandler implements 
     {
         $attributes->fromArray(
             array(
-                'serial'          => new \TKMON\Form\Field\Text('serial', _('Serial')), // Mandatory for tkalert
-                'os'              => new \TKMON\Form\Field\Text('os', _('Operating system')), // Mandatory for tkalert
-                'ipmi_ip'         => new \TKMON\Form\Field\Text('ipmi_ip', _('IPMI IP address'), false),
-                'ipmi_user'       => new \TKMON\Form\Field\Text('ipmi_user', _('IPMI user'), false),
-                'ipmi_password'   => new \TKMON\Form\Field\Text('ipmi_password', _('IPMI password'), false),
-                'snmp_community'  => new \TKMON\Form\Field\Text('snmp_community', _('SNMP community'), false)
+                /*
+                 * Thomsa Krenn customer data
+                 */
+                self::CV_SERIAL => new \TKMON\Form\Field\Text(
+                    self::CV_SERIAL,
+                    _('Serial')
+                ), // Mandatory for tkalert
+                self::CV_OS => new \TKMON\Form\Field\Text(
+                    self::CV_OS,
+                    _('Operating system')
+                ), // Mandatory for tkalert
+
+                /*
+                 * Thomas Krenn product data
+                 */
+                self::CV_TK_WIKI_LINK => new \TKMON\Form\Field\TextReadonly(
+                    self::CV_TK_WIKI_LINK,
+                    _('Thomas Krenn wiki link'),
+                    false
+                ),
+                self::CV_TK_PRODUCT_TITLE => new \TKMON\Form\Field\TextReadonly(
+                    self::CV_TK_PRODUCT_TITLE,
+                    _('Thomas Krenn product title'),
+                    false
+                ),
+
+                /*
+                 * Additional vars for configure check plugins
+                 */
+                self::CV_IPMI_IP => new \TKMON\Form\Field\Text(
+                    self::CV_IPMI_IP,
+                    _('IPMI IP address'),
+                    false
+                ),
+                self::CV_IPMI_USER => new \TKMON\Form\Field\Text(
+                    self::CV_IPMI_USER,
+                    _('IPMI user'),
+                    false
+                ),
+                self::CV_IPMI_PASSWORD => new \TKMON\Form\Field\Text(
+                    self::CV_IPMI_PASSWORD,
+                    _('IPMI password'),
+                    false
+                ),
+                self::CV_SNMP_COMMUNITY => new \TKMON\Form\Field\Text(
+                    self::CV_SNMP_COMMUNITY,
+                    _('SNMP community'),
+                    false
+                )
             )
         );
     }
@@ -90,6 +184,7 @@ class ThomasKrennAttributes extends \NETWAYS\Chain\ReflectionHandler implements 
     public function commandBeforeHostCreate(Host $host)
     {
         $this->updateHostTemplate($host);
+        $this->updateHostCustomVariables($host);
     }
 
     /**
@@ -99,6 +194,7 @@ class ThomasKrennAttributes extends \NETWAYS\Chain\ReflectionHandler implements 
     public function commandBeforeHostUpdate(Host $host)
     {
         $this->updateHostTemplate($host);
+        $this->updateHostCustomVariables($host);
     }
 
     /**
@@ -111,5 +207,38 @@ class ThomasKrennAttributes extends \NETWAYS\Chain\ReflectionHandler implements 
     public function updateHostTemplate(Host $host)
     {
         $host->setUse($this->container['config']['thomaskrenn.icinga.template.host']);
+    }
+
+    /**
+     * Add data to host from Thomas Krenn webservice
+     * @param Host $host
+     * @throws \TKMON\Exception\ModelException
+     */
+    public function updateHostCustomVariables(Host $host)
+    {
+        $authKey = $this->container['config']['thomaskrenn.alert.authkey'];
+        if (!$authKey) {
+            throw new ModelException('AuthKey not configured!');
+        }
+
+        $serial = $host->getCustomVariable(self::CV_SERIAL);
+        if (!$serial) {
+            throw new ModelException('Serial not entered');
+        }
+
+
+        $restInterface = new RestInterface($this->container);
+        $restInterface->setAuthKey($authKey);
+        $restInterface->setLangFromUserObject($this->container['user']);
+
+        try {
+            $detailObject = $restInterface->getProductDetailFromSerial($serial);
+            $host->addCustomVariable(self::CV_TK_PRODUCT_TITLE, $detailObject->title);
+            $host->addCustomVariable(self::CV_TK_WIKI_LINK, $detailObject->wiki_link);
+        } catch (\Exception $e) {
+            $host->addCustomVariable(self::CV_TK_PRODUCT_TITLE, '');
+            $host->addCustomVariable(self::CV_TK_WIKI_LINK, '');
+            throw new ModelException('Could not find any products for '. $serial. ' (error: '. $e->getMessage(). ')');
+        }
     }
 }

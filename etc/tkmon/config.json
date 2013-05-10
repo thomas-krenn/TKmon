@@ -90,7 +90,7 @@
     "thomaskrenn.icinga.template.host": "thomas-krenn-host",
     "thomaskrenn.icinga.template.service": "thomas-krenn-service",
     "thomaskrenn.rest.serial": "https://www.thomas-krenn.com/api/serials",
-    "thomaskrenn.rest.product": "https://www.thomas-krenn.com/api/products/",
+    "thomaskrenn.rest.product": "https://www.thomas-krenn.com/api/products",
 
     "thomaskrenn.alert.authkey": "",
     "thomaskrenn.alert.person": "",

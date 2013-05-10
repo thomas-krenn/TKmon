@@ -74,6 +74,23 @@ class RestInterface extends ApplicationModel
     }
 
     /**
+     * Configure lang from user object
+     * @param User $user
+     * @return bool
+     * @throws \TKMON\Exception\ModelException
+     */
+    public function setLangFromUserObject(User $user)
+    {
+        $m = array();
+        if (preg_match('/^(\w{2})_/', $user->getLocale(), $m)) {
+            $this->setLang($m[1]);
+            return true;
+        }
+
+        throw new ModelException('Could not detect lang from user locale: '. $user->getLocale());
+    }
+
+    /**
      * Setter for lang
      * @return string
      */
@@ -192,6 +209,18 @@ class RestInterface extends ApplicationModel
     }
 
     /**
+     * Product detail from serialNo
+     * @param $serialNo
+     * @return \stdClass
+     */
+    public function getProductDetailFromSerial($serialNo)
+    {
+        $productId = $this->getProductIdForSerial($serialNo);
+        $detail = $this->getProductDetail($productId);
+        return $detail;
+    }
+
+    /**
      * Get the wiki url for serial no
      * @param string $serialNo
      * @return string
@@ -199,8 +228,7 @@ class RestInterface extends ApplicationModel
     public function getWikiLinkForSerial($serialNo)
     {
         // No assertion needed, comes now!
-        $productId = $this->getProductIdForSerial($serialNo);
-        $detail = $this->getProductDetail($productId);
+        $this->getProductIdForSerial($serialNo);
         return $detail->wiki_link;
     }
 }
