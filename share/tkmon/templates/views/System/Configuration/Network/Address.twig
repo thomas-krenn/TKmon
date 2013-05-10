@@ -1,12 +1,12 @@
-<h4>IP adress settings</h4>
+<h4>IP address settings</h4>
 
-<p>On this page you can change your ip settings.</p>
+<p>On this page you can change your IP settings.</p>
 
 <div class="alert alert-error">
     <i class="icon-exclamation-sign"></i>
     {% trans %}
-    If any changes here you can not access your appliance anymore and you have to
-    reset the configuration to its default.
+    Attention: setting wrong network parameters here can make this webinterface unreachable on your network.
+    In this case you have to login to the local console and correct your network settings at the local shell.
     {% endtrans %}
 </div>
 
@@ -27,7 +27,7 @@
     <div id="ip-success" class="hidden alert alert-success">
         <h4>{% trans "Success" %}!</h4>
         {% trans %}
-        Your new network configuration hast been set and applied!
+        Your new network configuration has been set and applied.
         {% endtrans %}
     </div>
 
@@ -49,8 +49,8 @@
         <input type="text" name="ip_netmask" id="ip_netmask" value="{{ ip_netmask }}" />
     </fieldset>
 
-    <fieldset class="container-spacer-down">
-        <label for="ip_gateway">{% trans "Gateway" %}</label>
+    <fieldset>
+        <label for="ip_gateway">{% trans "Default Gateway" %}</label>
         <input type="text" name="ip_gateway" id="ip_gateway" value="{{ ip_gateway }}" />
     </fieldset>
 

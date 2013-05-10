@@ -1,12 +1,12 @@
-{% set tk_info_link = 'http://www.thomas-krenn.com' %}
-{% set tk_privacy_link = 'http://www.thomas-krenn.com' %}
+{% set tk_info_link = 'http://www.thomas-krenn.com/en/wiki/Call-Home-Service' %}
+{% set tk_privacy_link = 'http://www.thomas-krenn.com/en/wiki/Call-Home-Service_Privacy_Policy' %}
 {% set restart_link = web_link('Monitor/Daemon/Index#daemon-restart') %}
 
 <h2>{% trans "Settings" %}</h2>
 
 <div class="alert alert-info">
     {% trans %}
-    Here you can configure your Thomas Krenn Call-Home Support Subscription. Click the
+    Here you can configure your Thomas Krenn Call-Home-Service Subscription. Click the
     <a href="{{ tk_info_link }}">following link to get more information</a>.
     {% endtrans %}
 </div>
@@ -14,7 +14,7 @@
 <p>
 {% trans %}
     All data betwenn your environment and Thomas Krenn will be encrypted. Read more on
-    our <strong><a href="{{ tk_privacy_link }}">Privacy Submission Policy</a></strong>.
+    our <strong><a href="{{ tk_privacy_link }}">Call-Home-Service Privacy Policy</a></strong>.
 {% endtrans %}
 </p>
 
@@ -25,7 +25,7 @@
     <p>
         {% trans %}
             Changes have been written to disk.
-            <a href="{{ restart_link }}">Please restart your Icinga instance afterwards.</a>
+            Please <a href="{{ restart_link }}">restart your Icinga instance</a> for the changes to take effect.
         {% endtrans %}
     </p>
 </div>
@@ -50,13 +50,13 @@
     </fieldset>
 
     <fieldset>
-        <label for="authkey">{% trans "Auth key" %}</label>
+        <label for="authkey">{% trans "Call-Home Auth-Key" %}</label>
         <input type="text" name="authkey" id="authkey" value="{{ authkey }}" />
     </fieldset>
 
     <p class="container-spacer-down">
         {% trans %}
-            When ready, press button to commit.
+            Press the following button to commit your changes.
         {% endtrans %}
 
         <button type="submit" class="btn btn-primary">

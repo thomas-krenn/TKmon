@@ -2,11 +2,11 @@
 <h2>{% trans "Restore configuration" %}</h2>
 
 <div class="alert alert-info container-spacer-down">
-    <h4>{% trans "Repair your appliance" %}</h4>
+    <h4>{% trans "Restore backup configuration" %}</h4>
     <p>
 
     {% trans  %}
-    If you have a configuration dump of your appliance you can restore settings, this includes:
+    If you have a backup configuration of your TKmon appliance you can restore those settings. This includes:
     {% endtrans  %}
 
     </p>
@@ -14,7 +14,7 @@
     <ul>
         <li>{% trans "Icinga configuration (hosts, services)" %}</li>
         <li>{% trans "Software settings (database, configuration files)" %}</li>
-        <li>{% trans "Operating system (IP, dns, mail)" %}</li>
+        <li>{% trans "Operating system (IP, DNS, email)" %}</li>
     </ul>
 
 
@@ -24,9 +24,9 @@
     <h4>{% trans "Warning" %}</h4>
     <p>
         {% trans %}
-        After restore, appliance will reboot to complete system changes. Keep in mind that the system is
-        not reachable through network (ip changes) and your Icinga instance is not able to monitor
-        your environment!
+        After the restore the appliance will reboot to complete system changes. Keep in mind that the system is
+        not reachable through the network and your Icinga instance is not able to monitor
+        your environment during the reboot.
         {% endtrans %}
     </p>
 </div>
@@ -56,7 +56,7 @@
 
     <h4 class="container-spacer-down-2x">
         {% trans %}
-        2. Enter password for file or leave blank
+        2. Enter the password of the file or leave the field blank if no password has been set
         {% endtrans %}
     </h4>
 
@@ -67,7 +67,7 @@
 
     <h4 class="container-spacer-down">
         {% trans %}
-        3. Think about and commit your action!
+        3. If you are sure that you want to restore the backup configuration, click the button below
         {% endtrans %}
     </h4>
 
@@ -130,7 +130,7 @@
                         rebootStatus = 'UP';
 
                         var link = '{{ home_link }}';
-                        var message = '{% trans 'System is up again, redirecting home. If not, please manually go to ' %} ' +
+                        var message = '{% trans 'The system is up again, redirecting to home. If not, please go manually to ' %} ' +
                                 '<a href="' + link + '">Index</a>';
 
                         messageHandler(true, message);
@@ -215,7 +215,7 @@
                                 messageHandler(false, messages.join(', '));
                                 finishHandler();
                             } else {
-                                messageHandler(true, '{% trans "Config restored, initiating reboot. Please be patient for at least 5 minutes" %}', 'info');
+                                messageHandler(true, '{% trans "Configuration restored, initiating reboot. Please be patient for at least 5 minutes" %}', 'info');
                                 rebootHandler();
                             }
                         }
