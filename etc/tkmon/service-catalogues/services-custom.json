@@ -198,14 +198,17 @@
             }
         },
         {
-            "service_description": "adaptec-raid-remote",
-            "display_name": "Adaptec RAID Remote (NRPE)",
+            "service_description": "adaptec-raid-nrpe",
+            "display_name": "Adaptec RAID",
             "check_command": {
                 "command_name": "check_nrpe_1arg",
                  "arguments": [
                     {
                         "label": "command",
-                        "description": "Name of the command that the remote NRPE daemon should run",
+                        "description": {
+                            "en_US": "Command which the remote NRPE daemon executes",
+                            "de_DE": "Kommando, das vom entfernten NRPE Daemon ausgeführt wird"
+                        },
                         "validation": "string",
                         "argument": "-c",
 			"value": "check_adaptec_raid"
@@ -214,11 +217,42 @@
             },
             "_catalogue_attributes": {
                 "tags": ["remote", "Adaptec", "RAID"],
-                "name": "adaptec-raid-remote",
-                "label": "Adaptec RAID",
-                "description": "Checks the Adaptec RAID",
+                "name": "adaptec-raid-nrpe",
+                "label": "Adaptec RAID via NRPE",
+                "description": {
+                        "en_US": "Checks the status of a remote Adaptec RAID via NRPE",
+                        "de_DE": "Testet den Status eines entfernten Adaptec RAIDs via NRPE"
+                },
                 "defined": true,
-                "defined_in": "/etc/nagios-plugins/config/check_nrpe.cfg"
+                "defined_in": "/etc/nagios-plugins/config/check_nrpe.cfg",
+
+                "links": [{
+                    "name": "Adaptec RAID Monitoring Plugin",
+                    "href": {
+                        "en_US": "http://www.thomas-krenn.com/en/wiki/Adaptec_RAID_Monitoring_Plugin",
+                        "de_DE": "http://www.thomas-krenn.com/de/wiki/Adaptec_RAID_Monitoring_Plugin"
+                    },
+                    "description": {
+                        "en_US": "Wiki article about the Adaptec RAID Monitoring Plugin",
+                        "de_DE": "Wiki Artikel zum Adaptec RAID Monitoring Plugin"
+                    }
+                }],
+
+                "doc": {
+                    "en_US": [
+                        "<h4>Adaptec RAID Monitoring Plugin (via NRPE)</h4>",
+                        "<p>Using this plugin, the status of a remote Adaptec RAID can be monitored by Nagios",
+                        "or Icinga. Please ensure to configure the NRPE daemon on the remote host.</p>"
+                    ],
+                    "de_DE": [
+                        "<h4>Adaptec RAID Monitoring Plugin (über NRPE)</h4>",
+                        "<p>Mit diesem Plugin kann der Status eines Adaptec RAIDs eines entfernten Servers mit Nagios oder Icinga",
+                        "überwacht werden. Bitte stellen Sie die korrekte Konfiguration des NRPE Daemons am entfernten Server sicher.</p>"
+                    ]
+                },
+
+                "tk_notify": true,
+                "tk_notify_default": true
             }
         },
         {
