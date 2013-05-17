@@ -271,14 +271,17 @@
             }
         },
         {
-            "service_description": "linux-software-raid-remote",
-            "display_name": "Linux Software RAID Remote (NRPE)",
+            "service_description": "linux-software-raid-nrpe",
+            "display_name": "Linux Software RAID",
             "check_command": {
                 "command_name": "check_nrpe_1arg",
                  "arguments": [
                     {
                         "label": "command",
-                        "description": "Name of the command that the remote NRPE daemon should run",
+                        "description": {
+                            "en_US": "Command which the remote NRPE daemon executes",
+                            "de_DE": "Kommando, das vom entfernten NRPE Daemon ausgeführt wird"
+                        },
                         "validation": "string",
                         "argument": "-c",
 			"value": "check_linux_raid"
@@ -287,11 +290,42 @@
             },
             "_catalogue_attributes": {
                 "tags": ["remote", "software RAID"],
-                "name": "linux-software-raid-remote",
-                "label": "Linux Software RAID Remote (NRPE)",
-                "description": "Checks the linux software RAID",
+                "name": "linux-software-raid-nrpe",
+                "label": "Linux Software RAID via NRPE",
+                "description": {
+                        "en_US": "Checks the status of a remote Linux software RAID via NRPE",
+                        "de_DE": "Testet den Status eines entfernten Linux Software RAIDs via NRPE"
+                },
                 "defined": true,
-                "defined_in": "/etc/nagios-plugins/config/check_nrpe.cfg"
+                "defined_in": "/etc/nagios-plugins/config/check_nrpe.cfg",
+
+                "links": [{
+                    "name": "Linux Software RAID Monitoring Plugin",
+                    "href": {
+                        "en_US": "http://www.thomas-krenn.com/en/wiki/Linux_Software_RAID_Monitoring_Plugin",
+                        "de_DE": "http://www.thomas-krenn.com/de/wiki/Linux_Software_RAID_Monitoring_Plugin"
+                    },
+                    "description": {
+                        "en_US": "Wiki article about the Linux Software RAID Monitoring Plugin",
+                        "de_DE": "Wiki Artikel zum Linux Software RAID Monitoring Plugin"
+                    }
+                }],
+
+                "doc": {
+                    "en_US": [
+                        "<h4>Linux Software RAID Monitoring Plugin (via NRPE)</h4>",
+                        "<p>Using this plugin, the status of a remote Linux Software RAID can be monitored by Nagios",
+                        "or Icinga. Please ensure to configure the NRPE daemon on the remote host.</p>"
+                    ],
+                    "de_DE": [
+                        "<h4>Linux Software RAID Monitoring Plugin (über NRPE)</h4>",
+                        "<p>Mit diesem Plugin kann der Status eines Linux Software RAIDs eines entfernten Servers mit Nagios oder Icinga",
+                        "überwacht werden. Bitte stellen Sie die korrekte Konfiguration des NRPE Daemons am entfernten Server sicher.</p>"
+                    ]
+                },
+
+                "tk_notify": true,
+                "tk_notify_default": true
             }
         }
     ]

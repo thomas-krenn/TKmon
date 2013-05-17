@@ -54,40 +54,43 @@
             }
         },
         {
-            "service_description": "ipmi-tkmon-custom1",
-            "display_name": "IPMI CustomVars",
+            "service_description": "ipmi-sensors",
+            "display_name": "IPMI Sensors",
             "check_command": {
-                "command_name": "check_ipmi_tkmon_custom1",
+                "command_name": "check_ipmi_sensor",
                 "arguments": null
             },
             "_catalogue_attributes": {
                 "tags": ["remote", "ipmi", "hardware", "tkmon"],
-                "name": "ipmi-tkmon-custom1",
+                "name": "ipmi-sensors",
                 "label": {
-                    "en_US": "IPMI check with customvars",
-                    "de_DE": "IPMI test mit Customvars"
+                    "en_US": "IPMI Check",
+                    "de_DE": "IPMI Test"
                 },
                 "description": {
-                    "en_US": "Check all IPMI parameters with customvars",
-                    "de_DE": "Testen aller IPMI Parameter mit Customvars"
+                    "en_US": "Checks all IPMI sensors",
+                    "de_DE": "Testet alle IPMI Sensoren"
                 },
                 "defined": true,
                 "defined_in": "/etc/icinga/tkmon/base/05-check-commands.cfg",
 
                 "links": [{
-                    "name": "IPMI Wiki",
+                    "name": "IPMI Sensor Monitoring Plugin",
                     "href": {
                         "en_US": "http://www.thomas-krenn.com/en/wiki/IPMI_Sensor_Monitoring_Plugin",
                         "de_DE": "http://www.thomas-krenn.com/de/wiki/IPMI_Sensor_Monitoring_Plugin"
                     },
                     "description": {
-                        "en_US": "Official IPMI wiki article from Thomas Krenn",
-                        "de_DE": "Offizieller IPMI wiki Artikel von Thomas Krenn"
+                        "en_US": "Official wiki article about the IPMI Sensor Monitoring Plugin from Thomas Krenn",
+                        "de_DE": "Offizieller Wiki Artikel zum IPMI Sensor Monitoring Plugin von Thomas Krenn"
                     }
                 }, {
                     "name": "GIT Repository",
                     "href": "http://git.thomas-krenn.com/?p=check_ipmi_sensor_v3.git;a=summary",
-                    "description": "Thomas Krenn GIT repository for check_ipmi_sensor"
+                    "description": {
+                        "en_US": "Official GIT repository of the IPMI Sensor Monitoring Plugin from Thomas Krenn",
+                        "de_DE": "Offizielles GIT Repository des IPMI Sensor Monitoring Plugins von Thomas Krenn"
+                    }
                 }],
 
                 "doc": {
@@ -95,7 +98,13 @@
                         "<h4>IPMI Sensor Monitoring Plugin</h4>",
                         "<p>Using this plugin, the hardware status of a server can be monitored by Nagios",
                         "or Icinga. As specific examples, fan rotation speeds, temperatures, voltages,",
-                        "power consumption, power supply performance and more will be monitored.</p>"
+                        "power supply states and more will be monitored.</p>"
+                    ],
+                    "de_DE": [
+                        "<h4>IPMI Sensor Monitoring Plugin</h4>",
+                        "<p>Mit diesem Plugin kann der Hardware Status eines Servers mit Nagios oder Icinga",
+                        "überwacht werden. Beispiele für Sensoren, die überwacht werden, sind Lüfterdrehzahlen,",
+                        "Temperaturen, Spannungen, Netzteilstatus und mehr.</p>"
                     ]
                 },
 
@@ -105,19 +114,31 @@
         },
         {
             "service_description": "vmware-esxi-hardware",
-            "display_name": "VMware ESXi hardware check",
+            "display_name": "VMware ESXi Hardware",
             "check_command": {
                 "command_name": "check_esxi_hardware",
                 "arguments": [
                     {
-                        "label": "Username",
-                        "description": "Username to access ESXi server. Don't use a root/Administrator user for that!",
+                        "label": {
+                            "en_US": "Username",
+                            "de_DE": "Benutzername"
+                        },
+                        "description": {
+                            "en_US": "Username to access the ESXi server. Don't use a user with root privileges for that!",
+                            "de_DE": "Benutzername für den Zugriff auf den ESXi Server. Hier keinen Benutzer mit root Rechten verwenden!"
+                        },
                         "validation": "string",
                         "argument": "-U"
                     },
                     {
-                        "label": "Password",
-                        "description": "Password to access ESXi server. Don't use a root/Administrator user for that!",
+                        "label": {
+                            "en_US": "Password",
+                            "de_DE": "Passwort"
+                        },
+                        "description": {
+                            "en_US": "Password of the user to access the ESXi server.",
+                            "de_DE": "Passwort des Benutzers zum Zugriff auf den ESXi Server."
+                        },
                         "validation": "string",
                         "argument": "-P"
                     }
@@ -126,21 +147,68 @@
             "_catalogue_attributes": {
                 "tags": ["remote", "vmware", "esx", "esxi"],
                 "name": "vmware-esxi-hardware",
-                "label": "VMware ESXi hardware check",
-                "description": "Checks the hardware status of a Vmware ESXi host",
+                "label": {
+                    "en_US": "VMware ESXi Hardware Check",
+                    "de_DE": "VMware ESXI Hardware Test"
+                },
+                "description": {
+                    "en_US": "Checks the hardware status of a VMware ESXi host",
+                    "de_DE": "Testet den Hardware Status eines VMware ESXi Hosts"
+                },
                 "defined": true,
-                "defined_in": "/etc/nagios-plugins/config/vmware_esxi.cfg"
+                "defined_in": "/etc/nagios-plugins/config/vmware_esxi.cfg",
+
+                "links": [{
+                    "name": "ESXi Hardware Monitoring Plugin",
+                    "href": {
+                        "en_US": "http://www.thomas-krenn.com/de/wiki/VMware_ESXi_Hardware_mit_Nagios_oder_Icinga_ueberwachen",
+                        "de_DE": "http://www.thomas-krenn.com/de/wiki/VMware_ESXi_Hardware_mit_Nagios_oder_Icinga_ueberwachen"
+                    },
+                    "description": {
+                        "en_US": "Wiki article about the ESXi Hardware Monitoring Plugin",
+                        "de_DE": "Wiki Artikel zum ESXi Hardware Monitoring Plugin"
+                    }
+                }, {
+                    "name": "ESXi Hardware Monitoring Plugin Website",
+                    "href": "http://www.claudiokuenzler.com/nagios-plugins/check_esxi_hardware.php",
+                    "description": {
+                        "en_US": "Website of the check_esxi_hardware.py plugin",
+                        "de_DE": "Webseite des check_esxi_hardware.py Plugins"
+                    }
+                }],
+
+                "doc": {
+                    "en_US": [
+                        "<h4>VMware ESXi Hardware Monitoring Plugin</h4>",
+                        "<p>Using this plugin, the hardware of a VMware ESXi host can be monitored by Nagios",
+                        "or Icinga. Please ensure to install all necessary CIM providers on your ESXi host,",
+                        "e.g. the LSI CIM provider to monitor a LSI RAID controller.</p>"
+                    ],
+                    "de_DE": [
+                        "<h4>VMware ESXi Hardware Monitoring Plugin</h4>",
+                        "<p>Mit diesem Plugin kann der Hardware Status eines ESXi Servers mit Nagios oder Icinga",
+                        "überwacht werden. Bitte installieren Sie dazu am ESXi Host aller erforderlichen CIM,",
+                        "Provider, z.B. den LSI CIM Provider zur Überwachung eines LSI RAID Controllers.</p>"
+                    ]
+                },
+
+
+                "tk_notify": true,
+                "tk_notify_default": true
             }
         },
         {
-            "service_description": "adaptec-raid-remote",
-            "display_name": "Adaptec RAID Remote (NRPE)",
+            "service_description": "adaptec-raid-nrpe",
+            "display_name": "Adaptec RAID",
             "check_command": {
                 "command_name": "check_nrpe_1arg",
                  "arguments": [
                     {
                         "label": "command",
-                        "description": "Name of the command that the remote NRPE daemon should run",
+                        "description": {
+                            "en_US": "Command which the remote NRPE daemon executes",
+                            "de_DE": "Kommando, das vom entfernten NRPE Daemon ausgeführt wird"
+                        },
                         "validation": "string",
                         "argument": "-c",
 			"value": "check_adaptec_raid"
@@ -149,11 +217,42 @@
             },
             "_catalogue_attributes": {
                 "tags": ["remote", "Adaptec", "RAID"],
-                "name": "adaptec-raid-remote",
-                "label": "Adaptec RAID",
-                "description": "Checks the Adaptec RAID",
+                "name": "adaptec-raid-nrpe",
+                "label": "Adaptec RAID via NRPE",
+                "description": {
+                        "en_US": "Checks the status of a remote Adaptec RAID via NRPE",
+                        "de_DE": "Testet den Status eines entfernten Adaptec RAIDs via NRPE"
+                },
                 "defined": true,
-                "defined_in": "/etc/nagios-plugins/config/check_nrpe.cfg"
+                "defined_in": "/etc/nagios-plugins/config/check_nrpe.cfg",
+
+                "links": [{
+                    "name": "Adaptec RAID Monitoring Plugin",
+                    "href": {
+                        "en_US": "http://www.thomas-krenn.com/en/wiki/Adaptec_RAID_Monitoring_Plugin",
+                        "de_DE": "http://www.thomas-krenn.com/de/wiki/Adaptec_RAID_Monitoring_Plugin"
+                    },
+                    "description": {
+                        "en_US": "Wiki article about the Adaptec RAID Monitoring Plugin",
+                        "de_DE": "Wiki Artikel zum Adaptec RAID Monitoring Plugin"
+                    }
+                }],
+
+                "doc": {
+                    "en_US": [
+                        "<h4>Adaptec RAID Monitoring Plugin (via NRPE)</h4>",
+                        "<p>Using this plugin, the status of a remote Adaptec RAID can be monitored by Nagios",
+                        "or Icinga. Please ensure to configure the NRPE daemon on the remote host.</p>"
+                    ],
+                    "de_DE": [
+                        "<h4>Adaptec RAID Monitoring Plugin (über NRPE)</h4>",
+                        "<p>Mit diesem Plugin kann der Status eines Adaptec RAIDs eines entfernten Servers mit Nagios oder Icinga",
+                        "überwacht werden. Bitte stellen Sie die korrekte Konfiguration des NRPE Daemons am entfernten Server sicher.</p>"
+                    ]
+                },
+
+                "tk_notify": true,
+                "tk_notify_default": true
             }
         },
         {
