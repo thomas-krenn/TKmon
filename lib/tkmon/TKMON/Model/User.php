@@ -31,8 +31,11 @@ class User extends ApplicationModel
 
     /**
      * Hashing algo for passwords
+     *
+     * SHA512 is more secure:
+     * https://devops.netways.de/issues/2514
      */
-    const HASH_ALGO = 'md5';
+    const HASH_ALGO = 'sha512';
 
     /**
      * Session id for user locale
