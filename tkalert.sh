@@ -30,6 +30,6 @@ if [ -e /etc/tkalert/gnupg.conf ]; then
     GNUPG_CONFIG=/etc/tkalert/gnupg.conf
 fi
 
-$ENV PYTHONPATH=$DIR python -m $MODULE - --gnupg-config=$GNUPG_CONFIG $@
+$ENV PYTHONPATH=$DIR python -m $MODULE - --gnupg-config=$GNUPG_CONFIG "$@"
 
 exit $?
