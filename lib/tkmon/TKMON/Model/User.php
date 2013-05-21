@@ -316,14 +316,25 @@ class User extends ApplicationModel
         // Change icinga access
         $this->changeIcingaPassword($newPassword);
 
-        $newHash = hash_hmac(self::HASH_ALGO, $newPassword, $data[self::FIELD_SALT]);
+        $newSalt = $this->generateSalt();
+        $newHash = hash_hmac(self::HASH_ALGO, $newPassword, $newSalt);
 
         $db = $this->container['db'];
-        $statement = $db->prepare('UPDATE user SET password=:password WHERE ID=:id;');
+        $statement = $db->prepare('UPDATE user SET password=:password, salt=:salt WHERE ID=:id;');
         $statement->bindValue(':password', $newHash, \PDO::PARAM_STR);
+        $statement->bindValue(':salt', $newSalt, \PDO::PARAM_STR);
         $statement->bindValue(':id', $this->getId(), \PDO::PARAM_INT);
 
         return $statement->execute();
+    }
+
+    /**
+     * Generate new secure salt
+     * @return string
+     */
+    private function generateSalt()
+    {
+        return uniqid(mt_rand(), true);
     }
 
     /**
