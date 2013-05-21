@@ -21,6 +21,11 @@
 
 namespace TKMON\Model;
 
+use NETWAYS\Http\Session;
+use TKMON\Exception\ModelException;
+use TKMON\Exception\UserException;
+use TKMON\Model\Apache\PasswordFile;
+
 /**
  * This is the current user
  * @package TKMON\Model
@@ -151,6 +156,7 @@ class User extends ApplicationModel
      */
     public function initialize()
     {
+        /** @var Session $session */
         $session = $this->container['session'];
         if ($session->offsetExists(self::NS_AUTHENTICATED)) {
             $this->setAuthenticated((bool)$session->offsetGet(self::NS_AUTHENTICATED));
@@ -186,7 +192,9 @@ class User extends ApplicationModel
      */
     private function getUserData($fieldValue, $fieldName = self::FIELD_ID)
     {
+        /** @var \PDO $db */
         $db = $this->container['db'];
+
         $statement = $db->prepare(
             'SELECT * from user where '
             . $fieldName . '=:value LIMIT 1;'
@@ -216,17 +224,17 @@ class User extends ApplicationModel
      * Tries to authenticate
      * @param string $username
      * @param string $password
-     * @throws \TKMON\Exception\UserException
+     * @throws UserException
      */
     public function doAuthenticate($username, $password)
     {
 
         if (!$username) {
-            throw new \TKMON\Exception\UserException('Username is mandatory.');
+            throw new UserException('Username is mandatory.');
         }
 
         if (!$password) {
-            throw new \TKMON\Exception\UserException('Password is mandatory.');
+            throw new UserException('Password is mandatory.');
         }
 
         $data = $this->getUserData($username, self::FIELD_NAME);
@@ -246,7 +254,7 @@ class User extends ApplicationModel
             }
         }
 
-        throw new \TKMON\Exception\UserException('Could not authenticate user: ' . $username);
+        throw new UserException('Could not authenticate user: ' . $username);
     }
 
     /**
@@ -274,38 +282,39 @@ class User extends ApplicationModel
      * @param string $currentPassword
      * @param string $newPassword
      * @param string $verification
-     * @return bool
-     * @throws \TKMON\Exception\UserException
+     * @throws UserException
+     * @param string $newPassword
+     * @return string
      */
     public function changePassword($currentPassword, $newPassword, $verification)
     {
 
         if ($this->getAuthenticated()===false || !$this->getId()) {
-            throw new \TKMON\Exception\UserException('User not initialized and authenticated');
+            throw new UserException('User not initialized and authenticated');
         }
 
         if (!$currentPassword) {
-            throw new \TKMON\Exception\UserException('Current password is mandatory');
+            throw new UserException('Current password is mandatory');
         }
 
         if (!$newPassword) {
-            throw new \TKMON\Exception\UserException('New password is mandatory');
+            throw new UserException('New password is mandatory');
         }
 
         if (!$verification) {
-            throw new \TKMON\Exception\UserException('Verification is mandatory');
+            throw new UserException('Verification is mandatory');
         }
 
         if ($newPassword !== $verification) {
-            throw new \TKMON\Exception\UserException('Passwords do not match');
+            throw new UserException('Passwords do not match');
         }
 
         if ($this->testCurrentPassword($currentPassword) === false) {
-            throw new \TKMON\Exception\UserException('Your current password is wrong');
+            throw new UserException('Your current password is wrong');
         }
 
         if ($currentPassword === $newPassword) {
-            throw new \TKMON\Exception\UserException('Old and new password are the same');
+            throw new UserException('Old and new password are the same');
         }
 
         $data = $this->getUserData($this->getId());
@@ -319,6 +328,7 @@ class User extends ApplicationModel
         $newSalt = $this->generateSalt();
         $newHash = hash_hmac(self::HASH_ALGO, $newPassword, $newSalt);
 
+        /** @var \PDO $db */
         $db = $this->container['db'];
         $statement = $db->prepare('UPDATE user SET password=:password, salt=:salt WHERE ID=:id;');
         $statement->bindValue(':password', $newHash, \PDO::PARAM_STR);
@@ -346,7 +356,7 @@ class User extends ApplicationModel
         $icingaUser = $this->container['config']->get('icinga.adminuser', 'icingaadmin');
         $passwdFile = $this->container['config']->get('icinga.passwdfile');
 
-        $passwdModel = new \TKMON\Model\Apache\PasswordFile($this->container);
+        $passwdModel = new PasswordFile($this->container);
         $passwdModel->setPasswordFile($passwdFile);
         $passwdModel->load();
         $passwdModel->addUser($icingaUser, $password);
@@ -363,10 +373,16 @@ class User extends ApplicationModel
      */
     private function changeSystemPassword($username, $password)
     {
+        // Store for later use
+        $flag = $this->getSystemAccess();
+
         $command = $this->container['command']->create('chpasswd');
         $command->setInput($username. ':'. $password);
 
         $command->execute();
+
+        // Set system access flag again (see https://devops.netways.de/issues/2512)
+        $this->controlSystemAccess($flag);
     }
 
     /**
@@ -436,7 +452,7 @@ class User extends ApplicationModel
      * - default
      *
      * @return string|null locale name e.g. de_DE
-     * @throws \TKMON\Exception\ModelException
+     * @throws ModelException
      */
     public function getLocale()
     {
@@ -453,7 +469,7 @@ class User extends ApplicationModel
         }
 
         if (!$locale) {
-            throw new \TKMON\Exception\ModelException('Locale not properly configured');
+            throw new ModelException('Locale not properly configured');
         }
 
         return $locale;
