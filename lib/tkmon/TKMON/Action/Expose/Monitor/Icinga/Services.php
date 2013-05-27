@@ -21,8 +21,15 @@
 
 namespace TKMON\Action\Expose\Monitor\Icinga;
 
+use ICINGA\Object\Service;
+use NETWAYS\Common\ArrayObject;
+use NETWAYS\Common\ArrayObjectValidator;
+use NETWAYS\Common\ValidatorObject;
 use NETWAYS\Intl\SimpleTranslator;
+use TKMON\Action\Base;
 use TKMON\Model\Icinga\ServiceData;
+use TKMON\Mvc\Output\JsonResponse;
+use TKMON\Mvc\Output\TwigTemplate;
 
 /**
  * Action handle contacts views
@@ -30,16 +37,16 @@ use TKMON\Model\Icinga\ServiceData;
  * @package TKMON\Action
  * @author Marius Hein <marius.hein@netways.de>
  */
-class Services extends \TKMON\Action\Base
+class Services extends Base
 {
     /**
      * Method to display main entry screen
-     * @param \NETWAYS\Common\ArrayObject $params
-     * @return \TKMON\Mvc\Output\TwigTemplate
+     * @param ArrayObject $params
+     * @return TwigTemplate
      */
-    public function actionEdit(\NETWAYS\Common\ArrayObject $params)
+    public function actionEdit(ArrayObject $params)
     {
-        $template = new \TKMON\Mvc\Output\TwigTemplate($this->container['template']);
+        $template = new TwigTemplate($this->container['template']);
         $template->setTemplateName('views/Monitor/Icinga/Services/List.twig');
 
         $template['hostName'] = $params->get('hostName');
@@ -49,27 +56,27 @@ class Services extends \TKMON\Action\Base
 
     /**
      * Renders an embedded service list for a host
-     * @param \NETWAYS\Common\ArrayObject $params
-     * @return \TKMON\Mvc\Output\JsonResponse
+     * @param ArrayObject $params
+     * @return JsonResponse
      */
-    public function actionEmbeddedList(\NETWAYS\Common\ArrayObject $params)
+    public function actionEmbeddedList(ArrayObject $params)
     {
-        $response = new \TKMON\Mvc\Output\JsonResponse();
+        $response = new JsonResponse();
 
         try {
 
-            $validator = new \NETWAYS\Common\ArrayObjectValidator();
+            $validator = new ArrayObjectValidator();
             $validator->addValidatorObject(
-                \NETWAYS\Common\ValidatorObject::create(
+                ValidatorObject::create(
                     'hostName',
                     'Hostname',
-                    \NETWAYS\Common\ValidatorObject::VALIDATE_MANDATORY
+                    ValidatorObject::VALIDATE_MANDATORY
                 )
             );
 
             $validator->validateArrayObject($params);
 
-            $template = new \TKMON\Mvc\Output\TwigTemplate($this->container['template']);
+            $template = new TwigTemplate($this->container['template']);
             $template->setTemplateName('views/Monitor/Icinga/Services/EmbeddedList.twig');
 
             /** @var $hostData \TKMON\Model\Icinga\HostData */
@@ -94,35 +101,35 @@ class Services extends \TKMON\Action\Base
 
     /**
      * Renders en embedded edit form
-     * @param \NETWAYS\Common\ArrayObject $params
-     * @return \TKMON\Mvc\Output\JsonResponse
+     * @param ArrayObject $params
+     * @return JsonResponse
      */
-    public function actionEmbeddedEdit(\NETWAYS\Common\ArrayObject $params)
+    public function actionEmbeddedEdit(ArrayObject $params)
     {
-        $response = new \TKMON\Mvc\Output\JsonResponse();
+        $response = new JsonResponse();
 
         try {
 
-            $validator = new \NETWAYS\Common\ArrayObjectValidator();
+            $validator = new ArrayObjectValidator();
             $validator->addValidatorObject(
-                \NETWAYS\Common\ValidatorObject::create(
+                ValidatorObject::create(
                     'serviceDescription',
                     'serviceDescription',
-                    \NETWAYS\Common\ValidatorObject::VALIDATE_MANDATORY
+                    ValidatorObject::VALIDATE_MANDATORY
                 )
             );
 
             $validator->addValidatorObject(
-                \NETWAYS\Common\ValidatorObject::create(
+                ValidatorObject::create(
                     'hostName',
                     'hostName',
-                    \NETWAYS\Common\ValidatorObject::VALIDATE_MANDATORY
+                    ValidatorObject::VALIDATE_MANDATORY
                 )
             );
 
             $validator->validateArrayObject($params);
 
-            $template = new \TKMON\Mvc\Output\TwigTemplate($this->container['template']);
+            $template = new TwigTemplate($this->container['template']);
             $template->setTemplateName('views/Monitor/Icinga/Services/EmbeddedCreate.twig');
 
             /** @var $hostData \TKMON\Model\Icinga\HostData */
@@ -146,7 +153,7 @@ class Services extends \TKMON\Action\Base
 
             $meta = $this->container['serviceCatalogue']->getAttributes($catalogueId);
 
-            $this->additionalMetaProcessing($template, $meta);
+            $this->additionalMetaProcessing($template, $meta, $service);
 
             $response->addData($template->toString());
 
@@ -160,35 +167,35 @@ class Services extends \TKMON\Action\Base
 
     /**
      * Renders an embedded creation form
-     * @param \NETWAYS\Common\ArrayObject $params
-     * @return \TKMON\Mvc\Output\JsonResponse
+     * @param ArrayObject $params
+     * @return JsonResponse
      */
-    public function actionEmbeddedCreate(\NETWAYS\Common\ArrayObject $params)
+    public function actionEmbeddedCreate(ArrayObject $params)
     {
-        $response = new \TKMON\Mvc\Output\JsonResponse();
+        $response = new JsonResponse();
 
         try {
 
-            $validator = new \NETWAYS\Common\ArrayObjectValidator();
+            $validator = new ArrayObjectValidator();
             $validator->addValidatorObject(
-                \NETWAYS\Common\ValidatorObject::create(
+                ValidatorObject::create(
                     'serviceCatalogueId',
                     'serviceCatalogueId',
-                    \NETWAYS\Common\ValidatorObject::VALIDATE_MANDATORY
+                    ValidatorObject::VALIDATE_MANDATORY
                 )
             );
 
             $validator->addValidatorObject(
-                \NETWAYS\Common\ValidatorObject::create(
+                ValidatorObject::create(
                     'hostName',
                     'hostName',
-                    \NETWAYS\Common\ValidatorObject::VALIDATE_MANDATORY
+                    ValidatorObject::VALIDATE_MANDATORY
                 )
             );
 
             $validator->validateArrayObject($params);
 
-            $template = new \TKMON\Mvc\Output\TwigTemplate($this->container['template']);
+            $template = new TwigTemplate($this->container['template']);
             $template->setTemplateName('views/Monitor/Icinga/Services/EmbeddedCreate.twig');
 
             /** @var $hostData \TKMON\Model\Icinga\HostData */
@@ -225,10 +232,12 @@ class Services extends \TKMON\Action\Base
 
     /**
      * Process catalogue meta data and template vars
-     * @param \TKMON\Mvc\Output\TwigTemplate $template
+     * @param TwigTemplate $template
      * @param \stdClass $meta
+     * @param \ICINGA\Object\Service $service
      */
-    private function additionalMetaProcessing(\TKMON\Mvc\Output\TwigTemplate $template, \stdClass $meta)
+    private function additionalMetaProcessing
+    (TwigTemplate $template, \stdClass $meta, Service $service = null)
     {
         /*
          * Thomas Krenn flag if we want to switch on notification
@@ -236,8 +245,18 @@ class Services extends \TKMON\Action\Base
          */
         if (isset($meta->tk_notify) && $meta->tk_notify === true) {
             $template['tk_notify'] = true;
+
             $template['tk_notify_default'] =
                 isset($meta->tk_notify_default) ? (boolean) $meta->tk_notify_default : true;
+
+            if ($service) {
+                $thomasKrennTemplate = $this->container['config']['thomaskrenn.template.service'];
+                if ($thomasKrennTemplate === $service->getUse()) {
+                    $template['tk_notify_default'] = true;
+                } else {
+                    $template['tk_notify_default'] = false;
+                }
+            }
         }
 
         if (isset($meta->links)) {
@@ -251,21 +270,21 @@ class Services extends \TKMON\Action\Base
 
     /**
      * Ajax endpoint to search the services catalogue
-     * @param \NETWAYS\Common\ArrayObject $params
-     * @return \TKMON\Mvc\Output\JsonResponse
+     * @param ArrayObject $params
+     * @return JsonResponse
      */
-    public function actionCatalogueSearch(\NETWAYS\Common\ArrayObject $params)
+    public function actionCatalogueSearch(ArrayObject $params)
     {
-        $response = new \TKMON\Mvc\Output\JsonResponse();
+        $response = new JsonResponse();
 
         try {
-            $validator = new \NETWAYS\Common\ArrayObjectValidator();
+            $validator = new ArrayObjectValidator();
 
             $validator->addValidatorObject(
-                \NETWAYS\Common\ValidatorObject::create(
+                ValidatorObject::create(
                     'q',
                     'Query',
-                    \NETWAYS\Common\ValidatorObject::VALIDATE_MANDATORY
+                    ValidatorObject::VALIDATE_MANDATORY
                 )
             );
 
@@ -286,30 +305,30 @@ class Services extends \TKMON\Action\Base
 
     /**
      * Remove service for a host
-     * @param \NETWAYS\Common\ArrayObject $params
-     * @return \TKMON\Mvc\Output\JsonResponse
+     * @param ArrayObject $params
+     * @return JsonResponse
      */
-    public function actionRemove(\NETWAYS\Common\ArrayObject $params)
+    public function actionRemove(ArrayObject $params)
     {
-        $response = new \TKMON\Mvc\Output\JsonResponse();
+        $response = new JsonResponse();
 
         try {
 
-            $validator = new \NETWAYS\Common\ArrayObjectValidator();
+            $validator = new ArrayObjectValidator();
 
             $validator->addValidatorObject(
-                \NETWAYS\Common\ValidatorObject::create(
+                ValidatorObject::create(
                     'hostName',
                     'Hostname',
-                    \NETWAYS\Common\ValidatorObject::VALIDATE_MANDATORY
+                    ValidatorObject::VALIDATE_MANDATORY
                 )
             );
 
             $validator->addValidatorObject(
-                \NETWAYS\Common\ValidatorObject::create(
+                ValidatorObject::create(
                     'serviceId',
                     'ID of service',
-                    \NETWAYS\Common\ValidatorObject::VALIDATE_MANDATORY
+                    ValidatorObject::VALIDATE_MANDATORY
                 )
             );
 
@@ -342,12 +361,12 @@ class Services extends \TKMON\Action\Base
      *
      * - Also write data to disk
      *
-     * @param \NETWAYS\Common\ArrayObject $params
-     * @return \TKMON\Mvc\Output\JsonResponse
+     * @param ArrayObject $params
+     * @return JsonResponse
      */
-    public function actionWrite(\NETWAYS\Common\ArrayObject $params)
+    public function actionWrite(ArrayObject $params)
     {
-        $response = new \TKMON\Mvc\Output\JsonResponse();
+        $response = new JsonResponse();
 
         try {
 
@@ -355,29 +374,29 @@ class Services extends \TKMON\Action\Base
             // Validation of needed arguments
             // ----------------------------------------------------------------
 
-            $validator = new \NETWAYS\Common\ArrayObjectValidator();
+            $validator = new ArrayObjectValidator();
 
             $validator->addValidatorObject(
-                \NETWAYS\Common\ValidatorObject::create(
+                ValidatorObject::create(
                     'host_name',
                     _('Hostname'),
-                    \NETWAYS\Common\ValidatorObject::VALIDATE_MANDATORY
+                    ValidatorObject::VALIDATE_MANDATORY
                 )
             );
 
             $validator->addValidatorObject(
-                \NETWAYS\Common\ValidatorObject::create(
+                ValidatorObject::create(
                     'service_description',
                     _('Servicename'),
-                    \NETWAYS\Common\ValidatorObject::VALIDATE_MANDATORY
+                    ValidatorObject::VALIDATE_MANDATORY
                 )
             );
 
             $validator->addValidatorObject(
-                \NETWAYS\Common\ValidatorObject::create(
+                ValidatorObject::create(
                     'cv_name',
                     _('Catalogue identifier'),
-                    \NETWAYS\Common\ValidatorObject::VALIDATE_MANDATORY
+                    ValidatorObject::VALIDATE_MANDATORY
                 )
             );
 
@@ -394,7 +413,7 @@ class Services extends \TKMON\Action\Base
             // Validation of arguments (if any)
             // ----------------------------------------------------------------
 
-            $arguments = new \NETWAYS\Common\ArrayObject();
+            $arguments = new ArrayObject();
 
             if ($params->offsetExists('arguments')) {
                 $arguments->fromArray($params['arguments']);
