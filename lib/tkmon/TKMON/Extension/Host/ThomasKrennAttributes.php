@@ -129,12 +129,14 @@ class ThomasKrennAttributes extends \NETWAYS\Chain\ReflectionHandler implements 
                  */
                 self::CV_SERIAL => new \TKMON\Form\Field\Text(
                     self::CV_SERIAL,
-                    _('Serial')
+                    _('Serial'),
+                    false // Not mandatory (see https://devops.netways.de/issues/2496)
                 ), // Mandatory for tkalert
                 self::CV_OS => new \TKMON\Form\Field\Text(
                     self::CV_OS,
-                    _('Operating system')
-                ), // Mandatory for tkalert
+                    _('Operating system'),
+                    false // Not mandatory (see https://devops.netways.de/issues/2496)
+                ),
 
                 /*
                  * Thomas Krenn product data
@@ -216,16 +218,16 @@ class ThomasKrennAttributes extends \NETWAYS\Chain\ReflectionHandler implements 
      */
     public function updateHostCustomVariables(Host $host)
     {
+        if (!isset($this->container['config']['thomaskrenn.alert.authkey'])) {
+            return;
+        }
+
+        if (!$host->getCustomVariable(self::CV_SERIAL)) {
+            return;
+        }
+
         $authKey = $this->container['config']['thomaskrenn.alert.authkey'];
-        if (!$authKey) {
-            throw new ModelException('AuthKey not configured!');
-        }
-
         $serial = $host->getCustomVariable(self::CV_SERIAL);
-        if (!$serial) {
-            throw new ModelException('Serial not entered');
-        }
-
 
         $restInterface = new RestInterface($this->container);
         $restInterface->setAuthKey($authKey);
