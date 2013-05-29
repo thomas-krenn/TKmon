@@ -35,7 +35,11 @@ class GnupgCommand(object):
 
     def __init__(self, config):
         self.config = config
-        self.home_dir = os.path.dirname(self.config)
+
+        try:
+            self.home_dir = os.path.dirname(self.config)
+        except AttributeError:
+            raise GnupgCommandException("Gnupg home dir not configured")
 
         self._args = [GPG, '--home', self.home_dir,
                       '--options', self.config,
