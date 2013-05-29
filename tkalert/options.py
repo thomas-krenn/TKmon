@@ -49,7 +49,7 @@ class MyOptions(OptionParser):
         ('debug', 'Debug settings', 'Test data and results')
     ]
 
-    _my_type_choices = ('heartbeat', 'service')
+    _my_type_choices = ('heartbeat', 'service', 'test')
 
     _my_options = [
         {'name': '--type',
@@ -185,7 +185,7 @@ class MyOptions(OptionParser):
         """
         (options, args) = OptionParser.parse_args(self, *args, **kwargs)
 
-        if options.type == "heartbeat":
+        if options.type == "heartbeat" or options.type == "test":
             self._test_mandatory_options(options, MANDATORY_HEARTBEAT)
         elif options.type == "service":
             self._test_mandatory_options(options, MANDATORY_SERVICE)

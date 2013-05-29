@@ -23,7 +23,7 @@ import smtplib
 import logging
 from email.mime.text import MIMEText
 
-from tkalert.settings import VERSION_STRING
+from tkalert.settings import VERSION_STRING, MAIL_TEST_SUBJECT
 
 __ALL__ = ['Mailer']
 
@@ -39,6 +39,7 @@ class Mailer(object):
         self.sender_name = None
         self.content = None
         self.alert_type = None
+        self.test_mode = False
 
     def get_sender_string(self):
         """Create sender name (with mail)
@@ -53,6 +54,11 @@ class Mailer(object):
         message = MIMEText(str(self.content))
 
         subject = 'TKMON MESSAGE (type=%s, from=%s)' % (self.alert_type, self.sender_name)
+
+        if self.test_mode == True:
+            subject = MAIL_TEST_SUBJECT
+            LOG.debug("Set subject for testing (Subject=%s)", subject)
+        
 
         message['Subject'] = subject
         message['From'] = self.get_sender_string()

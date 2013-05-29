@@ -1,4 +1,4 @@
-TKALERT v0.0.3
+TKALERT v1.1.0
 
 TKALERT
 =======
@@ -30,7 +30,7 @@ We're using python setup tools here, to install just simple type (as root)
 
 After installation you should have following binary and configuration directory:
 
-    $ ls -lah /usr/local/bin/tkalert.sh
+    $ ls -lah /usr/local/bin/tkalert
     $ ls -lah /etc/tkalert
 
 You do not need to configure something within /etc/tkalert because this is only GNUPG configuration and
@@ -49,9 +49,9 @@ This means if you call this with user icinga you have to change permissions of t
     $ chmod 700 /etc/tkalert
 
 If you do not want to do this, you have to create a sudoers entry to allow user nagios to
-execute tkalert.sh as root (Add the following line to your /etc/sudoers)
+execute tkalert as root (Add the following line to your /etc/sudoers)
 
-    nagios    ALL=(ALL:ALL)    NOPASSWD:/usr/local/bin/tkalert.sh
+    nagios    ALL=(ALL:ALL)    NOPASSWD:/usr/local/bin/tkalert
 
 On Ubuntu / Debian use the tool visudo to to this:
 
@@ -62,7 +62,7 @@ Now you can execute this as user icinga:
 
     # as user root
     $ su -s /bin/bash nagios
-    $ sudo /usr/local/bin/tkalert.sh --help
+    $ sudo /usr/local/bin/tkalert --help
 
 
 
@@ -74,7 +74,7 @@ First you have to make sure that you have an valid Thomas Krenn service account 
 
 ### Sending heartbeat
 
-    $ tkalert.sh \
+    $ tkalert \
         --type="heartbeat" \
         --auth-key="a-8745987348745" \
         --contact-person="Jean Luc Picard" \
@@ -84,7 +84,7 @@ This sends an heartbeat to Thomas Krenn.
 
 If you want to see that is in your request you can type:
 
-    $ tkalert.sh \
+    $ tkalert \
         --type="heartbeat" \
         --auth-key="a-8745987348745" \
         --contact-person="Jean Luc Picard" \
@@ -98,7 +98,7 @@ If you want to see that is in your request you can type:
 
 Use this syntax to send service provlems to Thomas Krenn
 
-    $ tkalert.sh \
+    $ tkalert \
         --type="service" \
         --auth-key="a-8745987348745" \
         --contact-person="Jean Luc Picard" \
@@ -146,7 +146,7 @@ To use this alerter script it's best to create master hosts with customvars. Aft
 
     define command{
             command_name    notify-service-by-thomaskrenn
-            command_line    /usr/bin/sudo /usr/local/bin/tkalert.sh \
+            command_line    /usr/bin/sudo /usr/local/bin/tkalert \
                 --type="service" \
                 --auth-key="$_HOSTAUTH_KEY$" \
                 --contact-person="$_HOSTCONTACT_NAME$" \
@@ -192,7 +192,7 @@ that you're alive.
 
         define command {
             command_name                check_tkalert_heartbeat
-            command_line                /usr/bin/sudo /usr/local/bin/tkalert.sh \
+            command_line                /usr/bin/sudo /usr/local/bin/tkalert \
                 --type="heartbeat" \
                 --auth-key="$_HOSTAUTH_KEY$" \
                 --contact-person="$_HOSTCONTACT_NAME$" \
@@ -212,7 +212,7 @@ that you're alive.
 Command reference
 =================
 
-In this section we explain some sections of commands. For a complete reference please use **tkalert.sh --help**
+In this section we explain some sections of commands. For a complete reference please use **tkalert --help**
 to examine.
 
 Mandatory arguments
@@ -221,7 +221,8 @@ Mandatory arguments
 Some options are mandatory or evercall these are:
 
     --type=ALERTTYPE                    What to send. A 'service' problem or
-                                        just a 'heartbeat'
+                                        just a 'heartbeat'. If you want to trigger
+                                        a bounce mail, use mode 'test'.
     --auth-key=TK AUTH KEY              Your authkey from Thomas Krenn
     --contact-person=NAME               Person of interest.
     --contact-mail                      Who is reposible for service problems,

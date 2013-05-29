@@ -39,5 +39,8 @@ MAIL_SERVER = 'localhost'
 MAIL_TARGET_ADDRESS = 'monitor@thomas-krenn.com'
 "Target adress, where the mails to to"
 
+MAIL_TEST_SUBJECT = 'Icinga Testheartbeat'
+"Subject if we want to send a testmail"
+
 GNUPG_KEY = '0x584F819C'
 "GPG key id, which key is used to encrypt the mail"
