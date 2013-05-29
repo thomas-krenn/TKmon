@@ -29,7 +29,7 @@ setup(
     requires = [],  # nothing
     packages = ['tkalert.bin', 'tkalert'],
     zip_safe = False,
-    entry_points = {},
+    entry_points = {'console_scripts': ['tkalert = tkalert.bin.alert:main']},
     data_files = [
         ('/etc/tkalert', ['gnupg/gnupg.conf',
                           'gnupg/pubring.gpg',

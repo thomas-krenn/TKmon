@@ -21,6 +21,7 @@
 
 import sys
 import time
+import os.path
 
 from datetime import datetime
 
@@ -53,6 +54,19 @@ def main():
 
         log = logging.getLogger(__name__)
         log.debug('Starting up')
+
+        log.debug('Testing gnupg environment')
+        gnupg_paths = [
+            options.gnupgconfig,
+            '/etc/tkalert/gnupg.conf',
+            '/usr/local/tkalert/etc/gnupg.conf'
+        ]
+
+        for test_path in gnupg_paths:
+            if test_path and os.path.exists(test_path):
+                log.debug('setting --gnupg-config=' + test_path)
+                options.gnupgconfig = test_path
+                break
 
         xml_object = None
 
