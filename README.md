@@ -30,7 +30,7 @@ We're using python setup tools here, to install just simple type (as root)
 
 After installation you should have following binary and configuration directory:
 
-    $ ls -lah /usr/bin/tkalert
+    $ ls -lah /usr/local/bin/tkalert
     $ ls -lah /etc/tkalert
 
 You do not need to configure something within /etc/tkalert because this is only GNUPG configuration and
@@ -51,7 +51,7 @@ This means if you call this with user icinga you have to change permissions of t
 If you do not want to do this, you have to create a sudoers entry to allow user nagios to
 execute tkalert as root (Add the following line to your /etc/sudoers)
 
-    nagios    ALL=(ALL:ALL)    NOPASSWD:/usr/bin/tkalert
+    nagios    ALL=(ALL:ALL)    NOPASSWD:/usr/local/bin/tkalert
 
 On Ubuntu / Debian use the tool visudo to to this:
 
@@ -62,7 +62,7 @@ Now you can execute this as user icinga:
 
     # as user root
     $ su -s /bin/bash nagios
-    $ sudo /usr/bin/tkalert --help
+    $ sudo /usr/local/bin/tkalert --help
 
 
 
@@ -146,7 +146,7 @@ To use this alerter script it's best to create master hosts with customvars. Aft
 
     define command{
             command_name    notify-service-by-thomaskrenn
-            command_line    /usr/bin/sudo /usr/bin/tkalert \
+            command_line    /usr/bin/sudo /usr/local/bin/tkalert \
                 --type="service" \
                 --auth-key="$_HOSTAUTH_KEY$" \
                 --contact-person="$_HOSTCONTACT_NAME$" \
@@ -192,7 +192,7 @@ that you're alive.
 
         define command {
             command_name                check_tkalert_heartbeat
-            command_line                /usr/bin/sudo /usr/bin/tkalert \
+            command_line                /usr/bin/sudo /usr/local/bin/tkalert \
                 --type="heartbeat" \
                 --auth-key="$_HOSTAUTH_KEY$" \
                 --contact-person="$_HOSTCONTACT_NAME$" \
