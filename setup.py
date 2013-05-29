@@ -35,8 +35,7 @@ setup(
                           'gnupg/pubring.gpg',
                           'gnupg/secring.gpg',
                           'gnupg/thomaskrenn-584F819C-pub.asc',
-                          'gnupg/trustdb.gpg']),
-        ('/usr/local/bin', ['tkalert.sh'])
+                          'gnupg/trustdb.gpg'])
     ]
 )
 
