@@ -22,7 +22,7 @@
 import tkalert.log
 
 __name__ = 'tkalert'
-__version__ = '1.0'
+__version__ = '1.1'
 __author__ = 'NETWAYS GmbH'
 __contact__ = 'info@netways.de'
 __url__ = 'https://www.netways.org'
