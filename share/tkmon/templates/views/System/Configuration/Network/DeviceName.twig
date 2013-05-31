@@ -1,23 +1,30 @@
-<h4>Device name</h4>
+{% set reboot_link = web_link('System/Configuration/Backup/Index#tab-reboot') %}
+<h4>{% trans "Device name" %}</h4>
 
 <div id="device-errors">
 
 </div>
 
 <div id="device-success" class="hidden alert alert-success">
+    {% trans %}
     New device name was written to appliance. You should consider
-    to reboot your device. To do so, please <a href="{{ web_link('System/Configuration/Backup/Index#tab-reboot') }}">
+    to reboot your device. To do so, please <a href="{{ reboot_link }}">
     click on this link</a> and follow instructions.
+    {% endtrans %}
 </div>
 
 <p>
+    {% trans %}
     Change your device name here to suite your needs.
+    {% endtrans %}
 </p>
 
 <p>
+    {% trans %}
     <span class="label label-info">Information:</span> A valid
     device name is <strong>&lt;name&gt;.&lt;fqdn&gt;</strong>
     e.g. <strong>icinga.my.company.com</strong>
+    {% endtrans %}
 </p>
 
 <form
@@ -32,10 +39,10 @@
         >
 
     <fieldset>
-        <label for="device_name">Current devicename</label>
+        <label for="device_name">{% trans "Current devicename" %}</label>
         <input type="text" id="device_name" name="device_name" value="{{ device_name }}" />
     </fieldset>
 
-    <input type="submit" class="btn btn-primary" value="Update" />
+    <input type="submit" class="btn btn-primary" value="{% trans "Update" %}" />
 
 </form>

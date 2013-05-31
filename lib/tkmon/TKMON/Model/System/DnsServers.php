@@ -91,6 +91,7 @@ class DnsServers extends Interfaces
     /**
      * Setter of a dns server item
      * @param int|null $index
+     * @return null
      */
     public function getDnsServerItem($index = 0)
     {

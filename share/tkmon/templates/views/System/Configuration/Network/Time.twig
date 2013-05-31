@@ -1,14 +1,14 @@
-<h4>Time settings</h4>
+<h4>{% trans "Time settings" %}</h4>
 
-<p>On this page you can change the time server settings.</p>
+<p>{% trans "On this page you can change the time server settings." %}</p>
 
 <div id="time-errors">
 
 </div>
 
 <div id="time-success" class="hidden alert alert-success">
-    <h4>Success!</h4>
-    <p>Time configuration has been written and daemon has been restarted!</p>
+    <h4>{% trans "Success!" %}</h4>
+    <p>{% trans "Time configuration has been written and daemon has been restarted!" %}</p>
 </div>
 
 <form
@@ -24,23 +24,23 @@
     >
 
     <fieldset>
-        <label for="timeserver_1">Timeserver 1</label>
+        <label for="timeserver_1">{% trans "Timeserver 1" %}</label>
         <input type="text" name="timeserver_1" id="timeserver_1" value="{{ timeserver_1 }}" />
     </fieldset>
 
     <fieldset>
-        <label for="timeserver_2">Timeserver 2</label>
+        <label for="timeserver_2">{% trans "Timeserver 2" %}</label>
         <input type="text" name="timeserver_2" id="timeserver_2" value="{{ timeserver_2 }}" />
     </fieldset>
 
     <fieldset>
-        <label for="timeserver_1">Timeserver 3</label>
+        <label for="timeserver_1">{% trans "Timeserver 3" %}</label>
         <input type="text" name="timeserver_3" id="timeserver_3" value="{{ timeserver_3 }}" />
     </fieldset>
 
     <div class="container-spacer-down">
         <button id="time-submit" type="submit" class="btn btn-primary">
-            <i class="icon-save"></i> Save
+            <i class="icon-save"></i> {% trans "Save" %}
         </button>
     </div>
 

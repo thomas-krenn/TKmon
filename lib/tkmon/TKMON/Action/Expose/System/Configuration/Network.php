@@ -21,7 +21,18 @@
 
 namespace TKMON\Action\Expose\System\Configuration;
 
+use NETWAYS\Common\ArrayObject;
+use NETWAYS\Common\ArrayObjectValidator;
 use NETWAYS\Common\ValidatorObject;
+use TKMON\Action\Base;
+use TKMON\Exception\ModelException;
+use TKMON\Model\System\DnsServers;
+use TKMON\Model\System\Hostname;
+use TKMON\Model\System\IpAddress;
+use TKMON\Model\System\NtpConfiguration;
+use TKMON\Model\System;
+use TKMON\Mvc\Output\JsonResponse;
+use TKMON\Mvc\Output\TwigTemplate;
 
 /**
  * Network settings
@@ -29,7 +40,7 @@ use NETWAYS\Common\ValidatorObject;
  * @package TKMON\Action
  * @author Marius Hein <marius.hein@netways.de>
  */
-class Network extends \TKMON\Action\Base
+class Network extends Base
 {
     /**
      * Primary interface
@@ -39,35 +50,35 @@ class Network extends \TKMON\Action\Base
 
     /**
      * Init function called from dispatcher
-     * @throws \TKMON\Exception\ModelException
+     * @throws ModelException
      */
     public function init()
     {
         $this->primaryInterface = $this->container['config']['system.interface'];
 
         if (!$this->primaryInterface) {
-            throw new \TKMON\Exception\ModelException('Primary interface (system.interface) not configured');
+            throw new ModelException('Primary interface (system.interface) not configured');
         }
     }
 
     /**
      * Displays the form and set some basic data
      *
-     * @param \NETWAYS\Common\ArrayObject $params
-     * @return \TKMON\Mvc\Output\TwigTemplate
+     * @param ArrayObject $params
+     * @return TwigTemplate
      */
-    public function actionIndex(\NETWAYS\Common\ArrayObject $params)
+    public function actionIndex(ArrayObject $params)
     {
-        $template = new \TKMON\Mvc\Output\TwigTemplate($this->container['template']);
+        $template = new TwigTemplate($this->container['template']);
         $template->setTemplateName('views/System/Configuration/Network.twig');
 
         // Hostname / Devicename
-        $hostnameModel = new \TKMON\Model\System\Hostname($this->container);
+        $hostnameModel = new Hostname($this->container);
         $hostnameModel->load();
         $template['device_name'] = $hostnameModel->getCombined();
 
         // DNS configuration
-        $dnsModel = new \TKMON\Model\System\DnsServers($this->container);
+        $dnsModel = new DnsServers($this->container);
         $dnsModel->setInterfaceName($this->primaryInterface);
         $dnsModel->load();
         $template['dns_nameserver1'] = $dnsModel->getDnsServerItem(0);
@@ -77,7 +88,7 @@ class Network extends \TKMON\Action\Base
 
 
         // IP Address
-        $ipModel = new \TKMON\Model\System\IpAddress($this->container);
+        $ipModel = new IpAddress($this->container);
         $ipModel->setInterfaceName($this->primaryInterface);
         $ipModel->load();
         $template['ip_address'] = $ipModel->getIpAddress();
@@ -85,7 +96,7 @@ class Network extends \TKMON\Action\Base
         $template['ip_gateway'] = $ipModel->getIpGateway();
         $template['ip_config'] = $ipModel->getConfigType();
 
-        $ntpConfiguration = new \TKMON\Model\System\NtpConfiguration($this->container);
+        $ntpConfiguration = new NtpConfiguration($this->container);
         $ntpConfiguration->setMaxServers(3);
         $ntpConfiguration->load();
         $template['timeserver_1'] = $ntpConfiguration->getNtpServer(0);
@@ -98,24 +109,24 @@ class Network extends \TKMON\Action\Base
     /**
      * Updater to change the dns configuration
      *
-     * @param \NETWAYS\Common\ArrayObject $params
-     * @return \TKMON\Mvc\Output\JsonResponse
-     * @throws \TKMON\Exception\ModelException
+     * @param ArrayObject $params
+     * @return JsonResponse
+     * @throws ModelException
      */
-    public function actionChangeDeviceName(\NETWAYS\Common\ArrayObject $params)
+    public function actionChangeDeviceName(ArrayObject $params)
     {
-        $response = new \TKMON\Mvc\Output\JsonResponse();
+        $response = new JsonResponse();
 
         try {
             if ($params->get('device_name')) {
-                $hostnameModel = new \TKMON\Model\System\Hostname($this->container);
+                $hostnameModel = new Hostname($this->container);
                 $hostnameModel->load();
                 $hostnameModel->setCombined($params->get('device_name'));
                 $hostnameModel->write();
 
                 $response->setSuccess(true);
             } else {
-                throw new \TKMON\Exception\ModelException("Parameter was not sent: device_name");
+                throw new ModelException("Parameter was not sent: device_name");
             }
 
         } catch (\Exception $e) {
@@ -129,30 +140,50 @@ class Network extends \TKMON\Action\Base
     /**
      * Action to change DNS settings
      *
-     * @param \NETWAYS\Common\ArrayObject $params
-     * @return \TKMON\Mvc\Output\JsonResponse
+     * @param ArrayObject $params
+     * @return JsonResponse
      */
-    public function actionChangeDnsSettings(\NETWAYS\Common\ArrayObject $params)
+    public function actionChangeDnsSettings(ArrayObject $params)
     {
-        $response = new \TKMON\Mvc\Output\JsonResponse();
+        $response = new JsonResponse();
 
         try {
-            $validator = new \NETWAYS\Common\ArrayObjectValidator();
+            $validator = new ArrayObjectValidator();
             $validator->throwOnErrors(true);
 
-            $validator->addValidator('dns_nameserver1', 'IP address', FILTER_VALIDATE_IP);
-            $validator->addValidator('dns_nameserver2', 'IP address', FILTER_VALIDATE_IP);
-            $validator->addValidator('dns_nameserver3', 'IP address', FILTER_VALIDATE_IP);
+            $validator->addValidatorObject(
+                ValidatorObject::create(
+                    'dns_nameserver1',
+                    'IP address',
+                    FILTER_VALIDATE_IP
+                )
+            );
 
             $validator->addValidatorObject(
-                ValidatorObject::create('dns_search', 'DNS suffix', ValidatorObject::VALIDATE_MANDATORY)
+                ValidatorObject::create(
+                    'dns_nameserver2',
+                    'IP address',
+                    FILTER_VALIDATE_IP
+                )
+            );
+
+            $validator->addValidatorObject(
+                ValidatorObject::create(
+                    'dns_nameserver3',
+                    'IP address',
+                    FILTER_VALIDATE_IP
+                )
+            );
+
+            $validator->addValidatorObject(
+                ValidatorObject::create('dns_search', 'DNS suffix', ValidatorObject::VALIDATE_ANYTHING)
             );
 
             $validator->validateArrayObject($params);
 
-            $systemModel = new \TKMON\Model\System($this->container);
+            $systemModel = new System($this->container);
 
-            $dnsModel = new \TKMON\Model\System\DnsServers($this->container);
+            $dnsModel = new DnsServers($this->container);
             $dnsModel->setInterfaceName($this->primaryInterface);
             $dnsModel->load();
 
@@ -168,9 +199,7 @@ class Network extends \TKMON\Action\Base
                 $dnsModel->setDnsServerItem(2, $params->get('dns_nameserver3'));
             }
 
-            if ($params->get('dns_search')) {
-                $dnsModel->setDnsSearch($params->get('dns_search'));
-            }
+            $dnsModel->setDnsSearch($params->get('dns_search'));
 
             $dnsModel->write();
 
@@ -189,33 +218,54 @@ class Network extends \TKMON\Action\Base
 
     /**
      * Write ip address settings to file
-     * @param \NETWAYS\Common\ArrayObject $params
-     * @return \TKMON\Mvc\Output\JsonResponse
+     * @param ArrayObject $params
+     * @return JsonResponse
      */
-    public function actionChangeIpSettings(\NETWAYS\Common\ArrayObject $params)
+    public function actionChangeIpSettings(ArrayObject $params)
     {
-        $response = new \TKMON\Mvc\Output\JsonResponse();
+        $response = new JsonResponse();
         try {
 
             $ipConfig = $params['ip_config'];
 
-            $validator = new \NETWAYS\Common\ArrayObjectValidator();
+            $validator = new ArrayObjectValidator();
 
-            if ($ipConfig == \TKMON\Model\System\IpAddress::TYPE_STATIC) {
-                $validator->addValidator('ip_address', 'IP', FILTER_VALIDATE_IP);
-                $validator->addValidator('ip_netmask', 'IP', FILTER_VALIDATE_IP);
-                $validator->addValidator('ip_gateway', 'IP', FILTER_VALIDATE_IP);#
+            if ($ipConfig == IpAddress::TYPE_STATIC) {
+
+                $validator->addValidatorObject(
+                    ValidatorObject::create(
+                        'ip_address',
+                        'IP',
+                        FILTER_VALIDATE_IP
+                    )
+                );
+
+                $validator->addValidatorObject(
+                    ValidatorObject::create(
+                        'ip_netmask',
+                        'IP',
+                        FILTER_VALIDATE_IP
+                    )
+                );
+
+                $validator->addValidatorObject(
+                    ValidatorObject::create(
+                        'ip_gateway',
+                        'IP',
+                        FILTER_VALIDATE_IP
+                    )
+                );
             }
 
             $validator->validateArrayObject($params);
 
-            $ipModel = new \TKMON\Model\System\IpAddress($this->container);
+            $ipModel = new IpAddress($this->container);
             $ipModel->setInterfaceName($this->primaryInterface);
             $ipModel->load();
 
             $ipModel->setConfigType($ipConfig);
             
-            if ($ipConfig == \TKMON\Model\System\IpAddress::TYPE_STATIC) {
+            if ($ipConfig == IpAddress::TYPE_STATIC) {
                 $ipModel->setIpAddress($params['ip_address']);
                 $ipModel->setIpGateway($params['ip_gateway']);
                 $ipModel->setIpNetmask($params['ip_netmask']);
@@ -224,7 +274,7 @@ class Network extends \TKMON\Action\Base
             $ipModel->write();
 
             // Down and up again network interface
-            $systemModel = new \TKMON\Model\System($this->container);
+            $systemModel = new System($this->container);
             $systemModel->restartNetworkInterfaces();
 
             $response->setSuccess();
@@ -238,19 +288,19 @@ class Network extends \TKMON\Action\Base
 
     /**
      * Action to change ntp server configuration
-     * @param \NETWAYS\Common\ArrayObject $params
-     * @return \TKMON\Mvc\Output\JsonResponse
+     * @param ArrayObject $params
+     * @return JsonResponse
      */
-    public function actionChangeTimeSettings(\NETWAYS\Common\ArrayObject $params)
+    public function actionChangeTimeSettings(ArrayObject $params)
     {
-        $response = new \TKMON\Mvc\Output\JsonResponse();
+        $response = new JsonResponse();
         try {
 
             // Validation not needed, sanitizing already done!
 
             $serversFields = array('timeserver_1', 'timeserver_2', 'timeserver_3');
 
-            $ntpConfiguration = new \TKMON\Model\System\NtpConfiguration($this->container);
+            $ntpConfiguration = new NtpConfiguration($this->container);
             $ntpConfiguration->setMaxServers(count($serversFields));
             $ntpConfiguration->load();
             $ntpConfiguration->purgeServers();
@@ -264,7 +314,7 @@ class Network extends \TKMON\Action\Base
             $ntpConfiguration->write();
 
             // Restart NTP daemon
-            $systemModel = new \TKMON\Model\System($this->container);
+            $systemModel = new System($this->container);
             $systemModel->restartNtpDaemon();
 
             $response->setSuccess(true);

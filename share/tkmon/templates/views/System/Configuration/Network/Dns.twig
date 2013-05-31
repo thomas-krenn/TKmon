@@ -1,15 +1,15 @@
-<h4>DNS settings</h4>
+<h4>{% trans "DNS settings" %}</h4>
 
 <div id="dns-errors">
 
 </div>
 
 <div id="dns-success" class="hidden alert alert-success">
-    <h4>Success!</h4>
-    <p>DNS resolver config has been saved and networking has been restarted</p>
+    <h4>{% trans "Success!" %}</h4>
+    <p>{% trans "DNS resolver config has been saved and networking has been restarted" %}</p>
 </div>
 
-<p>Here you can change your DNS settings.</p>
+<p>{% trans "Here you can change your DNS settings." %}</p>
 
 <form
         id="dns-form"
@@ -22,35 +22,37 @@
         >
 
     <div class="alert alert-info">
+        {% trans %}
         This system uses resolveconf which keeps track of the available DNS servers and combines them
         into a useful order. You can leave the fields blank if you use a DHCP interface
         on the address tab.
+        {% endtrans %}
     </div>
 
     <fieldset>
-        <label for="dns_nameserver1">First nameserver</label>
+        <label for="dns_nameserver1">{% trans "First nameserver" %}</label>
         <input type="text" name="dns_nameserver1" id="dns_nameserver1" value="{{ dns_nameserver1 }}" />
     </fieldset>
 
     <fieldset>
-        <label for="dns_nameserver2">Second nameserver</label>
+        <label for="dns_nameserver2">{% trans "Second nameserver" %}</label>
         <input type="text" name="dns_nameserver2" id="dns_nameserver2" value="{{ dns_nameserver2 }}" />
     </fieldset>
 
     <fieldset>
-        <label for="dns_nameserver3">Third nameserver</label>
+        <label for="dns_nameserver3">{% trans "Third nameserver" %}</label>
         <input type="text" name="dns_nameserver3" id="dns_nameserver3" value="{{ dns_nameserver3 }}" />
     </fieldset>
 
     <div class="container-spacer-down">
         <fieldset>
-            <label for="dns_search">Search suffix</label>
+            <label for="dns_search">{% trans "Search suffix (optional)" %}</label>
             <input type="text" name="dns_search" id="dns_search" value="{{ dns_search }}" />
         </fieldset>
     </div>
 
     <div class="container-spacer-down">
-        <input type="submit" class="btn btn-primary" value="Update" />
+        <input type="submit" class="btn btn-primary" value="{% trans "Update" %}" />
     </div>
 
 </form>
