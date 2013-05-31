@@ -35,18 +35,33 @@
     </fieldset>
 
     <fieldset>
-        <label for="dns_nameserver2">{% trans "Second nameserver" %}</label>
+        <label for="dns_nameserver2">
+            {% trans "Second nameserver (optional)" %}
+            <a data-clear-field="dns_nameserver2" title="{% trans "Click to clear field content" %}">
+                <i class="icon-trash"></i>
+            </a>
+        </label>
         <input type="text" name="dns_nameserver2" id="dns_nameserver2" value="{{ dns_nameserver2 }}" />
     </fieldset>
 
     <fieldset>
-        <label for="dns_nameserver3">{% trans "Third nameserver" %}</label>
+        <label for="dns_nameserver3">
+            {% trans "Third nameserver (optional)" %}
+            <a data-clear-field="dns_nameserver3" title="{% trans "Click to clear field content" %}">
+                <i class="icon-trash"></i>
+            </a>
+        </label>
         <input type="text" name="dns_nameserver3" id="dns_nameserver3" value="{{ dns_nameserver3 }}" />
     </fieldset>
 
     <div class="container-spacer-down">
         <fieldset>
-            <label for="dns_search">{% trans "Search suffix (optional)" %}</label>
+            <label for="dns_search">
+                {% trans "Search suffix (optional)" %}
+                <a data-clear-field="dns_search" title="{% trans "Click to clear field content" %}">
+                    <i class="icon-trash"></i>
+                </a>
+            </label>
             <input type="text" name="dns_search" id="dns_search" value="{{ dns_search }}" />
         </fieldset>
     </div>

@@ -163,7 +163,10 @@ class Network extends Base
                 ValidatorObject::create(
                     'dns_nameserver2',
                     'IP address',
-                    FILTER_VALIDATE_IP
+                    FILTER_VALIDATE_IP,
+                    null, // Flags
+                    array(), // Options
+                    false // NOT MANDATORY
                 )
             );
 
@@ -171,7 +174,10 @@ class Network extends Base
                 ValidatorObject::create(
                     'dns_nameserver3',
                     'IP address',
-                    FILTER_VALIDATE_IP
+                    FILTER_VALIDATE_IP,
+                    null, // Flags
+                    array(), // Options
+                    false // NOT MANDATORY
                 )
             );
 
@@ -186,6 +192,8 @@ class Network extends Base
             $dnsModel = new DnsServers($this->container);
             $dnsModel->setInterfaceName($this->primaryInterface);
             $dnsModel->load();
+
+            $dnsModel->purgeDnsServers();
 
             if ($params->get('dns_nameserver1')) {
                 $dnsModel->setDnsServerItem(0, $params->get('dns_nameserver1'));
