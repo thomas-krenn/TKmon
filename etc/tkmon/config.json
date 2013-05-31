@@ -40,7 +40,7 @@
     "db.debconf.file":      "{core.etc_dir}/config-db.php",
 
     "log.enable":           true,
-    "log.level":            "debug",
+    "log.level":            "warn",
     "log.file":             "{core.log_dir}/tkmon.log",
     "log.format":           "%date %logger %-5level %msg%n",
     "log.root":             "root",
