@@ -14,7 +14,8 @@
     "require": {
         "twig/twig": "1.11.*",
         "twig/extensions": "1.*",
-        "pimple/pimple": "1.0.*"
+        "pimple/pimple": "1.0.*",
+        "apache/log4php": "2.3.*"
     },
 
     "config": {
