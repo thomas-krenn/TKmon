@@ -394,19 +394,25 @@ msgstr ""
 msgid "First nameserver"
 msgstr ""
 
-#: /tmp/tkmon-templates//19d538de824c6ba077538617e34a.php:79
-msgid "Second nameserver"
+#: /tmp/tkmon-templates//19d538de824c6ba077538617e34a.php:80
+msgid "Second nameserver (optional)"
 msgstr ""
 
-#: /tmp/tkmon-templates//19d538de824c6ba077538617e34a.php:90
-msgid "Third nameserver"
+#: /tmp/tkmon-templates//19d538de824c6ba077538617e34a.php:83
+#: /tmp/tkmon-templates//19d538de824c6ba077538617e34a.php:101
+#: /tmp/tkmon-templates//19d538de824c6ba077538617e34a.php:120
+msgid "Click to clear field content"
 msgstr ""
 
-#: /tmp/tkmon-templates//19d538de824c6ba077538617e34a.php:102
+#: /tmp/tkmon-templates//19d538de824c6ba077538617e34a.php:98
+msgid "Third nameserver (optional)"
+msgstr ""
+
+#: /tmp/tkmon-templates//19d538de824c6ba077538617e34a.php:117
 msgid "Search suffix (optional)"
 msgstr ""
 
-#: /tmp/tkmon-templates//19d538de824c6ba077538617e34a.php:114
+#: /tmp/tkmon-templates//19d538de824c6ba077538617e34a.php:135
 #: /tmp/tkmon-templates//31bf2f8f1039446ae40fa1787423.php:81
 msgid "Update"
 msgstr ""
