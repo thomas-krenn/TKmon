@@ -150,6 +150,10 @@ class ArrayObjectValidator extends ArrayObject
     private function validateValue(\NETWAYS\Common\ValidatorObject $validator, $value)
     {
         $options = array();
+        if (is_bool($value) === false && !$value && $validator->isMandatory() === false) {
+            return true;
+        }
+
         if ($validator->hasOptions()) {
             $options['options'] = $validator->getOptions();
         }

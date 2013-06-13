@@ -27,6 +27,7 @@ use NETWAYS\Cache\Manager;
 use NETWAYS\Cache\Provider\XCache;
 use NETWAYS\Common\Config\PDOLoader;
 use NETWAYS\Common\Config\PDOPersister;
+use NETWAYS\Common\Config;
 use NETWAYS\Intl\SimpleTranslator;
 use TKMON\Extension\Host\DefaultAttributes;
 use TKMON\Extension\Host\ThomasKrennAttributes;
@@ -159,11 +160,89 @@ final class Web
                 $creator = $c['directoryCreator'];
                 $creator->addPath($config->get('core.var_dir'));
                 $creator->addPath($config->get('core.cache_dir'));
+                $creator->addPath($config->get('core.log_dir'));
                 $creator->addPath($config->get('template.cache_dir'));
 
                 return $config;
             }
         );
+
+        /**
+         * Configure logger object
+         */
+        $container['logger'] = $container->share(
+            function ($c) {
+                /** @var Config $config */
+                $config = $c['config'];
+
+                $loggerName = $config['log.root'];
+                $logFormat = $config['log.format'];
+                $logThreshold = $config['log.level'];
+
+                $layout = array(
+                    'class' => 'LoggerLayoutPattern',
+                    'params' => array(
+                        'conversionPattern' => $logFormat
+                    )
+                );
+
+                if ($config['log.enable'] === true) {
+                    $logConfig = array (
+                        'rootLogger' => array (
+                            'appenders' => array('file', 'syslog')
+                        ),
+
+                        'appenders' => array(
+                            'file' => array(
+                                'class' => 'LoggerAppenderFile',
+                                'layout' => $layout,
+                                'params' => array(
+                                    'append' => true,
+                                    'file' => $config['log.file'],
+                                    'threshold' => $logThreshold
+                                )
+                            ),
+                            'syslog' => array(
+                                'class' => 'LoggerAppenderSyslog',
+                                'layout' => array(
+                                    'class' => 'LoggerLayoutSimple'
+                                ),
+                                'params' => array(
+                                    'ident' => $config['app.name'],
+                                    'threshold' => $logThreshold
+                                )
+                            )
+                        )
+                    );
+                } else {
+                    $logConfig = array (
+                        'rootLogger' => array (
+                            'appenders' => array('null')
+                        ),
+
+                        'appenders' => array(
+                            'null' => array(
+                                'class' => 'LoggerAppenderNull',
+                                'layout' => array(
+                                    'class' => 'LoggerLayoutSimple'
+                                )
+                            )
+                        )
+                    );
+                }
+
+                \Logger::configure($logConfig);
+
+                /** @var \Logger $logger */
+                $logger = \Logger::getLogger($loggerName);
+                $logger->debug('Logger configured: '. $loggerName);
+
+                return $logger;
+            }
+        );
+
+        // Trigger
+        $container['logger'];
 
         /*
          * Template engine
@@ -432,6 +511,8 @@ final class Web
                 return $catalogue;
             }
         );
+
+        $container['logger']->debug('Bootstrap complete, do request');
 
         echo $container['dispatcher']->dispatchRequest();
     }

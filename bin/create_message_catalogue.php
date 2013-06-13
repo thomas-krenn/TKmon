@@ -74,7 +74,7 @@ exec(
 exec(
     '/usr/bin/xgettext'
     . ' --join-existing --default-domain=messages -p '. $dir. '/share/tkmon/locales -o messages.pot'
-    . ' --from-code=UTF-8 -n --omit-header -L PHP $(find '. $dir. '/lib/tkmon -name *php)'
+    . ' --from-code=UTF-8 -n --omit-header -L PHP $(find '. $dir. '/lib/tkmon -name *php -a -not -ipath "*vendor*")'
 );
 
 exec('/bin/rm -rf '. $tmpDir);

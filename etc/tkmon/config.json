@@ -3,6 +3,7 @@
     "core.share_dir":       "{core.root_dir}/share/tkmon",
     "core.template_dir":    "{core.share_dir}/templates",
     "core.var_dir":         "{core.temp_dir}/tkmon",
+    "core.log_dir":         "{core.var_dir}/log",
     "core.cache_dir":       "{core.var_dir}/cache",
 
     "session.name":         "tkmon-loggin-session",
@@ -37,6 +38,12 @@
     "db.autocreate":        true,
     "db.debconf.use":       false,
     "db.debconf.file":      "{core.etc_dir}/config-db.php",
+
+    "log.enable":           true,
+    "log.level":            "warn",
+    "log.file":             "{core.log_dir}/tkmon.log",
+    "log.format":           "%date %logger %-5level %msg%n",
+    "log.root":             "root",
 
     "system.interface":     "eth0",
     "system.apache_owner":  "www-data.www-data",

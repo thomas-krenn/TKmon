@@ -21,6 +21,7 @@
 
 namespace TKMON\Model;
 
+use NETWAYS\Crypt\UniqueId;
 use NETWAYS\Http\Session;
 use TKMON\Exception\ModelException;
 use TKMON\Exception\UserException;
@@ -95,6 +96,24 @@ class User extends ApplicationModel
     protected $id;
 
     /**
+     * Cached id generator to create secure salts
+     *
+     * @var UniqueId
+     */
+    private $idGenerator;
+
+    /**
+     * Creates a new object
+     * @param \Pimple $container
+     */
+    public function __construct(\Pimple $container)
+    {
+        parent::__construct($container);
+        $this->idGenerator = new UniqueId();
+    }
+
+
+    /**
      * Setter for authenticated flag
      * @param bool $authenticated
      */
@@ -146,6 +165,8 @@ class User extends ApplicationModel
     {
         return $this->name;
     }
+
+
 
     /**
      * Initialize the user
@@ -344,7 +365,10 @@ class User extends ApplicationModel
      */
     private function generateSalt()
     {
-        return uniqid(mt_rand(), true);
+        /*
+         * See #2666 for more information
+         */
+        return $this->idGenerator->generateToken(true);
     }
 
     /**
@@ -386,7 +410,7 @@ class User extends ApplicationModel
     }
 
     /**
-     * Class wide password teste method
+     * Class wide password test method
      *
      * @param string $testPassword
      * @param string $passwordHash

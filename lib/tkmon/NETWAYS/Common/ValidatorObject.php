@@ -39,9 +39,10 @@ class ValidatorObject
      * @param string|int $type
      * @param int|null $flags
      * @param array|null $options
+     * @param boolean $mandatory
      * @return ValidatorObject
      */
-    public static function create($field, $humanDescription, $type, $flags = null, $options = null)
+    public static function create($field, $humanDescription, $type, $flags = null, $options = null, $mandatory = null)
     {
         $class = __CLASS__;
 
@@ -57,6 +58,10 @@ class ValidatorObject
 
         if ($options) {
             $validator->setOptions($options);
+        }
+
+        if (isset($mandatory)) {
+            $validator->setMandatory((boolean)$mandatory);
         }
 
         return $validator;
