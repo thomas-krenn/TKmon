@@ -21,6 +21,9 @@
 
 namespace TKMON\Model\System\Configuration;
 
+use TKMON\Model\Database\DebConfBuilder;
+use Zend\Filter\Dir;
+
 /**
  * Import system configuration
  * @package TKMON\Model
@@ -134,14 +137,28 @@ class Importer extends Base
             );
         }
 
+        /** @var DebConfBuilder $dbBuilder */
         $dbBuilder = $this->container['dbbuilder'];
         $dbFile = $dbBuilder->getBasePath(). DIRECTORY_SEPARATOR. $dbBuilder->getName();
+
+        /*
+         * Unique name because of existing tkmon files
+         */
+        $tmpName = $dbBuilder->getBasePath()
+            . DIRECTORY_SEPARATOR
+            . sprintf(
+                'tkmon-database-backup-%s-%s.db',
+                uniqid(),
+                date('YmdGis')
+            );
 
         /** @var $mv \NETWAYS\IO\Process */
         $mv = $this->container['command']->create('mv');
         $mv->addPositionalArgument($dbFile);
-        $mv->addPositionalArgument(sys_get_temp_dir()); // Backup
+        $mv->addPositionalArgument($tmpName); // Backup
         $mv->execute();
+
+        $this->container['logger']->warn('Backup sqlite database to: '. $tmpName);
 
         /** @var $sqlite \NETWAYS\IO\Process */
         $sqlite = $this->container['command']->create('sqlite3');
