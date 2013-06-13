@@ -94,6 +94,12 @@ class UniqueId
         $this->assertStrongAlgorithm = (boolean)$bool;
     }
 
+    /**
+     * Generates token
+     * @param bool $asString
+     * @return string
+     * @throws \RuntimeException
+     */
     public function generateToken($asString = true)
     {
         if (!function_exists('openssl_random_pseudo_bytes')) {
@@ -115,6 +121,10 @@ class UniqueId
         return $bytes;
     }
 
+    /**
+     * Magic string conversion
+     * @return string
+     */
     public function __toString()
     {
         return $this->generateToken();

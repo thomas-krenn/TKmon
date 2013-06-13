@@ -96,10 +96,16 @@ class User extends ApplicationModel
     protected $id;
 
     /**
+     * Cached id generator to create secure salts
+     *
      * @var UniqueId
      */
     private $idGenerator;
 
+    /**
+     * Creates a new object
+     * @param \Pimple $container
+     */
     public function __construct(\Pimple $container)
     {
         parent::__construct($container);
