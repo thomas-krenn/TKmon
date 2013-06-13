@@ -20,6 +20,9 @@
 """
 
 import sys
+reload(sys)
+sys.setdefaultencoding("utf-8")
+
 import time
 import os.path
 
@@ -99,11 +102,11 @@ def main():
             return 0
 
         if options.noenc is True:
-            data = str(xml_object)
+            data = xml_object.toxml()
         else:
             gpg = GnupgCommand(options.gnupgconfig)
             try:
-                data = gpg.crypt_ascii(GNUPG_KEY, str(xml_object))
+                data = gpg.crypt_ascii(GNUPG_KEY, xml_object.toxml())
             except GnupgCommandException as e:
                 log.error(e.message)
                 return 255
