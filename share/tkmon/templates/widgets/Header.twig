@@ -1,7 +1,19 @@
 {% set username = user.getName() %}
 <div class="navbar  navbar-static-top">
     <div class="navbar-inner">
-        <a class="brand" href="{{ web_link("Index/Index") }}">{{ app_name }}</a>
+
+        <a class="brand" href="{{ web_link("Index/Index") }}">
+            {{ app_name }}
+        </a>
+
+        <a class="brand" href="{{ config.get('logo.link') }}" target="_blank">
+            <img
+                style="height: {{ config.get('logo.height') }}px;"
+                src="{{ config.get('web.path') }}{{ config.get('logo.src') }}"
+                alt="{{ app_name }}"
+                title="{{ app_name }}"
+            />
+        </a>
 
         <ul class="nav">
             <li><a href="#tkmon-about" data-toggle="modal">{% trans "About" %}</a></li>

@@ -27,7 +27,7 @@ html, body {
     min-height: 100%;
     height: auto !important;
     height: 100%;
-    margin: 0 auto -55px;
+    margin: 0 auto -80px;
 }
 
 #push, #footer {
@@ -39,7 +39,7 @@ html, body {
 }
 
 #footer .container p {
-    line-height: 30px;
+    line-height: 40px;
     text-align: center;
 }
 
