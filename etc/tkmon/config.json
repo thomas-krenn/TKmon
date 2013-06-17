@@ -12,7 +12,7 @@
     "view.refresh":         90,
 
     "template.file":        "main.twig",
-    "template.cache":       true,
+    "template.cache":       false,
     "template.cache_dir":   "{core.temp_dir}/tkmon-templates",
 
     "navigation.data":      "{core.etc_dir}/nav.json",
@@ -29,6 +29,10 @@
     "app.version.release":  "{app.name}-{app.version.full}",
 
     "app.login.counter":    0,
+
+    "logo.src":             "img/logo-tkmon.png",
+    "logo.height":          20,
+    "logo.link":            "http://www.thomas-krenn.com/en/wiki/TKmon",
 
     "db.schema":            "{core.etc_dir}/sqlite3",
     "db.basepath":          "{core.var_dir}/db",
