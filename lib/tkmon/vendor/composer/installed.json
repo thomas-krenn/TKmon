@@ -146,5 +146,37 @@
             "container",
             "dependency injection"
         ]
+    },
+    {
+        "name": "apache/log4php",
+        "version": "2.3.0",
+        "version_normalized": "2.3.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://git-wip-us.apache.org/repos/asf/logging-log4php.git",
+            "reference": "2.3.0"
+        },
+        "require": {
+            "php": ">=5.2.7"
+        },
+        "time": "2012-10-26 09:13:25",
+        "type": "library",
+        "installation-source": "source",
+        "autoload": {
+            "classmap": [
+                "src/main/php/"
+            ]
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "Apache-2.0"
+        ],
+        "description": "A versatile logging framework for PHP",
+        "homepage": "http://logging.apache.org/log4php/",
+        "keywords": [
+            "log",
+            "logging",
+            "php"
+        ]
     }
 ]
