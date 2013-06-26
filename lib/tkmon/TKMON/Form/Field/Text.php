@@ -21,13 +21,16 @@
 
 namespace TKMON\Form\Field;
 
+use NETWAYS\Common\ValidatorObject;
+use TKMON\Form\Field;
+
 /**
- * Base field
+ * Simple text field
  *
  * @package TKMON\Form
  * @author Marius Hein <marius.hein@netways.de>
  */
-class Text extends \TKMON\Form\Field
+class Text extends Field
 {
     /**
      * Template for a simple text box
@@ -41,18 +44,18 @@ class Text extends \TKMON\Form\Field
     /**
      * Creates and returns a simple string validator
      *
-     * @return \NETWAYS\Common\ValidatorObject
+     * @return ValidatorObject
      */
     public function getValidator()
     {
-        $validator = \NETWAYS\Common\ValidatorObject::create(
+        $validator = ValidatorObject::create(
             $this->getNamePrefix(). $this->getName(),
             $this->getLabel(),
-            \NETWAYS\Common\ValidatorObject::VALIDATE_MANDATORY
+            ValidatorObject::VALIDATE_MANDATORY
         );
 
         if ($this->getMandatory() === false) {
-            $validator->setType(\NETWAYS\Common\ValidatorObject::VALIDATE_ANYTHING);
+            $validator->setType(ValidatorObject::VALIDATE_ANYTHING);
             $validator->setMandatory(false);
         }
 

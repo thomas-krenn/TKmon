@@ -22,12 +22,12 @@
 namespace TKMON\Form\Field;
 
 /**
- * Base field
+ * Readonly field
  *
  * @package TKMON\Form
  * @author Marius Hein <marius.hein@netways.de>
  */
-class TextReadonly extends \TKMON\Form\Field\Text
+class TextReadonly extends Text
 {
     /**
      * Template for a simple text box
