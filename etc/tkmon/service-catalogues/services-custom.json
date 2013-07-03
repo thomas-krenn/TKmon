@@ -270,7 +270,82 @@
                 "defined": true,
                 "defined_in": "/etc/nagios-plugins/config/check_adaptec.cfg"
             }
+        },
+		{
+            "service_description": "lsi-raid-nrpe",
+            "display_name": "LSI RAID",
+            "check_command": {
+                "command_name": "check_nrpe_1arg",
+                 "arguments": [
+                    {
+                        "label": "command",
+                        "description": {
+                            "en_US": "Command which the remote NRPE daemon executes",
+                            "de_DE": "Kommando, das vom entfernten NRPE Daemon ausgeführt wird"
+                        },
+                        "validation": "string",
+                        "argument": "-c",
+			"value": "check_lsi_raid"
+                    }
+                ]
+            },
+            "_catalogue_attributes": {
+                "tags": ["remote", "LSI", "RAID"],
+                "name": "lsi-raid-nrpe",
+                "label": "LSI RAID via NRPE",
+                "description": {
+                        "en_US": "Checks the status of a remote LSI RAID via NRPE",
+                        "de_DE": "Testet den Status eines entfernten LSI RAIDs via NRPE"
+                },
+                "defined": true,
+                "defined_in": "/etc/nagios-plugins/config/check_nrpe.cfg",
+
+                "links": [{
+                    "name": "LSI RAID Monitoring Plugin",
+                    "href": {
+                        "en_US": "http://www.thomas-krenn.com/en/wiki/LSI_RAID_Monitoring_Plugin",
+                        "de_DE": "http://www.thomas-krenn.com/de/wiki/LSI_RAID_Monitoring_Plugin"
+                    },
+                    "description": {
+                        "en_US": "Wiki article about the LSI RAID Monitoring Plugin",
+                        "de_DE": "Wiki Artikel zum LSI RAID Monitoring Plugin"
+                    }
+                }],
+
+                "doc": {
+                    "en_US": [
+                        "<h4>LSI RAID Monitoring Plugin (via NRPE)</h4>",
+                        "<p>Using this plugin, the status of a remote LSI RAID can be monitored by Nagios",
+                        "or Icinga. Please ensure to configure the NRPE daemon on the remote host.</p>"
+                    ],
+                    "de_DE": [
+                        "<h4>LSI RAID Monitoring Plugin (über NRPE)</h4>",
+                        "<p>Mit diesem Plugin kann der Status eines LSI RAIDs eines entfernten Servers mit Nagios oder Icinga",
+                        "überwacht werden. Bitte stellen Sie die korrekte Konfiguration des NRPE Daemons am entfernten Server sicher.</p>"
+                    ]
+                },
+
+                "tk_notify": true,
+                "tk_notify_default": true
+            }
+        },
+        {
+            "service_description": "lsi-raid-local",
+            "display_name": "LSI RAID Local",
+            "check_command": {
+                "command_name": "check_lsi_raid",
+                 "arguments": null
+            },
+            "_catalogue_attributes": {
+                "tags": ["local", "LSI", "RAID"],
+                "name": "lsi-raid-local",
+                "label": "LSI RAID",
+                "description": "Checks the LSI RAID",
+                "defined": true,
+                "defined_in": "/etc/nagios-plugins/config/check_lsi.cfg"
+            }
         }
+
     ]
 
 }
