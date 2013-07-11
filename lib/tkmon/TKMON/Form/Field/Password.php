@@ -24,15 +24,25 @@ namespace TKMON\Form\Field;
 use NETWAYS\Common\ValidatorObject;
 
 /**
- * Field for ip addresses
+ * Mask user inputs with this field
  *
  * @package TKMON\Form
  * @author Marius Hein <marius.hein@netways.de>
  */
-class IpAddress extends Text
+class Password extends Text
 {
     /**
-     * Create an ip validator
+     * Template for a simple text box
+     * @return string
+     */
+    protected function getTemplateName()
+    {
+        return 'fields/Password.twig';
+    }
+
+    /**
+     * Creates and returns a simple string validator
+     *
      * @return ValidatorObject
      */
     public function getValidator()
@@ -40,10 +50,11 @@ class IpAddress extends Text
         $validator = ValidatorObject::create(
             $this->getNamePrefix(). $this->getName(),
             $this->getLabel(),
-            FILTER_VALIDATE_IP
+            ValidatorObject::VALIDATE_MANDATORY
         );
 
         if ($this->getMandatory() === false) {
+            $validator->setType(ValidatorObject::VALIDATE_ANYTHING);
             $validator->setMandatory(false);
         }
 

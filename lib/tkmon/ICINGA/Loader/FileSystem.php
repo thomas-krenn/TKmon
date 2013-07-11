@@ -21,6 +21,8 @@
 
 namespace ICINGA\Loader;
 
+use ICINGA\Exception\LoadException;
+
 /**
  * Filesystem
  *
@@ -123,7 +125,11 @@ class FileSystem extends \NETWAYS\Common\ArrayObject
         $fileInfo = null;
 
         foreach ($iterator as $fileInfo) {
-            unlink($fileInfo->getRealPath());
+            $check = @unlink($fileInfo->getRealPath());
+
+            if ($check === false) {
+                throw new LoadException('Could not unlink '. $fileInfo->getRealPath(). ' (permission denied)');
+            }
         }
     }
 
