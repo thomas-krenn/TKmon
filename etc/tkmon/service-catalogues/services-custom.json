@@ -344,8 +344,65 @@
                 "defined": true,
                 "defined_in": "/etc/nagios-plugins/config/check_lsi.cfg"
             }
-        }
+        },
+		{
+            "service_description": "load-nrpe",
+            "display_name": "SYTEM LOAD",
+            "check_command": {
+                "command_name": "check_nrpe_1arg",
+                 "arguments": [
+                    {
+                        "label": "command",
+                        "description": {
+                            "en_US": "Command which the remote NRPE daemon executes",
+                            "de_DE": "Kommando, das vom entfernten NRPE Daemon ausgeführt wird"
+                        },
+                        "validation": "string",
+                        "argument": "-c",
+						"value": "check_load"
+                    }
+                ]
+            },
+            "_catalogue_attributes": {
+                "tags": ["remote", "system", "load"],
+                "name": "system-load-nrpe",
+                "label": "System Load via NRPE",
+                "description": {
+                        "en_US": "Checks the status of a remote system load via NRPE",
+                        "de_DE": "Testet den Status einer entfernten System Load via NRPE"
+                },
+                "defined": true,
+                "defined_in": "/etc/nagios-plugins/config/check_nrpe.cfg",
 
+                "links": [{
+                    "name": "System Load Monitoring Plugin",
+                    "href": {
+                        "en_US": "http://www.thomas-krenn.com/en/wiki/System_Load_Monitoring_Plugin",
+                        "de_DE": "http://www.thomas-krenn.com/de/wiki/Sysytem_Load_Monitoring_Plugin"
+                    },
+                    "description": {
+                        "en_US": "Wiki article about the System Load Monitoring Plugin",
+                        "de_DE": "Wiki Artikel zum System Load Monitoring Plugin"
+                    }
+                }],
+
+                "doc": {
+                    "en_US": [
+                        "<h4>System Load Monitoring Plugin (via NRPE)</h4>",
+                        "<p>Using this plugin, the status of a remote system load can be monitored by Nagios",
+                        "or Icinga. Please ensure to configure the NRPE daemon on the remote host.</p>"
+                    ],
+                    "de_DE": [
+                        "<h4>System Load Monitoring Plugin (über NRPE)</h4>",
+                        "<p>Mit diesem Plugin kann der Status einer entfernten System Load mit Nagios oder Icinga",
+                        "überwacht werden. Bitte stellen Sie die korrekte Konfiguration des NRPE Daemons am entfernten Server sicher.</p>"
+                    ]
+                },
+
+                "tk_notify": false,
+                "tk_notify_default": false
+            }
+        }
     ]
 
 }
