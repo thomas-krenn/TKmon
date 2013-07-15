@@ -31,15 +31,15 @@
 {% endif %}
 
 <div class="hero-unit">
-    <h1>Welcome to TKmon.</h1>
-    <p>Simple and fast monitoring based on Icinga.</p>
+    <h1>{% trans "Welcome to TKmon." %}</h1>
+    <p>{% trans "Simple and fast monitoring based on Icinga." %}</p>
     <p>
         {% if user.getAuthenticated() == true %}
             <a href="{{ web_link('Monitor/Icinga/Services') }}" class="btn btn-large btn-primary">
-                <i class="icon-warning-sign icon-2x"></i> Whats up
+                <i class="icon-warning-sign icon-2x"></i> {% trans "Service status" %}
             </a>
             <a href="{{ web_link('Index/LearnMore') }}" class="btn btn-large btn-primary">
-                <i class="icon-lightbulb icon-2x"></i> Learn more
+                <i class="icon-lightbulb icon-2x"></i> {% trans "Learn more" %}
             </a>
         {% else %}
             This is a protected application. Please login to proceed.

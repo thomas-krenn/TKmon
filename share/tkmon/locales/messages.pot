@@ -59,20 +59,25 @@ msgstr ""
 msgid "Save"
 msgstr ""
 
-#: /tmp/tkmon-templates//0abe6a06ca5af186d9350ccb0b7b.php:35
+#: /tmp/tkmon-templates//0abe6a06ca5af186d9350ccb0b7b.php:26
+msgid ""
+"Change the IP address of this device and configure network related settings."
+msgstr ""
+
+#: /tmp/tkmon-templates//0abe6a06ca5af186d9350ccb0b7b.php:38
 msgid "Device"
 msgstr ""
 
-#: /tmp/tkmon-templates//0abe6a06ca5af186d9350ccb0b7b.php:41
+#: /tmp/tkmon-templates//0abe6a06ca5af186d9350ccb0b7b.php:44
 #: /tmp/tkmon-templates//bed53433bbed76cea04c8936c38b.php:81
 msgid "Address"
 msgstr ""
 
-#: /tmp/tkmon-templates//0abe6a06ca5af186d9350ccb0b7b.php:47
+#: /tmp/tkmon-templates//0abe6a06ca5af186d9350ccb0b7b.php:50
 msgid "DNS"
 msgstr ""
 
-#: /tmp/tkmon-templates//0abe6a06ca5af186d9350ccb0b7b.php:53
+#: /tmp/tkmon-templates//0abe6a06ca5af186d9350ccb0b7b.php:56
 msgid "Time"
 msgstr ""
 
@@ -738,6 +743,22 @@ msgid ""
 "Krenn support power!\n"
 "                (<a href=\"%tk_info_link%\">Click this link for more "
 "information</a>)"
+msgstr ""
+
+#: /tmp/tkmon-templates//6e907e97b10b7698ffad3d7dec80.php:76
+msgid "Welcome to TKmon."
+msgstr ""
+
+#: /tmp/tkmon-templates//6e907e97b10b7698ffad3d7dec80.php:80
+msgid "Simple and fast monitoring based on Icinga."
+msgstr ""
+
+#: /tmp/tkmon-templates//6e907e97b10b7698ffad3d7dec80.php:93
+msgid "Service status"
+msgstr ""
+
+#: /tmp/tkmon-templates//6e907e97b10b7698ffad3d7dec80.php:102
+msgid "Learn more"
 msgstr ""
 
 #: /tmp/tkmon-templates//6ed993a3f3c155f018ac2e5e323f.php:20
