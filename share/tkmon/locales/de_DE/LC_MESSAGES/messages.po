@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: TKmon\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2013-07-16 14:51+0100\n"
+"PO-Revision-Date: 2013-07-16 15:11+0100\n"
 "Last-Translator: Werner Fischer <wfischer@thomas-krenn.com>\n"
 "Language-Team: German\n"
 "Language: de\n"
@@ -1081,7 +1081,7 @@ msgstr "Neues Passwort (nochmal)"
 
 #: /tmp/tkmon-templates//b9ee7d873ccc790370d3d8c5df9f.php:78
 msgid "Change password"
-msgstr "Passwort #ndern"
+msgstr "Passwort ändern"
 
 #: /tmp/tkmon-templates//bed53433bbed76cea04c8936c38b.php:24
 msgid "Hosts"
