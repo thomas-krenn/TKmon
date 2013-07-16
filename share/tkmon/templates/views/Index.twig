@@ -42,7 +42,9 @@
                 <i class="icon-lightbulb icon-2x"></i> {% trans "Learn more" %}
             </a>
         {% else %}
-            This is a protected application. Please login to proceed.
+            {% trans %}
+               This is a protected application. Please login to proceed.
+            {% endtrans %}
             <div class="container-spacer-down">
                 <a href="{{ web_link('System/Login/Index') }}" class="btn btn-primary">
                     <i class="icon-key"></i> Login
