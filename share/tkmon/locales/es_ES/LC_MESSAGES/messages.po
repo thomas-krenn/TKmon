@@ -775,6 +775,10 @@ msgstr ""
 msgid "Learn more"
 msgstr ""
 
+#: /tmp/tkmon-templates//6e907e97b10b7698ffad3d7dec80.php:109
+msgid "This is a protected application. Please login to proceed."
+msgstr ""
+
 #: /tmp/tkmon-templates//6ed993a3f3c155f018ac2e5e323f.php:20
 msgid "DNS settings"
 msgstr ""
