@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: TKmon\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2013-07-16 13:48+0100\n"
+"PO-Revision-Date: 2013-07-16 14:51+0100\n"
 "Last-Translator: Werner Fischer <wfischer@thomas-krenn.com>\n"
 "Language-Team: German\n"
 "Language: de\n"
@@ -46,7 +46,7 @@ msgid ""
 "Changes have been written to disk.\n"
 "            Please <a href=\"%restart_link%\">restart your Icinga instance</a> for the changes to take effect."
 msgstr ""
-"Änderungen wurden auf die Disk geschrieben.\n"
+"Änderungen wurden gespeichert.\n"
 "            <a href=\"%restart_link%\">Bitte starten Sie Ihre Icinga Instanz neu.</a>"
 
 #: /tmp/tkmon-templates//0a1511c4a88a3a371d5853402d92.php:82
@@ -118,7 +118,7 @@ msgstr "Warnung"
 
 #: /tmp/tkmon-templates//0b410ce6bb7f1d9b2f9780df7223.php:56
 msgid "During reboot no notifications about problems will be send to you."
-msgstr "Während dem Neustart werden keine Meldungen per Mail versandt."
+msgstr "Während des Neustarts werden keine Benachrichtigungen versandt."
 
 #: /tmp/tkmon-templates//0b410ce6bb7f1d9b2f9780df7223.php:66
 msgid "Reboot device!"
@@ -207,7 +207,7 @@ msgstr "Der Status Ihres Icinga Daemons ist"
 
 #: /tmp/tkmon-templates//25f7e740e5f3f1a2644db3a19a7a.php:40
 msgid "Icinga is running if the daemon is available and the status file is up-to-date."
-msgstr "Icinga läuft wenn der Daemon verfügbar ist und die Status Datei up-to-date ist."
+msgstr "Icinga läuft wenn der Daemon verfügbar ist und die Status Datei aktuell ist."
 
 #: /tmp/tkmon-templates//25f7e740e5f3f1a2644db3a19a7a.php:45
 msgid "Press the following button to refresh the status:"
@@ -458,7 +458,7 @@ msgstr "Bitte <a href=\"%restart_url%\">starten Sie Ihre Icinga Instanz neu</a> 
 #: /tmp/tkmon-templates//4dff0924e40bfef089a8dfec6c58.php:68
 #: /tmp/tkmon-templates//4dff0924e40bfef089a8dfec6c58.php:214
 #: /tmp/tkmon-templates//bed53433bbed76cea04c8936c38b.php:69
-#: /tmp/tkmon-templates//ecfec0f6027087812df0b58cd6fe.php:44
+#: /tmp/tkmon-templates//ecfec0f6027087812df0b58cd6fe.php:47
 msgid "Name"
 msgstr "Name"
 
@@ -478,19 +478,19 @@ msgstr "Keine Kontkate definiert, klicken Sie den Button oberhalb um welche zu e
 
 #: /tmp/tkmon-templates//4dff0924e40bfef089a8dfec6c58.php:131
 #: /tmp/tkmon-templates//bed53433bbed76cea04c8936c38b.php:201
-#: /tmp/tkmon-templates//ecfec0f6027087812df0b58cd6fe.php:99
+#: /tmp/tkmon-templates//ecfec0f6027087812df0b58cd6fe.php:102
 msgid "Edit"
 msgstr "Edit"
 
 #: /tmp/tkmon-templates//4dff0924e40bfef089a8dfec6c58.php:140
 #: /tmp/tkmon-templates//bed53433bbed76cea04c8936c38b.php:220
-#: /tmp/tkmon-templates//ecfec0f6027087812df0b58cd6fe.php:107
+#: /tmp/tkmon-templates//ecfec0f6027087812df0b58cd6fe.php:110
 msgid "Remove"
 msgstr "Entfernen"
 
 #: /tmp/tkmon-templates//4dff0924e40bfef089a8dfec6c58.php:152
 #: /tmp/tkmon-templates//bed53433bbed76cea04c8936c38b.php:232
-#: /tmp/tkmon-templates//ecfec0f6027087812df0b58cd6fe.php:119
+#: /tmp/tkmon-templates//ecfec0f6027087812df0b58cd6fe.php:122
 msgid "Yes, delete please"
 msgstr "Ja, bitte löschen"
 
@@ -585,8 +585,8 @@ msgid ""
 "        your environment during the reboot."
 msgstr ""
 "Nach dem Restore wird Ihre Appliance neu starten um die Änderungen zu übernehmen. Bedenken Sie,\n"
-"        dass Ihr System nicht über das Netzwerk erreichbar ist  (Änderung der IP) und Ihre Icinga Instanz Ihre\n"
-"        Umgebung nicht überwachen kann!"
+"        dass Ihr System während des Reboots nicht über das Netzwerk erreichbar ist und Ihre Icinga Instanz Ihre\n"
+"        Umgebung nicht überwachen kann."
 
 #: /tmp/tkmon-templates//56f62b4d0bbdbf8f59280cc0d90d.php:74
 msgid "If you decide not to reboot, e.g. for testing purposes, keep in mind to do this soon or restart appropriate daemons manually."
@@ -893,7 +893,7 @@ msgid "Service description"
 msgstr "Service Beschreibung"
 
 #: /tmp/tkmon-templates//80bc8399d35989302ca05c14c65a.php:139
-#: /tmp/tkmon-templates//ecfec0f6027087812df0b58cd6fe.php:48
+#: /tmp/tkmon-templates//ecfec0f6027087812df0b58cd6fe.php:51
 msgid "Display name"
 msgstr "Display Name"
 
@@ -997,6 +997,10 @@ msgstr "Link"
 #: /tmp/tkmon-templates//a3a44420b4a88348fe87f77f9f78.php:72
 msgid "Goto"
 msgstr "Gehe zu"
+
+#: /tmp/tkmon-templates//a3a44420b4a88348fe87f77f9f78.php:95
+msgid "Your current password"
+msgstr "Ihr aktuelles Passwort"
 
 #: /tmp/tkmon-templates//ad3a7d58b6ad806b8e5117b91557.php:20
 msgid "IP address settings"
@@ -1201,13 +1205,95 @@ msgstr "Keine Probleme gefunden, alles OK."
 msgid "Services for %hostName%"
 msgstr "Services für %hostName%"
 
-#: /tmp/tkmon-templates//ecfec0f6027087812df0b58cd6fe.php:34
+#: /tmp/tkmon-templates//ecfec0f6027087812df0b58cd6fe.php:32
+msgid "Click on the following button to add services to the host:"
+msgstr "Klicken Sie auf den folgenden Button um einen neuen Service dem Host hinzuzufügen:"
+
+#: /tmp/tkmon-templates//ecfec0f6027087812df0b58cd6fe.php:37
 msgid "Add service"
 msgstr "Service hinzufügen"
 
-#: /tmp/tkmon-templates//ecfec0f6027087812df0b58cd6fe.php:63
+#: /tmp/tkmon-templates//ecfec0f6027087812df0b58cd6fe.php:66
 msgid "No services defined for this host. Click on the 'Add' button to do so."
 msgstr "Keine Services für diesen Host definiert. Klicken Sie auf den 'Hinzufügen' Button."
+
+#: /tmp/tkmon-templates//f0780cb9e5eddd4ce40a0c4b972a.php:24
+msgid "Welcome TKmon"
+msgstr "Willkommen zu TKmon"
+
+#: /tmp/tkmon-templates//f0780cb9e5eddd4ce40a0c4b972a.php:30
+msgid "Why"
+msgstr "Warum"
+
+#: /tmp/tkmon-templates//f0780cb9e5eddd4ce40a0c4b972a.php:36
+msgid ""
+"TKmon is a simple webinterface to allow every user to monitor his environment simple and easy. You'll need no knowledge\n"
+"    about monitoring software, linux and configuring these components - just monitor your system!"
+msgstr ""
+"TKmon ist ein einfaches Webinterface zum einfachen Überwachen seiner IT Umgebung. Sie brauchen dazu kein tieferes\n"
+"    Know-How über Monitoring-Software, Linux und die Konfiguration dieser Komponenten - überwachen Sie einfach Ihre Systeme!"
+
+#: /tmp/tkmon-templates//f0780cb9e5eddd4ce40a0c4b972a.php:43
+msgid "Thanks"
+msgstr "Danke"
+
+#: /tmp/tkmon-templates//f0780cb9e5eddd4ce40a0c4b972a.php:49
+msgid ""
+"Thanks to all developers bringing us these wonderful technologies like Bootstrap, Twig, beautiful icons and more.\n"
+"    NETWAYS and Thomas Krenn just use the best of breed to bring you an incredible user experience."
+msgstr ""
+"Danke an alle Entwickler, die uns Technologien wie Bootstrap, Twig, schöne Icongs und mehr bringen.\n"
+"    NETWAYS und Thomas Krenn verwenden diese Technologien um Ihnen ein besonderes Nutzungserlebnis zu bringen."
+
+#: /tmp/tkmon-templates//f0780cb9e5eddd4ce40a0c4b972a.php:56
+msgid "Why open source"
+msgstr "Warum Open Source"
+
+#: /tmp/tkmon-templates//f0780cb9e5eddd4ce40a0c4b972a.php:62
+msgid "What is Open Source Software?"
+msgstr "Was ist Open Source Software?"
+
+#: /tmp/tkmon-templates//f0780cb9e5eddd4ce40a0c4b972a.php:69
+msgid ""
+"Open source software, free software or software libre is software that can be used, copied and distributed\n"
+"    liberally - modified or unmodified, with or without payment. Free here means freedom of use and this is\n"
+"    where its greatest benefits lie!"
+msgstr ""
+
+#: /tmp/tkmon-templates//f0780cb9e5eddd4ce40a0c4b972a.php:77
+msgid "Who we are"
+msgstr "Wer wir sind"
+
+#: /tmp/tkmon-templates//f0780cb9e5eddd4ce40a0c4b972a.php:93
+msgid ""
+"For more than 15 years we have been supporting companies to manage complex, multifaceted IT\n"
+"    infrastructures. Specialising in enterprise grade open source tools, we ensure the smooth\n"
+"    operation of networks, servers and applications. Each time, we tailor robust,\n"
+"    cost-effective solutions for our customers of all sizes and industries. At NETWAYS we make\n"
+"    your IT do more with less."
+msgstr ""
+
+#: /tmp/tkmon-templates//f0780cb9e5eddd4ce40a0c4b972a.php:104
+msgid "Goto NETWAYS"
+msgstr "Gehe zu NETWAYS"
+
+#: /tmp/tkmon-templates//f0780cb9e5eddd4ce40a0c4b972a.php:125
+msgid ""
+"The server manufacturer Thomas-Krenn.AG is Europe's leading online store for server, server solutions\n"
+"    and quality hosting. The company currently has about 97 employees in the areas of technology and\n"
+"    development, purchasing, production, quality assurance, sales, marketing and administration. Medical\n"
+"    practices, educational institutions, medium-sized companies and large corporations all over Europe\n"
+"    account for the more than 12,500 customers. In 2012 Thomas-Krenn.AG had 22.7 million euros in sales\n"
+"    and more than doubled its sales since 2005."
+msgstr ""
+
+#: /tmp/tkmon-templates//f0780cb9e5eddd4ce40a0c4b972a.php:136
+msgid "All products are assembled in the Lower Bavarian city of Freyung and sent to the customer's within 24 hours."
+msgstr ""
+
+#: /tmp/tkmon-templates//f0780cb9e5eddd4ce40a0c4b972a.php:144
+msgid "Goto Thomas-Krenn"
+msgstr "Gehe zu Thomas Krenn"
 
 #: /tmp/tkmon-templates//f40c6da8264275ac85ef482ace0c.php:29
 msgid "Settings from the config.json config file or on startup auto generated settings:"
@@ -1219,7 +1305,7 @@ msgstr "Daemon Status"
 
 #: /tmp/tkmon-templates//f73ab308af79cf384936655cf04e.php:29
 msgid "Take control of the Icinga daemon and test the configuration."
-msgstr "Kontrolle über den Icinga Daemon übernehmen und die Konfiguration testen."
+msgstr "Steuern Sie den Icinga Daemon und testen Sie die Konfiguration."
 
 #: /tmp/tkmon-templates//f73ab308af79cf384936655cf04e.php:44
 msgid "Test configuration"

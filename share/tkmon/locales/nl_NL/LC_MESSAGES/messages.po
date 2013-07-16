@@ -448,7 +448,7 @@ msgstr ""
 #: /tmp/tkmon-templates//4dff0924e40bfef089a8dfec6c58.php:68
 #: /tmp/tkmon-templates//4dff0924e40bfef089a8dfec6c58.php:214
 #: /tmp/tkmon-templates//bed53433bbed76cea04c8936c38b.php:69
-#: /tmp/tkmon-templates//ecfec0f6027087812df0b58cd6fe.php:44
+#: /tmp/tkmon-templates//ecfec0f6027087812df0b58cd6fe.php:47
 msgid "Name"
 msgstr ""
 
@@ -468,19 +468,19 @@ msgstr ""
 
 #: /tmp/tkmon-templates//4dff0924e40bfef089a8dfec6c58.php:131
 #: /tmp/tkmon-templates//bed53433bbed76cea04c8936c38b.php:201
-#: /tmp/tkmon-templates//ecfec0f6027087812df0b58cd6fe.php:99
+#: /tmp/tkmon-templates//ecfec0f6027087812df0b58cd6fe.php:102
 msgid "Edit"
 msgstr ""
 
 #: /tmp/tkmon-templates//4dff0924e40bfef089a8dfec6c58.php:140
 #: /tmp/tkmon-templates//bed53433bbed76cea04c8936c38b.php:220
-#: /tmp/tkmon-templates//ecfec0f6027087812df0b58cd6fe.php:107
+#: /tmp/tkmon-templates//ecfec0f6027087812df0b58cd6fe.php:110
 msgid "Remove"
 msgstr ""
 
 #: /tmp/tkmon-templates//4dff0924e40bfef089a8dfec6c58.php:152
 #: /tmp/tkmon-templates//bed53433bbed76cea04c8936c38b.php:232
-#: /tmp/tkmon-templates//ecfec0f6027087812df0b58cd6fe.php:119
+#: /tmp/tkmon-templates//ecfec0f6027087812df0b58cd6fe.php:122
 msgid "Yes, delete please"
 msgstr ""
 
@@ -881,7 +881,7 @@ msgid "Service description"
 msgstr ""
 
 #: /tmp/tkmon-templates//80bc8399d35989302ca05c14c65a.php:139
-#: /tmp/tkmon-templates//ecfec0f6027087812df0b58cd6fe.php:48
+#: /tmp/tkmon-templates//ecfec0f6027087812df0b58cd6fe.php:51
 msgid "Display name"
 msgstr ""
 
@@ -985,6 +985,10 @@ msgstr ""
 
 #: /tmp/tkmon-templates//a3a44420b4a88348fe87f77f9f78.php:72
 msgid "Goto"
+msgstr ""
+
+#: /tmp/tkmon-templates//a3a44420b4a88348fe87f77f9f78.php:95
+msgid "Your current password"
 msgstr ""
 
 #: /tmp/tkmon-templates//ad3a7d58b6ad806b8e5117b91557.php:20
@@ -1189,12 +1193,108 @@ msgstr ""
 msgid "Services for %hostName%"
 msgstr ""
 
-#: /tmp/tkmon-templates//ecfec0f6027087812df0b58cd6fe.php:34
+#: /tmp/tkmon-templates//ecfec0f6027087812df0b58cd6fe.php:32
+msgid "Click on the following button to add services to the host:"
+msgstr ""
+
+#: /tmp/tkmon-templates//ecfec0f6027087812df0b58cd6fe.php:37
 msgid "Add service"
 msgstr ""
 
-#: /tmp/tkmon-templates//ecfec0f6027087812df0b58cd6fe.php:63
+#: /tmp/tkmon-templates//ecfec0f6027087812df0b58cd6fe.php:66
 msgid "No services defined for this host. Click on the 'Add' button to do so."
+msgstr ""
+
+#: /tmp/tkmon-templates//f0780cb9e5eddd4ce40a0c4b972a.php:24
+#, fuzzy
+msgid "Welcome TKmon"
+msgstr "Geen dank"
+
+#: /tmp/tkmon-templates//f0780cb9e5eddd4ce40a0c4b972a.php:30
+msgid "Why"
+msgstr ""
+
+#: /tmp/tkmon-templates//f0780cb9e5eddd4ce40a0c4b972a.php:36
+msgid ""
+"TKmon is a simple webinterface to allow every user to monitor his "
+"environment simple and easy. You'll need no knowledge\n"
+"    about monitoring software, linux and configuring these components - just "
+"monitor your system!"
+msgstr ""
+
+#: /tmp/tkmon-templates//f0780cb9e5eddd4ce40a0c4b972a.php:43
+msgid "Thanks"
+msgstr ""
+
+#: /tmp/tkmon-templates//f0780cb9e5eddd4ce40a0c4b972a.php:49
+msgid ""
+"Thanks to all developers bringing us these wonderful technologies like "
+"Bootstrap, Twig, beautiful icons and more.\n"
+"    NETWAYS and Thomas Krenn just use the best of breed to bring you an "
+"incredible user experience."
+msgstr ""
+
+#: /tmp/tkmon-templates//f0780cb9e5eddd4ce40a0c4b972a.php:56
+msgid "Why open source"
+msgstr ""
+
+#: /tmp/tkmon-templates//f0780cb9e5eddd4ce40a0c4b972a.php:62
+msgid "What is Open Source Software?"
+msgstr ""
+
+#: /tmp/tkmon-templates//f0780cb9e5eddd4ce40a0c4b972a.php:69
+msgid ""
+"Open source software, free software or software libre is software that can "
+"be used, copied and distributed\n"
+"    liberally - modified or unmodified, with or without payment. Free here "
+"means freedom of use and this is\n"
+"    where its greatest benefits lie!"
+msgstr ""
+
+#: /tmp/tkmon-templates//f0780cb9e5eddd4ce40a0c4b972a.php:77
+msgid "Who we are"
+msgstr ""
+
+#: /tmp/tkmon-templates//f0780cb9e5eddd4ce40a0c4b972a.php:93
+msgid ""
+"For more than 15 years we have been supporting companies to manage complex, "
+"multifaceted IT\n"
+"    infrastructures. Specialising in enterprise grade open source tools, we "
+"ensure the smooth\n"
+"    operation of networks, servers and applications. Each time, we tailor "
+"robust,\n"
+"    cost-effective solutions for our customers of all sizes and industries. "
+"At NETWAYS we make\n"
+"    your IT do more with less."
+msgstr ""
+
+#: /tmp/tkmon-templates//f0780cb9e5eddd4ce40a0c4b972a.php:104
+msgid "Goto NETWAYS"
+msgstr ""
+
+#: /tmp/tkmon-templates//f0780cb9e5eddd4ce40a0c4b972a.php:125
+msgid ""
+"The server manufacturer Thomas-Krenn.AG is Europe's leading online store for "
+"server, server solutions\n"
+"    and quality hosting. The company currently has about 97 employees in the "
+"areas of technology and\n"
+"    development, purchasing, production, quality assurance, sales, marketing "
+"and administration. Medical\n"
+"    practices, educational institutions, medium-sized companies and large "
+"corporations all over Europe\n"
+"    account for the more than 12,500 customers. In 2012 Thomas-Krenn.AG had "
+"22.7 million euros in sales\n"
+"    and more than doubled its sales since 2005."
+msgstr ""
+
+#: /tmp/tkmon-templates//f0780cb9e5eddd4ce40a0c4b972a.php:136
+msgid ""
+"All products are assembled in the Lower Bavarian city of Freyung and sent to "
+"the customer's within 24 hours."
+msgstr ""
+
+#: /tmp/tkmon-templates//f0780cb9e5eddd4ce40a0c4b972a.php:144
+msgid "Goto Thomas-Krenn"
 msgstr ""
 
 #: /tmp/tkmon-templates//f40c6da8264275ac85ef482ace0c.php:29
