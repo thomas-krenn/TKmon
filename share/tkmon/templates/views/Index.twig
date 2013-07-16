@@ -7,6 +7,7 @@
         {% set security_link = web_link('System/Configuration/Security/Index') %}
         {% set config_link = web_link('ThomasKrenn/Alert/Configuration/Index') %}
         {% set tk_info_link = 'http://www.thomas-krenn.com/en/wiki/Call-Home-Service' %}
+        {% set tk_info_link_de = 'http://www.thomas-krenn.com/de/wiki/Call-Home-Service' %}
         <div class="alert alert-block">
             <h4>{% trans "Welcome" %}</h4>
             <p>
@@ -30,15 +31,15 @@
 {% endif %}
 
 <div class="hero-unit">
-    <h1>Welcome to TKmon.</h1>
-    <p>Simple and fast monitoring based on Icinga.</p>
+    <h1>{% trans "Welcome to TKmon." %}</h1>
+    <p>{% trans "Simple and fast monitoring based on Icinga." %}</p>
     <p>
         {% if user.getAuthenticated() == true %}
             <a href="{{ web_link('Monitor/Icinga/Services') }}" class="btn btn-large btn-primary">
-                <i class="icon-warning-sign icon-2x"></i> Whats up
+                <i class="icon-warning-sign icon-2x"></i> {% trans "Service status" %}
             </a>
             <a href="{{ web_link('Index/LearnMore') }}" class="btn btn-large btn-primary">
-                <i class="icon-lightbulb icon-2x"></i> Learn more
+                <i class="icon-lightbulb icon-2x"></i> {% trans "Learn more" %}
             </a>
         {% else %}
             This is a protected application. Please login to proceed.
