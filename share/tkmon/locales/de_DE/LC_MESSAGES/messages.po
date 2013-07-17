@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: TKmon\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2013-07-17 09:52+0100\n"
+"PO-Revision-Date: 2013-07-17 10:05+0100\n"
 "Last-Translator: Werner Fischer <wfischer@thomas-krenn.com>\n"
 "Language-Team: German\n"
 "Language: de\n"
@@ -1122,6 +1122,16 @@ msgstr "Produkt Information"
 msgid "You are running"
 msgstr "Sie verwenden folgende Software Version"
 
+#: /tmp/tkmon-templates//bee0844060f2caff4cad0ac6bb2f.php:46
+#: /tmp/tkmon-templates//f0780cb9e5eddd4ce40a0c4b972a.php:104
+msgid "Goto NETWAYS"
+msgstr "Gehe zu NETWAYS"
+
+#: /tmp/tkmon-templates//bee0844060f2caff4cad0ac6bb2f.php:53
+#: /tmp/tkmon-templates//f0780cb9e5eddd4ce40a0c4b972a.php:144
+msgid "Goto Thomas Krenn"
+msgstr "Gehe zu Thomas Krenn"
+
 #: /tmp/tkmon-templates//bfdd7e114879883238fd62eb6e18.php:26
 msgid ""
 "Use this dialog to test your configuration. A heartbeat email will be bounced\n"
@@ -1274,10 +1284,6 @@ msgstr ""
 "   Unsere Lösungen und High-End Services auf der Basis von Linux und Open Source Tools ermöglichen\n"
 "   den störungsfreien Betrieb von Netzen, Servern und Applikationen. "
 
-#: /tmp/tkmon-templates//f0780cb9e5eddd4ce40a0c4b972a.php:104
-msgid "Goto NETWAYS"
-msgstr "Gehe zu NETWAYS"
-
 #: /tmp/tkmon-templates//f0780cb9e5eddd4ce40a0c4b972a.php:125
 msgid ""
 "The server manufacturer Thomas-Krenn.AG is Europe's leading online store for servers, server solutions\n"
@@ -1297,10 +1303,6 @@ msgstr ""
 #: /tmp/tkmon-templates//f0780cb9e5eddd4ce40a0c4b972a.php:136
 msgid "All products are assembled in the Lower Bavarian city of Freyung and sent to the customers within 24 hours."
 msgstr "Alle Produkte werden im niederbayerischen Freyung assembliert und an die Kunden innherhalb von 24 Stunden versandt."
-
-#: /tmp/tkmon-templates//f0780cb9e5eddd4ce40a0c4b972a.php:144
-msgid "Goto Thomas-Krenn"
-msgstr "Gehe zu Thomas Krenn"
 
 #: /tmp/tkmon-templates//f40c6da8264275ac85ef482ace0c.php:29
 msgid "Settings from the config.json config file or on startup auto generated settings:"

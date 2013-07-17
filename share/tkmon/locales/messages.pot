@@ -1095,6 +1095,16 @@ msgstr ""
 msgid "You are running"
 msgstr ""
 
+#: /tmp/tkmon-templates//bee0844060f2caff4cad0ac6bb2f.php:46
+#: /tmp/tkmon-templates//f0780cb9e5eddd4ce40a0c4b972a.php:104
+msgid "Goto NETWAYS"
+msgstr ""
+
+#: /tmp/tkmon-templates//bee0844060f2caff4cad0ac6bb2f.php:53
+#: /tmp/tkmon-templates//f0780cb9e5eddd4ce40a0c4b972a.php:144
+msgid "Goto Thomas Krenn"
+msgstr ""
+
 #: /tmp/tkmon-templates//bfdd7e114879883238fd62eb6e18.php:26
 msgid ""
 "Use this dialog to test your configuration. A heartbeat email will be "
@@ -1248,10 +1258,6 @@ msgid ""
 "    your IT do more with less."
 msgstr ""
 
-#: /tmp/tkmon-templates//f0780cb9e5eddd4ce40a0c4b972a.php:104
-msgid "Goto NETWAYS"
-msgstr ""
-
 #: /tmp/tkmon-templates//f0780cb9e5eddd4ce40a0c4b972a.php:125
 msgid ""
 "The server manufacturer Thomas-Krenn.AG is Europe's leading online store for "
@@ -1271,10 +1277,6 @@ msgstr ""
 msgid ""
 "All products are assembled in the Lower Bavarian city of Freyung and sent to "
 "the customers within 24 hours."
-msgstr ""
-
-#: /tmp/tkmon-templates//f0780cb9e5eddd4ce40a0c4b972a.php:144
-msgid "Goto Thomas-Krenn"
 msgstr ""
 
 #: /tmp/tkmon-templates//f40c6da8264275ac85ef482ace0c.php:29
