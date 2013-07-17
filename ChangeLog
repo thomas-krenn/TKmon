@@ -1,3 +1,43 @@
+tk-mon 1.3.0 (2013-07-17)
+
+   -----------------------------------------------------------------------------
+     1.3.0 is a productive release.
+
+	 We have moved our trackers please report bugs and issues to:
+	 https://www.netways.org/projects/tkmon-web
+
+     Therefore all early time issues are obsolete now! 
+   -----------------------------------------------------------------------------
+
+   * #2514 Use hash algorithm sha512 instead of md5 to increase security
+   * #2516 Change salt every time the user changes his password
+   * #2496 Add new host does not work when no authkey configured
+   * #2512 When SSH access is disabled, it gets enabled when password is
+     changed
+   * #2510 Lower Border of the Hosts table wrong when there is no host
+     configured yet
+   * #2502 "Report errors to Thomas Krenn" does not work
+   * #2500 No alerts are sent to configured contacts
+   * #2288 DNS Search suffix configuration
+   * #2286 DNS Configuration
+   * #2572 Implement basic logging
+   * #2504 Generating of messages.po does not work
+   * #2506 "Backup configuration" does not work
+   * #2666 Use a crytographically secure function to generated password salt
+   * #2662 TKmon Network - Device Name Dialog messes up /etc/hosts File
+   * #2120 Logo
+   * FIX Icinga templates
+   * #2128 Fix tkalert path in alert commands
+   * #2138 Add check-apt to TKmon Host
+   * Add check-smtp to TKmon Host
+   * Added logrotate config
+   * Added LSI Raid to service catalogue
+   * #2142 Replace IPMI Password at Host configuration
+   * #2140 Restoring from Backup destroys symlink in /etc/icinga
+   * FIX Common service catalogue fixes
+   * Missing translations and interfaces fixes
+   * FIX Icinga configuragion for templates and objects
+
 tk-mon 1.2.0 (2013-04-13)
 
     * #2379 Mask passwords in free settings
