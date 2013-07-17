@@ -6,13 +6,11 @@
     {% if config.get('app.login.counter') == 1 %}
         {% set security_link = web_link('System/Configuration/Security/Index') %}
         {% set config_link = web_link('ThomasKrenn/Alert/Configuration/Index') %}
-        {% set tk_info_link = 'http://www.thomas-krenn.com/en/wiki/Call-Home-Service' %}
-        {% set tk_info_link_de = 'http://www.thomas-krenn.com/de/wiki/Call-Home-Service' %}
         <div class="alert alert-block">
             <h4>{% trans "Welcome" %}</h4>
             <p>
             {% trans %}
-                It seems that you are here for the first time.
+                You have logged in for the first time.
                 Please change your password on the <a href="{{ security_link }}">Security Page</a>.
             {% endtrans %}
             </p>
@@ -22,7 +20,7 @@
                 goto the <a href="{{ config_link }}">Alert Settings Page</a> and enter your credentials.
 
                 After that your monitoring service is equipped with Thomas Krenn support power!
-                (<a href="{{ tk_info_link }}">Click this link for more information</a>)
+                (<a href="http://www.thomas-krenn.com/en/wiki/Call-Home-Service">Click this link for more information</a>)
             {% endtrans %}
             </p>
         </div>
