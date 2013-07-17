@@ -1,7 +1,3 @@
-{% set tk_info_link = 'http://www.thomas-krenn.com/en/wiki/Call-Home-Service' %}
-{% set tk_info_link_de = 'http://www.thomas-krenn.com/de/wiki/Call-Home-Service' %}
-{% set tk_privacy_link = 'http://www.thomas-krenn.com/en/wiki/Call-Home-Service_Privacy_Policy' %}
-{% set tk_privacy_link_de = 'http://www.thomas-krenn.com/de/wiki/Call-Home-Service_Privacy_Policy' %}
 {% set restart_link = web_link('Monitor/Daemon/Index#daemon-restart') %}
 
 <h2>{% trans "Settings" %}</h2>
@@ -9,14 +5,14 @@
 <div class="alert alert-info">
     {% trans %}
     Here you can configure your Thomas Krenn Call-Home-Service Subscription. Click the
-    <a href="{{ tk_info_link }}">following link to get more information</a>.
+    <a href="http://www.thomas-krenn.com/en/wiki/Call-Home-Service">following link to get more information</a>.
     {% endtrans %}
 </div>
 
 <p>
 {% trans %}
     All data between your environment and Thomas Krenn will be encrypted. Read more on
-    our <strong><a href="{{ tk_privacy_link }}">Call-Home-Service Privacy Policy</a></strong>.
+    our <strong><a href="http://www.thomas-krenn.com/en/wiki/Call-Home-Service_Privacy_Policy">Call-Home-Service Privacy Policy</a></strong>.
 {% endtrans %}
 </p>
 

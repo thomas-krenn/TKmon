@@ -13,27 +13,28 @@ msgstr ""
 "|| n%100>=20) ? 1 : 2);\n"
 "X-Generator: Poedit 1.5.4\n"
 
-#: /tmp/tkmon-templates//0a1511c4a88a3a371d5853402d92.php:32
+#: /tmp/tkmon-templates//0a1511c4a88a3a371d5853402d92.php:24
 #: /tmp/tkmon-templates//27ffa012829be50d13aa2555839c.php:31
 msgid "Settings"
 msgstr ""
 
-#: /tmp/tkmon-templates//0a1511c4a88a3a371d5853402d92.php:38
+#: /tmp/tkmon-templates//0a1511c4a88a3a371d5853402d92.php:30
 msgid ""
 "Here you can configure your Thomas Krenn Call-Home-Service Subscription. "
 "Click the\n"
-"    <a href=\"%tk_info_link%\">following link to get more information</a>."
+"    <a href=\"http://www.thomas-krenn.com/en/wiki/Call-Home-Service"
+"\">following link to get more information</a>."
 msgstr ""
 
-#: /tmp/tkmon-templates//0a1511c4a88a3a371d5853402d92.php:46
+#: /tmp/tkmon-templates//0a1511c4a88a3a371d5853402d92.php:38
 msgid ""
 "All data between your environment and Thomas Krenn will be encrypted. Read "
 "more on\n"
-"    our <strong><a href=\"%tk_privacy_link%\">Call-Home-Service Privacy "
-"Policy</a></strong>."
+"    our <strong><a href=\"http://www.thomas-krenn.com/en/wiki/Call-Home-"
+"Service_Privacy_Policy\">Call-Home-Service Privacy Policy</a></strong>."
 msgstr ""
 
-#: /tmp/tkmon-templates//0a1511c4a88a3a371d5853402d92.php:56
+#: /tmp/tkmon-templates//0a1511c4a88a3a371d5853402d92.php:48
 #: /tmp/tkmon-templates//2d12f4b5afa364fd48ce438ac0eb.php:63
 #: /tmp/tkmon-templates//80bc8399d35989302ca05c14c65a.php:80
 #: /tmp/tkmon-templates//ad3a7d58b6ad806b8e5117b91557.php:57
@@ -41,31 +42,31 @@ msgstr ""
 msgid "Success"
 msgstr ""
 
-#: /tmp/tkmon-templates//0a1511c4a88a3a371d5853402d92.php:61
+#: /tmp/tkmon-templates//0a1511c4a88a3a371d5853402d92.php:53
 msgid ""
 "Changes have been written to disk.\n"
 "            Please <a href=\"%restart_link%\">restart your Icinga instance</"
 "a> for the changes to take effect."
 msgstr ""
 
-#: /tmp/tkmon-templates//0a1511c4a88a3a371d5853402d92.php:82
+#: /tmp/tkmon-templates//0a1511c4a88a3a371d5853402d92.php:74
 msgid "Contact person"
 msgstr ""
 
-#: /tmp/tkmon-templates//0a1511c4a88a3a371d5853402d92.php:94
+#: /tmp/tkmon-templates//0a1511c4a88a3a371d5853402d92.php:86
 #: /tmp/tkmon-templates//4dff0924e40bfef089a8dfec6c58.php:224
 msgid "Email address"
 msgstr ""
 
-#: /tmp/tkmon-templates//0a1511c4a88a3a371d5853402d92.php:106
+#: /tmp/tkmon-templates//0a1511c4a88a3a371d5853402d92.php:98
 msgid "Call-Home Auth-Key"
 msgstr ""
 
-#: /tmp/tkmon-templates//0a1511c4a88a3a371d5853402d92.php:118
+#: /tmp/tkmon-templates//0a1511c4a88a3a371d5853402d92.php:110
 msgid "Press the following button to commit your changes."
 msgstr ""
 
-#: /tmp/tkmon-templates//0a1511c4a88a3a371d5853402d92.php:124
+#: /tmp/tkmon-templates//0a1511c4a88a3a371d5853402d92.php:116
 #: /tmp/tkmon-templates//16d65fa3fa5c9af91fa807b6853c.php:98
 #: /tmp/tkmon-templates//4dff0924e40bfef089a8dfec6c58.php:242
 #: /tmp/tkmon-templates//55767f86e39d361cf0efdde2a47e.php:125
@@ -309,7 +310,7 @@ msgid "System access (ssh/shell) for user %username% will be disabled."
 msgstr ""
 
 #: /tmp/tkmon-templates//31870895e84572aabcdbb45863e9.php:25
-#: /tmp/tkmon-templates//6e907e97b10b7698ffad3d7dec80.php:109
+#: /tmp/tkmon-templates//6e907e97b10b7698ffad3d7dec80.php:103
 msgid "This application is password protected. Please login to proceed."
 msgstr ""
 
@@ -736,18 +737,18 @@ msgid ""
 "        to enter your credentials again."
 msgstr ""
 
-#: /tmp/tkmon-templates//6e907e97b10b7698ffad3d7dec80.php:47
+#: /tmp/tkmon-templates//6e907e97b10b7698ffad3d7dec80.php:41
 msgid "Welcome"
 msgstr "Mile widziany"
 
-#: /tmp/tkmon-templates//6e907e97b10b7698ffad3d7dec80.php:52
+#: /tmp/tkmon-templates//6e907e97b10b7698ffad3d7dec80.php:46
 msgid ""
-"It seems that you are here for the first time.\n"
+"You have logged in for the first time.\n"
 "                Please change your password on the <a href=\"%security_link%"
 "\">Security Page</a>."
 msgstr ""
 
-#: /tmp/tkmon-templates//6e907e97b10b7698ffad3d7dec80.php:59
+#: /tmp/tkmon-templates//6e907e97b10b7698ffad3d7dec80.php:53
 msgid ""
 "If you have a Thomas Krenn Call-Home-Service Subscription, please\n"
 "                goto the <a href=\"%config_link%\">Alert Settings Page</a> "
@@ -755,23 +756,23 @@ msgid ""
 "\n"
 "                After that your monitoring service is equipped with Thomas "
 "Krenn support power!\n"
-"                (<a href=\"%tk_info_link%\">Click this link for more "
-"information</a>)"
+"                (<a href=\"http://www.thomas-krenn.com/en/wiki/Call-Home-"
+"Service\">Click this link for more information</a>)"
 msgstr ""
 
-#: /tmp/tkmon-templates//6e907e97b10b7698ffad3d7dec80.php:76
+#: /tmp/tkmon-templates//6e907e97b10b7698ffad3d7dec80.php:70
 msgid "Welcome to TKmon."
 msgstr ""
 
-#: /tmp/tkmon-templates//6e907e97b10b7698ffad3d7dec80.php:80
+#: /tmp/tkmon-templates//6e907e97b10b7698ffad3d7dec80.php:74
 msgid "Simple and fast monitoring based on Icinga."
 msgstr ""
 
-#: /tmp/tkmon-templates//6e907e97b10b7698ffad3d7dec80.php:93
+#: /tmp/tkmon-templates//6e907e97b10b7698ffad3d7dec80.php:87
 msgid "Service status"
 msgstr ""
 
-#: /tmp/tkmon-templates//6e907e97b10b7698ffad3d7dec80.php:102
+#: /tmp/tkmon-templates//6e907e97b10b7698ffad3d7dec80.php:96
 msgid "Learn more"
 msgstr ""
 
