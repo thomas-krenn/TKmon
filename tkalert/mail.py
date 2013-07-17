@@ -51,7 +51,7 @@ class Mailer(object):
 
     def send(self):
         """Send mail to the air"""
-        message = MIMEText(str(self.content))
+        message = MIMEText(str(self.content), _charset='utf-8')
 
         subject = 'TKMON MESSAGE (type=%s, from=%s)' % (self.alert_type, self.sender_name)
 
