@@ -3,7 +3,9 @@
 </div>
 
 <p>
+{% trans %}
     Change the IP address of this device and configure network related settings.
+{% endtrans %}
 </p>
 
 <br />
@@ -12,16 +14,16 @@
 
     <ul class="nav nav-tabs">
         <li class="active">
-            <a href="#tab-device" data-toggle="tab">Device</a>
+            <a href="#tab-device" data-toggle="tab">{% trans "Device" %}</a>
         </li>
         <li>
-            <a href="#tab-ip" data-toggle="tab">Address</a>
+            <a href="#tab-ip" data-toggle="tab">{% trans "Address" %}</a>
         </li>
         <li>
-            <a href="#tab-dns" data-toggle="tab">DNS</a>
+            <a href="#tab-dns" data-toggle="tab">{% trans "DNS" %}</a>
         </li>
         <li>
-            <a href="#tab-time" data-toggle="tab">Time</a>
+            <a href="#tab-time" data-toggle="tab">{% trans "Time" %}</a>
         </li>
     </ul>
 

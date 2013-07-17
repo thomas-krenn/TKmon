@@ -21,13 +21,20 @@
 
 namespace TKMON\Action\Expose\System;
 
+use NETWAYS\Common\ArrayObject;
+use TKMON\Action\Base;
+use TKMON\Exception\UserException;
+use TKMON\Model\User;
+use TKMON\Mvc\Output\JsonResponse;
+use TKMON\Mvc\Output\TwigTemplate;
+
 /**
  * Action handling login front interactions
  *
  * @package TKMON\Action
  * @author Marius Hein <marius.hein@netways.de>
  */
-class Login extends \TKMON\Action\Base
+class Login extends Base
 {
 
     /**
@@ -41,12 +48,12 @@ class Login extends \TKMON\Action\Base
 
     /**
      * Show login box
-     * @param \NETWAYS\Common\ArrayObject $params
-     * @return \TKMON\Mvc\Output\TwigTemplate
+     * @param ArrayObject $params
+     * @return TwigTemplate
      */
-    public function actionIndex(\NETWAYS\Common\ArrayObject $params)
+    public function actionIndex(ArrayObject $params)
     {
-        $output = new \TKMON\Mvc\Output\TwigTemplate($this->container['template']);
+        $output = new TwigTemplate($this->container['template']);
         $output->setTemplateName('forms/login.twig');
         return $output;
     }
@@ -62,14 +69,19 @@ class Login extends \TKMON\Action\Base
 
     /**
      * Login request as ajax
-     * @param \NETWAYS\Common\ArrayObject $params
-     * @return \TKMON\Mvc\Output\JsonResponse
+     * @param ArrayObject $params
+     * @return JsonResponse
      */
-    public function actionLogin(\NETWAYS\Common\ArrayObject $params)
+    public function actionLogin(ArrayObject $params)
     {
+        /** @var User $user */
         $user = $this->container['user'];
 
-        $r = new \TKMON\Mvc\Output\JsonResponse();
+        $logger = $this->container['logger'];
+
+        $r = new JsonResponse();
+
+        $logger->info('Starting login for user: '. $params->get('username', 'NONE'));
 
         try {
             $user->doAuthenticate($params->get('username'), $params->get('password'));
@@ -78,9 +90,13 @@ class Login extends \TKMON\Action\Base
             $this->container['config']['app.login.counter'] += 1;
 
             $r->setSuccess(true);
-        } catch (\TKMON\Exception\UserException $e) {
+
+            $logger->warn('User logged in: '. $user->getName());
+        } catch (UserException $e) {
             $r->setSuccess(false);
             $r->addException($e);
+
+            $logger->error('User login failed for user: '. $params->get('username', 'NONE'));
         }
 
 
@@ -90,11 +106,19 @@ class Login extends \TKMON\Action\Base
 
     /**
      * Logout request
-     * @param \NETWAYS\Common\ArrayObject $params
-     * @return \TKMON\Mvc\Output\TwigTemplate
+     * @param ArrayObject $params
+     * @return TwigTemplate
      */
-    public function actionLogout(\NETWAYS\Common\ArrayObject $params)
+    public function actionLogout(ArrayObject $params)
     {
+        /** @var User $user */
+        $user = $this->container['user'];
+
+        /** @var \Logger $logger */
+        $logger = $this->container['logger'];
+
+        $logger->warn('User logged out successfully: '. $user->getName());
+
         $session = $this->container['session'];
         $session->destroySession();
 
@@ -102,7 +126,7 @@ class Login extends \TKMON\Action\Base
         // $navigation = $this->container['navigation'];
         // $navigation->invalidateCache();
 
-        $template = new \TKMON\Mvc\Output\TwigTemplate($this->container['template']);
+        $template = new TwigTemplate($this->container['template']);
         $template->setTemplateName('forms/logout.twig');
 
         return $template;

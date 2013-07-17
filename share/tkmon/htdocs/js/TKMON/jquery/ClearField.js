@@ -1,4 +1,3 @@
-<?php
 /**
  * This file is part of TKMON
  *
@@ -18,35 +17,32 @@
  * @author Marius Hein <marius.hein@netways.de>
  * @copyright 2012-2013 NETWAYS GmbH <info@netways.de>
  */
+/*global require:true*/
 
-namespace TKMON\Form\Field;
+require(['jquery'], function ($) {
+    "use strict";
 
-use NETWAYS\Common\ValidatorObject;
-
-/**
- * Field for ip addresses
- *
- * @package TKMON\Form
- * @author Marius Hein <marius.hein@netways.de>
- */
-class IpAddress extends Text
-{
     /**
-     * Create an ip validator
-     * @return ValidatorObject
+     * @name clearField
+     * @memberOf jQuery.fn
+     * @class
+     *
+     *
      */
-    public function getValidator()
-    {
-        $validator = ValidatorObject::create(
-            $this->getNamePrefix(). $this->getName(),
-            $this->getLabel(),
-            FILTER_VALIDATE_IP
-        );
+    $.fn.clearField = function() {
+        $(this).each(function(i, ele) {
+            var target = $(ele).attr('data-clear-field');
+            if (target) {
+                target = String(target).replace(/^#/, "");
+                var targetField = $('#' + target);
+                if (targetField) {
+                    $(ele).click(function() {
+                        $(targetField).val("");
+                    });
+                }
+            }
+        });
+    };
 
-        if ($this->getMandatory() === false) {
-            $validator->setMandatory(false);
-        }
-
-        return $validator;
-    }
-}
+    $('*[data-clear-field]').clearField();
+});

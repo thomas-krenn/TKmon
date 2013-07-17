@@ -22,8 +22,13 @@
 namespace TKMON\Extension\Host;
 
 use ICINGA\Object\Host;
+use NETWAYS\Chain\ReflectionHandler;
+use NETWAYS\Common\ArrayObject;
 use NETWAYS\Intl\Exception\SimpleTranslatorException;
 use TKMON\Exception\ModelException;
+use TKMON\Form\Field\Password;
+use TKMON\Form\Field\Text;
+use TKMON\Form\Field\TextReadonly;
 use TKMON\Interfaces\ApplicationModelInterface;
 use TKMON\Model\ThomasKrenn\RestInterface;
 
@@ -33,7 +38,7 @@ use TKMON\Model\ThomasKrenn\RestInterface;
  * @package TKMON\Model
  * @author Marius Hein <marius.hein@netways.de>
  */
-class ThomasKrennAttributes extends \NETWAYS\Chain\ReflectionHandler implements ApplicationModelInterface
+class ThomasKrennAttributes extends ReflectionHandler implements ApplicationModelInterface
 {
     /**
      * CustomVariable name for serial
@@ -118,33 +123,35 @@ class ThomasKrennAttributes extends \NETWAYS\Chain\ReflectionHandler implements 
 
     /**
      * Adding ThomasKrenn specific attributes to mask
-     * @param \NETWAYS\Common\ArrayObject $attributes
+     * @param ArrayObject $attributes
      */
-    public function commandDefaultCustomVariables(\NETWAYS\Common\ArrayObject $attributes)
+    public function commandDefaultCustomVariables(ArrayObject $attributes)
     {
         $attributes->fromArray(
             array(
                 /*
                  * Thomsa Krenn customer data
                  */
-                self::CV_SERIAL => new \TKMON\Form\Field\Text(
+                self::CV_SERIAL => new Text(
                     self::CV_SERIAL,
-                    _('Serial')
+                    _('Serial'),
+                    false // Not mandatory (see https://devops.netways.de/issues/2496)
                 ), // Mandatory for tkalert
-                self::CV_OS => new \TKMON\Form\Field\Text(
+                self::CV_OS => new Text(
                     self::CV_OS,
-                    _('Operating system')
-                ), // Mandatory for tkalert
+                    _('Operating system'),
+                    false // Not mandatory (see https://devops.netways.de/issues/2496)
+                ),
 
                 /*
                  * Thomas Krenn product data
                  */
-                self::CV_TK_WIKI_LINK => new \TKMON\Form\Field\TextReadonly(
+                self::CV_TK_WIKI_LINK => new TextReadonly(
                     self::CV_TK_WIKI_LINK,
                     _('Thomas Krenn wiki link'),
                     false
                 ),
-                self::CV_TK_PRODUCT_TITLE => new \TKMON\Form\Field\TextReadonly(
+                self::CV_TK_PRODUCT_TITLE => new TextReadonly(
                     self::CV_TK_PRODUCT_TITLE,
                     _('Thomas Krenn product title'),
                     false
@@ -153,22 +160,22 @@ class ThomasKrennAttributes extends \NETWAYS\Chain\ReflectionHandler implements 
                 /*
                  * Additional vars for configure check plugins
                  */
-                self::CV_IPMI_IP => new \TKMON\Form\Field\Text(
+                self::CV_IPMI_IP => new Text(
                     self::CV_IPMI_IP,
                     _('IPMI IP address'),
                     false
                 ),
-                self::CV_IPMI_USER => new \TKMON\Form\Field\Text(
+                self::CV_IPMI_USER => new Text(
                     self::CV_IPMI_USER,
                     _('IPMI user'),
                     false
                 ),
-                self::CV_IPMI_PASSWORD => new \TKMON\Form\Field\Text(
+                self::CV_IPMI_PASSWORD => new Password(
                     self::CV_IPMI_PASSWORD,
                     _('IPMI password'),
                     false
                 ),
-                self::CV_SNMP_COMMUNITY => new \TKMON\Form\Field\Text(
+                self::CV_SNMP_COMMUNITY => new Text(
                     self::CV_SNMP_COMMUNITY,
                     _('SNMP community'),
                     false
@@ -216,16 +223,16 @@ class ThomasKrennAttributes extends \NETWAYS\Chain\ReflectionHandler implements 
      */
     public function updateHostCustomVariables(Host $host)
     {
+        if (!isset($this->container['config']['thomaskrenn.alert.authkey'])) {
+            return;
+        }
+
+        if (!$host->getCustomVariable(self::CV_SERIAL)) {
+            return;
+        }
+
         $authKey = $this->container['config']['thomaskrenn.alert.authkey'];
-        if (!$authKey) {
-            throw new ModelException('AuthKey not configured!');
-        }
-
         $serial = $host->getCustomVariable(self::CV_SERIAL);
-        if (!$serial) {
-            throw new ModelException('Serial not entered');
-        }
-
 
         $restInterface = new RestInterface($this->container);
         $restInterface->setAuthKey($authKey);

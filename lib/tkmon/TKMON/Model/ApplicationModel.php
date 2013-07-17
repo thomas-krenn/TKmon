@@ -21,12 +21,14 @@
 
 namespace TKMON\Model;
 
+use TKMON\Interfaces\ApplicationModelInterface;
+
 /**
  * Abstract model for working with our DI container
  * @package TKMON\Model
  * @author Marius Hein <marius.hein@netways.de>
  */
-abstract class ApplicationModel implements \TKMON\Interfaces\ApplicationModelInterface
+abstract class ApplicationModel implements ApplicationModelInterface
 {
     /**
      * DI container

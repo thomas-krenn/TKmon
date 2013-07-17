@@ -26,7 +26,7 @@ namespace TKMON\Interfaces;
  * @package TKMON\Interface
  * @author Marius Hein <marius.hein@netways.de>
  */
-Interface ApplicationModelInterface
+interface ApplicationModelInterface
 {
     /**
      * Create a new object

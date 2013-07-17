@@ -1,49 +1,59 @@
 {% set image_style="border: 1px #c0c0c0 solid; margin-left:10px;" %}
 <div class="page-header">
-    <h1>Welcome TKmon</h1>
+    <h1>{% trans "Welcome TKmon" %}</h1>
 </div>
 
-<h2 class="container-spacer-down-2x">Why</h2>
+<h2 class="container-spacer-down-2x">{% trans "Why" %}</h2>
 
 <p>
+{% trans %}
     TKmon is a simple webinterface to allow every user to monitor his environment simple and easy. You'll need no knowledge
     about monitoring software, linux and configuring these components - just monitor your system!
+{% endtrans %}
 </p>
 
-<h2 class="container-spacer-down-2x">Thanks</h2>
+<h2 class="container-spacer-down-2x">{% trans "Thanks" %}</h2>
 
 <p>
+{% trans %}
     Thanks to all developers bringing us these wonderful technologies like Bootstrap, Twig, beautiful icons and more.
     NETWAYS and Thomas Krenn just use the best of breed to bring you an incredible user experience.
+{% endtrans %}
 </p>
 
-<h2 class="container-spacer-down-2x">Why open source</h2>
+<h2 class="container-spacer-down-2x">{% trans "Why open source" %}</h2>
 
 <p>
+{% trans %}
     What is Open Source Software?
+{% endtrans %}
 
 
 
+{% trans %}
     Open source software, free software or software libre is software that can be used, copied and distributed
     liberally - modified or unmodified, with or without payment. Free here means freedom of use and this is
     where its greatest benefits lie!
+{% endtrans %}
 </p>
 
-<h2 class="container-spacer-down-2x">Who we are</h2>
+<h2 class="container-spacer-down-2x">{% trans "Who we are" %}</h2>
 
 <h4>NETWAYS GmbH</h4>
 <p>
     <img class="pull-right media-object" style="{{ image_style }}" src="{{ img_path }}/logo-netways.png" />
 
+{% trans %}
     For more than 15 years we have been supporting companies to manage complex, multifaceted IT
     infrastructures. Specialising in enterprise grade open source tools, we ensure the smooth
     operation of networks, servers and applications. Each time, we tailor robust,
     cost-effective solutions for our customers of all sizes and industries. At NETWAYS we make
     your IT do more with less.
+{% endtrans %}
 </p>
 <p>
     <a href="http://www.netways.de/" class="btn btn-success">
-        <i class="icon-link"></i> Goto NETWAYS
+        <i class="icon-link"></i> {% trans "Goto NETWAYS" %}
     </a>
 </p>
 
@@ -54,17 +64,23 @@
 <p class="container-spacer-down">
     <img class="media-object pull-right" style="{{ image_style }}" src="{{ img_path }}/logo-tk.png" />
 
-    The server manufacturer Thomas-Krenn.AG is Europe's leading online store for server, server solutions
-    and quality hosting. The company currently has about 97 employees in the areas of technology and
+{% trans %}
+    The server manufacturer Thomas-Krenn.AG is Europe's leading online store for servers, server solutions
+    and quality hosting. The company has currently about 110 employees in the areas of technology and
     development, purchasing, production, quality assurance, sales, marketing and administration. Medical
     practices, educational institutions, medium-sized companies and large corporations all over Europe
     account for the more than 12,500 customers. In 2012 Thomas-Krenn.AG had 22.7 million euros in sales
     and more than doubled its sales since 2005.
+{% endtrans %}
     <br /><br />
-    <strong>All products are assembled in the Lower Bavarian city of Freyung and sent to the customer's within 24 hours.</strong>
+    <strong>
+{% trans %}
+    All products are assembled in the Lower Bavarian city of Freyung and sent to the customers within 24 hours.
+{% endtrans %}
+    </strong>
 </p>
 <p>
     <a href="http://www.thomas-krenn.com/" class="btn btn-success">
-        <i class="icon-link"></i> Goto Thomas-Krenn
+        <i class="icon-link"></i> {% trans "Goto Thomas Krenn" %}
     </a>
 </p>

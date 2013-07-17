@@ -1,0 +1,9 @@
+/var/log/tkmon/*.log {
+        weekly
+        missingok
+        rotate 52
+        create 640 root adm
+        compress
+        delaycompress
+        notifempty
+}

@@ -6,12 +6,11 @@
     {% if config.get('app.login.counter') == 1 %}
         {% set security_link = web_link('System/Configuration/Security/Index') %}
         {% set config_link = web_link('ThomasKrenn/Alert/Configuration/Index') %}
-        {% set tk_info_link = 'http://www.thomas-krenn.com/en/wiki/Call-Home-Service' %}
         <div class="alert alert-block">
             <h4>{% trans "Welcome" %}</h4>
             <p>
             {% trans %}
-                It seems that you are here for the first time.
+                You have logged in for the first time.
                 Please change your password on the <a href="{{ security_link }}">Security Page</a>.
             {% endtrans %}
             </p>
@@ -20,8 +19,8 @@
                 If you have a Thomas Krenn Call-Home-Service Subscription, please
                 goto the <a href="{{ config_link }}">Alert Settings Page</a> and enter your credentials.
 
-                After that your monitoring service is equipped with Thomas Krenn support power! (<a href="{{ tk_info_link }}">
-                Click this link for more information</a>)
+                After that your monitoring service is equipped with Thomas Krenn support power!
+                (<a href="http://www.thomas-krenn.com/en/wiki/Call-Home-Service">Click this link for more information</a>)
             {% endtrans %}
             </p>
         </div>
@@ -30,18 +29,20 @@
 {% endif %}
 
 <div class="hero-unit">
-    <h1>Welcome to TKmon.</h1>
-    <p>Simple and fast monitoring based on Icinga.</p>
+    <h1>{% trans "Welcome to TKmon." %}</h1>
+    <p>{% trans "Simple and fast monitoring based on Icinga." %}</p>
     <p>
         {% if user.getAuthenticated() == true %}
             <a href="{{ web_link('Monitor/Icinga/Services') }}" class="btn btn-large btn-primary">
-                <i class="icon-warning-sign icon-2x"></i> Whats up
+                <i class="icon-warning-sign icon-2x"></i> {% trans "Service status" %}
             </a>
             <a href="{{ web_link('Index/LearnMore') }}" class="btn btn-large btn-primary">
-                <i class="icon-lightbulb icon-2x"></i> Learn more
+                <i class="icon-lightbulb icon-2x"></i> {% trans "Learn more" %}
             </a>
         {% else %}
-            This is a protected application. Please login to proceed.
+            {% trans %}
+               This application is password protected. Please login to proceed.
+            {% endtrans %}
             <div class="container-spacer-down">
                 <a href="{{ web_link('System/Login/Index') }}" class="btn btn-primary">
                     <i class="icon-key"></i> Login

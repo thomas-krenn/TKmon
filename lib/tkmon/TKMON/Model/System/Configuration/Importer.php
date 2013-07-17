@@ -21,6 +21,9 @@
 
 namespace TKMON\Model\System\Configuration;
 
+use TKMON\Model\Database\DebConfBuilder;
+use Zend\Filter\Dir;
+
 /**
  * Import system configuration
  * @package TKMON\Model
@@ -134,14 +137,28 @@ class Importer extends Base
             );
         }
 
+        /** @var DebConfBuilder $dbBuilder */
         $dbBuilder = $this->container['dbbuilder'];
         $dbFile = $dbBuilder->getBasePath(). DIRECTORY_SEPARATOR. $dbBuilder->getName();
+
+        /*
+         * Unique name because of existing tkmon files
+         */
+        $tmpName = $dbBuilder->getBasePath()
+            . DIRECTORY_SEPARATOR
+            . sprintf(
+                'tkmon-database-backup-%s-%s.db',
+                uniqid(),
+                date('YmdGis')
+            );
 
         /** @var $mv \NETWAYS\IO\Process */
         $mv = $this->container['command']->create('mv');
         $mv->addPositionalArgument($dbFile);
-        $mv->addPositionalArgument(sys_get_temp_dir()); // Backup
+        $mv->addPositionalArgument($tmpName); // Backup
         $mv->execute();
+
+        $this->container['logger']->warn('Backup sqlite database to: '. $tmpName);
 
         /** @var $sqlite \NETWAYS\IO\Process */
         $sqlite = $this->container['command']->create('sqlite3');
@@ -158,13 +175,30 @@ class Importer extends Base
     private function importIcingaConfig($dir)
     {
         $baseDir = $this->container['config']['icinga.dir.base'];
+
+        // This is the origin target name (can be a symlink)
+        // and is meant to be the source of the backup name
+        // see #2140
         $dirName = basename($baseDir);
+
+        // This the target name, because of this can be a symlink
+        // we need the realpath here
+        // see #2140
+        $baseDir = realpath($baseDir);
 
         $sourceDir = $dir. DIRECTORY_SEPARATOR. $dirName;
 
         if (!is_dir($sourceDir)) {
             throw new \TKMON\Exception\ModelException('Icinga source config dir not found: '. $sourceDir);
         }
+
+        $this->container['logger']->warn(
+            sprintf(
+                'Import config, from %s to %s',
+                $sourceDir,
+                $baseDir
+            )
+        );
 
         /** @var $rm \NETWAYS\IO\Process */
         $rm = $this->container['command']->create('rm');

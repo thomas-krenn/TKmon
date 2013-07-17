@@ -55,5 +55,6 @@ require([
     "TKMON/jquery/AjaxForm",
     "TKMON/jquery/AjaxContent",
     "TKMON/jquery/TabUrl",
-    "TKMON/jquery/ErrorPopover"
+    "TKMON/jquery/ErrorPopover",
+    "TKMON/jquery/ClearField"
 ]);

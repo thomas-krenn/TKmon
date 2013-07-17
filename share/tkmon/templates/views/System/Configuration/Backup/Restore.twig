@@ -29,6 +29,12 @@
         your environment during the reboot.
         {% endtrans %}
     </p>
+
+    <p>
+        {% trans %}
+        If you decide not to reboot, e.g. for testing purposes, keep in mind to do this soon or restart appropriate daemons manually.
+        {% endtrans %}
+    </p>
 </div>
 
 <div id="restore-message-target">
@@ -71,17 +77,53 @@
         {% endtrans %}
     </h4>
 
-    <button type="submit" class="btn btn-danger">
-        <i class="icon-cloud-upload"></i> {% trans "Restore!" %}
-    </button>
+    <fieldset>
+        <label>{% trans "Restart device after restore (recommended)" %}</label>
+
+        <div class="btn-group" data-toggle="buttons-radio" id="restart-toggle">
+            <button type="button" class="btn btn-success" value="1">
+                <i class="icon-ok"></i> {% trans "Yes please" %}
+            </button>
+
+            <button type="button" class="btn btn-warning" value="0">
+                <i class="icon-remove"></i> {% trans "No, dont't do this" %}
+            </button>
+        </div>
+
+        <input type="hidden" id="restart" name="restart" />
+    </fieldset>
+
+    <div class="container-spacer-down"></div>
+
+    <fieldset>
+        <label>{% trans "Fire and forget!" %}</label>
+
+        <button type="submit" class="btn btn-danger">
+            <i class="icon-cloud-upload"></i> {% trans "Restore!" %}
+        </button>
+    </fieldset>
 </form>
 
 <script>
-    require(['jquery'], function($) {
+    require(['jquery', 'bootstrap'], function($) {
         "use strict";
 
         var form = $('#restore-configuration');
         var messageTarget = $('#restore-message-target');
+
+        $('#restart-toggle').find('button').click(function() {
+            $('#restart').val($(this).val());
+        });
+
+        $(document).ready(function() {
+            $('#restart-toggle').find('button:first').button('toggle');
+            $('#restart').val(1);
+        });
+
+        var rebootValue = function() {
+            return $('#restart').val();
+        };
+
 
         /**
          * Finish handler, append messages to stack
@@ -215,8 +257,12 @@
                                 messageHandler(false, messages.join(', '));
                                 finishHandler();
                             } else {
-                                messageHandler(true, '{% trans "Configuration restored, initiating reboot. Please be patient for at least 5 minutes" %}', 'info');
-                                rebootHandler();
+                                if (rebootValue() === "1") {
+                                    messageHandler(true, '{% trans "Configuration restored, initiating reboot. Please be patient for at least 5 minutes" %}', 'info');
+                                    rebootHandler();
+                                } else {
+                                    messageHandler(true, '{% trans "Configuration restored, we do not reboot at will" %}', 'error');
+                                }
                             }
                         }
                     }

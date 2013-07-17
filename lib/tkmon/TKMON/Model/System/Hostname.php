@@ -28,12 +28,29 @@ namespace TKMON\Model\System;
  */
 class Hostname extends \TKMON\Model\ApplicationModel
 {
-
+    /**
+     * Temp name prefix
+     */
     const TEMP_PREFIX = 'hostname-model-';
+
+    /**
+     * Ascii charcode for tab
+     */
     const ASCII_TAB = 9;
 
+    /**
+     * Default location of local hosts file
+     */
     const FILE_HOSTS = '/etc/hosts';
+
+    /**
+     * Default location of hostname file
+     */
     const FILE_HOST_NAME = '/etc/hostname';
+
+    /**
+     * Default location of mailname file
+     */
     const FILE_MAILNAME = '/etc/mailname';
 
     /**
@@ -253,6 +270,13 @@ class Hostname extends \TKMON\Model\ApplicationModel
             . $tab. $this->oldHostname
             . PHP_EOL;
         }
+
+        // Add default localhost
+        $out .= '# Adding default entries'. PHP_EOL
+            . '127.0.0.1'
+            . $tab. 'localhost loopback'. PHP_EOL
+            . '::1'
+            . $tab. $tab. 'localhost'. PHP_EOL;
 
         $out .= '# EOF';
 

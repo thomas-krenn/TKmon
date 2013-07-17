@@ -87,10 +87,19 @@ class DnsServers extends Interfaces
         return $this->dnsServers;
     }
 
+    /**
+     * Reset dns server array
+     */
+    public function purgeDnsServers()
+    {
+        $this->dnsServers = array();
+    }
+
 
     /**
      * Setter of a dns server item
      * @param int|null $index
+     * @return null
      */
     public function getDnsServerItem($index = 0)
     {
