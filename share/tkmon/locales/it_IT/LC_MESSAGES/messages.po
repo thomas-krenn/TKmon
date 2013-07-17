@@ -308,30 +308,29 @@ msgid "System access (ssh/shell) for user %username% will be disabled."
 msgstr ""
 
 #: /tmp/tkmon-templates//31870895e84572aabcdbb45863e9.php:25
-msgid ""
-"Howdy! This application is protected by password.\n"
-"        Please proceed by applying your credentials."
+#: /tmp/tkmon-templates//6e907e97b10b7698ffad3d7dec80.php:109
+msgid "This application is password protected. Please login to proceed."
 msgstr ""
 
-#: /tmp/tkmon-templates//31870895e84572aabcdbb45863e9.php:36
+#: /tmp/tkmon-templates//31870895e84572aabcdbb45863e9.php:35
 msgid ""
 "You are logged in successfully. You will be redirected\n"
 "        after a second. If not, please <a href=\"%link_home%\">\n"
 "        follow this link to proceed.</a>"
 msgstr ""
 
-#: /tmp/tkmon-templates//31870895e84572aabcdbb45863e9.php:60
+#: /tmp/tkmon-templates//31870895e84572aabcdbb45863e9.php:59
 msgid "Username"
 msgstr ""
 
-#: /tmp/tkmon-templates//31870895e84572aabcdbb45863e9.php:65
+#: /tmp/tkmon-templates//31870895e84572aabcdbb45863e9.php:64
 #: /tmp/tkmon-templates//56f62b4d0bbdbf8f59280cc0d90d.php:119
 #: /tmp/tkmon-templates//74497cd5f1f8ed13aa08b8c4cd86.php:44
 #: /tmp/tkmon-templates//a3a44420b4a88348fe87f77f9f78.php:91
 msgid "Password"
 msgstr ""
 
-#: /tmp/tkmon-templates//31870895e84572aabcdbb45863e9.php:73
+#: /tmp/tkmon-templates//31870895e84572aabcdbb45863e9.php:72
 #: /tmp/tkmon-templates//6c80a85e777d51a2ad86447a5fc4.php:51
 #: /tmp/tkmon-templates//8270883f6a8b170343b51d10dc11.php:41
 #: /tmp/tkmon-templates//b8a3debf7b4fef52cb49f2ce7e7f.php:117
@@ -773,10 +772,6 @@ msgstr ""
 
 #: /tmp/tkmon-templates//6e907e97b10b7698ffad3d7dec80.php:102
 msgid "Learn more"
-msgstr ""
-
-#: /tmp/tkmon-templates//6e907e97b10b7698ffad3d7dec80.php:109
-msgid "This is a protected application. Please login to proceed."
 msgstr ""
 
 #: /tmp/tkmon-templates//6ed993a3f3c155f018ac2e5e323f.php:20
@@ -1275,9 +1270,9 @@ msgstr ""
 #: /tmp/tkmon-templates//f0780cb9e5eddd4ce40a0c4b972a.php:125
 msgid ""
 "The server manufacturer Thomas-Krenn.AG is Europe's leading online store for "
-"server, server solutions\n"
-"    and quality hosting. The company currently has about 97 employees in the "
-"areas of technology and\n"
+"servers, server solutions\n"
+"    and quality hosting. The company has currently about 110 employees in "
+"the areas of technology and\n"
 "    development, purchasing, production, quality assurance, sales, marketing "
 "and administration. Medical\n"
 "    practices, educational institutions, medium-sized companies and large "
@@ -1290,7 +1285,7 @@ msgstr ""
 #: /tmp/tkmon-templates//f0780cb9e5eddd4ce40a0c4b972a.php:136
 msgid ""
 "All products are assembled in the Lower Bavarian city of Freyung and sent to "
-"the customer's within 24 hours."
+"the customers within 24 hours."
 msgstr ""
 
 #: /tmp/tkmon-templates//f0780cb9e5eddd4ce40a0c4b972a.php:144
