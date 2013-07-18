@@ -57,7 +57,7 @@
             "service_description": "ipmi-sensors",
             "display_name": "IPMI Sensors",
             "check_command": {
-                "command_name": "check_ipmi_sensor",
+                "command_name": "check_ipmi_sensor_custom",
                 "arguments": null
             },
             "_catalogue_attributes": {
