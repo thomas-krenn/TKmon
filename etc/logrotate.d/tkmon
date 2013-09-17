@@ -2,7 +2,7 @@
         weekly
         missingok
         rotate 52
-        create 640 root adm
+        create 640 www-data www-data
         compress
         delaycompress
         notifempty
