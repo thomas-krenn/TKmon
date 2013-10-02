@@ -1,6 +1,8 @@
 <?php
 namespace ICINGA\Tests\Base;
 
+use ICINGA\Base\CommandArgument;
+
 class CommandArgumentTest extends \PHPUnit_Framework_TestCase
 {
 
@@ -34,6 +36,31 @@ class CommandArgumentTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('CCC', $commandArgument->getDescription());
         $this->assertEquals('DDD', $commandArgument->getLabel());
         $this->assertEquals('string', $commandArgument->getValidation());
+    }
+
+    public function testCommandType()
+    {
+        $commandArgument = CommandArgument::create(
+            'aaa',
+            'bbb',
+            'ccc',
+            'ddd',
+            'eee',
+            'fff'
+        );
+
+        $this->assertSame('fff', $commandArgument->getType());
+
+        $commandArgument->setType('password');
+        $this->assertSame('password', $commandArgument->getType());
+
+        $voyager = new \stdClass();
+        $voyager->type = 'checkbox';
+        $voyager->value = 123123;
+
+        $commandArgument2 = CommandArgument::createFromVoyager($voyager);
+        $this->assertSame('checkbox', $commandArgument2->getType());
+        $this->assertSame(123123, $commandArgument2->getValue());
     }
 
 }

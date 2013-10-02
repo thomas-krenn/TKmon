@@ -334,7 +334,8 @@ Arguments look like this:
     "label": "UDP Port",
     "description": "Integer value of UDP port to test",
     "validation": "port",
-    "argument": "-p"
+    "argument": "-p",
+    "type": "text"
 },
 -------------------------------------------------------------------------------
 
@@ -356,6 +357,12 @@ Following keys are used:
     'check_tcp -H 127.0.0.1 -p 80'. This is also not used at the moment, but
     maybe later for user documentation or automatic creation of command
     definitions
+
+**type** (optional)::
+    Define which input type should be used when consuming in frontend. Valid
+    valied are **text** (default) and **password**. The type is expanded to
+    a class. Password (password) will be expanded to
+    \TKMON\\Form\Field\Password
 
 Meta attributes
 ~~~~~~~~~~~~~~~

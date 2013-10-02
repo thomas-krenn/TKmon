@@ -140,6 +140,7 @@
                             "de_DE": "Passwort des Benutzers zum Zugriff auf den ESXi Server."
                         },
                         "validation": "string",
+                        "type" : "password",
                         "argument": "-P"
                     }
                 ]
