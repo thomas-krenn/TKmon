@@ -31,6 +31,7 @@ use TKMON\Form\Field\Text;
 use TKMON\Form\Field\TextReadonly;
 use TKMON\Interfaces\ApplicationModelInterface;
 use TKMON\Model\ThomasKrenn\RestInterface;
+use TKMON\Model\Icinga\ServiceData;
 
 /**
  * Attributes for ThomasKrenn products
@@ -192,6 +193,31 @@ class ThomasKrennAttributes extends ReflectionHandler implements ApplicationMode
     {
         $this->updateHostTemplate($host);
         $this->updateHostCustomVariables($host);
+
+        /** @var ServiceData $serviceModel */
+        $serviceModel = $this->container['serviceData'];
+
+        // Add IPMI service to host if configuration is available
+        // See #2206 for more information
+        if (
+            $host->getCustomVariable(self::CV_IPMI_IP)
+            && $host->getCustomVariable(self::CV_IPMI_USER)
+            && $host->getCustomVariable(self::CV_IPMI_PASSWORD)
+        ) {
+            $service = $serviceModel->createServiceFromCatalogue('ipmi-sensors');
+            $host->addService($service);
+            $service = null;
+
+            $service = $serviceModel->createServiceFromCatalogue('net-ping-ipmi');
+            $host->addService($service);
+
+            /** @var \Logger $logger */
+            $logger = $this->container['logger'];
+            $logger->info(
+                'Host '. $host->getName(). ' has IPMI information configured. '
+                . 'Add IPMI check to this host'
+            );
+        }
     }
 
     /**

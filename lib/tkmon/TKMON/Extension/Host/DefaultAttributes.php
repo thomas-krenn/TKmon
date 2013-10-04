@@ -119,6 +119,7 @@ class DefaultAttributes extends ReflectionHandler implements ApplicationModelInt
         /** @var ServiceData $serviceModel */
         $serviceModel = $this->container['serviceData'];
 
+        // Add ping service to the newly created host
         $service = $serviceModel->createServiceFromCatalogue('net-ping');
 
         $host->addService($service);
