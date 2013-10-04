@@ -21,6 +21,8 @@
 
 namespace TKMON\Action\Expose\System\Update;
 
+use NETWAYS\Common\ArrayObjectValidator;
+use NETWAYS\Common\ValidatorObject;
 use TKMON\Action\Base;
 use NETWAYS\Common\ArrayObject;
 use TKMON\Exception\ModelException;
@@ -47,6 +49,11 @@ class Apt extends Base
         return $template;
     }
 
+    /**
+     * Show pending updates
+     * @param ArrayObject $params
+     * @return TwigTemplate
+     */
     public function actionPendingUpdates(ArrayObject $params)
     {
         $model = new AptModel($this->container);
@@ -54,5 +61,41 @@ class Apt extends Base
         $template->setTemplateName('views/System/Update/Apt/EmbeddedPendingList.twig');
         $template['records'] = $model->getPendingUpdates();
         return $template;
+    }
+
+    /**
+     * Real system upgrade
+     * @param ArrayObject $params
+     * @return JsonResponse
+     */
+    public function actionUpgrade(ArrayObject $params)
+    {
+        $validator = new ArrayObjectValidator();
+        $validator->addValidatorObject(
+            ValidatorObject::create(
+                'doUpgrade',
+                'Upgrade security flag',
+                ValidatorObject::VALIDATE_MANDATORY
+            )
+        );
+
+        $response = new JsonResponse();
+
+        try {
+            $validator->validateArrayObject($params);
+
+            if ($params['doUpgrade'] === '1') {
+                $model = new AptModel($this->container);
+                $output = $model->doUpgrade();
+
+                $response->addData($output);
+
+                $response->setSuccess(true);
+            }
+        } catch (\Exception $e) {
+            $response->addException($e);
+        }
+
+        return $response;
     }
 }

@@ -23,6 +23,7 @@
 namespace TKMON\Model\System\Update;
 
 use NETWAYS\IO\Process;
+use TKMON\Exception\ModelException;
 use TKMON\Model\ApplicationModel;
 
 /**
@@ -50,13 +51,59 @@ class Apt extends ApplicationModel
     }
 
     /**
+     * Do a system upgrade
+     *
+     * @return string
+     * @throws ModelException
+     */
+    public function doUpgrade()
+    {
+        $pending = $this->getPendingUpdates();
+
+        if (count($pending)) {
+            /** @var Process $aptGet */
+            $aptGet = $this->container['command']->create('apt-get');
+            $aptGet->addEnvironment('DEBIAN_PRIORITY', 'critical');
+            $aptGet->addEnvironment('DEBIAN_FRONTEND', 'noninteractive');
+            $aptGet->addPositionalArgument('-qq');
+            $aptGet->addPositionalArgument('upgrade');
+            $aptGet->addPositionalArgument('-y');
+            $aptGet->execute();
+
+            return $aptGet->getOutput();
+        } else {
+            throw new ModelException('No pending updates found');
+        }
+    }
+
+    /**
+     * Fetch updates from repositories
+     */
+    public function refreshPackages()
+    {
+        /** @var Process $aptGet */
+        $aptGet = $this->container['command']->create('apt-get');
+        $aptGet->addEnvironment('DEBCONF_PRIORITY', 'critical');
+        $aptGet->addEnvironment('DEBIAN_FRONTEND', 'noninteractive');
+        $aptGet->addPositionalArgument('-q');
+        $aptGet->addPositionalArgument('update');
+        $aptGet->addPositionalArgument('-y');
+        $aptGet->execute();
+
+        return $aptGet->getOutput();
+    }
+
+    /**
      * Return a list of pending updates
      * @return array List of update records
      */
     public function getPendingUpdates()
     {
+        $this->refreshPackages();
+
         /** @var Process $aptGet */
         $aptGet = $this->container['command']->create('apt-get');
+        $aptGet->addEnvironment('DEBIAN_FRONTEND', 'noninteractive');
         $aptGet->addPositionalArgument('--just-print');
         $aptGet->addPositionalArgument('upgrade');
         $aptGet->execute();

@@ -466,7 +466,17 @@ class Process
         $call = implode(' ', $cmd);
 
         if ($this->wrapSudo === true) {
-            return self::PATH_SUDO. ' '. $call;
+            // proc_open does not export environment vars, let
+            // sudo do this for you.
+            $environmentString = '';
+            if (count($this->environment)) {
+                foreach ($this->environment as $key => $val) {
+                    $environmentString .= $key. '=\''. escapeshellarg($val). '\'';
+                }
+                $environmentString .= ' ';
+            }
+
+            return self::PATH_SUDO. ' '. $environmentString. $call;
         }
 
         return $call;

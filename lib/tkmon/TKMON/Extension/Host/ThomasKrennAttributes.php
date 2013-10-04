@@ -199,8 +199,7 @@ class ThomasKrennAttributes extends ReflectionHandler implements ApplicationMode
 
         // Add IPMI service to host if configuration is available
         // See #2206 for more information
-        if (
-            $host->getCustomVariable(self::CV_IPMI_IP)
+        if ($host->getCustomVariable(self::CV_IPMI_IP)
             && $host->getCustomVariable(self::CV_IPMI_USER)
             && $host->getCustomVariable(self::CV_IPMI_PASSWORD)
         ) {
