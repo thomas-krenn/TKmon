@@ -38,6 +38,9 @@
                     $.ajax({
                         url: url
                     }).done(function(data) {
+                            if ($(element).attr('data-ajax-call-insert')) {
+                                $(element).html('');
+                            }
                             $(element).append(data);
                         });
                 }

@@ -23,11 +23,14 @@ namespace TKMON\Action\Expose\System\Update;
 
 use TKMON\Action\Base;
 use NETWAYS\Common\ArrayObject;
+use TKMON\Exception\ModelException;
+use TKMON\Model\System\Update\Apt as AptModel;
+use TKMON\Mvc\Output\JsonResponse;
 use TKMON\Mvc\Output\TwigTemplate;
 
 /**
  * Handle apt updates and information about that
- * 
+ *
  * @package TKMON\Action
  */
 class Apt extends Base
@@ -41,6 +44,15 @@ class Apt extends Base
     {
         $template = new TwigTemplate($this->container['template']);
         $template->setTemplateName('views/System/Update/Apt.twig');
+        return $template;
+    }
+
+    public function actionPendingUpdates(ArrayObject $params)
+    {
+        $model = new AptModel($this->container);
+        $template = new TwigTemplate($this->container['template']);
+        $template->setTemplateName('views/System/Update/Apt/EmbeddedPendingList.twig');
+        $template['records'] = $model->getPendingUpdates();
         return $template;
     }
 }

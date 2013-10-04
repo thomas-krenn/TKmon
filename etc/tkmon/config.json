@@ -186,6 +186,16 @@
         "start": {
             "path": "/sbin/start",
             "sudo": true
+        },
+
+        "apt-get": {
+            "path": "/usr/bin/apt-get",
+            "sudo": true
+        },
+
+        "apt-cache": {
+            "path": "/usr/bin/apt-cache",
+            "sudo": true
         }
     }
 }
