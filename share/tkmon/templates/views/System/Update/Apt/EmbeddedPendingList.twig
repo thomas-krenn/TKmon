@@ -1,5 +1,18 @@
 {% set countUpdates = records|length %}
 
+{% if error %}
+    <div class="alert alert-error">
+        <h5>{% trans "Error occurred" %}</h5>
+        <pre>{{ error }}</pre>
+        <p>
+            {% trans %}
+            This means that your packages are broken. Please test your packages and
+            fix it manually.
+            {% endtrans %}
+        </p>
+    </div>
+{% else %}
+
 {% if countUpdates > 0 %}
     <div class="alert alert-danger">
         {% trans %}
@@ -50,4 +63,6 @@
         You system is up to date. No need to take action.
         {% endtrans %}
     </div>
+{% endif %}
+
 {% endif %}

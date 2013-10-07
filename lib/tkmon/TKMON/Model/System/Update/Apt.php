@@ -139,6 +139,7 @@ class Apt extends ApplicationModel
     /**
      * Run apt check to detect broken packages
      *
+     * @throws ModelException
      * @return string
      */
     public function testPackages()
@@ -147,7 +148,17 @@ class Apt extends ApplicationModel
         $aptGet = $this->container['command']->create('apt-get');
         $aptGet->addEnvironment('DEBIAN_FRONTEND', 'noninteractive');
         $aptGet->addPositionalArgument('check');
+        $aptGet->ignoreStdErr(true);
+        $aptGet->ignoreProcessReturn(true);
         $aptGet->execute();
+
+        if ($aptGet->getExitStatus() !== 0) {
+            $output = $aptGet->getOutput();
+            $output .= PHP_EOL. $aptGet->getProcessError();
+
+            throw new ModelException($output);
+        }
+
         return $aptGet->getOutput();
     }
 

@@ -64,7 +64,11 @@ class Apt extends Base
         $model = new AptModel($this->container);
         $template = new TwigTemplate($this->container['template']);
         $template->setTemplateName('views/System/Update/Apt/EmbeddedPendingList.twig');
-        $template['records'] = $model->getPendingUpdates();
+        try {
+            $template['records'] = $model->getPendingUpdates();
+        } catch (\Exception $e) {
+            $template['error'] = $e->getMessage();
+        }
         return $template;
     }
 

@@ -144,6 +144,12 @@ class Process
     private $ignoreStdErr=false;
 
     /**
+     * Flag to ignore return code
+     * @var bool
+     */
+    private $ignoreProcessReturn=false;
+
+    /**
      * Create a new object
      * @param string $command
      */
@@ -214,11 +220,22 @@ class Process
 
     /**
      * Flag to ignore exceptions if STDERR is written
+     *
      * @param bool $flag
      */
     public function ignoreStdErr($flag = true)
     {
         $this->ignoreStdErr = (bool)$flag;
+    }
+
+    /**
+     * Setter to set flag that ignore process return value
+     *
+     * @param bool $flag
+     */
+    public function ignoreProcessReturn($flag = true)
+    {
+        $this->ignoreProcessReturn = (bool)$flag;
     }
 
     /**
@@ -524,7 +541,7 @@ class Process
             throw new Exception\ProcessException('STDERR: '. $this->processError);
         }
 
-        if ($this->processReturn > 0) {
+        if ($this->processReturn > 0 && $this->ignoreProcessReturn === false) {
             throw new Exception\ProcessException('Process exited with '. $this->processReturn);
         }
 
@@ -538,6 +555,15 @@ class Process
     public function getOutput()
     {
         return $this->processOutput;
+    }
+
+    /**
+     * Return STDERR if not thrown
+     * @return mixed
+     */
+    public function getProcessError()
+    {
+        return $this->processError;
     }
 
     /**
