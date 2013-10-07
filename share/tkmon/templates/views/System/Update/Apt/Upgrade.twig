@@ -1,0 +1,90 @@
+<h4>{% trans "Upgrade" %}</h4>
+
+<div class="container-spacer-down"></div>
+
+<div class="alert alert-danger">
+    {% trans %}
+    <p>
+        This performs a real upgrade of your system. Press the following button to proceed.
+        In case of manual changes upgrade may fail and you have to solve broken situation by hand.
+    </p>
+    <p>
+        Please be patient. We update the package cache, make a dry run and do a real upgrade.
+    </p>
+    {% endtrans %}
+</div>
+
+<button type="button" class="btn btn-danger" id="start-real-upgrade">
+    <i class="icon-exclamation-sign"></i> {% trans "Yes, upgrade my system" %}
+</button>
+
+
+<div id="upgrade-process-target" class="container-spacer-down">
+
+</div>
+
+<div id="upgrade-output-target" class="container-spacer-down">
+
+</div>
+
+<script>
+    require(['jquery', 'bootstrap'], function($) {
+        "use strict";
+
+        var url = '{{ web_link('Upgrade') }}';
+
+        var showProcessState = function(iconCls, message) {
+            var element = $('#upgrade-process-target');
+            var content = '<i class="' + iconCls + '"></i> ' + message;
+            element.html(content);
+        };
+
+        var updateOutput = function(output) {
+            $('#upgrade-output-target').html(
+                '<pre>'
+                + output
+                + '</pre>'
+            );
+        };
+
+        var clearOutputTarget = function() {
+            $('#upgrade-output-target').html('');
+        };
+
+        var addError = function(msg) {
+            $('#upgrade-output-target').html('<div class="alert alert-error">' + msg + '</div>');
+        };
+
+        $('#start-real-upgrade').click(function() {
+            var btn = $(this);
+            btn.prop('disabled', true);
+            clearOutputTarget();
+            showProcessState('icon-spinner icon-spin icon-large', '{% trans "Upgrade in process" %} ...');
+
+            $.ajax({
+                url: url,
+                type: 'post',
+                dataType: 'json',
+                data: {
+                    doUpgrade: 1
+                }
+            }).done(function(data) {
+                if (data.success === true) {
+                    showProcessState('icon-thumbs-up icon-large', '{% trans "Everything went fine!" %}');
+                    updateOutput(data.data[0]);
+                } else {
+                    showProcessState('icon-exclamation-sign icon-large', '{% trans "Errors occurred!" %}');
+                }
+
+                if (data.errors.length) {
+                    clearOutputTarget();
+                    $.each(data.errors, function(idx, error) {
+                        addError(error.message);
+                    });
+                }
+            }).always(function() {
+                btn.removeProp('disabled');
+            });
+        });
+    });
+</script>

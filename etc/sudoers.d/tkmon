@@ -1,6 +1,10 @@
 # ------------------------------
 # Sudoers file for tkmon actions
 # ------------------------------
+
+# Allow environment variables
+Defaults:%tkmonweb !env_reset
+
 %tkmonweb ALL=(ALL)NOPASSWD:/usr/sbin/chpasswd
 %tkmonweb ALL=(ALL)NOPASSWD:/usr/sbin/usermod
 %tkmonweb ALL=(ALL)NOPASSWD:/usr/bin/passwd
@@ -15,3 +19,6 @@
 %tkmonweb ALL=(ALL)NOPASSWD:/bin/chown
 %tkmonweb ALL=(ALL)NOPASSWD:/sbin/start
 %tkmonweb ALL=(ALL)NOPASSWD:/usr/local/bin/tkalert.sh
+%tkmonweb ALL=(ALL)NOPASSWD:/usr/bin/apt-get
+%tkmonweb ALL=(ALL)NOPASSWD:/usr/bin/apt-cache
+

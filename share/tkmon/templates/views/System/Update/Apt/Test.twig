@@ -1,0 +1,34 @@
+<h4>{% trans "Test broken packages" %}</h4>
+
+<div class="alert alert-info">
+    {% trans %}
+    This step tests package dependencies and if something is broken in the package distribution system.
+    {% endtrans %}
+</div>
+
+<div>
+    <button type="button" class="btn btn-primary" id="refresh-broken-packages">
+        <i class="icon-refresh"></i> {% trans "Test packages" %}
+    </button>
+</div>
+
+<div class="container-spacer-down">
+
+</div>
+
+<div id="test-packages-target" data-ajax-call="{{ web_link('TestPackages') }}" data-ajax-call-insert="true" data-ajax-call-disable-autoload="true">
+</div>
+
+<script>
+    /*global $: false require:false */
+    require(['jquery', 'TKMON/jquery/AjaxContent'], function() {
+        "use strict";
+
+        var spinnerLabel = '{% trans "Testing system packages" %}' + '...';
+
+        $('#refresh-broken-packages').click(function() {
+            $('#test-packages-target').html('<i class="icon-spinner icon-spin icon-large"></i> ' + spinnerLabel);
+            $('#test-packages-target').Html5AjaxContent();
+        });
+    });
+</script>
