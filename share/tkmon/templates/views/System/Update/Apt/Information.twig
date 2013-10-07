@@ -1,1 +1,7 @@
 <h4>{% trans "Information about updates" %}</h4>
+
+{% if language == "de_DE" %}
+    {% include "views/System/Update/Apt/Information/de.twig" %}
+{% else %}
+    {% include "views/System/Update/Apt/Information/en.twig" %}
+{% endif %}

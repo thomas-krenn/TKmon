@@ -27,6 +27,7 @@ use TKMON\Action\Base;
 use NETWAYS\Common\ArrayObject;
 use TKMON\Exception\ModelException;
 use TKMON\Model\System\Update\Apt as AptModel;
+use TKMON\Model\User;
 use TKMON\Mvc\Output\JsonResponse;
 use TKMON\Mvc\Output\TwigTemplate;
 
@@ -46,6 +47,10 @@ class Apt extends Base
     {
         $template = new TwigTemplate($this->container['template']);
         $template->setTemplateName('views/System/Update/Apt.twig');
+
+        /** @var User $user */
+        $user = $this->container['user'];
+        $template['language'] = $user->getLocale();
         return $template;
     }
 
