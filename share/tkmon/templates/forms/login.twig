@@ -1,4 +1,8 @@
 {% set link_home = web_link("Index/Index") %}
+{% if referrer is empty %}
+{% set referrer = web_link("Index/Index") %}
+{% endif %}
+
 <div id="login-container">
     <div class="well">
         {% trans %}
@@ -20,14 +24,14 @@
 
     <form
             id="login"
-            action="{{ web_link("Login") }}"
+            action="{{ web_link("System/Login/Login") }}"
             data-ajax="form"
             data-ajax-type="form"
             data-form-focus-first="#username"
             data-form-reset="true"
             data-error-target="#login-errors"
             data-success-frame="#login-success"
-            data-success-callback="redirectHome"
+            data-success-callback="redirectToTarget"
      >
         <fieldset>
             <label for="username">{% trans "Username" %}</label>
@@ -39,15 +43,18 @@
         <button type="submit" class="btn btn-primary">
             <i class="icon-key"></i> {% trans "Login" %}
         </button>
+
+        <input type="hidden" name="referrer" value="{{ referrer }}" />
     </form>
 </div>
 
 <script>
-    var redirectHome = function() {
-        $('#login').remove('*');
-
-        setTimeout(function() {
-            window.location.href='{{ web_link("Index/Index") }}';
-        }, 1000);
-    };
+    require(['jquery'], function($) {
+        window.redirectToTarget = function() {
+            var referrer = $('form#login input[name="referrer"]').val();
+            setTimeout(function() {
+                window.location.href = referrer;
+            }, 1000);
+        };
+    });
 </script>

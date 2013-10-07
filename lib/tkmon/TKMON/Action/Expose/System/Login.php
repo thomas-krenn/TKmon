@@ -22,6 +22,8 @@
 namespace TKMON\Action\Expose\System;
 
 use NETWAYS\Common\ArrayObject;
+use NETWAYS\Common\ArrayObjectValidator;
+use NETWAYS\Common\ValidatorObject;
 use TKMON\Action\Base;
 use TKMON\Exception\UserException;
 use TKMON\Model\User;
@@ -53,8 +55,23 @@ class Login extends Base
      */
     public function actionIndex(ArrayObject $params)
     {
+        $validator = new ArrayObjectValidator();
+        $validator->addValidatorObject(
+            ValidatorObject::create(
+                'referrer',
+                'Referrer URL',
+                ValidatorObject::VALIDATE_ANYTHING,
+                null,
+                null,
+                false
+            )
+        );
+
+        $validator->validateArrayObject($params);
+
         $output = new TwigTemplate($this->container['template']);
         $output->setTemplateName('forms/login.twig');
+        $output['referrer'] = $params->get('referrer');
         return $output;
     }
 
