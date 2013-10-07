@@ -64,6 +64,18 @@ html, body {
     margin-top: 40px;
 }
 
+/** Overriding default formattings **/
+
+/** Links default underline: #2218 **/
+#tkmon-main a {
+    text-decoration: underline;
+}
+
+/** Exclude special bootstrap components **/
+#tkmon-main .btn-group a, #tkmon-main .btn a,  #tkmon-main .tabbable a {
+    text-decoration: none;
+}
+
 /** Settings table **/
 
 table.settings-table {

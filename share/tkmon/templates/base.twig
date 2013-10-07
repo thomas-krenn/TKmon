@@ -67,11 +67,11 @@
             <div class="container-spacer-down"></div>
 
             <div class="container-fluid">
-                <div class="span2">
+                <div class="span2" id="tkmon-menu">
                     {% include "widgets/Menu.twig" %}
                 </div>
 
-                <div class="span10">
+                <div class="span10" id="tkmon-main">
                     {% block content %}
                     {% autoescape false %}
                     {{content}}
