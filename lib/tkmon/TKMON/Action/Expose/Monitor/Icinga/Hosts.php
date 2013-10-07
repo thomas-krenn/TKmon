@@ -21,6 +21,8 @@
 
 namespace TKMON\Action\Expose\Monitor\Icinga;
 
+use NETWAYS\Common\ValidatorObject;
+
 /**
  * Action handle contacts views
  *
@@ -64,10 +66,10 @@ class Hosts extends \TKMON\Action\Base
             $validator = new \NETWAYS\Common\ArrayObjectValidator();
 
             $validator->addValidatorObject(
-                \NETWAYS\Common\ValidatorObject::create(
+                ValidatorObject::create(
                     'host_name',
                     'Host ID',
-                    \NETWAYS\Common\ValidatorObject::VALIDATE_MANDATORY
+                    ValidatorObject::VALIDATE_MANDATORY
                 )
             );
 
@@ -105,7 +107,7 @@ class Hosts extends \TKMON\Action\Base
             $validator = $hostData->createValidator();
 
             $validator->addValidatorObject(
-                \NETWAYS\Common\ValidatorObject::create(
+                ValidatorObject::create(
                     'action',
                     'internal action: create|edit',
                     FILTER_VALIDATE_REGEXP,
@@ -156,10 +158,10 @@ class Hosts extends \TKMON\Action\Base
         try {
             $validator = new \NETWAYS\Common\ArrayObjectValidator();
             $validator->addValidatorObject(
-                \NETWAYS\Common\ValidatorObject::create(
+                ValidatorObject::create(
                     'host_name',
                     'Host identifier',
-                    \NETWAYS\Common\ValidatorObject::VALIDATE_MANDATORY
+                    ValidatorObject::VALIDATE_MANDATORY
                 )
             );
             $validator->validateArrayObject($params);
@@ -193,10 +195,10 @@ class Hosts extends \TKMON\Action\Base
             $validator = new \NETWAYS\Common\ArrayObjectValidator();
 
             $validator->addValidatorObject(
-                \NETWAYS\Common\ValidatorObject::create(
+                ValidatorObject::create(
                     'q',
                     'Query',
-                    \NETWAYS\Common\ValidatorObject::VALIDATE_MANDATORY
+                    ValidatorObject::VALIDATE_MANDATORY
                 )
             );
 

@@ -28,9 +28,18 @@
     define(['jquery', 'bootstrap'], function () {
 
         /**
+         * Url to gather data from
+         *
          * @type {String}
          */
         var dataUrl;
+
+        /**
+         * Exclude hosts from search result
+         *
+         * @type {Array}
+         */
+        var excludeHosts = [];
 
         /**
          * Setter for url
@@ -65,7 +74,9 @@
                     if (data && data.success === true) {
                         var out = [];
                         $.each(data.data, function (key) {
-                            out.push(key);
+                            if ($.inArray(key, excludeHosts) === -1) {
+                                out.push(key);
+                            }
                         });
                         process(out);
                     }
@@ -91,6 +102,15 @@
          */
         $.fn.hostTypeAhead = function(options) {
             setUrl(options.url);
+
+            if (typeof(options.exclude) !== 'undefined' && options.exclude !== null) {
+                if (typeof(options.exclude) === 'string') {
+                    excludeHosts.push(options.exclude);
+                } else {
+                    excludeHosts = options.exclude;
+                }
+            }
+
             $(this).typeahead({
                 source: source,
                 matcher: matcher
