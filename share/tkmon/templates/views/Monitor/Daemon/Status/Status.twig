@@ -17,9 +17,9 @@
     {% trans %}
     Press the following button to refresh the status:
     {% endtrans %}
-    <a id="icinga-status-refresh" href="#" class="btn btn-primary">
+    <button type="button" id="icinga-status-refresh" class="btn btn-primary">
         <i class="icon-refresh"></i> {% trans "Refresh" %}
-    </a>
+    </button>
 </p>
 
 <script>
@@ -27,7 +27,7 @@
     require(['jquery', 'TKMON/jquery/AjaxContent'], function() {
         "use strict";
         $('#icinga-status-refresh').click(function() {
-            $(this).Html5AjaxContent("insert");
+            $('#icinga-status-label').Html5AjaxContent("insert");
         });
     });
 </script>

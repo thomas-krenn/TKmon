@@ -69,6 +69,27 @@ class Apt extends Base
     }
 
     /**
+     * Run apt tests
+     * @param ArrayObject $params
+     * @return TwigTemplate Internal html snip
+     */
+    public function actionTestPackages(ArrayObject $params)
+    {
+        $model = new AptModel($this->container);
+        $template = new TwigTemplate($this->container['template']);
+        $template->setTemplateName('views/System/Update/Apt/EmbeddedTestOutput.twig');
+
+        try {
+            $template['result'] = $model->testPackages();
+            $template['stats'] = $model->getStats();
+        } catch (\Exception $e) {
+            $template['error'] = $e->getMessage();
+        }
+
+        return $template;
+    }
+
+    /**
      * Real system upgrade
      * @param ArrayObject $params
      * @return JsonResponse

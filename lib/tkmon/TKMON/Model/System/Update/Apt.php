@@ -135,4 +135,34 @@ class Apt extends ApplicationModel
 
         return $records;
     }
+
+    /**
+     * Run apt check to detect broken packages
+     *
+     * @return string
+     */
+    public function testPackages()
+    {
+        /** @var Process $aptGet */
+        $aptGet = $this->container['command']->create('apt-get');
+        $aptGet->addEnvironment('DEBIAN_FRONTEND', 'noninteractive');
+        $aptGet->addPositionalArgument('check');
+        $aptGet->execute();
+        return $aptGet->getOutput();
+    }
+
+    /**
+     * Run apt cache stats
+     *
+     * @return string
+     */
+    public function getStats()
+    {
+        /** @var Process $aptGet */
+        $aptGet = $this->container['command']->create('apt-cache');
+        $aptGet->addEnvironment('DEBIAN_FRONTEND', 'noninteractive');
+        $aptGet->addPositionalArgument('stats');
+        $aptGet->execute();
+        return $aptGet->getOutput();
+    }
 }

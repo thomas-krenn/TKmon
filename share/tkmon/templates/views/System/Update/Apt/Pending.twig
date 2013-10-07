@@ -9,7 +9,7 @@
 
 <div>
     <button type="button" class="btn btn-primary" id="refresh-pending-updates">
-        <i class="icon-refresh"></i> {% trans "Refresh" %}
+        <i class="icon-refresh"></i> {% trans "Refresh pending updates" %}
     </button>
 </div>
 
@@ -17,8 +17,7 @@
 
 </div>
 
-<div id="pending-updates-target" data-ajax-call="{{ web_link('PendingUpdates') }}" data-ajax-call-insert="true">
-    <i class="icon-spinner icon-spin icon-large"></i> {% trans "Loading pending upgrades" %}...
+<div id="pending-updates-target" data-ajax-call="{{ web_link('PendingUpdates') }}" data-ajax-call-insert="true" data-ajax-call-disable-autoload="true">
 </div>
 
 <script>
@@ -29,8 +28,8 @@
         var spinnerLabel = '{% trans "Loading pending upgrades" %}' + '...';
 
         $('#refresh-pending-updates').click(function() {
-            $('#pending-updates-target').html('<i class="icon-spinner icon-spin icon-large"></i> ' + spinnerLabel);
-            $(this).Html5AjaxContent();
+            $('#pending-updates-target').html('<i class="icon-spinner icon-spin icon-large"></i> ' + spinnerLabel)
+                .Html5AjaxContent();
         });
     });
 </script>

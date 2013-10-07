@@ -25,15 +25,19 @@
     require(['jquery'], function ($) {
 
         $.fn.Html5AjaxContent = function(option) {
-
             if (option === "insert") {
-                $("*[data-ajax-call]").each(function(index, element) {
+                $(this).each(function(index, element) {
                     $(element).find('*').remove();
                 });
             }
 
-            $("*[data-ajax-call]").each(function(index, element) {
+            $(this).each(function(index, element) {
                 var url = $(element).attr('data-ajax-call');
+
+                if (option === 'initial' && $(element).attr('data-ajax-call-disable-autoload') === 'true') {
+                    return;
+                }
+
                 if (url) {
                     $.ajax({
                         url: url
@@ -47,7 +51,7 @@
             });
         };
 
-        $(document).Html5AjaxContent();
+        $("*[data-ajax-call]").Html5AjaxContent('initial');
 
     });
 })();
