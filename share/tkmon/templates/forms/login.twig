@@ -1,6 +1,6 @@
 {% set link_home = web_link("Index/Index") %}
-{% if referrer is empty %}
-{% set referrer = web_link("Index/Index") %}
+{% if referer is empty %}
+{% set referer = web_link("Index/Index") %}
 {% endif %}
 
 <div id="login-container">
@@ -44,16 +44,16 @@
             <i class="icon-key"></i> {% trans "Login" %}
         </button>
 
-        <input type="hidden" name="referrer" value="{{ referrer }}" />
+        <input type="hidden" name="referer" value="{{ referer }}" />
     </form>
 </div>
 
 <script>
     require(['jquery'], function($) {
         window.redirectToTarget = function() {
-            var referrer = $('form#login input[name="referrer"]').val();
+            var referer = $('form#login input[name="referer"]').val();
             setTimeout(function() {
-                window.location.href = referrer;
+                window.location.href = referer;
             }, 1000);
         };
     });

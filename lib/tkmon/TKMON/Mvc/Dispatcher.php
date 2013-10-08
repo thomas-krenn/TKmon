@@ -256,7 +256,7 @@ class Dispatcher
                 if ($e->getCode() === \TKMON\Exception\DispatcherException::TYPE_UNAUTHORIZED) {
                     $response = new \TKMON\Mvc\Output\TwigTemplate($this->container['template']);
                     $response->setTemplateName('views/Common/SessionExpired.twig');
-                    $response['referrer'] = $this->uri;
+                    $response['referer'] = $this->uri;
                     return $this->renderTemplate($response->toString());
                 }
             }

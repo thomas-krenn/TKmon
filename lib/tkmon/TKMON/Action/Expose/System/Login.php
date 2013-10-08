@@ -58,7 +58,7 @@ class Login extends Base
         $validator = new ArrayObjectValidator();
         $validator->addValidatorObject(
             ValidatorObject::create(
-                'referrer',
+                'referer',
                 'Referrer URL',
                 ValidatorObject::VALIDATE_ANYTHING,
                 null,
@@ -71,7 +71,7 @@ class Login extends Base
 
         $output = new TwigTemplate($this->container['template']);
         $output->setTemplateName('forms/login.twig');
-        $output['referrer'] = $params->get('referrer');
+        $output['referer'] = $params->get('referer');
         return $output;
     }
 
