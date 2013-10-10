@@ -154,6 +154,12 @@ class Extension implements \Twig_ExtensionInterface
             return $uri;
         } else {
             $new = explode('/', $args);
+
+            // Url become unreadable if empty fragments at begin
+            while (!$new[0]) {
+                array_shift($new);
+            }
+
             if (count($new) === 1) {
                 $parts = explode('/', $uri);
                 array_pop($parts);

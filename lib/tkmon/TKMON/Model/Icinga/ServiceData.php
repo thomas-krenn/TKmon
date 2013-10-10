@@ -21,6 +21,7 @@
 
 namespace TKMON\Model\Icinga;
 
+use ICINGA\Base\CommandArgument;
 use ICINGA\Object\Service;
 use NETWAYS\Common\ArrayObject;
 
@@ -36,6 +37,12 @@ class ServiceData extends \TKMON\Model\ApplicationModel implements \NETWAYS\Chai
      * @var string
      */
     const HOOK_BEFORE_CREATE = 'beforeServiceWrite';
+
+    /**
+     * Namespace prefix for input fields
+     * @var string
+     */
+    const FORM_FIELD_NS = '\\TKMON\\Form\\Field\\';
 
     /**
      * All command handler registered
@@ -92,6 +99,7 @@ class ServiceData extends \TKMON\Model\ApplicationModel implements \NETWAYS\Chai
 
     /**
      * Return a "ready to write" service object
+     *
      * @param string $catalogueName
      * @param \NETWAYS\Common\ArrayObject $argumentValues
      * @return \ICINGA\Object\Service
@@ -116,6 +124,17 @@ class ServiceData extends \TKMON\Model\ApplicationModel implements \NETWAYS\Chai
     }
 
     /**
+     * Returns class name for form input fields from CommandArgument
+     *
+     * @param CommandArgument $argument
+     * @return string
+     */
+    private function getFormFieldClassFromArgument(CommandArgument $argument)
+    {
+        return self::FORM_FIELD_NS. ucfirst($argument->getType());
+    }
+
+    /**
      * Return an array of form fields
      *
      * @param string $catalogueName
@@ -128,7 +147,8 @@ class ServiceData extends \TKMON\Model\ApplicationModel implements \NETWAYS\Chai
         $command = $service->getCommand();
         $out = array();
         foreach ($command->getArguments() as $argument) {
-            $field = new \TKMON\Form\Field\Text($nameBase. '[]', $argument->getLabel());
+            $className = $this->getFormFieldClassFromArgument($argument);
+            $field = new $className($nameBase. '[]', $argument->getLabel());
             $field->setDescription($argument->getDescription());
             $field->setTemplate($this->container['template']);
             $field->setValue($argument->getValue());
@@ -160,7 +180,8 @@ class ServiceData extends \TKMON\Model\ApplicationModel implements \NETWAYS\Chai
         $out = array();
 
         foreach ($command->getArguments() as $index => $argument) {
-            $field = new \TKMON\Form\Field\Text($nameBase. '[]', $argument->getLabel());
+            $className = $this->getFormFieldClassFromArgument($argument);
+            $field = new $className($nameBase. '[]', $argument->getLabel());
             $field->setValue($commandParts[$index]);
             $field->setDescription($argument->getDescription());
             $field->setTemplate($this->container['template']);

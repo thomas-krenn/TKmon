@@ -21,7 +21,7 @@
 
     "app.version.major":    1,
     "app.version.minor":    3,
-    "app.version.patch":    0,
+    "app.version.patch":    1,
     "app.version.full":     "{app.version.major}.{app.version.minor}.{app.version.patch}",
     "app.name":             "TKmon",
     "app.copyright":        "(c) NETWAYS GmbH | Thomas-Krenn.AG 2012-2013",
@@ -185,6 +185,16 @@
 
         "start": {
             "path": "/sbin/start",
+            "sudo": true
+        },
+
+        "apt-get": {
+            "path": "/usr/bin/apt-get",
+            "sudo": true
+        },
+
+        "apt-cache": {
+            "path": "/usr/bin/apt-cache",
             "sudo": true
         }
     }

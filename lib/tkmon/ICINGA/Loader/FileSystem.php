@@ -22,6 +22,7 @@
 namespace ICINGA\Loader;
 
 use ICINGA\Exception\LoadException;
+use ICINGA\Interfaces\LoaderStrategyInterface;
 
 /**
  * Filesystem
@@ -57,7 +58,7 @@ class FileSystem extends \NETWAYS\Common\ArrayObject
 
     /**
      * Strategy to use
-     * @var \ICINGA\LoaderStrategyInterface
+     * @var LoaderStrategyInterface
      */
     private $strategy;
 
@@ -90,7 +91,7 @@ class FileSystem extends \NETWAYS\Common\ArrayObject
 
     /**
      * Setter for strategy
-     * @param \ICINGA\LoaderStrategyInterface $strategy
+     * @param LoaderStrategyInterface $strategy
      */
     public function setStrategy($strategy)
     {
@@ -99,7 +100,7 @@ class FileSystem extends \NETWAYS\Common\ArrayObject
 
     /**
      * Getter for strategy
-     * @return \ICINGA\LoaderStrategyInterface
+     * @return LoaderStrategyInterface
      */
     public function getStrategy()
     {

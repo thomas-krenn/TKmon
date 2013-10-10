@@ -61,22 +61,31 @@ class CommandArgument
     private $value;
 
     /**
+     * Type marker how to display input fields
+     * @var string
+     */
+    private $type = 'text';
+
+    /**
      * Command argument builder shortcut
      * @param null|mixed $value
      * @param null|string $argument
      * @param null|string $label
      * @param null|string $description
      * @param null|string $validation
-     * @return \ICINGA\Base\CommandArgument
+     * @param null|string $type
+     * @return CommandArgument
      */
     public static function create(
         $value = null,
         $argument = null,
         $label = null,
         $description = null,
-        $validation = null
+        $validation = null,
+        $type = null
     ) {
-        $commandArgument = new CommandArgument();
+        /** @var CommandArgument $commandArgument */
+        $commandArgument = new static();
 
         if ($value) {
             $commandArgument->setValue($value);
@@ -98,13 +107,17 @@ class CommandArgument
             $commandArgument->setValidation($validation);
         }
 
+        if ($type) {
+            $commandArgument->setType($type);
+        }
+
         return $commandArgument;
     }
 
     /**
      * Builder from stdClass
      * @param \stdClass $voyager
-     * @return \ICINGA\Base\CommandArgument
+     * @return CommandArgument
      */
     public static function createFromVoyager(\stdClass $voyager)
     {
@@ -128,6 +141,10 @@ class CommandArgument
 
         if (isset($voyager->validation)) {
             $commandArgument->setValidation($voyager->validation);
+        }
+
+        if (isset($voyager->type)) {
+            $commandArgument->setType($voyager->type);
         }
 
         return $commandArgument;
@@ -229,5 +246,23 @@ class CommandArgument
     public function getValue()
     {
         return $this->value;
+    }
+
+    /**
+     * Setter for type
+     * @param string $type
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+    }
+
+    /**
+     * Getter for type
+     * @return string
+     */
+    public function getType()
+    {
+        return $this->type;
     }
 }

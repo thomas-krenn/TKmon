@@ -144,6 +144,9 @@
             {{ field }}
             {% endautoescape %}
         {% endfor %}
+
+        <h4>{% trans "Parent host" %}</h4>
+        <input name="parents" id="parents" type="text" placeholder="Parent host" autocomplete="off" />
     </div>
 
     <div class="pull-left" style="margin-left: 20px;">
@@ -183,8 +186,10 @@
 </div>
 
 <script>
-    require(['jquery', 'bootstrap'], function() {
+    require(['jquery', 'bootstrap', 'TKMON/host/TypeAhead'], function() {
         "use strict";
+
+        var hostSearchUrl = '{{ web_link('Monitor/Icinga/Hosts/Search') }}';
 
         $('button[data-toggle=popover]').each(function(index, button) {
             $(button).popover({
@@ -201,6 +206,11 @@
 
         var fillForm = function(data) {
             var test = !!(typeof(data) === "object" && data !== null);
+
+            $('#parents').hostTypeAhead({
+                url: hostSearchUrl,
+                exclude: (test === true) ? [data.host_name] : null
+            });
 
             // Reset the form or fill in the voyager object
             $('#host-data *[name]').each(function(elementIndex, element) {

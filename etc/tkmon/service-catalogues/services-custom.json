@@ -113,6 +113,61 @@
             }
         },
         {
+            "service_description": "net-ping-ipmi",
+            "display_name": "Ping check IPMI host address",
+            "check_command": {
+                "command_name": "check_ipmi_alive",
+                "arguments": null
+            },
+            "_catalogue_attributes": {
+                "tags": ["remote", "ipmi", "ping", "tkmon"],
+                "name": "net-ping-ipmi",
+                "label": {
+                    "en_US": "IPMI Interface Ping Check",
+                    "de_DE": "IPMI Interface Ping Check"
+                },
+                "description": {
+                    "en_US": "Checks the IPMI IP address",
+                    "de_DE": "Testet die IPMI Erreichbarkeit"
+                },
+                "defined": true,
+                "defined_in": "/etc/icinga/tkmon/base/05-check-commands.cfg",
+
+                "links": [{
+                    "name": "IPMI Ping Check",
+                    "href": {
+                        "en_US": "http://www.thomas-krenn.com/en/wiki/IPMI_Sensor_Monitoring_Plugin",
+                        "de_DE": "http://www.thomas-krenn.com/de/wiki/IPMI_Sensor_Monitoring_Plugin"
+                    },
+                    "description": {
+                        "en_US": "Official wiki article about the IPMI Sensor Monitoring Plugin from Thomas Krenn",
+                        "de_DE": "Offizieller Wiki Artikel zum IPMI Sensor Monitoring Plugin von Thomas Krenn"
+                    }
+                }, {
+                    "name": "GIT Repository",
+                    "href": "http://git.thomas-krenn.com/?p=check_ipmi_sensor_v3.git;a=summary",
+                    "description": {
+                        "en_US": "Official GIT repository of the IPMI Sensor Monitoring Plugin from Thomas Krenn",
+                        "de_DE": "Offizielles GIT Repository des IPMI Sensor Monitoring Plugins von Thomas Krenn"
+                    }
+                }],
+
+                "doc": {
+                    "en_US": [
+                        "<h4>IPMI Interface Check</h4>",
+                        "<pThis check ensures that the IPMI interface is reachable.</p>"
+                    ],
+                    "de_DE": [
+                        "<h4>IPMI Interface Check</h4>",
+                        "<p>Dieser Check testet die Erreichbarkeit des IPMI Interfaces.</p>"
+                    ]
+                },
+
+                "tk_notify": false,
+                "tk_notify_default": false
+            }
+        },
+        {
             "service_description": "vmware-esxi-hardware",
             "display_name": "VMware ESXi Hardware",
             "check_command": {
@@ -140,6 +195,7 @@
                             "de_DE": "Passwort des Benutzers zum Zugriff auf den ESXi Server."
                         },
                         "validation": "string",
+                        "type" : "password",
                         "argument": "-P"
                     }
                 ]

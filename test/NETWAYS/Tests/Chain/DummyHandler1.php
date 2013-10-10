@@ -2,7 +2,9 @@
 
 namespace NETWAYS\Tests\Chain;
 
-class DummyHandler1 implements \NETWAYS\Chain\Interfaces\HandlerInterface
+use NETWAYS\Chain\Interfaces\HandlerInterface;
+
+class DummyHandler1 implements HandlerInterface
 {
 
     private $doThrow=false;

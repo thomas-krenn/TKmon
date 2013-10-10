@@ -111,6 +111,22 @@
         var form = $('#restore-configuration');
         var messageTarget = $('#restore-message-target');
 
+        // Test for file support api
+        if (typeof(window.FileReader) === "undefined") {
+            $(form).remove();
+            var ele = document.createElement('div');
+            $(ele).addClass('alert alert-error')
+                    .html(
+                        '<h3>HTML5 FileReader support missing</h3> Could not upload configuration. '
+                        + 'Please upgrade your browser. Have a look on '
+                        + '<a href="http://en.wikipedia.org/wiki/HTML5_File_API">'
+                        + 'Wikipedia File API article'
+                        + '</a> for more information.'
+                    );
+            $(messageTarget).append(ele);
+            return;
+        }
+
         $('#restart-toggle').find('button').click(function() {
             $('#restart').val($(this).val());
         });
