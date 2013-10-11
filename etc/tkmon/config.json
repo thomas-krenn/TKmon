@@ -179,7 +179,7 @@
         },
 
         "tkalert.sh": {
-            "path": "/usr/local/bin/tkalert.sh",
+            "path": "/usr/local/bin/tkalert",
             "sudo": true
         },
 

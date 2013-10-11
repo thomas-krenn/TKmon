@@ -28,6 +28,10 @@
     </p>
 </div>
 
+<button type="button" data-toggle="button" id="enable-toggle" class="btn btn-success">
+    <i class="icon-check"></i> {% trans "Toggle to enable call-home support" %}
+</button>
+
 <form
     class="container-spacer-down"
     action="{{ web_link("Update") }}"
@@ -35,9 +39,9 @@
     data-ajax-type="json"
     data-error-target="#alert-config-errors"
     data-success-frame="#alert-config-success"
+    id="setting-form"
 >
-
-    <fieldset>
+    <fieldset class="container-spacer-down">
         <label for="person">{% trans "Contact person" %}</label>
         <input type="text" name="person" id="person" value="{{ person }}" />
     </fieldset>
@@ -62,4 +66,36 @@
         </button>
     </p>
 
+    <input type="hidden" id="enabled" name="enabled" value="{{ enabled }}" />
 </form>
+
+<script>
+    require(['jquery', 'bootstrap'], function($) {
+        "use strict";
+
+        var field = $('#enabled');
+        var button = $('#enable-toggle');
+
+        var loadProcessor = function(toggle) {
+            if (field.val() !== '1') {
+                $('#setting-form').find('fieldset').addClass('hidden');
+                if (toggle) {
+                    button.removeClass('active');
+                }
+            } else {
+                $('#setting-form').find('fieldset').removeClass('hidden');
+                if (toggle) {
+                    button.addClass('active');
+                }
+            }
+        };
+
+        loadProcessor(true);
+
+        button.click(function() {
+            var value = field.val() === '1' ? '0' : '1';
+            field.val(value);
+            loadProcessor();
+        })
+    })
+</script>
