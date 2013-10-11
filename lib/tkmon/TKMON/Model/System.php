@@ -21,6 +21,8 @@
 
 namespace TKMON\Model;
 
+use NETWAYS\IO\Process;
+
 /**
  * This a collection of common actions
  * @package TKMON\Model
@@ -30,11 +32,26 @@ class System extends ApplicationModel
 {
 
     /**
-     * Modelled action to excecute a system reboot
+     * Modelled action to execute a system reboot
      */
     public function doReboot()
     {
+        /** @var Process $command */
         $command = $this->container['command']->create('reboot');
+        $command->execute();
+    }
+
+    /**
+     * Kill dhcp client daemon
+     *
+     * See #2300 for more information. Dhclient is always
+     * changing Ip address if changed to static network
+     */
+    public function killDhcpClient()
+    {
+        /** @var Process $command */
+        $command = $this->container['command']->create('pkill');
+        $command->addPositionalArgument('dhclient');
         $command->execute();
     }
 
@@ -45,7 +62,7 @@ class System extends ApplicationModel
     {
         $interface = $this->container['config']['system.interface'];
 
-        /** @var $command \NETWAYS\IO\Process */
+        /** @var $command Process */
         $command = $this->container['command']->create('restart');
         $command->addPositionalArgument('network-interface');
         $command->addPositionalArgument('INTERFACE='. $interface);
@@ -69,7 +86,7 @@ class System extends ApplicationModel
      */
     public function restartNtpDaemon()
     {
-        /** @var $command \NETWAYS\IO\Process */
+        /** @var $command Process */
         $command = $this->container['command']->create('service');
         $command->addPositionalArgument('ntp');
         $command->addPositionalArgument('restart');
@@ -81,7 +98,7 @@ class System extends ApplicationModel
      */
     public function restartPostfix()
     {
-        /** @var $command \NETWAYS\IO\Process */
+        /** @var $command Process */
         $command = $this->container['command']->create('service');
         $command->addPositionalArgument('postfix');
         $command->addPositionalArgument('restart');
@@ -95,7 +112,7 @@ class System extends ApplicationModel
      */
     public function restartApache()
     {
-        /** @var $command \NETWAYS\IO\Process */
+        /** @var $command Process */
         $command = $this->container['command']->create('service');
         $command->addPositionalArgument('apache2');
         $command->addPositionalArgument('reload');
@@ -111,7 +128,7 @@ class System extends ApplicationModel
      */
     public function chownRecursiveToApache($dir)
     {
-        /** @var $chown \NETWAYS\IO\Process */
+        /** @var $chown Process */
         $chown = $this->container['command']->create('chown');
         $chown->addNamedArgument('-R');
         $chown->addPositionalArgument($this->container['config']['system.apache_owner']);

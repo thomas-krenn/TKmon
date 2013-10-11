@@ -285,6 +285,12 @@ class Network extends Base
             $systemModel = new System($this->container);
             $systemModel->restartNetworkInterfaces();
 
+            if ($ipConfig == IpAddress::TYPE_STATIC) {
+                // Because dhclient is running and change ip
+                // address again after lease time
+                $systemModel->killDhcpClient();
+            }
+
             $response->setSuccess();
 
         } catch (\Exception $e) {

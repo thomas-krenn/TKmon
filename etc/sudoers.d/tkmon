@@ -18,7 +18,8 @@ Defaults:%tkmonweb !env_reset
 %tkmonweb ALL=(ALL)NOPASSWD:/bin/cp
 %tkmonweb ALL=(ALL)NOPASSWD:/bin/chown
 %tkmonweb ALL=(ALL)NOPASSWD:/sbin/start
-%tkmonweb ALL=(ALL)NOPASSWD:/usr/local/bin/tkalert.sh
+%tkmonweb ALL=(ALL)NOPASSWD:/usr/local/bin/tkalert
 %tkmonweb ALL=(ALL)NOPASSWD:/usr/bin/apt-get
 %tkmonweb ALL=(ALL)NOPASSWD:/usr/bin/apt-cache
+%tkmonweb ALL=(ALL)NOPASSWD:/usr/bin/pkill
 
