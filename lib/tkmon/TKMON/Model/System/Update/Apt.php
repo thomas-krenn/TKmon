@@ -63,7 +63,6 @@ class Apt extends ApplicationModel
         if (count($pending)) {
             /** @var Process $aptGet */
             $aptGet = $this->container['command']->create('apt-get');
-            $aptGet->addEnvironment('DEBIAN_PRIORITY', 'critical');
             $aptGet->addEnvironment('DEBIAN_FRONTEND', 'noninteractive');
             $aptGet->addPositionalArgument('-qq');
             $aptGet->addPositionalArgument('upgrade');
@@ -83,7 +82,6 @@ class Apt extends ApplicationModel
     {
         /** @var Process $aptGet */
         $aptGet = $this->container['command']->create('apt-get');
-        $aptGet->addEnvironment('DEBCONF_PRIORITY', 'critical');
         $aptGet->addEnvironment('DEBIAN_FRONTEND', 'noninteractive');
         $aptGet->addPositionalArgument('-q');
         $aptGet->addPositionalArgument('update');

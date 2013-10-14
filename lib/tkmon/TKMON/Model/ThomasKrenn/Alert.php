@@ -86,6 +86,12 @@ class Alert extends ApplicationModel
     private $contactMail;
 
     /**
+     * Setter for enabledFlag
+     * @var boolean
+     */
+    private $enabledFlag = false;
+
+    /**
      * Process object to call
      * @var Process
      */
@@ -144,6 +150,24 @@ class Alert extends ApplicationModel
     }
 
     /**
+     * Setter for enabledFlag
+     * @param bool $flag
+     */
+    public function setEnabledFlag($flag = true)
+    {
+        $this->enabledFlag =(boolean) $flag;
+    }
+
+    /**
+     * Getter for enabledFlag
+     * @return bool
+     */
+    public function getEnabledFlag()
+    {
+        return $this->enabledFlag;
+    }
+
+    /**
      * Setter for contactName
      * @param string $contactName
      */
@@ -193,6 +217,7 @@ class Alert extends ApplicationModel
         $this->setAuthKey($contactInfo->getAuthKey());
         $this->setContactName($contactInfo->getPerson());
         $this->setContactMail($contactInfo->getEmail());
+        $this->setEnabledFlag($contactInfo->getEnabledFlag());
     }
 
     /**
@@ -230,6 +255,10 @@ class Alert extends ApplicationModel
         $this->processObject->addNamedArgument('--contact-person', $this->getContactName());
         $this->processObject->addNamedArgument('--contact-mail', $this->getContactMail());
         $this->processObject->addNamedArgument('--auth-key', $this->getAuthKey());
+        $this->processObject->addNamedArgument(
+            '--enabled',
+            ($this->getEnabledFlag() === true) ? '1' : '0'
+        );
 
         $this->prepared = true;
     }
@@ -242,6 +271,10 @@ class Alert extends ApplicationModel
     {
         if ($this->prepared === false) {
             $this->prepare();
+        }
+
+        if ($this->getEnabledFlag() === false) {
+            throw new ModelException('Call-home support is not enabled: '. $this->processObject->getExecutionCall());
         }
 
         $this->processObject->execute();
