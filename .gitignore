@@ -6,6 +6,5 @@ composer.phar
 docs/*html
 etc/icinga/system/contacts/*cfg
 etc/icinga/system/hosts/*cfg
-lib/tkmon/vendor/
 var/
 debian/
