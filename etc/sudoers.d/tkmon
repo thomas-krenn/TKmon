@@ -22,4 +22,4 @@ Defaults:%tkmonweb !env_reset
 %tkmonweb ALL=(ALL)NOPASSWD:/usr/bin/apt-get
 %tkmonweb ALL=(ALL)NOPASSWD:/usr/bin/apt-cache
 %tkmonweb ALL=(ALL)NOPASSWD:/usr/bin/pkill
-
+nagios ALL=(ALL)NOPASSWD:/usr/local/bin/tkalert
