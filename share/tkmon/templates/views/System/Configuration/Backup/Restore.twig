@@ -249,10 +249,13 @@
                 var xhr = new XMLHttpRequest();
                 var upload = xhr.upload;
 
+                var updateUploadProgress = function(percentage) {
+                    $(infoElement).find('span').html(percentage + '%');
+                };
+
                 upload.addEventListener('progress', function(e) {
                     if (e.lengthComputable) {
-                        var percentage = Math.round((e.loaded * 100) / e.total);
-                        $(infoElement).find('span').html(percentage + '%');
+                        updateUploadProgress(Math.round((e.loaded * 100) / e.total));
                     }
                 });
 
@@ -262,6 +265,11 @@
 
                 xhr.onreadystatechange = function() {
                     if (xhr.readyState === this.DONE) {
+
+                        // Progress is not as fast as needed in some browsers
+                        // @see https://www.netways.org/issues/2316
+                        updateUploadProgress(100);
+
                         var response = JSON.parse(xhr.responseText);
                         if (typeof response === "object" && "success" in response) {
                             if (response.success !== true) {
