@@ -47,6 +47,11 @@ class Apt extends ApplicationModel
     private function createPackageHref($repository, $packageName)
     {
         list($ubuntuVersion, $repository) = explode('/', $repository, 2);
+
+        if (strpos($repository, '-security') !== false) {
+            $repository = str_replace('-security', '-updates', $repository);
+        }
+
         return 'http://packages.ubuntu.com/'. $repository. '/'. $packageName;
     }
 
@@ -70,7 +75,7 @@ class Apt extends ApplicationModel
             // for other packages
             // @see https://www.netways.org/issues/2312
             $aptGet->addPositionalArgument('dist-upgrade');
-            
+
             $aptGet->addPositionalArgument('-y');
             $aptGet->execute();
 
