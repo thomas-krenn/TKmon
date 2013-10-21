@@ -51,8 +51,9 @@
             $('#upgrade-output-target').html('');
         };
 
-        var addError = function(msg) {
-            $('#upgrade-output-target').html('<div class="alert alert-error">' + msg + '</div>');
+        var addBox = function(msg, clsName) {
+            clsName = clsName || 'alert-error';
+            $('#upgrade-output-target').html('<div class="alert ' + clsName + '">' + msg + '</div>');
         };
 
         $('#start-real-upgrade').click(function() {
@@ -79,7 +80,15 @@
                 if (data.errors.length) {
                     clearOutputTarget();
                     $.each(data.errors, function(idx, error) {
-                        addError(error.message);
+                        if (error.message.match(/no.*updates found/i)) {
+                            showProcessState('icon-thumbs-up icon-large', '{% trans "Everything is ok!" %}');
+                            addBox(
+                                '{% trans "Your system is up to date! No action was taken." %}',
+                                'alert-success'
+                            );
+                        } else {
+                            addBox(error.message);
+                        }
                     });
                 }
             }).always(function() {
