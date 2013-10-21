@@ -67,8 +67,9 @@ html, body {
 /** Overriding default formattings **/
 
 /** Links default underline: #2218 **/
-#tkmon-main a {
-    text-decoration: underline;
+/** Add css3 not selector, fixes #2314 (not on a button) **/
+#tkmon-main a:not(.btn) {
+    text-decoration: underline !important;
 }
 
 /** Exclude special bootstrap components **/
