@@ -17,6 +17,8 @@
 
     "navigation.data":      "{core.etc_dir}/nav.json",
 
+    "config.include":       "{core.etc_dir}/userconfig.json",
+
     "mvc.action.namespace": "\\TKMON\\Action\\Expose",
 
     "app.version.major":    1,
