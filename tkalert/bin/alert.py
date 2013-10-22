@@ -58,6 +58,14 @@ def main():
         log = logging.getLogger(__name__)
         log.debug('Starting up')
 
+        try:
+            if options.enabled == '0':
+                log.debug('--enabled=0 was set, exit gracefully')
+                print ('tkalert not enabled, exit.')
+                return 0
+        except ValueError:
+            pass
+
         log.debug('Testing gnupg environment')
         gnupg_paths = [
             options.gnupgconfig,
