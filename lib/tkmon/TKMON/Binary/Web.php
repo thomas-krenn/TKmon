@@ -28,6 +28,7 @@ use NETWAYS\Cache\Provider\XCache;
 use NETWAYS\Common\Config\PDOLoader;
 use NETWAYS\Common\Config\PDOPersister;
 use NETWAYS\Common\Config;
+use NETWAYS\Common\Exception\ConfigException;
 use NETWAYS\Intl\SimpleTranslator;
 use TKMON\Extension\Host\DefaultAttributes;
 use TKMON\Extension\Host\ThomasKrennAttributes;
@@ -122,6 +123,7 @@ final class Web
             function ($c) {
                 $params = $c['params'];
 
+                /** @var Config $config */
                 $config = new $c['config_class'];
 
                 // Path settings
@@ -154,6 +156,20 @@ final class Web
                 $config->set('web.https', false); // TODO: This should be detected
 
                 $config->loadFile($c['etc_dir'] . DIRECTORY_SEPARATOR . 'config.json');
+
+                // Let user override configuration
+                // @see https://www.netways.org/issues/2322
+                if ($config->get('config.include') !== null) {
+                    $includeFile = $config->get('config.include');
+                    try {
+                        $config->loadFile($includeFile);
+                        $config->set('config.included', true);
+                    } catch (ConfigException $e) {
+                        $config->set('config.included', false);
+                        // No problem that the file does not exist, just
+                        // ignore in this case
+                    }
+                }
 
                 // Add var and cache to dir builder
                 /** @var $creator \TKMON\Model\Misc\DirectoryCreator */
@@ -352,9 +368,6 @@ final class Web
                 return $dbo;
             }
         );
-
-        // Trigger the database object to have it ready imported
-        $container['db'];
 
         // Trigger the database object to have it ready imported
         $container['db'];

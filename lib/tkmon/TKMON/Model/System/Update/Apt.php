@@ -47,6 +47,11 @@ class Apt extends ApplicationModel
     private function createPackageHref($repository, $packageName)
     {
         list($ubuntuVersion, $repository) = explode('/', $repository, 2);
+
+        if (strpos($repository, '-security') !== false) {
+            $repository = str_replace('-security', '-updates', $repository);
+        }
+
         return 'http://packages.ubuntu.com/'. $repository. '/'. $packageName;
     }
 
@@ -65,7 +70,12 @@ class Apt extends ApplicationModel
             $aptGet = $this->container['command']->create('apt-get');
             $aptGet->addEnvironment('DEBIAN_FRONTEND', 'noninteractive');
             $aptGet->addPositionalArgument('-qq');
-            $aptGet->addPositionalArgument('upgrade');
+
+            // Use dist-upgrade here. This install also new dependencies
+            // for other packages
+            // @see https://www.netways.org/issues/2312
+            $aptGet->addPositionalArgument('dist-upgrade');
+
             $aptGet->addPositionalArgument('-y');
             $aptGet->execute();
 

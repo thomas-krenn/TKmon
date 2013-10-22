@@ -404,6 +404,14 @@ At first the config is loaded from file, afterwards override settings are
 loaded from database. If something does not work like expected you can
 drop the sqlite database file.
 
+Have a look on the setting **config.include**. Here a additional
+file is included if you need to override specific settings, e.g.
+links from logo or name of the application.
+
+A example file for user config is provided: etc/tkmon/userconfig.json.example.
+Just copy that file to etc/tkmon/userconfig.json and change the settings
+you need. This file is automatically included on system start.
+
 Settings appendix
 ~~~~~~~~~~~~~~~~~
 
