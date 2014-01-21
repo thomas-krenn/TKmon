@@ -42,9 +42,13 @@
                 {% endif %}
             </td>
             <td>
-                <a href="{{ record.href }}">
+                {% if record.href %}
+                    <a href="{{ record.href }}">
+                        {{ record.packageName }}
+                    </a>
+                {%  else  %}
                     {{ record.packageName }}
-                </a>
+                {% endif %}
             </td>
             <td>
                 {{ record.version }} ({{ record.architecture }})

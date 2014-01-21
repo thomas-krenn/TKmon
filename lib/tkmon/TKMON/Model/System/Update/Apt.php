@@ -46,7 +46,14 @@ class Apt extends ApplicationModel
      */
     private function createPackageHref($repository, $packageName)
     {
-        list($ubuntuVersion, $repository) = explode('/', $repository, 2);
+        $repoData = explode('/', $repository, 2);
+
+        if (count($repoData) !== 2) {
+            return null;
+        }
+
+        $ubuntuVersion = array_shift($repoData);
+        $repository = array_shift($repoData);
 
         if (strpos($repository, '-security') !== false) {
             $repository = str_replace('-security', '-updates', $repository);
