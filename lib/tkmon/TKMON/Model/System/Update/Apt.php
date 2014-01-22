@@ -102,9 +102,21 @@ class Apt extends ApplicationModel
 
             $aptGet->addPositionalArgument('-y');
 
+            $aptGet->ignoreStdErr();
+
             $aptGet->execute();
 
-            return $aptGet->getOutput();
+            $output = $aptGet->getOutput();
+
+            if ($aptGet->getProcessError()) {
+                if ($output) {
+                    $output .= chr(13) . '---' . chr(13);
+                }
+
+                $output .= $aptGet->getProcessError();
+            }
+
+            return $output;
         } else {
             throw new ModelException('No pending updates found');
         }

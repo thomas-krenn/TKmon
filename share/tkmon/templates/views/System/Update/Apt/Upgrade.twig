@@ -19,11 +19,23 @@
 
 
 <div id="upgrade-process-target" class="container-spacer-down">
-
 </div>
 
 <div id="upgrade-output-target" class="container-spacer-down">
+    <div class="accordion" id="accordion2">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#info-target">
+                    <i class="icon icon-plus"></i> More Information
+                </a>
+            </div>
+            <div id="info-target" class="accordion-body collapse">
+                <div class="accordion-inner" id="upgrade-output-target-inner">
 
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 <script>
@@ -39,20 +51,27 @@
         };
 
         var updateOutput = function(output) {
-            $('#upgrade-output-target').html(
-                '<pre>'
-                + output
-                + '</pre>'
-            );
+            if (output) {
+                $('#upgrade-output-target').removeClass('hidden');
+                $('#upgrade-output-target-inner').html(
+                    '<pre>'
+                    + output
+                    + '</pre>'
+                );
+            }
         };
 
         var clearOutputTarget = function() {
-            $('#upgrade-output-target').html('');
+            $('#upgrade-output-target').addClass('hidden');
+            $('#upgrade-output-target-inner').html('');
         };
 
         var addBox = function(msg, clsName) {
             clsName = clsName || 'alert-error';
-            $('#upgrade-output-target').html('<div class="alert ' + clsName + '">' + msg + '</div>');
+            $('#upgrade-output-target').removeClass('hidden');
+            $('#upgrade-output-target-inner').html(
+                    '<div class="alert ' + clsName + '">' + msg + '</div>'
+            );
         };
 
         $('#start-real-upgrade').click(function() {
