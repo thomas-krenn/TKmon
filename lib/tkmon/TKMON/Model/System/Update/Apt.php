@@ -126,12 +126,16 @@ class Apt extends ApplicationModel
         $aptGet = $this->container['command']->create('apt-get');
         $aptGet->addEnvironment('DEBIAN_FRONTEND', 'noninteractive');
         $aptGet->addPositionalArgument('--just-print');
-        $aptGet->addPositionalArgument('upgrade');
+
+        // To fetch also dependencies use dist-upgrade
+        // @see https://www.netways.org/issues/2342
+        $aptGet->addPositionalArgument('dist-upgrade');
+
         $aptGet->execute();
 
-        $output = $aptGet->getOutput();
-        $match = array();
-        $records = array();
+        $output     = $aptGet->getOutput();
+        $match      = array();
+        $records    = array();
 
         if (preg_match_all(self::APT_REGEX, $output, $match, PREG_SET_ORDER)) {
             foreach ($match as $index => $parts) {
@@ -142,15 +146,15 @@ class Apt extends ApplicationModel
                     continue;
                 }
 
-                $record = new \stdClass();
-                $record->operation = $operation;
-                $record->packageName = $parts[2];
-                $record->broke = ($parts[4]) ? $parts[4] : null;
-                $record->version = $parts[5];
-                $record->repository = $parts[6];
-                $record->architecture = $parts[7];
-                $record->href = $this->createPackageHref($record->repository, $record->packageName);
-                $records[] = $record;
+                $record                 = new \stdClass();
+                $record->operation      = $operation;
+                $record->packageName    = $parts[2];
+                $record->broke          = ($parts[4]) ? $parts[4] : null;
+                $record->version        = $parts[5];
+                $record->repository     = $parts[6];
+                $record->architecture   = $parts[7];
+                $record->href           = $this->createPackageHref($record->repository, $record->packageName);
+                $records[]              = $record;
             }
         }
 
