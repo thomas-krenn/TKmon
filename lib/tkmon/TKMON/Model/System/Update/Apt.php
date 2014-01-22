@@ -76,7 +76,12 @@ class Apt extends ApplicationModel
             /** @var Process $aptGet */
             $aptGet = $this->container['command']->create('apt-get');
             $aptGet->addEnvironment('DEBIAN_FRONTEND', 'noninteractive');
+
             $aptGet->addPositionalArgument('-qq');
+
+            // Keep changes in files when do updates
+            // @see https://www.netways.org/issues/2435
+            $aptGet->addNamedArgument('-o', 'Dpkg::Options::=--force-confold');
 
             // Use dist-upgrade here. This install also new dependencies
             // for other packages
@@ -84,6 +89,7 @@ class Apt extends ApplicationModel
             $aptGet->addPositionalArgument('dist-upgrade');
 
             $aptGet->addPositionalArgument('-y');
+
             $aptGet->execute();
 
             return $aptGet->getOutput();
