@@ -34,7 +34,19 @@ use TKMON\Model\ApplicationModel;
  */
 class Apt extends ApplicationModel
 {
+    /**
+     * Regex to parse apt output
+     *
+     * @var string
+     */
     const APT_REGEX = '/(inst|conf|remv)\s+([^\s]+)\s(\[([^\]]+)\]\s+)?\(([^\s]+)\s([^\s]+)\s\[([^\]]+)\]\)/i';
+
+    /**
+     * Identifier for update-notifier-common if a restart is required
+     *
+     * @var string
+     */
+    const REBOOT_REQUIRED_FILE = '/var/run/reboot-required';
 
     /**
      * Generates href to follow package information
@@ -200,5 +212,19 @@ class Apt extends ApplicationModel
         $aptGet->addPositionalArgument('stats');
         $aptGet->execute();
         return $aptGet->getOutput();
+    }
+
+    /**
+     * Test if a system restart is required
+     *
+     * @return bool
+     */
+    public function isRestartRequired()
+    {
+        if (file_exists(self::REBOOT_REQUIRED_FILE) === true) {
+            return true;
+        }
+
+        return false;
     }
 }

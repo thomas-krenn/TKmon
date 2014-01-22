@@ -94,6 +94,21 @@ class Apt extends Base
     }
 
     /**
+     * Action include a restart required display
+     *
+     * @param   ArrayObject     $params
+     * @return  TwigTemplate
+     */
+    public function actionRestartRequired(ArrayObject $params)
+    {
+        $model = new AptModel($this->container);
+        $template = new TwigTemplate($this->container['template']);
+        $template->setTemplateName('views/System/Update/Apt/EmbeddedRestartRequired.twig');
+        $template['restartRequired'] = $model->isRestartRequired();
+        return $template;
+    }
+
+    /**
      * Real system upgrade
      * @param ArrayObject $params
      * @return JsonResponse
