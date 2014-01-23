@@ -39,7 +39,8 @@ class ContactInfo extends \ICINGA\Loader\FileSystem implements \TKMON\Interfaces
         'Person'            => 'tkmon_contactperson',
         'Email'             => 'tkmon_contactemail',
         'AuthKey'           => 'tkmon_authkey',
-        'EnabledFlag'       => 'tkmon_enabled_flag'
+        'EnabledFlag'       => 'tkmon_enabled_flag',
+        'Sender'            => 'tkmon_sender'
     );
 
     /**
@@ -71,6 +72,13 @@ class ContactInfo extends \ICINGA\Loader\FileSystem implements \TKMON\Interfaces
      * @var string
      */
     private $authKey;
+
+    /**
+     * Email address of alert sender
+     *
+     * @var string
+     */
+    private $sender;
 
     /**
      * Flag for feature is enabled
@@ -117,7 +125,6 @@ class ContactInfo extends \ICINGA\Loader\FileSystem implements \TKMON\Interfaces
         $this->setPath(
             $this->container['config']['icinga.dir.template']
         );
-
 
         $this->setObjectName(
             $this->container['config']['thomaskrenn.template.host']
@@ -213,6 +220,28 @@ class ContactInfo extends \ICINGA\Loader\FileSystem implements \TKMON\Interfaces
     {
         return $this->enableFlag;
     }
+
+    /**
+     * Setter for sender email
+     *
+     * @param string $sender
+     */
+    public function setSender($sender)
+    {
+        $this->sender = $sender;
+    }
+
+    /**
+     * Getter for sender email
+     *
+     * @return string
+     */
+    public function getSender()
+    {
+        return $this->sender;
+    }
+
+
 
     /**
      * Setter for objectName

@@ -54,3 +54,14 @@
         });
     </script>
 </form>
+
+<div class="container-spacer-down alert alert-info">
+    {% set restart_href = web_link('Monitor/Daemon/Index#daemon-restart') %}
+    <h4>{% trans 'Icinga restart required' %}</h4>
+    <p>
+        {% trans %}
+        After changing the sender address you have to restart icinga to apply
+        new address. Please follow this <a href="{{ restart_href }}">link to restart icinga</a>.
+        {% endtrans %}
+    </p>
+</div>

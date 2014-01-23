@@ -21,6 +21,8 @@
 
 namespace TKMON\Action\Expose\System\Configuration;
 
+use TKMON\Model\ThomasKrenn\ContactInfo;
+
 /**
  * Action to handle mail configuration tasks
  *
@@ -122,7 +124,10 @@ class Mail extends \TKMON\Action\Base
 
             $validator->validateArrayObject($params);
 
+            $contactInfoModel = new ContactInfo($this->container);
+
             $senderModel = new \TKMON\Model\Mail\Sender($this->container);
+            $senderModel->setContactInfo($contactInfoModel);
             $senderModel->setSender($params->get('sender'));
 
             $postfixModel = new \TKMON\Model\Mail\Postfix($this->container);
