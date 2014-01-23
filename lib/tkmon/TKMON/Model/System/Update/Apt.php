@@ -39,7 +39,7 @@ class Apt extends ApplicationModel
      *
      * @var string
      */
-    const APT_REGEX = '/(inst|conf|remv)\s+([^\s]+)\s(\[([^\]]+)\]\s+)?\(([^\s]+)\s([^\s]+)\s\[([^\]]+)\]\)/i';
+    const APT_REGEX = '/(inst|conf|remv)\s+([^\s]+)\s(\[([^\]]+)\]\s+)?\(([^\s]+)\s([^\s]+)(\s\[([^\]]+)\]\))?/i';
 
     /**
      * Identifier for update-notifier-common if a restart is required
@@ -176,7 +176,7 @@ class Apt extends ApplicationModel
                 $record->broke          = ($parts[4]) ? $parts[4] : null;
                 $record->version        = $parts[5];
                 $record->repository     = $parts[6];
-                $record->architecture   = $parts[7];
+                $record->architecture   = $parts[8];
                 $record->href           = $this->createPackageHref($record->repository, $record->packageName);
                 $records[]              = $record;
             }
