@@ -115,6 +115,19 @@ class Apt extends ApplicationModel
         }
     }
 
+    public function doAsyncUpgrade()
+    {
+        $pending = $this->getPendingUpdates();
+        if (count($pending)) {
+            /** @var Process $asyncUpdate */
+            $asyncUpdate = $this->container['command']->create('async_update');
+            $asyncUpdate->addPositionalArgument('-b');
+            $asyncUpdate->execute();
+        } else {
+            throw new ModelException('No pending updates found');
+        }
+    }
+
     /**
      * Fetch updates from repositories
      */
