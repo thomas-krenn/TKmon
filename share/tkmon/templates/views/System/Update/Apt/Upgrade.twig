@@ -18,102 +18,157 @@
 </button>
 
 
-<div id="upgrade-process-target" class="container-spacer-down">
-</div>
+<div id="upgrade-process-target" class="container-spacer-down ">
+    <div class="progress progress-info" style="margin: 0 20px 0 20px;">
+        <div class="bar" style="width: 1px"></div>
+    </div>
 
-<div id="upgrade-output-target" class="container-spacer-down hidden">
-    <div class="accordion" id="accordion2">
-        <div class="accordion-group">
-            <div class="accordion-heading">
-                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#info-target">
-                    <i class="icon icon-plus"></i> More Information
-                </a>
+    <div>
+        <dl class="dl-horizontal">
+            <dt>Progress</dt>
+            <dd><span id="progress-value">0%</span></dd>
+            <dt>Runtime</dt>
+            <dd><span id="runtime-value">0s</span></dd>
+        </dl>
+    </div>
+
+    <div id="message-target" class="container-spacer-down">
+
+    </div>
+
+    <div>
+        <div class="accordion" id="output">
+            <div class="accordion-group">
+                <div class="accordion-heading">
+                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#output" href="#data-info">
+                        <strong>{% trans 'Info' %}</strong>
+                    </a>
+                </div>
+                <div id="data-info" class="accordion-body collapse">
+                    <div class="accordion-inner">
+                        <pre id="info-target">No info</pre>
+                    </div>
+                </div>
             </div>
-            <div id="info-target" class="accordion-body collapse">
-                <div class="accordion-inner" id="upgrade-output-target-inner">
 
+            <div class="accordion-group">
+                <div class="accordion-heading">
+                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#output" href="#data-error">
+                        <strong>{% trans 'Error' %}</strong>
+                    </a>
+                </div>
+                <div id="data-error" class="accordion-body collapse">
+                    <div class="accordion-inner">
+                        <pre id="error-target">No error</pre>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
 
+<div id="upgrade-output-target" class="container-spacer-down">
+</div>
+
 <script>
     require(['jquery', 'bootstrap'], function($) {
         "use strict";
 
-        var url = '{{ web_link('Upgrade') }}';
+        var upgradeUrl = '{{ web_link('Upgrade') }}';
+        var statusUrl = '{{ web_link('UpgradeStatus') }}';
+        var startTime = 0;
 
-        var showProcessState = function(iconCls, message) {
-            var element = $('#upgrade-process-target');
-            var content = '<i class="' + iconCls + '"></i> ' + message;
-            element.html(content);
-        };
-
-        var updateOutput = function(output) {
-            if (output) {
-                $('#upgrade-output-target').removeClass('hidden');
-                $('#upgrade-output-target-inner').html(
-                    '<pre>'
-                    + output
-                    + '</pre>'
-                );
+        var clearProgress = function(show) {
+            var base = $('#upgrade-process-target');
+            if (show === true) {
+                base.removeClass('hidden');
+            } else {
+                base.addClass('hidden');
             }
+
+            base.find('div.progress div.bar').css('width', 0);
+            $('#progress-value').html('0%');
+            $('#runtime-value').html('0s');
+            $('#error-target').html('No errors.');
+            $('#info-target').html('No info.');
+            $('#message-target').html('');
         };
 
-        var clearOutputTarget = function() {
-            $('#upgrade-output-target').addClass('hidden');
-            $('#upgrade-output-target-inner').html('');
+        var messageBox = function(text, cls) {
+            cls = cls || 'success';
+            var html = '<div class="alert alert-' + cls + '">' + text + '</div>';
+            $('#message-target').html(html);
         };
 
-        var addBox = function(msg, clsName) {
-            clsName = clsName || 'alert-error';
-            $('#upgrade-output-target').removeClass('hidden');
-            $('#upgrade-output-target-inner').html(
-                    '<div class="alert ' + clsName + '">' + msg + '</div>'
-            );
+        var updateProgress = function(r) {
+            var percent = r.status.progress;
+            $('#upgrade-process-target').find('div.progress div.bar').css('width', String(percent) + '%');
+            $('#progress-value').html(percent + '%');
+            $('#runtime-value').html(Math.floor(new Date().getTime() / 1000 - startTime).toFixed(2) + 's');
+            $('#error-target').html(r.error ? r.error : 'No errors.');
+            $('#info-target').html(r.info ? r.info : 'No info.');
         };
 
-        $('#start-real-upgrade').click(function() {
-            var btn = $(this);
-            btn.prop('disabled', true);
-            clearOutputTarget();
-            showProcessState('icon-spinner icon-spin icon-large', '{% trans "Upgrade in process" %} ...');
-
-            $.ajax({
-                url: url,
-                type: 'post',
-                dataType: 'json',
+        var startUpgrade = function() {
+            startTime = Math.floor(new Date().getTime() / 1000);
+            $.ajax(upgradeUrl, {
+                type: 'POST',
                 data: {
                     doUpgrade: 1
                 }
-            }).done(function(data) {
-                if (data.success === true) {
-                    showProcessState('icon-thumbs-up icon-large', '{% trans "Everything went fine!" %}');
-                    updateOutput(data.data[0]);
-                } else {
-                    showProcessState('icon-exclamation-sign icon-large', '{% trans "Errors occurred!" %}');
-                }
-
-                if (data.errors.length) {
-                    clearOutputTarget();
-                    $.each(data.errors, function(idx, error) {
-                        if (error.message.match(/no.*updates found/i)) {
-                            showProcessState('icon-thumbs-up icon-large', '{% trans "Everything is ok!" %}');
-                            addBox(
-                                '{% trans "Your system is up to date! No action was taken." %}',
-                                'alert-success'
-                            );
-                        } else {
-                            addBox(error.message);
-                        }
-                    });
-                }
-
-                $('#restart-required-target').Html5AjaxContent();
-            }).always(function() {
-                btn.removeProp('disabled');
             });
-        });
+
+            $('#start-real-upgrade').addClass('disabled');
+            clearProgress(true);
+
+            window.setTimeout(traceStatus, 10);
+        };
+
+        var stopUpgrade = function() {
+            $('#start-real-upgrade').removeClass('disabled');
+        };
+
+        var traceStatus = function() {
+            var stop = false;
+
+            var trace = function() {
+                var r = getStatus();
+
+                if (r !== null) {
+                    updateProgress(r);
+                }
+
+                if (r === null || r.running === false) {
+                    stop = true;
+                    stopUpgrade();
+                    messageBox('{% trans 'System upgrade was successful.' %}');
+
+                    if (r.status.hasErrors === true) {
+                        messageBox('{% trans 'Errors occured, please examine error panel for more information.' %}', 'error');
+                    }
+                }
+
+                window.setInterval(function() {
+                    if (stop === false) {
+                        trace();
+                    }
+                }, 500);
+            };
+
+            trace();
+        };
+
+        var getStatus = function() {
+            var out = null;
+            $.ajax(statusUrl, {
+                async: false,
+                type: 'GET'
+            }).done(function(data) {
+                out = data;
+            });
+            return out;
+        };
+
+        $('#start-real-upgrade').click(startUpgrade);
     });
 </script>
