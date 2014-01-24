@@ -20,6 +20,8 @@
 #
 
 from __future__ import division
+from optparse import OptionParser
+
 import sys
 import os
 import fcntl
@@ -27,6 +29,7 @@ import logging
 import subprocess
 import time
 import re
+import resource
 
 APTGET_BIN  = '/usr/bin/apt-get'
 STATUS_FILE = '/tmp/async_update.status'
@@ -52,6 +55,40 @@ def write_line(file, line):
 def truncate_file(file):
     with open(file, 'w') as f:
         f.close()
+
+def detach_process():
+    # 1 Double fork to prevent zombies
+    # 2 Close all file descriptors
+    # 3 Move all stdout and stdin to /dev/null
+    
+    pid = os.fork()
+    if pid == 0:
+        os.setsid()
+        pid = os.fork()
+        if pid == 0:
+            pass
+        else:
+            os._exit(0)
+    else:
+        os._exit(0)
+    
+    maxfd = resource.getrlimit(resource.RLIMIT_NOFILE)[1]
+    if (maxfd == resource.RLIM_INFINITY):
+        maxfd = MAXFD
+    
+    os.closerange(0, maxfd)
+    os.open(os.devnull, os.O_RDWR)
+    os.dup2(0, 1)
+    os.dup2(0, 2)
+
+def get_options():
+    parser = OptionParser()
+    parser.add_option('-b', '--background', dest='background',
+                      help='Detach process from shell',
+                      action='store_true')
+    
+    (options, args) = parser.parse_args()
+    return options
 
 def main():
     logging.getLogger().setLevel(logging.DEBUG)
@@ -119,6 +156,7 @@ def main():
     update_status(starttime, 100, False, error)
     log.info('Update finish, needed %.2f seconds', time.time() - starttime)
     
+    return proc.returncode;
 
 class LogFormatter(logging.Formatter):
     """Log formatter with color support used in inGraph.
@@ -164,6 +202,10 @@ if __name__ == '__main__':
     logging.getLogger().addHandler(_CHANNEL)
     try:
         with LockFile(LOCK_FILE):
+            options = get_options()
+            if options.background is True:
+                detach_process()
+            
             sys.exit(main())
     except IOError, e:
         sys.stderr.write('Script is already running\n')
