@@ -80,6 +80,18 @@ Checkout the latest git release and install with python setup tools:
 
 For more information see tkalert/README.md
 
+Copy updater script to its location
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+TKMON uses an upgrade script to install updates asynchronously. Sudoers and
+config needs the script into /usr/local/sbin/async_update.py
+
+-------------------------------------------------------------------------------
+# cd ./bin
+# cp async_update.py /usr/local/sbin
+# chmod 750 /usr/local/sbin/async_update.py
+-------------------------------------------------------------------------------
+
 PHP configuration
 ^^^^^^^^^^^^^^^^^
 Enable XCache variable cache.
