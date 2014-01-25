@@ -1,0 +1,904 @@
+{
+	"type": "service",
+	"version": "1.0",
+	"description": "Services catalogue for basic nagios plugins",
+	"data": [
+		{
+			"service_description": "smtp",
+			"display_name": "SMTP",
+			"check_command": {
+				"command_name": "check_smtp",
+				"arguments": null
+			},
+			"_catalogue_attributes": {
+				"tags": [ "smtp", "mail", "e-mail", "email"],
+				"name": "check_smtp",
+				"label": "SMTP",
+				"description": {
+					"en_US": "Checks the connectivity of a SMTP Server", 
+					"de_DE": "Überprüft die Verbindung eines SMTP-Servers" 
+				},
+				"defined": true,
+				"defined_in": "/etc/nagios-plugins/config/mail.cfg",
+
+				"doc": {
+					"en_US": [
+						"<h4>Simple Mail Transfer Protocol Check</h4>",
+						"<p>Using this plugin the status of a remote or local SMTP-Server can be monitored",
+						"with Nagios or Icinga.</p>"
+						],
+					"de_DE": [
+						"<h4>Simple Mail Transfer Protocol Check</h4>",
+						"<p>Mit diesem Plugin kann der Status eines lokalen oder entfernten SMTP-Servers",
+						"überwacht werden.</p>"
+						]
+				},
+				"tk_notify": false,
+				"tk_notify_default": false
+			}
+		},
+		{
+			"service_description": "ssmtp",
+			"display_name": "SSMTP",
+			"check_command": {
+				"command_name": "check_ssmtp",
+				"arguments": null
+			},
+			"_catalogue_attributes": {
+				"tags": ["ssmtp", "smtp", "mail", "e-mail", "email", "secure smtp"],
+				"name": "check_ssmtp",
+				"label": "SSMTP",
+				"description": {
+					"en_US": "Checks the connectivity of a SSMTP Server", 
+					"de_DE": "Überprüft die Verbindung eines SSMTP-Servers" 
+				},
+				"defined": true,
+				"defined_in": "/etc/nagios-plugins/config/mail.cfg",
+
+				"doc": {
+					"en_US": [
+						"<h4>Secure Simple Mail Transfer Protocol Check</h4>",
+						"<p>Using this plugin the status of a remote or local SSMTP-Server can be monitored",
+						"with Nagios or Icinga.</p>"
+					],
+					"de_DE": [
+						"<h4>Secure Simple Mail Transfer Protocol Check</h4>",
+						"<p>Mit diesem Plugin kann der Status eines lokalen oder entfernten SSMTP-Servers mit",
+						"Nagios oder Icinga überwacht werden.</p>"
+					]
+				},
+				"tk_notify": false,
+				"tk_notify_default": false
+			}
+		},
+		{
+			"service_description": "pop3",
+			"display_name": "POP3",
+			"check_command": {
+				"command_name": "check_pop",
+				"arguments": null
+			},
+			"_catalogue_attributes": {
+				"tags": ["pop", "pop3", "mail", "e-mail", "email"],
+				"name": "check_pop",
+				"label": "POP3",
+				"description": {
+					"en_US": "Checks the connectivity of a POP3-Server", 
+					"de_DE": "Überprüft die Verbindung eines POP3-Servers" 
+				},
+				"defined": true,
+				"defined_in": "/etc/nagios-plugins/config/mail.cfg",
+				"doc": {
+					"en_US": [
+						"<h4>Post Office Protocol 3 Check</h4>",
+						"<p>Using this plugin, the status of a remote or local POP3-Server can be monitored",
+						"with Nagios or Icinga.</p>"
+					],
+					"de_DE": [
+						"<h4>Post Office Protocol 3 Check</h4>",
+						"<p>Mit diesem Plugin kann der Status eines lokalen oder entfernten POP3-Servers mit",
+						"Nagios oder Icinga überwacht werden.</p>"
+					]
+				},
+				"tk_notify": false,
+				"tk_notify_default": false
+			}
+		},
+		{
+			"service_description": "spop3",
+			"display_name": "sPOP3",
+			"check_command": {
+				"command_name": "check_spop",
+				"arguments": null
+			},
+			"_catalogue_attributes": {
+				"tags": ["pop", "pop3", "mail", "e-mail", "email", "secure pop3", "secure pop", "spop", "spop3"],
+				"name": "check_spop",
+				"label": "SPOP3",
+				"description": {
+					"en_US": "Checks the connectivity of a sPOP3-Server", 
+					"de_DE": "Überprüft die Verbindung eines sPOP3-Servers" 
+				},
+				"defined": true,
+				"defined_in": "/etc/nagios-plugins/config/mail.cfg",
+				"doc": {
+					"en_US": [
+						"<h4>Secure Post Office Protocol 3 Check</h4>",
+						"<p>Using this plugin, the status of a remote or local sPOP3-Server can be monitored",
+						"with Nagios or Icinga.</p>"
+					],
+					"de_DE": [
+						"<h4>Secure Post Office Protocol 3 Check</h4>",
+						"<p>Mit diesem Plugin kann der Status eines lokalen oder entfernten sPOP3-Servers mit",
+						"Nagios oder Icinga überwacht werden.</p>"
+					]
+				},
+				"tk_notify": false,
+				"tk_notify_default": false
+			}
+		},
+		{
+			"service_description": "imap",
+			"display_name": "imap",
+			"check_command": {
+				"command_name": "check_imap",
+				"arguments": null
+			},
+			"_catalogue_attributes": {
+				"tags": ["imap", "mail", "e-mail", "email"],
+				"name": "check_imap",
+				"label": "IMAP",
+				"description": {
+					"en_US": "Checks the connectivity of a IMAP-Server", 
+					"de_DE": "Überprüft die Verbindung eines IMAP-Servers" 
+				},
+				"defined": true,
+				"defined_in": "/etc/nagios-plugins/config/mail.cfg",
+				"doc": {
+					"en_US": [
+						"<h4>Internet Message Access Protocol Check</h4>",
+						"<p>Using this plugin, the status of a remote or local IMAP-Server can be monitored",
+						"with Nagios or Icinga.</p>"
+					],
+					"de_DE": [
+						"<h4>Secure Post Office Protocol Check</h4>",
+						"<p>Mit diesem Plugin kann der Status eines lokalen oder entfernten IMAP-Servers mit",
+						"Nagios oder Icinga überwacht werden.</p>"
+					]
+				},
+				"tk_notify": false,
+				"tk_notify_default": false
+			}
+		},
+		{
+			"service_description": "simap",
+			"display_name": "simap",
+			"check_command": {
+				"command_name": "check_simap",
+				"arguments": null
+			},
+			"_catalogue_attributes": {
+				"tags": ["imap", "simap", "imaps", "mail", "e-mail", "email"],
+				"name": "check_simap",
+				"label": "sIMAP",
+				"description": {
+					"en_US": "Checks the connectivity of a sIMAP-Server", 
+					"de_DE": "Überprüft die Verbindung eines sIMAP-Servers" 
+				},
+				"defined": true,
+				"defined_in": "/etc/nagios-plugins/config/mail.cfg",
+				"doc": {
+					"en_US": [
+						"<h4>Secure Internet Message Access Protocol Check</h4>",
+						"<p>Using this plugin, the status of a remote or local sIMAP-Server can be monitored",
+						"with Nagios or Icinga.</p>"
+					],
+					"de_DE": [
+						"<h4>Secure Post Office Protocol Check</h4>",
+						"<p>Mit diesem Plugin kann der Status eines lokalen oder entfernten sIMAP-Servers mit",
+						"Nagios oder Icinga überwacht werden.</p>"
+					]
+				},
+				"tk_notify": false,
+				"tk_notify_default": false
+			}
+		},
+		{
+			"service_description": "ftp",
+			"display_name": "ftp",
+			"check_command": {
+				"command_name": "check_ftp",
+				"arguments": null
+			},
+			"_catalogue_attributes": {
+				"tags": ["ftp", "file", "transfer", "protocol"],
+				"name": "check_ftp",
+				"label": "FTP",
+				"description": {
+					"en_US": "Checks the connectivity of a FTP-Server", 
+					"de_DE": "Überprüft die Verbindung eines FTP-Servers" 
+				},
+				"defined": true,
+				"defined_in": "/etc/nagios-plugins/config/ftp.cfg",
+				"doc": {
+					"en_US": [
+						"<h4>File Transfer Protocol Check</h4>",
+						"<p>Using this plugin, the status of a remote or local FTP-Server can be monitored",
+						"with Nagios or Icinga.</p>"
+					],
+					"de_DE": [
+						"<h4>File Transfer Protocol Check</h4>",
+						"<p>Mit diesem Plugin kann der Status eines lokalen oder entfernten FTP-Servers mit",
+						"Nagios oder Icinga überwacht werden.</p>"
+					]
+				},
+				"tk_notify": false,
+				"tk_notify_default": false
+			}
+		},
+		{
+			"service_description": "dhcp",
+			"display_name": "dhcp",
+			"check_command": {
+				"command_name": "check_dhcp",
+				"arguments": null
+			},
+			"_catalogue_attributes": {
+				"tags": ["dhcp", "dynamic", "host", "configuration", "protocol"],
+				"name": "check_dhcp",
+				"label": "DHCP",
+				"description": {
+					"en_US": "Checks the connectivity of a DHCP-Server", 
+					"de_DE": "Überprüft die Verbindung eines DHCP-Servers" 
+				},
+				"defined": true,
+				"defined_in": "/etc/nagios-plugins/config/dhcp.cfg",
+				"doc": {
+					"en_US": [
+						"<h4>Dynamic Host Configuration Protocol Check</h4>",
+						"<p>Using this plugin, the status of a local DHCP-Server can be monitored",
+						"with Nagios or Icinga.</p>"
+					],
+					"de_DE": [
+						"<h4>Dynamic Host Configuration Protocol Check</h4>",
+						"<p>Mit diesem Plugin kann der Status eines lokalen DHCP-Servers mit",
+						"Nagios oder Icinga überwacht werden.</p>"
+					]
+				},
+				"tk_notify": false,
+				"tk_notify_default": false
+			}
+		},
+		{
+			"service_description": "dhcp-interface",
+			"display_name": "DHCP-Interface",
+			"check_command": {
+				"command_name": "check_dhcp_interface",
+				"arguments": [
+				{	
+					"label": "interface",
+					"description": {
+						"en_US": "Network-Interface (e.g. eth0) to check for DHCP connectivity",
+						"de_DE": "Auf DHCP Verbindung zu überprüfender Netzwerkadapter (z.B. eth0)"
+					},
+					"validation": "string",
+					"argument": "-i"
+				}
+				]
+			},
+			"_catalogue_attributes": {
+				"tags": ["dhcp", "dynamic", "host", "configuration", "protocol", "network", "interface"],
+				"name": "check_dhcp_interface",
+				"label": "DHCP-Interface",
+				"description": {
+					"en_US": "Checks the connectivity of a DHCP-Server for a specified network adapter", 
+					"de_DE": "Überprüft die Verbindung eines Netzwerk-Adapters zu einem DHCP-Server" 
+				},
+				"defined": true,
+				"defined_in": "/etc/nagios-plugins/config/dhcp.cfg",
+				"doc": {
+					"en_US": [
+						"<h4>Dynamic Host Configuration Protocol Check</h4>",
+						"<p>Using this plugin, the status of a remote or local DHCP-Server on a specified",
+						"interface can be monitored with Nagios or Icinga.</p>"
+					],
+					"de_DE": [
+						"<h4>Dynamic Host Configuration Protocol Check</h4>",
+						"<p>Mit diesem Plugin kann der Status eines Netzwerkadapters auf DHCP Konnektivität mit",
+						"Nagios oder Icinga überwacht werden.</p>"
+					]
+				},
+				"tk_notify": false,
+				"tk_notify_default": false
+			}
+		},
+		{
+			"service_description": "ntp-server",
+			"display_name": "ntp-server",
+			"check_command": {
+				"command_name": "check_ntp",
+				"arguments": null
+			},
+			"_catalogue_attributes": {
+				"tags": ["ntp", "time", "network", "protocol"],
+				"name": "check_ntp",
+				"label": "NTP-Server",
+				"description": {
+					"en_US": "Checks the status of a NTP-Server", 
+					"de_DE": "Überprüft den Status eines NTP-Servers" 
+				},
+				"defined": true,
+				"defined_in": "/etc/nagios-plugins/config/ntp.cfg",
+				"doc": {
+					"en_US": [
+						"<h4>Network Time Protocol Check</h4>",
+						"<p>Using this plugin, the status of a remote or local NTP-Server can be monitored",
+						"with Nagios or Icinga.</p>"
+					],
+					"de_DE": [
+						"<h4>Network Time Protocol Check</h4>",
+						"<p>Mit diesem Plugin kann der Status eines lokalen oder entfernten NTP-Servers mit",
+						"Nagios oder Icinga überwacht werden.</p>"
+					]
+				},
+				"tk_notify": false,
+				"tk_notify_default": false
+			}
+		},
+		{
+			"service_description": "ntp",
+			"display_name": "ntp-time",
+			"check_command": {
+				"command_name": "check_time",
+				"arguments": null
+			},
+			"_catalogue_attributes": {
+				"tags": ["ntp", "time", "network", "protocol", "time", "zeit"],
+				"name": "check_time",
+				"label": "NTP-Time",
+				"description": {
+					"en_US": "Checks the time of a Server", 
+					"de_DE": "Überprüft die Zeit eines Servers" 
+				},
+				"defined": true,
+				"defined_in": "/etc/nagios-plugins/config/ntp.cfg",
+				"doc": {
+					"en_US": [
+						"<h4>Network Time Protocol Check</h4>",
+						"<p>Using this plugin, the time of a remote or local Server can be monitored",
+						"with Nagios or Icinga.</p>"
+					],
+					"de_DE": [
+						"<h4>Network Time Protocol Check</h4>",
+						"<p>Mit diesem Plugin kann der Zeit eines lokalen oder entfernten Servers mit",
+						"Nagios oder Icinga überwacht werden.</p>"
+					]
+				},
+				"tk_notify": false,
+				"tk_notify_default": false
+			}
+		},
+		{
+			"service_description": "users",
+			"display_name": "users",
+			"check_command": {
+				"command_name": "check_users",
+				"arguments": [
+				{	
+					"label": "Warning:",
+					"description": {
+						"en_US": "Amount of users to generate a Warning",
+						"de_DE": "Anzahl der Benutzer, ab denen eine Warnung erzeugt wird"
+					},
+					"validation": "integer",
+					"argument": "-w"
+				},
+				{	
+					"label": "Critical:",
+					"description": {
+						"en_US": "Amount of users to generate a critical status",
+						"de_DE": "Anzahl der Benutzer, die als kritisch eingestuft wird"
+					},
+					"validation": "integer",
+					"argument": "-c"
+				}
+				]
+			},
+			"_catalogue_attributes": { 
+				"tags": ["user", "login", "users", "anzahl", "amount"],
+				"name": "check_users",
+				"label": "Users Logged in",
+				"description": {
+					"en_US": "Checks the number of users logged in on a Server", 
+					"de_DE": "Überprüft die Anzahl der eingeloggten Benutzer auf einem Server" 
+				},
+				"defined": true,
+				"defined_in": "/etc/nagios-plugins/config/users.cfg",
+				"doc": {
+					"en_US": [
+						"<h4>Logged in Users Check</h4>",
+						"<p>This plugin checks the number of users currently logged in on the local",
+						"system and generates an error if the number exceeds the speciefied thresholds.</p>"
+					],
+					"de_DE": [
+						"<h4>Eingeloggte Benutzer Check</h4>",
+						"<p>Dieses Plugin überprüft die Anzahl der derzeit auf dem System",
+						"eingeloggten Benutzer und generiert einen Alert wenn eine bestimmte Anzahl",
+						"überschritten wird.</p>"
+					]
+				},
+				"tk_notify": false,
+				"tk_notify_default": false
+			}
+		},
+		{
+			"service_description": "apt",
+			"display_name": "System Updates",
+			"check_command": {
+				"command_name": "check_apt",
+				"arguments": null 
+			},
+			"_catalogue_attributes": {
+				"tags": ["updates", "update", "system", "apt-get", "aptitude", "apt"],
+				"name": "check_apt",
+				"label": "System Updates",
+				"description": {
+					"en_US": "Checks whether there are any updates available on the Server", 
+					"de_DE": "Überprüft, ob auf dem System Updates zur Verfügung stehen" 
+				},
+				"defined": true,
+				"defined_in": "/etc/nagios-plugins/config/apt.cfg",
+				"doc": {
+					"en_US": [
+						"<h4>Apt-Get Updates Check</h4>",
+						"<p>This plugin checks whether there are updates available for the Server",
+						"with Nagios or Icinga.</p>"
+					],
+					"de_DE": [
+						"<h4>Apt-Get Updates Check</h4>",
+						"<p>Dieses Plugin überprüft, ob für System Updates verfügbar sind.</p>"
+					]
+				},
+				"tk_notify": false,
+				"tk_notify_default": false
+			}
+		},
+		{
+			"service_description": "apt-dist",
+			"display_name": "Distribution Updates",
+			"check_command": {
+				"command_name": "check_apt_distupgrade",
+				"arguments": null 
+			},
+			"_catalogue_attributes": {
+				"tags": ["updates", "update", "system", "apt-get", "aptitude", "apt", "distribution", "upgrade"],
+				"name": "check_apt_distupgrade",
+				"label": "Distribution Updates",
+				"description": {
+					"en_US": "Checks whether there are any distribution updates available on the server", 
+					"de_DE": "Überprüft, ob auf dem System Distributions-Updates zur Verfügung stehen" 
+				},
+				"defined": true,
+				"defined_in": "/etc/nagios-plugins/config/apt.cfg",
+				"doc": {
+					"en_US": [
+						"<h4>Apt-Get Dist-Updates Check</h4>",
+						"<p>This plugin can check whether there are distribution updates",
+						"available for the Server with Nagios or Icinga.</p>"
+					],
+					"de_DE": [
+						"<h4>Apt-Get Dist-Updates Check</h4>",
+						"<p>Dieses Plugin überprüft, ob für das Zielsystem Distributions-Updates verfügbar sind.</p>"
+					]
+				},
+				"tk_notify": false,
+				"tk_notify_default": false
+			}
+		},
+		{
+			"service_description": "diskspace",
+			"display_name": "Disk usage",
+			"check_command": {
+				"command_name": "check_disk",
+				"arguments": [
+				{
+					"label": "Device-Path",
+					"description": {
+						"en_US": "Path to device for which to execute the check (may be /dev/sd* or file mountpoint)",
+						"de_DE": "Pfad zu einem zu überprüfenden Device (Kann /dev/sd* oder Einhängepunkt sein)"
+					},
+					"validation": "string",
+					"argument": "-p"
+				},
+				{
+					"label": "Warning",
+					"description": {
+						"en_US": "Percentage for Warning",
+						"de_DE": "Ab diesem Prozentwert wird im TKmon eine Warnung erzeugt"
+					},
+					"validation": "integer",
+					"argument": "-w"
+				},
+				{
+					"label": "Critical",
+					"description": {
+						"en_US": "Percentage for Critical Status",
+						"de_DE": "Ab diesem Prozentwert wird im TKmon ein Critical Status erzeugt"
+					},
+					"validation": "integer",
+					"argument": "-c"
+				}
+				]
+			},
+			"_catalogue_attributes": {
+				"tags": ["disk", "space", "usage", "mount"],
+				"name": "check_disk",
+				"label": "Disk Usage Status",
+				"description": {
+					"en_US": "A simple plugin that checks the usage of a disk and alerts if a certain percentage is reached (may be /dev/sd* or mountpoint)",
+					"de_DE": "Überprüft die Nutzung der Festplatte eines bestimmten Servers (Kann /dev/sd* sein oder Einhängpunkt) "
+				},
+				"defined": true,
+				"defined_in": "/etc/nagios-plugins/config/disk.cfg",
+				"doc": {
+					"en_US": [
+						"<h4>Disk Usage Check</h4>",
+						"<p>This plugin helps monitoring if a certain disk reaches its capacity",
+						"with Nagios or Icinga.</p>"
+					],
+					"de_DE": [
+						"<h4>Disk Usage Check</h4>",
+						"<p>Mithilfe dieses Plugins wird überwacht, ob eine bestimmte Festplatte ihre Kapazität erreicht</p>"
+					]
+				},
+				"tk_notify": false,
+				"tk_notify_default": false
+			}
+		},
+		{
+			"service_description": "diskspace-all",
+			"display_name": "Disk usage of all disks",
+			"check_command": {
+				"command_name": "check_all_disks",
+				"arguments": [
+				{
+					"label": "Warning",
+					"description": {
+						"en_US": "Percentage for Warning",
+						"de_DE": "Ab diesem Prozentwert wird im TKmon eine Warnung erzeugt"
+					},
+					"validation": "integer",
+					"argument": "-w"
+				},
+				{
+					"label": "Critical",
+					"description": {
+						"en_US": "Percentage for Critical Status",
+						"de_DE": "Ab diesem Prozentwert wird im TKmon ein Critical Status erzeugt"
+					},
+					"validation": "integer",
+					"argument": "-c"
+				}
+				]
+			},
+			"_catalogue_attributes": {
+				"tags": ["disk", "space", "usage", "mount"],
+				"name": "check_all_disks",
+				"label": "All Disk Usage Status",
+				"description": {
+					"en_US": "A simple plugin that checks the usage of all disks and alerts if a certain percentage is reached",
+					"de_DE": "Überprüft die Nutzung aller Festplatten eines bestimmten Servers"
+				},
+				"defined": true,
+				"defined_in": "/etc/nagios-plugins/config/disk.cfg",
+				"doc": {
+					"en_US": [
+						"<h4>Disk Usage Check</h4>",
+						"<p>This plugin helps monitoring if any disk reaches its capacity",
+						"with Nagios or Icinga.</p>"
+						],
+					"de_DE": [
+						"<h4>Disk Usage Check</h4>",
+						"<p>Mithilfe dieses Plugins wird überwacht, ob eine der Festplatten ihre Kapazität erreicht</p>"
+						]
+				},
+				"tk_notify": false,
+				"tk_notify_default": false
+			}
+		},
+		{
+			"service_description": "net-udp",
+			"display_name": "UDP Port",
+			"check_command": {
+				"command_name": "check_udp_send_expect",
+				"arguments": [
+					{
+						"label": "UDP Port",
+						"description": {
+							"en_US": "Integer value of UDP port to test",
+							"de_DE": "Integer UDP Port"
+						},
+						"validation": "port",
+						"argument": "-p"
+					},
+					{
+						"label": "Send string",
+						"description": {
+							"en_US": "String to send",
+							"de_DE": "Zum Ziel gesendete Zeichenkette"
+						},
+						"validation": "string",
+						"argument": "-s"
+					},
+					{
+						"label": "Expect string",
+						"description": {
+							"en_US": "String to expect as answer",
+							"de_DE": "Als Rückgabe erwartete Zeichenkette"
+						},
+						"validation": "string",
+						"argument": "-e"
+					}
+				]
+			},
+			"_catalogue_attributes": {
+				"tags": ["remote", "udp", "port", "network"],
+				"name": "net-udp",
+				"label": {
+					"en_US": "UDP port check",
+					"de_DE": "UDP port Test"
+				},
+				"description": {
+					"en_US": "Check udp port reaction (derived from debian default)",
+					"de_DE": "UDP Port mit spezifischen String (abgeleitet von Debian Standard)"
+				},
+				"defined": true,
+				"defined_in": "/etc/icinga/tkmon/base/05-check-commands.cfg"
+			}
+		},
+		{
+			"service_description": "net-ping",
+			"display_name": "Ping check",
+			"check_command": {
+				"command_name": "check_ping",
+				"arguments": [
+					{
+						"label": "Warning threshold",
+						"description": {
+							"en_US": "In form <0000,000%>, <miliseconds rtt>,<percent rta><%>",
+							"de_DE": "In der form <0000,000%>, <miliseconds rtt>,<percent rta><%>"
+						},
+						"validation": "string",
+						"argument": "-w",
+						"value": "5000,100%"
+					},
+					{
+						"label": "Critical threshold",
+						"description": {
+							"en_US": "In form <0000,000%>, <miliseconds rtt>,<percent rta><%>",
+							"de_DE": "In der Form <0000,000%>, <miliseconds rtt>,<percent rta><%>"
+						},
+						"validation": "string",
+						"argument": "-c",
+						"value": "5000,100%"
+					}
+				]
+			},
+			"_catalogue_attributes": {
+				"tags": ["remote", "ping", "network"],
+				"name": "net-ping",
+				"label": {
+					"en_US": "Ping check",
+					"de_DE": "Ping check"
+				},
+				"description": {
+					"en_US": "Check packet loss and round trip time",
+					"de_DE": "Prüfen auf Paketverlust und Laufzeiten"
+				},
+				"defined": true,
+				"defined_in": "/etc/nagios-plugins/config/ping.cfg"
+			}
+		},
+		{
+			"service_description": "net-tcp",
+			"display_name": "TCP Port",
+			"check_command": {
+				"command_name": "check_tcp",
+				"arguments": [
+					{
+						"label": "TCP Port",
+						"description": {
+							"en_US": "Integer value of TCP port to test",
+							"de_DE": "Integer Wert für einen TCP Port"
+						},
+						"validation": "port",
+						"argument": "-p"
+					}
+				]
+			},
+			"_catalogue_attributes": {
+				"tags": ["remote", "tcp", "port", "network"],
+				"name": "net-tcp",
+				"label": {
+					"en_US": "TCP port check",
+					"de_DE": "Erreichbarkeit eines TCP Ports"
+				},
+				"description": {
+					"en_US": "Check tcp port reaction"
+				},
+				"defined": true,
+				"defined_in": "/etc/nagios-plugins/config/tcp_udp.cfg"
+			}
+		},
+		{
+			"service_description": "net-http",
+			"display_name": "Http response",
+			"check_command": {
+				"command_name": "check_http",
+				"arguments": null
+			},
+			"_catalogue_attributes": {
+				"tags": ["remote", "tcp", "web", "network", "http"],
+				"name": "net-http",
+				"label": {
+					"en_US": "HTTP response",
+					"de_DE": "HTTP Erreichbarkeit"
+				},
+				"description": {
+					"en_US": "Test http server (address)",
+					"de_DE": "HTTP Server testen (nach IP Adresse)"
+				},
+				"defined": true,
+				"defined_in": "/etc/nagios-plugins/config/http.cfg"
+			}
+		},
+		{
+			"service_description": "net-httpname",
+			"display_name": "Http response (hostname)",
+			"check_command": {
+				"command_name": "check_httpname",
+				"arguments": null
+			},
+			"_catalogue_attributes": {
+				"tags": ["remote", "tcp", "web", "network", "http"],
+				"name": "net-httpname",
+				"label": {
+					"en_US": "HTTP response by name",
+					"de_DE": "HTTP Erreichbarkeit (Hostname)"
+				},
+				"description": {
+					"en_US": "Test http server (hostname)"
+				},
+				"defined": true,
+				"defined_in": "/etc/nagios-plugins/config/http.cfg"
+			}
+		},
+		{
+			"service_description": "net-http2",
+			"display_name": "Http response (vhost)",
+			"check_command": {
+				"command_name": "check_http2",
+				"arguments": [
+					{
+						"label": "Hostname (VHOST)",
+						"description": {
+							"en_US": "VHost to check on this host address",
+							"de_DE": "VHost name für die Hostadresse"
+						},
+						"validation": "hostname",
+						"argument": "-H"
+					},
+					{
+						"label": "Warning threshold",
+						"description": {
+							"en_US": "Seconds to resolve the request",
+							"de_DE": "Erreichbarkeit in Sekunden"
+						},
+						"validation": "double",
+						"argument": "-w",
+						"value": 5
+					},
+					{
+						"label": "Critical threshold",
+						"description": {
+							"en_US": "Seconds to resolve the request",
+							"de_DE": "Erreichbarkeit in Sekunden"
+						},
+						"validation": "double",
+						"argument": "-c",
+						"value": 10
+					}
+				]
+			},
+			"_catalogue_attributes": {
+				"tags": ["remote", "tcp", "web", "network", "http"],
+				"name": "net-http2",
+				"label": {
+					"en_US": "HTTP response",
+					"de_DE": "HTTP Erreichbarkeit"
+				},
+				"description": {
+					"en_US": "Test http server (different vhosts and thresholds)",
+					"de_DE": "Test HTTP Server (VHost und Schwellwerte)"
+				},
+				"defined": true,
+				"defined_in": "/etc/nagios-plugins/config/http.cfg"
+			}
+		},
+		{
+			"service_description": "net-https",
+			"display_name": "Https response",
+			"check_command": {
+				"command_name": "check_https",
+				"arguments": null
+			},
+			"_catalogue_attributes": {
+				"tags": ["remote", "tcp", "web", "network", "https"],
+				"name": "net-https",
+				"label": {
+					"en_US": "HTTPS response",
+					"de_DE": "HTTPS Erreichbarkeit"
+				},
+				"description": {
+					"en_US": "Test https server (address)",
+					"de_DE": "Test HTTPS Erreichbarkeit (Addresse)"
+				},
+				"defined": true,
+				"defined_in": "/etc/nagios-plugins/config/http.cfg"
+			}
+		},
+		{
+			"service_description": "net-ssh",
+			"display_name": "SSH test",
+			"check_command": {
+				"command_name": "check_ssh",
+				"arguments": null
+			},
+			"_catalogue_attributes": {
+				"tags": ["remote", "tcp", "web", "network", "ssh"],
+				"name": "net-ssh",
+				"label": {
+					"en_US": "SSH Check",
+					"de_DE": "SSH Erreichbarkeit"
+				},
+				"description": {
+					"en_US": "Test for ssh (standard port)",
+					"de_DE": "Test SSH Zugänge (Standard Port 22)"
+				},
+				"defined": true,
+				"defined_in": "/etc/nagios-plugins/config/ssh.cfg"
+			}
+		},
+		{
+			"service_description": "net-ssh-port",
+			"display_name": "SSH test port",
+			"check_command": {
+				"command_name": "check_ssh_port",
+				"arguments": [
+					{
+						"label": "SSH Port",
+						"description": {
+							"en_US": "Integer port where ssh is listening on",
+							"de_DE": "Integer Port vom SSH Dienst"
+						},
+						"validation": "port",
+						"argument": "-p"
+					}
+				]
+			},
+			"_catalogue_attributes": {
+				"tags": ["remote", "tcp", "web", "network", "ssh"],
+				"name": "net-ssh-port",
+				"label": {
+					"en_US": "SSH Test"
+				},
+				"description": {
+					"en_US": "Test for ssh (specific port)",
+					"de_DE": "SSH Erreichbarkeit (nicht standardisierter Port)"
+				},
+				"defined": true,
+				"defined_in": "/etc/nagios-plugins/config/ssh.cfg"
+			}
+		}
+	]
+}

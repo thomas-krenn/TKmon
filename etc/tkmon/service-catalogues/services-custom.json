@@ -1,464 +1,373 @@
 {
-    "type": "service",
-    "version": "1.0",
-    "description": "Services catalogue for custom checks",
-    "data": [
-        {
-            "service_description": "net-udp",
-            "display_name": "UDP Port",
-            "check_command": {
-                "command_name": "check_udp_send_expect",
-                "arguments": [
-                    {
-                        "label": "UDP Port",
-                        "description": {
-                            "en_US": "Integer value of UDP port to test",
-                            "de_DE": "Integer UDP Port"
-                        },
-                        "validation": "port",
-                        "argument": "-p"
-                    },
-                    {
-                        "label": "Send string",
-                        "description": {
-                            "en_US": "String, what to send",
-                            "de_DE": "String, gesendet zum Ziel"
-                        },
-                        "validation": "string",
-                        "argument": "-s"
-                    },
-                    {
-                        "label": "Expect string",
-                        "description": {
-                            "en_US": "String, what to expect as answer",
-                            "de_DE": "String, Rückgabe"
-                        },
-                        "validation": "string",
-                        "argument": "-e"
-                    }
-                ]
-            },
-            "_catalogue_attributes": {
-                "tags": ["remote", "udp", "port", "network"],
-                "name": "net-udp",
-                "label": {
-                    "en_US": "UDP port check",
-                    "de_DE": "UDP port Test"
-                },
-                "description": {
-                    "en_US": "Check udp port reaction (derived from debian default)",
-                    "de_DE": "UDP Port mit spezifischen String (abgeleitet von Debian Standard)"
-                },
-                "defined": true,
-                "defined_in": "/etc/icinga/tkmon/base/05-check-commands.cfg"
-            }
-        },
-        {
-            "service_description": "ipmi-sensors",
-            "display_name": "IPMI Sensors",
-            "check_command": {
-                "command_name": "check_ipmi_sensor_custom",
-                "arguments": null
-            },
-            "_catalogue_attributes": {
-                "tags": ["remote", "ipmi", "hardware", "tkmon"],
-                "name": "ipmi-sensors",
-                "label": {
-                    "en_US": "IPMI Check",
-                    "de_DE": "IPMI Test"
-                },
-                "description": {
-                    "en_US": "Checks all IPMI sensors",
-                    "de_DE": "Testet alle IPMI Sensoren"
-                },
-                "defined": true,
-                "defined_in": "/etc/icinga/tkmon/base/05-check-commands.cfg",
-
-                "links": [{
-                    "name": "IPMI Sensor Monitoring Plugin",
-                    "href": {
-                        "en_US": "http://www.thomas-krenn.com/en/wiki/IPMI_Sensor_Monitoring_Plugin",
-                        "de_DE": "http://www.thomas-krenn.com/de/wiki/IPMI_Sensor_Monitoring_Plugin"
-                    },
-                    "description": {
-                        "en_US": "Official wiki article about the IPMI Sensor Monitoring Plugin from Thomas Krenn",
-                        "de_DE": "Offizieller Wiki Artikel zum IPMI Sensor Monitoring Plugin von Thomas Krenn"
-                    }
-                }, {
-                    "name": "GIT Repository",
-                    "href": "http://git.thomas-krenn.com/?p=check_ipmi_sensor_v3.git;a=summary",
-                    "description": {
-                        "en_US": "Official GIT repository of the IPMI Sensor Monitoring Plugin from Thomas Krenn",
-                        "de_DE": "Offizielles GIT Repository des IPMI Sensor Monitoring Plugins von Thomas Krenn"
-                    }
-                }],
-
-                "doc": {
-                    "en_US": [
-                        "<h4>IPMI Sensor Monitoring Plugin</h4>",
-                        "<p>Using this plugin, the hardware status of a server can be monitored by Nagios",
-                        "or Icinga. As specific examples, fan rotation speeds, temperatures, voltages,",
-                        "power supply states and more will be monitored.</p>"
-                    ],
-                    "de_DE": [
-                        "<h4>IPMI Sensor Monitoring Plugin</h4>",
-                        "<p>Mit diesem Plugin kann der Hardware Status eines Servers mit Nagios oder Icinga",
-                        "überwacht werden. Beispiele für Sensoren, die überwacht werden, sind Lüfterdrehzahlen,",
-                        "Temperaturen, Spannungen, Netzteilstatus und mehr.</p>"
-                    ]
-                },
-
-                "tk_notify": true,
-                "tk_notify_default": true
-            }
-        },
-        {
-            "service_description": "net-ping-ipmi",
-            "display_name": "Ping check IPMI host address",
-            "check_command": {
-                "command_name": "check_ipmi_alive",
-                "arguments": null
-            },
-            "_catalogue_attributes": {
-                "tags": ["remote", "ipmi", "ping", "tkmon"],
-                "name": "net-ping-ipmi",
-                "label": {
-                    "en_US": "IPMI Interface Ping Check",
-                    "de_DE": "IPMI Interface Ping Check"
-                },
-                "description": {
-                    "en_US": "Checks the IPMI IP address",
-                    "de_DE": "Testet die IPMI Erreichbarkeit"
-                },
-                "defined": true,
-                "defined_in": "/etc/icinga/tkmon/base/05-check-commands.cfg",
-
-                "links": [{
-                    "name": "IPMI Ping Check",
-                    "href": {
-                        "en_US": "http://www.thomas-krenn.com/en/wiki/IPMI_Sensor_Monitoring_Plugin",
-                        "de_DE": "http://www.thomas-krenn.com/de/wiki/IPMI_Sensor_Monitoring_Plugin"
-                    },
-                    "description": {
-                        "en_US": "Official wiki article about the IPMI Sensor Monitoring Plugin from Thomas Krenn",
-                        "de_DE": "Offizieller Wiki Artikel zum IPMI Sensor Monitoring Plugin von Thomas Krenn"
-                    }
-                }, {
-                    "name": "GIT Repository",
-                    "href": "http://git.thomas-krenn.com/?p=check_ipmi_sensor_v3.git;a=summary",
-                    "description": {
-                        "en_US": "Official GIT repository of the IPMI Sensor Monitoring Plugin from Thomas Krenn",
-                        "de_DE": "Offizielles GIT Repository des IPMI Sensor Monitoring Plugins von Thomas Krenn"
-                    }
-                }],
-
-                "doc": {
-                    "en_US": [
-                        "<h4>IPMI Interface Check</h4>",
-                        "<pThis check ensures that the IPMI interface is reachable.</p>"
-                    ],
-                    "de_DE": [
-                        "<h4>IPMI Interface Check</h4>",
-                        "<p>Dieser Check testet die Erreichbarkeit des IPMI Interfaces.</p>"
-                    ]
-                },
-
-                "tk_notify": false,
-                "tk_notify_default": false
-            }
-        },
-        {
-            "service_description": "vmware-esxi-hardware",
-            "display_name": "VMware ESXi Hardware",
-            "check_command": {
-                "command_name": "check_esxi_hardware",
-                "arguments": [
-                    {
-                        "label": {
-                            "en_US": "Username",
-                            "de_DE": "Benutzername"
-                        },
-                        "description": {
-                            "en_US": "Username to access the ESXi server. Don't use a user with root privileges for that!",
-                            "de_DE": "Benutzername für den Zugriff auf den ESXi Server. Hier keinen Benutzer mit root Rechten verwenden!"
-                        },
-                        "validation": "string",
-                        "argument": "-U"
-                    },
-                    {
-                        "label": {
-                            "en_US": "Password",
-                            "de_DE": "Passwort"
-                        },
-                        "description": {
-                            "en_US": "Password of the user to access the ESXi server.",
-                            "de_DE": "Passwort des Benutzers zum Zugriff auf den ESXi Server."
-                        },
-                        "validation": "string",
-                        "type" : "password",
-                        "argument": "-P"
-                    }
-                ]
-            },
-            "_catalogue_attributes": {
-                "tags": ["remote", "vmware", "esx", "esxi"],
-                "name": "vmware-esxi-hardware",
-                "label": {
-                    "en_US": "VMware ESXi Hardware Check",
-                    "de_DE": "VMware ESXI Hardware Test"
-                },
-                "description": {
-                    "en_US": "Checks the hardware status of a VMware ESXi host",
-                    "de_DE": "Testet den Hardware Status eines VMware ESXi Hosts"
-                },
-                "defined": true,
-                "defined_in": "/etc/nagios-plugins/config/vmware_esxi.cfg",
-
-                "links": [{
-                    "name": "ESXi Hardware Monitoring Plugin",
-                    "href": {
-                        "en_US": "http://www.thomas-krenn.com/de/wiki/VMware_ESXi_Hardware_mit_Nagios_oder_Icinga_ueberwachen",
-                        "de_DE": "http://www.thomas-krenn.com/de/wiki/VMware_ESXi_Hardware_mit_Nagios_oder_Icinga_ueberwachen"
-                    },
-                    "description": {
-                        "en_US": "Wiki article about the ESXi Hardware Monitoring Plugin",
-                        "de_DE": "Wiki Artikel zum ESXi Hardware Monitoring Plugin"
-                    }
-                }, {
-                    "name": "ESXi Hardware Monitoring Plugin Website",
-                    "href": "http://www.claudiokuenzler.com/nagios-plugins/check_esxi_hardware.php",
-                    "description": {
-                        "en_US": "Website of the check_esxi_hardware.py plugin",
-                        "de_DE": "Webseite des check_esxi_hardware.py Plugins"
-                    }
-                }],
-
-                "doc": {
-                    "en_US": [
-                        "<h4>VMware ESXi Hardware Monitoring Plugin</h4>",
-                        "<p>Using this plugin, the hardware of a VMware ESXi host can be monitored by Nagios",
-                        "or Icinga. Please ensure to install all necessary CIM providers on your ESXi host,",
-                        "e.g. the LSI CIM provider to monitor a LSI RAID controller.</p>"
-                    ],
-                    "de_DE": [
-                        "<h4>VMware ESXi Hardware Monitoring Plugin</h4>",
-                        "<p>Mit diesem Plugin kann der Hardware Status eines ESXi Servers mit Nagios oder Icinga",
-                        "überwacht werden. Bitte installieren Sie dazu am ESXi Host aller erforderlichen CIM,",
-                        "Provider, z.B. den LSI CIM Provider zur Überwachung eines LSI RAID Controllers.</p>"
-                    ]
-                },
-
-
-                "tk_notify": true,
-                "tk_notify_default": true
-            }
-        },
-        {
-            "service_description": "adaptec-raid-nrpe",
-            "display_name": "Adaptec RAID",
-            "check_command": {
-                "command_name": "check_nrpe_1arg",
-                 "arguments": [
-                    {
-                        "label": "command",
-                        "description": {
-                            "en_US": "Command which the remote NRPE daemon executes",
-                            "de_DE": "Kommando, das vom entfernten NRPE Daemon ausgeführt wird"
-                        },
-                        "validation": "string",
-                        "argument": "-c",
-			"value": "check_adaptec_raid"
-                    }
-                ]
-            },
-            "_catalogue_attributes": {
-                "tags": ["remote", "Adaptec", "RAID"],
-                "name": "adaptec-raid-nrpe",
-                "label": "Adaptec RAID via NRPE",
-                "description": {
-                        "en_US": "Checks the status of a remote Adaptec RAID via NRPE",
-                        "de_DE": "Testet den Status eines entfernten Adaptec RAIDs via NRPE"
-                },
-                "defined": true,
-                "defined_in": "/etc/nagios-plugins/config/check_nrpe.cfg",
-
-                "links": [{
-                    "name": "Adaptec RAID Monitoring Plugin",
-                    "href": {
-                        "en_US": "http://www.thomas-krenn.com/en/wiki/Adaptec_RAID_Monitoring_Plugin",
-                        "de_DE": "http://www.thomas-krenn.com/de/wiki/Adaptec_RAID_Monitoring_Plugin"
-                    },
-                    "description": {
-                        "en_US": "Wiki article about the Adaptec RAID Monitoring Plugin",
-                        "de_DE": "Wiki Artikel zum Adaptec RAID Monitoring Plugin"
-                    }
-                }],
-
-                "doc": {
-                    "en_US": [
-                        "<h4>Adaptec RAID Monitoring Plugin (via NRPE)</h4>",
-                        "<p>Using this plugin, the status of a remote Adaptec RAID can be monitored by Nagios",
-                        "or Icinga. Please ensure to configure the NRPE daemon on the remote host.</p>"
-                    ],
-                    "de_DE": [
-                        "<h4>Adaptec RAID Monitoring Plugin (über NRPE)</h4>",
-                        "<p>Mit diesem Plugin kann der Status eines Adaptec RAIDs eines entfernten Servers mit Nagios oder Icinga",
-                        "überwacht werden. Bitte stellen Sie die korrekte Konfiguration des NRPE Daemons am entfernten Server sicher.</p>"
-                    ]
-                },
-
-                "tk_notify": true,
-                "tk_notify_default": true
-            }
-        },
-        {
-            "service_description": "adaptec-raid-local",
-            "display_name": "Adaptec RAID Local",
-            "check_command": {
-                "command_name": "check_adaptec_raid",
-                 "arguments": null
-            },
-            "_catalogue_attributes": {
-                "tags": ["local", "Adaptec", "RAID"],
-                "name": "adaptec-raid-local",
-                "label": "Adaptec RAID",
-                "description": "Checks the Adaptec RAID",
-                "defined": true,
-                "defined_in": "/etc/nagios-plugins/config/check_adaptec.cfg"
-            }
-        },
+	"type": "service",
+	"version": "1.0",
+	"description": "Services catalogue for custom checks",
+	"data": [
 		{
-            "service_description": "lsi-raid-nrpe",
-            "display_name": "LSI RAID",
-            "check_command": {
-                "command_name": "check_nrpe_1arg",
-                 "arguments": [
-                    {
-                        "label": "command",
-                        "description": {
-                            "en_US": "Command which the remote NRPE daemon executes",
-                            "de_DE": "Kommando, das vom entfernten NRPE Daemon ausgeführt wird"
-                        },
-                        "validation": "string",
-                        "argument": "-c",
-			"value": "check_lsi_raid"
-                    }
-                ]
-            },
-            "_catalogue_attributes": {
-                "tags": ["remote", "LSI", "RAID"],
-                "name": "lsi-raid-nrpe",
-                "label": "LSI RAID via NRPE",
-                "description": {
-                        "en_US": "Checks the status of a remote LSI RAID via NRPE",
-                        "de_DE": "Testet den Status eines entfernten LSI RAIDs via NRPE"
-                },
-                "defined": true,
-                "defined_in": "/etc/nagios-plugins/config/check_nrpe.cfg",
+			"service_description": "ipmi-sensors",
+			"display_name": "IPMI Sensors",
+			"check_command": {
+				"command_name": "check_ipmi_sensor_custom",
+				"arguments": null
+			},
+			"_catalogue_attributes": {
+				"tags": ["remote", "ipmi", "hardware", "tkmon"],
+				"name": "ipmi-sensors",
+				"label": {
+					"en_US": "IPMI Check",
+					"de_DE": "IPMI Check"
+				},
+				"description": {
+					"en_US": "Checks all IPMI sensors",
+					"de_DE": "Prüft alle IPMI Sensoren"
+				},
+				"defined": true,
+				"defined_in": "/etc/icinga/tkmon/base/05-check-commands.cfg",
+				"links": [
+					{
+						"name": "IPMI Sensor Monitoring Plugin",
+						"href": {
+							"en_US": "http://www.thomas-krenn.com/en/wiki/IPMI_Sensor_Monitoring_Plugin",
+							"de_DE": "http://www.thomas-krenn.com/de/wiki/IPMI_Sensor_Monitoring_Plugin"
+						},
+						"description": {
+							"en_US": "Official wiki article about the IPMI Sensor Monitoring Plugin from Thomas Krenn",
+							"de_DE": "Offizieller Wiki Artikel zum IPMI Sensor Monitoring Plugin von Thomas Krenn"
+						}
+					}, {
+						"name": "GIT Repository",
+						"href": "http://git.thomas-krenn.com/?p=check_ipmi_sensor_v3.git;a=summary",
+						"description": {
+							"en_US": "Official GIT repository of the IPMI Sensor Monitoring Plugin from Thomas Krenn",
+							"de_DE": "Offizielles GIT Repository des IPMI Sensor Monitoring Plugins von Thomas Krenn"
+						}
+					}
+			 	],
+				"doc": {
+					"en_US": [
+						"<h4>IPMI Sensor Monitoring Plugin</h4>",
+						"<p>Using this plugin, the hardware status of a server can be monitored by Nagios",
+						"or Icinga. As specific examples, fan rotation speeds, temperatures, voltages,",
+						"power supply states and more will be monitored.</p>"
+					],
+					"de_DE": [
+						"<h4>IPMI Sensor Monitoring Plugin</h4>",
+						"<p>Mit diesem Plugin kann der Hardware Status eines Servers mit Nagios oder Icinga",
+						"überwacht werden. Beispiele für Sensoren, die überwacht werden, sind Lüfterdrehzahlen,",
+						"Temperaturen, Spannungen, Netzteilstatus und mehr.</p>"
+					]
+				},
+				"tk_notify": true,
+				"tk_notify_default": true
+			}
+		},{
+			"service_description": "net-ping-ipmi",
+			"display_name": "Ping check IPMI host address",
+			"check_command": {
+				"command_name": "check_ipmi_alive",
+				"arguments": null
+			},
+			"_catalogue_attributes": {
+				"tags": ["remote", "ipmi", "ping", "tkmon"],
+				"name": "net-ping-ipmi",
+				"label": {
+					"en_US": "IPMI Interface Ping Check",
+					"de_DE": "IPMI Interface Ping Check"
+				},
+				"description": {
+					"en_US": "Checks the IPMI IP address",
+					"de_DE": "Prüft die Erreichbarkeit der IPMI IP-Adresse"
+				},
+				"defined": true,
+				"defined_in": "/etc/icinga/tkmon/base/05-check-commands.cfg",
+				"links": [
+					{
+						"name": "IPMI Ping Check",
+						"href": {
+							"en_US": "http://www.thomas-krenn.com/en/wiki/IPMI_Sensor_Monitoring_Plugin",
+							"de_DE": "http://www.thomas-krenn.com/de/wiki/IPMI_Sensor_Monitoring_Plugin"
+						},
+						"description": {
+							"en_US": "Official wiki article about the IPMI Sensor Monitoring Plugin from Thomas Krenn",
+							"de_DE": "Offizieller Wiki Artikel zum IPMI Sensor Monitoring Plugin von Thomas Krenn"
+						}
+					}, {
+						"name": "GIT Repository",
+						"href": "http://git.thomas-krenn.com/?p=check_ipmi_sensor_v3.git;a=summary",
+						"description": {
+							"en_US": "Official GIT repository of the IPMI Sensor Monitoring Plugin from Thomas Krenn",
+							"de_DE": "Offizielles GIT Repository des IPMI Sensor Monitoring Plugins von Thomas Krenn"
+						}
+					}
+				],
+				"doc": {
+					"en_US": [
+						"<h4>IPMI Interface Check</h4>",
+						"<pThis check ensures that the IPMI interface is reachable.</p>"
+					],
+					"de_DE": [
+						"<h4>IPMI Interface Check</h4>",
+						"<p>Dieser Check testet die Erreichbarkeit des IPMI Interfaces.</p>"
+					]
+				},
+				"tk_notify": false,
+				"tk_notify_default": false
+			}
+		},{
+			"service_description": "vmware-esxi-hardware",
+			"display_name": "VMware ESXi Hardware",
+			"check_command": {
+				"command_name": "check_esxi_hardware",
+				"arguments": [
+					{
+						"label": {
+							"en_US": "Username",
+							"de_DE": "Benutzername"
+						},
+						"description": {
+							"en_US": "Username to access the ESXi server. Don't use a user with root privileges for that!",
+							"de_DE": "Benutzername für den Zugriff auf den ESXi Server. Hier keinen Benutzer mit root Rechten verwenden!"
+						},
+						"validation": "string",
+						"argument": "-U"
+					},
+					{
+						"label": {
+							"en_US": "Password",
+							"de_DE": "Passwort"
+						},
+						"description": {
+							"en_US": "Password of the user to access the ESXi server.",
+							"de_DE": "Passwort des Benutzers zum Zugriff auf den ESXi Server."
+						},
+						"validation": "string",
+						"type" : "password",
+						"argument": "-P"
+					}
+				]
+			},
+			"_catalogue_attributes": {
+				"tags": ["remote", "vmware", "esx", "esxi"],
+				"name": "vmware-esxi-hardware",
+				"label": {
+					"en_US": "VMware ESXi Hardware Check",
+					"de_DE": "VMware ESXI Hardware Test"
+				},
+				"description": {
+					"en_US": "Checks the hardware status of a VMware ESXi host",
+					"de_DE": "Testet den Hardware Status eines VMware ESXi Hosts"
+				},
+				"defined": true,
+				"defined_in": "/etc/nagios-plugins/config/vmware_esxi.cfg",
+				"links": [{
+					"name": "ESXi Hardware Monitoring Plugin",
+					"href": {
+						"en_US": "http://www.thomas-krenn.com/de/wiki/VMware_ESXi_Hardware_mit_Nagios_oder_Icinga_ueberwachen",
+						"de_DE": "http://www.thomas-krenn.com/de/wiki/VMware_ESXi_Hardware_mit_Nagios_oder_Icinga_ueberwachen"
+					},
+					"description": {
+						"en_US": "Wiki article about the ESXi Hardware Monitoring Plugin",
+						"de_DE": "Wiki Artikel zum ESXi Hardware Monitoring Plugin"
+					}
+				}, {
+					"name": "ESXi Hardware Monitoring Plugin Website",
+					"href": "http://www.claudiokuenzler.com/nagios-plugins/check_esxi_hardware.php",
+					"description": {
+						"en_US": "Website of the check_esxi_hardware.py plugin",
+						"de_DE": "Webseite des check_esxi_hardware.py Plugins"
+					}
+				}],
 
-                "links": [{
-                    "name": "LSI RAID Monitoring Plugin",
-                    "href": {
-                        "en_US": "http://www.thomas-krenn.com/en/wiki/LSI_RAID_Monitoring_Plugin",
-                        "de_DE": "http://www.thomas-krenn.com/de/wiki/LSI_RAID_Monitoring_Plugin"
-                    },
-                    "description": {
-                        "en_US": "Wiki article about the LSI RAID Monitoring Plugin",
-                        "de_DE": "Wiki Artikel zum LSI RAID Monitoring Plugin"
-                    }
-                }],
+				"doc": {
+					"en_US": [
+						"<h4>VMware ESXi Hardware Monitoring Plugin</h4>",
+						"<p>Using this plugin, the hardware of a VMware ESXi host can be monitored by Nagios",
+						"or Icinga. Please ensure to install all necessary CIM providers on your ESXi host,",
+						"e.g. the LSI CIM provider to monitor a LSI RAID controller.</p>"
+					],
+					"de_DE": [
+						"<h4>VMware ESXi Hardware Monitoring Plugin</h4>",
+						"<p>Mit diesem Plugin kann der Hardware Status eines ESXi Servers mit Nagios oder Icinga",
+						"überwacht werden. Bitte installieren Sie dazu am ESXi Host aller erforderlichen CIM,",
+						"Provider, z.B. den LSI CIM Provider zur Überwachung eines LSI RAID Controllers.</p>"
+					]
+				},
 
-                "doc": {
-                    "en_US": [
-                        "<h4>LSI RAID Monitoring Plugin (via NRPE)</h4>",
-                        "<p>Using this plugin, the status of a remote LSI RAID can be monitored by Nagios",
-                        "or Icinga. Please ensure to configure the NRPE daemon on the remote host.</p>"
-                    ],
-                    "de_DE": [
-                        "<h4>LSI RAID Monitoring Plugin (über NRPE)</h4>",
-                        "<p>Mit diesem Plugin kann der Status eines LSI RAIDs eines entfernten Servers mit Nagios oder Icinga",
-                        "überwacht werden. Bitte stellen Sie die korrekte Konfiguration des NRPE Daemons am entfernten Server sicher.</p>"
-                    ]
-                },
 
-                "tk_notify": true,
-                "tk_notify_default": true
-            }
-        },
-        {
-            "service_description": "lsi-raid-local",
-            "display_name": "LSI RAID Local",
-            "check_command": {
-                "command_name": "check_lsi_raid",
-                 "arguments": null
-            },
-            "_catalogue_attributes": {
-                "tags": ["local", "LSI", "RAID"],
-                "name": "lsi-raid-local",
-                "label": "LSI RAID",
-                "description": "Checks the LSI RAID",
-                "defined": true,
-                "defined_in": "/etc/nagios-plugins/config/check_lsi.cfg"
-            }
-        },
+				"tk_notify": true,
+				"tk_notify_default": true
+			}
+		},
 		{
-            "service_description": "load-nrpe",
-            "display_name": "SYTEM LOAD",
-            "check_command": {
-                "command_name": "check_nrpe_1arg",
-                 "arguments": [
-                    {
-                        "label": "command",
-                        "description": {
-                            "en_US": "Command which the remote NRPE daemon executes",
-                            "de_DE": "Kommando, das vom entfernten NRPE Daemon ausgeführt wird"
-                        },
-                        "validation": "string",
-                        "argument": "-c",
-						"value": "check_load"
-                    }
-                ]
-            },
-            "_catalogue_attributes": {
-                "tags": ["remote", "system", "load"],
-                "name": "system-load-nrpe",
-                "label": "System Load via NRPE",
-                "description": {
-                        "en_US": "Checks the status of a remote system load via NRPE",
-                        "de_DE": "Testet den Status einer entfernten System Load via NRPE"
-                },
-                "defined": true,
-                "defined_in": "/etc/nagios-plugins/config/check_nrpe.cfg",
-
-                "links": [{
-                    "name": "System Load Monitoring Plugin",
-                    "href": {
-                        "en_US": "http://www.thomas-krenn.com/en/wiki/System_Load_Monitoring_Plugin",
-                        "de_DE": "http://www.thomas-krenn.com/de/wiki/Sysytem_Load_Monitoring_Plugin"
-                    },
-                    "description": {
-                        "en_US": "Wiki article about the System Load Monitoring Plugin",
-                        "de_DE": "Wiki Artikel zum System Load Monitoring Plugin"
-                    }
-                }],
-
-                "doc": {
-                    "en_US": [
-                        "<h4>System Load Monitoring Plugin (via NRPE)</h4>",
-                        "<p>Using this plugin, the status of a remote system load can be monitored by Nagios",
-                        "or Icinga. Please ensure to configure the NRPE daemon on the remote host.</p>"
-                    ],
-                    "de_DE": [
-                        "<h4>System Load Monitoring Plugin (über NRPE)</h4>",
-                        "<p>Mit diesem Plugin kann der Status einer entfernten System Load mit Nagios oder Icinga",
-                        "überwacht werden. Bitte stellen Sie die korrekte Konfiguration des NRPE Daemons am entfernten Server sicher.</p>"
-                    ]
-                },
-
-                "tk_notify": false,
-                "tk_notify_default": false
-            }
-        }
-    ]
-
+			"service_description": "adaptec-raid-local",
+			"display_name": "Adaptec RAID Local",
+			"check_command": {
+				"command_name": "check_adaptec_raid",
+				 "arguments": null
+			},
+			"_catalogue_attributes": {
+				"tags": ["local", "Adaptec", "RAID"],
+				"name": "adaptec-raid-local",
+				"label": "Adaptec RAID",
+				"description": {
+					"en_US": "Checks the status of a local Adaptec RAID",
+					"de_DE": "Prüft den Status eines lokalen Adaptec RAIDs"
+				},
+				"defined": true,
+				"defined_in": "/etc/nagios-plugins/config/check_adaptec.cfg",
+				"links": [
+					{
+						"name": "Adaptec RAID Monitoring Plugin",
+						"href": {
+							"en_US": "http://www.thomas-krenn.com/en/wiki/Adaptec_RAID_Monitoring_Plugin",
+							"de_DE": "http://www.thomas-krenn.com/de/wiki/Adaptec_RAID_Monitoring_Plugin"
+						},
+						"description": {
+							"en_US": "Wiki article about the Adaptec RAID Monitoring Plugin",
+							"de_DE": "Wiki Artikel zum Adaptec RAID Monitoring Plugin"
+						}
+					},
+					{
+						"name": "GIT Repository",
+						"href": "http://git.thomas-krenn.com/?p=check_adaptec_raid.git;a=summary",
+						"description": {
+							"en_US": "Official GIT repository of the Adaptec Raid Monitoring Plugin from Thomas Krenn",
+							"de_DE": "Offizielles GIT Repository des Adaptec Raid Monitoring Plugin von Thomas Krenn"
+						}
+					}
+				],
+				"doc": {
+					"en_US": [
+						"<h4>Adaptec RAID Monitoring Plugin</h4>",
+						"<p>Using this plugin, the status of a local Adaptec RAID can be monitored by Nagios",
+						"or Icinga. Please ensure to configure arcconf correctly.</p>"
+					],
+					"de_DE": [
+						"<h4>Adaptec RAID Monitoring Plugin</h4>",
+						"<p>Mit diesem Plugin kann der Status eines lokalen Adaptec RAIDs mit Nagios oder Icinga",
+						"überwacht werden. Bitte stellen Sie die korrekte Konfiguration von arcconf sicher.</p>"
+					]
+				},
+				"tk_notify": true,
+				"tk_notify_default": true
+			}
+		},
+		{
+			"service_description": "lsi-raid-local",
+			"display_name": "LSI RAID Local",
+			"check_command": {
+				"command_name": "check_lsi_raid",
+				 "arguments": null
+			},
+			"_catalogue_attributes": {
+				"tags": ["local", "LSI", "lsi", "RAID"],
+				"name": "lsi-raid-local",
+				"label": "LSI RAID",
+				"description": {
+					"en_US": "Checks the status of a local LSI RAID",
+					"de_DE": "Prüft den Status eines lokalen LSI RAIDs"
+				},
+				"defined": true,
+				"defined_in": "/etc/nagios-plugins/config/check_lsi.cfg",
+				"links": [
+					{
+						"name": "LSI RAID Monitoring Plugin",
+						"href": {
+							"en_US": "http://www.thomas-krenn.com/en/wiki/LSI_RAID_Monitoring_Plugin",
+							"de_DE": "http://www.thomas-krenn.com/de/wiki/LSI_RAID_Monitoring_Plugin"
+						},
+						"description": {
+							"en_US": "Wiki article about the LSI RAID Monitoring Plugin",
+							"de_DE": "Wiki Artikel zum LSI RAID Monitoring Plugin"
+						}
+					},
+					{
+						"name": "GIT Repository",
+						"href": "http://git.thomas-krenn.com/?p=check_lsi_raid.git;a=summary",
+						"description": {
+							"en_US": "Official GIT repository of the LSI Raid Monitoring Plugin from Thomas Krenn",
+							"de_DE": "Offizielles GIT Repository des LSI Raid Monitoring Plugin von Thomas Krenn"
+						}
+					}
+				],
+				"doc": {
+					"en_US": [
+						"<h4>Adaptec RAID Monitoring Plugin</h4>",
+						"<p>Using this plugin, the status of a local LSI RAID can be monitored by Nagios",
+						"or Icinga. Please ensure to configure storcli correctly.</p>"
+					],
+					"de_DE": [
+						"<h4>Adaptec RAID Monitoring Plugin</h4>",
+						"<p>Mit diesem Plugin kann der Status eines lokalen LSI RAIDs mit Nagios oder Icinga",
+						"überwacht werden. Bitte stellen Sie die korrekte Konfiguration von storcli sicher.</p>"
+					]
+				},
+				"tk_notify": true,
+				"tk_notify_default": true
+			}
+		},
+		{
+			"service_description": "smart-attributes",
+			"display_name": "SMART Attributes",
+			"check_command": {
+				"command_name": "check_smart_attributes",
+				"arguments": [
+				{
+					"label": "Disk",
+					"description": {
+						"en_US": "HDD/SSD to monitor (e.g. /dev/sda)",
+						"de_DE": "HDD/SSD zum Überwachen (z.B. /dev/sda)"
+					},
+					"validation": "string",
+					"argument": "-d"
+				}
+				]
+			},
+			"_catalogue_attributes": {
+				"tags": ["smart", "hdd", "ssd"],
+				"name": "smart-attributes",
+				"label": {
+					"en_US": "SMART Check",
+					"de_DE": "SMART Check"
+				},
+				"description": {
+					"en_US": "Checks SMART attributes of a HDD or SSD",
+					"de_DE": "Prüft SMART Attribute einer Festplatte oder SSD"
+				},
+				"defined": true,
+				"defined_in": "/etc/nagios-plugins/config/check_smart.cfg",
+				"links": [{
+					"name": "SMART Attributes Monitoring Plugin",
+					"href": {
+						"en_US": "http://www.thomas-krenn.com/en/wiki/SMART_Attributes_Monitoring_Plugin",
+						"de_DE": "http://www.thomas-krenn.com/de/wiki/SMART_Attributes_Monitoring_Plugin"
+					},
+					"description": {
+						"en_US": "Official wiki article about the SMART Attributes Monitoring Plugin from Thomas Krenn",
+						"de_DE": "Offizieller Wiki Artikel zum SMART Attributes Monitoring Plugin von Thomas Krenn"
+					}
+				},{
+					"name": "GIT Repository",
+					"href": "http://git.thomas-krenn.com/?p=check_smart_attributes_v3.git;a=summary",
+					"description": {
+						"en_US": "Official GIT repository of the SMART Attributes Monitoring Plugin from Thomas Krenn",
+						"de_DE": "Offizielles GIT Repository des SMART Attributes Monitoring Plugins von Thomas Krenn"
+					}
+				}],
+				"doc": {
+					"en_US": [
+						"<h4>SMART Attributes Check</h4>",
+						"<p>Using this plugin, the SMART attributes of a harddisk can be monitored</p>"
+						],
+					"de_DE": [
+						"<h4>SMART Attribute Check</h4>",
+						"<p>Mit diesem Plugin können die SMART Attribute einer Festplatte oder SSD",
+						"ausgelesen werden.</p>"
+						]
+				},
+				"tk_notify": true,
+				"tk_notify_default": true
+			}
+		}
+	]
 }

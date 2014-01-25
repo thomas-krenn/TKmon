@@ -1,0 +1,657 @@
+{
+	"type": "service",
+	"version": "1.0",
+	"description": "Services catalogue for nagios standard plugins",
+	"data": [
+		{
+			"service_description": "disk-smb-check",
+			"display_name": "samba share disk usage",
+			"check_command": {
+				"command_name": "check_disk_smb_workgroup_user",
+				"arguments": [
+				{
+					"label": "Hostname",
+					"description": {
+						"en_US": "Hostname of the Samba server",
+						"de_DE": "Hostname des Samba-Servers"
+					},
+					"validation": "hostname",
+					"argument": "-H"
+				},
+				{
+					"label": "Share",
+					"description": {
+						"en_US": "Name of share on the Samba server",
+						"de_DE": "Name der Freigabe auf dem Samba-Server"
+					},
+					"validation": "string",
+					"argument": "-s"
+				},
+				{
+					"label": "Workgroup",
+					"description": {
+						"en_US": "Workgroup in which the Samba share is located",
+						"de_DE": "Workgroup in der sich die Samba-Freigabe befindet"
+					},
+					"validation": "string",
+					"argument": "-W"
+				},
+				{
+					"label": "Username",
+					"description": {
+						"en_US": "Username to access the Samba share",
+						"de_DE": "Benutzername für die Samba-Freigabe"
+					},
+					"validation": "string",
+					"argument": "-u"
+				},
+				{
+					"label": "Password",
+					"description": {
+						"en_US": "Password for Samba share",
+						"de_DE": "Passwort für die Samba-Freigabe"
+					},
+					"validation": "string",
+					"argument": "-p"
+				}
+				]
+			},
+			"_catalogue_attributes": {
+				"tags": ["disk", "space", "usage", "mount", "samba", "share", "freigabe"],
+				"name": "check_disk_smb_workgroup_user",
+				"label": "Samba Share usage Status",
+				"description": {
+					"en_US": "Monitors the disk usage of a Samba share",
+					"de_DE": "Überprüft die Nutzung einer Samba-Freigabe eines bestimmten Servers"
+				},
+				"defined": true,
+				"defined_in": "/etc/nagios-plugins/config/disk-smb.cfg",
+				"doc": {
+					"en_US": [
+						"<h4>Samba Share Usage Check</h4>",
+						"<p>Using this plugin, the disk usage of a Samba Share can be monitored",
+						"with Nagios or Icinga.</p>"
+					],
+					"de_DE": [
+						"<h4>Samba Share Usage Check</h4>",
+						"<p>Mithilfe dieses Plugins wird die Kapazität einer Samba-Freigabe",
+						"mit Hilfe von Nagios oder Icinga überwacht.</p>"
+					]
+				},
+				"tk_notify": false,
+				"tk_notify_default": false
+			}
+		},
+		{
+			"service_description": "dns-host-check",
+			"display_name": "DNS Check",
+			"check_command": {
+				"command_name": "check_dns_host",
+				"arguments": [
+				{
+					"label": "Hostname",
+					"description": {
+						"en_US": "Hostname to check",
+						"de_DE": "Der zu überprüfende Hostname"
+					},
+					"validation": "hostname",
+					"argument": "-H"
+				},
+				{
+					"label": "IP-Address",
+					"description": {
+						"en_US": "IP-Address which should be resolved",
+						"de_DE": "IP-Adresse die aufgelöst werden soll"
+					},
+					"validation": "string",
+					"argument": "-a"
+				}
+				]
+			},
+			"_catalogue_attributes": {
+				"tags": ["domain", "dns", "ip", "address"],
+				"name": "check-dns-host",
+				"label": "Domain Name Service Check",
+				"description": {
+					"en_US": "Checks if the given host resolves to the corresponding IP-Address",
+					"de_DE": "Überprüft ob der gegebene Host zu der gebenen IP-Adresse aufgelöst wird"
+				},
+				"defined": true,
+				"defined_in": "/etc/tkmon/icinga/base/05-check-commands.cfg",
+				"doc": {
+					"en_US": [
+						"<h4>Domain Name System Check</h4>",
+						"<p>Using this plugin, a domain can be monitored whether it resolves",
+						"to the correct IP-Address with Nagios or Icinga.</p>"
+						],
+					"de_DE": [
+						"<h4>Domain Name System Check</h4>",
+						"<p>Mithilfe dieses Plugins kann überwacht werden, ob eine gegebene",
+						"Domain auf die richtige IP-Adresse aufgelöst wird.</p>"
+						]
+				},
+				"tk_notify": false,
+				"tk_notify_default": false
+			}
+		},{
+			"service_description": "ldap-check",
+			"display_name": "LDAP Check",
+			"check_command": {
+				"command_name": "check_ldap",
+				"arguments": [
+				{
+					"label": "LDAP-Base",
+					"description": {
+						"en_US": "LDAP Base (eg. ou=my unit, o=my org, c=at)",
+						"de_DE": "LDAP Base (z.B. ou=my unit, o=my org, c=at)"
+					},
+					"validation": "string",
+					"argument": "-b"
+				}
+				]
+			},
+			"_catalogue_attributes": {
+				"tags": ["ldap", "auth"],
+				"name": "check-ldap",
+				"label": "LDAP Check",
+				"description": {
+					"en_US": "Checks if there is a connectivity to the given LDAP server",
+					"de_DE": "Überprüft, ob eine Verbindung zum angegebenen LDAP-Server möglich ist"
+				},
+				"defined": true,
+				"defined_in": "/etc/nagios-plugins/config/ldap.cfg",
+				"doc": {
+					"en_US": [
+						"<h4>Lightweight Directory Access Protocol Check</h4>",
+						"<p>Using this plugin, the connectivity to a LDAP server",
+						"can be monitored with Nagios or Icinga.</p>"
+					],
+					"de_DE": [
+						"<h4>Lightweight Directory Access Protocol Check</h4>",
+						"<p>Mithilfe dieses Plugins kann ein LDAP-Server auf",
+						"Konnektivität überwacht werden.</p>"
+					]
+				},
+				"tk_notify": false,
+				"tk_notify_default": false
+			}
+		},{
+			"service_description": "ldaps-check",
+			"display_name": "LDAPs Check",
+			"check_command": {
+				"command_name": "check_ldaps",
+				"arguments": [
+				{
+					"label": "LDAP-Base",
+					"description": {
+						"en_US": "LDAP Base (eg. ou=my unit, o=my org, c=at)",
+						"de_DE": "LDAP Base (z.B. ou=my unit, o=my org, c=at)"
+					},
+					"validation": "string",
+					"argument": "-b"
+				}
+				]
+			},
+			"_catalogue_attributes": {
+				"tags": ["ldap", "auth", "ldaps", "ssl"],
+				"name": "check-ldaps",
+				"label": "LDAPs Check",
+				"description": {
+					"en_US": "Checks if there is a connectivity to the given LDAPs Server",
+					"de_DE": "Überprüft, ob eine Verbindung zum angegebenen LDAPs-Server möglich ist"
+				},
+				"defined": true,
+				"defined_in": "/etc/nagios-plugins/config/ldap.cfg",
+				"doc": {
+					"en_US": [
+						"<h4>Lightweight Directory Access Protocol Secure Check</h4>",
+						"<p>Using this plugin, the connectivity to a LDAPs server",
+						"can be monitored with Nagios or Icinga.</p>"
+					],
+					"de_DE": [
+						"<h4>Lightweight Directory Access Protocol Secure Check</h4>",
+						"<p>Mithilfe dieses Plugins kann ein LDAPs-Server auf",
+						"Konnektivität überwacht werden.</p>"
+					]
+				},
+				"tk_notify": false,
+				"tk_notify_default": false
+			}
+		},{
+			"service_description": "mailq-sendmail",
+			"display_name": "Sendmail Mailqueue Check",
+			"check_command": {
+				"command_name": "check_mailq_sendmail",
+				"arguments": [
+				{
+					"label": "Warning",
+					"description": {
+						"en_US": "Min. number of messages in queue to generate warning",
+						"de_DE": "Minimale Anzahl an Nachrichten in MailQ, um eine Warnung zu generieren"
+					},
+					"validation": "integer",
+					"argument": "-w"
+				},
+				{
+					"label": "Critical",
+					"description": {
+						"en_US": "Min. number of messages in queue to generate critical alert ( w < c )",
+						"de_DE": "Minimale Anzahl an Nachrichten in MailQ, um einen Critical Alert zu generieren"
+					},
+					"validation": "integer",
+					"argument": "-c"
+				}
+				]
+			},
+			"_catalogue_attributes": {
+				"tags": ["mail", "queue", "sendmail", "e-mail", "email"],
+				"name": "check-mailq-sendmail",
+				"label": "Sendmail Mailqueue Check",
+				"description": {
+					"en_US": "Checks how many mails are in Sendmail's mailqueue",
+					"de_DE": "Überprüft wieviele E-Mails sich in der Mailqueue von Sendmail befinden"
+				},
+				"defined": true,
+				"defined_in": "/etc/nagios-plugins/config/mailq.cfg",
+				"doc": {
+					"en_US": [
+						"<h4>Mailqueue Sendmail Check</h4>",
+						"<p>Using this plugin, the number of mails in Sendmail's",
+						"mailqueue can be monitored with Nagios or Icinga.</p>"
+					],
+					"de_DE": [
+						"<h4>Mailqueue Sendmail Check</h4>",
+						"<p>Mithilfe dieses Plugins kann überprüft werden, wieviele",
+						"E-Mails sich in der Mailqueue von Sendmail befinden.</p>"
+					]
+				},
+				"tk_notify": false,
+				"tk_notify_default": false
+			}
+		},{
+			"service_description": "mailq-postfix",
+			"display_name": "Postfix Mailqueue Check",
+			"check_command": {
+				"command_name": "check_mailq_postfix",
+				"arguments": [
+				{
+					"label": "Warning",
+					"description": {
+						"en_US": "Min. number of messages in queue to generate warning",
+						"de_DE": "Minimale Anzahl an Nachrichten in MailQ, um eine Warnung zu generieren"
+					},
+					"validation": "integer",
+					"argument": "-w"
+				},
+				{
+					"label": "Critical",
+					"description": {
+						"en_US": "Min. number of messages in queue to generate critical alert ( w < c )",
+						"de_DE": "Minimale Anzahl an Nachrichten in MailQ um einen Critical Alert zu generieren"
+					},
+					"validation": "integer",
+					"argument": "-c"
+				}
+				]
+			},
+			"_catalogue_attributes": {
+				"tags": ["mail", "queue", "postfix", "e-mail", "email"],
+				"name": "check-mailq-postfix",
+				"label": "Postfix Mailqueue Check",
+				"description": {
+					"en_US": "Checks how many mails are in the mailqueue of Postfix",
+					"de_DE": "Überprüft wieviele E-Mails sich in der Mailqueue von Postfix befinden"
+				},
+				"defined": true,
+				"defined_in": "/etc/nagios-plugins/config/mailq.cfg",
+				"doc": {
+					"en_US": [
+						"<h4>Mailqueue Postfix Check</h4>",
+						"<p>Using this plugin, the number of mails in Postfixs",
+						"mailqueue can be monitored with Nagios or Icinga.</p>"
+					],
+					"de_DE": [
+						"<h4>Mailqueue Postfix Check</h4>",
+						"<p>Mithilfe dieses Plugins kann überprüft werden, wieviele",
+						"E-Mails sich in der Mailqueue von Postfix befinden.</p>"
+					]
+				},
+				"tk_notify": false,
+				"tk_notify_default": false
+			}
+		},{
+			"service_description": "mailq-exim",
+			"display_name": "Exim Mailqueue Check",
+			"check_command": {
+				"command_name": "check_mailq_exim",
+				"arguments": [
+				{
+					"label": "Warning",
+					"description": {
+						"en_US": "Min. number of messages in queue to generate warning",
+						"de_DE": "Minimale Anzahl an Nachrichten in MailQ um eine Warnung zu generieren"
+					},
+					"validation": "integer",
+					"argument": "-w"
+				},
+				{
+					"label": "Critical",
+					"description": {
+						"en_US": "Min. number of messages in queue to generate critical alert ( w < c )",
+						"de_DE": "Minimale Anzahl an Nachrichten in MailQ um einen Critical Alert zu generieren"
+					},
+					"validation": "integer",
+					"argument": "-c"
+				}
+				]
+			},
+			"_catalogue_attributes": {
+				"tags": ["mail", "queue", "exim", "e-mail", "email"],
+				"name": "check-mailq-exim",
+				"label": "Exim Mailqueue Check",
+				"description": {
+					"en_US": "Checks how many mails are in Exims mailqueue",
+					"de_DE": "Überprüft wieviele E-Mails sich in der Mailqueue von Exim befinden"
+				},
+				"defined": true,
+				"defined_in": "/etc/nagios-plugins/config/mailq.cfg",
+
+				"doc": {
+					"en_US": [
+						"<h4>Mailqueue Exim Check</h4>",
+						"<p>Using this plugin, the number of mails in Exims",
+						"mailqueue can be monitored with Nagios or Icinga.</p>"
+						],
+					"de_DE": [
+						"<h4>Mailqueue Exim Check</h4>",
+						"<p>Mithilfe dieses Plugins kann überprüft werden wieviele",
+						"E-Mails sich in der Mailqueue von Exim befinden.</p>"
+						]
+				},
+				"tk_notify": false,
+				"tk_notify_default": false
+			}
+		},{
+			"service_description": "mailq-qmail",
+			"display_name": "QMail Mailqueue Check",
+			"check_command": {
+				"command_name": "check_mailq_qmail",
+				"arguments": [
+				{
+					"label": "Warning",
+					"description": {
+						"en_US": "Min. number of messages in queue to generate warning",
+						"de_DE": "Minimale Anzahl an Nachrichten in MailQ um eine Warnung zu generieren"
+					},
+					"validation": "integer",
+					"argument": "-w"
+				},
+				{
+					"label": "Critical",
+					"description": {
+						"en_US": "Min. number of messages in queue to generate critical alert ( w < c )",
+						"de_DE": "Minimale Anzahl an Nachrichten in MailQ um einen Critical Alert zu generieren"
+					},
+					"validation": "integer",
+					"argument": "-c"
+				}
+				]
+			},
+			"_catalogue_attributes": {
+				"tags": ["mail", "queue", "qmail", "e-mail", "email"],
+				"name": "check-mailq-qmail",
+				"label": "QMail Mailqueue Check",
+				"description": {
+					"en_US": "Checks how many mails are in QMails mailqueue",
+					"de_DE": "Überprüft wieviele E-Mails sich in der Mailqueue von QMail befinden"
+				},
+				"defined": true,
+				"defined_in": "/etc/nagios-plugins/config/mailq.cfg",
+				"doc": {
+					"en_US": [
+						"<h4>Mailqueue QMail Check</h4>",
+						"<p>Using this plugin, the number of mails in QMails",
+						"mailqueue can be monitored with Nagios or Icinga.</p>"
+					],
+					"de_DE": [
+						"<h4>Mailqueue QMail Check</h4>",
+						"<p>Mithilfe dieses Plugins kann überprüft werden wieviele",
+						"E-Mails sich in der Mailqueue von QMail befinden.</p>"
+					]
+				},
+				"tk_notify": false,
+				"tk_notify_default": false
+			}
+		},{
+			"service_description": "mysql",
+			"display_name": "MySQL Check",
+			"check_command": {
+				"command_name": "check_mysql_cmdlinecred",
+				"arguments": [
+				{
+					"label": "Username",
+					"description": {
+						"en_US": "Username for the MySQL Server",
+						"de_DE": "Benutzername für den MySQL Server"
+					},
+					"validation": "string",
+					"argument": "-u"
+				},
+				{
+					"label": "Password",
+					"description": {
+						"en_US": "Password for the MySQL Server",
+						"de_DE": "Passwort für den MySQL Server"
+					},
+					"validation": "string",
+					"argument": "-p"
+				}
+				]
+			},
+			"_catalogue_attributes": {
+				"tags": ["mysql", "query", "sql", "database", "db"],
+				"name": "check-mysql",
+				"label": "MySQL Check",
+				"description": {
+					"en_US": "Checks the connectivity to a MySQL server (or socket)",
+					"de_DE": "Überprüft ob eine Verbindung mit einem MySQL-Server (oder Socket) hergestellt werden kann"
+				},
+				"defined": true,
+				"defined_in": "/etc/nagios-plugins/config/mysql.cfg",
+				"doc": {
+					"en_US": [
+						"<h4>MySQL Connection Check</h4>",
+						"<p>Using this plugin, the connectivity to a MySQL",
+						"Server can be monitored with Nagios or Icinga.",
+						"ATTENTION: The Username and Password will be visible in a",
+						"process list!</p>"
+						],
+					"de_DE": [
+						"<h4>MySQL Connection Check</h4>",
+						"<p>Mithilfe dieses Plugins kann überprüft werden ob",
+						"eine Verbindung zu einem MySQL Server möglich ist.",
+						"ACHTUNG: Der Benutzername und das Passwort sind in der",
+						"Prozessliste sichtbar!</p>"
+						]
+				},
+				"tk_notify": false,
+				"tk_notify_default": false
+			}
+		},{
+			"service_description": "pgsql",
+			"display_name": "PostgreSQL Check",
+			"check_command": {
+				"command_name": "check_pgsql",
+				"arguments": null
+			},
+			"_catalogue_attributes": {
+				"tags": ["pgsql", "query", "sql", "database", "db", "postgresql"],
+				"name": "check-pgsql",
+				"label": "PostgreSQL Check",
+				"description": {
+					"en_US": "Checks the connectivity to a PostgreSQL server (or socket)",
+					"de_DE": "Überprüft ob eine Verbindung mit einem PostgreSQL-Server (oder Socket) hergestellt werden kann"
+				},
+				"defined": true,
+				"defined_in": "/etc/nagios-plugins/config/pgsql.cfg",
+				"doc": {
+					"en_US": [
+						"<h4>PostgreSQL Connection Check</h4>",
+						"<p>Using this plugin, the connectivity to a PostgreSQL",
+						"Server can be monitored with Nagios or Icinga.</p>"
+						],
+					"de_DE": [
+						"<h4>PostgreSQL Connection Check</h4>",
+						"<p>Mithilfe dieses Plugins kann überprüft werden ob",
+						"eine Verbindung zu einem PostgreSQL Server möglich ist.</p>"
+						]
+				},
+				"tk_notify": false,
+				"tk_notify_default": false
+			}
+		},{
+			"service_description": "radius",
+			"display_name": "RADIUS Server Check",
+			"check_command": {
+				"command_name": "check_radius",
+				"arguments": [
+				{
+					"label": "Username",
+					"description": {
+						"en_US": "Username for the RADIUS server",
+						"de_DE": "Benutzername für den RADIUS-Server"
+					},
+					"validation": "string",
+					"argument": "-u"
+				},
+				{
+					"label": "Password",
+					"description": {
+						"en_US": "Password for the RADIUS server",
+						"de_DE": "Passwort für den RADIUS-Server"
+					},
+					"validation": "string",
+					"argument": "-p"
+				},
+				{
+					"label": "Timeout",
+					"description": {
+						"en_US": "Connection timeout",
+						"de_DE": "Timeout der Verbindung"
+					},
+					"validation": "integer",
+					"argument": "-t"
+				}, 
+				{
+					"label": "Port",
+					"description": {
+						"en_US": "RADIUS port",
+						"de_DE": "RADIUS Port"
+					},
+					"validation": "port",
+					"argument": "-P"
+				}
+				]
+			},
+			"_catalogue_attributes": {
+				"tags": ["radius", "authentication"],
+				"name": "check-radius",
+				"label": "RADIUS Check",
+				"description": {
+					"en_US": "Checks the connectivity to a RADIUS server",
+					"de_DE": "Überprüft ob eine Verbindung mit einem RADIUS-Server hergestellt werden kann"
+				},
+				"defined": true,
+				"defined_in": "/etc/nagios-plugins/config/radius.cfg",
+				"doc": {
+					"en_US": [
+						"<h4>Remote Authentication Dial-In User Service Check</h4>",
+						"<p>Using this plugin, the connectivity to a RADIUS",
+						"server can be monitored with Nagios or Icinga.</p>"
+					],
+					"de_DE": [
+						"<h4>Remote Authentication Dial-In User Service Check</h4>",
+						"<p>Mithilfe dieses Plugins kann überprüft werden, ob",
+						"eine Verbindung zu einem RADIUS-Server möglich ist.</p>"
+					]
+				},
+				"tk_notify": false,
+				"tk_notify_default": false
+			}
+		},{
+			"service_description": "rpc",
+			"display_name": "RPC Check",
+			"check_command": {
+				"command_name": "check-rpc",
+				"arguments": [
+				{
+					"label": "Command",
+					"description": {
+						"en_US": "Command to use for the check",
+						"de_DE": "Kommando, das von check_rpc ausgeführt werden soll"
+					},
+					"validation": "string",
+					"argument": "-C"
+				}
+				]
+			},
+			"_catalogue_attributes": {
+				"tags": ["rpc", "remote", "procedure", "call", "authentication"],
+				"name": "check-rpc",
+				"label": "RPC Check",
+				"description": {
+					"en_US": "Checks the connectivity to RCP",
+					"de_DE": "Überprüft, ob eine Verbindung auf den RCP-Port hergestellt werden kann"
+				},
+				"defined": true,
+				"defined_in": "/etc/nagios-plugins/config/rpc-nfs.cfg",
+				"doc": {
+					"en_US": [
+						"<h4>Remote Procedure Call Check</h4>",
+						"<p>Using this plugin, the RPC connectivity of a",
+						"server can be monitored with Nagios or Icinga.</p>"
+					],
+					"de_DE": [
+						"<h4>Remote Procedure Call Check</h4>",
+						"<p>Mithilfe dieses Plugins kann überprüft werden, ob",
+						"eine RPC-Verbindung zu einem Server möglich ist.</p>"
+					]
+				},
+				"tk_notify": false,
+				"tk_notify_default": false
+			}
+		},{
+			"service_description": "nfs",
+			"display_name": "NFS Check",
+			"check_command": {
+				"command_name": "check-nfs",
+				"arguments": null
+			},
+			"_catalogue_attributes": {
+				"tags": ["nfs", "remote", "filesystem"],
+				"name": "check-nfs",
+				"label": "NFS Check",
+				"description": {
+					"en_US": "Checks the connectivity to NFS",
+					"de_DE": "Überprüft, ob eine Verbindung zum NFS-Port hergestellt werden kann"
+				},
+				"defined": true,
+				"defined_in": "/etc/nagios-plugins/config/rpc-nfs.cfg",
+				"doc": {
+					"en_US": [
+						"<h4>Network File System Check</h4>",
+						"<p>Using this plugin, the NFS connectivity of a",
+						"server can be monitored with Nagios or Icinga.</p>"
+						],
+					"de_DE": [
+						"<h4>Network File System Check</h4>",
+						"<p>Mithilfe dieses Plugins kann überprüft werden, ob",
+						"eine NFS-Verbindung zu einem Server möglich ist.</p>"
+						]
+				},
+				"tk_notify": false,
+				"tk_notify_default": false
+			}
+		}
+	]
+}
