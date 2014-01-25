@@ -1,0 +1,1 @@
+0 7 * * * root /usr/bin/apt-get update
