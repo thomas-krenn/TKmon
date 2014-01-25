@@ -16,7 +16,7 @@
  * along with TKMON.  If not, see <http://www.gnu.org/licenses/>.
  *
  * @author Marius Hein <marius.hein@netways.de>
- * @copyright 2012-2013 NETWAYS GmbH <info@netways.de>
+ * @copyright 2012-2014 NETWAYS GmbH <info@netways.de>
  */
 
 namespace TKMON\Action\Expose\System\Update;
@@ -90,6 +90,21 @@ class Apt extends Base
             $template['error'] = $e->getMessage();
         }
 
+        return $template;
+    }
+
+    /**
+     * Action include a restart required display
+     *
+     * @param   ArrayObject     $params
+     * @return  TwigTemplate
+     */
+    public function actionRestartRequired(ArrayObject $params)
+    {
+        $model = new AptModel($this->container);
+        $template = new TwigTemplate($this->container['template']);
+        $template->setTemplateName('views/System/Update/Apt/EmbeddedRestartRequired.twig');
+        $template['restartRequired'] = $model->isRestartRequired();
         return $template;
     }
 

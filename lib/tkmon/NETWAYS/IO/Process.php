@@ -16,7 +16,7 @@
  * along with TKMON.  If not, see <http://www.gnu.org/licenses/>.
  *
  * @author Marius Hein <marius.hein@netways.de>
- * @copyright 2012-2013 NETWAYS GmbH <info@netways.de>
+ * @copyright 2012-2014 NETWAYS GmbH <info@netways.de>
  */
 
 namespace NETWAYS\IO;
@@ -542,7 +542,11 @@ class Process
         }
 
         if ($this->processReturn > 0 && $this->ignoreProcessReturn === false) {
-            throw new Exception\ProcessException('Process exited with '. $this->processReturn);
+            throw new Exception\ProcessException(
+                'Process exited with '. $this->processReturn .
+                (($this->processError) ? '. STDERR: ' . $this->processError :
+                    '(NOSTDERR)')
+            );
         }
 
         return true;

@@ -16,10 +16,12 @@
  * along with TKMON.  If not, see <http://www.gnu.org/licenses/>.
  *
  * @author Marius Hein <marius.hein@netways.de>
- * @copyright 2012-2013 NETWAYS GmbH <info@netways.de>
+ * @copyright 2012-2014 NETWAYS GmbH <info@netways.de>
  */
 
 namespace TKMON\Action\Expose\System\Configuration;
+
+use TKMON\Model\ThomasKrenn\ContactInfo;
 
 /**
  * Action to handle mail configuration tasks
@@ -122,7 +124,10 @@ class Mail extends \TKMON\Action\Base
 
             $validator->validateArrayObject($params);
 
+            $contactInfoModel = new ContactInfo($this->container);
+
             $senderModel = new \TKMON\Model\Mail\Sender($this->container);
+            $senderModel->setContactInfo($contactInfoModel);
             $senderModel->setSender($params->get('sender'));
 
             $postfixModel = new \TKMON\Model\Mail\Postfix($this->container);

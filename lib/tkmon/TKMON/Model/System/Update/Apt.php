@@ -16,7 +16,7 @@
  * along with TKMON.  If not, see <http://www.gnu.org/licenses/>.
  *
  * @author Marius Hein <marius.hein@netways.de>
- * @copyright 2012-2013 NETWAYS GmbH <info@netways.de>
+ * @copyright 2012-2014 NETWAYS GmbH <info@netways.de>
  */
 
 
@@ -34,7 +34,19 @@ use TKMON\Model\ApplicationModel;
  */
 class Apt extends ApplicationModel
 {
-    const APT_REGEX = '/(inst|conf|remv)\s+([^\s]+)\s(\[([^\]]+)\]\s+)?\(([^\s]+)\s([^\s]+)\s\[([^\]]+)\]\)/i';
+    /**
+     * Regex to parse apt output
+     *
+     * @var string
+     */
+    const APT_REGEX = '/(inst|conf|remv)\s+([^\s]+)\s(\[([^\]]+)\]\s+)?\(([^\s]+)\s([^\s]+)(\s\[([^\]]+)\]\))?/i';
+
+    /**
+     * Identifier for update-notifier-common if a restart is required
+     *
+     * @var string
+     */
+    const REBOOT_REQUIRED_FILE = '/var/run/reboot-required';
 
     /**
      * Generates href to follow package information
@@ -46,7 +58,14 @@ class Apt extends ApplicationModel
      */
     private function createPackageHref($repository, $packageName)
     {
-        list($ubuntuVersion, $repository) = explode('/', $repository, 2);
+        $repoData = explode('/', $repository, 2);
+
+        if (count($repoData) !== 2) {
+            return null;
+        }
+
+        $ubuntuVersion = array_shift($repoData);
+        $repository = array_shift($repoData);
 
         if (strpos($repository, '-security') !== false) {
             $repository = str_replace('-security', '-updates', $repository);
@@ -69,7 +88,12 @@ class Apt extends ApplicationModel
             /** @var Process $aptGet */
             $aptGet = $this->container['command']->create('apt-get');
             $aptGet->addEnvironment('DEBIAN_FRONTEND', 'noninteractive');
+
             $aptGet->addPositionalArgument('-qq');
+
+            // Keep changes in files when do updates
+            // @see https://www.netways.org/issues/2435
+            $aptGet->addNamedArgument('-o', 'Dpkg::Options::=--force-confold');
 
             // Use dist-upgrade here. This install also new dependencies
             // for other packages
@@ -77,9 +101,22 @@ class Apt extends ApplicationModel
             $aptGet->addPositionalArgument('dist-upgrade');
 
             $aptGet->addPositionalArgument('-y');
+
+            $aptGet->ignoreStdErr();
+
             $aptGet->execute();
 
-            return $aptGet->getOutput();
+            $output = $aptGet->getOutput();
+
+            if ($aptGet->getProcessError()) {
+                if ($output) {
+                    $output .= chr(13) . '---' . chr(13);
+                }
+
+                $output .= $aptGet->getProcessError();
+            }
+
+            return $output;
         } else {
             throw new ModelException('No pending updates found');
         }
@@ -113,12 +150,16 @@ class Apt extends ApplicationModel
         $aptGet = $this->container['command']->create('apt-get');
         $aptGet->addEnvironment('DEBIAN_FRONTEND', 'noninteractive');
         $aptGet->addPositionalArgument('--just-print');
-        $aptGet->addPositionalArgument('upgrade');
+
+        // To fetch also dependencies use dist-upgrade
+        // @see https://www.netways.org/issues/2342
+        $aptGet->addPositionalArgument('dist-upgrade');
+
         $aptGet->execute();
 
-        $output = $aptGet->getOutput();
-        $match = array();
-        $records = array();
+        $output     = $aptGet->getOutput();
+        $match      = array();
+        $records    = array();
 
         if (preg_match_all(self::APT_REGEX, $output, $match, PREG_SET_ORDER)) {
             foreach ($match as $index => $parts) {
@@ -129,15 +170,15 @@ class Apt extends ApplicationModel
                     continue;
                 }
 
-                $record = new \stdClass();
-                $record->operation = $operation;
-                $record->packageName = $parts[2];
-                $record->broke = ($parts[4]) ? $parts[4] : null;
-                $record->version = $parts[5];
-                $record->repository = $parts[6];
-                $record->architecture = $parts[7];
-                $record->href = $this->createPackageHref($record->repository, $record->packageName);
-                $records[] = $record;
+                $record                 = new \stdClass();
+                $record->operation      = $operation;
+                $record->packageName    = $parts[2];
+                $record->broke          = ($parts[4]) ? $parts[4] : null;
+                $record->version        = $parts[5];
+                $record->repository     = $parts[6];
+                $record->architecture   = $parts[8];
+                $record->href           = $this->createPackageHref($record->repository, $record->packageName);
+                $records[]              = $record;
             }
         }
 
@@ -183,5 +224,19 @@ class Apt extends ApplicationModel
         $aptGet->addPositionalArgument('stats');
         $aptGet->execute();
         return $aptGet->getOutput();
+    }
+
+    /**
+     * Test if a system restart is required
+     *
+     * @return bool
+     */
+    public function isRestartRequired()
+    {
+        if (file_exists(self::REBOOT_REQUIRED_FILE) === true) {
+            return true;
+        }
+
+        return false;
     }
 }
