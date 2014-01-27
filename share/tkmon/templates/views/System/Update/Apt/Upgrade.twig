@@ -17,8 +17,11 @@
     <i class="icon-exclamation-sign"></i> {% trans "Yes, upgrade my system" %}
 </button>
 
+<div id="message-target" class="container-spacer-down">
 
-<div id="upgrade-process-target" class="container-spacer-down ">
+</div>
+
+<div id="upgrade-process-target" class="container-spacer-down hidden">
     <div class="progress progress-info" style="margin: 0 20px 0 20px;">
         <div class="bar" style="width: 1px"></div>
     </div>
@@ -30,10 +33,6 @@
             <dt>Runtime</dt>
             <dd><span id="runtime-value">0s</span></dd>
         </dl>
-    </div>
-
-    <div id="message-target" class="container-spacer-down">
-
     </div>
 
     <div>
@@ -79,19 +78,21 @@
         var startTime = 0;
 
         var clearProgress = function(show) {
-            var base = $('#upgrade-process-target');
-            if (show === true) {
-                base.removeClass('hidden');
-            } else {
-                base.addClass('hidden');
-            }
-
-            base.find('div.progress div.bar').css('width', 0);
+            showProcessFrame(show);
+            $('#upgrade-process-target').find('div.progress div.bar').css('width', 0);
             $('#progress-value').html('0%');
             $('#runtime-value').html('0s');
             $('#error-target').html('No errors.');
             $('#info-target').html('No info.');
             $('#message-target').html('');
+        };
+
+        var showProcessFrame = function(show) {
+            if (show === true) {
+                $('#upgrade-process-target').removeClass('hidden');
+            } else {
+                $('#upgrade-process-target').addClass('hidden');
+            }
         };
 
         var messageBox = function(text, cls) {
@@ -111,17 +112,32 @@
 
         var startUpgrade = function() {
             startTime = Math.floor(new Date().getTime() / 1000);
+            $('#start-real-upgrade').addClass('disabled');
             $.ajax(upgradeUrl, {
                 type: 'POST',
                 data: {
                     doUpgrade: 1
                 }
+            }).done(function(data, textStatus) {
+                //clearProgress(true);
+                if (data && data.success === true) {
+                    showProcessFrame(true);
+                    window.setTimeout(traceStatus, 10);
+                } else {
+                    if (data.errors[0]) {
+                        showProcessFrame(false);
+                        var error = data.errors[0].message;
+
+                        if (String(error).match(/^no pending updates/i)) {
+                            messageBox('{% trans 'No updates found, everything ok' %}')
+                        } else {
+                            messageBox(error, 'error');
+                        }
+
+                        $('#start-real-upgrade').removeClass('disabled');
+                    }
+                }
             });
-
-            $('#start-real-upgrade').addClass('disabled');
-            clearProgress(true);
-
-            window.setTimeout(traceStatus, 10);
         };
 
         var stopUpgrade = function() {
@@ -142,9 +158,10 @@
                     stop = true;
                     stopUpgrade();
                     messageBox('{% trans 'System upgrade was successful.' %}');
+                    $('#start-real-upgrade').removeClass('disabled');
 
                     if (r.status.hasErrors === true) {
-                        messageBox('{% trans 'Errors occured, please examine error panel for more information.' %}', 'error');
+                        messageBox('{% trans 'Errors occurred, please examine error panel for more information.' %}', 'error');
                     }
                 }
 
