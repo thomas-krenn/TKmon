@@ -117,11 +117,13 @@
                 type: 'POST',
                 data: {
                     doUpgrade: 1
+                },
+                beforeSend: function() {
+                    clearProgress(true);
                 }
             }).done(function(data, textStatus) {
                 //clearProgress(true);
                 if (data && data.success === true) {
-                    showProcessFrame(true);
                     window.setTimeout(traceStatus, 10);
                 } else {
                     if (data.errors[0]) {
@@ -148,28 +150,36 @@
             var stop = false;
 
             var trace = function() {
-                var r = getStatus();
-
-                if (r !== null) {
-                    updateProgress(r);
-                }
-
-                if (r === null || r.running === false) {
-                    stop = true;
-                    stopUpgrade();
-                    messageBox('{% trans 'System upgrade was successful.' %}');
-                    $('#start-real-upgrade').removeClass('disabled');
-
-                    if (r.status.hasErrors === true) {
-                        messageBox('{% trans 'Errors occurred, please examine error panel for more information.' %}', 'error');
+                $.ajax(statusUrl, {
+                    type: 'GET'
+                }).done(function(data) {
+                    if (data !== null) {
+                        updateProgress(data);
                     }
-                }
 
-                window.setInterval(function() {
-                    if (stop === false) {
-                        trace();
+                    if (data === null || data.running === false) {
+                        stop = true;
+                        stopUpgrade();
+                        messageBox('{% trans 'System upgrade was successful.' %}');
+                        $('#start-real-upgrade').removeClass('disabled');
+
+                        if (data.status.hasErrors === true) {
+                            messageBox('{% trans 'Errors occurred, please examine error panel for more information.' %}', 'error');
+                        }
                     }
-                }, 500);
+
+                    window.setInterval(function() {
+                        if (stop === false) {
+                            trace();
+                        }
+                    }, 500);
+                }).fail(function(data, textStatus) {
+                    window.setInterval(function() {
+                        if (stop === false) {
+                            trace();
+                        }
+                    }, 500);
+                });
             };
 
             trace();
@@ -177,13 +187,8 @@
 
         var getStatus = function() {
             var out = null;
-            $.ajax(statusUrl, {
-                async: false,
-                type: 'GET'
-            }).done(function(data) {
-                out = data;
-            });
-            return out;
+
+
         };
 
         $('#start-real-upgrade').click(startUpgrade);
