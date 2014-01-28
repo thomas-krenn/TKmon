@@ -51,6 +51,8 @@
     "log.format":           "%date %logger %-5level %msg%n",
     "log.root":             "root",
 
+    "doc.basepath":         "{core.share_dir}/templates/doc",
+
     "system.interface":     "eth0",
     "system.apache_owner":  "www-data.www-data",
 

@@ -1,0 +1,13 @@
+<a id="documentation-widget" class="hidden" href="#">
+    <i class="icon-question-sign"></i> {% trans "Help" %}
+</a>
+
+<script>
+    require(['jquery', 'TKMON/documentation/Widget'], function($) {
+        $('#documentation-widget').documentationWidget({
+            url: '{{  web_link('Documentation/Context') }}',
+            identifier: window.location.pathname,
+            title: '{% trans "Hints" %}'
+        });
+    });
+</script>

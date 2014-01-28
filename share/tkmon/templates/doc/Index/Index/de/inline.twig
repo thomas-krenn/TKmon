@@ -1,0 +1,7 @@
+<h4>Wilkommen</h4>
+
+{%  if user.getAuthenticated() %}
+    <p>Benutze die Navigationsleiste auf der linken Seite um den Status der Umgebung zu sehen</p>
+{% else %}
+    <p>Bitte logge sich ein um TKmon vollumfänglich zu verwenden (Button gleich links).</p>
+{% endif %}
