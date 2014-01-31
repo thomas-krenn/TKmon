@@ -12,587 +12,105 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 1.5.4\n"
 
-#: /tmp/tkmon-templates//0a1511c4a88a3a371d5853402d92.php:24
-#: /tmp/tkmon-templates//27ffa012829be50d13aa2555839c.php:31
-msgid "Settings"
+#: /tmp/tkmon-templates//045cc4b71730f886c5e6fe94fb5c.php:22
+msgid "System updates"
 msgstr ""
 
-#: /tmp/tkmon-templates//0a1511c4a88a3a371d5853402d92.php:30
-msgid ""
-"Here you can configure your Thomas Krenn Call-Home-Service Subscription. "
-"Click the\n"
-"    <a href=\"http://www.thomas-krenn.com/en/wiki/Call-Home-Service"
-"\">following link to get more information</a>."
+#: /tmp/tkmon-templates//045cc4b71730f886c5e6fe94fb5c.php:37
+msgid "Information"
 msgstr ""
 
-#: /tmp/tkmon-templates//0a1511c4a88a3a371d5853402d92.php:38
-msgid ""
-"All data between your environment and Thomas Krenn will be encrypted. Read "
-"more on\n"
-"    our <strong><a href=\"http://www.thomas-krenn.com/en/wiki/Call-Home-"
-"Service_Privacy_Policy\">Call-Home-Service Privacy Policy</a></strong>."
+#: /tmp/tkmon-templates//045cc4b71730f886c5e6fe94fb5c.php:43
+#: /tmp/tkmon-templates//15ce436f5b0510dcb31aedec2294.php:20
+msgid "Test package dependencies"
 msgstr ""
 
-#: /tmp/tkmon-templates//0a1511c4a88a3a371d5853402d92.php:48
-#: /tmp/tkmon-templates//2d12f4b5afa364fd48ce438ac0eb.php:63
-#: /tmp/tkmon-templates//80bc8399d35989302ca05c14c65a.php:80
-#: /tmp/tkmon-templates//ad3a7d58b6ad806b8e5117b91557.php:57
-#: /tmp/tkmon-templates//bfdd7e114879883238fd62eb6e18.php:43
-msgid "Success"
+#: /tmp/tkmon-templates//045cc4b71730f886c5e6fe94fb5c.php:49
+#: /tmp/tkmon-templates//f55fb5dda8a6acb29e89686e6b5a.php:20
+msgid "List pending updates"
 msgstr ""
 
-#: /tmp/tkmon-templates//0a1511c4a88a3a371d5853402d92.php:53
-msgid ""
-"Changes have been written to disk.\n"
-"            Please <a href=\"%restart_link%\">restart your Icinga instance</"
-"a> for the changes to take effect."
+#: /tmp/tkmon-templates//045cc4b71730f886c5e6fe94fb5c.php:55
+#: /tmp/tkmon-templates//9a3db725e9b89794a16f7ee23a63.php:20
+msgid "Upgrade"
 msgstr ""
 
-#: /tmp/tkmon-templates//0a1511c4a88a3a371d5853402d92.php:62
-msgid "Toggle to enable call-home support"
-msgstr ""
-
-#: /tmp/tkmon-templates//0a1511c4a88a3a371d5853402d92.php:81
-msgid "Contact person"
-msgstr ""
-
-#: /tmp/tkmon-templates//0a1511c4a88a3a371d5853402d92.php:93
-#: /tmp/tkmon-templates//4dff0924e40bfef089a8dfec6c58.php:224
-msgid "Email address"
-msgstr ""
-
-#: /tmp/tkmon-templates//0a1511c4a88a3a371d5853402d92.php:105
-msgid "Call-Home Auth-Key"
-msgstr ""
-
-#: /tmp/tkmon-templates//0a1511c4a88a3a371d5853402d92.php:117
-msgid "Press the following button to commit your changes."
-msgstr ""
-
-#: /tmp/tkmon-templates//0a1511c4a88a3a371d5853402d92.php:123
-#: /tmp/tkmon-templates//16d65fa3fa5c9af91fa807b6853c.php:98
-#: /tmp/tkmon-templates//4dff0924e40bfef089a8dfec6c58.php:242
-#: /tmp/tkmon-templates//55767f86e39d361cf0efdde2a47e.php:125
-#: /tmp/tkmon-templates//ad3a7d58b6ad806b8e5117b91557.php:118
-#: /tmp/tkmon-templates//bed53433bbed76cea04c8936c38b.php:363
-msgid "Save"
-msgstr ""
-
-#: /tmp/tkmon-templates//0abe6a06ca5af186d9350ccb0b7b.php:26
-msgid ""
-"Change the IP address of this device and configure network related settings."
-msgstr ""
-
-#: /tmp/tkmon-templates//0abe6a06ca5af186d9350ccb0b7b.php:38
-msgid "Device"
-msgstr ""
-
-#: /tmp/tkmon-templates//0abe6a06ca5af186d9350ccb0b7b.php:44
-#: /tmp/tkmon-templates//bed53433bbed76cea04c8936c38b.php:81
-msgid "Address"
-msgstr ""
-
-#: /tmp/tkmon-templates//0abe6a06ca5af186d9350ccb0b7b.php:50
-msgid "DNS"
-msgstr ""
-
-#: /tmp/tkmon-templates//0abe6a06ca5af186d9350ccb0b7b.php:56
-msgid "Time"
-msgstr ""
-
-#: /tmp/tkmon-templates//0b410ce6bb7f1d9b2f9780df7223.php:20
-msgid "Reboot system"
-msgstr ""
-
-#: /tmp/tkmon-templates//0b410ce6bb7f1d9b2f9780df7223.php:42
-msgid ""
-"Please press the following button to reboot your appliance. The\n"
-"        reboot will take a few minutes. After the system is\n"
-"        available again the interface reloads and you will be prompted for\n"
-"        your credentials to login."
-msgstr ""
-
-#: /tmp/tkmon-templates//0b410ce6bb7f1d9b2f9780df7223.php:52
-#: /tmp/tkmon-templates//56f62b4d0bbdbf8f59280cc0d90d.php:60
-msgid "Warning"
-msgstr ""
-
-#: /tmp/tkmon-templates//0b410ce6bb7f1d9b2f9780df7223.php:56
-msgid "During reboot no notifications about problems will be send to you."
-msgstr ""
-
-#: /tmp/tkmon-templates//0b410ce6bb7f1d9b2f9780df7223.php:66
-msgid "Reboot device!"
-msgstr ""
-
-#: /tmp/tkmon-templates//1460afbac73a89f43f45fa44e7ed.php:22
-msgid "Device name"
-msgstr ""
-
-#: /tmp/tkmon-templates//1460afbac73a89f43f45fa44e7ed.php:32
-msgid ""
-"New device name was written to appliance. You should consider\n"
-"    to reboot your device. To do so, please <a href=\"%reboot_link%\">\n"
-"    click on this link</a> and follow instructions."
-msgstr ""
-
-#: /tmp/tkmon-templates//1460afbac73a89f43f45fa44e7ed.php:41
-msgid "Change your device name here to suite your needs."
-msgstr ""
-
-#: /tmp/tkmon-templates//1460afbac73a89f43f45fa44e7ed.php:48
-msgid ""
-"<span class=\"label label-info\">Information:</span> A valid\n"
-"    device name is <strong>&lt;name&gt;.&lt;fqdn&gt;</strong>\n"
-"    e.g. <strong>icinga.my.company.com</strong>"
-msgstr ""
-
-#: /tmp/tkmon-templates//1460afbac73a89f43f45fa44e7ed.php:71
-msgid "Current devicename"
-msgstr ""
-
-#: /tmp/tkmon-templates//1460afbac73a89f43f45fa44e7ed.php:82
-#: /tmp/tkmon-templates//6ed993a3f3c155f018ac2e5e323f.php:139
-msgid "Update"
-msgstr ""
-
-#: /tmp/tkmon-templates//16d65fa3fa5c9af91fa807b6853c.php:20
-msgid "Time settings"
-msgstr ""
-
-#: /tmp/tkmon-templates//16d65fa3fa5c9af91fa807b6853c.php:25
-msgid "On this page you can change the time server settings."
-msgstr ""
-
-#: /tmp/tkmon-templates//16d65fa3fa5c9af91fa807b6853c.php:35
-#: /tmp/tkmon-templates//2981a6f5e4863395c42bc050792e.php:50
-#: /tmp/tkmon-templates//2e1294b4fc0552a59510aabfed40.php:29
-#: /tmp/tkmon-templates//4dff0924e40bfef089a8dfec6c58.php:186
-#: /tmp/tkmon-templates//670d039b89459afb204e87cd596b.php:29
-#: /tmp/tkmon-templates//6ed993a3f3c155f018ac2e5e323f.php:30
-#: /tmp/tkmon-templates//9d47c912035b76abcd8dce0a08d5.php:48
-#: /tmp/tkmon-templates//b9ee7d873ccc790370d3d8c5df9f.php:31
-#: /tmp/tkmon-templates//bed53433bbed76cea04c8936c38b.php:255
-msgid "Success!"
-msgstr ""
-
-#: /tmp/tkmon-templates//16d65fa3fa5c9af91fa807b6853c.php:39
-msgid "Time configuration has been written and daemon has been restarted!"
-msgstr ""
-
-#: /tmp/tkmon-templates//16d65fa3fa5c9af91fa807b6853c.php:61
-msgid "Timeserver 1"
-msgstr ""
-
-#: /tmp/tkmon-templates//16d65fa3fa5c9af91fa807b6853c.php:73
-msgid "Timeserver 2"
-msgstr ""
-
-#: /tmp/tkmon-templates//16d65fa3fa5c9af91fa807b6853c.php:85
-msgid "Timeserver 3"
-msgstr ""
-
-#: /tmp/tkmon-templates//25f7e740e5f3f1a2644db3a19a7a.php:20
-msgid "Icinga status"
-msgstr ""
-
-#: /tmp/tkmon-templates//25f7e740e5f3f1a2644db3a19a7a.php:29
-msgid "Currently your Icinga daemon is"
-msgstr ""
-
-#: /tmp/tkmon-templates//25f7e740e5f3f1a2644db3a19a7a.php:40
-msgid ""
-"Icinga is running if the daemon is available and the status file is up-to-"
-"date."
-msgstr ""
-
-#: /tmp/tkmon-templates//25f7e740e5f3f1a2644db3a19a7a.php:45
-msgid "Press the following button to refresh the status:"
-msgstr ""
-
-#: /tmp/tkmon-templates//25f7e740e5f3f1a2644db3a19a7a.php:50
-msgid "Refresh"
-msgstr ""
-
-#: /tmp/tkmon-templates//27ffa012829be50d13aa2555839c.php:22
-msgid "Alert settings"
-msgstr ""
-
-#: /tmp/tkmon-templates//27ffa012829be50d13aa2555839c.php:37
-#: /tmp/tkmon-templates//83cbf07bd3b8532731d1c755db57.php:47
-#: /tmp/tkmon-templates//9d47c912035b76abcd8dce0a08d5.php:20
-#: /tmp/tkmon-templates//bfdd7e114879883238fd62eb6e18.php:20
-#: /tmp/tkmon-templates//bfdd7e114879883238fd62eb6e18.php:70
-msgid "Test"
-msgstr ""
-
-#: /tmp/tkmon-templates//2981a6f5e4863395c42bc050792e.php:20
-#: /tmp/tkmon-templates//83cbf07bd3b8532731d1c755db57.php:41
-#: /tmp/tkmon-templates//f40c6da8264275ac85ef482ace0c.php:22
-msgid "Configuration"
-msgstr ""
-
-#: /tmp/tkmon-templates//2981a6f5e4863395c42bc050792e.php:26
-msgid "Change sender address and relay host"
-msgstr ""
-
-#: /tmp/tkmon-templates//2981a6f5e4863395c42bc050792e.php:54
-msgid "Mail config was written to device"
-msgstr ""
-
-#: /tmp/tkmon-templates//2981a6f5e4863395c42bc050792e.php:61
-msgid "Sender address"
-msgstr ""
-
-#: /tmp/tkmon-templates//2981a6f5e4863395c42bc050792e.php:73
-msgid "Relayhost"
-msgstr ""
-
-#: /tmp/tkmon-templates//2981a6f5e4863395c42bc050792e.php:85
-msgid "Save and restart mailserver"
-msgstr ""
-
-#: /tmp/tkmon-templates//2d12f4b5afa364fd48ce438ac0eb.php:20
-#: /tmp/tkmon-templates//2d12f4b5afa364fd48ce438ac0eb.php:74
-#: /tmp/tkmon-templates//f73ab308af79cf384936655cf04e.php:50
-msgid "Restart Icinga"
-msgstr ""
-
-#: /tmp/tkmon-templates//2d12f4b5afa364fd48ce438ac0eb.php:25
-msgid "Use the following button to restart Icinga."
-msgstr ""
-
-#: /tmp/tkmon-templates//2d12f4b5afa364fd48ce438ac0eb.php:31
-#: /tmp/tkmon-templates//a3a44420b4a88348fe87f77f9f78.php:38
-msgid "Note"
-msgstr ""
-
-#: /tmp/tkmon-templates//2d12f4b5afa364fd48ce438ac0eb.php:36
-msgid "TKmon will not restart the daemon if the configuration check fails!"
-msgstr ""
-
-#: /tmp/tkmon-templates//2d12f4b5afa364fd48ce438ac0eb.php:67
-msgid "Icinga has been restarted successfully"
-msgstr ""
-
-#: /tmp/tkmon-templates//2d64296bdd4b91475fac4e81ef0c.php:20
-msgid "Information about updates"
-msgstr ""
-
-#: /tmp/tkmon-templates//2e1294b4fc0552a59510aabfed40.php:33
-msgid "User access has been modified successfully"
-msgstr ""
-
-#: /tmp/tkmon-templates//2e1294b4fc0552a59510aabfed40.php:41
-msgid "System access is"
-msgstr ""
-
-#: /tmp/tkmon-templates//2e1294b4fc0552a59510aabfed40.php:50
-msgid ""
-"Please <a href=\"#\" id=\"ssh-access-again-link\">click here</a> to change "
-"mode again."
-msgstr ""
-
-#: /tmp/tkmon-templates//2e1294b4fc0552a59510aabfed40.php:70
-#: /tmp/tkmon-templates//670d039b89459afb204e87cd596b.php:47
-msgid "To change the access setting please press the following button"
-msgstr ""
-
-#: /tmp/tkmon-templates//2e1294b4fc0552a59510aabfed40.php:85
-#: /tmp/tkmon-templates//670d039b89459afb204e87cd596b.php:100
-msgid "Enable"
-msgstr ""
-
-#: /tmp/tkmon-templates//2e1294b4fc0552a59510aabfed40.php:91
-msgid "System access (ssh/shell) for user %username% will be enabled."
-msgstr ""
-
-#: /tmp/tkmon-templates//2e1294b4fc0552a59510aabfed40.php:101
-#: /tmp/tkmon-templates//670d039b89459afb204e87cd596b.php:104
-msgid "Disable"
-msgstr ""
-
-#: /tmp/tkmon-templates//2e1294b4fc0552a59510aabfed40.php:107
-msgid "System access (ssh/shell) for user %username% will be disabled."
-msgstr ""
-
-#: /tmp/tkmon-templates//31870895e84572aabcdbb45863e9.php:32
-#: /tmp/tkmon-templates//6e907e97b10b7698ffad3d7dec80.php:103
+#: /tmp/tkmon-templates//0d3ad86527d0ecabc5ccc0f597b6.php:31
+#: /tmp/tkmon-templates//5bfde2597a6117dc56804de2419f.php:100
 msgid "This application is password protected. Please login to proceed."
 msgstr ""
 
-#: /tmp/tkmon-templates//31870895e84572aabcdbb45863e9.php:42
+#: /tmp/tkmon-templates//0d3ad86527d0ecabc5ccc0f597b6.php:41
 msgid ""
 "You are logged in successfully. You will be redirected\n"
 "        after a second. If not, please <a href=\"%link_home%\">\n"
 "        follow this link to proceed.</a>"
 msgstr ""
 
-#: /tmp/tkmon-templates//31870895e84572aabcdbb45863e9.php:66
+#: /tmp/tkmon-templates//0d3ad86527d0ecabc5ccc0f597b6.php:65
 msgid "Username"
 msgstr ""
 
-#: /tmp/tkmon-templates//31870895e84572aabcdbb45863e9.php:71
-#: /tmp/tkmon-templates//56f62b4d0bbdbf8f59280cc0d90d.php:119
-#: /tmp/tkmon-templates//74497cd5f1f8ed13aa08b8c4cd86.php:44
-#: /tmp/tkmon-templates//a3a44420b4a88348fe87f77f9f78.php:91
+#: /tmp/tkmon-templates//0d3ad86527d0ecabc5ccc0f597b6.php:70
+#: /tmp/tkmon-templates//18ae3d25359239dd7d6159077eb2.php:119
+#: /tmp/tkmon-templates//ab902caee6ceb1530fc5409e3102.php:44
+#: /tmp/tkmon-templates//c05b3fdba0819dc9d33cc2e19ced.php:87
 msgid "Password"
 msgstr ""
 
-#: /tmp/tkmon-templates//31870895e84572aabcdbb45863e9.php:79
-#: /tmp/tkmon-templates//6c80a85e777d51a2ad86447a5fc4.php:62
-#: /tmp/tkmon-templates//8270883f6a8b170343b51d10dc11.php:41
-#: /tmp/tkmon-templates//b8a3debf7b4fef52cb49f2ce7e7f.php:117
+#: /tmp/tkmon-templates//0d3ad86527d0ecabc5ccc0f597b6.php:78
+#: /tmp/tkmon-templates//61c3433b4ac26b22816eda703fdb.php:114
+#: /tmp/tkmon-templates//7875345f83a02541376dd5211ae3.php:57
+#: /tmp/tkmon-templates//c1d7f09e6e86081a778845b0bb45.php:41
 msgid "Login"
 msgstr ""
 
-#: /tmp/tkmon-templates//3d0d442987cc30a66d67cc6b76a3.php:23
-msgid "Test result"
-msgstr ""
-
-#: /tmp/tkmon-templates//3d0d442987cc30a66d67cc6b76a3.php:29
-msgid "Everything okay, no broken packages or dependency errors!"
-msgstr ""
-
-#: /tmp/tkmon-templates//3d0d442987cc30a66d67cc6b76a3.php:47
-msgid "Cache status"
-msgstr ""
-
-#: /tmp/tkmon-templates//3eb0c154c1b6050e34fe3ca9bf8d.php:25
-msgid "Language"
-msgstr ""
-
-#: /tmp/tkmon-templates//4155c529832e9c5521fa8b3843cc.php:39
-msgid "Service Status"
-msgstr ""
-
-#: /tmp/tkmon-templates//4155c529832e9c5521fa8b3843cc.php:46
-msgid "List of currently monitored services"
-msgstr ""
-
-#: /tmp/tkmon-templates//4155c529832e9c5521fa8b3843cc.php:54
+#: /tmp/tkmon-templates//15ce436f5b0510dcb31aedec2294.php:26
 msgid ""
-"Press the releod button to reload the current view or restrict the view to "
-"one of the following statuses:\n"
-"            <a href=\"%link_ok%\">OK</a>,\n"
-"            <a href=\"%link_warning%\">WARNING</a>,\n"
-"            <a href=\"%link_critical%\">CRITICAL</a>,\n"
-"            <a href=\"%link_unknown%\">UNKNOWN</a> or\n"
-"            <a href=\"%link_pending%\">PENDING</a>"
+"This step tests package dependencies and if something is broken in the "
+"packaging system."
 msgstr ""
 
-#: /tmp/tkmon-templates//4155c529832e9c5521fa8b3843cc.php:66
-#: /tmp/tkmon-templates//c849ef42bc8b37d3e5bcc614eb1c.php:54
-msgid "Reload"
+#: /tmp/tkmon-templates//15ce436f5b0510dcb31aedec2294.php:34
+msgid "Test packages"
 msgstr ""
 
-#: /tmp/tkmon-templates//4155c529832e9c5521fa8b3843cc.php:76
-msgid "Problems only"
+#: /tmp/tkmon-templates//15ce436f5b0510dcb31aedec2294.php:56
+msgid "Testing system packages"
 msgstr ""
 
-#: /tmp/tkmon-templates//4155c529832e9c5521fa8b3843cc.php:85
-msgid "All"
-msgstr ""
-
-#: /tmp/tkmon-templates//4155c529832e9c5521fa8b3843cc.php:100
-#: /tmp/tkmon-templates//80bc8399d35989302ca05c14c65a.php:101
-#: /home/wfischer/tkdata/git/git-werner/tkmon-web-gitorious/tkmon-web/lib/tkmon/TKMON/Extension/Host/DefaultAttributes.php:104
-#: /home/wfischer/tkdata/git/git-werner/tkmon-web-gitorious/tkmon-web/lib/tkmon/TKMON/Action/Expose/Monitor/Icinga/Services.php:382
-msgid "Hostname"
-msgstr ""
-
-#: /tmp/tkmon-templates//4155c529832e9c5521fa8b3843cc.php:104
-msgid "Service"
-msgstr ""
-
-#: /tmp/tkmon-templates//4155c529832e9c5521fa8b3843cc.php:108
-#: /tmp/tkmon-templates//f73ab308af79cf384936655cf04e.php:38
-msgid "Status"
-msgstr ""
-
-#: /tmp/tkmon-templates//4155c529832e9c5521fa8b3843cc.php:112
-msgid "Last check"
-msgstr ""
-
-#: /tmp/tkmon-templates//4155c529832e9c5521fa8b3843cc.php:116
-msgid "Duration"
-msgstr ""
-
-#: /tmp/tkmon-templates//4155c529832e9c5521fa8b3843cc.php:120
-msgid "Attempt"
-msgstr ""
-
-#: /tmp/tkmon-templates//4155c529832e9c5521fa8b3843cc.php:133
-msgid "Sorry, no objects found"
-msgstr ""
-
-#: /tmp/tkmon-templates//4155c529832e9c5521fa8b3843cc.php:229
-#: /tmp/tkmon-templates//c849ef42bc8b37d3e5bcc614eb1c.php:158
-msgid "seconds"
-msgstr ""
-
-#: /tmp/tkmon-templates//4155c529832e9c5521fa8b3843cc.php:234
-#: /tmp/tkmon-templates//c849ef42bc8b37d3e5bcc614eb1c.php:163
-msgid "Reload page in"
-msgstr ""
-
-#: /tmp/tkmon-templates//4dff0924e40bfef089a8dfec6c58.php:24
-#: /tmp/tkmon-templates//4dff0924e40bfef089a8dfec6c58.php:175
-msgid "Contacts"
-msgstr ""
-
-#: /tmp/tkmon-templates//4dff0924e40bfef089a8dfec6c58.php:31
-msgid ""
-"Maintain your contacts here. Add people who are responsible for system "
-"alerts."
-msgstr ""
-
-#: /tmp/tkmon-templates//4dff0924e40bfef089a8dfec6c58.php:38
-#: /tmp/tkmon-templates//4dff0924e40bfef089a8dfec6c58.php:49
-#: /tmp/tkmon-templates//bed53433bbed76cea04c8936c38b.php:38
-#: /tmp/tkmon-templates//bed53433bbed76cea04c8936c38b.php:49
-msgid "Add new"
-msgstr ""
-
-#: /tmp/tkmon-templates//4dff0924e40bfef089a8dfec6c58.php:43
-msgid "Press the following button to add a new person:"
-msgstr ""
-
-#: /tmp/tkmon-templates//4dff0924e40bfef089a8dfec6c58.php:58
-#: /tmp/tkmon-templates//bed53433bbed76cea04c8936c38b.php:58
-msgid ""
-"Please <a href=\"%restart_url%\">restart your Icinga instance</a> for the "
-"changes to take effect."
-msgstr ""
-
-#: /tmp/tkmon-templates//4dff0924e40bfef089a8dfec6c58.php:68
-#: /tmp/tkmon-templates//4dff0924e40bfef089a8dfec6c58.php:214
-#: /tmp/tkmon-templates//bed53433bbed76cea04c8936c38b.php:69
-#: /tmp/tkmon-templates//ecfec0f6027087812df0b58cd6fe.php:47
-msgid "Name"
-msgstr ""
-
-#: /tmp/tkmon-templates//4dff0924e40bfef089a8dfec6c58.php:72
-#: /tmp/tkmon-templates//bed53433bbed76cea04c8936c38b.php:73
-#: /home/wfischer/tkdata/git/git-werner/tkmon-web-gitorious/tkmon-web/lib/tkmon/TKMON/Extension/Host/DefaultAttributes.php:105
-msgid "Alias"
-msgstr ""
-
-#: /tmp/tkmon-templates//4dff0924e40bfef089a8dfec6c58.php:76
-msgid "Email Address"
-msgstr ""
-
-#: /tmp/tkmon-templates//4dff0924e40bfef089a8dfec6c58.php:91
-msgid "No contacts defined, click the button on top to create one!"
-msgstr ""
-
-#: /tmp/tkmon-templates//4dff0924e40bfef089a8dfec6c58.php:131
-#: /tmp/tkmon-templates//bed53433bbed76cea04c8936c38b.php:201
-#: /tmp/tkmon-templates//ecfec0f6027087812df0b58cd6fe.php:102
-msgid "Edit"
-msgstr ""
-
-#: /tmp/tkmon-templates//4dff0924e40bfef089a8dfec6c58.php:140
-#: /tmp/tkmon-templates//bed53433bbed76cea04c8936c38b.php:220
-#: /tmp/tkmon-templates//ecfec0f6027087812df0b58cd6fe.php:110
-msgid "Remove"
-msgstr ""
-
-#: /tmp/tkmon-templates//4dff0924e40bfef089a8dfec6c58.php:152
-#: /tmp/tkmon-templates//bed53433bbed76cea04c8936c38b.php:232
-#: /tmp/tkmon-templates//ecfec0f6027087812df0b58cd6fe.php:122
-msgid "Yes, delete please"
-msgstr ""
-
-#: /tmp/tkmon-templates//4dff0924e40bfef089a8dfec6c58.php:236
-#: /tmp/tkmon-templates//608c79efb302860350a45b88db82.php:72
-msgid "Close"
-msgstr ""
-
-#: /tmp/tkmon-templates//539173fc6c548e746836d3704d8e.php:37
-#: /tmp/tkmon-templates//539173fc6c548e746836d3704d8e.php:92
-msgid "Useful links"
-msgstr ""
-
-#: /tmp/tkmon-templates//55767f86e39d361cf0efdde2a47e.php:24
-#: /tmp/tkmon-templates//bed53433bbed76cea04c8936c38b.php:212
-msgid "Services"
-msgstr ""
-
-#: /tmp/tkmon-templates//55767f86e39d361cf0efdde2a47e.php:31
-msgid "Maintain services for hosts here."
-msgstr ""
-
-#: /tmp/tkmon-templates//55767f86e39d361cf0efdde2a47e.php:38
-msgid "Start over"
-msgstr ""
-
-#: /tmp/tkmon-templates//55767f86e39d361cf0efdde2a47e.php:43
-msgid "Please select a host to edit its services:"
-msgstr ""
-
-#: /tmp/tkmon-templates//55767f86e39d361cf0efdde2a47e.php:52
-msgid "Go"
-msgstr ""
-
-#: /tmp/tkmon-templates//55767f86e39d361cf0efdde2a47e.php:61
-msgid ""
-"Please <a href=\"%restart_url%\">restart your Icinga instance</a> that "
-"changes take effect."
-msgstr ""
-
-#: /tmp/tkmon-templates//55767f86e39d361cf0efdde2a47e.php:78
-msgid "Search"
-msgstr ""
-
-#: /tmp/tkmon-templates//55767f86e39d361cf0efdde2a47e.php:83
-msgid "Search for services in our catalogue:"
-msgstr ""
-
-#: /tmp/tkmon-templates//55767f86e39d361cf0efdde2a47e.php:92
-msgid "Add"
-msgstr ""
-
-#: /tmp/tkmon-templates//55767f86e39d361cf0efdde2a47e.php:98
-msgid "Type something like Web, Port, HTTP or things like that"
-msgstr ""
-
-#: /tmp/tkmon-templates//55767f86e39d361cf0efdde2a47e.php:111
-msgid "Ready to save? Press save button to do so or cancel to abort."
-msgstr ""
-
-#: /tmp/tkmon-templates//55767f86e39d361cf0efdde2a47e.php:118
-#: /tmp/tkmon-templates//bed53433bbed76cea04c8936c38b.php:356
-msgid "Cancel"
-msgstr ""
-
-#: /tmp/tkmon-templates//56f62b4d0bbdbf8f59280cc0d90d.php:22
+#: /tmp/tkmon-templates//18ae3d25359239dd7d6159077eb2.php:22
 msgid "Restore configuration"
 msgstr ""
 
-#: /tmp/tkmon-templates//56f62b4d0bbdbf8f59280cc0d90d.php:28
+#: /tmp/tkmon-templates//18ae3d25359239dd7d6159077eb2.php:28
 msgid "Restore backup configuration"
 msgstr ""
 
-#: /tmp/tkmon-templates//56f62b4d0bbdbf8f59280cc0d90d.php:34
+#: /tmp/tkmon-templates//18ae3d25359239dd7d6159077eb2.php:34
 msgid ""
 "If you have a backup configuration of your TKmon appliance you can restore "
 "those settings. This includes:"
 msgstr ""
 
-#: /tmp/tkmon-templates//56f62b4d0bbdbf8f59280cc0d90d.php:42
+#: /tmp/tkmon-templates//18ae3d25359239dd7d6159077eb2.php:42
 msgid "Icinga configuration (hosts, services)"
 msgstr ""
 
-#: /tmp/tkmon-templates//56f62b4d0bbdbf8f59280cc0d90d.php:46
+#: /tmp/tkmon-templates//18ae3d25359239dd7d6159077eb2.php:46
 msgid "Software settings (database, configuration files)"
 msgstr ""
 
-#: /tmp/tkmon-templates//56f62b4d0bbdbf8f59280cc0d90d.php:50
+#: /tmp/tkmon-templates//18ae3d25359239dd7d6159077eb2.php:50
 msgid "Operating system (IP, DNS, email)"
 msgstr ""
 
-#: /tmp/tkmon-templates//56f62b4d0bbdbf8f59280cc0d90d.php:65
+#: /tmp/tkmon-templates//18ae3d25359239dd7d6159077eb2.php:60
+#: /tmp/tkmon-templates//567bbb128b3cd6821387af737928.php:52
+msgid "Warning"
+msgstr ""
+
+#: /tmp/tkmon-templates//18ae3d25359239dd7d6159077eb2.php:65
 msgid ""
 "After the restore the appliance will reboot to complete system changes. Keep "
 "in mind that the system is\n"
@@ -601,194 +119,530 @@ msgid ""
 "        your environment during the reboot."
 msgstr ""
 
-#: /tmp/tkmon-templates//56f62b4d0bbdbf8f59280cc0d90d.php:74
+#: /tmp/tkmon-templates//18ae3d25359239dd7d6159077eb2.php:74
 msgid ""
 "If you decide not to reboot, e.g. for testing purposes, keep in mind to do "
 "this soon or restart appropriate daemons manually."
 msgstr ""
 
-#: /tmp/tkmon-templates//56f62b4d0bbdbf8f59280cc0d90d.php:88
+#: /tmp/tkmon-templates//18ae3d25359239dd7d6159077eb2.php:88
 msgid "1. Select a file by clicking on the button"
 msgstr ""
 
-#: /tmp/tkmon-templates//56f62b4d0bbdbf8f59280cc0d90d.php:96
+#: /tmp/tkmon-templates//18ae3d25359239dd7d6159077eb2.php:96
 msgid "Select file"
 msgstr ""
 
-#: /tmp/tkmon-templates//56f62b4d0bbdbf8f59280cc0d90d.php:100
+#: /tmp/tkmon-templates//18ae3d25359239dd7d6159077eb2.php:100
 msgid "Change"
 msgstr ""
 
-#: /tmp/tkmon-templates//56f62b4d0bbdbf8f59280cc0d90d.php:112
+#: /tmp/tkmon-templates//18ae3d25359239dd7d6159077eb2.php:112
 msgid ""
 "2. Enter the password of the file or leave the field blank if no password "
 "has been set"
 msgstr ""
 
-#: /tmp/tkmon-templates//56f62b4d0bbdbf8f59280cc0d90d.php:127
+#: /tmp/tkmon-templates//18ae3d25359239dd7d6159077eb2.php:127
 msgid ""
 "3. If you are sure that you want to restore the backup configuration, click "
 "the button below"
 msgstr ""
 
-#: /tmp/tkmon-templates//56f62b4d0bbdbf8f59280cc0d90d.php:134
+#: /tmp/tkmon-templates//18ae3d25359239dd7d6159077eb2.php:134
 msgid "Restart device after restore (recommended)"
 msgstr ""
 
-#: /tmp/tkmon-templates//56f62b4d0bbdbf8f59280cc0d90d.php:141
+#: /tmp/tkmon-templates//18ae3d25359239dd7d6159077eb2.php:141
 msgid "Yes please"
 msgstr ""
 
-#: /tmp/tkmon-templates//56f62b4d0bbdbf8f59280cc0d90d.php:148
+#: /tmp/tkmon-templates//18ae3d25359239dd7d6159077eb2.php:148
 msgid "No, dont't do this"
 msgstr ""
 
-#: /tmp/tkmon-templates//56f62b4d0bbdbf8f59280cc0d90d.php:161
+#: /tmp/tkmon-templates//18ae3d25359239dd7d6159077eb2.php:161
 msgid "Fire and forget!"
 msgstr ""
 
-#: /tmp/tkmon-templates//56f62b4d0bbdbf8f59280cc0d90d.php:167
+#: /tmp/tkmon-templates//18ae3d25359239dd7d6159077eb2.php:167
 msgid "Restore!"
 msgstr ""
 
-#: /tmp/tkmon-templates//56f62b4d0bbdbf8f59280cc0d90d.php:266
+#: /tmp/tkmon-templates//18ae3d25359239dd7d6159077eb2.php:265
 msgid ""
 "The system is up again, redirecting to home. If not, please go manually to "
 msgstr ""
 
-#: /tmp/tkmon-templates//56f62b4d0bbdbf8f59280cc0d90d.php:281
+#: /tmp/tkmon-templates//18ae3d25359239dd7d6159077eb2.php:280
 msgid "System is down"
 msgstr ""
 
-#: /tmp/tkmon-templates//56f62b4d0bbdbf8f59280cc0d90d.php:307
+#: /tmp/tkmon-templates//18ae3d25359239dd7d6159077eb2.php:306
 msgid "System going down"
 msgstr ""
 
-#: /tmp/tkmon-templates//56f62b4d0bbdbf8f59280cc0d90d.php:334
+#: /tmp/tkmon-templates//18ae3d25359239dd7d6159077eb2.php:333
 msgid "Upload file:"
 msgstr ""
 
-#: /tmp/tkmon-templates//56f62b4d0bbdbf8f59280cc0d90d.php:356
+#: /tmp/tkmon-templates//18ae3d25359239dd7d6159077eb2.php:355
 msgid "Begin configuration restore"
 msgstr ""
 
-#: /tmp/tkmon-templates//56f62b4d0bbdbf8f59280cc0d90d.php:381
+#: /tmp/tkmon-templates//18ae3d25359239dd7d6159077eb2.php:380
 msgid ""
 "Configuration restored, initiating reboot. Please be patient for at least 5 "
 "minutes"
 msgstr ""
 
-#: /tmp/tkmon-templates//56f62b4d0bbdbf8f59280cc0d90d.php:387
+#: /tmp/tkmon-templates//18ae3d25359239dd7d6159077eb2.php:386
 msgid "Configuration restored, we do not reboot at will"
 msgstr ""
 
-#: /tmp/tkmon-templates//56f62b4d0bbdbf8f59280cc0d90d.php:401
+#: /tmp/tkmon-templates//18ae3d25359239dd7d6159077eb2.php:400
 msgid "File is missing"
 msgstr ""
 
-#: /tmp/tkmon-templates//60050ac5392cff610ddfa3b991ce.php:26
-msgid ""
-"This panel is used to change the security settings of your\n"
-"    TKmon appliance. Please select an appropriate tab to\n"
-"    change the specific settings."
-msgstr ""
-
-#: /tmp/tkmon-templates//60050ac5392cff610ddfa3b991ce.php:38
-#: /tmp/tkmon-templates//a3a44420b4a88348fe87f77f9f78.php:80
-msgid "User"
-msgstr ""
-
-#: /tmp/tkmon-templates//60050ac5392cff610ddfa3b991ce.php:42
-msgid "Icinga access"
-msgstr ""
-
-#: /tmp/tkmon-templates//60050ac5392cff610ddfa3b991ce.php:46
-msgid "SSH Access"
-msgstr ""
-
-#: /tmp/tkmon-templates//608c79efb302860350a45b88db82.php:42
+#: /tmp/tkmon-templates//1b73a532937af2bd4ebf681884e3.php:41
 msgid "Documentation"
 msgstr ""
 
-#: /tmp/tkmon-templates//608c79efb302860350a45b88db82.php:53
+#: /tmp/tkmon-templates//1b73a532937af2bd4ebf681884e3.php:52
 msgid "Documentation for %desc%"
 msgstr ""
 
-#: /tmp/tkmon-templates//670d039b89459afb204e87cd596b.php:33
+#: /tmp/tkmon-templates//1b73a532937af2bd4ebf681884e3.php:70
+#: /tmp/tkmon-templates//9c7816f516d77346cd4aa1f0f1ff.php:229
+msgid "Close"
+msgstr ""
+
+#: /tmp/tkmon-templates//1e6364bec1c11bed4fb333e9a510.php:22
+msgid "Help"
+msgstr ""
+
+#: /tmp/tkmon-templates//1e6364bec1c11bed4fb333e9a510.php:36
+msgid "Hints"
+msgstr ""
+
+#: /tmp/tkmon-templates//20e44a560b455e974f5c3db24382.php:20
+msgid "Time settings"
+msgstr ""
+
+#: /tmp/tkmon-templates//20e44a560b455e974f5c3db24382.php:25
+msgid "On this page you can change the time server settings."
+msgstr ""
+
+#: /tmp/tkmon-templates//20e44a560b455e974f5c3db24382.php:35
+#: /tmp/tkmon-templates//4376c31da54685cc4654dd779341.php:29
+#: /tmp/tkmon-templates//52af0410376c996d1205401933c7.php:241
+#: /tmp/tkmon-templates//6b9a0d136a2015ccb622c74be231.php:29
+#: /tmp/tkmon-templates//91bdf2e3eb482768781654f6ab9a.php:31
+#: /tmp/tkmon-templates//9c7816f516d77346cd4aa1f0f1ff.php:179
+#: /tmp/tkmon-templates//aa20e785b5def8c1b661ff4c9ca8.php:48
+#: /tmp/tkmon-templates//b3770376f88aa51c8c5b38261320.php:50
+#: /tmp/tkmon-templates//d94febb1e68c9d3d3108494f85fc.php:30
+msgid "Success!"
+msgstr ""
+
+#: /tmp/tkmon-templates//20e44a560b455e974f5c3db24382.php:39
+msgid "Time configuration has been written and daemon has been restarted!"
+msgstr ""
+
+#: /tmp/tkmon-templates//20e44a560b455e974f5c3db24382.php:61
+msgid "Timeserver 1"
+msgstr ""
+
+#: /tmp/tkmon-templates//20e44a560b455e974f5c3db24382.php:72
+msgid "Timeserver 2"
+msgstr ""
+
+#: /tmp/tkmon-templates//20e44a560b455e974f5c3db24382.php:83
+msgid "Timeserver 3"
+msgstr ""
+
+#: /tmp/tkmon-templates//20e44a560b455e974f5c3db24382.php:95
+#: /tmp/tkmon-templates//4b87c6d1ee74cca41cf066bc13ca.php:125
+#: /tmp/tkmon-templates//52af0410376c996d1205401933c7.php:345
+#: /tmp/tkmon-templates//809c15a6200b5063db25d889c204.php:120
+#: /tmp/tkmon-templates//9c7816f516d77346cd4aa1f0f1ff.php:235
+#: /tmp/tkmon-templates//c7493edcf2707a7363a1a10eeaa7.php:115
+msgid "Save"
+msgstr ""
+
+#: /tmp/tkmon-templates//227d49a5076cf03e2fc6b7b82d3e.php:20
+msgid "Information about updates"
+msgstr ""
+
+#: /tmp/tkmon-templates//37784064593c0dfe474a43a0a4fb.php:22
+msgid "Test result"
+msgstr ""
+
+#: /tmp/tkmon-templates//37784064593c0dfe474a43a0a4fb.php:28
+msgid "Everything okay, no broken packages or dependency errors!"
+msgstr ""
+
+#: /tmp/tkmon-templates//37784064593c0dfe474a43a0a4fb.php:44
+msgid "Cache status"
+msgstr ""
+
+#: /tmp/tkmon-templates//3aede71c6ed4abfe308c30ca363b.php:24
+msgid "Services for %hostName%"
+msgstr ""
+
+#: /tmp/tkmon-templates//3aede71c6ed4abfe308c30ca363b.php:31
+msgid "Click on the following button to add services to the host:"
+msgstr ""
+
+#: /tmp/tkmon-templates//3aede71c6ed4abfe308c30ca363b.php:36
+msgid "Add service"
+msgstr ""
+
+#: /tmp/tkmon-templates//3aede71c6ed4abfe308c30ca363b.php:46
+#: /tmp/tkmon-templates//52af0410376c996d1205401933c7.php:69
+#: /tmp/tkmon-templates//9c7816f516d77346cd4aa1f0f1ff.php:68
+#: /tmp/tkmon-templates//9c7816f516d77346cd4aa1f0f1ff.php:207
+msgid "Name"
+msgstr ""
+
+#: /tmp/tkmon-templates//3aede71c6ed4abfe308c30ca363b.php:50
+#: /tmp/tkmon-templates//864cba14148cb48024ebd353e53b.php:128
+msgid "Display name"
+msgstr ""
+
+#: /tmp/tkmon-templates//3aede71c6ed4abfe308c30ca363b.php:64
+msgid "No services defined for this host. Click on the 'Add' button to do so."
+msgstr ""
+
+#: /tmp/tkmon-templates//3aede71c6ed4abfe308c30ca363b.php:96
+#: /tmp/tkmon-templates//52af0410376c996d1205401933c7.php:189
+#: /tmp/tkmon-templates//9c7816f516d77346cd4aa1f0f1ff.php:125
+msgid "Edit"
+msgstr ""
+
+#: /tmp/tkmon-templates//3aede71c6ed4abfe308c30ca363b.php:104
+#: /tmp/tkmon-templates//52af0410376c996d1205401933c7.php:207
+#: /tmp/tkmon-templates//9c7816f516d77346cd4aa1f0f1ff.php:134
+msgid "Remove"
+msgstr ""
+
+#: /tmp/tkmon-templates//3aede71c6ed4abfe308c30ca363b.php:115
+#: /tmp/tkmon-templates//52af0410376c996d1205401933c7.php:218
+#: /tmp/tkmon-templates//9c7816f516d77346cd4aa1f0f1ff.php:145
+msgid "Yes, delete please"
+msgstr ""
+
+#: /tmp/tkmon-templates//4376c31da54685cc4654dd779341.php:33
 msgid "Access to Icinga has been modified successfully"
 msgstr ""
 
-#: /tmp/tkmon-templates//670d039b89459afb204e87cd596b.php:41
+#: /tmp/tkmon-templates//4376c31da54685cc4654dd779341.php:41
 msgid "Access to Icinga is"
 msgstr ""
 
-#: /tmp/tkmon-templates//670d039b89459afb204e87cd596b.php:89
+#: /tmp/tkmon-templates//4376c31da54685cc4654dd779341.php:47
+#: /tmp/tkmon-templates//6b9a0d136a2015ccb622c74be231.php:70
+msgid "To change the access setting please press the following button"
+msgstr ""
+
+#: /tmp/tkmon-templates//4376c31da54685cc4654dd779341.php:88
 msgid "Icinga access will be <strong>enabled</strong> for user icingaadmin."
 msgstr ""
 
-#: /tmp/tkmon-templates//670d039b89459afb204e87cd596b.php:93
+#: /tmp/tkmon-templates//4376c31da54685cc4654dd779341.php:92
 msgid "Icinga access will be <strong>disabled</strong> for user icingaadmin."
 msgstr ""
 
-#: /tmp/tkmon-templates//670d039b89459afb204e87cd596b.php:111
-#: /home/wfischer/tkdata/git/git-werner/tkmon-web-gitorious/tkmon-web/lib/tkmon/TKMON/Action/Expose/System/Configuration/Security.php:92
+#: /tmp/tkmon-templates//4376c31da54685cc4654dd779341.php:99
+#: /tmp/tkmon-templates//6b9a0d136a2015ccb622c74be231.php:83
+msgid "Enable"
+msgstr ""
+
+#: /tmp/tkmon-templates//4376c31da54685cc4654dd779341.php:103
+#: /tmp/tkmon-templates//6b9a0d136a2015ccb622c74be231.php:99
+msgid "Disable"
+msgstr ""
+
+#: /tmp/tkmon-templates//4376c31da54685cc4654dd779341.php:110
+#: /home/gschoenb/Repos/tkmon-web/lib/tkmon/TKMON/Action/Expose/System/Configuration/Security.php:92
 msgid "Enabled"
 msgstr ""
 
-#: /tmp/tkmon-templates//670d039b89459afb204e87cd596b.php:115
-#: /home/wfischer/tkdata/git/git-werner/tkmon-web-gitorious/tkmon-web/lib/tkmon/TKMON/Action/Expose/System/Configuration/Security.php:97
+#: /tmp/tkmon-templates//4376c31da54685cc4654dd779341.php:114
+#: /home/gschoenb/Repos/tkmon-web/lib/tkmon/TKMON/Action/Expose/System/Configuration/Security.php:97
 msgid "Disabled"
 msgstr ""
 
-#: /tmp/tkmon-templates//6723c0e6adcb6d6fcce96bd521a5.php:20
-#: /tmp/tkmon-templates//acec9f5e5b5d1bbb2b235fc703cf.php:43
-msgid "List pending updates"
+#: /tmp/tkmon-templates//4b87c6d1ee74cca41cf066bc13ca.php:24
+#: /tmp/tkmon-templates//52af0410376c996d1205401933c7.php:199
+msgid "Services"
 msgstr ""
 
-#: /tmp/tkmon-templates//6723c0e6adcb6d6fcce96bd521a5.php:26
+#: /tmp/tkmon-templates//4b87c6d1ee74cca41cf066bc13ca.php:31
+msgid "Maintain services for hosts here."
+msgstr ""
+
+#: /tmp/tkmon-templates//4b87c6d1ee74cca41cf066bc13ca.php:38
+msgid "Start over"
+msgstr ""
+
+#: /tmp/tkmon-templates//4b87c6d1ee74cca41cf066bc13ca.php:43
+msgid "Please select a host to edit its services:"
+msgstr ""
+
+#: /tmp/tkmon-templates//4b87c6d1ee74cca41cf066bc13ca.php:52
+msgid "Go"
+msgstr ""
+
+#: /tmp/tkmon-templates//4b87c6d1ee74cca41cf066bc13ca.php:61
 msgid ""
-"The following list shows available updates for your system. Click the\n"
-"    \"Refresh pending updates\" button to retrive the current list of "
-"available\n"
-"    updates."
+"Please <a href=\"%restart_url%\">restart your Icinga instance</a> that "
+"changes take effect."
 msgstr ""
 
-#: /tmp/tkmon-templates//6723c0e6adcb6d6fcce96bd521a5.php:36
-msgid "Refresh pending updates"
+#: /tmp/tkmon-templates//4b87c6d1ee74cca41cf066bc13ca.php:78
+msgid "Search"
 msgstr ""
 
-#: /tmp/tkmon-templates//6723c0e6adcb6d6fcce96bd521a5.php:58
-msgid "Loading pending upgrades"
+#: /tmp/tkmon-templates//4b87c6d1ee74cca41cf066bc13ca.php:83
+msgid "Search for services in our catalogue:"
 msgstr ""
 
-#: /tmp/tkmon-templates//6c80a85e777d51a2ad86447a5fc4.php:35
-#: /tmp/tkmon-templates//74497cd5f1f8ed13aa08b8c4cd86.php:84
-msgid "Session expired"
+#: /tmp/tkmon-templates//4b87c6d1ee74cca41cf066bc13ca.php:92
+msgid "Add"
 msgstr ""
 
-#: /tmp/tkmon-templates//6c80a85e777d51a2ad86447a5fc4.php:42
-msgid "You are not logged in"
+#: /tmp/tkmon-templates//4b87c6d1ee74cca41cf066bc13ca.php:98
+msgid "Type something like Web, Port, HTTP or things like that"
 msgstr ""
 
-#: /tmp/tkmon-templates//6c80a85e777d51a2ad86447a5fc4.php:48
+#: /tmp/tkmon-templates//4b87c6d1ee74cca41cf066bc13ca.php:111
+msgid "Ready to save? Press save button to do so or cancel to abort."
+msgstr ""
+
+#: /tmp/tkmon-templates//4b87c6d1ee74cca41cf066bc13ca.php:118
+#: /tmp/tkmon-templates//52af0410376c996d1205401933c7.php:338
+msgid "Cancel"
+msgstr ""
+
+#: /tmp/tkmon-templates//4c4a700cb5c5a3db4c0c429cf4b9.php:20
+#: /tmp/tkmon-templates//4c4a700cb5c5a3db4c0c429cf4b9.php:70
+#: /tmp/tkmon-templates//51cfe2390313844763e67847d8af.php:37
+#: /tmp/tkmon-templates//978fa5a49ff1faa4f6aaa6bae4d5.php:47
+#: /tmp/tkmon-templates//aa20e785b5def8c1b661ff4c9ca8.php:20
+msgid "Test"
+msgstr ""
+
+#: /tmp/tkmon-templates//4c4a700cb5c5a3db4c0c429cf4b9.php:26
 msgid ""
-"The page that you want to access requires an authenticated user, please\n"
-"        <a href=\"%link_login%\">go to login page</a>\n"
-"        to enter your credentials again."
+"Use this dialog to test your configuration. A heartbeat email will be "
+"bounced\n"
+"    back to your contact email address to ensure all settings work as "
+"expected."
 msgstr ""
 
-#: /tmp/tkmon-templates//6e907e97b10b7698ffad3d7dec80.php:41
+#: /tmp/tkmon-templates//4c4a700cb5c5a3db4c0c429cf4b9.php:34
+msgid ""
+"Just press 'Test' to start the validation of your configuration, no more "
+"parameters are needed."
+msgstr ""
+
+#: /tmp/tkmon-templates//4c4a700cb5c5a3db4c0c429cf4b9.php:43
+#: /tmp/tkmon-templates//7038af6759bebda5a8b9fb7cb181.php:63
+#: /tmp/tkmon-templates//809c15a6200b5063db25d889c204.php:48
+#: /tmp/tkmon-templates//864cba14148cb48024ebd353e53b.php:73
+#: /tmp/tkmon-templates//c7493edcf2707a7363a1a10eeaa7.php:57
+msgid "Success"
+msgstr ""
+
+#: /tmp/tkmon-templates//4c4a700cb5c5a3db4c0c429cf4b9.php:48
+msgid ""
+"Email was sent successfully. Please check your email account\n"
+"        <a href=\"#\" id=\"test-switch-tab\">configured here</a>. If "
+"everything\n"
+"        is correct you will receive an email immediately."
+msgstr ""
+
+#: /tmp/tkmon-templates//51cfe2390313844763e67847d8af.php:22
+msgid "Alert settings"
+msgstr ""
+
+#: /tmp/tkmon-templates//51cfe2390313844763e67847d8af.php:31
+#: /tmp/tkmon-templates//809c15a6200b5063db25d889c204.php:24
+msgid "Settings"
+msgstr ""
+
+#: /tmp/tkmon-templates//52af0410376c996d1205401933c7.php:24
+msgid "Hosts"
+msgstr ""
+
+#: /tmp/tkmon-templates//52af0410376c996d1205401933c7.php:31
+msgid "Maintain hosts and services here."
+msgstr ""
+
+#: /tmp/tkmon-templates//52af0410376c996d1205401933c7.php:38
+#: /tmp/tkmon-templates//52af0410376c996d1205401933c7.php:49
+#: /tmp/tkmon-templates//9c7816f516d77346cd4aa1f0f1ff.php:38
+#: /tmp/tkmon-templates//9c7816f516d77346cd4aa1f0f1ff.php:49
+msgid "Add new"
+msgstr ""
+
+#: /tmp/tkmon-templates//52af0410376c996d1205401933c7.php:43
+msgid "Press the following button to add a new host:"
+msgstr ""
+
+#: /tmp/tkmon-templates//52af0410376c996d1205401933c7.php:58
+#: /tmp/tkmon-templates//9c7816f516d77346cd4aa1f0f1ff.php:58
+msgid ""
+"Please <a href=\"%restart_url%\">restart your Icinga instance</a> for the "
+"changes to take effect."
+msgstr ""
+
+#: /tmp/tkmon-templates//52af0410376c996d1205401933c7.php:73
+#: /tmp/tkmon-templates//9c7816f516d77346cd4aa1f0f1ff.php:72
+#: /home/gschoenb/Repos/tkmon-web/lib/tkmon/TKMON/Extension/Host/DefaultAttributes.php:105
+msgid "Alias"
+msgstr ""
+
+#: /tmp/tkmon-templates//52af0410376c996d1205401933c7.php:77
+msgid "No. services"
+msgstr ""
+
+#: /tmp/tkmon-templates//52af0410376c996d1205401933c7.php:81
+#: /tmp/tkmon-templates//890603acbbc8153ff6ee2675b516.php:44
+msgid "Address"
+msgstr ""
+
+#: /tmp/tkmon-templates//52af0410376c996d1205401933c7.php:95
+msgid "No hosts defined, click the button on top to create one!"
+msgstr ""
+
+#: /tmp/tkmon-templates//52af0410376c996d1205401933c7.php:123
+msgid "Device is a"
+msgstr ""
+
+#: /tmp/tkmon-templates//52af0410376c996d1205401933c7.php:267
+msgid "Basic attributes"
+msgstr ""
+
+#: /tmp/tkmon-templates//52af0410376c996d1205401933c7.php:291
+msgid "Parent host"
+msgstr ""
+
+#: /tmp/tkmon-templates//52af0410376c996d1205401933c7.php:300
+msgid "Customfields"
+msgstr ""
+
+#: /tmp/tkmon-templates//52af0410376c996d1205401933c7.php:330
+msgid "Ready to create? Press one of the following buttons:"
+msgstr ""
+
+#: /tmp/tkmon-templates//52af0410376c996d1205401933c7.php:374
+msgid "Product information"
+msgstr ""
+
+#: /tmp/tkmon-templates//54df67deb3152a19513bfb8aded9.php:24
+msgid "Icinga event log"
+msgstr ""
+
+#: /tmp/tkmon-templates//54df67deb3152a19513bfb8aded9.php:31
+msgid "Daemon event log entries to troubleshoot errors"
+msgstr ""
+
+#: /tmp/tkmon-templates//54df67deb3152a19513bfb8aded9.php:40
+#: /tmp/tkmon-templates//9a3db725e9b89794a16f7ee23a63.php:69
+msgid "Info"
+msgstr ""
+
+#: /tmp/tkmon-templates//54df67deb3152a19513bfb8aded9.php:45
+msgid ""
+"Maximum 200 items are displayed, ordered descending. Press button to refresh:"
+msgstr ""
+
+#: /tmp/tkmon-templates//54df67deb3152a19513bfb8aded9.php:54
+#: /tmp/tkmon-templates//b6b729c09fd9dbef7052f8bbff04.php:66
+msgid "Reload"
+msgstr ""
+
+#: /tmp/tkmon-templates//54df67deb3152a19513bfb8aded9.php:69
+msgid "Timestamp"
+msgstr ""
+
+#: /tmp/tkmon-templates//54df67deb3152a19513bfb8aded9.php:73
+#: /tmp/tkmon-templates//aa20e785b5def8c1b661ff4c9ca8.php:78
+msgid "Message"
+msgstr ""
+
+#: /tmp/tkmon-templates//54df67deb3152a19513bfb8aded9.php:153
+#: /tmp/tkmon-templates//b6b729c09fd9dbef7052f8bbff04.php:215
+msgid "seconds"
+msgstr ""
+
+#: /tmp/tkmon-templates//54df67deb3152a19513bfb8aded9.php:158
+#: /tmp/tkmon-templates//b6b729c09fd9dbef7052f8bbff04.php:220
+msgid "Reload page in"
+msgstr ""
+
+#: /tmp/tkmon-templates//567bbb128b3cd6821387af737928.php:20
+msgid "Reboot system"
+msgstr ""
+
+#: /tmp/tkmon-templates//567bbb128b3cd6821387af737928.php:42
+msgid ""
+"Please press the following button to reboot your appliance. The\n"
+"        reboot will take a few minutes. After the system is\n"
+"        available again the interface reloads and you will be prompted for\n"
+"        your credentials to login."
+msgstr ""
+
+#: /tmp/tkmon-templates//567bbb128b3cd6821387af737928.php:56
+msgid "During reboot no notifications about problems will be send to you."
+msgstr ""
+
+#: /tmp/tkmon-templates//567bbb128b3cd6821387af737928.php:66
+msgid "Reboot device!"
+msgstr ""
+
+#: /tmp/tkmon-templates//56a77e673fc24cea3537382c523f.php:29
+msgid "Error occurred"
+msgstr ""
+
+#: /tmp/tkmon-templates//56a77e673fc24cea3537382c523f.php:38
+msgid ""
+"This means that your packages are broken. Please test your packages and\n"
+"            fix it manually."
+msgstr ""
+
+#: /tmp/tkmon-templates//56a77e673fc24cea3537382c523f.php:54
+msgid ""
+"%countUpdates% package(s) can be upgraded. Please examine the list and\n"
+"        switch to the next tab to upgrade your system."
+msgstr ""
+
+#: /tmp/tkmon-templates//56a77e673fc24cea3537382c523f.php:71
+msgid "Package"
+msgstr ""
+
+#: /tmp/tkmon-templates//56a77e673fc24cea3537382c523f.php:75
+msgid "Detail"
+msgstr ""
+
+#: /tmp/tkmon-templates//56a77e673fc24cea3537382c523f.php:151
+msgid "You system is up to date. No need to take action."
+msgstr ""
+
+#: /tmp/tkmon-templates//5bfde2597a6117dc56804de2419f.php:39
 msgid "Welcome"
 msgstr "Bienvenido"
 
-#: /tmp/tkmon-templates//6e907e97b10b7698ffad3d7dec80.php:46
+#: /tmp/tkmon-templates//5bfde2597a6117dc56804de2419f.php:44
 msgid ""
 "You have logged in for the first time.\n"
 "                Please change your password on the <a href=\"%security_link%"
 "\">Security Page</a>."
 msgstr ""
 
-#: /tmp/tkmon-templates//6e907e97b10b7698ffad3d7dec80.php:53
+#: /tmp/tkmon-templates//5bfde2597a6117dc56804de2419f.php:51
 msgid ""
 "If you have a Thomas Krenn Call-Home-Service Subscription, please\n"
 "                goto the <a href=\"%config_link%\">Alert Settings Page</a> "
@@ -800,462 +654,289 @@ msgid ""
 "Service\">Click this link for more information</a>)"
 msgstr ""
 
-#: /tmp/tkmon-templates//6e907e97b10b7698ffad3d7dec80.php:70
+#: /tmp/tkmon-templates//5bfde2597a6117dc56804de2419f.php:68
 msgid "Welcome to TKmon."
 msgstr ""
 
-#: /tmp/tkmon-templates//6e907e97b10b7698ffad3d7dec80.php:74
+#: /tmp/tkmon-templates//5bfde2597a6117dc56804de2419f.php:72
 msgid "Simple and fast monitoring based on Icinga."
 msgstr ""
 
-#: /tmp/tkmon-templates//6e907e97b10b7698ffad3d7dec80.php:87
+#: /tmp/tkmon-templates//5bfde2597a6117dc56804de2419f.php:84
 msgid "Service status"
 msgstr ""
 
-#: /tmp/tkmon-templates//6e907e97b10b7698ffad3d7dec80.php:96
+#: /tmp/tkmon-templates//5bfde2597a6117dc56804de2419f.php:93
 msgid "Learn more"
 msgstr ""
 
-#: /tmp/tkmon-templates//6ed993a3f3c155f018ac2e5e323f.php:20
-msgid "DNS settings"
+#: /tmp/tkmon-templates//61c3433b4ac26b22816eda703fdb.php:62
+msgid "About"
 msgstr ""
 
-#: /tmp/tkmon-templates//6ed993a3f3c155f018ac2e5e323f.php:34
-msgid "DNS resolver config has been saved and networking has been restarted"
+#: /tmp/tkmon-templates//61c3433b4ac26b22816eda703fdb.php:85
+msgid "Logged in as %username%"
 msgstr ""
 
-#: /tmp/tkmon-templates//6ed993a3f3c155f018ac2e5e323f.php:40
-msgid "Here you can change your DNS settings."
+#: /tmp/tkmon-templates//61c3433b4ac26b22816eda703fdb.php:100
+msgid "Logout"
 msgstr ""
 
-#: /tmp/tkmon-templates//6ed993a3f3c155f018ac2e5e323f.php:59
+#: /tmp/tkmon-templates//62d26718bd893aa83b6e30796258.php:24
+msgid "Language"
+msgstr ""
+
+#: /tmp/tkmon-templates//6b9a0d136a2015ccb622c74be231.php:33
+msgid "User access has been modified successfully"
+msgstr ""
+
+#: /tmp/tkmon-templates//6b9a0d136a2015ccb622c74be231.php:41
+msgid "System access is"
+msgstr ""
+
+#: /tmp/tkmon-templates//6b9a0d136a2015ccb622c74be231.php:50
 msgid ""
-"This system uses resolveconf which keeps track of the available DNS servers "
-"and combines them\n"
-"        into a useful order. You can leave the fields blank if you use a "
-"DHCP interface\n"
-"        on the address tab."
+"Please <a href=\"#\" id=\"ssh-access-again-link\">click here</a> to change "
+"mode again."
 msgstr ""
 
-#: /tmp/tkmon-templates//6ed993a3f3c155f018ac2e5e323f.php:68
-msgid "First nameserver"
+#: /tmp/tkmon-templates//6b9a0d136a2015ccb622c74be231.php:89
+msgid "System access (ssh/shell) for user %username% will be enabled."
 msgstr ""
 
-#: /tmp/tkmon-templates//6ed993a3f3c155f018ac2e5e323f.php:81
-msgid "Second nameserver (optional)"
+#: /tmp/tkmon-templates//6b9a0d136a2015ccb622c74be231.php:105
+msgid "System access (ssh/shell) for user %username% will be disabled."
 msgstr ""
 
-#: /tmp/tkmon-templates//6ed993a3f3c155f018ac2e5e323f.php:84
-#: /tmp/tkmon-templates//6ed993a3f3c155f018ac2e5e323f.php:103
-#: /tmp/tkmon-templates//6ed993a3f3c155f018ac2e5e323f.php:123
-msgid "Click to clear field content"
+#: /tmp/tkmon-templates//7038af6759bebda5a8b9fb7cb181.php:20
+#: /tmp/tkmon-templates//7038af6759bebda5a8b9fb7cb181.php:74
+#: /tmp/tkmon-templates//f5cdf0eb4797c110780530220df6.php:50
+msgid "Restart Icinga"
 msgstr ""
 
-#: /tmp/tkmon-templates//6ed993a3f3c155f018ac2e5e323f.php:100
-msgid "Third nameserver (optional)"
+#: /tmp/tkmon-templates//7038af6759bebda5a8b9fb7cb181.php:25
+msgid "Use the following button to restart Icinga."
 msgstr ""
 
-#: /tmp/tkmon-templates//6ed993a3f3c155f018ac2e5e323f.php:120
-msgid "Search suffix (optional)"
+#: /tmp/tkmon-templates//7038af6759bebda5a8b9fb7cb181.php:31
+#: /tmp/tkmon-templates//c05b3fdba0819dc9d33cc2e19ced.php:38
+msgid "Note"
 msgstr ""
 
-#: /tmp/tkmon-templates//74497cd5f1f8ed13aa08b8c4cd86.php:22
-msgid "Backup configuration"
+#: /tmp/tkmon-templates//7038af6759bebda5a8b9fb7cb181.php:36
+msgid "TKmon will not restart the daemon if the configuration check fails!"
 msgstr ""
 
-#: /tmp/tkmon-templates//74497cd5f1f8ed13aa08b8c4cd86.php:28
-msgid "What happens here?"
+#: /tmp/tkmon-templates//7038af6759bebda5a8b9fb7cb181.php:67
+msgid "Icinga has been restarted successfully"
 msgstr ""
 
-#: /tmp/tkmon-templates//74497cd5f1f8ed13aa08b8c4cd86.php:32
+#: /tmp/tkmon-templates//7875345f83a02541376dd5211ae3.php:31
+#: /tmp/tkmon-templates//ab902caee6ceb1530fc5409e3102.php:84
+msgid "Session expired"
+msgstr ""
+
+#: /tmp/tkmon-templates//7875345f83a02541376dd5211ae3.php:38
+msgid "You are not logged in"
+msgstr ""
+
+#: /tmp/tkmon-templates//7875345f83a02541376dd5211ae3.php:44
 msgid ""
-"Download you current TKmon configuration here. This includes changed Icinga\n"
-"    configurations and TKmon settings."
+"The page that you want to access requires an authenticated user, please\n"
+"        <a href=\"%link_login%\">go to login page</a>\n"
+"        to enter your credentials again."
 msgstr ""
 
-#: /tmp/tkmon-templates//74497cd5f1f8ed13aa08b8c4cd86.php:49
-msgid "You can protect your backup configuration file with a password."
-msgstr ""
-
-#: /tmp/tkmon-templates//74497cd5f1f8ed13aa08b8c4cd86.php:58
-msgid "Download configuration"
-msgstr ""
-
-#: /tmp/tkmon-templates//74497cd5f1f8ed13aa08b8c4cd86.php:67
+#: /tmp/tkmon-templates//809c15a6200b5063db25d889c204.php:30
 msgid ""
-"Download successfully started. If not, please press the button underneath."
+"Here you can configure your Thomas Krenn Call-Home-Service Subscription. "
+"Click the\n"
+"    <a href=\"http://www.thomas-krenn.com/en/wiki/Call-Home-Service"
+"\">following link to get more information</a>."
 msgstr ""
 
-#: /tmp/tkmon-templates//74497cd5f1f8ed13aa08b8c4cd86.php:73
-msgid "Download"
-msgstr ""
-
-#: /tmp/tkmon-templates//74497cd5f1f8ed13aa08b8c4cd86.php:92
+#: /tmp/tkmon-templates//809c15a6200b5063db25d889c204.php:38
 msgid ""
-"Your session has expired, <a href=\"%login_link%\">please log\n"
-"            in and try again</a>!\n"
-"\n"
-"            (You will be redirected after 3 seconds)"
+"All data between your environment and Thomas Krenn will be encrypted. Read "
+"more on\n"
+"    our <strong><a href=\"http://www.thomas-krenn.com/en/wiki/Call-Home-"
+"Service_Privacy_Policy\">Call-Home-Service Privacy Policy</a></strong>."
 msgstr ""
 
-#: /tmp/tkmon-templates//80bc8399d35989302ca05c14c65a.php:37
+#: /tmp/tkmon-templates//809c15a6200b5063db25d889c204.php:53
+msgid ""
+"Changes have been written to disk.\n"
+"            Please <a href=\"%restart_link%\">restart your Icinga instance</"
+"a> for the changes to take effect."
+msgstr ""
+
+#: /tmp/tkmon-templates//809c15a6200b5063db25d889c204.php:62
+msgid "Toggle to enable call-home support"
+msgstr ""
+
+#: /tmp/tkmon-templates//809c15a6200b5063db25d889c204.php:81
+msgid "Contact person"
+msgstr ""
+
+#: /tmp/tkmon-templates//809c15a6200b5063db25d889c204.php:92
+#: /tmp/tkmon-templates//9c7816f516d77346cd4aa1f0f1ff.php:217
+msgid "Email address"
+msgstr ""
+
+#: /tmp/tkmon-templates//809c15a6200b5063db25d889c204.php:103
+msgid "Call-Home Auth-Key"
+msgstr ""
+
+#: /tmp/tkmon-templates//809c15a6200b5063db25d889c204.php:114
+msgid "Press the following button to commit your changes."
+msgstr ""
+
+#: /tmp/tkmon-templates//85e20dff93086a19da6efc238402.php:20
+msgid "Icinga configuration test"
+msgstr ""
+
+#: /tmp/tkmon-templates//85e20dff93086a19da6efc238402.php:26
+msgid "Press the button below to verify the current configuration."
+msgstr ""
+
+#: /tmp/tkmon-templates//85e20dff93086a19da6efc238402.php:35
+msgid "Your configuration is"
+msgstr ""
+
+#: /tmp/tkmon-templates//85e20dff93086a19da6efc238402.php:39
+msgid "valid"
+msgstr ""
+
+#: /tmp/tkmon-templates//85e20dff93086a19da6efc238402.php:43
+msgid "invalid"
+msgstr ""
+
+#: /tmp/tkmon-templates//85e20dff93086a19da6efc238402.php:50
+msgid "The reason behind"
+msgstr ""
+
+#: /tmp/tkmon-templates//85e20dff93086a19da6efc238402.php:59
+msgid "Run test"
+msgstr ""
+
+#: /tmp/tkmon-templates//85e20dff93086a19da6efc238402.php:74
+msgid "No reason found, everything is ok."
+msgstr ""
+
+#: /tmp/tkmon-templates//864cba14148cb48024ebd353e53b.php:35
 msgid "Looking for further information? Check the resources below"
 msgstr ""
 
-#: /tmp/tkmon-templates//80bc8399d35989302ca05c14c65a.php:84
+#: /tmp/tkmon-templates//864cba14148cb48024ebd353e53b.php:77
 msgid ""
 "Service was written to disk. Please <a href=\"%restart_url%\">to go daemon "
 "settings</a>\n"
 "        and restart your Icinga instance."
 msgstr ""
 
-#: /tmp/tkmon-templates//80bc8399d35989302ca05c14c65a.php:95
+#: /tmp/tkmon-templates//864cba14148cb48024ebd353e53b.php:88
 msgid "Default attributes"
 msgstr ""
 
-#: /tmp/tkmon-templates//80bc8399d35989302ca05c14c65a.php:113
+#: /tmp/tkmon-templates//864cba14148cb48024ebd353e53b.php:94
+#: /tmp/tkmon-templates//b6b729c09fd9dbef7052f8bbff04.php:99
+#: /home/gschoenb/Repos/tkmon-web/lib/tkmon/TKMON/Extension/Host/DefaultAttributes.php:104
+#: /home/gschoenb/Repos/tkmon-web/lib/tkmon/TKMON/Action/Expose/Monitor/Icinga/Services.php:382
+msgid "Hostname"
+msgstr ""
+
+#: /tmp/tkmon-templates//864cba14148cb48024ebd353e53b.php:105
 msgid "Service description"
 msgstr ""
 
-#: /tmp/tkmon-templates//80bc8399d35989302ca05c14c65a.php:139
-#: /tmp/tkmon-templates//ecfec0f6027087812df0b58cd6fe.php:51
-msgid "Display name"
-msgstr ""
-
-#: /tmp/tkmon-templates//80bc8399d35989302ca05c14c65a.php:159
+#: /tmp/tkmon-templates//864cba14148cb48024ebd353e53b.php:146
 msgid "Check command"
 msgstr ""
 
-#: /tmp/tkmon-templates//80bc8399d35989302ca05c14c65a.php:191
+#: /tmp/tkmon-templates//864cba14148cb48024ebd353e53b.php:176
 msgid "Custom variables"
 msgstr ""
 
-#: /tmp/tkmon-templates//80bc8399d35989302ca05c14c65a.php:250
+#: /tmp/tkmon-templates//864cba14148cb48024ebd353e53b.php:226
 msgid ""
 "This service will be notified to Thomas Krenn. Set flag to <strong>Yes</"
 "strong> if you want to use."
 msgstr ""
 
-#: /tmp/tkmon-templates//80bc8399d35989302ca05c14c65a.php:256
+#: /tmp/tkmon-templates//864cba14148cb48024ebd353e53b.php:232
 msgid "Report errors to Thomas Krenn"
 msgstr ""
 
-#: /tmp/tkmon-templates//80bc8399d35989302ca05c14c65a.php:265
-#: /tmp/tkmon-templates//80bc8399d35989302ca05c14c65a.php:275
+#: /tmp/tkmon-templates//864cba14148cb48024ebd353e53b.php:240
+#: /tmp/tkmon-templates//864cba14148cb48024ebd353e53b.php:250
 msgid "Yes, please"
 msgstr ""
 
-#: /tmp/tkmon-templates//80bc8399d35989302ca05c14c65a.php:269
-#: /tmp/tkmon-templates//80bc8399d35989302ca05c14c65a.php:279
+#: /tmp/tkmon-templates//864cba14148cb48024ebd353e53b.php:244
+#: /tmp/tkmon-templates//864cba14148cb48024ebd353e53b.php:254
 msgid "No, thanks"
 msgstr ""
 
-#: /tmp/tkmon-templates//8270883f6a8b170343b51d10dc11.php:23
-msgid "You are logged out successfully!"
-msgstr ""
-
-#: /tmp/tkmon-templates//8270883f6a8b170343b51d10dc11.php:30
+#: /tmp/tkmon-templates//890603acbbc8153ff6ee2675b516.php:26
 msgid ""
-"You can now close the application or press the button\n"
-"        below to login again."
+"Change the IP address of this device and configure network related settings."
 msgstr ""
 
-#: /tmp/tkmon-templates//83cbf07bd3b8532731d1c755db57.php:22
-msgid "Mail settings"
+#: /tmp/tkmon-templates//890603acbbc8153ff6ee2675b516.php:38
+msgid "Device"
 msgstr ""
 
-#: /tmp/tkmon-templates//83cbf07bd3b8532731d1c755db57.php:29
-msgid ""
-"Change email settings and send test emails to verify that your email setup\n"
-"    works like expected."
+#: /tmp/tkmon-templates//890603acbbc8153ff6ee2675b516.php:50
+msgid "DNS"
 msgstr ""
 
-#: /tmp/tkmon-templates//96ebf72290b1f84e05bce74c2f7d.php:20
-#: /tmp/tkmon-templates//acec9f5e5b5d1bbb2b235fc703cf.php:37
-msgid "Test package dependencies"
+#: /tmp/tkmon-templates//890603acbbc8153ff6ee2675b516.php:56
+msgid "Time"
 msgstr ""
 
-#: /tmp/tkmon-templates//96ebf72290b1f84e05bce74c2f7d.php:26
-msgid ""
-"This step tests package dependencies and if something is broken in the "
-"packaging system."
-msgstr ""
-
-#: /tmp/tkmon-templates//96ebf72290b1f84e05bce74c2f7d.php:34
-msgid "Test packages"
-msgstr ""
-
-#: /tmp/tkmon-templates//96ebf72290b1f84e05bce74c2f7d.php:56
-msgid "Testing system packages"
-msgstr ""
-
-#: /tmp/tkmon-templates//97cc403688fa1ad4f63501ef444b.php:31
-msgid "Error occurred"
-msgstr ""
-
-#: /tmp/tkmon-templates//97cc403688fa1ad4f63501ef444b.php:41
-msgid ""
-"This means that your packages are broken. Please test your packages and\n"
-"            fix it manually."
-msgstr ""
-
-#: /tmp/tkmon-templates//97cc403688fa1ad4f63501ef444b.php:58
-msgid ""
-"%countUpdates% package(s) can be upgraded. Please examine the list and\n"
-"        switch to the next tab to upgrade your system."
-msgstr ""
-
-#: /tmp/tkmon-templates//97cc403688fa1ad4f63501ef444b.php:76
-msgid "Package"
-msgstr ""
-
-#: /tmp/tkmon-templates//97cc403688fa1ad4f63501ef444b.php:80
-msgid "Version"
-msgstr ""
-
-#: /tmp/tkmon-templates//97cc403688fa1ad4f63501ef444b.php:84
-msgid "Repository"
-msgstr ""
-
-#: /tmp/tkmon-templates//97cc403688fa1ad4f63501ef444b.php:151
-msgid "breaks version"
-msgstr ""
-
-#: /tmp/tkmon-templates//97cc403688fa1ad4f63501ef444b.php:179
-msgid "You system is up to date. No need to take action."
-msgstr ""
-
-#: /tmp/tkmon-templates//9d47c912035b76abcd8dce0a08d5.php:26
-msgid "Send a test email to verify the setup of your email configuration."
-msgstr ""
-
-#: /tmp/tkmon-templates//9d47c912035b76abcd8dce0a08d5.php:52
-msgid "Email has been sent to the recipient."
-msgstr ""
-
-#: /tmp/tkmon-templates//9d47c912035b76abcd8dce0a08d5.php:59
-msgid "Recipient"
-msgstr ""
-
-#: /tmp/tkmon-templates//9d47c912035b76abcd8dce0a08d5.php:67
-msgid "Subject"
-msgstr ""
-
-#: /tmp/tkmon-templates//9d47c912035b76abcd8dce0a08d5.php:71
-msgid "Test mail from TKmon"
-msgstr ""
-
-#: /tmp/tkmon-templates//9d47c912035b76abcd8dce0a08d5.php:78
-#: /tmp/tkmon-templates//c849ef42bc8b37d3e5bcc614eb1c.php:73
-msgid "Message"
-msgstr ""
-
-#: /tmp/tkmon-templates//9d47c912035b76abcd8dce0a08d5.php:87
-msgid "Send"
-msgstr ""
-
-#: /tmp/tkmon-templates//a3a44420b4a88348fe87f77f9f78.php:24
-msgid "Icinga Interface"
-msgstr ""
-
-#: /tmp/tkmon-templates//a3a44420b4a88348fe87f77f9f78.php:31
-msgid "Access to the native Icinga interface, running on your TKmon appliance."
-msgstr ""
-
-#: /tmp/tkmon-templates//a3a44420b4a88348fe87f77f9f78.php:43
-msgid ""
-"This is only possible if you have enabled the <a href=\"%access_href%"
-"\">Icinga access in the settings dialog</a>.\n"
-"        You have to apply your credentials again. This is necessary because "
-"it is a new web interface\n"
-"        which you are opening."
-msgstr ""
-
-#: /tmp/tkmon-templates//a3a44420b4a88348fe87f77f9f78.php:54
-msgid "Link"
-msgstr ""
-
-#: /tmp/tkmon-templates//a3a44420b4a88348fe87f77f9f78.php:72
-msgid "Goto"
-msgstr ""
-
-#: /tmp/tkmon-templates//a3a44420b4a88348fe87f77f9f78.php:95
-msgid "Your current password"
-msgstr ""
-
-#: /tmp/tkmon-templates//acec9f5e5b5d1bbb2b235fc703cf.php:22
-msgid "System updates"
-msgstr ""
-
-#: /tmp/tkmon-templates//acec9f5e5b5d1bbb2b235fc703cf.php:31
-msgid "Information"
-msgstr ""
-
-#: /tmp/tkmon-templates//acec9f5e5b5d1bbb2b235fc703cf.php:49
-#: /tmp/tkmon-templates//c4bc1c816f739700afb2bb52dbb0.php:20
-msgid "Upgrade"
-msgstr ""
-
-#: /tmp/tkmon-templates//ad3a7d58b6ad806b8e5117b91557.php:20
-msgid "IP address settings"
-msgstr ""
-
-#: /tmp/tkmon-templates//ad3a7d58b6ad806b8e5117b91557.php:25
-msgid "On this page you can change your IP settings."
-msgstr ""
-
-#: /tmp/tkmon-templates//ad3a7d58b6ad806b8e5117b91557.php:32
-msgid ""
-"Attention: setting wrong network parameters here can make this webinterface "
-"unreachable on your network.\n"
-"    In this case you have to login to the local console and correct your "
-"network settings at the local shell."
-msgstr ""
-
-#: /tmp/tkmon-templates//ad3a7d58b6ad806b8e5117b91557.php:61
-msgid "Your new network configuration has been set and applied."
-msgstr ""
-
-#: /tmp/tkmon-templates//ad3a7d58b6ad806b8e5117b91557.php:70
-msgid "Static"
-msgstr ""
-
-#: /tmp/tkmon-templates//ad3a7d58b6ad806b8e5117b91557.php:74
-msgid "DHCP"
-msgstr ""
-
-#: /tmp/tkmon-templates//ad3a7d58b6ad806b8e5117b91557.php:82
-#: /home/wfischer/tkdata/git/git-werner/tkmon-web-gitorious/tkmon-web/lib/tkmon/TKMON/Extension/Host/DefaultAttributes.php:106
-msgid "IP address"
-msgstr ""
-
-#: /tmp/tkmon-templates//ad3a7d58b6ad806b8e5117b91557.php:94
-msgid "Subnet mask"
-msgstr ""
-
-#: /tmp/tkmon-templates//ad3a7d58b6ad806b8e5117b91557.php:106
-msgid "Default Gateway"
-msgstr ""
-
-#: /tmp/tkmon-templates//b8a3debf7b4fef52cb49f2ce7e7f.php:70
-msgid "About"
-msgstr ""
-
-#: /tmp/tkmon-templates//b8a3debf7b4fef52cb49f2ce7e7f.php:87
-msgid "Logged in as %username%"
-msgstr ""
-
-#: /tmp/tkmon-templates//b8a3debf7b4fef52cb49f2ce7e7f.php:103
-msgid "Logout"
-msgstr ""
-
-#: /tmp/tkmon-templates//b9ee7d873ccc790370d3d8c5df9f.php:20
+#: /tmp/tkmon-templates//91bdf2e3eb482768781654f6ab9a.php:20
 msgid "Change your password"
 msgstr ""
 
-#: /tmp/tkmon-templates//b9ee7d873ccc790370d3d8c5df9f.php:35
+#: /tmp/tkmon-templates//91bdf2e3eb482768781654f6ab9a.php:35
 msgid ""
 "Thank you for changing your password. Please do this regularly to\n"
 "        increase the security for this device!"
 msgstr ""
 
-#: /tmp/tkmon-templates//b9ee7d873ccc790370d3d8c5df9f.php:57
+#: /tmp/tkmon-templates//91bdf2e3eb482768781654f6ab9a.php:57
 msgid "Current password"
 msgstr ""
 
-#: /tmp/tkmon-templates//b9ee7d873ccc790370d3d8c5df9f.php:63
+#: /tmp/tkmon-templates//91bdf2e3eb482768781654f6ab9a.php:63
 msgid "New password"
 msgstr ""
 
-#: /tmp/tkmon-templates//b9ee7d873ccc790370d3d8c5df9f.php:69
+#: /tmp/tkmon-templates//91bdf2e3eb482768781654f6ab9a.php:69
 msgid "Verification"
 msgstr ""
 
-#: /tmp/tkmon-templates//b9ee7d873ccc790370d3d8c5df9f.php:78
+#: /tmp/tkmon-templates//91bdf2e3eb482768781654f6ab9a.php:78
 msgid "Change password"
 msgstr ""
 
-#: /tmp/tkmon-templates//bed53433bbed76cea04c8936c38b.php:24
-msgid "Hosts"
+#: /tmp/tkmon-templates//978fa5a49ff1faa4f6aaa6bae4d5.php:22
+msgid "Mail settings"
 msgstr ""
 
-#: /tmp/tkmon-templates//bed53433bbed76cea04c8936c38b.php:31
-msgid "Maintain hosts and services here."
-msgstr ""
-
-#: /tmp/tkmon-templates//bed53433bbed76cea04c8936c38b.php:43
-msgid "Press the following button to add a new host:"
-msgstr ""
-
-#: /tmp/tkmon-templates//bed53433bbed76cea04c8936c38b.php:77
-msgid "No. services"
-msgstr ""
-
-#: /tmp/tkmon-templates//bed53433bbed76cea04c8936c38b.php:96
-msgid "No hosts defined, click the button on top to create one!"
-msgstr ""
-
-#: /tmp/tkmon-templates//bed53433bbed76cea04c8936c38b.php:126
-msgid "Device is a"
-msgstr ""
-
-#: /tmp/tkmon-templates//bed53433bbed76cea04c8936c38b.php:281
-msgid "Basic attributes"
-msgstr ""
-
-#: /tmp/tkmon-templates//bed53433bbed76cea04c8936c38b.php:307
-msgid "Parent host"
-msgstr ""
-
-#: /tmp/tkmon-templates//bed53433bbed76cea04c8936c38b.php:316
-msgid "Customfields"
-msgstr ""
-
-#: /tmp/tkmon-templates//bed53433bbed76cea04c8936c38b.php:348
-msgid "Ready to create? Press one of the following buttons:"
-msgstr ""
-
-#: /tmp/tkmon-templates//bed53433bbed76cea04c8936c38b.php:392
-msgid "Product information"
-msgstr ""
-
-#: /tmp/tkmon-templates//bee0844060f2caff4cad0ac6bb2f.php:31
-msgid "You are running"
-msgstr ""
-
-#: /tmp/tkmon-templates//bee0844060f2caff4cad0ac6bb2f.php:46
-#: /tmp/tkmon-templates//f0780cb9e5eddd4ce40a0c4b972a.php:104
-msgid "Goto NETWAYS"
-msgstr ""
-
-#: /tmp/tkmon-templates//bee0844060f2caff4cad0ac6bb2f.php:53
-#: /tmp/tkmon-templates//f0780cb9e5eddd4ce40a0c4b972a.php:144
-msgid "Goto Thomas Krenn"
-msgstr ""
-
-#: /tmp/tkmon-templates//bfdd7e114879883238fd62eb6e18.php:26
+#: /tmp/tkmon-templates//978fa5a49ff1faa4f6aaa6bae4d5.php:29
 msgid ""
-"Use this dialog to test your configuration. A heartbeat email will be "
-"bounced\n"
-"    back to your contact email address to ensure all settings work as "
-"expected."
+"Change email settings and send test emails to verify that your email setup\n"
+"    works like expected."
 msgstr ""
 
-#: /tmp/tkmon-templates//bfdd7e114879883238fd62eb6e18.php:34
-msgid ""
-"Just press 'Test' to start the validation of your configuration, no more "
-"parameters are needed."
+#: /tmp/tkmon-templates//978fa5a49ff1faa4f6aaa6bae4d5.php:41
+#: /tmp/tkmon-templates//b3770376f88aa51c8c5b38261320.php:20
+#: /tmp/tkmon-templates//fbc34afa8d9ff2eb5a5f1d9cb184.php:22
+msgid "Configuration"
 msgstr ""
 
-#: /tmp/tkmon-templates//bfdd7e114879883238fd62eb6e18.php:48
-msgid ""
-"Email was sent successfully. Please check your email account\n"
-"        <a href=\"#\" id=\"test-switch-tab\">configured here</a>. If "
-"everything\n"
-"        is correct you will receive an email immediately."
-msgstr ""
-
-#: /tmp/tkmon-templates//c4bc1c816f739700afb2bb52dbb0.php:28
+#: /tmp/tkmon-templates//9a3db725e9b89794a16f7ee23a63.php:28
 msgid ""
 "<p>\n"
 "        This performs a real upgrade of your system. Press the following "
@@ -1267,109 +948,73 @@ msgid ""
 "    </p>"
 msgstr ""
 
-#: /tmp/tkmon-templates//c4bc1c816f739700afb2bb52dbb0.php:40
+#: /tmp/tkmon-templates//9a3db725e9b89794a16f7ee23a63.php:40
 msgid "Yes, upgrade my system"
 msgstr ""
 
-#: /tmp/tkmon-templates//c4bc1c816f739700afb2bb52dbb0.php:91
-msgid "Upgrade in process"
+#: /tmp/tkmon-templates//9a3db725e9b89794a16f7ee23a63.php:85
+msgid "Error"
 msgstr ""
 
-#: /tmp/tkmon-templates//c4bc1c816f739700afb2bb52dbb0.php:105
-msgid "Everything went fine!"
+#: /tmp/tkmon-templates//9a3db725e9b89794a16f7ee23a63.php:172
+msgid "No updates found, everything ok"
 msgstr ""
 
-#: /tmp/tkmon-templates//c4bc1c816f739700afb2bb52dbb0.php:111
-msgid "Errors occurred!"
+#: /tmp/tkmon-templates//9a3db725e9b89794a16f7ee23a63.php:204
+msgid "System upgrade was successful."
 msgstr ""
 
-#: /tmp/tkmon-templates//c4bc1c816f739700afb2bb52dbb0.php:121
-msgid "Everything is ok!"
+#: /tmp/tkmon-templates//9a3db725e9b89794a16f7ee23a63.php:211
+msgid "Errors occurred, please examine error panel for more information."
 msgstr ""
 
-#: /tmp/tkmon-templates//c4bc1c816f739700afb2bb52dbb0.php:126
-msgid "Your system is up to date! No action was taken."
+#: /tmp/tkmon-templates//9c7816f516d77346cd4aa1f0f1ff.php:24
+#: /tmp/tkmon-templates//9c7816f516d77346cd4aa1f0f1ff.php:168
+msgid "Contacts"
 msgstr ""
 
-#: /tmp/tkmon-templates//c849ef42bc8b37d3e5bcc614eb1c.php:24
-msgid "Icinga event log"
-msgstr ""
-
-#: /tmp/tkmon-templates//c849ef42bc8b37d3e5bcc614eb1c.php:31
-msgid "Daemon event log entries to troubleshoot errors"
-msgstr ""
-
-#: /tmp/tkmon-templates//c849ef42bc8b37d3e5bcc614eb1c.php:40
-msgid "Info"
-msgstr ""
-
-#: /tmp/tkmon-templates//c849ef42bc8b37d3e5bcc614eb1c.php:45
+#: /tmp/tkmon-templates//9c7816f516d77346cd4aa1f0f1ff.php:31
 msgid ""
-"Maximum 200 items are displayed, ordered descending. Press button to refresh:"
+"Maintain your contacts here. Add people who are responsible for system "
+"alerts."
 msgstr ""
 
-#: /tmp/tkmon-templates//c849ef42bc8b37d3e5bcc614eb1c.php:69
-msgid "Timestamp"
+#: /tmp/tkmon-templates//9c7816f516d77346cd4aa1f0f1ff.php:43
+msgid "Press the following button to add a new person:"
 msgstr ""
 
-#: /tmp/tkmon-templates//cbeed29b3ed102fd3ae5107c30bb.php:20
-msgid "Icinga configuration test"
+#: /tmp/tkmon-templates//9c7816f516d77346cd4aa1f0f1ff.php:76
+msgid "Email Address"
 msgstr ""
 
-#: /tmp/tkmon-templates//cbeed29b3ed102fd3ae5107c30bb.php:26
-msgid "Press the button below to verify the current configuration."
+#: /tmp/tkmon-templates//9c7816f516d77346cd4aa1f0f1ff.php:90
+msgid "No contacts defined, click the button on top to create one!"
 msgstr ""
 
-#: /tmp/tkmon-templates//cbeed29b3ed102fd3ae5107c30bb.php:35
-msgid "Your configuration is"
+#: /tmp/tkmon-templates//a1522699e3794b77c475af2149d7.php:30
+msgid "You are running"
 msgstr ""
 
-#: /tmp/tkmon-templates//cbeed29b3ed102fd3ae5107c30bb.php:39
-msgid "valid"
+#: /tmp/tkmon-templates//a1522699e3794b77c475af2149d7.php:43
+#: /tmp/tkmon-templates//a16302017ad9cd912c4a92b18e68.php:102
+msgid "Goto NETWAYS"
 msgstr ""
 
-#: /tmp/tkmon-templates//cbeed29b3ed102fd3ae5107c30bb.php:43
-msgid "invalid"
+#: /tmp/tkmon-templates//a1522699e3794b77c475af2149d7.php:50
+#: /tmp/tkmon-templates//a16302017ad9cd912c4a92b18e68.php:140
+msgid "Goto Thomas Krenn"
 msgstr ""
 
-#: /tmp/tkmon-templates//cbeed29b3ed102fd3ae5107c30bb.php:50
-msgid "The reason behind"
-msgstr ""
-
-#: /tmp/tkmon-templates//cbeed29b3ed102fd3ae5107c30bb.php:59
-msgid "Run test"
-msgstr ""
-
-#: /tmp/tkmon-templates//cbeed29b3ed102fd3ae5107c30bb.php:74
-msgid "No reason found, everything is ok."
-msgstr ""
-
-#: /tmp/tkmon-templates//ecfec0f6027087812df0b58cd6fe.php:25
-msgid "Services for %hostName%"
-msgstr ""
-
-#: /tmp/tkmon-templates//ecfec0f6027087812df0b58cd6fe.php:32
-msgid "Click on the following button to add services to the host:"
-msgstr ""
-
-#: /tmp/tkmon-templates//ecfec0f6027087812df0b58cd6fe.php:37
-msgid "Add service"
-msgstr ""
-
-#: /tmp/tkmon-templates//ecfec0f6027087812df0b58cd6fe.php:66
-msgid "No services defined for this host. Click on the 'Add' button to do so."
-msgstr ""
-
-#: /tmp/tkmon-templates//f0780cb9e5eddd4ce40a0c4b972a.php:24
+#: /tmp/tkmon-templates//a16302017ad9cd912c4a92b18e68.php:24
 #, fuzzy
 msgid "Welcome TKmon"
 msgstr "Bienvenido"
 
-#: /tmp/tkmon-templates//f0780cb9e5eddd4ce40a0c4b972a.php:30
+#: /tmp/tkmon-templates//a16302017ad9cd912c4a92b18e68.php:30
 msgid "Why"
 msgstr ""
 
-#: /tmp/tkmon-templates//f0780cb9e5eddd4ce40a0c4b972a.php:36
+#: /tmp/tkmon-templates//a16302017ad9cd912c4a92b18e68.php:36
 msgid ""
 "TKmon is a simple webinterface to allow every user to monitor his "
 "environment simple and easy. You'll need no knowledge\n"
@@ -1377,11 +1022,11 @@ msgid ""
 "monitor your system!"
 msgstr ""
 
-#: /tmp/tkmon-templates//f0780cb9e5eddd4ce40a0c4b972a.php:43
+#: /tmp/tkmon-templates//a16302017ad9cd912c4a92b18e68.php:43
 msgid "Thanks"
 msgstr ""
 
-#: /tmp/tkmon-templates//f0780cb9e5eddd4ce40a0c4b972a.php:49
+#: /tmp/tkmon-templates//a16302017ad9cd912c4a92b18e68.php:49
 msgid ""
 "Thanks to all developers bringing us these wonderful technologies like "
 "Bootstrap, Twig, beautiful icons and more.\n"
@@ -1389,15 +1034,15 @@ msgid ""
 "incredible user experience."
 msgstr ""
 
-#: /tmp/tkmon-templates//f0780cb9e5eddd4ce40a0c4b972a.php:56
+#: /tmp/tkmon-templates//a16302017ad9cd912c4a92b18e68.php:56
 msgid "Why open source"
 msgstr ""
 
-#: /tmp/tkmon-templates//f0780cb9e5eddd4ce40a0c4b972a.php:62
+#: /tmp/tkmon-templates//a16302017ad9cd912c4a92b18e68.php:62
 msgid "What is Open Source Software?"
 msgstr ""
 
-#: /tmp/tkmon-templates//f0780cb9e5eddd4ce40a0c4b972a.php:69
+#: /tmp/tkmon-templates//a16302017ad9cd912c4a92b18e68.php:69
 msgid ""
 "Open source software, free software or software libre is software that can "
 "be used, copied and distributed\n"
@@ -1406,11 +1051,11 @@ msgid ""
 "    where its greatest benefits lie!"
 msgstr ""
 
-#: /tmp/tkmon-templates//f0780cb9e5eddd4ce40a0c4b972a.php:77
+#: /tmp/tkmon-templates//a16302017ad9cd912c4a92b18e68.php:77
 msgid "Who we are"
 msgstr ""
 
-#: /tmp/tkmon-templates//f0780cb9e5eddd4ce40a0c4b972a.php:93
+#: /tmp/tkmon-templates//a16302017ad9cd912c4a92b18e68.php:91
 msgid ""
 "For more than 15 years we have been supporting companies to manage complex, "
 "multifaceted IT\n"
@@ -1423,7 +1068,7 @@ msgid ""
 "    your IT do more with less."
 msgstr ""
 
-#: /tmp/tkmon-templates//f0780cb9e5eddd4ce40a0c4b972a.php:125
+#: /tmp/tkmon-templates//a16302017ad9cd912c4a92b18e68.php:121
 msgid ""
 "The server manufacturer Thomas-Krenn.AG is Europe's leading online store for "
 "servers, server solutions\n"
@@ -1438,123 +1083,497 @@ msgid ""
 "    and more than doubled its sales since 2005."
 msgstr ""
 
-#: /tmp/tkmon-templates//f0780cb9e5eddd4ce40a0c4b972a.php:136
+#: /tmp/tkmon-templates//a16302017ad9cd912c4a92b18e68.php:132
 msgid ""
 "All products are assembled in the Lower Bavarian city of Freyung and sent to "
 "the customers within 24 hours."
 msgstr ""
 
-#: /tmp/tkmon-templates//f40c6da8264275ac85ef482ace0c.php:29
+#: /tmp/tkmon-templates//aa20e785b5def8c1b661ff4c9ca8.php:26
+msgid "Send a test email to verify the setup of your email configuration."
+msgstr ""
+
+#: /tmp/tkmon-templates//aa20e785b5def8c1b661ff4c9ca8.php:52
+msgid "Email has been sent to the recipient."
+msgstr ""
+
+#: /tmp/tkmon-templates//aa20e785b5def8c1b661ff4c9ca8.php:59
+msgid "Recipient"
+msgstr ""
+
+#: /tmp/tkmon-templates//aa20e785b5def8c1b661ff4c9ca8.php:67
+msgid "Subject"
+msgstr ""
+
+#: /tmp/tkmon-templates//aa20e785b5def8c1b661ff4c9ca8.php:71
+msgid "Test mail from TKmon"
+msgstr ""
+
+#: /tmp/tkmon-templates//aa20e785b5def8c1b661ff4c9ca8.php:87
+msgid "Send"
+msgstr ""
+
+#: /tmp/tkmon-templates//ab902caee6ceb1530fc5409e3102.php:22
+msgid "Backup configuration"
+msgstr ""
+
+#: /tmp/tkmon-templates//ab902caee6ceb1530fc5409e3102.php:28
+msgid "What happens here?"
+msgstr ""
+
+#: /tmp/tkmon-templates//ab902caee6ceb1530fc5409e3102.php:32
+msgid ""
+"Download you current TKmon configuration here. This includes changed Icinga\n"
+"    configurations and TKmon settings."
+msgstr ""
+
+#: /tmp/tkmon-templates//ab902caee6ceb1530fc5409e3102.php:49
+msgid "You can protect your backup configuration file with a password."
+msgstr ""
+
+#: /tmp/tkmon-templates//ab902caee6ceb1530fc5409e3102.php:58
+msgid "Download configuration"
+msgstr ""
+
+#: /tmp/tkmon-templates//ab902caee6ceb1530fc5409e3102.php:67
+msgid ""
+"Download successfully started. If not, please press the button underneath."
+msgstr ""
+
+#: /tmp/tkmon-templates//ab902caee6ceb1530fc5409e3102.php:73
+msgid "Download"
+msgstr ""
+
+#: /tmp/tkmon-templates//ab902caee6ceb1530fc5409e3102.php:92
+msgid ""
+"Your session has expired, <a href=\"%login_link%\">please log\n"
+"            in and try again</a>!\n"
+"\n"
+"            (You will be redirected after 3 seconds)"
+msgstr ""
+
+#: /tmp/tkmon-templates//b3770376f88aa51c8c5b38261320.php:26
+msgid "Change sender address and relay host"
+msgstr ""
+
+#: /tmp/tkmon-templates//b3770376f88aa51c8c5b38261320.php:54
+msgid "Mail config was written to device"
+msgstr ""
+
+#: /tmp/tkmon-templates//b3770376f88aa51c8c5b38261320.php:61
+msgid "Sender address"
+msgstr ""
+
+#: /tmp/tkmon-templates//b3770376f88aa51c8c5b38261320.php:72
+msgid "Relayhost"
+msgstr ""
+
+#: /tmp/tkmon-templates//b3770376f88aa51c8c5b38261320.php:83
+msgid "Save and restart mailserver"
+msgstr ""
+
+#: /tmp/tkmon-templates//b3770376f88aa51c8c5b38261320.php:109
+msgid "Icinga restart required"
+msgstr ""
+
+#: /tmp/tkmon-templates//b3770376f88aa51c8c5b38261320.php:114
+msgid ""
+"After changing the sender address you have to restart icinga to apply\n"
+"        new address. Please follow this <a href=\"%restart_href%\">link to "
+"restart icinga</a>."
+msgstr ""
+
+#: /tmp/tkmon-templates//b6b729c09fd9dbef7052f8bbff04.php:39
+msgid "Service Status"
+msgstr ""
+
+#: /tmp/tkmon-templates//b6b729c09fd9dbef7052f8bbff04.php:46
+msgid "List of currently monitored services"
+msgstr ""
+
+#: /tmp/tkmon-templates//b6b729c09fd9dbef7052f8bbff04.php:54
+msgid ""
+"Press the releod button to reload the current view or restrict the view to "
+"one of the following statuses:\n"
+"            <a href=\"%link_ok%\">OK</a>,\n"
+"            <a href=\"%link_warning%\">WARNING</a>,\n"
+"            <a href=\"%link_critical%\">CRITICAL</a>,\n"
+"            <a href=\"%link_unknown%\">UNKNOWN</a> or\n"
+"            <a href=\"%link_pending%\">PENDING</a>"
+msgstr ""
+
+#: /tmp/tkmon-templates//b6b729c09fd9dbef7052f8bbff04.php:75
+msgid "Problems only"
+msgstr ""
+
+#: /tmp/tkmon-templates//b6b729c09fd9dbef7052f8bbff04.php:84
+msgid "All"
+msgstr ""
+
+#: /tmp/tkmon-templates//b6b729c09fd9dbef7052f8bbff04.php:103
+msgid "Service"
+msgstr ""
+
+#: /tmp/tkmon-templates//b6b729c09fd9dbef7052f8bbff04.php:107
+#: /tmp/tkmon-templates//f5cdf0eb4797c110780530220df6.php:38
+msgid "Status"
+msgstr ""
+
+#: /tmp/tkmon-templates//b6b729c09fd9dbef7052f8bbff04.php:111
+msgid "Last check"
+msgstr ""
+
+#: /tmp/tkmon-templates//b6b729c09fd9dbef7052f8bbff04.php:115
+msgid "Duration"
+msgstr ""
+
+#: /tmp/tkmon-templates//b6b729c09fd9dbef7052f8bbff04.php:119
+msgid "Attempt"
+msgstr ""
+
+#: /tmp/tkmon-templates//b6b729c09fd9dbef7052f8bbff04.php:131
+msgid "Sorry, no objects found"
+msgstr ""
+
+#: /tmp/tkmon-templates//c05b3fdba0819dc9d33cc2e19ced.php:24
+msgid "Icinga Interface"
+msgstr ""
+
+#: /tmp/tkmon-templates//c05b3fdba0819dc9d33cc2e19ced.php:31
+msgid "Access to the native Icinga interface, running on your TKmon appliance."
+msgstr ""
+
+#: /tmp/tkmon-templates//c05b3fdba0819dc9d33cc2e19ced.php:43
+msgid ""
+"This is only possible if you have enabled the <a href=\"%access_href%"
+"\">Icinga access in the settings dialog</a>.\n"
+"        You have to apply your credentials again. This is necessary because "
+"it is a new web interface\n"
+"        which you are opening."
+msgstr ""
+
+#: /tmp/tkmon-templates//c05b3fdba0819dc9d33cc2e19ced.php:54
+msgid "Link"
+msgstr ""
+
+#: /tmp/tkmon-templates//c05b3fdba0819dc9d33cc2e19ced.php:69
+msgid "Goto"
+msgstr ""
+
+#: /tmp/tkmon-templates//c05b3fdba0819dc9d33cc2e19ced.php:77
+#: /tmp/tkmon-templates//ca047c0eec0a23e81826d6942d4d.php:38
+msgid "User"
+msgstr ""
+
+#: /tmp/tkmon-templates//c05b3fdba0819dc9d33cc2e19ced.php:91
+msgid "Your current password"
+msgstr ""
+
+#: /tmp/tkmon-templates//c1d7f09e6e86081a778845b0bb45.php:23
+msgid "You are logged out successfully!"
+msgstr ""
+
+#: /tmp/tkmon-templates//c1d7f09e6e86081a778845b0bb45.php:30
+msgid ""
+"You can now close the application or press the button\n"
+"        below to login again."
+msgstr ""
+
+#: /tmp/tkmon-templates//c3fdec5524ccad382f17d67dcfd3.php:20
+msgid "Icinga status"
+msgstr ""
+
+#: /tmp/tkmon-templates//c3fdec5524ccad382f17d67dcfd3.php:29
+msgid "Currently your Icinga daemon is"
+msgstr ""
+
+#: /tmp/tkmon-templates//c3fdec5524ccad382f17d67dcfd3.php:40
+msgid ""
+"Icinga is running if the daemon is available and the status file is up-to-"
+"date."
+msgstr ""
+
+#: /tmp/tkmon-templates//c3fdec5524ccad382f17d67dcfd3.php:45
+msgid "Press the following button to refresh the status:"
+msgstr ""
+
+#: /tmp/tkmon-templates//c3fdec5524ccad382f17d67dcfd3.php:50
+msgid "Refresh"
+msgstr ""
+
+#: /tmp/tkmon-templates//c7493edcf2707a7363a1a10eeaa7.php:20
+msgid "IP address settings"
+msgstr ""
+
+#: /tmp/tkmon-templates//c7493edcf2707a7363a1a10eeaa7.php:25
+msgid "On this page you can change your IP settings."
+msgstr ""
+
+#: /tmp/tkmon-templates//c7493edcf2707a7363a1a10eeaa7.php:32
+msgid ""
+"Attention: setting wrong network parameters here can make this webinterface "
+"unreachable on your network.\n"
+"    In this case you have to login to the local console and correct your "
+"network settings at the local shell."
+msgstr ""
+
+#: /tmp/tkmon-templates//c7493edcf2707a7363a1a10eeaa7.php:61
+msgid "Your new network configuration has been set and applied."
+msgstr ""
+
+#: /tmp/tkmon-templates//c7493edcf2707a7363a1a10eeaa7.php:70
+msgid "Static"
+msgstr ""
+
+#: /tmp/tkmon-templates//c7493edcf2707a7363a1a10eeaa7.php:74
+msgid "DHCP"
+msgstr ""
+
+#: /tmp/tkmon-templates//c7493edcf2707a7363a1a10eeaa7.php:82
+#: /home/gschoenb/Repos/tkmon-web/lib/tkmon/TKMON/Extension/Host/DefaultAttributes.php:106
+msgid "IP address"
+msgstr ""
+
+#: /tmp/tkmon-templates//c7493edcf2707a7363a1a10eeaa7.php:93
+msgid "Subnet mask"
+msgstr ""
+
+#: /tmp/tkmon-templates//c7493edcf2707a7363a1a10eeaa7.php:104
+msgid "Default Gateway"
+msgstr ""
+
+#: /tmp/tkmon-templates//ca047c0eec0a23e81826d6942d4d.php:26
+msgid ""
+"This panel is used to change the security settings of your\n"
+"    TKmon appliance. Please select an appropriate tab to\n"
+"    change the specific settings."
+msgstr ""
+
+#: /tmp/tkmon-templates//ca047c0eec0a23e81826d6942d4d.php:42
+msgid "Icinga access"
+msgstr ""
+
+#: /tmp/tkmon-templates//ca047c0eec0a23e81826d6942d4d.php:46
+msgid "SSH Access"
+msgstr ""
+
+#: /tmp/tkmon-templates//d02b16172eaceed8c90c9207f31b.php:37
+#: /tmp/tkmon-templates//d02b16172eaceed8c90c9207f31b.php:87
+msgid "Useful links"
+msgstr ""
+
+#: /tmp/tkmon-templates//d186a9011fba4ab38ff1ed246535.php:22
+msgid "Device name"
+msgstr ""
+
+#: /tmp/tkmon-templates//d186a9011fba4ab38ff1ed246535.php:32
+msgid ""
+"New device name was written to appliance. You should consider\n"
+"    to reboot your device. To do so, please <a href=\"%reboot_link%\">\n"
+"    click on this link</a> and follow instructions."
+msgstr ""
+
+#: /tmp/tkmon-templates//d186a9011fba4ab38ff1ed246535.php:41
+msgid "Change your device name here to suite your needs."
+msgstr ""
+
+#: /tmp/tkmon-templates//d186a9011fba4ab38ff1ed246535.php:48
+msgid ""
+"<span class=\"label label-info\">Information:</span> A valid\n"
+"    device name is <strong>&lt;name&gt;.&lt;fqdn&gt;</strong>\n"
+"    e.g. <strong>icinga.my.company.com</strong>"
+msgstr ""
+
+#: /tmp/tkmon-templates//d186a9011fba4ab38ff1ed246535.php:71
+msgid "Current devicename"
+msgstr ""
+
+#: /tmp/tkmon-templates//d186a9011fba4ab38ff1ed246535.php:81
+#: /tmp/tkmon-templates//d94febb1e68c9d3d3108494f85fc.php:135
+msgid "Update"
+msgstr ""
+
+#: /tmp/tkmon-templates//d94febb1e68c9d3d3108494f85fc.php:20
+msgid "DNS settings"
+msgstr ""
+
+#: /tmp/tkmon-templates//d94febb1e68c9d3d3108494f85fc.php:34
+msgid "DNS resolver config has been saved and networking has been restarted"
+msgstr ""
+
+#: /tmp/tkmon-templates//d94febb1e68c9d3d3108494f85fc.php:40
+msgid "Here you can change your DNS settings."
+msgstr ""
+
+#: /tmp/tkmon-templates//d94febb1e68c9d3d3108494f85fc.php:59
+msgid ""
+"This system uses resolveconf which keeps track of the available DNS servers "
+"and combines them\n"
+"        into a useful order. You can leave the fields blank if you use a "
+"DHCP interface\n"
+"        on the address tab."
+msgstr ""
+
+#: /tmp/tkmon-templates//d94febb1e68c9d3d3108494f85fc.php:68
+msgid "First nameserver"
+msgstr ""
+
+#: /tmp/tkmon-templates//d94febb1e68c9d3d3108494f85fc.php:80
+msgid "Second nameserver (optional)"
+msgstr ""
+
+#: /tmp/tkmon-templates//d94febb1e68c9d3d3108494f85fc.php:83
+#: /tmp/tkmon-templates//d94febb1e68c9d3d3108494f85fc.php:101
+#: /tmp/tkmon-templates//d94febb1e68c9d3d3108494f85fc.php:120
+msgid "Click to clear field content"
+msgstr ""
+
+#: /tmp/tkmon-templates//d94febb1e68c9d3d3108494f85fc.php:98
+msgid "Third nameserver (optional)"
+msgstr ""
+
+#: /tmp/tkmon-templates//d94febb1e68c9d3d3108494f85fc.php:117
+msgid "Search suffix (optional)"
+msgstr ""
+
+#: /tmp/tkmon-templates//ec5e2719f02cfaaf44ad91122101.php:30
+msgid "Restart required"
+msgstr ""
+
+#: /tmp/tkmon-templates//ec5e2719f02cfaaf44ad91122101.php:35
+msgid ""
+"Preceding package upgrade need a system restart.\n"
+"            Click on <a href=\"%restart_link%\">the link\n"
+"            to trigger a manually restart</a> of your appliance."
+msgstr ""
+
+#: /tmp/tkmon-templates//f55fb5dda8a6acb29e89686e6b5a.php:26
+msgid ""
+"The following list shows available updates for your system. Click the\n"
+"    \"Refresh pending updates\" button to retrieve the current list of "
+"available\n"
+"    updates."
+msgstr ""
+
+#: /tmp/tkmon-templates//f55fb5dda8a6acb29e89686e6b5a.php:36
+msgid "Refresh pending updates"
+msgstr ""
+
+#: /tmp/tkmon-templates//f55fb5dda8a6acb29e89686e6b5a.php:57
+msgid "Loading pending upgrades"
+msgstr ""
+
+#: /tmp/tkmon-templates//f5cdf0eb4797c110780530220df6.php:22
+msgid "Daemon Status"
+msgstr ""
+
+#: /tmp/tkmon-templates//f5cdf0eb4797c110780530220df6.php:29
+msgid "Take control of the Icinga daemon and test the configuration."
+msgstr ""
+
+#: /tmp/tkmon-templates//f5cdf0eb4797c110780530220df6.php:44
+msgid "Test configuration"
+msgstr ""
+
+#: /tmp/tkmon-templates//fbc34afa8d9ff2eb5a5f1d9cb184.php:29
 msgid ""
 "Settings from the config.json config file or on startup auto generated "
 "settings:"
 msgstr ""
 
-#: /tmp/tkmon-templates//f73ab308af79cf384936655cf04e.php:22
-msgid "Daemon Status"
-msgstr ""
-
-#: /tmp/tkmon-templates//f73ab308af79cf384936655cf04e.php:29
-msgid "Take control of the Icinga daemon and test the configuration."
-msgstr ""
-
-#: /tmp/tkmon-templates//f73ab308af79cf384936655cf04e.php:44
-msgid "Test configuration"
-msgstr ""
-
-#: /home/wfischer/tkdata/git/git-werner/tkmon-web-gitorious/tkmon-web/lib/tkmon/TKMON/Extension/Host/DefaultAttributes.php:110
+#: /home/gschoenb/Repos/tkmon-web/lib/tkmon/TKMON/Extension/Host/DefaultAttributes.php:110
 msgid "Parent hosts"
 msgstr ""
 
-#: /home/wfischer/tkdata/git/git-werner/tkmon-web-gitorious/tkmon-web/lib/tkmon/TKMON/Extension/Host/ThomasKrennAttributes.php:138
+#: /home/gschoenb/Repos/tkmon-web/lib/tkmon/TKMON/Extension/Host/ThomasKrennAttributes.php:138
 msgid "Serial"
 msgstr ""
 
-#: /home/wfischer/tkdata/git/git-werner/tkmon-web-gitorious/tkmon-web/lib/tkmon/TKMON/Extension/Host/ThomasKrennAttributes.php:143
+#: /home/gschoenb/Repos/tkmon-web/lib/tkmon/TKMON/Extension/Host/ThomasKrennAttributes.php:143
 msgid "Operating system"
 msgstr ""
 
-#: /home/wfischer/tkdata/git/git-werner/tkmon-web-gitorious/tkmon-web/lib/tkmon/TKMON/Extension/Host/ThomasKrennAttributes.php:152
+#: /home/gschoenb/Repos/tkmon-web/lib/tkmon/TKMON/Extension/Host/ThomasKrennAttributes.php:152
 msgid "Thomas Krenn wiki link"
 msgstr ""
 
-#: /home/wfischer/tkdata/git/git-werner/tkmon-web-gitorious/tkmon-web/lib/tkmon/TKMON/Extension/Host/ThomasKrennAttributes.php:157
+#: /home/gschoenb/Repos/tkmon-web/lib/tkmon/TKMON/Extension/Host/ThomasKrennAttributes.php:157
 msgid "Thomas Krenn product title"
 msgstr ""
 
-#: /home/wfischer/tkdata/git/git-werner/tkmon-web-gitorious/tkmon-web/lib/tkmon/TKMON/Extension/Host/ThomasKrennAttributes.php:166
+#: /home/gschoenb/Repos/tkmon-web/lib/tkmon/TKMON/Extension/Host/ThomasKrennAttributes.php:166
 msgid "IPMI IP address"
 msgstr ""
 
-#: /home/wfischer/tkdata/git/git-werner/tkmon-web-gitorious/tkmon-web/lib/tkmon/TKMON/Extension/Host/ThomasKrennAttributes.php:171
+#: /home/gschoenb/Repos/tkmon-web/lib/tkmon/TKMON/Extension/Host/ThomasKrennAttributes.php:171
 msgid "IPMI user"
 msgstr ""
 
-#: /home/wfischer/tkdata/git/git-werner/tkmon-web-gitorious/tkmon-web/lib/tkmon/TKMON/Extension/Host/ThomasKrennAttributes.php:176
+#: /home/gschoenb/Repos/tkmon-web/lib/tkmon/TKMON/Extension/Host/ThomasKrennAttributes.php:176
 msgid "IPMI password"
 msgstr ""
 
-#: /home/wfischer/tkdata/git/git-werner/tkmon-web-gitorious/tkmon-web/lib/tkmon/TKMON/Extension/Host/ThomasKrennAttributes.php:181
+#: /home/gschoenb/Repos/tkmon-web/lib/tkmon/TKMON/Extension/Host/ThomasKrennAttributes.php:181
 msgid "SNMP community"
 msgstr ""
 
-#: /home/wfischer/tkdata/git/git-werner/tkmon-web-gitorious/tkmon-web/lib/tkmon/TKMON/Action/Expose/Monitor/Icinga/Services.php:390
-msgid "Servicename"
+#: /home/gschoenb/Repos/tkmon-web/lib/tkmon/TKMON/Action/Expose/System/Configuration/Backup.php:167
+msgid "Password is empty or does not match"
 msgstr ""
 
-#: /home/wfischer/tkdata/git/git-werner/tkmon-web-gitorious/tkmon-web/lib/tkmon/TKMON/Action/Expose/Monitor/Icinga/Services.php:398
-msgid "Catalogue identifier"
-msgstr ""
-
-#: /home/wfischer/tkdata/git/git-werner/tkmon-web-gitorious/tkmon-web/lib/tkmon/TKMON/Action/Expose/Monitor/Daemon.php:53
-msgid "Not running"
-msgstr ""
-
-#: /home/wfischer/tkdata/git/git-werner/tkmon-web-gitorious/tkmon-web/lib/tkmon/TKMON/Action/Expose/Monitor/Daemon.php:62
-msgid "Running"
-msgstr ""
-
-#: /home/wfischer/tkdata/git/git-werner/tkmon-web-gitorious/tkmon-web/lib/tkmon/TKMON/Action/Expose/ThomasKrenn/Alert/Configuration.php:73
-msgid "Person"
-msgstr ""
-
-#: /home/wfischer/tkdata/git/git-werner/tkmon-web-gitorious/tkmon-web/lib/tkmon/TKMON/Action/Expose/ThomasKrenn/Alert/Configuration.php:81
-msgid "email"
-msgstr ""
-
-#: /home/wfischer/tkdata/git/git-werner/tkmon-web-gitorious/tkmon-web/lib/tkmon/TKMON/Action/Expose/ThomasKrenn/Alert/Configuration.php:89
-msgid "Auth key"
-msgstr ""
-
-#: /home/wfischer/tkdata/git/git-werner/tkmon-web-gitorious/tkmon-web/lib/tkmon/TKMON/Action/Expose/ThomasKrenn/Alert/Configuration.php:97
-msgid "Enabled flag"
-msgstr ""
-
-#: /home/wfischer/tkdata/git/git-werner/tkmon-web-gitorious/tkmon-web/lib/tkmon/TKMON/Action/Expose/ThomasKrenn/Alert/Configuration.php:138
-msgid "Run flag"
-msgstr ""
-
-#: /home/wfischer/tkdata/git/git-werner/tkmon-web-gitorious/tkmon-web/lib/tkmon/TKMON/Action/Expose/ThomasKrenn/Alert/Configuration.php:154
-msgid "CGI parameter run=1 is missing to start the test"
-msgstr ""
-
-#: /home/wfischer/tkdata/git/git-werner/tkmon-web-gitorious/tkmon-web/lib/tkmon/TKMON/Action/Expose/System/Configuration/Mail.php:41
+#: /home/gschoenb/Repos/tkmon-web/lib/tkmon/TKMON/Action/Expose/System/Configuration/Mail.php:43
 msgid "Mail config"
 msgstr ""
 
-#: /home/wfischer/tkdata/git/git-werner/tkmon-web-gitorious/tkmon-web/lib/tkmon/TKMON/Action/Expose/System/Configuration/Mail.php:71
+#: /home/gschoenb/Repos/tkmon-web/lib/tkmon/TKMON/Action/Expose/System/Configuration/Mail.php:73
 msgid "Email"
 msgstr ""
 
-#: /home/wfischer/tkdata/git/git-werner/tkmon-web-gitorious/tkmon-web/lib/tkmon/TKMON/Action/Expose/System/Configuration/Mail.php:77
-#: /home/wfischer/tkdata/git/git-werner/tkmon-web-gitorious/tkmon-web/lib/tkmon/TKMON/Action/Expose/System/Configuration/Mail.php:83
+#: /home/gschoenb/Repos/tkmon-web/lib/tkmon/TKMON/Action/Expose/System/Configuration/Mail.php:79
+#: /home/gschoenb/Repos/tkmon-web/lib/tkmon/TKMON/Action/Expose/System/Configuration/Mail.php:85
 msgid "Mandatory"
 msgstr ""
 
-#: /home/wfischer/tkdata/git/git-werner/tkmon-web-gitorious/tkmon-web/lib/tkmon/TKMON/Action/Expose/System/Configuration/Mail.php:120
+#: /home/gschoenb/Repos/tkmon-web/lib/tkmon/TKMON/Action/Expose/System/Configuration/Mail.php:122
 msgid "IP"
 msgstr ""
 
-#: /home/wfischer/tkdata/git/git-werner/tkmon-web-gitorious/tkmon-web/lib/tkmon/TKMON/Action/Expose/System/Configuration/Backup.php:167
-msgid "Password is empty or does not match"
+#: /home/gschoenb/Repos/tkmon-web/lib/tkmon/TKMON/Action/Expose/Monitor/Daemon.php:53
+msgid "Not running"
+msgstr ""
+
+#: /home/gschoenb/Repos/tkmon-web/lib/tkmon/TKMON/Action/Expose/Monitor/Daemon.php:62
+msgid "Running"
+msgstr ""
+
+#: /home/gschoenb/Repos/tkmon-web/lib/tkmon/TKMON/Action/Expose/Monitor/Icinga/Services.php:390
+msgid "Servicename"
+msgstr ""
+
+#: /home/gschoenb/Repos/tkmon-web/lib/tkmon/TKMON/Action/Expose/Monitor/Icinga/Services.php:398
+msgid "Catalogue identifier"
+msgstr ""
+
+#: /home/gschoenb/Repos/tkmon-web/lib/tkmon/TKMON/Action/Expose/ThomasKrenn/Alert/Configuration.php:73
+msgid "Person"
+msgstr ""
+
+#: /home/gschoenb/Repos/tkmon-web/lib/tkmon/TKMON/Action/Expose/ThomasKrenn/Alert/Configuration.php:81
+msgid "email"
+msgstr ""
+
+#: /home/gschoenb/Repos/tkmon-web/lib/tkmon/TKMON/Action/Expose/ThomasKrenn/Alert/Configuration.php:89
+msgid "Auth key"
+msgstr ""
+
+#: /home/gschoenb/Repos/tkmon-web/lib/tkmon/TKMON/Action/Expose/ThomasKrenn/Alert/Configuration.php:97
+msgid "Enabled flag"
+msgstr ""
+
+#: /home/gschoenb/Repos/tkmon-web/lib/tkmon/TKMON/Action/Expose/ThomasKrenn/Alert/Configuration.php:138
+msgid "Run flag"
+msgstr ""
+
+#: /home/gschoenb/Repos/tkmon-web/lib/tkmon/TKMON/Action/Expose/ThomasKrenn/Alert/Configuration.php:154
+msgid "CGI parameter run=1 is missing to start the test"
 msgstr ""
