@@ -203,6 +203,11 @@
         "pkill": {
             "path": "/usr/bin/pkill",
             "sudo": true
+        },
+
+        "async_update": {
+            "path": "/usr/local/sbin/async_update.py",
+            "sudo": true
         }
     }
 }

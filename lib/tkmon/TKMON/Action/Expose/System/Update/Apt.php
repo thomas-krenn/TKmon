@@ -27,7 +27,9 @@ use TKMON\Action\Base;
 use NETWAYS\Common\ArrayObject;
 use TKMON\Exception\ModelException;
 use TKMON\Model\System\Update\Apt as AptModel;
+use TKMON\Model\System\Update\AsyncStatus;
 use TKMON\Model\User;
+use TKMON\Mvc\Output\Json;
 use TKMON\Mvc\Output\JsonResponse;
 use TKMON\Mvc\Output\TwigTemplate;
 
@@ -131,10 +133,7 @@ class Apt extends Base
 
             if ($params['doUpgrade'] === '1') {
                 $model = new AptModel($this->container);
-                $output = $model->doUpgrade();
-
-                $response->addData($output);
-
+                $model->doAsyncUpgrade();
                 $response->setSuccess(true);
             }
         } catch (\Exception $e) {
@@ -142,5 +141,26 @@ class Apt extends Base
         }
 
         return $response;
+    }
+
+    /**
+     * Status about upgrade process
+     *
+     * @param ArrayObject $params
+     *
+     * @return Json
+     */
+    public function actionUpgradeStatus(ArrayObject $params)
+    {
+        $statusModel = new AsyncStatus($this->container);
+        $status = $statusModel->getStatus();
+
+        $output = new Json();
+        $output['error']    = $statusModel->getError();
+        $output['info']     = $statusModel->getInfo();
+        $output['status']   = $status;
+        $output['running']  = ($status !== null) ? $status->isRunning : false;
+
+        return $output;
     }
 }
