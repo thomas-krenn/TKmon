@@ -27,8 +27,7 @@
         <tr>
             <th style="width: 25px;">&nbsp;</th>
             <th>{% trans "Package" %}</th>
-            <th>{% trans "Version" %}</th>
-            <th>{% trans "Repository" %}</th>
+            <th>{% trans "Detail" %}</th>
         </tr>
         {% for record in records %}
         <tr>
@@ -51,13 +50,8 @@
                 {% endif %}
             </td>
             <td>
-                {{ record.version }} ({{ record.architecture }})
-                {% if record.broke %}
-                    <br />
-                    <em>({% trans "breaks version" %} {{ record.broke }})</em>
-                {% endif %}
+                {{ record.detail }}
             </td>
-            <td>{{ record.repository }}</td>
         </tr>
         {% endfor %}
     </table>

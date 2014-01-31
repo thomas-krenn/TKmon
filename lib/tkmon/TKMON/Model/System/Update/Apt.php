@@ -35,13 +35,6 @@ use TKMON\Model\ApplicationModel;
 class Apt extends ApplicationModel
 {
     /**
-     * Regex to parse apt output
-     *
-     * @var string
-     */
-    const APT_REGEX = '/(inst|conf|remv)\s+([^\s]+)\s(\[([^\]]+)\]\s+)?\(([^\s]+)\s([^\s]+)(\s\[([^\]]+)\]\))?/i';
-
-    /**
      * Identifier for update-notifier-common if a restart is required
      *
      * @var string
@@ -158,13 +151,13 @@ class Apt extends ApplicationModel
         $aptGet->execute();
 
         $output     = $aptGet->getOutput();
-        $match      = array();
         $records    = array();
 
-        if (preg_match_all(self::APT_REGEX, $output, $match, PREG_SET_ORDER)) {
-            foreach ($match as $index => $parts) {
-
-                $operation = strtolower($parts[1]);
+        $lines = explode(PHP_EOL, $output);
+        foreach ($lines as $line) {
+            if ($line && preg_match('/^(inst|conf|remv)\s+/i', $line)) {
+                $parts = explode(' ', trim($line, '[] '));
+                $operation = strtolower($parts[0]);
 
                 if ($operation === 'conf') {
                     continue;
@@ -172,12 +165,10 @@ class Apt extends ApplicationModel
 
                 $record                 = new \stdClass();
                 $record->operation      = $operation;
-                $record->packageName    = $parts[2];
-                $record->broke          = ($parts[4]) ? $parts[4] : null;
-                $record->version        = $parts[5];
-                $record->repository     = $parts[6];
-                $record->architecture   = $parts[8];
-                $record->href           = $this->createPackageHref($record->repository, $record->packageName);
+                $record->packageName    = $parts[1];
+                array_shift($parts);
+                array_shift($parts);
+                $record->detail         = implode(' ', $parts);
                 $records[]              = $record;
             }
         }
