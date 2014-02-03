@@ -1,4 +1,4 @@
-<h4>{% trans "Upgrade" %}</h4>
+<h4 id="upgrade-visible-target">{% trans "Upgrade" %}</h4>
 
 <div class="container-spacer-down"></div>
 
@@ -77,6 +77,9 @@
         var statusUrl = '{{ web_link('UpgradeStatus') }}';
         var startTime = 0;
 
+        /**
+         * Clear previous output
+         */
         var clearProgress = function(show) {
             showProcessFrame(show);
             $('#upgrade-process-target').find('div.progress div.bar').css('width', 0);
@@ -87,6 +90,9 @@
             $('#message-target').html('');
         };
 
+        /**
+         * Toggle status boxes
+         */
         var showProcessFrame = function(show) {
             if (show === true) {
                 $('#upgrade-process-target').removeClass('hidden');
@@ -95,21 +101,30 @@
             }
         };
 
+        /**
+         * Draw message boxes on page
+         */
         var messageBox = function(text, cls) {
             cls = cls || 'success';
             var html = '<div class="alert alert-' + cls + '">' + text + '</div>';
             $('#message-target').html(html);
         };
 
+        /**
+         * Update process information on page
+         */
         var updateProgress = function(r) {
             var percent = r.status.progress;
             $('#upgrade-process-target').find('div.progress div.bar').css('width', String(percent) + '%');
             $('#progress-value').html(String(Math.round(percent)) + '%');
-            $('#runtime-value').html(Math.floor(new Date().getTime() / 1000 - startTime).toFixed(2) + 's');
+            $('#runtime-value').html(String(Math.round(new Date().getTime() / 1000 - startTime)) + 's');
             $('#error-target').html(r.error ? r.error : 'No errors.');
             $('#info-target').html(r.info ? r.info : 'No info.');
         };
 
+        /**
+         *  Start upgrade, update package cache and trigger traceStatus
+         */
         var startUpgrade = function() {
             startTime = Math.floor(new Date().getTime() / 1000);
             $('#start-real-upgrade').addClass('disabled');
@@ -142,43 +157,74 @@
             });
         };
 
+        /**
+         * Free the upgrade button
+         */
         var stopUpgrade = function() {
             $('#start-real-upgrade').removeClass('disabled');
         };
 
+        /**
+         * Query update status and execute callbacks on the data
+         */
+        var traceHandler = function(doneCallback, alwaysCallback) {
+            if (typeof(doneCallback) !== 'function' && typeof(alwaysCallback) !== 'function') {
+                throw('No calback given as argument');
+            }
+
+            doneCallback = doneCallback || function() {};
+            alwaysCallback = alwaysCallback || function() {};
+
+            $.ajax(statusUrl, {
+                type: 'GET'
+            }).done(doneCallback)
+                .always(alwaysCallback);
+        };
+
+        /**
+         * Update current update status automatically
+         */
         var traceStatus = function() {
             var stop = false;
 
-            var trace = function() {
-                $.ajax(statusUrl, {
-                    type: 'GET'
-                }).done(function(data) {
-                    if (data !== null) {
-                        updateProgress(data);
-                    }
+            var doneHandler = function(data) {
+                if (data !== null) {
+                    updateProgress(data);
+                }
 
-                    if (data === null || data.running === false) {
-                        stop = true;
-                        stopUpgrade();
-                        messageBox('{% trans 'System upgrade was successful.' %}');
-                        $('#start-real-upgrade').removeClass('disabled');
+                if (data === null || data.running === false) {
+                    stop = true;
+                    stopUpgrade();
+                    messageBox('{% trans 'System upgrade was successful.' %}');
+                    $('#start-real-upgrade').removeClass('disabled');
 
-                        if (data.status.hasErrors === true) {
-                            messageBox('{% trans 'Errors occurred, please examine error panel for more information.' %}', 'error');
-                        }
+                    if (data.status.hasErrors === true) {
+                        messageBox('{% trans 'Errors occurred, please examine error panel for more information.' %}', 'error');
                     }
-                }).always(function(data, textStatus) {
-                    window.setTimeout(function() {
-                        if (stop === false) {
-                            trace();
-                        }
-                    }, 500);
-                });
+                }
             };
 
-            trace();
+            var alwaysHandler = function() {
+                window.setTimeout(function() {
+                    if (stop === false) {
+                        traceHandler(doneHandler, alwaysHandler);
+                    }
+                }, 500);
+            };
+
+            alwaysHandler();
         };
 
         $('#start-real-upgrade').click(startUpgrade);
+
+        $('a[href=#tab-upgrade]').on('shown', function() {
+            traceHandler(function(data) {
+                if (data && data.running === true) {
+                    clearProgress(true);
+                    traceStatus();
+                }
+            });
+        });
+
     });
 </script>
