@@ -167,14 +167,8 @@
                             messageBox('{% trans 'Errors occurred, please examine error panel for more information.' %}', 'error');
                         }
                     }
-
-                    window.setInterval(function() {
-                        if (stop === false) {
-                            trace();
-                        }
-                    }, 500);
-                }).fail(function(data, textStatus) {
-                    window.setInterval(function() {
+                }).always(function(data, textStatus) {
+                    window.setTimeout(function() {
                         if (stop === false) {
                             trace();
                         }
@@ -183,12 +177,6 @@
             };
 
             trace();
-        };
-
-        var getStatus = function() {
-            var out = null;
-
-
         };
 
         $('#start-real-upgrade').click(startUpgrade);
