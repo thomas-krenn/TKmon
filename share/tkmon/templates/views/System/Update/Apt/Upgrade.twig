@@ -104,7 +104,7 @@
         var updateProgress = function(r) {
             var percent = r.status.progress;
             $('#upgrade-process-target').find('div.progress div.bar').css('width', String(percent) + '%');
-            $('#progress-value').html(percent + '%');
+            $('#progress-value').html(String(Math.round(percent)) + '%');
             $('#runtime-value').html(Math.floor(new Date().getTime() / 1000 - startTime).toFixed(2) + 's');
             $('#error-target').html(r.error ? r.error : 'No errors.');
             $('#info-target').html(r.info ? r.info : 'No info.');
