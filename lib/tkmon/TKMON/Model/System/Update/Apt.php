@@ -42,32 +42,6 @@ class Apt extends ApplicationModel
     const REBOOT_REQUIRED_FILE = '/var/run/reboot-required';
 
     /**
-     * Generates href to follow package information
-     *
-     * @param string $repository
-     * @param string $packageName
-     *
-     * @return string URL to packages.ubuntu.com
-     */
-    private function createPackageHref($repository, $packageName)
-    {
-        $repoData = explode('/', $repository, 2);
-
-        if (count($repoData) !== 2) {
-            return null;
-        }
-
-        $ubuntuVersion = array_shift($repoData);
-        $repository = array_shift($repoData);
-
-        if (strpos($repository, '-security') !== false) {
-            $repository = str_replace('-security', '-updates', $repository);
-        }
-
-        return 'http://packages.ubuntu.com/'. $repository. '/'. $packageName;
-    }
-
-    /**
      * Do a system upgrade
      *
      * @return string
@@ -172,7 +146,7 @@ class Apt extends ApplicationModel
                 $parts = explode(' ', trim($line, '[] '));
                 $operation = strtolower($parts[0]);
 
-                if ($operation === 'conf') {
+                if ($operation === 'conf' || $operation === 'remv') {
                     continue;
                 }
 
