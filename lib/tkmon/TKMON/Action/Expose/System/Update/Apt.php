@@ -103,6 +103,9 @@ class Apt extends Base
      */
     public function actionRestartRequired(ArrayObject $params)
     {
+        $statusModel = new AsyncStatus($this->container);
+        $status = $statusModel->getStatus();
+
         $model = new AptModel($this->container);
         $template = new TwigTemplate($this->container['template']);
         $template->setTemplateName('views/System/Update/Apt/EmbeddedRestartRequired.twig');

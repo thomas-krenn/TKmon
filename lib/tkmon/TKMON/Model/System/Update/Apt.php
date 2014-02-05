@@ -207,11 +207,17 @@ class Apt extends ApplicationModel
     /**
      * Test if a system restart is required
      *
+     * Restart is not required if a update is currently running.
+     *
      * @return bool
      */
     public function isRestartRequired()
     {
-        if (file_exists(self::REBOOT_REQUIRED_FILE) === true) {
+        $asyncStatusModel = new AsyncStatus($this->container);
+        $status = $asyncStatusModel->getStatus();
+        $isRunning = ($status !== null) ? $status->isRunning : false;
+
+        if (file_exists(self::REBOOT_REQUIRED_FILE) === true && !$isRunning) {
             return true;
         }
 
