@@ -13,7 +13,7 @@
     {% endtrans %}
 </div>
 
-<button type="button" class="btn btn-danger" id="start-real-upgrade">
+<button type="button" class="btn btn-danger disabled" id="start-real-upgrade">
     <i class="icon-exclamation-sign"></i> {% trans "Yes, upgrade my system" %}
 </button>
 
@@ -81,6 +81,7 @@
          * Clear previous output
          */
         var clearProgress = function(show) {
+            startTime = 0;
             showProcessFrame(show);
             $('#upgrade-process-target').find('div.progress div.bar').css('width', 0);
             $('#progress-value').html('0%');
@@ -110,6 +111,33 @@
             $('#message-target').html(html);
         };
 
+        var formatSeconds = function(timeInSeconds) {
+            var sec_num = parseInt(timeInSeconds, 10);
+            var hours = Math.floor(sec_num / 3600);
+            var minutes = Math.floor((sec_num - (hours * 3600)) / 60);
+            var seconds = sec_num - (hours * 3600) - (minutes * 60);
+
+            var out = [];
+
+            if (hours > 0) {
+                out.push(hours + 'h');
+            }
+
+            if (minutes > 0) {
+                out.push(minutes + 'm');
+            }
+
+            if (seconds > 0) {
+                out.push(seconds + 's');
+            }
+
+            if (out.length <= 0) {
+                return '0s';
+            }
+
+            return out.join(' ');
+        }
+
         /**
          * Update process information on page
          */
@@ -117,7 +145,12 @@
             var percent = r.status.progress;
             $('#upgrade-process-target').find('div.progress div.bar').css('width', String(percent) + '%');
             $('#progress-value').html(String(Math.round(percent)) + '%');
-            $('#runtime-value').html(String(Math.round(new Date().getTime() / 1000 - startTime)) + 's');
+
+            var runtimeSeconds = Math.floor(r.status.nowSeconds - r.status.startTimeSeconds);
+
+            console.log(runtimeSeconds);
+
+            $('#runtime-value').html(formatSeconds(runtimeSeconds));
             $('#error-target').html(r.error ? r.error : 'No errors.');
             $('#info-target').html(r.info ? r.info : 'No info.');
         };
@@ -126,7 +159,6 @@
          *  Start upgrade, update package cache and trigger traceStatus
          */
         var startUpgrade = function() {
-            startTime = Math.floor(new Date().getTime() / 1000);
             $('#start-real-upgrade').addClass('disabled');
             $.ajax(upgradeUrl, {
                 type: 'POST',
@@ -197,6 +229,8 @@
                     stopUpgrade();
                     messageBox('{% trans 'System upgrade was successful.' %}');
                     $('#start-real-upgrade').removeClass('disabled');
+                    $('#restart-required-target').Html5AjaxContent();
+
 
                     if (data.status.hasErrors === true) {
                         messageBox('{% trans 'Errors occurred, please examine error panel for more information.' %}', 'error');
@@ -212,6 +246,7 @@
                 }, 500);
             };
 
+            $('#restart-required-target').Html5AjaxContent();
             alwaysHandler();
         };
 
@@ -220,8 +255,11 @@
         $('a[href=#tab-upgrade]').on('shown', function() {
             traceHandler(function(data) {
                 if (data && data.running === true) {
+                    $('#start-real-upgrade').addClass('disabled');
                     clearProgress(true);
                     traceStatus();
+                } else {
+                    $('#start-real-upgrade').removeClass('disabled');
                 }
             });
         });

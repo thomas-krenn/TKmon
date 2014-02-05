@@ -187,17 +187,19 @@ class AsyncStatus extends ApplicationModel
 
             $fileInfo = new SplFileInfo($this->getStatusFile());
 
-            $out                = new stdClass();
-            $out->startTime     = $this->formatDate(substr($data[0], 0, strpos($data[0], '.')));
-            $out->runTime       = (float) $data[1];
-            $out->progress      = (float) $data[2];
-            $out->isRunning     = ($data[3] === 'True' ? true : false);
-            $out->hasErrors     = ($data[4] === 'True' ? true : false);
-            $out->lastUpdate    = $this->formatDate($fileInfo->getMTime());
+            $out                    = new stdClass();
+            $out->startTimeSeconds  = (int) substr($data[0], 0, strpos($data[0], '.'));
+            $out->startTime         = $this->formatDate($out->startTimeSeconds);
+            $out->nowSeconds        = time();
+            $out->runTime           = (float) $data[1];
+            $out->progress          = (float) $data[2];
+            $out->isRunning         = ($data[3] === 'True' ? true : false);
+            $out->hasErrors         = ($data[4] === 'True' ? true : false);
+            $out->lastUpdate        = $this->formatDate($fileInfo->getMTime());
 
             return $out;
         }
 
         return null;
     }
-} 
+}
