@@ -13,7 +13,7 @@
     {% endtrans %}
 </div>
 
-<button type="button" class="btn btn-danger disabled" id="start-real-upgrade">
+<button type="button" class="btn btn-danger" id="start-real-upgrade">
     <i class="icon-exclamation-sign"></i> {% trans "Yes, upgrade my system" %}
 </button>
 
@@ -74,6 +74,29 @@
         var upgradeUrl = '{{ web_link('Upgrade') }}';
         var statusUrl = '{{ web_link('UpgradeStatus') }}';
         var startTime = 0;
+
+        var buttonState = {
+            'default': {
+                'text'      : '{% trans "Yes, upgrade my system" %}',
+                'iconCls'   : 'icon-exclamation-sign',
+                'diabled'   : false
+            },
+            'download': {
+                'text'      : '{% trans "Download packages ..." %}',
+                'iconCls'   : 'icon-spinner icon-spin',
+                'disabled'  : true
+            },
+            'upgrade': {
+                'text'      : '{% trans "Install packages ..." %}',
+                'iconCls'   : 'icon-spinner icon-spin',
+                'disabled'  : true
+            },
+            'check': {
+                'text'      : '{% trans "Test for running upgrade ..." %}',
+                'iconCls'   : 'icon-spinner icon-spin',
+                'disabled'  : true
+            }
+        };
 
         /**
          * Clear previous output
@@ -156,7 +179,7 @@
          *  Start upgrade, update package cache and trigger traceStatus
          */
         var startUpgrade = function() {
-            $('#start-real-upgrade').addClass('disabled');
+            changeButtonState('download')
             $.ajax(upgradeUrl, {
                 type: 'POST',
                 data: {
@@ -170,7 +193,7 @@
                 if (data && data.success === true) {
                     window.setTimeout(traceStatus, 10);
                 } else {
-                    if (data.errors[0]) {
+                    if (data.errors && data.errors[0]) {
                         showProcessFrame(false);
                         var error = data.errors[0].message;
 
@@ -180,18 +203,42 @@
                             messageBox(error, 'error');
                         }
 
-                        $('#start-real-upgrade').removeClass('disabled');
+                        changeButtonState('default');
                     }
                 }
             });
         };
 
         /**
-         * Free the upgrade button
+         * Change the state of the submit butten
+         *
+         * Use either 'default', 'download', 'upgrade' or 'check'
          */
-        var stopUpgrade = function() {
-            $('#start-real-upgrade').removeClass('disabled');
-        };
+        var changeButtonState = function(stateName) {
+            if (stateName in buttonState) {
+                var state = buttonState[stateName];
+                var btn = $('#start-real-upgrade');
+                var btnContent = '';
+
+                // $(btn).empty();
+
+                if (state.iconCls) {
+                    btnContent += '<i class="' + state.iconCls + '"></i> ';
+                }
+
+                if (state.text) {
+                    btnContent += state.text;
+                }
+
+                if (state.disabled === true) {
+                    $(btn).attr('disabled', 'disabled');
+                } else {
+                    $(btn).removeAttr('disabled');
+                }
+
+                $(btn).html(btnContent);
+            }
+        }
 
         /**
          * Query update status and execute callbacks on the data
@@ -223,7 +270,7 @@
 
                 if (data === null || data.running === false) {
                     stop = true;
-                    stopUpgrade();
+                    changeButtonState('default');
                     messageBox('{% trans 'System upgrade was successful.' %}');
                     $('#start-real-upgrade').removeClass('disabled');
                     $('#restart-required-target').Html5AjaxContent();
@@ -244,19 +291,21 @@
             };
 
             $('#restart-required-target').Html5AjaxContent();
+            changeButtonState('upgrade');
             alwaysHandler();
         };
 
         $('#start-real-upgrade').click(startUpgrade);
 
         $('a[href=#tab-upgrade]').on('shown', function() {
+            changeButtonState('check');
             traceHandler(function(data) {
                 if (data && data.running === true) {
                     $('#start-real-upgrade').addClass('disabled');
                     clearProgress(true);
                     traceStatus();
                 } else {
-                    $('#start-real-upgrade').removeClass('disabled');
+                    changeButtonState('default')
                 }
             });
         });
