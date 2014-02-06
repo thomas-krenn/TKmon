@@ -30,8 +30,6 @@
         <dl class="dl-horizontal">
             <dt>Progress</dt>
             <dd><span id="progress-value">0%</span></dd>
-            <dt>Runtime</dt>
-            <dd><span id="runtime-value">0s</span></dd>
         </dl>
     </div>
 
@@ -148,9 +146,8 @@
 
             var runtimeSeconds = Math.floor(r.status.nowSeconds - r.status.startTimeSeconds);
 
-            console.log(runtimeSeconds);
-
-            $('#runtime-value').html(formatSeconds(runtimeSeconds));
+            // Dropped by https://www.netways.org/issues/2477
+            // $('#runtime-value').html(formatSeconds(runtimeSeconds));
             $('#error-target').html(r.error ? r.error : 'No errors.');
             $('#info-target').html(r.info ? r.info : 'No info.');
         };
