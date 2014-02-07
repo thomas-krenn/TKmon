@@ -418,7 +418,7 @@
 					"en_US": [
 						"<h4>Logged in Users Check</h4>",
 						"<p>This plugin checks the number of users currently logged in on the local",
-						"system and generates an error if the number exceeds the speciefied thresholds.</p>"
+						"system and generates an error if the number exceeds the specified thresholds.</p>"
 					],
 					"de_DE": [
 						"<h4>Eingeloggte Benutzer Check</h4>",
@@ -484,7 +484,7 @@
 					"en_US": [
 						"<h4>Apt-Get Dist-Updates Check</h4>",
 						"<p>This plugin can check whether there are distribution updates",
-						"available for the Server with Nagios or Icinga.</p>"
+						"available for the Server.</p>"
 					],
 					"de_DE": [
 						"<h4>Apt-Get Dist-Updates Check</h4>",
@@ -543,12 +543,11 @@
 				"doc": {
 					"en_US": [
 						"<h4>Disk Usage Check</h4>",
-						"<p>This plugin helps monitoring if a certain disk reaches its capacity",
-						"with Nagios or Icinga.</p>"
+						"<p>This plugin helps monitoring if a certain disk reaches its capacity.</p>"
 					],
 					"de_DE": [
 						"<h4>Disk Usage Check</h4>",
-						"<p>Mithilfe dieses Plugins wird überwacht, ob eine bestimmte Festplatte ihre Kapazität erreicht</p>"
+						"<p>Mithilfe dieses Plugins wird überwacht, ob eine bestimmte Festplatte ihre Kapazität erreicht.</p>"
 					]
 				},
 				"tk_notify": false,
@@ -594,8 +593,7 @@
 				"doc": {
 					"en_US": [
 						"<h4>Disk Usage Check</h4>",
-						"<p>This plugin helps monitoring if any disk reaches its capacity",
-						"with Nagios or Icinga.</p>"
+						"<p>This plugin helps monitoring if any disk reaches its capacity.</p>"
 						],
 					"de_DE": [
 						"<h4>Disk Usage Check</h4>",
