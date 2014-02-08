@@ -594,7 +594,7 @@
 				},
 				{
 					"name": "GIT Repository",
-					"href": "http://git.thomas-krenn.com/?p=check_smart_attributes_v3.git;a=summary",
+					"href": "http://git.thomas-krenn.com/?p=check_smart_attributes.git;a=summary",
 					"description": {
 						"en_US": "Official GIT repository of the SMART Attributes Monitoring Plugin from Thomas Krenn",
 						"de_DE": "Offizielles GIT Repository des SMART Attributes Monitoring Plugins von Thomas Krenn"
