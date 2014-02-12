@@ -21,6 +21,7 @@
 
 namespace TKMON\Extension\Host;
 
+use ICINGA\Base\Catalogue;
 use ICINGA\Object\Host;
 use NETWAYS\Chain\ReflectionHandler;
 use NETWAYS\Common\ArrayObject;
@@ -204,6 +205,21 @@ class ThomasKrennAttributes extends ReflectionHandler implements ApplicationMode
             && $host->getCustomVariable(self::CV_IPMI_PASSWORD)
         ) {
             $service = $serviceModel->createServiceFromCatalogue('ipmi-sensors');
+
+            // Adds notification to service
+            // https://www.netways.org/issues/2487
+            $attributes = $this->container['serviceCatalogue']->getAttributes('ipmi-sensors');
+            if (isset($attributes->tk_notify) && $attributes->tk_notify === true) {
+                if (isset($attributes->tk_notify_default) && $attributes->tk_notify_default === true) {
+                    $template = $this->container['config']->get(
+                        'thomaskrenn.icinga.template.service',
+                        'thomas-krenn-service'
+                    );
+
+                    $service->setUse($template);
+                }
+            }
+
             $host->addService($service);
             $service = null;
 
