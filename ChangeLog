@@ -1,3 +1,23 @@
+tk-mon 1.5.0 (2014-01-22)
+
+    1.5.0 Feature release
+    (https://www.netways.org/versions/196)
+
+    * #2344 Change System Upgrade to an async process
+    * #2433 Implement help button
+    * #2467 Check for a running upgrade when enter upgrade page
+    * #2475 Display package download before upgrade
+
+    * FIX #2459 Packages to removed are counted as packages to upgrade
+    * FIX #2461 High load of Firefox/Chromium during upgrade
+    * FIX #2463 Upgrade percentage should be displayed with less decimal places
+    * FIX #2465 notify-service-by-thomaskrenn are not sent
+    * FIX #2469 TKmon System Updates - Runtime Seconds
+    * FIX #2471 TKmon System Updates - Restart required
+    * FIX #2477 Seconds for upgrade are not reasonable
+    * FIX #2479 Updates: footer display issue in 'List pending updates' tab
+    * FIX #2487 Automatically created service ipmi-sensors does not use value of tk_notify_default
+
 tk-mon 1.4.1 (2014-01-12)
 
     1.4.1 Bug fix felease
