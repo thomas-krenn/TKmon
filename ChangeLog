@@ -1,3 +1,19 @@
+tk-mon 1.4.1 (2014-01-12)
+
+    1.4.1 Bug fix felease
+    (https://www.netways.org/versions/194)
+
+    * #2340 Include additional service catalogue templates
+
+    * FIX #2334 Apt Update undefined array index when information is missing
+    * FIX #2338 Upgrade function returns error message after Kernel Update, no hint on necessary reboot
+    * FIX #2342 Update: List pending updates function does not use apt-get dist-upgrade
+    * FIX #2354 TKmon itself is missing in package updates
+    * FIX #2356 Web-inteface suggests a running upgrade progress even if system already has finished it
+    * FIX #2358 TKmon Update Interface doesn't list pending updates
+    * FIX #2419 Configured Email Sender address is not used for Icinga alerts
+    * FIX #2435 Update fails when questions need to be answered interactively
+
 tk-mon 1.4.0 (2013-10-22)
 
     1.4.0 Feature release
