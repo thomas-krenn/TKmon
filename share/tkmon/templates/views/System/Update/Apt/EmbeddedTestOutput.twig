@@ -1,0 +1,22 @@
+{% if result %}
+    <h5>{% trans "Test result" %}</h5>
+    <div class="alert alert-success">
+        <i class="iconic-sun icon-large pull-left"></i>
+        {% trans "Everything okay, no broken packages or dependency errors!" %}
+    </div>
+    <pre>{{ result }}</pre>
+{% endif %}
+
+{% if stats %}
+    <h5>{% trans "Cache status" %}</h5>
+    <pre>{{ stats }}</pre>
+{% endif %}
+
+{% if error %}
+    <div class="alert alert-error">
+        <h5>An error occurred</h5>
+        <pre>{{ error }}</pre>
+    </div>
+{% endif %}
+
+<p>&nbsp;</p>

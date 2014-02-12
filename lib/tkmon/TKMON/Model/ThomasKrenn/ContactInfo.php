@@ -16,7 +16,7 @@
  * along with TKMON.  If not, see <http://www.gnu.org/licenses/>.
  *
  * @author Marius Hein <marius.hein@netways.de>
- * @copyright 2012-2013 NETWAYS GmbH <info@netways.de>
+ * @copyright 2012-2014 NETWAYS GmbH <info@netways.de>
  */
 
 namespace TKMON\Model\ThomasKrenn;
@@ -38,7 +38,9 @@ class ContactInfo extends \ICINGA\Loader\FileSystem implements \TKMON\Interfaces
     private static $dataMap = array(
         'Person'            => 'tkmon_contactperson',
         'Email'             => 'tkmon_contactemail',
-        'AuthKey'           => 'tkmon_authkey'
+        'AuthKey'           => 'tkmon_authkey',
+        'EnabledFlag'       => 'tkmon_enabled_flag',
+        'Sender'            => 'tkmon_sender'
     );
 
     /**
@@ -70,6 +72,19 @@ class ContactInfo extends \ICINGA\Loader\FileSystem implements \TKMON\Interfaces
      * @var string
      */
     private $authKey;
+
+    /**
+     * Email address of alert sender
+     *
+     * @var string
+     */
+    private $sender;
+
+    /**
+     * Flag for feature is enabled
+     * @var bool
+     */
+    private $enableFlag = false;
 
     /**
      * DI container
@@ -110,7 +125,6 @@ class ContactInfo extends \ICINGA\Loader\FileSystem implements \TKMON\Interfaces
         $this->setPath(
             $this->container['config']['icinga.dir.template']
         );
-
 
         $this->setObjectName(
             $this->container['config']['thomaskrenn.template.host']
@@ -190,6 +204,46 @@ class ContactInfo extends \ICINGA\Loader\FileSystem implements \TKMON\Interfaces
     }
 
     /**
+     * Setter for enabled flag
+     * @param bool $flag
+     */
+    public function setEnabledFlag($flag = true)
+    {
+        $this->enableFlag = (boolean) $flag;
+    }
+
+    /**
+     * Getter for enabled flag
+     * @return bool
+     */
+    public function getEnabledFlag()
+    {
+        return $this->enableFlag;
+    }
+
+    /**
+     * Setter for sender email
+     *
+     * @param string $sender
+     */
+    public function setSender($sender)
+    {
+        $this->sender = $sender;
+    }
+
+    /**
+     * Getter for sender email
+     *
+     * @return string
+     */
+    public function getSender()
+    {
+        return $this->sender;
+    }
+
+
+
+    /**
      * Setter for objectName
      * @param string $objectName
      */
@@ -259,7 +313,14 @@ class ContactInfo extends \ICINGA\Loader\FileSystem implements \TKMON\Interfaces
 
         foreach (self::$dataMap as $local => $customVar) {
             $getter = 'get'. $local;
-            $host->addCustomVariable($customVar, $this->$getter());
+            if ($local === 'EnabledFlag') {
+                $host->addCustomVariable(
+                    $customVar,
+                    ($this->getEnabledFlag() === true) ? '1' : '0'
+                );
+            } else {
+                $host->addCustomVariable($customVar, $this->$getter());
+            }
         }
 
         // Write defaults if someone change this
@@ -272,6 +333,7 @@ class ContactInfo extends \ICINGA\Loader\FileSystem implements \TKMON\Interfaces
         $this->container['config']['thomaskrenn.alert.authkey'] = $this->getAuthKey();
         $this->container['config']['thomaskrenn.alert.person'] = $this->getPerson();
         $this->container['config']['thomaskrenn.alert.email'] = $this->getEmail();
+        $this->container['config']['thomaskrenn.alert.enabled'] = ($this->getEnabledFlag() === true) ? '1' : '0';
 
         parent::write();
     }

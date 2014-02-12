@@ -16,7 +16,7 @@
  * along with TKMON.  If not, see <http://www.gnu.org/licenses/>.
  *
  * @author Marius Hein <marius.hein@netways.de>
- * @copyright 2012-2013 NETWAYS GmbH <info@netways.de>
+ * @copyright 2012-2014 NETWAYS GmbH <info@netways.de>
  */
 
 namespace TKMON\Mvc;
@@ -256,6 +256,7 @@ class Dispatcher
                 if ($e->getCode() === \TKMON\Exception\DispatcherException::TYPE_UNAUTHORIZED) {
                     $response = new \TKMON\Mvc\Output\TwigTemplate($this->container['template']);
                     $response->setTemplateName('views/Common/SessionExpired.twig');
+                    $response['referer'] = $this->uri;
                     return $this->renderTemplate($response->toString());
                 }
             }

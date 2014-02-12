@@ -111,6 +111,22 @@
         var form = $('#restore-configuration');
         var messageTarget = $('#restore-message-target');
 
+        // Test for file support api
+        if (typeof(window.FileReader) === "undefined") {
+            $(form).remove();
+            var ele = document.createElement('div');
+            $(ele).addClass('alert alert-error')
+                    .html(
+                        '<h3>HTML5 FileReader support missing</h3> Could not upload configuration. '
+                        + 'Please upgrade your browser. Have a look on '
+                        + '<a href="http://en.wikipedia.org/wiki/HTML5_File_API">'
+                        + 'Wikipedia File API article'
+                        + '</a> for more information.'
+                    );
+            $(messageTarget).append(ele);
+            return;
+        }
+
         $('#restart-toggle').find('button').click(function() {
             $('#restart').val($(this).val());
         });
@@ -233,10 +249,13 @@
                 var xhr = new XMLHttpRequest();
                 var upload = xhr.upload;
 
+                var updateUploadProgress = function(percentage) {
+                    $(infoElement).find('span').html(percentage + '%');
+                };
+
                 upload.addEventListener('progress', function(e) {
                     if (e.lengthComputable) {
-                        var percentage = Math.round((e.loaded * 100) / e.total);
-                        $(infoElement).find('span').html(percentage + '%');
+                        updateUploadProgress(Math.round((e.loaded * 100) / e.total));
                     }
                 });
 
@@ -246,6 +265,11 @@
 
                 xhr.onreadystatechange = function() {
                     if (xhr.readyState === this.DONE) {
+
+                        // Progress is not as fast as needed in some browsers
+                        // @see https://www.netways.org/issues/2316
+                        updateUploadProgress(100);
+
                         var response = JSON.parse(xhr.responseText);
                         if (typeof response === "object" && "success" in response) {
                             if (response.success !== true) {

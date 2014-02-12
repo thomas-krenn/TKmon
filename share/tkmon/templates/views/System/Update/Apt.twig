@@ -1,0 +1,40 @@
+<div class="page-header">
+    <h2>{% trans "System updates" %}</h2>
+</div>
+
+<div id="restart-required-target" data-ajax-call="{{ web_link('RestartRequired') }}" data-ajax-call-insert="true" data-ajax-call-disable-autoload="false">
+</div>
+
+<div class="tabbable">
+    <ul class="nav nav-tabs">
+        <li class="active">
+            <a href="#tab-information" data-toggle="tab">{% trans "Information" %}</a>
+        </li>
+        <li>
+            <a href="#tab-test" data-toggle="tab">{% trans "Test package dependencies" %}</a>
+        </li>
+        <li>
+            <a href="#tab-pending" data-toggle="tab">{% trans "List pending updates" %}</a>
+        </li>
+        <li>
+            <a href="#tab-upgrade" data-toggle="tab">{% trans "Upgrade" %}</a>
+        </li>
+    </ul>
+
+    <div class="tab-content">
+        <div class="tab-pane active" id="tab-information">
+            {% include "views/System/Update/Apt/Information.twig" %}
+        </div>
+
+        <div class="tab-pane" id="tab-test">
+            {% include "views/System/Update/Apt/Test.twig" %}
+        </div>
+
+        <div class="tab-pane" id="tab-pending">
+            {% include "views/System/Update/Apt/Pending.twig" %}
+        </div>
+        <div class="tab-pane" id="tab-upgrade">
+            {% include "views/System/Update/Apt/Upgrade.twig" %}
+        </div>
+    </div>
+</div>

@@ -1,0 +1,42 @@
+<p>
+    Install system updates regularly to keep your system up-to-date. System
+    updates include Ubuntu security updates and updates of TKmon and Icinga.
+</p>
+
+<hr />
+
+<h5>Keep configuration files unmodified</h5>
+
+<p>
+    Avoid manual changes of configuration files on the system. Doing so ensures
+    the proper function of TKmon.
+</p>
+
+<hr />
+
+<h5>When an update fails</h5>
+
+<p>
+    Under certain conditions an update may need manual intervention to run
+    successfully. This happens for example when a configuration file has been
+    manually altered. In such situations the packaging system needs to know
+    whether the original contents of the configuration file, or the altered
+    content should be used. Whenever this happens, you have to run the update
+    manually on the command line by executing "apt-get dist-upgrade" (e.g. via
+    SSH). Then you can answer questions of the packing system interactively.
+</p>
+
+<hr />
+
+<div class="container-spacer-down alert alert-info">
+    <h5>Common words about manual changes</h5>
+    <p>
+        <i class="icon-thumbs-up icon-4x pull-left"></i>
+        You are free to make any manual changes on the system. In this case we
+        assume that you are familiar with Linux systems and that you can solve
+        problems yourself. When you want to install additional software, we
+        recommend to install only packages provided by the offical Ubuntu
+        repository. As mentioned above, updates via this webinterface may fail
+        when configuration files are modified manually.
+    </p>
+</div>

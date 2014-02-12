@@ -16,10 +16,12 @@
  * along with TKMON.  If not, see <http://www.gnu.org/licenses/>.
  *
  * @author Marius Hein <marius.hein@netways.de>
- * @copyright 2012-2013 NETWAYS GmbH <info@netways.de>
+ * @copyright 2012-2014 NETWAYS GmbH <info@netways.de>
  */
 
 namespace TKMON\Model\Mail;
+
+use TKMON\Model\ThomasKrenn\ContactInfo;
 
 /**
  * Model to get the sender address for mails
@@ -50,9 +52,16 @@ class Sender extends \TKMON\Model\ApplicationModel
     private $sender;
 
     /**
+     * TK contact info model for updating sender address
+     *
+     * @var ContactInfo
+     */
+    private $contactInfo;
+
+    /**
      * Create a new model
      *
-     * @param \Pimple $container
+     * @param   \Pimple     $container
      */
     public function __construct(\Pimple $container)
     {
@@ -84,7 +93,6 @@ class Sender extends \TKMON\Model\ApplicationModel
         /** @var $config \NETWAYS\Common\Config */
         $config = $this->container['config'];
         $sender = $config->get(self::SENDER_NAMESPACE);
-
         /*
          * Try to use the hostname
          */
@@ -113,6 +121,13 @@ class Sender extends \TKMON\Model\ApplicationModel
     public function setSender($sender)
     {
         $this->container['config']->set(self::SENDER_NAMESPACE, $sender);
+
+        if ($this->contactInfo instanceof ContactInfo) {
+            $this->contactInfo->load();
+            $this->contactInfo->setSender($sender);
+            $this->contactInfo->write();
+        }
+
         $this->sender = $sender;
     }
 
@@ -123,5 +138,15 @@ class Sender extends \TKMON\Model\ApplicationModel
     public function getSender()
     {
         return $this->sender;
+    }
+
+    /**
+     * Setter for contact info
+     *
+     * @param   ContactInfo $contactInfo
+     */
+    public function setContactInfo(ContactInfo $contactInfo)
+    {
+        $this->contactInfo = $contactInfo;
     }
 }

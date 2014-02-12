@@ -16,7 +16,7 @@
      * along with TKMON.  If not, see <http://www.gnu.org/licenses/>.
      *
      * @author Marius Hein <marius.hein@netways.de>
-     * @copyright 2012-2013 NETWAYS GmbH <info@netways.de>
+     * @copyright 2012-2014 NETWAYS GmbH <info@netways.de>
      */
 
 namespace TKMON\Action\Expose\System\Configuration;
@@ -284,6 +284,12 @@ class Network extends Base
             // Down and up again network interface
             $systemModel = new System($this->container);
             $systemModel->restartNetworkInterfaces();
+
+            if ($ipConfig == IpAddress::TYPE_STATIC) {
+                // Because dhclient is running and change ip
+                // address again after lease time
+                $systemModel->killDhcpClient();
+            }
 
             $response->setSuccess();
 

@@ -16,7 +16,7 @@
  * along with TKMON.  If not, see <http://www.gnu.org/licenses/>.
  *
  * @author Marius Hein <marius.hein@netways.de>
- * @copyright 2012-2013 NETWAYS GmbH <info@netways.de>
+ * @copyright 2012-2014 NETWAYS GmbH <info@netways.de>
  */
 
 namespace TKMON\Model\System;
@@ -88,6 +88,23 @@ class Hostname extends \TKMON\Model\ApplicationModel
      * @var string
      */
     private $oldHostname;
+
+    /**
+     * Array of default hosts should be append to hosts file
+     *
+     * This is equivalent to ubuntu's default /etc/hosts
+     * file after installation.
+     *
+     * @var array
+     */
+    private static $defaultHostEntries = array(
+        '127.0.0.1' => 'localhost loopback',
+        '::1'       => 'ip6-localhost ip6-loopback',
+        'fe00::0'   => 'ip6-localnet',
+        'ff00::0'   => 'ip6-mcastprefix',
+        'ff02::1'   => 'ip6-allnodes',
+        'ff02::2'   => 'ip6-allrouters'
+    );
 
     /**
      * Creates a new hostname model
@@ -271,16 +288,40 @@ class Hostname extends \TKMON\Model\ApplicationModel
             . PHP_EOL;
         }
 
-        // Add default localhost
-        $out .= '# Adding default entries'. PHP_EOL
-            . '127.0.0.1'
-            . $tab. 'localhost loopback'. PHP_EOL
-            . '::1'
-            . $tab. $tab. 'localhost'. PHP_EOL;
-
+        $out .= $this->createDefaultHostsSection();
         $out .= '# EOF';
 
         return $out;
+    }
+
+    /**
+     * Create a ubuntu default hosts section
+     *
+     * # Adding default entries
+     * 127.0.0.1    localhost loopback
+     * ::1    ip6-localhost ip6-loopback
+     * fe00::0    ip6-localnet
+     * ff00::0    ip6-mcastprefix
+     * ff02::1    ip6-allnodes
+     * ff02::2    ip6-allrouters
+     *
+     * Data is appended from static data on top
+     *
+     * @see https://www.netways.org/issues/2318
+     *
+     * @return string
+     */
+    private function createDefaultHostsSection()
+    {
+        $out = array(
+            '# Add default entries'
+        );
+
+        foreach (self::$defaultHostEntries as $address => $name) {
+            $out[] = sprintf('%-20s%s', $address, $name);
+        }
+
+        return PHP_EOL. implode(PHP_EOL, $out). PHP_EOL;
     }
 
     /**

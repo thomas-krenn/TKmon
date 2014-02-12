@@ -16,7 +16,7 @@
  * along with TKMON.  If not, see <http://www.gnu.org/licenses/>.
  *
  * @author Marius Hein <marius.hein@netways.de>
- * @copyright 2012-2013 NETWAYS GmbH <info@netways.de>
+ * @copyright 2012-2014 NETWAYS GmbH <info@netways.de>
  */
 
 namespace TKMON\Action\Expose\ThomasKrenn\Alert;
@@ -50,6 +50,7 @@ class Configuration extends \TKMON\Action\Base
         $template['authkey'] = $contactInfo->getAuthKey();
         $template['email'] = $contactInfo->getEmail();
         $template['person'] = $contactInfo->getPerson();
+        $template['enabled'] = ($contactInfo->getEnabledFlag() === true) ? 1 : 0;
 
         return $template;
     }
@@ -90,6 +91,14 @@ class Configuration extends \TKMON\Action\Base
                 )
             );
 
+            $validator->addValidatorObject(
+                \NETWAYS\Common\ValidatorObject::create(
+                    'enabled',
+                    _('Enabled flag'),
+                    \NETWAYS\Common\ValidatorObject::VALIDATE_MANDATORY
+                )
+            );
+
             $validator->validateArrayObject($params);
 
             $contactInfo = new \TKMON\Model\ThomasKrenn\ContactInfo($this->container);
@@ -98,6 +107,7 @@ class Configuration extends \TKMON\Action\Base
             $contactInfo->setAuthKey($params['authkey']);
             $contactInfo->setEmail($params['email']);
             $contactInfo->setPerson($params['person']);
+            $contactInfo->setEnabledFlag(($params['enabled'] === '1') ? true : false);
 
             $contactInfo->write();
 

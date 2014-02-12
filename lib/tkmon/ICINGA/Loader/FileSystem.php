@@ -16,12 +16,13 @@
  * along with TKMON.  If not, see <http://www.gnu.org/licenses/>.
  *
  * @author Marius Hein <marius.hein@netways.de>
- * @copyright 2012-2013 NETWAYS GmbH <info@netways.de>
+ * @copyright 2012-2014 NETWAYS GmbH <info@netways.de>
  */
 
 namespace ICINGA\Loader;
 
 use ICINGA\Exception\LoadException;
+use ICINGA\Interfaces\LoaderStrategyInterface;
 
 /**
  * Filesystem
@@ -57,7 +58,7 @@ class FileSystem extends \NETWAYS\Common\ArrayObject
 
     /**
      * Strategy to use
-     * @var \ICINGA\LoaderStrategyInterface
+     * @var LoaderStrategyInterface
      */
     private $strategy;
 
@@ -90,7 +91,7 @@ class FileSystem extends \NETWAYS\Common\ArrayObject
 
     /**
      * Setter for strategy
-     * @param \ICINGA\LoaderStrategyInterface $strategy
+     * @param LoaderStrategyInterface $strategy
      */
     public function setStrategy($strategy)
     {
@@ -99,7 +100,7 @@ class FileSystem extends \NETWAYS\Common\ArrayObject
 
     /**
      * Getter for strategy
-     * @return \ICINGA\LoaderStrategyInterface
+     * @return LoaderStrategyInterface
      */
     public function getStrategy()
     {

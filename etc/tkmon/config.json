@@ -17,14 +17,16 @@
 
     "navigation.data":      "{core.etc_dir}/nav.json",
 
+    "config.include":       "{core.etc_dir}/userconfig.json",
+
     "mvc.action.namespace": "\\TKMON\\Action\\Expose",
 
     "app.version.major":    1,
-    "app.version.minor":    3,
-    "app.version.patch":    0,
+    "app.version.minor":    4,
+    "app.version.patch":    1,
     "app.version.full":     "{app.version.major}.{app.version.minor}.{app.version.patch}",
     "app.name":             "TKmon",
-    "app.copyright":        "(c) NETWAYS GmbH | Thomas-Krenn.AG 2012-2013",
+    "app.copyright":        "(c) NETWAYS GmbH | Thomas-Krenn.AG 2012-2014",
 
     "app.version.release":  "{app.name}-{app.version.full}",
 
@@ -179,12 +181,27 @@
         },
 
         "tkalert.sh": {
-            "path": "/usr/local/bin/tkalert.sh",
+            "path": "/usr/local/bin/tkalert",
             "sudo": true
         },
 
         "start": {
             "path": "/sbin/start",
+            "sudo": true
+        },
+
+        "apt-get": {
+            "path": "/usr/bin/apt-get",
+            "sudo": true
+        },
+
+        "apt-cache": {
+            "path": "/usr/bin/apt-cache",
+            "sudo": true
+        },
+
+        "pkill": {
+            "path": "/usr/bin/pkill",
             "sudo": true
         }
     }

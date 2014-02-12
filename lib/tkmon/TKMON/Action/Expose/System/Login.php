@@ -16,12 +16,14 @@
  * along with TKMON.  If not, see <http://www.gnu.org/licenses/>.
  *
  * @author Marius Hein <marius.hein@netways.de>
- * @copyright 2012-2013 NETWAYS GmbH <info@netways.de>
+ * @copyright 2012-2014 NETWAYS GmbH <info@netways.de>
  */
 
 namespace TKMON\Action\Expose\System;
 
 use NETWAYS\Common\ArrayObject;
+use NETWAYS\Common\ArrayObjectValidator;
+use NETWAYS\Common\ValidatorObject;
 use TKMON\Action\Base;
 use TKMON\Exception\UserException;
 use TKMON\Model\User;
@@ -53,8 +55,23 @@ class Login extends Base
      */
     public function actionIndex(ArrayObject $params)
     {
+        $validator = new ArrayObjectValidator();
+        $validator->addValidatorObject(
+            ValidatorObject::create(
+                'referer',
+                'Referrer URL',
+                ValidatorObject::VALIDATE_ANYTHING,
+                null,
+                null,
+                false
+            )
+        );
+
+        $validator->validateArrayObject($params);
+
         $output = new TwigTemplate($this->container['template']);
         $output->setTemplateName('forms/login.twig');
+        $output['referer'] = $params->get('referer');
         return $output;
     }
 

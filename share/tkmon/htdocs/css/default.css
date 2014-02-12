@@ -15,7 +15,7 @@
  * along with TKMON.  If not, see <http://www.gnu.org/licenses/>.
  *
  * @author Marius Hein <marius.hein@netways.de>
- * @copyright 2012-2013 NETWAYS GmbH <info@netways.de>
+ * @copyright 2012-2014 NETWAYS GmbH <info@netways.de>
  */
 
 
@@ -62,6 +62,19 @@ html, body {
 
 .container-spacer-down-2x {
     margin-top: 40px;
+}
+
+/** Overriding default formattings **/
+
+/** Links default underline: #2218 **/
+/** Add css3 not selector, fixes #2314 (not on a button) **/
+#tkmon-main a:not(.btn) {
+    text-decoration: underline !important;
+}
+
+/** Exclude special bootstrap components **/
+#tkmon-main .btn-group a, #tkmon-main .btn a,  #tkmon-main .tabbable a {
+    text-decoration: none;
 }
 
 /** Settings table **/

@@ -1,0 +1,15 @@
+{% if restartRequired == true %}
+
+    {% set restart_link = web_link('System/Configuration/Backup/Index#tab-reboot') %}
+
+    <div class="alert alert-warning">
+        <h4>{% trans 'Restart required' %}</h4>
+        <p>
+        {% trans %}
+            Preceding package upgrade need a system restart.
+            Click on <a href="{{ restart_link }}">the link
+            to trigger a manually restart</a> of your appliance.
+        {% endtrans %}
+        </p>
+    </div>
+{% endif %}

@@ -16,7 +16,7 @@
  * along with TKMON.  If not, see <http://www.gnu.org/licenses/>.
  *
  * @author Marius Hein <marius.hein@netways.de>
- * @copyright 2012-2013 NETWAYS GmbH <info@netways.de>
+ * @copyright 2012-2014 NETWAYS GmbH <info@netways.de>
  */
 
 namespace ICINGA\Base;
@@ -163,7 +163,8 @@ abstract class Object extends \NETWAYS\Common\ArrayObject
      */
     protected function getObjectNameFromClass()
     {
-        return strtolower(array_pop(explode('\\', get_class($this))));
+        $tokens = explode('\\', get_class($this));
+        return strtolower(array_pop($tokens));
     }
 
     /**

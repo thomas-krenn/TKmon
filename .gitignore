@@ -4,8 +4,9 @@ composer.lock
 composer.phar
 .vagrant
 docs/*html
-lib/tkmon/vendor
 etc/icinga/system/contacts/*cfg
 etc/icinga/system/hosts/*cfg
+etc/tkmon/userconfig.json
+lib/tkmon/vendor/
 var/
 debian/

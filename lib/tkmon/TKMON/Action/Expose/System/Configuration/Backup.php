@@ -16,13 +16,22 @@
  * along with TKMON.  If not, see <http://www.gnu.org/licenses/>.
  *
  * @author Marius Hein <marius.hein@netways.de>
- * @copyright 2012-2013 NETWAYS GmbH <info@netways.de>
+ * @copyright 2012-2014 NETWAYS GmbH <info@netways.de>
  */
 
 namespace TKMON\Action\Expose\System\Configuration;
 
+use NETWAYS\Common\ArrayObject;
+use NETWAYS\Http\CgiParams;
 use NETWAYS\IO\Exception\ProcessException;
+use TKMON\Action\Base;
 use TKMON\Exception\ModelException;
+use TKMON\Model\System\Configuration\Importer;
+use TKMON\Model\System\Configuration\Exporter;
+use TKMON\Model\System\Configuration\ZipFile;
+use TKMON\Model\System;
+use TKMON\Mvc\Output\JsonResponse;
+use TKMON\Mvc\Output\TwigTemplate;
 
 /**
  * Action to handle basic configuration tasks
@@ -30,38 +39,38 @@ use TKMON\Exception\ModelException;
  * @package TKMON\Action
  * @author Marius Hein <marius.hein@netways.de>
  */
-class Backup extends \TKMON\Action\Base
+class Backup extends Base
 {
     /**
      * Show the form
-     * @param \NETWAYS\Common\ArrayObject $params
-     * @return \TKMON\Mvc\Output\TwigTemplate
+     * @param ArrayObject $params
+     * @return TwigTemplate
      */
-    public function actionIndex(\NETWAYS\Common\ArrayObject $params)
+    public function actionIndex(ArrayObject $params)
     {
-        $template = new \TKMON\Mvc\Output\TwigTemplate($this->container['template']);
+        $template = new TwigTemplate($this->container['template']);
         $template->setTemplateName('views/System/Configuration/Backup.twig');
         return $template;
     }
 
     /**
      * Action to handle reboot
-     * @param \NETWAYS\Common\ArrayObject $params
-     * @return \TKMON\Mvc\Output\JsonResponse
-     * @throws \TKMON\Exception\ModelException
+     * @param ArrayObject $params
+     * @return JsonResponse
+     * @throws ModelException
      */
-    public function actionApplianceReboot(\NETWAYS\Common\ArrayObject $params)
+    public function actionApplianceReboot(ArrayObject $params)
     {
-        $response = new \TKMON\Mvc\Output\JsonResponse();
+        $response = new JsonResponse();
 
-        $systemModel = new \TKMON\Model\System($this->container);
+        $systemModel = new System($this->container);
 
         try {
             if ($params->get('reboot', false) === '1') {
                 $systemModel->doReboot();
                 $response->setSuccess(true);
             } else {
-                throw new \TKMON\Exception\ModelException("Not properly parametrized: Action ApplianceReboot");
+                throw new ModelException("Not properly parametrized: Action ApplianceReboot");
             }
         } catch (\Exception $e) {
             $response->addException($e);
@@ -72,12 +81,12 @@ class Backup extends \TKMON\Action\Base
 
     /**
      * Download configuration dump
-     * @param \NETWAYS\Common\ArrayObject $params
+     * @param ArrayObject $params
      */
-    public function actionDownloadConfiguration(\NETWAYS\Common\ArrayObject $params)
+    public function actionDownloadConfiguration(ArrayObject $params)
     {
 
-        $exporter = new \TKMON\Model\System\Configuration\Exporter($this->container);
+        $exporter = new Exporter($this->container);
 
         try {
             list($seconds, $micros) = explode('.', microtime(true));
@@ -113,27 +122,38 @@ class Backup extends \TKMON\Action\Base
     /**
      * Restore system configuration
      *
-     * @param \NETWAYS\Common\ArrayObject $params
-     * @return \TKMON\Mvc\Output\JsonResponse
-     * @throws \Exception|\NETWAYS\IO\Exception\ProcessException
-     * @throws \TKMON\Exception\ModelException
+     * @param ArrayObject $params
+     * @return JsonResponse
+     * @throws \Exception|ProcessException
+     * @throws ModelException
      */
-    public function actionRestoreConfiguration(\NETWAYS\Common\ArrayObject $params)
+    public function actionRestoreConfiguration(ArrayObject $params)
     {
-        $response = new \TKMON\Mvc\Output\JsonResponse();
+        static $validContentTypes = array(
+            'application/zip',
+            'application/x-zip-compressed'
+        );
+
+        $response = new JsonResponse();
 
         try {
             $password = $params->get('password');
 
-            /** @var $params \NETWAYS\Http\CgiParams */
+            /** @var $params CgiParams */
             $params = $this->container['params'];
             $contentType = $params->getParameter('CONTENT_TYPE', null, 'header');
 
-            if ($contentType != 'application/zip') {
-                throw new \TKMON\Exception\ModelException('Content type is not application/zip');
+            if (in_array($contentType, $validContentTypes) === false) {
+                throw new ModelException(
+                    'Content type is: "'
+                    . $contentType
+                    . '". Should one of "'
+                    . implode('", "', $validContentTypes)
+                    . '".'
+                );
             }
 
-            $zipFile = new \TKMON\Model\System\Configuration\ZipFile($this->container);
+            $zipFile = new ZipFile($this->container);
 
             if ($password) {
                 $zipFile->setPassword($password);
@@ -150,7 +170,7 @@ class Backup extends \TKMON\Action\Base
                 throw $e;
             }
 
-            $importer = new \TKMON\Model\System\Configuration\Importer($this->container);
+            $importer = new Importer($this->container);
             $importer->fromDirectory($directory, (($password) ? true : false));
 
             $response->setSuccess(true);

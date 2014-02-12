@@ -15,7 +15,7 @@
  * along with TKMON.  If not, see <http://www.gnu.org/licenses/>.
  *
  * @author Marius Hein <marius.hein@netways.de>
- * @copyright 2012-2013 NETWAYS GmbH <info@netways.de>
+ * @copyright 2012-2014 NETWAYS GmbH <info@netways.de>
  */
 /*global require:true*/
 
@@ -25,26 +25,33 @@
     require(['jquery'], function ($) {
 
         $.fn.Html5AjaxContent = function(option) {
-
             if (option === "insert") {
-                $("*[data-ajax-call]").each(function(index, element) {
+                $(this).each(function(index, element) {
                     $(element).find('*').remove();
                 });
             }
 
-            $("*[data-ajax-call]").each(function(index, element) {
+            $(this).each(function(index, element) {
                 var url = $(element).attr('data-ajax-call');
+
+                if (option === 'initial' && $(element).attr('data-ajax-call-disable-autoload') === 'true') {
+                    return;
+                }
+
                 if (url) {
                     $.ajax({
                         url: url
                     }).done(function(data) {
+                            if ($(element).attr('data-ajax-call-insert')) {
+                                $(element).html('');
+                            }
                             $(element).append(data);
                         });
                 }
             });
         };
 
-        $(document).Html5AjaxContent();
+        $("*[data-ajax-call]").Html5AjaxContent('initial');
 
     });
 })();

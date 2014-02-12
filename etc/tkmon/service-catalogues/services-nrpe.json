@@ -1,0 +1,977 @@
+{
+	"type": "service",
+	"version": "1.0",
+	"description": "Services catalogue for nagios nrpe checks",
+	"data": [
+		{
+			"service_description": "nrpe-check",
+			"display_name": "NRPE check",
+			"check_command": {
+				"command_name": "check_nrpe_1arg",
+				"arguments": [
+				{
+					"label": "command",
+					"description": "Name of the command that the remote NRPE daemon should run",
+					"validation": "string",
+					"argument": "-c"
+				}
+				]
+			},
+			"_catalogue_attributes": {
+				"tags": ["remote", "nrpe"],
+				"name": "nrpe-check",
+				"label": "NRPE check",
+				"description": "Checks the status of a service check defined on a host running NRPE daemon.",
+				"defined": true,
+				"defined_in": "/etc/nagios-plugins/config/check_nrpe.cfg"
+			}
+		},{
+			"service_description": "linux-software-raid-nrpe",
+			"display_name": "Linux Software RAID",
+			"check_command": {
+				"command_name": "check_nrpe_1arg",
+				"arguments": [
+				{
+					"label": "command",
+					"description": {
+						"en_US": "Command which the remote NRPE daemon executes",
+						"de_DE": "Kommando, das vom entfernten NRPE Daemon ausgeführt wird"
+					},
+					"validation": "string",
+					"argument": "-c",
+					"value": "check_linux_raid"
+				}
+				]
+			},
+			"_catalogue_attributes": {
+						"tags": ["remote", "software RAID"],
+				"name": "linux-software-raid-nrpe",
+				"label": "Linux Software RAID via NRPE",
+				"description": {
+					"en_US": "Checks the status of a remote Linux software RAID via NRPE",
+					"de_DE": "Überprüft den Status eines entfernten Linux Software RAIDs via NRPE"
+				},
+				"defined": true,
+				"defined_in": "/etc/nagios-plugins/config/check_nrpe.cfg",
+				"links": [{
+					"name": "Linux Software RAID Monitoring Plugin",
+					"href": {
+						"en_US": "http://www.thomas-krenn.com/en/wiki/Linux_Software_RAID_Monitoring_Plugin",
+						"de_DE": "http://www.thomas-krenn.com/de/wiki/Linux_Software_RAID_Monitoring_Plugin"
+					},
+					"description": {
+						"en_US": "Wiki article about the Linux Software RAID Monitoring Plugin",
+						"de_DE": "Wiki Artikel zum Linux Software RAID Monitoring Plugin"
+					}
+				}],
+				"doc": {
+					"en_US": [
+						"<h4>Linux Software RAID Monitoring Plugin (via NRPE)</h4>",
+						"<p>Using this plugin, the status of a remote Linux Software RAID can be monitored by Nagios",
+						"or Icinga. Please ensure to configure the NRPE daemon on the remote host.</p>"
+					],
+					"de_DE": [
+						"<h4>Linux Software RAID Monitoring Plugin (über NRPE)</h4>",
+						"<p>Mit diesem Plugin kann der Status eines Linux Software RAIDs eines entfernten Servers mit Nagios oder Icinga",
+						"überwacht werden. Bitte stellen Sie die korrekte Konfiguration des NRPE Daemons am entfernten Server sicher.</p>"
+					]
+				},
+				"tk_notify": true,
+				"tk_notify_default": true
+			}
+		},
+		{
+			"service_description": "dhcp-nrpe",
+			"display_name": "DHCP-NRPE",
+			"check_command": {
+				"command_name": "check_nrpe_1arg",
+				"arguments": [
+				{
+					"label": "command",
+					"description": {
+						"en_US": "Command which the remote NRPE daemon executes",
+						"de_DE": "Kommando, das vom entfernten NRPE Daemon ausgeführt wird"
+					},
+					"validation": "string",
+					"argument": "-c",
+					"value": "check_dhcp"
+				}
+				]
+			},
+			"_catalogue_attributes": {
+				"tags": ["dhcp", "dynamic", "host", "configuration", "protocol", "nrpe"],
+				"name": "check_dhcp_nrpe",
+				"label": "DHCP-NRPE",
+				"description": {
+					"en_US": "Checks the connectivity of a DHCP-Server via NRPE", 
+					"de_DE": "Überprüft die Verbindung eines DHCP-Servers über NRPE" 
+				},
+				"defined": true,
+				"defined_in": "/etc/nagios-plugins/config/check_nrpe.cfg",
+				"doc": {
+					"en_US": [
+						"<h4>Dynamic Host Configuration Protocol NRPE Check</h4>",
+						"<p>Using this plugin, the status of remote or local DHCP-Server can be monitored",
+						"with Nagios or Icinga over NRPE.</p>"
+					],
+					"de_DE": [
+						"<h4>Dynamic Host Configuration Protocol NRPE Check</h4>",
+						"<p>Mit diesem Plugin kann der Status eines lokalen oder entfernten DHCP-Servers mit",
+						"Nagios oder Icinga über NRPE überwacht werden.</p>"
+					]
+				},
+				"tk_notify": false,
+				"tk_notify_default": false
+			}
+		},
+		{
+			"service_description": "dhcp-interface-nrpe",
+			"display_name": "DHCP-Interface",
+			"check_command": {
+				"command_name": "check_nrpe_1arg",
+				"arguments": [
+				{
+					"label": "command",
+					"description": {
+						"en_US": "Command which the remote NRPE daemon executes",
+						"de_DE": "Kommando, das vom entfernten NRPE Daemon ausgeführt wird"
+					},
+					"validation": "string",
+					"argument": "-c",
+					"value": "check_dhcp_interface"
+				}
+				]
+			},
+			"_catalogue_attributes": {
+				"tags": ["dhcp", "dynamic", "host", "configuration", "protocol", "network", "interface", "nrpe"],
+				"name": "check_dhcp_interface",
+				"label": "DHCP-Interface",
+				"description": {
+					"en_US": "Checks the connectivity of a DHCP-Server for a specified network adapter", 
+					"de_DE": "Überprüft die Verbindung eines Netzwerk-Adapters zu einem DHCP-Servers" 
+				},
+				"defined": true,
+				"defined_in": "/etc/nagios-plugins/config/check_nrpe.cfg",
+				"doc": {
+					"en_US": [
+						"<h4>Dynamic Host Configuration Protocol NRPE Check</h4>",
+						"<p>Using this plugin, the status of a remote or local DHCP-Server on a specified",
+						"interface can be monitored with Nagios or Icinga over NRPE.</p>"
+					],
+					"de_DE": [
+						"<h4>Dynamic Host Configuration Protocol NRPE Check</h4>",
+						"<p>Mit diesem Plugin kann der Status eines Netzwerkadapters auf DHCP Konnektivität mit",
+						"Nagios oder Icinga über NRPE überwacht werden.</p>"
+					]
+				},
+				"tk_notify": false,
+				"tk_notify_default": false
+			}
+		},
+		{
+			"service_description": "apt-nrpe",
+			"display_name": "NRPE System Updates",
+			"check_command": {
+				"command_name": "check_nrpe_1arg",
+				"arguments": [
+				{
+					"label": "command",
+					"description": {
+						"en_US": "Command which the remote NRPE daemon executes",
+						"de_DE": "Kommando, das vom entfernten NRPE Daemon ausgeführt wird"
+					},
+					"validation": "string", 
+					"argument": "-c",
+					"value": "check_apt"
+				}
+				]
+			},
+			"_catalogue_attributes": {
+				"tags": ["updates", "update", "system", "apt-get", "aptitude", "apt", "nrpe"],
+				"name": "check_apt",
+				"label": "System Updates",
+				"description": {
+					"en_US": "Checks over NRPE whether there are any updates available on the Server", 
+					"de_DE": "Überprüft über NRPE, ob auf dem Zielsystem Updates zur Verfügung stehen" 
+				},
+				"defined": true,
+				"defined_in": "/etc/nagios-plugins/config/check_nrpe.cfg",
+				"doc": {
+					"en_US": [
+						"<h4>Apt-Get Updates NRPE Check</h4>",
+						"<p>This plugin can check whether there are updates available for the Server",
+						"with Nagios or Icinga over NRPE.</p>"
+					],
+					"de_DE": [
+						"<h4>Apt-Get Updates NRPE Check</h4>",
+						"<p>Dieses Plugin überprüft über NRPE, ob für das Zielsystem Updates verfügbar sind</p>"
+					]
+				},
+				"tk_notify": false,
+				"tk_notify_default": false
+			}
+		},
+		{
+			"service_description": "apt-dist-nrpe",
+			"display_name": "NRPE Distribution Updates",
+			"check_command": {
+				"command_name": "check_nrpe_1arg",
+				"arguments": [
+				{
+					"label": "command",
+					"description": {
+						"en_US": "Command which the remote NRPE daemon executes",
+						"de_DE": "Kommando, das vom entfernten NRPE Daemon ausgeführt wird"
+					},
+					"validation": "string", 
+					"argument": "-c",
+					"value": "check_apt_distupgrade"
+				}
+				]
+			},
+			"_catalogue_attributes": {
+				"tags": ["updates", "update", "system", "apt-get", "aptitude", "apt", "nrpe", "dist", "distribution"],
+				"name": "check_apt_distupgrade",
+				"label": "Distribution Updates",
+				"description": {
+					"en_US": "Checks over NRPE whether there are any distribution updates available on the Server", 
+					"de_DE": "Überprüft über NRPE, ob auf dem Zielsystem Distributions-Updates zur Verfügung stehen" 
+				},
+				"defined": true,
+				"defined_in": "/etc/nagios-plugins/config/check_nrpe.cfg",
+				"doc": {
+					"en_US": [
+						"<h4>Apt-Get Dist-Updates NRPE Check</h4>",
+						"<p>This plugin can check whether there are distribution updates available for the Server",
+						"with Nagios or Icinga over NRPE.</p>"
+					],
+					"de_DE": [
+						"<h4>Apt-Get Dist-Updates NRPE Check</h4>",
+						"<p>Dieses Plugin überprüft über NRPE, ob für das Zielsystem Distributions-Updates verfügbar sind</p>"
+					]
+				},
+				"tk_notify": false,
+				"tk_notify_default": false
+			}
+		},
+		{
+			"service_description": "coldfusion-nrpe",
+			"display_name": "Adobe Coldfusion Status",
+			"check_command": {
+				"command_name": "check_nrpe_1arg",
+				"arguments": [
+				{
+					"label": "command",
+					"description": {
+						"en_US": "Command which the remote NRPE daemon executes",
+						"de_DE": "Kommando, das vom entfernten NRPE Daemon ausgeführt wird"
+					},
+					"validation": "string",
+					"argument": "-p",
+					"value": "check_coldfusion"
+				}
+				]
+			},
+			"_catalogue_attributes": {
+				"tags": ["adobe", "systems", "coldfusion", "server", "middleware"],
+				"name": "check_coldfusion",
+				"label": "Coldfusion Status",
+				"description": {
+					"en_US": "A simple plugin that checks the status (running or not) of a ColdFusion server. Developed for CF9 and CF10.",
+					"de_DE": "Ein einfaches Plugin um den Status eines Adobe Coldfusion Servers festzustellen."
+				},
+				"defined": true,
+				"defined_in": "/etc/nagios-plugins/config/check_nrpe.cfg",
+				"doc": {
+					"en_US": [
+						"<h4>Adobe Coldfusion Server Check</h4>",
+						"<p>This plugin helps determing the status of a Adobe Coldfusion Server",
+						"with Nagios or Icinga.</p>"
+					],
+					"de_DE": [
+						"<h4>Adobe Coldfusion Server Check</h4>",
+						"<p>Dieses Plugin überprüft den Status eines Adobe Coldfusion Servers",
+						"mit Nagios oder Icinga</p>"
+					]
+				},
+				"tk_notify": false,
+				"tk_notify_default": false
+			}
+		},
+		{
+			"service_description": "diskspace-all-nrpe",
+			"display_name": "Disk usage of all disks",
+			"check_command": {
+				"command_name": "check_nrpe_1arg",
+				"arguments": [
+				{
+					"label": "command",
+					"description": {
+						"en_US": "Command which the remote NRPE daemon executes",
+						"de_DE": "Kommando, das vom entfernten NRPE Daemon ausgeführt wird"
+					},
+					"validation": "string",
+					"argument": "-c",
+					"value": "check_all_disks"
+				}
+				]
+			},
+			"_catalogue_attributes": {
+				"tags": ["disk", "space", "usage", "mount"],
+				"name": "check_all_disks",
+				"label": "All Disk Usage Status",
+				"description": {
+					"en_US": "A simple plugin that checks the usage of all disks via NRPE and alerts if a certain percentage is reached",
+					"de_DE": "Überprüft die Nutzung aller Festplatte eines bestimmten Servers via NRPE"
+				},
+				"defined": true,
+				"defined_in": "/etc/nagios-plugins/config/check_nrpe.cfg",
+				"doc": {
+					"en_US": [
+						"<h4>Disk Usage Check</h4>",
+						"<p>This plugin helps monitoring if any disk reaches its capacity",
+						"with Nagios or Icinga.</p>"
+					],
+					"de_DE": [
+						"<h4>Disk Usage Check</h4>",
+						"<p>Mithilfe dieses Plugins wird überwacht, ob eine der Festplatten ihre Kapazität erreicht</p>"
+					]
+				},
+				"tk_notify": false,
+				"tk_notify_default": false
+			}
+		},
+		{
+			"service_description": "adaptec-raid-nrpe",
+			"display_name": "Adaptec RAID",
+			"check_command": {
+			"command_name": "check_nrpe_1arg",
+			"arguments": [
+				{
+					"label": "command",
+					"description": {
+						"en_US": "Command which the remote NRPE daemon executes",
+						"de_DE": "Kommando, das vom entfernten NRPE Daemon ausgeführt wird"
+					},
+					"validation": "string",
+					"argument": "-c",
+					"value": "check_adaptec_raid"
+				}
+			]
+		},
+		"_catalogue_attributes": {
+			"tags": ["remote", "Adaptec", "RAID"],
+			"name": "adaptec-raid-nrpe",
+			"label": "Adaptec RAID via NRPE",
+			"description": {
+					"en_US": "Checks the status of a remote Adaptec RAID via NRPE",
+					"de_DE": "Testet den Status eines entfernten Adaptec RAIDs via NRPE"
+			},
+			"defined": true,
+			"defined_in": "/etc/nagios-plugins/config/check_nrpe.cfg",
+			"links": [{
+				"name": "Adaptec RAID Monitoring Plugin",
+				"href": {
+					"en_US": "http://www.thomas-krenn.com/en/wiki/Adaptec_RAID_Monitoring_Plugin",
+					"de_DE": "http://www.thomas-krenn.com/de/wiki/Adaptec_RAID_Monitoring_Plugin"
+				},
+				"description": {
+					"en_US": "Wiki article about the Adaptec RAID Monitoring Plugin",
+					"de_DE": "Wiki Artikel zum Adaptec RAID Monitoring Plugin"
+				}
+			}],
+	
+			"doc": {
+				"en_US": [
+					"<h4>Adaptec RAID Monitoring Plugin (via NRPE)</h4>",
+					"<p>Using this plugin, the status of a remote Adaptec RAID can be monitored by Nagios",
+					"or Icinga. Please ensure to configure the NRPE daemon on the remote host.</p>"
+				],
+				"de_DE": [
+					"<h4>Adaptec RAID Monitoring Plugin (über NRPE)</h4>",
+					"<p>Mit diesem Plugin kann der Status eines Adaptec RAIDs eines entfernten Servers mit Nagios oder Icinga",
+					"überwacht werden. Bitte stellen Sie die korrekte Konfiguration des NRPE Daemons am entfernten Server sicher.</p>"
+				]
+			},
+			"tk_notify": true,
+			"tk_notify_default": true
+			}
+		},
+		{
+			"service_description": "lsi-raid-nrpe",
+			"display_name": "LSI RAID",
+			"check_command": {
+				"command_name": "check_nrpe_1arg",
+				"arguments": [
+					{
+						"label": "command",
+						"description": {
+							"en_US": "Command which the remote NRPE daemon executes",
+							"de_DE": "Kommando, das vom entfernten NRPE Daemon ausgeführt wird"
+						},
+						"validation": "string",
+						"argument": "-c",
+						"value": "check_lsi_raid"
+					}
+					]
+			},
+			"_catalogue_attributes": {
+				"tags": ["remote", "LSI", "RAID"],
+				"name": "lsi-raid-nrpe",
+				"label": "LSI RAID via NRPE",
+				"description": {
+						"en_US": "Checks the status of a remote LSI RAID via NRPE",
+						"de_DE": "Testet den Status eines entfernten LSI RAIDs via NRPE"
+				},
+				"defined": true,
+				"defined_in": "/etc/nagios-plugins/config/check_nrpe.cfg",
+				"links": [{
+					"name": "LSI RAID Monitoring Plugin",
+					"href": {
+						"en_US": "http://www.thomas-krenn.com/en/wiki/LSI_RAID_Monitoring_Plugin",
+						"de_DE": "http://www.thomas-krenn.com/de/wiki/LSI_RAID_Monitoring_Plugin"
+					},
+					"description": {
+						"en_US": "Wiki article about the LSI RAID Monitoring Plugin",
+						"de_DE": "Wiki Artikel zum LSI RAID Monitoring Plugin"
+					}
+				}
+				],
+				"doc": {
+					"en_US": [
+						"<h4>LSI RAID Monitoring Plugin (via NRPE)</h4>",
+						"<p>Using this plugin, the status of a remote LSI RAID can be monitored by Nagios",
+						"or Icinga. Please ensure to configure the NRPE daemon on the remote host.</p>"
+					],
+					"de_DE": [
+						"<h4>LSI RAID Monitoring Plugin (über NRPE)</h4>",
+						"<p>Mit diesem Plugin kann der Status eines LSI RAIDs eines entfernten Servers mit Nagios oder Icinga",
+						"überwacht werden. Bitte stellen Sie die korrekte Konfiguration des NRPE Daemons am entfernten Server sicher.</p>"
+					]
+				},
+				"tk_notify": true,
+				"tk_notify_default": true
+			}
+		},
+		{
+			"service_description": "load-nrpe",
+			"display_name": "SYTEM LOAD",
+			"check_command": {
+				"command_name": "check_nrpe_1arg",
+				 "arguments": [
+					{
+						"label": "command",
+						"description": {
+							"en_US": "Command which the remote NRPE daemon executes",
+							"de_DE": "Kommando, das vom entfernten NRPE Daemon ausgeführt wird"
+						},
+						"validation": "string",
+						"argument": "-c",
+						"value": "check_load"
+					}
+				]
+			},
+			"_catalogue_attributes": {
+				"tags": ["remote", "system", "load"],
+				"name": "system-load-nrpe",
+				"label": "System Load via NRPE",
+				"description": {
+						"en_US": "Checks the status of a remote system load via NRPE",
+						"de_DE": "Testet den Status einer entfernten System Load via NRPE"
+				},
+				"defined": true,
+				"defined_in": "/etc/nagios-plugins/config/check_nrpe.cfg",
+				"links": [{
+					"name": "System Load Monitoring Plugin",
+					"href": {
+						"en_US": "http://www.thomas-krenn.com/en/wiki/System_Load_Monitoring_Plugin",
+						"de_DE": "http://www.thomas-krenn.com/de/wiki/Sysytem_Load_Monitoring_Plugin"
+					},
+					"description": {
+						"en_US": "Wiki article about the System Load Monitoring Plugin",
+						"de_DE": "Wiki Artikel zum System Load Monitoring Plugin"
+					}
+				}],
+	
+				"doc": {
+					"en_US": [
+						"<h4>System Load Monitoring Plugin (via NRPE)</h4>",
+						"<p>Using this plugin, the status of a remote system load can be monitored by Nagios",
+						"or Icinga. Please ensure to configure the NRPE daemon on the remote host.</p>"
+					],
+					"de_DE": [
+						"<h4>System Load Monitoring Plugin (über NRPE)</h4>",
+						"<p>Mit diesem Plugin kann der Status einer entfernten System Load mit Nagios oder Icinga",
+						"überwacht werden. Bitte stellen Sie die korrekte Konfiguration des NRPE Daemons am entfernten Server sicher.</p>"
+					]
+				},
+	
+				"tk_notify": false,
+				"tk_notify_default": false
+			}
+		},
+		{
+			"service_description": "smart-attributes-nrpe",
+			"display_name": "SMART Attributes NRPE",
+			"check_command": {
+				"command_name": "check_nrpe_1arg",
+				"arguments": [
+				{
+					"label": "command",
+					"description": {
+							"en_US": "Command which the remote NRPE daemon executes",
+							"de_DE": "Kommando, das vom entfernten NRPE Daemon ausgeführt wird"
+					},
+					"validation": "string",
+					"argument": "-c",
+					"value": "check_smart_attributes"
+				}
+				]
+			},
+			"_catalogue_attributes": {
+				"tags": ["smart", "hdd", "ssd"],
+				"name": "smart-attributes",
+				"label": {
+					"en_US": "SMART Check NRPE",
+					"de_DE": "SMART Test NRPE"
+				},
+				"description": {
+					"en_US": "Checks SMART attributes of a HDD or SSD over NRPE",
+					"de_DE": "Püft SMART Attribute einer Festplatte oder SSD über NRPE"
+				},
+				"defined": true,
+				"defined_in": "/etc/nagios-plugins/config/check_nrpe.cfg",
+				"links": [{
+					"name": "SMART Attributes Monitoring Plugin",
+					"href": {
+						"en_US": "http://www.thomas-krenn.com/en/wiki/SMART_Attributes_Monitoring_Plugin",
+						"de_DE": "http://www.thomas-krenn.com/de/wiki/SMART_Attributes_Monitoring_Plugin"
+					},
+					"description": {
+						"en_US": "Official wiki article about the SMART Attributes Monitoring Plugin from Thomas Krenn",
+						"de_DE": "Offizieller Wiki Artikel zum SMART Attributes Monitoring Plugin von Thomas Krenn"
+					}
+				},
+				{
+					"name": "GIT Repository",
+					"href": "http://git.thomas-krenn.com/?p=check_smart_attributes_v3.git;a=summary",
+					"description": {
+						"en_US": "Official GIT repository of the SMART Attributes Monitoring Plugin from Thomas Krenn",
+						"de_DE": "Offizielles GIT Repository des SMART Attributes Monitoring Plugins von Thomas Krenn"
+					}
+				}
+				],
+				"doc": {
+					"en_US": [
+						"<h4>SMART Attributes Check</h4>",
+						"<p>Using this plugin, the SMART attributes of a harddisk or SSD can be monitored",
+						"over NRPE with Nagios or Icinga</p>"
+						],
+					"de_DE": [
+						"<h4>SMART Attribute Check</h4>",
+						"<p>Mit diesem Plugin können die SMART Attribute einer Festplatte oder SSD",
+						"mithilfe von Nagios oder Icinga über NRPE ausgelesen werden.</p>"
+						]
+				},
+				"tk_notify": true,
+				"tk_notify_default": true
+			}
+		},
+		{
+			"service_description": "mailq-sendmail-nrpe",
+			"display_name": "Sendmail Mailqueue NRPE Check",
+			"check_command": {
+				"command_name": "check_nrpe_1arg",
+				"arguments": [
+				{
+					"label": "command",
+					"description": {
+						"en_US": "Command which the remote NRPE daemon executes",
+						"de_DE": "Kommando, das vom entfernten NRPE Daemon ausgeführt wird"
+					},
+					"validation": "string",
+					"argument": "-c",
+					"value": "check_mailq_sendmail"
+				}
+				]
+			},
+			"_catalogue_attributes": {
+				"tags": ["mail", "queue", "sendmail", "e-mail", "email", "nrpe"],
+				"name": "check-mailq-sendmail-nrpe",
+				"label": "Sendmail Mailqueue NRPE Check",
+				"description": {
+					"en_US": "Checks how many mails are in Sendmails mailqueue over NRPE",
+					"de_DE": "Überprüft wieviele E-Mails sich in der Mailqueue von Sendmail befinden mit NRPE"
+				},
+				"defined": true,
+				"defined_in": "/etc/nagios-plugins/config/check_nrpe.cfg",
+				"doc": {
+					"en_US": [
+						"<h4>Mailqueue Sendmail Check</h4>",
+						"<p>Using this plugin, the number of mails in Sendmails",
+						"mailqueue can be monitored with Nagios or Icinga.</p>"
+					],
+					"de_DE": [
+						"<h4>Mailqueue Sendmail Check</h4>",
+						"<p>Mithilfe dieses Plugins kann überprüft werden wieviele",
+						"E-Mails sich in der Mailqueue von Sendmail befinden.</p>"
+					]
+				},
+				"tk_notify": false,
+				"tk_notify_default": false
+			}
+		},
+		{
+			"service_description": "mailq-postfix-nrpe",
+			"display_name": "Postfix Mailqueue NRPE Check",
+			"check_command": {
+				"command_name": "check_nrpe_1arg",
+				"arguments": [
+				{
+					"label": "command",
+					"description": {
+						"en_US": "Command which the remote NRPE daemon executes",
+						"de_DE": "Kommando, das vom entfernten NRPE Daemon ausgeführt wird"
+					},
+					"validation": "string",
+					"argument": "-c",
+					"value": "check_mailq_postfix"
+				}
+				]
+			},
+			"_catalogue_attributes": {
+				"tags": ["mail", "queue", "postfix", "e-mail", "email", "nrpe"],
+				"name": "check-mailq-postfix-nrpe",
+				"label": "Postfix Mailqueue NRPE Check",
+				"description": {
+					"en_US": "Checks how many mails are in Postfixs mailqueue over NRPE",
+					"de_DE": "Überprüft über NRPE, wieviele E-Mails sich in der Mailqueue von Postfix befinden"
+				},
+				"defined": true,
+				"defined_in": "/etc/nagios-plugins/config/check_nrpe.cfg",
+				"doc": {
+					"en_US": [
+						"<h4>Mailqueue Postfix Check</h4>",
+						"<p>Using this plugin, the number of mails in Postfixs",
+						"mailqueue can be monitored with Nagios or Icinga.</p>"
+					],
+					"de_DE": [
+						"<h4>Mailqueue Postfix Check</h4>",
+						"<p>Mithilfe dieses Plugins kann überprüft werden, wieviele",
+						"E-Mails sich in der Mailqueue von Postfix befinden.</p>"
+					]
+				},
+				"tk_notify": false,
+				"tk_notify_default": false
+			}
+		},
+		{
+			"service_description": "mailq-exim-nrpe",
+			"display_name": "Exim Mailqueue NRPE Check",
+			"check_command": {
+				"command_name": "check_nrpe_1arg",
+				"arguments": [
+				{
+					"label": "command",
+					"description": {
+						"en_US": "Command which the remote NRPE daemon executes",
+						"de_DE": "Kommando, das vom entfernten NRPE Daemon ausgeführt wird"
+					},
+					"validation": "string",
+					"argument": "-c",
+					"value": "check_mailq_exim"
+				}
+				]
+			},
+			"_catalogue_attributes": {
+				"tags": ["mail", "queue", "exim", "e-mail", "email", "nrpe"],
+				"name": "check-mailq-exim-nrpe",
+				"label": "Exim Mailqueue NRPE Check",
+				"description": {
+					"en_US": "Checks how many mails are in Exims mailqueue over NRPE",
+					"de_DE": "Überprüft über NRPE, wieviele E-Mails sich in der Mailqueue von Exim befinden"
+				},
+				"defined": true,
+				"defined_in": "/etc/nagios-plugins/config/check_nrpe.cfg",
+				"doc": {
+					"en_US": [
+						"<h4>Mailqueue Exim Check</h4>",
+						"<p>Using this plugin, the number of mails in Exims",
+						"mailqueue can be monitored with Nagios or Icinga.</p>"
+					],
+					"de_DE": [
+						"<h4>Mailqueue Exim Check</h4>",
+						"<p>Mithilfe dieses Plugins kann überprüft werden wieviele",
+						"E-Mails sich in der Mailqueue von Exim befinden.</p>"
+					]
+				},
+				"tk_notify": false,
+				"tk_notify_default": false
+			}
+		},
+		{
+			"service_description": "mailq-qmail-nrpe",
+			"display_name": "QMail Mailqueue NRPE Check",
+			"check_command": {
+				"command_name": "check_nrpe_1arg",
+				"arguments": [
+				{
+					"label": "command",
+					"description": {
+						"en_US": "Command which the remote NRPE daemon executes",
+						"de_DE": "Kommando, das vom entfernten NRPE Daemon ausgeführt wird"
+					},
+					"validation": "string",
+					"argument": "-c",
+					"value": "check_mailq_qmail"
+				}
+				]
+			},
+			"_catalogue_attributes": {
+				"tags": ["mail", "queue", "qmail", "e-mail", "email", "nrpe"],
+				"name": "check-mailq-qmail-nrpe",
+				"label": "QMail Mailqueue NRPE Check",
+				"description": {
+					"en_US": "Checks how many mails are in QMails mailqueue over NRPE",
+					"de_DE": "Überprüft wieviele E-Mails sich in der Mailqueue von QMail befinden mit NRPE"
+				},
+				"defined": true,
+				"defined_in": "/etc/nagios-plugins/config/check_nrpe.cfg",
+				"doc": {
+					"en_US": [
+						"<h4>Mailqueue QMail Check</h4>",
+						"<p>Using this plugin, the number of mails in QMails",
+						"mailqueue can be monitored with Nagios or Icinga.</p>"
+					],
+					"de_DE": [
+						"<h4>Mailqueue QMail Check</h4>",
+						"<p>Mithilfe dieses Plugins kann überprüft werden, wieviele",
+						"E-Mails sich in der Mailqueue von QMail befinden.</p>"
+					]
+				},
+				"tk_notify": false,
+				"tk_notify_default": false
+			}
+		},
+		{
+			"service_description": "mysql-nrpe",
+			"display_name": "MySQL NRPE Check",
+			"check_command": {
+				"command_name": "check_nrpe_1arg",
+				"arguments": [
+				{
+					"label": "command",
+					"description": {
+						"en_US": "Command which the remote NRPE daemon executes",
+						"de_DE": "Kommando, das vom entfernten NRPE Daemon ausgeführt wird"
+					},
+					"validation": "string",
+					"argument": "-c",
+					"value": "check_mysql"
+				}
+				]
+			},
+			"_catalogue_attributes": {
+				"tags": ["mysql", "query", "sql", "database", "db"],
+				"name": "check-mysql-nrpe",
+				"label": "MySQL NRPE Check",
+				"description": {
+					"en_US": "Checks the connectivity to a MySQL server (or socket) over NRPE",
+					"de_DE": "Überprüft über NRPE, ob eine Verbindung mit einem MySQL-Server (oder Socket) hergestellt werden kann"
+				},
+				"defined": true,
+				"defined_in": "/etc/nagios-plugins/config/check_nrpe.cfg",
+				"doc": {
+					"en_US": [
+						"<h4>MySQL Connection Check (over NRPE)</h4>",
+						"<p>Using this plugin, the connectivity to a MySQL",
+						"server can be monitored with Nagios or Icinga.</p>"
+						],
+					"de_DE": [
+						"<h4>MySQL Connection Check (über NRPE)</h4>",
+						"<p>Mithilfe dieses Plugins kann überprüft werden, ob",
+						"eine Verbindung zu einem MySQL-Server möglich ist.</p>"
+						]
+				},
+				"tk_notify": false,
+				"tk_notify_default": false
+			}
+		},
+		{
+			"service_description": "pgsql-nrpe",
+			"display_name": "PostgreSQL NRPE Check",
+			"check_command": {
+				"command_name": "check_nrpe_1arg",
+				"arguments": [
+				{
+					"label": "command",
+					"description": {
+						"en_US": "Command which the remote NRPE daemon executes",
+						"de_DE": "Kommando, das vom entfernten NRPE Daemon ausgeführt wird"
+					},
+					"validation": "string",
+					"argument": "-c",
+					"value": "check_pgsql"
+				}
+				]
+			},
+			"_catalogue_attributes": {
+				"tags": ["pgsql", "query", "sql", "database", "db", "Postgresql"],
+				"name": "check-mysql-nrpe",
+				"label": "PostgreSQL NRPE Check",
+				"description": {
+					"en_US": "Checks the connectivity to a PostgreSQL server (or socket) over NRPE",
+					"de_DE": "Überprüft ob eine Verbindung mit einem PostgreSQL-Server (oder Socket) hergestellt werden kann"
+				},
+				"defined": true,
+				"defined_in": "/etc/nagios-plugins/config/check_nrpe.cfg",
+				"doc": {
+					"en_US": [
+						"<h4>PostgreSQL Connection Check (over NRPE)</h4>",
+						"<p>Using this plugin, the connectivity to a PostgreSQL",
+						"Server can be monitored with Nagios or Icinga.</p>"
+						],
+					"de_DE": [
+						"<h4>PostgreSQL Connection Check (über NRPE)</h4>",
+						"<p>Mithilfe dieses Plugins kann überprüft werden, ob",
+						"eine Verbindung zu einem PostgreSQL Server möglich ist.</p>"
+						]
+				},
+				"tk_notify": false,
+				"tk_notify_default": false
+			}
+		},
+		{
+			"service_description": "radius-nrpe",
+			"display_name": "RADIUS Server NRPE Check",
+			"check_command": {
+				"command_name": "check_nrpe_1arg",
+				"arguments": [
+				{
+					"label": "command",
+					"description": {
+						"en_US": "Command which the remote NRPE daemon executes",
+						"de_DE": "Kommando, das vom entfernten NRPE Daemon ausgeführt wird"
+					},
+					"validation": "string",
+					"argument": "-c",
+					"value": "check_radius"
+				}
+				]
+			},
+			"_catalogue_attributes": {
+				"tags": ["radius", "authentication", "nrpe"],
+				"name": "check-radius-nrpe",
+				"label": "RADIUS NRPE Check",
+				"description": {
+					"en_US": "Checks the connectivity to a RADIUS server over NRPE",
+					"de_DE": "Überprüft über NRPE, ob eine Verbindung mit einem RADIUS-Server hergestellt werden kann"
+				},
+				"defined": true,
+				"defined_in": "/etc/nagios-plugins/config/check_nrpe.cfg",
+				"doc": {
+					"en_US": [
+						"<h4>Remote Authentication Dial-In User Service NRPE Check</h4>",
+						"<p>Using this plugin, the connectivity to a RADIUS",
+						"server can be monitored over NRPE with Nagios or Icinga.</p>"
+					],
+					"de_DE": [
+						"<h4>Remote Authentication Dial-In User Service NRPE Check</h4>",
+						"<p>Mithilfe dieses Plugins kann via NRPE überprüft werden, ob",
+						"eine Verbindung zu einem RADIUS Server möglich ist.</p>"
+					]
+				},
+				"tk_notify": false,
+				"tk_notify_default": false
+			}
+		},
+		{
+			"service_description": "rpc-nrpe",
+			"display_name": "RPC NRPE Check",
+			"check_command": {
+				"command_name": "check_nrpe_1arg",
+				"arguments": [
+				{
+					"label": "command",
+					"description": {
+						"en_US": "Command which the remote NRPE daemon executes",
+						"de_DE": "Kommando, das vom entfernten NRPE Daemon ausgeführt wird"
+					},
+					"validation": "string",
+					"argument": "-c",
+					"value": "check-rpc"
+				}
+				]
+			},
+			"_catalogue_attributes": {
+				"tags": ["rpc", "remote", "procedure", "call", "authentication", "nrpe"],
+				"name": "check-rpc-nrpe",
+				"label": "RPC NRPE Check",
+				"description": {
+					"en_US": "Checks the connectivity to RCP over NRPE",
+					"de_DE": "Überprüft über  NRPE, ob eine Verbindung auf dem RCP Port hergestellt werden kann"
+				},
+				"defined": true,
+				"defined_in": "/etc/nagios-plugins/config/check_nrpe.cfg",
+				"doc": {
+					"en_US": [
+						"<h4>Remote Procedure Call NRPE Check</h4>",
+						"<p>Using this plugin, the RPC connectivity of a",
+						"server can be monitored over NRPE with Nagios or Icinga.</p>"
+					],
+					"de_DE": [
+						"<h4>Remote Procedure Call  NRPE Check</h4>",
+						"<p>Mithilfe dieses Plugins kann via NRPE überprüft werden, ob",
+						"eine RPC-Verbindung zu einem Server möglich ist.</p>"
+					]
+				},
+				"tk_notify": false,
+				"tk_notify_default": false
+			}
+		},
+		{
+			"service_description": "nfs-nrpe",
+			"display_name": "NFS NRPE Check",
+			"check_command": {
+				"command_name": "check_nrpe_1arg",
+				"arguments": [
+				{
+					"label": "command",
+					"description": {
+						"en_US": "Command which the remote NRPE daemon executes",
+						"de_DE": "Kommando, das vom entfernten NRPE Daemon ausgeführt wird"
+					},
+					"validation": "string",
+					"argument": "-c",
+					"value": "check-nfs"
+				}
+				]
+			},
+			"_catalogue_attributes": {
+				"tags": ["nfs", "remote", "filesystem", "nrpe"],
+				"name": "check-nfs-nrpe",
+				"label": "NFS NRPE Check",
+				"description": {
+					"en_US": "Checks the connectivity to NFS over NRPE",
+					"de_DE": "Überprüft, ob eine Verbindung zum NFS-Port hergestellt werden kann"
+				},
+				"defined": true,
+				"defined_in": "/etc/nagios-plugins/config/check_nrpe.cfg",
+				"doc": {
+					"en_US": [
+						"<h4>Network File System Check</h4>",
+						"<p>Using this plugin, the connectivity to a",
+						"NFS server can be monitored with Nagios or Icinga.</p>"
+						],
+					"de_DE": [
+						"<h4>Network File System Check</h4>",
+						"<p>Mithilfe dieses Plugins kann überprüft werden, ob",
+						"eine NFS-Verbindung zu einem Server möglich ist.</p>"
+						]
+				},
+				"tk_notify": false,
+				"tk_notify_default": false
+			}
+		}
+	]
+}

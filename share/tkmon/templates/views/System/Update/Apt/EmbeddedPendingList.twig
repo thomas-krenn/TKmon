@@ -1,0 +1,66 @@
+{% set countUpdates = records|length %}
+
+{% if error %}
+    <div class="alert alert-error">
+        <h5>{% trans "Error occurred" %}</h5>
+        <pre>{{ error }}</pre>
+        <p>
+            {% trans %}
+            This means that your packages are broken. Please test your packages and
+            fix it manually.
+            {% endtrans %}
+        </p>
+    </div>
+{% else %}
+
+{% if countUpdates > 0 %}
+    <div class="alert alert-danger">
+        {% trans %}
+        {{ countUpdates }} package(s) can be upgraded. Please examine the list and
+        switch to the next tab to upgrade your system.
+        {% endtrans %}
+    </div>
+{% endif %}
+
+{% if countUpdates > 0 %}
+    <table class="tkmon-data-table">
+        <tr>
+            <th style="width: 25px;">&nbsp;</th>
+            <th>{% trans "Package" %}</th>
+            <th>{% trans "Detail" %}</th>
+        </tr>
+        {% for record in records %}
+        <tr>
+            <td title="{{ record.operation }}">
+                {% if record.operation == "inst" %}
+                    <i class="icon-refresh"></i>
+                {% elseif record.operation == "remv" %}
+                    <i class="icon-minus"></i>
+                {% else %}
+                    <i class="icon-question-sign"></i>(<span>{{ record.operation }}</span>)
+                {% endif %}
+            </td>
+            <td>
+                {% if record.href %}
+                    <a href="{{ record.href }}">
+                        {{ record.packageName }}
+                    </a>
+                {%  else  %}
+                    {{ record.packageName }}
+                {% endif %}
+            </td>
+            <td>
+                {{ record.detail }}
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+{% else %}
+    <div class="alert alert-success">
+        {% trans %}
+        You system is up to date. No need to take action.
+        {% endtrans %}
+    </div>
+{% endif %}
+
+{% endif %}

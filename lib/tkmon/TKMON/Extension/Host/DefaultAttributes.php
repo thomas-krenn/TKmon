@@ -16,7 +16,7 @@
  * along with TKMON.  If not, see <http://www.gnu.org/licenses/>.
  *
  * @author Marius Hein <marius.hein@netways.de>
- * @copyright 2012-2013 NETWAYS GmbH <info@netways.de>
+ * @copyright 2012-2014 NETWAYS GmbH <info@netways.de>
  */
 
 namespace TKMON\Extension\Host;
@@ -24,6 +24,7 @@ namespace TKMON\Extension\Host;
 use ICINGA\Object\Host;
 use NETWAYS\Chain\ReflectionHandler;
 use NETWAYS\Common\ArrayObject;
+use TKMON\Form\Field\Dummy;
 use TKMON\Form\Field\IpAddress;
 use TKMON\Form\Field\Text;
 use TKMON\Interfaces\ApplicationModelInterface;
@@ -94,7 +95,7 @@ class DefaultAttributes extends ReflectionHandler implements ApplicationModelInt
     /**
      * Define default edit attributes
      *
-     * @param \NETWAYS\Common\ArrayObject $attributes
+     * @param ArrayObject $attributes
      */
     public function commandDefaultEditableAttributes(ArrayObject $attributes)
     {
@@ -102,7 +103,11 @@ class DefaultAttributes extends ReflectionHandler implements ApplicationModelInt
             array(
                 'host_name' => new Text('host_name', _('Hostname')),
                 'alias'     => new Text('alias', _('Alias')),
-                'address'   => new IpAddress('address', _('IP address'))
+                'address'   => new IpAddress('address', _('IP address')),
+
+                // Dummy field, just we've the value in voyager chain
+                // HTML is made in template and with hostTypeAhead
+                'parents'   => new Dummy('parents', _('Parent hosts'), false)
             )
         );
     }
@@ -119,6 +124,7 @@ class DefaultAttributes extends ReflectionHandler implements ApplicationModelInt
         /** @var ServiceData $serviceModel */
         $serviceModel = $this->container['serviceData'];
 
+        // Add ping service to the newly created host
         $service = $serviceModel->createServiceFromCatalogue('net-ping');
 
         $host->addService($service);

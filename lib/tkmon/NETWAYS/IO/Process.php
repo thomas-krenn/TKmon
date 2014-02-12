@@ -16,7 +16,7 @@
  * along with TKMON.  If not, see <http://www.gnu.org/licenses/>.
  *
  * @author Marius Hein <marius.hein@netways.de>
- * @copyright 2012-2013 NETWAYS GmbH <info@netways.de>
+ * @copyright 2012-2014 NETWAYS GmbH <info@netways.de>
  */
 
 namespace NETWAYS\IO;
@@ -144,6 +144,12 @@ class Process
     private $ignoreStdErr=false;
 
     /**
+     * Flag to ignore return code
+     * @var bool
+     */
+    private $ignoreProcessReturn=false;
+
+    /**
      * Create a new object
      * @param string $command
      */
@@ -214,11 +220,22 @@ class Process
 
     /**
      * Flag to ignore exceptions if STDERR is written
+     *
      * @param bool $flag
      */
     public function ignoreStdErr($flag = true)
     {
         $this->ignoreStdErr = (bool)$flag;
+    }
+
+    /**
+     * Setter to set flag that ignore process return value
+     *
+     * @param bool $flag
+     */
+    public function ignoreProcessReturn($flag = true)
+    {
+        $this->ignoreProcessReturn = (bool)$flag;
     }
 
     /**
@@ -466,7 +483,17 @@ class Process
         $call = implode(' ', $cmd);
 
         if ($this->wrapSudo === true) {
-            return self::PATH_SUDO. ' '. $call;
+            // proc_open does not export environment vars, let
+            // sudo do this for you.
+            $environmentString = '';
+            if (count($this->environment)) {
+                foreach ($this->environment as $key => $val) {
+                    $environmentString .= $key. '=\''. escapeshellarg($val). '\'';
+                }
+                $environmentString .= ' ';
+            }
+
+            return self::PATH_SUDO. ' '. $environmentString. $call;
         }
 
         return $call;
@@ -514,8 +541,12 @@ class Process
             throw new Exception\ProcessException('STDERR: '. $this->processError);
         }
 
-        if ($this->processReturn > 0) {
-            throw new Exception\ProcessException('Process exited with '. $this->processReturn);
+        if ($this->processReturn > 0 && $this->ignoreProcessReturn === false) {
+            throw new Exception\ProcessException(
+                'Process exited with '. $this->processReturn .
+                (($this->processError) ? '. STDERR: ' . $this->processError :
+                    '(NOSTDERR)')
+            );
         }
 
         return true;
@@ -528,6 +559,15 @@ class Process
     public function getOutput()
     {
         return $this->processOutput;
+    }
+
+    /**
+     * Return STDERR if not thrown
+     * @return mixed
+     */
+    public function getProcessError()
+    {
+        return $this->processError;
     }
 
     /**

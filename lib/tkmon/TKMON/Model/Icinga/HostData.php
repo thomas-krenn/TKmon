@@ -16,18 +16,32 @@
  * along with TKMON.  If not, see <http://www.gnu.org/licenses/>.
  *
  * @author Marius Hein <marius.hein@netways.de>
- * @copyright 2012-2013 NETWAYS GmbH <info@netways.de>
+ * @copyright 2012-2014 NETWAYS GmbH <info@netways.de>
  */
 
 namespace TKMON\Model\Icinga;
+
+use ICINGA\Interfaces\LoaderStrategyInterface;
+use ICINGA\Loader\FileSystem;
+use ICINGA\Loader\Strategy\HostServiceObjects;
+use ICINGA\Object\Host;
+use NETWAYS\Chain\Command;
+use NETWAYS\Chain\Exception\HandlerException;
+use NETWAYS\Chain\Interfaces\CommandInterface;
+use NETWAYS\Chain\Interfaces\HandlerInterface;
+use NETWAYS\Chain\Interfaces\ManagerInterface;
+use NETWAYS\Common\ArrayObject;
+use NETWAYS\Common\ArrayObjectValidator;
+use TKMON\Exception\ModelException;
+use TKMON\Interfaces\ApplicationModelInterface;
 
 /**
  * Model handle host creation
  * @package TKMON\Model
  * @author Marius Hein <marius.hein@netways.de>
  */
-class HostData extends \ICINGA\Loader\FileSystem implements \TKMON\Interfaces\ApplicationModelInterface,
-\NETWAYS\Chain\Interfaces\ManagerInterface
+class HostData extends FileSystem implements ApplicationModelInterface,
+ManagerInterface
 {
     /**
      * DI container
@@ -37,7 +51,7 @@ class HostData extends \ICINGA\Loader\FileSystem implements \TKMON\Interfaces\Ap
 
     /**
      * Load strategy
-     * @var \ICINGA\Interfaces\LoaderStrategyInterface
+     * @var LoaderStrategyInterface
      */
     private $strategy;
 
@@ -63,7 +77,7 @@ class HostData extends \ICINGA\Loader\FileSystem implements \TKMON\Interfaces\Ap
 
         $this->handlers = new \SplObjectStorage();
 
-        $this->strategy = new \ICINGA\Loader\Strategy\HostServiceObjects();
+        $this->strategy = new HostServiceObjects();
         $this->setStrategy($this->strategy);
         $this->setPath($this->container['config']['icinga.dir.host']);
 
@@ -91,34 +105,34 @@ class HostData extends \ICINGA\Loader\FileSystem implements \TKMON\Interfaces\Ap
     /**
      * Add a handler to chain
      *
-     * @param \NETWAYS\Chain\Interfaces\HandlerInterface $handler
+     * @param HandlerInterface $handler
      * @return void
      */
-    public function appendHandlerToChain(\NETWAYS\Chain\Interfaces\HandlerInterface $handler)
+    public function appendHandlerToChain(HandlerInterface $handler)
     {
         $this->handlers->attach($handler);
     }
 
     /**
      * Remove handler from chain
-     * @param \NETWAYS\Chain\Interfaces\HandlerInterface $handler
+     * @param HandlerInterface $handler
      * @return void
      */
-    public function removeHandlerFromChain(\NETWAYS\Chain\Interfaces\HandlerInterface $handler)
+    public function removeHandlerFromChain(HandlerInterface $handler)
     {
         $this->handlers->detach($handler);
     }
 
     /**
      * Run the request
-     * @param \NETWAYS\Chain\Interfaces\CommandInterface $command
+     * @param CommandInterface $command
      * @throws mixed
-     * @throws \NETWAYS\Chain\Exception\HandlerException
+     * @throws HandlerException
      * @return boolean
      */
-    public function processRequest(\NETWAYS\Chain\Interfaces\CommandInterface $command)
+    public function processRequest(CommandInterface $command)
     {
-        /** @var $handler \NETWAYS\Chain\Interfaces\HandlerInterface */
+        /** @var $handler HandlerInterface */
         $handler = null;
 
         /** @var $handlerExceptions array|\Exception */
@@ -126,7 +140,7 @@ class HostData extends \ICINGA\Loader\FileSystem implements \TKMON\Interfaces\Ap
         foreach ($this->handlers as $handler) {
             try {
                 $handler->processRequest($command);
-            } catch (\NETWAYS\Chain\Exception\HandlerException $e) {
+            } catch (HandlerException $e) {
                 if ($this->stopOnFirstHandlerException === true) {
                     throw $e;
                 } else {
@@ -164,18 +178,18 @@ class HostData extends \ICINGA\Loader\FileSystem implements \TKMON\Interfaces\Ap
         $arguments = func_get_args();
         $commandName = array_shift($arguments);
 
-        $command = new \NETWAYS\Chain\Command($commandName);
+        $command = new Command($commandName);
         $command->fromArray($arguments);
         $this->processRequest($command); // Make the request
     }
 
     /**
      * Return default attributes
-     * @return \NETWAYS\Common\ArrayObject
+     * @return ArrayObject
      */
     public function getEditableAttributes()
     {
-        $attributes = new \NETWAYS\Common\ArrayObject();
+        $attributes = new ArrayObject();
 
         // Notify others
         $this->callCommand('defaultEditableAttributes', $attributes);
@@ -191,11 +205,11 @@ class HostData extends \ICINGA\Loader\FileSystem implements \TKMON\Interfaces\Ap
 
     /**
      * Return a list of editable custom variables to add
-     * @return \NETWAYS\Common\ArrayObject
+     * @return ArrayObject
      */
     public function getCustomVariables()
     {
-        $attributes = new \NETWAYS\Common\ArrayObject();
+        $attributes = new ArrayObject();
 
         // Notify others
         $this->callCommand('defaultCustomVariables', $attributes);
@@ -216,11 +230,11 @@ class HostData extends \ICINGA\Loader\FileSystem implements \TKMON\Interfaces\Ap
      *
      * Build from main attributes and custom variables
      *
-     * @return \NETWAYS\Common\ArrayObjectValidator
+     * @return ArrayObjectValidator
      */
     public function createValidator()
     {
-        $validator = new \NETWAYS\Common\ArrayObjectValidator();
+        $validator = new ArrayObjectValidator();
 
         /** @var $field \TKMON\Form\Field */
         $field = null;
@@ -257,16 +271,17 @@ class HostData extends \ICINGA\Loader\FileSystem implements \TKMON\Interfaces\Ap
 
     /**
      * Creates a host
-     * @param \NETWAYS\Common\ArrayObject $attributes
-     * @return \ICINGA\Object\Host
+     * @param ArrayObject $attributes
+     * @return Host
      */
-    public function createHost(\NETWAYS\Common\ArrayObject $attributes)
+    public function createHost(ArrayObject $attributes)
     {
 
         $default = $this->container['config']['icinga.record.host'];
         $attributes->fromVoyagerObject($default);
 
-        $record = \ICINGA\Object\Host::createObjectFromArray($attributes);
+        /** @var Host $record */
+        $record = Host::createObjectFromArray($attributes);
 
         $this->callCommand('createHost', $record);
 
@@ -274,20 +289,43 @@ class HostData extends \ICINGA\Loader\FileSystem implements \TKMON\Interfaces\Ap
     }
 
     /**
-     * Update a host
-     * @param \ICINGA\Object\Host $host
-     * @throws \TKMON\Exception\ModelException
+     * Test all configured parent hosts for their existence
+     * @param Host $host
+     * @throws ModelException
      */
-    public function updateHost(\ICINGA\Object\Host $host)
+    private function testHostParents(Host $host)
+    {
+        if ($host->parents) {
+            $parents = explode(',', $host->parents);
+            foreach ($parents as $parent) {
+                try {
+                    $this->getHost($parent);
+                } catch (ModelException $e) {
+                    throw new ModelException(
+                        'Parent host "'. $parent. '" does not exist'
+                    );
+                }
+            }
+        }
+    }
+
+    /**
+     * Update a host
+     * @param Host $host
+     * @throws ModelException
+     */
+    public function updateHost(Host $host)
     {
 
         $oid = $host->getObjectIdentifier();
 
         if ($this->offsetExists($oid) === false) {
-            throw new \TKMON\Exception\ModelException('Host does not existt: '. $oid);
+            throw new ModelException('Host does not exist: '. $oid);
         }
 
         $this->callCommand('beforeHostUpdate', $host);
+
+        $this->testHostParents($host);
 
         $this[$oid] = $host;
 
@@ -296,18 +334,20 @@ class HostData extends \ICINGA\Loader\FileSystem implements \TKMON\Interfaces\Ap
 
     /**
      * Create a new host
-     * @param \ICINGA\Object\Host $host
-     * @throws \TKMON\Exception\ModelException
+     * @param Host $host
+     * @throws ModelException
      */
-    public function setHost(\ICINGA\Object\Host $host)
+    public function setHost(Host $host)
     {
         $oid = $host->getObjectIdentifier();
 
         if ($this->offsetExists($oid)) {
-            throw new \TKMON\Exception\ModelException('Host exists: '. $oid);
+            throw new ModelException('Host exists: '. $oid);
         }
 
         $this->callCommand('beforeHostCreate', $host);
+
+        $this->testHostParents($host);
 
         $this[$oid] = $host;
 
@@ -317,28 +357,28 @@ class HostData extends \ICINGA\Loader\FileSystem implements \TKMON\Interfaces\Ap
     /**
      * Get a host
      * @param string $identifier host_name attribute
-     * @return \ICINGA\Object\Host
-     * @throws \TKMON\Exception\ModelException
+     * @return Host
+     * @throws ModelException
      */
     public function getHost($identifier)
     {
         if ($this->offsetExists($identifier) === false) {
-            throw new \TKMON\Exception\ModelException('Host does not exist: '. $identifier);
+            throw new ModelException('Host does not exist: '. $identifier);
         }
 
-        /** @var $host \ICINGA\Object\Host */
+        /** @var $host Host */
         return $this->offsetGet($identifier);
     }
 
     /**
      * Remove a host by host_name
      * @param string $identifier host_name attribute
-     * @throws \TKMON\Exception\ModelException
+     * @throws ModelException
      */
     public function removeHostByName($identifier)
     {
         if ($this->offsetExists($identifier) === false) {
-            throw new \TKMON\Exception\ModelException('Host does not exist: '. $identifier);
+            throw new ModelException('Host does not exist: '. $identifier);
         }
 
         $this->offsetUnset($identifier);
@@ -348,14 +388,14 @@ class HostData extends \ICINGA\Loader\FileSystem implements \TKMON\Interfaces\Ap
      * Return a couple of hosts
      *
      * @param string $query query
-     * @return \ICINGA\Object\Host[]
+     * @return Host
      */
     public function searchHost($query)
     {
         $query = strtolower($query);
         $cb = function ($item) use ($query) {
 
-            if (!($item instanceof \ICINGA\Object\Host)) {
+            if (!($item instanceof Host)) {
                 return false;
             }
 

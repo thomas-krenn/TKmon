@@ -1,4 +1,8 @@
 {% set link_login = web_link('System/Login/Index') %}
+{% set url_referer = web_link(referer) %}
+{% if url_referer %}
+{% set link_login = link_login ~ '?referer=' ~ url_referer %}
+{% endif %}
 <div class="page-header">
     <h2>{% trans "Session expired" %}</h2>
 </div>

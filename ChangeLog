@@ -1,10 +1,56 @@
+tk-mon 1.4.1 (2014-01-12)
+
+    1.4.1 Bug fix felease
+    (https://www.netways.org/versions/194)
+
+    * #2340 Include additional service catalogue templates
+
+    * FIX #2334 Apt Update undefined array index when information is missing
+    * FIX #2338 Upgrade function returns error message after Kernel Update, no hint on necessary reboot
+    * FIX #2342 Update: List pending updates function does not use apt-get dist-upgrade
+    * FIX #2354 TKmon itself is missing in package updates
+    * FIX #2356 Web-inteface suggests a running upgrade progress even if system already has finished it
+    * FIX #2358 TKmon Update Interface doesn't list pending updates
+    * FIX #2419 Configured Email Sender address is not used for Icinga alerts
+    * FIX #2435 Update fails when questions need to be answered interactively
+
+tk-mon 1.4.0 (2013-10-22)
+
+    1.4.0 Feature release
+    (https://www.netways.org/projects/tkmon-web/versions/178)
+
+    * #2324 Upgrade jQuery to version 1.10.1
+    * #2322 Allow user to override config without modifying source config
+    * #2220 Enable disable call home feature (Needs new version of tkalert)
+    * #2218 Better visibility of links (underline per default)
+    * #2216 Configure icinga parent host feature
+    * #2206 Adds IPMI services to host automatically if credentials entered
+    * #2216 Upgrade ubuntu os with the webinterface
+
+    * FIX #2314 Do not underline links in buttons
+    * FIX #2312 Trigger upgrades with "dist-upgrade" to install dependencies
+    * FIX #2310 Show friendly message if no updates available
+    * FIX #2300 Kill dhclient3 when switching from dhcp to static network
+      configuration
+    * FIX #2318 Default ubuntu host entries when changing host name and
+      write /etc/hosts file
+    * FIX #2316 Set config upload percentage always to 100% after upload
+
+tk-mon 1.3.1 (2013-10-22)
+
+    1.3.1 bug fix release
+    (https://www.netways.org/projects/tkmon-web/versions/186)
+
+    * FIX #2191 Restore of configuration fails when Firefox browser is used
+    * FIX #2194 Replace VMware ESXi Password at Service configuration
+
 tk-mon 1.3.0 (2013-07-17)
 
    -----------------------------------------------------------------------------
      1.3.0 is a productive release.
 
-	 We have moved our trackers please report bugs and issues to:
-	 https://www.netways.org/projects/tkmon-web
+     We have moved our trackers please report bugs and issues to:
+     https://www.netways.org/projects/tkmon-web
 
      Therefore all early time issues are obsolete now! 
    -----------------------------------------------------------------------------
