@@ -1,0 +1,444 @@
+{
+	"type":"service",
+	"version":"1.0",
+	"description":"Services catalogue for icinga nt checks",
+	"data":[
+		{
+			"service_description":"nt-uptime",
+			"display_name":"NT-Uptime",
+			"check_command":{
+				"command_name":"check_nt_1arg",
+				"arguments":[
+					{
+						"label":"Port",
+						"description":{
+							"en_US":"NSClient++ default port",
+							"de_DE":"NSClient++ Standardport"
+						},
+						"validation":"string",
+						"argument":"-p",
+						"value":"12489"
+					},
+					{
+						"label":"Command",
+						"description":{
+							"en_US":"Command which the remote NSClient daemon executes",
+							"de_DE":"Kommando, das vom entfernten NSClient Daemon ausgeführt wird"
+						},
+						"validation":"string",
+						"argument":"-v",
+						"value":"UPTIME"
+					}
+				]
+			},
+			"_catalogue_attributes":{
+				"tags":[
+					"uptime"
+				],
+				"name":"check_nt_uptime",
+				"label":"NT-Uptime",
+				"description":{
+					"en_US":"Checks via NSClient the Uptime of a remote Server",
+					"de_DE":"Überprüft über NSClient die Laufzeit eines entfernten Servers"
+				},
+				"defined":true,
+				"defined_in":"/etc/nagios-plugins/config/check_nt.cfg",
+				"doc":{
+					"en_US":[
+						"<h4>Uptime NT Check</h4>",
+						"<p>Using this plugin, the uptime of a remote Server",
+						"can be monitored with Nagios or Icinga over NSClient.</p>"
+					],
+					"de_DE":[
+						"<h4>Uptime NT Check</h4>",
+						"<p>Mit diesem Plugin kann die Laufzeit eines entfernten Servers",
+						"mit Nagios oder Icinga über NSClient überwacht werden.</p>"
+					]
+				},
+				"tk_notify":false,
+				"tk_notify_default":false
+			}
+		},
+		{
+			"service_description":"nt-clientversion",
+			"display_name":"NT-Clientversion",
+			"check_command":{
+				"command_name":"check_nt_1arg",
+				"arguments":[
+					{
+						"label":"Port",
+						"description":{
+							"en_US":"NSClient++ default port",
+							"de_DE":"NSClient++ Standardport"
+						},
+						"validation":"string",
+						"argument":"-p",
+						"value":"12489"
+					},
+					{
+						"label":"Command",
+						"description":{
+							"en_US":"Command which the remote NSClient daemon executes",
+							"de_DE":"Kommando, das vom entfernten NSClient Daemon ausgeführt wird"
+						},
+						"validation":"string",
+						"argument":"-v",
+						"value":"CLIENTVERSION"
+					}
+				]
+			},
+			"_catalogue_attributes":{
+				"tags":[
+					"clientversion"
+				],
+				"name":"check_nt_clientversion",
+				"label":"NT-Clientversion",
+				"description":{
+					"en_US":"Checks via NSClient the Version",
+					"de_DE":"Überprüft die NSClient Version"
+				},
+				"defined":true,
+				"defined_in":"/etc/nagios-plugins/config/check_nt.cfg",
+				"doc":{
+					"en_US":[
+						"<h4>Clientversion NT Check</h4>",
+						"<p>Using this plugin, the Version of the installed NSClient++",
+						"can be monitored with Nagios or Icinga over NSClient.</p>"
+					],
+					"de_DE":[
+						"<h4>Clientversion NT Check</h4>",
+						"<p>Mit diesem Plugin kann die Version von NSClient++",
+						" mittels Nagios oder Icinga über NSClient überwacht werden.</p>"
+					]
+				},
+				"tk_notify":false,
+				"tk_notify_default":false
+			}
+		},
+		{
+			"service_description":"nt-cpuload",
+			"display_name":"NT-CPULoad",
+			"check_command":{
+				"command_name":"check_nt_2arg",
+				"arguments":[
+					{
+						"label":"Port",
+						"description":{
+							"en_US":"NSClient++ default port",
+							"de_DE":"NSClient++ Standardport"
+						},
+						"validation":"string",
+						"argument":"-p",
+						"value":"12489"
+					},
+					{
+						"label":"Command",
+						"description":{
+							"en_US":"Command which the remote NSClient daemon executes",
+							"de_DE":"Kommando, das vom entfernten NSClient Daemon ausgeführt wird"
+						},
+						"validation":"string",
+						"argument":"-v",
+						"value":"CPULOAD"
+					},
+					{
+						"label":"Thresholds",
+						"description":{
+							"en_US":"CPU load thresholds, default 90% and 95% load for 10 minutes and 30 minutes",
+							"de_DE":"Grenzwerte für CPU Auslastung, standardmäßig je auf 90% Warnung und 95% kritisch bei 10 und 30 Minuten gesetzt"
+						},
+						"validation":"string",
+						"argument":"-l",
+						"value":"10,90,95,30,90,95"
+					}
+				]
+			},
+			"_catalogue_attributes":{
+				"tags":[
+					"cpuload"
+				],
+				"name":"check_nt_cpuload",
+				"label":"NT-CPULoad",
+				"description":{
+					"en_US":"Checks via NSClient the CPU load of the remote Server",
+					"de_DE":"Überprüft über NSClient die CPU Last des entfernten Servers"
+				},
+				"defined":true,
+				"defined_in":"/etc/nagios-plugins/config/check_nt.cfg",
+				"links":[
+					{
+						"name":"CPULoad",
+						"href":{
+							"en_US":"http://wiki.monitoring-portal.org/nagios/plugins/check_nt",
+							"de_DE":"http://wiki.monitoring-portal.org/nagios/plugins/check_nt"
+						},
+						"description":{
+							"en_US":"Documentation about check_nt and the available checks, for more information about this check go to the CPULOAD topic",
+							"de_DE":"Dokumentation von check_nt und den verfügbaren Checks, unter der Überschrift CPULOAD finden sich nähere Informationen über diesen Check."
+						}
+						
+					}
+					
+				],
+				"doc":{
+					"en_US":[
+						"<h4>CPULoad NT Check</h4>",
+						"<p>Using this plugin, the CPU load of the remote Server",
+						"can be monitored with Nagios or Icinga over NSClient.</p>"
+					],
+					"de_DE":[
+						"<h4>CPULoad NT Check</h4>",
+						"<p>Mit diesem Plugin kann CPU Last eines entfernten Servers",
+						" mittels Nagios oder Icinga über NSClient überwacht werden.</p>"
+					]
+				},
+				"tk_notify":false,
+				"tk_notify_default":false
+			}
+		},
+		{
+			"service_description":"nt-servicestate",
+			"display_name":"NT-Servicestate",
+			"check_command":{
+				"command_name":"check_nt_2arg",
+				"arguments":[
+					{
+						"label":"Port",
+						"description":{
+							"en_US":"NSClient++ default port",
+							"de_DE":"NSClient++ Standardport"
+						},
+						"validation":"string",
+						"argument":"-p",
+						"value":"12489"
+					},
+					{
+						"label":"Command",
+						"description":{
+							"en_US":"Command which the remote NSClient daemon executes",
+							"de_DE":"Kommando, das vom entfernten NSClient Daemon ausgeführt wird"
+						},
+						"validation":"string",
+						"argument":"-v",
+						"value":"SERVICESTATE"
+					},
+					{
+						"label":"Service",
+						"description":{
+							"en_US":"State of the service to be checked, default value is nsclient",
+							"de_DE":"Status des zu überprüfenden Services, als Standardwert der nsclient Dienst"
+						},
+						"validation":"string",
+						"argument":"-l",
+						"value":"nsclient"
+					}
+				]
+			},
+			"_catalogue_attributes":{
+				"tags":[
+					"Servicestate"
+				],
+				"name":"check_nt_servicestate",
+				"label":"NT-Servicestate",
+				"description":{
+					"en_US":"Checks via NSClient the state of a specific service",
+					"de_DE":"Überprüft über NSClient den Funktionszustand eines angegebenen Services"
+				},
+				"defined":true,
+				"defined_in":"/etc/nagios-plugins/config/check_nt.cfg",
+				"links":[
+					{
+						"name":"Servicestate",
+						"href":{
+							"en_US":"http://www.nsclient.org/nscp/wiki/CheckSystem/checkServiceState",
+							"de_DE":"http://www.nsclient.org/nscp/wiki/CheckSystem/checkServiceState"
+						},
+						"description":{
+							"en_US":"Documentation about CheckServiceState and the available checks.",
+							"de_DE":"Dokumentation von CheckServiceState und den verfügbaren Checks."
+						}
+						
+					}
+					
+				],
+				"doc":{
+					"en_US":[
+						"<h4>Servicestate NT Check</h4>",
+						"<p>Using this plugin, the state of a specific service",
+						"can be monitored with Nagios or Icinga over NSClient.</p>"
+					],
+					"de_DE":[
+						"<h4>Servicestate NSClient Check</h4>",
+						"<p>Mit diesem Plugin kann der Zustand eines angebenen Services",
+						" mittels Nagios oder Icinga über NSClient überwacht werden.</p>"
+					]
+				},
+				"tk_notify":false,
+				"tk_notify_default":false
+			}
+		},
+		{
+			"service_description":"nt-memuse",
+			"display_name":"NT-MemUse",
+			"check_command":{
+				"command_name":"check_nt_3arg",
+				"arguments":[
+					{
+						"label":"Port",
+						"description":{
+							"en_US":"NSClient++ default port",
+							"de_DE":"NSClient++ Standardport"
+						},
+						"validation":"string",
+						"argument":"-p",
+						"value":"12489"
+					},
+					{
+						"label":"Warning",
+						"description":{
+							"en_US":"Warning Threshold",
+							"de_DE":"Grenzwert für Warnung"
+						},
+						"validation":"string",
+						"argument":"-w",
+						"value":"70%"
+					},
+					{
+						"label":"Critical",
+						"description":{
+							"en_US":"Critical Threshold",
+							"de_DE":"Kritischer Grenzwert"
+						},
+						"validation":"string",
+						"argument":"-c",
+						"value":"80%"
+					},
+					{
+						"label":"Command",
+						"description":{
+							"en_US":"Command which the remote NSClient daemon executes",
+							"de_DE":"Kommando, das vom entfernten NSClient Daemon ausgeführt wird"
+						},
+						"validation":"string",
+						"argument":"-v",
+						"value":"MEMUSE"
+					}
+				]
+			},
+			"_catalogue_attributes":{
+				"tags":[
+					"memuse"
+				],
+				"name":"check_nt_memuse",
+				"label":"NT-MemUse",
+				"description":{
+					"en_US":"Checks via NSClient the Memory usage of a remote Server",
+					"de_DE":"Überprüft über NSClient die Speicherauslastung eines entfernten Servers"
+				},
+				"defined":true,
+				"defined_in":"/etc/nagios-plugins/config/check_nt.cfg",
+				"doc":{
+					"en_US":[
+						"<h4>MemUse NT Check</h4>",
+						"<p>Using this plugin, the Memory usage of a remote Server",
+						"can be monitored with Nagios or Icinga over NSClient.</p>"
+					],
+					"de_DE":[
+						"<h4>MemUse NT Check</h4>",
+						"<p>Mit diesem Plugin kann die Speicherauslastung eines entfernten Servers",
+						" mittels Nagios oder Icinga über NSClient überwacht werden.</p>"
+					]
+				},
+				"tk_notify":false,
+				"tk_notify_default":false
+			}
+		},
+		{
+			"service_description":"nt-useddiskspace",
+			"display_name":"NT-UsedDiskSpace",
+			"check_command":{
+				"command_name":"check_nt_4arg",
+				"arguments":[
+					{
+						"label":"Port",
+						"description":{
+							"en_US":"NSClient++ default port",
+							"de_DE":"NSClient++ Standardport"
+						},
+						"validation":"string",
+						"argument":"-p",
+						"value":"12489"
+					},
+					{
+						"label":"Warning",
+						"description":{
+							"en_US":"Warning Threshold",
+							"de_DE":"Grenzwert für Warnung"
+						},
+						"validation":"string",
+						"argument":"-w",
+						"value":"70%"
+					},
+					{
+						"label":"Critical",
+						"description":{
+							"en_US":"Critical Threshold",
+							"de_DE":"Kritischer Grenzwert"
+						},
+						"validation":"string",
+						"argument":"-c",
+						"value":"80%"
+					},
+					{
+						"label":"Command",
+						"description":{
+							"en_US":"Command which the remote NSClient daemon executes",
+							"de_DE":"Kommando, das vom entfernten NSClient Daemon ausgeführt wird"
+						},
+						"validation":"string",
+						"argument":"-v",
+						"value":"USEDDISKSPACE"
+					},
+					{
+						"label":"Disk",
+						"description":{
+							"en_US":"Insert disk name, default value is c",
+							"de_DE":"Disknamen angeben, Standardwert ist c"
+						},
+						"validation":"string",
+						"argument":"-l",
+						"value":"c"
+					}
+				]
+			},
+			"_catalogue_attributes":{
+				"tags":[
+					"useddiskspace"
+				],
+				"name":"check_nt_useddiskspace",
+				"label":"NT-UsedDiskSpace",
+				"description":{
+					"en_US":"Checks via NSClient the Disk usage of a remote Server",
+					"de_DE":"Überprüft über NSClient die Festplattenauslastung eines entfernten Servers"
+				},
+				"defined":true,
+				"defined_in":"/etc/nagios-plugins/config/check_nt.cfg",
+				"doc":{
+					"en_US":[
+						"<h4>UsedDiskSpace NT Check</h4>",
+						"<p>Using this plugin, the Disk usage of a remote Server",
+						"can be monitored with Nagios or Icinga over NSClient.</p>"
+					],
+					"de_DE":[
+						"<h4>UsedDiskSpace NT Check</h4>",
+						"<p>Mit diesem Plugin kann die Festplattenauslastung eines entfernten Servers",
+						" mittels Nagios oder Icinga über NSClient überwacht werden.</p>"
+					]
+				},
+				"tk_notify":false,
+				"tk_notify_default":false
+			}
+		}
+		
+	]
+}
