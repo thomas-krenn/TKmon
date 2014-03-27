@@ -1,3 +1,9 @@
+tk-mon 1.5.1 (2014-03-27)
+
+	1.5.1 Minor release
+	
+	* Added support to monitor services with NSClient++ from Windows Hosts
+
 tk-mon 1.5.0 (2014-01-22)
 
     1.5.0 Feature release
