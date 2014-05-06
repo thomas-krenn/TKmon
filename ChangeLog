@@ -1,3 +1,9 @@
+tk-mon 1.5.2 (2014-05-06)
+
+	1.5.2 Minor release
+	
+	* Added support to monitor Synology NAS services with SNMP
+
 tk-mon 1.5.1 (2014-03-27)
 
 	1.5.1 Minor release
