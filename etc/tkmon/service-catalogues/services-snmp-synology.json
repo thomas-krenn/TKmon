@@ -379,6 +379,26 @@
                                         "argument": "-A",
 										"type" : "password",
                                         "value": ""
+                                },
+				{
+                                        "label": "Warning treshold",
+                                        "description": {
+                                                "en_US": "Insert warning threshold x100",
+                                                "de_DE": "Warning Grenzwert angeben x100"
+                                        },
+                                        "validation": "string",
+                                        "argument": "-w",
+                                        "value": "400"
+                                },
+				{
+                                        "label": "Critical threshold",
+                                        "description": {
+                                                "en_US": "Insert critical threshold x100",
+                                                "de_DE": "Critical Grenzwert angeben x100"
+                                        },
+                                        "validation": "string",
+                                        "argument": "-c",
+                                        "value": "600"
                                 }
                                 ]
                         },
