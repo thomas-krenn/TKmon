@@ -1,0 +1,572 @@
+{
+        "type": "service",
+        "version": "1.0",
+        "description": "Services catalogue for synology snmp checks",
+        "data": [
+                {
+                        "service_description": "snmp-synology-disk-status",
+                        "display_name": "SNMP-Synology-Disk-Status",
+                        "check_command": {
+                                "command_name": "check_synology_disk_status",
+                                "arguments": [
+				{
+				        "label": "SNMPv3 Username",
+                                        "description": {
+                                                "en_US": "SNMPv3 Username",
+                                                "de_DE": "SNMPv3 Username"
+                                        },
+                                        "validation": "string",
+                                        "argument": "-U",
+                                        "value": ""
+                                },
+				{
+				        "label": "SNMPv3 Password",
+                                        "description": {
+                                                "en_US": "SNMPv3 Password",
+                                                "de_DE": "SNMPv3 Password"
+                                        },
+                                        "validation": "string",
+                                        "argument": "-A",
+										"type" : "password",
+                                        "value": ""
+                                },
+                                {
+                                        "label": "Disk number",
+                                        "description": {
+                                                "en_US": "Insert disk number",
+                                                "de_DE": "Disk Nummer angeben"
+                                        },
+                                        "validation": "string",
+                                        "argument": "-o",
+                                        "value": ""
+                                }
+                                ]
+                        },
+                        "_catalogue_attributes": {
+                                "tags": ["Disk status"],
+                                "name": "snmp_synology_disk_status",
+                                "label": "SNMP-Synology-Disk-Status",
+                                "description": {
+                                        "en_US": "Checks via SNMP the disk status of a Synology NAS",
+                                        "de_DE": "Überprüft über SNMP den Diskstatus eines Synology NAS"
+                                },
+                                "defined": true,
+                                "defined_in": "/etc/nagios-plugins/config/check_snmp_synology.cfg",
+                                "doc": {
+                                        "en_US": [
+                                   		"<h4>SNMP Synology Disk Status</h4>",
+                                                "<p>Using this plugin, the disk status of a Synology NAS",
+                                                "can be monitored with Nagios or Icinga over SNMP.</p>"
+                                        ],
+                                        "de_DE": [
+                                                "<h4>SNMP Synology Disk Status</h4>",
+                                                "<p>Mit diesem Plugin kann der Disk Status eines Synology NAS",
+                                                "mit Nagios oder Icinga über SNMP überwacht werden.</p>"
+                                        ]
+                                },
+                                "tk_notify": false,
+                                "tk_notify_default": false
+                        }
+                },
+		{
+                        "service_description": "snmp-synology-raid-status",
+                        "display_name": "SNMP-Synology-RAID-Status",
+                        "check_command": {
+                                "command_name": "check_synology_raid_status",
+                                "arguments": [
+				{
+				        "label": "SNMPv3 Username",
+                                        "description": {
+                                                "en_US": "SNMPv3 Username",
+                                                "de_DE": "SNMPv3 Username"
+                                        },
+                                        "validation": "string",
+                                        "argument": "-U",
+                                        "value": ""
+                                },
+				{
+				        "label": "SNMPv3 Password",
+                                        "description": {
+                                                "en_US": "SNMPv3 Password",
+                                                "de_DE": "SNMPv3 Password"
+                                        },
+                                        "validation": "string",
+                                        "argument": "-A",
+										"type" : "password",
+                                        "value": ""
+                                },
+                                {
+                                        "label": "RAID volume number",
+                                        "description": {
+                                                "en_US": "Insert RAID volume number",
+                                                "de_DE": "RAID Nummer angeben"
+                                        },
+                                        "validation": "string",
+                                        "argument": "-o",
+                                        "value": ""
+                                }
+                                ]
+                        },
+                        "_catalogue_attributes": {
+                                "tags": ["RAID status"],
+                                "name": "snmp_synology_raid_status",
+                                "label": "SNMP-Synology-RAID-Status",
+                                "description": {
+                                        "en_US": "Checks via SNMP the RAID status of a Synology NAS",
+                                        "de_DE": "Überprüft über SNMP den RAID-Status eines Synology NAS"
+                                },
+                                "defined": true,
+                                "defined_in": "/etc/nagios-plugins/config/check_snmp_synology.cfg",
+                                "doc": {
+                                        "en_US": [
+                                   		"<h4>SNMP Synology RAID Status</h4>",
+                                                "<p>Using this plugin, the RAID status of a Synology NAS",
+                                                "can be monitored with Nagios or Icinga over SNMP.</p>"
+                                        ],
+                                        "de_DE": [
+                                                "<h4>SNMP Synology RAID Status</h4>",
+                                                "<p>Mit diesem Plugin kann der RAID Status eines Synology NAS",
+                                                "mit Nagios oder Icinga über SNMP überwacht werden.</p>"
+                                        ]
+                                },
+                                "tk_notify": false,
+                                "tk_notify_default": false
+                        }
+                },
+		{
+                        "service_description": "snmp-synology-system-status",
+                        "display_name": "SNMP-Synology-System-Status",
+                        "check_command": {
+                                "command_name": "check_synology_system_status",
+                                "arguments": [
+				{
+				        "label": "SNMPv3 Username",
+                                        "description": {
+                                                "en_US": "SNMPv3 Username",
+                                                "de_DE": "SNMPv3 Username"
+                                        },
+                                        "validation": "string",
+                                        "argument": "-U",
+                                        "value": ""
+                                },
+				{
+				        "label": "SNMPv3 Password",
+                                        "description": {
+                                                "en_US": "SNMPv3 Password",
+                                                "de_DE": "SNMPv3 Password"
+                                        },
+                                        "validation": "string",
+                                        "argument": "-A",
+										"type" : "password",
+                                        "value": ""
+                                }
+                                ]
+                        },
+                        "_catalogue_attributes": {
+                                "tags": ["System status"],
+                                "name": "check_snmp_synology_system_status",
+                                "label": "SNMP-Synology-System-Status",
+                                "description": {
+                                        "en_US": "Checks via SNMP the system status of a Synology NAS",
+                                        "de_DE": "Überprüft über SNMP den Systemstatus eines Synology NAS"
+                                },
+                                "defined": true,
+                                "defined_in": "/etc/nagios-plugins/config/check_snmp_synology.cfg",
+                                "doc": {
+                                        "en_US": [
+                                   		"<h4>SNMP Synology System Status</h4>",
+                                                "<p>Using this plugin, the system status of a Synology NAS",
+                                                "can be monitored with Nagios or Icinga over SNMP.</p>"
+                                        ],
+                                        "de_DE": [
+                                                "<h4>SNMP Synology System Status</h4>",
+                                                "<p>Mit diesem Plugin kann der System Status eines Synology NAS",
+                                                "mit Nagios oder Icinga über SNMP überwacht werden.</p>"
+                                        ]
+                                },
+                                "tk_notify": false,
+                                "tk_notify_default": false
+                        }
+                },
+		{
+                        "service_description": "snmp-synology-power-status",
+                        "display_name": "SNMP-Synology-Power-Status",
+                        "check_command": {
+                                "command_name": "check_synology_power_status",
+                                "arguments": [
+				{
+				        "label": "SNMPv3 Username",
+                                        "description": {
+                                                "en_US": "SNMPv3 Username",
+                                                "de_DE": "SNMPv3 Username"
+                                        },
+                                        "validation": "string",
+                                        "argument": "-U",
+                                        "value": ""
+                                },
+				{
+				        "label": "SNMPv3 Password",
+                                        "description": {
+                                                "en_US": "SNMPv3 Password",
+                                                "de_DE": "SNMPv3 Password"
+                                        },
+                                        "validation": "string",
+                                        "argument": "-A",
+										"type" : "password",
+                                        "value": ""
+                                }
+                                ]
+                        },
+                        "_catalogue_attributes": {
+                                "tags": ["System status"],
+                                "name": "check_snmp_synology_power_status",
+                                "label": "SNMP-Synology-power-Status",
+                                "description": {
+                                        "en_US": "Checks via SNMP the power status of a Synology NAS",
+                                        "de_DE": "Überprüft über SNMP den Powerstatus eines Synology NAS"
+                                },
+                                "defined": true,
+                                "defined_in": "/etc/nagios-plugins/config/check_snmp_synology.cfg",
+                                "doc": {
+                                        "en_US": [
+                                   		"<h4>SNMP Synology Power Status</h4>",
+                                                "<p>Using this plugin, the power status of a Synology NAS",
+                                                "can be monitored with Nagios or Icinga over SNMP.</p>"
+                                        ],
+                                        "de_DE": [
+                                                "<h4>SNMP Synology Power Status</h4>",
+                                                "<p>Mit diesem Plugin kann der Power Status eines Synology NAS",
+                                                "mit Nagios oder Icinga über SNMP überwacht werden.</p>"
+                                        ]
+                                },
+                                "tk_notify": false,
+                                "tk_notify_default": false
+                        }
+                },
+		{
+                        "service_description": "snmp-synology-system-fan-status",
+                        "display_name": "SNMP-Synology-System-Fan-Status",
+                        "check_command": {
+                                "command_name": "check_synology_fan_status",
+                                "arguments": [
+				{
+				        "label": "SNMPv3 Username",
+                                        "description": {
+                                                "en_US": "SNMPv3 Username",
+                                                "de_DE": "SNMPv3 Username"
+                                        },
+                                        "validation": "string",
+                                        "argument": "-U",
+                                        "value": ""
+                                },
+				{
+				        "label": "SNMPv3 Password",
+                                        "description": {
+                                                "en_US": "SNMPv3 Password",
+                                                "de_DE": "SNMPv3 Password"
+                                        },
+                                        "validation": "string",
+                                        "argument": "-A",
+										"type" : "password",
+                                        "value": ""
+                                }
+                                ]
+                        },
+                        "_catalogue_attributes": {
+                                "tags": ["System status"],
+                                "name": "check_snmp_synology_system_fan_status",
+                                "label": "SNMP-Synology-System-Fan-Status",
+                                "description": {
+                                        "en_US": "Checks via SNMP the system fan status of a Synology NAS",
+                                        "de_DE": "Überprüft über SNMP den Status des Systemlüfters eines Synology NAS"
+                                },
+                                "defined": true,
+                                "defined_in": "/etc/nagios-plugins/config/check_snmp_synology.cfg",
+                                "doc": {
+                                        "en_US": [
+                                   		"<h4>SNMP Synology System Fan Status</h4>",
+                                                "<p>Using this plugin, the system fan status of a Synology NAS",
+                                                "can be monitored with Nagios or Icinga over SNMP.</p>"
+                                        ],
+                                        "de_DE": [
+                                                "<h4>SNMP Synology System Fan Status</h4>",
+                                                "<p>Mit diesem Plugin kann der Status des Systemlüfters eines Synology NAS",
+                                                "mit Nagios oder Icinga über SNMP überwacht werden.</p>"
+                                        ]
+                                },
+                                "tk_notify": false,
+                                "tk_notify_default": false
+                        }
+                },
+		{
+                        "service_description": "snmp-synology-cpu-fan-status",
+                        "display_name": "SNMP-Synology-CPU-Fan-Status",
+                        "check_command": {
+                                "command_name": "check_synology_cpufan_status",
+                                "arguments": [
+				{
+				        "label": "SNMPv3 Username",
+                                        "description": {
+                                                "en_US": "SNMPv3 Username",
+                                                "de_DE": "SNMPv3 Username"
+                                        },
+                                        "validation": "string",
+                                        "argument": "-U",
+                                        "value": ""
+                                },
+				{
+				        "label": "SNMPv3 Password",
+                                        "description": {
+                                                "en_US": "SNMPv3 Password",
+                                                "de_DE": "SNMPv3 Password"
+                                        },
+                                        "validation": "string",
+                                        "argument": "-A",
+										"type" : "password",
+                                        "value": ""
+                                }
+                                ]
+                        },
+                        "_catalogue_attributes": {
+                                "tags": ["System status"],
+                                "name": "check_snmp_synology_cpu_fan_status",
+                                "label": "SNMP-Synology-CPU-Fan-Status",
+                                "description": {
+                                        "en_US": "Checks via SNMP the CPU fan status of a Synology NAS",
+                                        "de_DE": "Überprüft über SNMP den Status des CPU-Lüfters eines Synology NAS"
+                                },
+                                "defined": true,
+                                "defined_in": "/etc/nagios-plugins/config/check_snmp_synology.cfg",
+                                "doc": {
+                                        "en_US": [
+                                   		"<h4>SNMP Synology CPU Fan Status</h4>",
+                                                "<p>Using this plugin, the CPU fan status of a Synology NAS",
+                                                "can be monitored with Nagios or Icinga over SNMP.</p>"
+                                        ],
+                                        "de_DE": [
+                                                "<h4>SNMP Synology CPU Fan Status</h4>",
+                                                "<p>Mit diesem Plugin kann der Status des CPU-Lüfters eines Synology NAS",
+                                                "mit Nagios oder Icinga über SNMP überwacht werden.</p>"
+                                        ]
+                                },
+                                "tk_notify": false,
+                                "tk_notify_default": false
+                        }
+                },
+		{
+                        "service_description": "snmp-synology-cpu-load",
+                        "display_name": "SNMP-Synology-CPU-Load",
+                        "check_command": {
+                                "command_name": "check_synology_cpu",
+                                "arguments": [
+				{
+				        "label": "SNMPv3 Username",
+                                        "description": {
+                                                "en_US": "SNMPv3 Username",
+                                                "de_DE": "SNMPv3 Username"
+                                        },
+                                        "validation": "string",
+                                        "argument": "-U",
+                                        "value": ""
+                                },
+				{
+				        "label": "SNMPv3 Password",
+                                        "description": {
+                                                "en_US": "SNMPv3 Password",
+                                                "de_DE": "SNMPv3 Password"
+                                        },
+                                        "validation": "string",
+                                        "argument": "-A",
+										"type" : "password",
+                                        "value": ""
+                                }
+                                ]
+                        },
+                        "_catalogue_attributes": {
+                                "tags": ["System status"],
+                                "name": "check_snmp_synology_cpu_load",
+                                "label": "SNMP-Synology-CPU-Load",
+                                "description": {
+                                        "en_US": "Checks via SNMP the CPU load of a Synology NAS",
+                                        "de_DE": "Überprüft über SNMP CPU Last eines Synology NAS"
+                                },
+                                "defined": true,
+                                "defined_in": "/etc/nagios-plugins/config/check_snmp_synology.cfg",
+                                "doc": {
+                                        "en_US": [
+                                   		"<h4>SNMP Synology CPU Load</h4>",
+                                                "<p>Using this plugin, the CPU load of a Synology NAS",
+                                                "can be monitored with Nagios or Icinga over SNMP.</p>"
+                                        ],
+                                        "de_DE": [
+                                                "<h4>SNMP Synology Load</h4>",
+                                                "<p>Mit diesem Plugin kann die CPU Last eines Synology NAS",
+                                                "mit Nagios oder Icinga über SNMP überwacht werden.</p>"
+                                        ]
+                                },
+                                "tk_notify": false,
+                                "tk_notify_default": false
+                        }
+                },
+		{
+                        "service_description": "snmp-synology-disk-temperature",
+                        "display_name": "SNMP-Synology-Disk-Temperature",
+                        "check_command": {
+                                "command_name": "check_synology_disk_temperature",
+                                "arguments": [
+				{
+				        "label": "SNMPv3 Username",
+                                        "description": {
+                                                "en_US": "SNMPv3 Username",
+                                                "de_DE": "SNMPv3 Username"
+                                        },
+                                        "validation": "string",
+                                        "argument": "-U",
+                                        "value": ""
+                                },
+				{
+				        "label": "SNMPv3 Password",
+                                        "description": {
+                                                "en_US": "SNMPv3 Password",
+                                                "de_DE": "SNMPv3 Password"
+                                        },
+                                        "validation": "string",
+                                        "argument": "-A",
+										"type" : "password",
+                                        "value": ""
+                                },
+                                {
+                                        "label": "Disk number",
+                                        "description": {
+                                                "en_US": "Insert disk number",
+                                                "de_DE": "Disk Nummer angeben"
+                                        },
+                                        "validation": "string",
+                                        "argument": "-o",
+                                        "value": ""
+                                },
+				{
+                                        "label": "Warning temperature",
+                                        "description": {
+                                                "en_US": "Insert warning temperature",
+                                                "de_DE": "Temperaturwarnschwelle angeben"
+                                        },
+                                        "validation": "string",
+                                        "argument": "-w",
+                                        "value": ""
+                                },
+				{
+                                        "label": "Critical temperature",
+                                        "description": {
+                                                "en_US": "Insert critical temperature",
+                                                "de_DE": "Kritische Temperaturschwelle angeben"
+                                        },
+                                        "validation": "string",
+                                        "argument": "-c",
+                                        "value": ""
+                                }
+                                ]
+                        },
+                        "_catalogue_attributes": {
+                                "tags": ["Disk temperature"],
+                                "name": "snmp_synology_disk_temperature",
+                                "label": "SNMP-Synology-Disk-Temperature",
+                                "description": {
+                                        "en_US": "Checks via SNMP the disk temperature of a Synology NAS",
+                                        "de_DE": "Überprüft über SNMP die Temperatur der Disk eines Synology NAS"
+                                },
+                                "defined": true,
+                                "defined_in": "/etc/nagios-plugins/config/check_snmp_synology.cfg",
+                                "doc": {
+                                        "en_US": [
+                                   		"<h4>SNMP Synology Disk Temperature</h4>",
+                                                "<p>Using this plugin, the disk temperature of a Synology NAS",
+                                                "can be monitored with Nagios or Icinga over SNMP.</p>"
+                                        ],
+                                        "de_DE": [
+                                                "<h4>SNMP Synology Disk Temperatur</h4>",
+                                                "<p>Mit diesem Plugin kann die Temperatur der Disk eines Synology NAS",
+                                                "mit Nagios oder Icinga über SNMP überwacht werden.</p>"
+                                        ]
+                                },
+                                "tk_notify": false,
+                                "tk_notify_default": false
+                        }
+                },
+		{
+                        "service_description": "snmp-synology-system-temperature",
+                        "display_name": "SNMP-Synology-System-Temperature",
+                        "check_command": {
+                                "command_name": "check_synology_system_temperature",
+                                "arguments": [
+				{
+				        "label": "SNMPv3 Username",
+                                        "description": {
+                                                "en_US": "SNMPv3 Username",
+                                                "de_DE": "SNMPv3 Username"
+                                        },
+                                        "validation": "string",
+                                        "argument": "-U",
+                                        "value": ""
+                                },
+				{
+				        "label": "SNMPv3 Password",
+                                        "description": {
+                                                "en_US": "SNMPv3 Password",
+                                                "de_DE": "SNMPv3 Password"
+                                        },
+                                        "validation": "string",
+                                        "argument": "-A",
+										"type" : "password",
+                                        "value": ""
+                                },
+				{
+                                        "label": "Warning temperature",
+                                        "description": {
+                                                "en_US": "Insert warning temperature",
+                                                "de_DE": "Temperaturwarnschwelle angeben"
+                                        },
+                                        "validation": "string",
+                                        "argument": "-w",
+                                        "value": ""
+                                },
+				{
+                                        "label": "Critical temperature",
+                                        "description": {
+                                                "en_US": "Insert critical temperature",
+                                                "de_DE": "Kritische Temperaturschwelle angeben"
+                                        },
+                                        "validation": "string",
+                                        "argument": "-c",
+                                        "value": ""
+                                }
+                                ]
+                        },
+                        "_catalogue_attributes": {
+                                "tags": ["System temperature"],
+                                "name": "snmp_synology_system_temperature",
+                                "label": "SNMP-Synology-System-Temperature",
+                                "description": {
+                                        "en_US": "Checks via SNMP the temperature of a Synology NAS",
+                                        "de_DE": "Überprüft über SNMP die Temperatur eines Synology NAS"
+                                },
+                                "defined": true,
+                                "defined_in": "/etc/nagios-plugins/config/check_snmp_synology.cfg",
+                                "doc": {
+                                        "en_US": [
+                                   		"<h4>SNMP Synology Temperature</h4>",
+                                                "<p>Using this plugin, the disk temperature of a Synology NAS",
+                                                "can be monitored with Nagios or Icinga over SNMP.</p>"
+                                        ],
+                                        "de_DE": [
+                                                "<h4>SNMP Synology Temperatur</h4>",
+                                                "<p>Mit diesem Plugin kann die Temperatur eines Synology NAS",
+                                                "mit Nagios oder Icinga über SNMP überwacht werden.</p>"
+                                        ]
+                                },
+                                "tk_notify": false,
+                                "tk_notify_default": false
+                        }
+                }
+	]
+}
