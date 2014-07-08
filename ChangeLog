@@ -1,3 +1,9 @@
+tk-mon 1.5.3 (2014-07-08)
+
+	1.5.3 Minor release
+	
+	* Added support to monitor Intel Modular Servers with SNMP
+
 tk-mon 1.5.2 (2014-05-06)
 
 	1.5.2 Minor release
