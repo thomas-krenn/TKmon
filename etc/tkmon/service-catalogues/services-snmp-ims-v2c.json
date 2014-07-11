@@ -169,6 +169,39 @@
                         }
                 },
 		{
+                        "service_description": "snmp-drives-with-PFA",
+                        "display_name": "SNMP-Intel-Modular-Server-Drives-with-PFA",
+                        "check_command": {
+                                "command_name": "check_ims_drives_with_pfa",
+				"arguments": null
+                        },
+                        "_catalogue_attributes": {
+                                "tags": ["Drives with PFA"],
+                                "name": "snmp-ims-drives-with-pfa",
+                                "label": "SNMP-Intel-Modular-Server-Drives-with-PFA",
+                                "description": {
+                                        "en_US": "Checks via SNMP the number of drives with a critical PFA condition (Predictive Failure Analysis) of a Intel Modular Server",
+                                        "de_DE": "Überprüft über SNMP die Anzahl der Festplatten mit einem kritischen PFA Zustand (Predictive Failure Analysis) eines Intel Modular Servers"
+                                },
+                                "defined": true,
+                                "defined_in": "/etc/nagios-plugins/config/check_snmp_ims_v2c.cfg",
+                                "doc": {
+                                        "en_US": [
+                                   		"<h4>SNMP Intel Modular Server Drives with PFA</h4>",
+                                                "<p>Using this plugin, the number of drives with a crtitical PFA condition of a Intel Modular Server",
+                                                "can be monitored with Nagios or Icinga over SNMP.</p>"
+                                        ],
+                                        "de_DE": [
+                                                "<h4>SNMP Intel Modular Server Festplatten mit PFA</h4>",
+                                                "<p>Mit diesem Plugin kann die Anzahl der Festplatten mit einem kritschen PFA Status eines Intel Modular Servers",
+                                                "mit Nagios oder Icinga über SNMP überwacht werden.</p>"
+                                        ]
+                                },
+                                "tk_notify": false,
+                                "tk_notify_default": false
+                        }
+                },
+		{
                         "service_description": "snmp-drives-rebuilding",
                         "display_name": "SNMP-Intel-Modular-Server-Drives-rebuilding",
                         "check_command": {
