@@ -1,3 +1,9 @@
+tk-mon 1.5.4 (2015-02-05)
+
+	1.5.4 Minor release
+
+	* Switched from mail to sendmail in notification commands 
+
 tk-mon 1.5.3 (2014-07-08)
 
 	1.5.3 Minor release
