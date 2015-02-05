@@ -23,10 +23,10 @@
 
     "app.version.major":    1,
     "app.version.minor":    5,
-    "app.version.patch":    3,
+    "app.version.patch":    4,
     "app.version.full":     "{app.version.major}.{app.version.minor}.{app.version.patch}",
     "app.name":             "TKmon",
-    "app.copyright":        "(c) NETWAYS GmbH | Thomas-Krenn.AG 2012-2014",
+    "app.copyright":        "(c) NETWAYS GmbH | Thomas-Krenn.AG 2012-2015",
 
     "app.version.release":  "{app.name}-{app.version.full}",
 
