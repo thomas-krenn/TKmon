@@ -1,0 +1,41 @@
+TKALERT 1.3 (2013-10-22)
+
+  https://www.netways.org/projects/tkalert/versions/188
+
+  * #2326 Add switch to disable running (programmatic disable of sending
+    alerts)
+
+TKALERT 1.2 (2013-07-17)
+
+  -----------------------------------------------------------------------------
+  Productive release
+
+  We have moved our tracker to a new location:
+
+  https://www.netways.org/projects/tkalert
+
+  Please report bugs to this new location. The old issue id's are obsolete.
+  -----------------------------------------------------------------------------
+
+  * #2634 Change default encoding to utf-8 to handle german umlauts
+
+TKALERT 1.1 (2013-05-29)
+
+  * #2327 Fix public key file in setup.py
+  * #2365 New mode to send test-bounce-mails to TK
+  * #2518 Fix argument splitting in bash execution
+  * #2570 Drop bash script and implement native python entry point. This
+    reduces a bunch of errors which are related to bash escaping and
+	weired argument handling.
+  * #2570 Doc upgrade
+
+TKALERT 1.0 (2013-04-26)
+
+   * #2320 Change Public Key
+   * #2294 Harmonize EOL handling for CDATA sections
+   * #2064 Wrong email address
+   * #1406 Keep Alive Information
+
+TKALERT 0.0.1 (2013-02-18)
+
+   * Initial release of the project
