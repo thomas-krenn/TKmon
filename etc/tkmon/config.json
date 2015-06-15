@@ -70,8 +70,8 @@
     "icinga.adminuser": "icingaadmin",
     "icinga.tkuser": "tkadmin",
     "icinga.tkpasswd": "7RMan59XmN9t3FO2evmB",
-    "icinga.baseurl": "http://localhost",
-    "icinga.accessurl": "https://{web.domain}/icinga",
+    "icinga.baseurl": "http://localhost:8085",
+    "icinga.accessurl": "http://{web.domain}:8085/icinga",
     "icinga.freshness": "20",
 
     "icinga.dir.base": "/etc/icinga/tkmon",
