@@ -6,8 +6,9 @@
   - name: Ansible alive
     debug: msg="I am alive, let's build TKMON"
   - name: Install packages
-    apt: pkg={{item}} state=installed
+    apt: pkg={{item}} state=installed update_cache=no
     with_items:
+    - software-properties-common
     - apache2
     - apache2-mpm-event
     - libapache2-mod-fastcgi
@@ -19,7 +20,20 @@
     - php5-xcache
     - php5-xdebug
     - php-pear
+  - name: Test launchpad repository
+    stat: path=/etc/apt/sources.list.d/formorer-icinga-trusty.list
+    register: sr
+  - name: Add icinga launchpad
+    command: apt-add-repository --yes ppa:formorer/icinga
+    when: sr.stat.md5 is not defined
+  - name: Install packages 2
+    apt: pkg={{item}} state=installed update_cache=yes
+    with_items:
     - icinga
+    - icinga-cgi
+    - icinga-cgi-bin
+    - icinga-common
+    - icinga-core
     - postfix
     - ntp
   - name: Test PHPUNIT
@@ -61,9 +75,14 @@
           owner=www-data
           group=www-data
           state=directory'
-  - name: Configure apache2
+  - name: Configure apache2 fastcgi
     copy: 'src=files/apache2/fastcgi.conf
           dest=/etc/apache2/mods-available/fastcgi.conf
+          backup=yes
+          mode=0644'
+  - name: Configure apache2 ports
+    copy: 'src=files/apache2/ports.conf
+          dest=/etc/apache2/ports.conf
           backup=yes
           mode=0644'
   - name: TKMON apache2 configuration 1
@@ -88,11 +107,15 @@
     user: name=www-data groups=tkmonweb append=yes
   - name: Restart apache2
     service: name=apache2 state=restarted
-  - name: Icinga configuration 1
+  - name: Icinga icinga.cfg
     copy: 'src=files/icinga/icinga.cfg
           dest=/etc/icinga/icinga.cfg
           mode=0644'
-  - name: Icinga configuration 2
+  - name: Icinga cgi.cfg
+    copy: 'src=files/icinga/cgi.cfg
+          dest=/etc/icinga/cgi.cfg
+          mode=0644'
+  - name: Icinga tkmon base config
     copy: 'src=../../etc/icinga/
           dest=/etc/icinga/tkmon'
   - name: Config owner
