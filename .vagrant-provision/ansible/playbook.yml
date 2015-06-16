@@ -122,3 +122,9 @@
     command: chown -R 33.33 /etc/icinga/tkmon
   - name: Restart icinga
     service: name=icinga state=restarted
+  - name: Copy update script
+    copy: 'src=../../bin/async_update.py
+          dest=/usr/local/sbin/async_update.py
+          mode=0755
+          owner=root
+          group=root'
