@@ -25,11 +25,6 @@
                 "href": "Monitor/Icinga/Services"
             },
             {
-                "title": "Log",
-                "description": "Icinga log output",
-                "href": "Monitor/Icinga/Logs"
-            },
-            {
                 "type": "divider"
             },
             {
@@ -38,28 +33,9 @@
                 "href": "Monitor/Icinga/Hosts/Edit"
             },
             {
-                "title": "Services",
-                "description": "Edit services",
-                "href": "Monitor/Icinga/Services/Edit"
-            },
-            {
                 "title": "Contacts",
                 "description": "Edit contacts",
                 "href": "Monitor/Icinga/Contacts/Edit"
-            },
-            {
-                "type": "divider"
-            },
-            {
-                "title": "Icinga Daemon",
-                "description": "Icinga daemon control",
-                "href": "Monitor/Daemon/Index"
-
-            },
-            {
-                "title": "Icinga Interface",
-                "description": "Access to icinga",
-                "href": "Monitor/Icinga/Index"
             }
         ]
     },
@@ -70,6 +46,11 @@
         "type": "header",
 
         "items": [
+            {
+              "title": "Icinga",
+              "description": "Settings for Icinga daemon and config",
+              "href": "System/Icinga/Daemon/Index"
+            },
             {
                 "title": "Security",
                 "description": "Configure access, https",
@@ -84,11 +65,6 @@
                 "title": "Network",
                 "description": "Configure IP settings",
                 "href": "System/Configuration/Network/Index"
-            },
-            {
-                "title": "Free Settings",
-                "description": "Free config",
-                "href": "System/Configuration/Advanced/Free"
             },
             {
                 "title": "Backup/Restore",

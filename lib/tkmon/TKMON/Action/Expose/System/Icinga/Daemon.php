@@ -19,7 +19,7 @@
  * @copyright 2012-2014 NETWAYS GmbH <info@netways.de>
  */
 
-namespace TKMON\Action\Expose\Monitor;
+namespace TKMON\Action\Expose\System\Icinga;
 
 /**
  * Action to control icinga daemon
@@ -37,8 +37,11 @@ class Daemon extends \TKMON\Action\Base
     public function actionIndex(\NETWAYS\Common\ArrayObject $params)
     {
         $template = new \TKMON\Mvc\Output\TwigTemplate($this->container['template']);
-        $template->setTemplateName('views/Monitor/Daemon/Status.twig');
-
+        $template->setTemplateName('views/System/Icinga/Status.twig');
+        /** @var $config \NETWAYS\Common\Config */
+        $config = $this->container['config'];
+        $template['icinga_href'] = $config->get('icinga.accessurl');
+        $template['icinga_user'] = $config->get('icinga.adminuser');
         return $template;
     }
 
@@ -116,5 +119,25 @@ class Daemon extends \TKMON\Action\Base
         }
 
         return $response;
+    }
+    /**
+     * Show event log
+     * @param \NETWAYS\Common\ArrayObject $params
+     * @return \TKMON\Mvc\Output\TwigTemplate
+     */
+    public function actionLogs(\NETWAYS\Common\ArrayObject $params)
+    {
+        $template = new \TKMON\Mvc\Output\TwigTemplate($this->container['template']);
+        $template->setTemplateName('views/System/Icinga/Status/EventLog.twig');
+        return $template;
+    }
+
+    public function actionLogsTable(\NETWAYS\Common\ArrayObject $params)
+    {
+        $icingaModel = new \TKMON\Model\Icinga\StatusData($this->container);
+        $template = new \TKMON\Mvc\Output\TwigTemplate($this->container['template']);
+        $template->setTemplateName('views/System/Icinga/Status/EventLogTable.twig');
+        $template['data'] = $icingaModel->getEventLog();
+        return $template;
     }
 }

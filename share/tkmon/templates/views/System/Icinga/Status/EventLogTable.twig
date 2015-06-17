@@ -1,0 +1,24 @@
+<table class="tkmon-data-table">
+
+    <tr>
+        <th>{% trans "Timestamp" %}</th>
+        <th>{% trans "Message" %}</th>
+    </tr>
+
+    {% for entry in data.showlog.log_entries %}
+        {% if loop.index is odd %}
+            <tr class="odd">
+        {% else %}
+            <tr class="even">
+        {% endif %}
+
+        <td style="white-space: nowrap;">{{ entry.date_time }}</td>
+        <td>
+            {{ entry.log_entry }}
+        </td>
+        </tr>
+    {% endfor %}
+
+</table>
+
+<div class="container-spacer-down"></div>

@@ -1,0 +1,33 @@
+<h4>
+    {% trans %}
+    Daemon event log entries to troubleshoot errors
+    {% endtrans %}
+</h4>
+
+<div class="container-spacer-down"></div>
+
+<div class="alert alert-info">
+    <h4>{% trans "Info" %}</h4>
+
+    {% trans %}
+    Maximum 200 items are displayed, ordered descending. Press button to refresh:
+    {% endtrans %}
+
+    <a id="event-logs-refresh" class="btn btn-success">
+        <i class="icon-refresh"></i> {% trans "Reload" %}
+    </a>
+</div>
+
+<div class="container-spacer-down"></div>
+
+<div id="icinga-eventslog-table" data-ajax-call="{{ web_link('LogsTable') }}"></div>
+
+<script>
+    /*global $: false require:false */
+    require(['jquery', 'TKMON/jquery/AjaxContent'], function() {
+        "use strict";
+        $('#event-logs-refresh').click(function() {
+            $('#icinga-eventslog-table').Html5AjaxContent("insert");
+        });
+    });
+</script>

@@ -29,26 +29,6 @@ namespace TKMON\Action\Expose\Monitor;
  */
 class Icinga extends \TKMON\Action\Base
 {
-
-    /**
-     * Show hints to go to icinga interface
-     * @param \NETWAYS\Common\ArrayObject $params
-     * @return \TKMON\Mvc\Output\TwigTemplate
-     */
-    public function actionIndex(\NETWAYS\Common\ArrayObject $params)
-    {
-        $template = new \TKMON\Mvc\Output\TwigTemplate($this->container['template']);
-        $template->setTemplateName('views/Monitor/Icinga/NativeInterface.twig');
-
-        /** @var $config \NETWAYS\Common\Config */
-        $config = $this->container['config'];
-
-        $template['icinga_href'] = $config->get('icinga.accessurl');
-        $template['icinga_user'] = $config->get('icinga.adminuser');
-
-        return $template;
-    }
-
     /**
      * Show service status (simplified)
      * @param \NETWAYS\Common\ArrayObject $params
@@ -60,21 +40,6 @@ class Icinga extends \TKMON\Action\Base
         $template = new \TKMON\Mvc\Output\TwigTemplate($this->container['template']);
         $template->setTemplateName('views/Monitor/Icinga/ServiceStatus.twig');
         $template['data'] = $icingaModel->getServiceStatus($params->get('servicestatustypes', null));
-        $template['config'] = $this->container['config'];
-        return $template;
-    }
-
-    /**
-     * Show event log
-     * @param \NETWAYS\Common\ArrayObject $params
-     * @return \TKMON\Mvc\Output\TwigTemplate
-     */
-    public function actionLogs(\NETWAYS\Common\ArrayObject $params)
-    {
-        $icingaModel = new \TKMON\Model\Icinga\StatusData($this->container);
-        $template = new \TKMON\Mvc\Output\TwigTemplate($this->container['template']);
-        $template->setTemplateName('views/Monitor/Icinga/EventLog.twig');
-        $template['data'] = $icingaModel->getEventLog();
         $template['config'] = $this->container['config'];
         return $template;
     }

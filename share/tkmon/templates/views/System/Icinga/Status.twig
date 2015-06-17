@@ -1,0 +1,47 @@
+<div class="page-header">
+    <h2>{%  trans "Daemon Status" %}</h2>
+</div>
+
+<p>
+    {% trans %}
+    Take control of the Icinga daemon and test the configuration.
+    {% endtrans %}
+</p>
+
+<div class="tabbable">
+    <ul class="nav nav-tabs">
+        <li class="active">
+            <a href="#daemon-interface" data-toggle="tab">{% trans "Interface" %}</a>
+        </li>
+        <li>
+            <a href="#daemon-status" data-toggle="tab">{% trans "Status" %}</a>
+        </li>
+        <li>
+            <a href="#daemon-configuration" data-toggle="tab">{% trans "Test configuration" %}</a>
+        </li>
+        <li>
+            <a href="#daemon-log" data-toggle="tab">{% trans "Log" %}</a>
+        </li>
+        <li>
+            <a href="#daemon-restart" data-toggle="tab">{% trans "Reload Icinga" %}</a>
+        </li>
+    </ul>
+
+    <div class="tab-content">
+        <div class="tab-pane active" id="daemon-interface">
+            {% include "views/System/Icinga/Status/NativeInterface.twig" %}
+        </div>
+        <div class="tab-pane" id="daemon-status">
+            {% include "views/System/Icinga/Status/Status.twig" %}
+        </div>
+        <div class="tab-pane" id="daemon-configuration">
+            {% include "views/System/Icinga/Status/Configuration.twig" %}
+        </div>
+        <div class="tab-pane" id="daemon-log">
+            {% include "views/System/Icinga/Status/EventLog.twig" %}
+        </div>
+        <div class="tab-pane" id="daemon-restart">
+            {% include "views/System/Icinga/Status/Restart.twig" %}
+        </div>
+    </div>
+</div>

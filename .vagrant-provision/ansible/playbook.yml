@@ -54,6 +54,10 @@
     copy: 'src=files/php5/xcache.ini
           dest=/etc/php5/mods-available/xcache.ini
           mode=0644'
+  - name: Configure PHP
+    copy: 'src=files/php5/php.ini
+          dest=/etc/php5/fpm/php.ini
+          mode=0644'
   - name: Configure sp.php5-fpm
     copy: 'src=files/php5-fpm/www.conf
           dest=/etc/php5/fpm/pool.d/www.conf
