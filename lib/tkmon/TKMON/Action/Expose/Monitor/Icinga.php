@@ -21,26 +21,37 @@
 
 namespace TKMON\Action\Expose\Monitor;
 
+use TKMON\Model\Icinga\Pnp4Nagios;
+use TKMON\Mvc\Output\TwigTemplate;
+use TKMON\Model\Icinga\StatusData;
+use TKMON\Action\Base;
+
 /**
  * Action handle icinga views
  *
  * @package TKMON\Action
  * @author Marius Hein <marius.hein@netways.de>
  */
-class Icinga extends \TKMON\Action\Base
+class Icinga extends Base
 {
     /**
      * Show service status (simplified)
      * @param \NETWAYS\Common\ArrayObject $params
-     * @return \TKMON\Mvc\Output\TwigTemplate
+     * @return TwigTemplate
      */
     public function actionServices(\NETWAYS\Common\ArrayObject $params)
     {
-        $icingaModel = new \TKMON\Model\Icinga\StatusData($this->container);
-        $template = new \TKMON\Mvc\Output\TwigTemplate($this->container['template']);
+        $config = $this->container['config'];
+        $icingaModel = new StatusData($this->container);
+        $template = new TwigTemplate($this->container['template']);
         $template->setTemplateName('views/Monitor/Icinga/ServiceStatus.twig');
         $template['data'] = $icingaModel->getServiceStatus($params->get('servicestatustypes', null));
         $template['config'] = $this->container['config'];
+        $pnpModel = new Pnp4Nagios($this->container);
+        $pnpModel->setAccessUrl($config->get('pnp4nagios.url'));
+        $pnpModel->setPerfdataPath($config->get('pnp4nagios.perfdata'));
+        $pnpModel->useProxy(true);
+        $template['pnp4nagios'] = $pnpModel;
         return $template;
     }
 }

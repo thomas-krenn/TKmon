@@ -102,6 +102,9 @@
     "thomaskrenn.rest.serial": "https://www.thomas-krenn.com/api/serials",
     "thomaskrenn.rest.product": "https://www.thomas-krenn.com/api/products",
 
+    "pnp4nagios.perfdata": "/var/lib/pnp4nagios/perfdata",
+    "pnp4nagios.url": "{icinga.baseurl}/pnp4nagios/index.php",
+
     "command.config": {
         "chpasswd":  {
             "path": "/usr/sbin/chpasswd",

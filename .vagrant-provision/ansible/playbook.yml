@@ -20,6 +20,8 @@
     - php5-xcache
     - php5-xdebug
     - php-pear
+    - pnp4nagios
+    - python-setuptools
   - name: Test launchpad repository
     stat: path=/etc/apt/sources.list.d/formorer-icinga-trusty.list
     register: sr
@@ -93,8 +95,15 @@
     copy: 'src=../../etc/apache2/conf.d/tkmon.conf
           dest=/etc/apache2/conf-available/tkmon.conf
           mode=0644'
-  - name: TKMON apache2 configuration 2
-    command: /usr/sbin/a2enconf tkmon
+  - name: PNP4Nagios Apache configuration
+    copy: 'src=files/pnp4nagios/apache.conf
+          dest=/etc/apache2/conf-available/pnp4nagios.conf
+          mode=0644'
+  - name: Apache2 enable conf
+    command: /usr/sbin/a2enconf {{item}}
+    with_items:
+    - tkmon
+    - pnp4nagios
   - name: Icinga htpass file
     copy: 'src=files/icinga/htpasswd.users
           dest=/etc/icinga/htpasswd.users
@@ -132,3 +141,15 @@
           mode=0755
           owner=root
           group=root'
+  - name: Enable NPCD
+    copy: 'src=files/pnp4nagios/npcd
+          dest=/etc/default/npcd
+          mode=0644'
+  - name: Restart npcd
+    service: name=npcd state=restarted
+  - name: Test TKLAERT
+    stat: path=/usr/local/bin/tkalert
+    register: st
+  - name: Install TKALERT
+    shell: 'cd /vagrant/contrib/tkalert; /usr/bin/env python setup.py install'
+    when: st.stat.md5 is not defined
