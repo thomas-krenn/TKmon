@@ -10,7 +10,15 @@
         {% if link.type == 'header' %}
             {{ link.title }}
         {% else %}
-            <a href="{{ web_link(link.href) }}" title="{{ link.description }}">{{ link.title }}</a>
+            <a href="{{ web_link(link.href) }}" title="{{ link.description }}">
+                {% if link.iconCls %}
+                    <i class="{{ link.iconCls }}"></i>
+                {% endif %}
+                {% if link.iconUrl %}
+                    <img src="{{ img_path }}/{{ link.iconUrl }}" />
+                {% endif %}
+                {{ link.title }}
+            </a>
         {% endif %}
 
         {% if link.items %}

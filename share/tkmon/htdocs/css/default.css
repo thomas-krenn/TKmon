@@ -221,3 +221,8 @@ iframe.iframe-seamless {
 .doc-docbox-container {
     display: inline;
 }
+
+#tkmon-menu img {
+    max-height: 1.4em;
+    margin: 0 0 2px 0;
+}
