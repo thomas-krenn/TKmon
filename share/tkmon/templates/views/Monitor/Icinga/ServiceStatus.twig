@@ -76,9 +76,12 @@
         <td style="white-space: nowrap">{{ row.last_check }}</td>
         <td>{{ row.duration }}</td>
         <td>{{ row.attempts }}</td>
-        <td>
+        <td style="text-align: right">
             {% if pnp4nagios.setObject(row).hasChart() %}
-                <a href="{{ pnp4nagios.getUrl() }}" target="_blank" alt="{% trans "PNP4Nagios Chart" %}">
+                <a class="btn" style="cursor: pointer" data-toggle="popover-pnp" data-url="{{ pnp4nagios.getUrl(true) }}">
+                    <i class="icon-zoom-in"></i>
+                </a>
+                <a class="btn" href="{{ pnp4nagios.getUrl() }}" target="_blank" alt="{% trans "PNP4Nagios Chart" %}">
                     <i class="icon-bar-chart"></i>
                 </a>
             {% endif %}
@@ -97,6 +100,8 @@
 {% endfor %}
 </table>
 
+</div>
+
 <script>
     require(['TKMON/jquery/SiteRefreshTimer'], function() {
         /*
@@ -113,5 +118,25 @@
                 initialLabel: '{% trans "Reload page in" %}'
             });
         },  30);
+    });
+
+    require(['jquery', 'bootstrap'], function() {
+        $('a[data-toggle=popover-pnp]').popover({
+            html: true,
+            placement: 'left',
+            content: function() {
+                return '<img src="' + $(this).data('url') + '" />';
+            }
+        }).on("show.bs.popover", function () {
+            var that = $(this);
+            $('a[data-toggle=popover-pnp]').not(that).popover('hide');
+            window.setTimeout(function() {
+                var pos = that.position();
+                var n = that.next();
+                n.css('max-width', '800px').css('max-height', '300px');
+                n.css('left', pos.left - n.width() - 160);
+                n.css('top', Math.floor(pos.top - n.height() / 2) + 10);
+            }, 100)
+        });
     });
 </script>
