@@ -1,3 +1,9 @@
+tk-mon 1.5.5 (2015-06-24)
+
+	1.5.5 Minor release
+
+    * Update intervals to check_interval and retry_interval in templates
+
 tk-mon 1.5.4 (2015-02-05)
 
 	1.5.4 Minor release
