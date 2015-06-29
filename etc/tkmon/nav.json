@@ -85,6 +85,12 @@
                 "description": "Control installed packages",
                 "href": "System/Update/Apt/Index",
                 "iconCls": "icon-download-alt"
+            },
+            {
+                "title": "Power",
+                "description": "Controll power off and reboot",
+                "href": "System/Configuration/Power/Index",
+                "iconCls": "icon-off"
             }
         ]
     },

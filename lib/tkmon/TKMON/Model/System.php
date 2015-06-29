@@ -42,6 +42,16 @@ class System extends ApplicationModel
     }
 
     /**
+     * Modelled action to execute a system halt
+     */
+    public function doHalt()
+    {
+        /** @var Process $command */
+        $command = $this->container['command']->create('halt');
+        $command->execute();
+    }
+
+    /**
      * Kill dhcp client daemon
      *
      * See #2300 for more information. Dhclient is always

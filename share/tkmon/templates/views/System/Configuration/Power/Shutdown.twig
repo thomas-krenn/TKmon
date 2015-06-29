@@ -1,44 +1,33 @@
-<h2>{% trans "Reboot system" %}</h2>
+<h2>{% trans "Shut down system" %}</h2>
 
 <div id="reboot-error">
 
 </div>
 
 <form
-        id="form-reboot"
+        id="form-shutdown"
         action="{{ web_link("ApplianceReboot") }}"
         data-ajax="form"
         data-ajax-type="json"
-        data-form-focus-first="#current_password"
         data-error-target="#reboot-error"
         data-success-callback="reboot_callback"
         >
     <p>
         {% trans %}
-        Please press the following button to reboot your appliance. The
-        reboot will take a few minutes. After the system is
-        available again the interface reloads and you will be prompted for
-        your credentials to login.
+        Please press the following button to shut down your appliance.
         {% endtrans %}
     </p>
 
-    <p>
-        <span class="label label-warning">{% trans "Warning" %}</span>
-        {% trans %}
-        During reboot no notifications about problems will be send to you.
-        {% endtrans %}
-    </p>
-
-    <input type="hidden" name="reboot" value="1"/>
+    <input type="hidden" name="shutdown" value="1"/>
 
     <div class="container-spacer-down" id="reboot-submit">
         <button type="submit" class="btn btn-danger">
-            <i class="icon-warning-sign"></i> {% trans "Reboot device!" %}
+            <i class="icon-warning-sign"></i> {% trans "Shut down device!" %}
         </button>
     </div>
 
-    <div id="reboot-response" class="hidden container-spacer-down">
-        <div id="reboot-response-template" class="hidden alert"></div>
+    <div id="shutdown-response" class="hidden container-spacer-down">
+        <div id="shutdown-response-template" class="hidden alert"></div>
     </div>
 </form>
 
@@ -55,11 +44,11 @@
          */
         var add_response = function (content, type) {
             type = (type) ? 'alert-' + type : 'alert-success';
-            var item = $('#reboot-response-template').clone();
+            var item = $('#shutdown-response-template').clone();
             $(item).removeClass('hidden');
             $(item).addClass(type);
             $(item).append(content);
-            $("#reboot-response").append(item);
+            $("#shutdown-response").append(item);
         };
 
         /**
@@ -71,8 +60,8 @@
                     .done(function () {
                         if (status && status === 'DOWN') {
                             add_response('System is up again, going home. '
-                                    + 'If not, <a href="{{ web_link("Index/Index") }}">'
-                                    + 'click here to do manually</a>.', 'success');
+                            + 'If not, <a href="{{ web_link("Index/Index") }}">'
+                            + 'click here to do manually</a>.', 'success');
                             status = 'UP';
 
                             window.setInterval(function () {
@@ -97,7 +86,7 @@
          * Reboot callback, called from json form
          */
         var reboot_callback = function () {
-            $("#reboot-response").removeClass("hidden");
+            $("#shutdown-response").removeClass("hidden");
             $("#reboot-submit").remove();
             add_response("Reboot sent, waiting to go down");
             window.setTimeout(request_timer, 1000);

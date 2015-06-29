@@ -5,9 +5,6 @@
 <div class="tabbable">
     <ul class="nav nav-tabs">
         <li class="active">
-            <a href="#tab-reboot" data-toggle="tab">Reboot</a>
-        </li>
-        <li>
             <a href="#tab-backup" data-toggle="tab">Backup</a>
         </li>
         <li>
@@ -16,11 +13,7 @@
     </ul>
 
     <div class="tab-content">
-        <div class="tab-pane active" id="tab-reboot">
-            {% include "views/System/Configuration/Backup/Reboot.twig" %}
-        </div>
-
-        <div class="tab-pane" id="tab-backup">
+        <div class="tab-pane active" id="tab-backup">
             {% include "views/System/Configuration/Backup/Backup.twig" %}
         </div>
 

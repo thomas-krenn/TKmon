@@ -54,32 +54,6 @@ class Backup extends Base
     }
 
     /**
-     * Action to handle reboot
-     * @param ArrayObject $params
-     * @return JsonResponse
-     * @throws ModelException
-     */
-    public function actionApplianceReboot(ArrayObject $params)
-    {
-        $response = new JsonResponse();
-
-        $systemModel = new System($this->container);
-
-        try {
-            if ($params->get('reboot', false) === '1') {
-                $systemModel->doReboot();
-                $response->setSuccess(true);
-            } else {
-                throw new ModelException("Not properly parametrized: Action ApplianceReboot");
-            }
-        } catch (\Exception $e) {
-            $response->addException($e);
-        }
-
-        return $response;
-    }
-
-    /**
      * Download configuration dump
      * @param ArrayObject $params
      */

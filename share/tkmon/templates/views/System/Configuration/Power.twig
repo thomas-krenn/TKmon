@@ -1,0 +1,25 @@
+<div class="page-header">
+    <h2>{% trans "Power" %}</h2>
+</div>
+
+<div class="tabbable">
+    <ul class="nav nav-tabs">
+        <li class="active">
+            <a href="#tab-reboot" data-toggle="tab">{% trans "Reboot" %}</a>
+        </li>
+
+        <li>
+            <a href="#tab-shutdown" data-toggle="tab">{% trans "Shut down" %}</a>
+        </li>
+    </ul>
+
+    <div class="tab-content">
+        <div class="tab-pane active" id="tab-reboot">
+            {% include "views/System/Configuration/Power/Reboot.twig" %}
+        </div>
+
+        <div class="tab-pane" id="tab-shutdown">
+            {% include "views/System/Configuration/Power/Shutdown.twig" %}
+        </div>
+    </div>
+</div>

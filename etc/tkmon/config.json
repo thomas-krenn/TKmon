@@ -126,6 +126,11 @@
             "sudo": true
         },
 
+        "halt": {
+          "path": "/sbin/halt",
+          "sudo": true
+        },
+
         "hostname": {
             "path": "/bin/hostname",
             "sudo": true
