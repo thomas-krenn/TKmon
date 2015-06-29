@@ -91,6 +91,18 @@ class ThomasKrennAttributes extends ReflectionHandler implements ApplicationMode
     const CV_SNMP_COMMUNITY = 'snmp_community';
 
     /**
+     * SNMPv3 username
+     * @var string
+     */
+    const CV_SNMP3_USERNAME = 'snmp3_username';
+
+    /**
+     * SNMPv3 password
+     * @var string
+     */
+    const CV_SNMP3_PASSWORD = 'snmp3_password';
+
+    /**
      * DI container
      * @var \Pimple
      */
@@ -180,6 +192,16 @@ class ThomasKrennAttributes extends ReflectionHandler implements ApplicationMode
                 self::CV_SNMP_COMMUNITY => new Text(
                     self::CV_SNMP_COMMUNITY,
                     _('SNMP community'),
+                    false
+                ),
+                self::CV_SNMP3_USERNAME => new Text(
+                    self::CV_SNMP3_USERNAME,
+                    _('SNMP V3 username'),
+                    false
+                ),
+                self::CV_SNMP3_PASSWORD => new Text(
+                    self::CV_SNMP3_PASSWORD,
+                    _('SNMP V3 password'),
                     false
                 )
             )
