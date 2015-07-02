@@ -14,10 +14,11 @@
                 {{ default_title }}
             {% endif %}
         </title>
-        <meta name="description" content="">
+        <meta name="description" content="{% trans "TKMon, interface for icinga" %}">
         <meta name="viewport" content="width=device-width">
 
-        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+        <link rel="shortcut icon"
+              href="{{ config['web.path'] }}favicon.ico" />
 
         <link rel="stylesheet" href="{{ config['web.path'] }}css/normalize.css">
         <link rel="stylesheet" href="{{ config['web.path'] }}css/main.css">
