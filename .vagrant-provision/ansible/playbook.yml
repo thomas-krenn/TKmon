@@ -153,3 +153,5 @@
   - name: Install TKALERT
     shell: 'cd /vagrant/contrib/tkalert; /usr/bin/env python setup.py install'
     when: st.stat.md5 is not defined
+  - name: SMS Sppol Directory
+    file: path=/var/spool/sms/outgoing/ state=directory

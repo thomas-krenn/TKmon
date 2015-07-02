@@ -35,6 +35,7 @@
         <th>{% trans "Name" %}</th>
         <th>{% trans "Alias" %}</th>
         <th>{% trans "Email Address" %}</th>
+        <th>{% trans "" %}</th>
         <th>&nbsp;</th>
     </tr>
 
@@ -122,6 +123,18 @@
                     {% trans "Email address" %}
                 </label>
                 <input type="text" id="email" name="email" />
+            </fieldset>
+
+            <fieldset>
+                <label for="pager">
+                    {% trans "Phone number" %}
+                </label>
+                <input type="text" id="pager" name="pager" />
+                <p>
+                    {% trans "Use a format like this" %}:
+                    <strong>49172555123</strong>
+                    ({% trans "Country code withour a leading plus sign" %})
+                </p>
             </fieldset>
 
         </form>
