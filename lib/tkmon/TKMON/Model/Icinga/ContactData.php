@@ -20,6 +20,8 @@
  */
 
 namespace TKMON\Model\Icinga;
+use TKMON\Model\System\ShortMessage;
+use ICINGA\Object\Contact;
 
 /**
  * Model to get monitoring information
@@ -28,6 +30,16 @@ namespace TKMON\Model\Icinga;
  */
 class ContactData extends \ICINGA\Loader\FileSystem implements \TKMON\Interfaces\ApplicationModelInterface
 {
+    /**
+     * Config key for creating a generic contact
+     */
+    const RECORD_DEFAULT = 'icinga.record.contact';
+
+    /**
+     * Config key for creating a sms feature enabled contact
+     */
+    const RECORD_SMS = 'icinga.record.contact.sms';
+
     /**
      * DI Container
      * @var \Pimple
@@ -41,6 +53,13 @@ class ContactData extends \ICINGA\Loader\FileSystem implements \TKMON\Interfaces
     private $strategy;
 
     /**
+     * Base record
+     *
+     * @var \stdClass
+     */
+    private $contactBaseRecord;
+
+    /**
      * Creates a new object
      * @param \Pimple $container
      */
@@ -52,6 +71,13 @@ class ContactData extends \ICINGA\Loader\FileSystem implements \TKMON\Interfaces
         $this->setStrategy($this->strategy);
 
         $this->setPath($this->container['config']['icinga.dir.contact']);
+
+        $smsModel = new ShortMessage($container);
+        if ($smsModel->isEnabled() === true) {
+            $this->contactBaseRecord = $container['config'][self::RECORD_SMS];
+        } else {
+            $this->contactBaseRecord = $container['config'][self::RECORD_DEFAULT];
+        }
 
         $this->setDropAllFlag(true);
     }
@@ -77,7 +103,7 @@ class ContactData extends \ICINGA\Loader\FileSystem implements \TKMON\Interfaces
     /**
      * Returns the contact by name
      * @param string $contactName
-     * @return \ICINGA\Object\Contact
+     * @return Contact
      * @throws \ICINGA\Exception\AttributeException
      */
     public function getContact($contactName)
@@ -91,10 +117,10 @@ class ContactData extends \ICINGA\Loader\FileSystem implements \TKMON\Interfaces
 
     /**
      * Sets a new contact
-     * @param \ICINGA\Object\Contact $contact
+     * @param Contact $contact
      * @throws \TKMON\Exception\ModelException
      */
-    public function setContact(\ICINGA\Object\Contact $contact)
+    public function setContact(Contact $contact)
     {
 
         if ($this->offsetExists($contact->getObjectIdentifier())) {
@@ -106,10 +132,10 @@ class ContactData extends \ICINGA\Loader\FileSystem implements \TKMON\Interfaces
 
     /**
      * Updates an existing contact
-     * @param \ICINGA\Object\Contact $contact
+     * @param Contact $contact
      * @throws \TKMON\Exception\ModelException
      */
-    public function updateContact(\ICINGA\Object\Contact $contact)
+    public function updateContact(Contact $contact)
     {
 
         $oid = $contact->getObjectIdentifier();
@@ -129,14 +155,12 @@ class ContactData extends \ICINGA\Loader\FileSystem implements \TKMON\Interfaces
     /**
      * Creates an contact record from attributes
      * @param \NETWAYS\Common\ArrayObject $attributes
-     * @return \ICINGA\Object\Contact
+     * @return Contact
      */
     public function createContact(\NETWAYS\Common\ArrayObject $attributes)
     {
-        $default = $this->container['config']['icinga.record.contact'];
-        $attributes->fromVoyagerObject($default);
-        $record = \ICINGA\Object\Contact::createObjectFromArray($attributes);
-
+        $attributes->fromVoyagerObject($this->contactBaseRecord);
+        $record = Contact::createObjectFromArray($attributes);
         return $record;
     }
 

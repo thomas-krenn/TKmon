@@ -21,18 +21,88 @@
 
 namespace TKMON\Action\Expose\System\Configuration;
 
+use NETWAYS\Common\ArrayObject;
+use TKMON\Exception\ModelException;
+use TKMON\Model\System\ShortMessage as SmsModel;
+use TKMON\Mvc\Output\JsonResponse;
+
 /**
- * Action handling advanced configuration settings
- *
- * @package TKMON\Action
- * @author Marius Hein <marius.hein@netways.de>
+ * Action to controll sms alert feature
  */
 class ShortMessage extends \TKMON\Action\Base
 {
-    public function actionIndex(\NETWAYS\Common\ArrayObject $params)
+    /**
+     * @var SmsModel
+     */
+    private $model;
+
+    /**
+     * @return SmsModel
+     */
+    private function getModel()
+    {
+        if ($this->model === null) {
+            $this->model = new SmsModel($this->container);
+        }
+        return $this->model;
+    }
+
+    /**
+     * @param ArrayObject $params
+     * @return \TKMON\Mvc\Output\TwigTemplate
+     */
+    public function actionIndex(ArrayObject $params)
     {
         $template = new \TKMON\Mvc\Output\TwigTemplate($this->container['template']);
         $template->setTemplateName('views/System/Configuration/ShortMessage.twig');
+        $template['status'] = $this->getModel()->isEnabled();
         return $template;
+    }
+
+    /**
+     * @param ArrayObject $params
+     * @return \TKMON\Mvc\Output\SimpleString
+     */
+    public function actionSmsEnabled(ArrayObject $params)
+    {
+        if ($this->getModel()->isEnabled() === true) {
+            return  new \TKMON\Mvc\Output\SimpleString(
+                '<span class="label label-success">'. _('Enabled'). '</span>'
+            );
+        }
+
+        return  new \TKMON\Mvc\Output\SimpleString(
+            '<span class="label label-important">'. _('Disabled'). '</span>'
+        );
+    }
+
+    /**
+     * @param ArrayObject $params
+     * @return JsonResponse
+     */
+    public function actionChangeSmsAlert(ArrayObject $params)
+    {
+        $model = $this->getModel();
+        $val = $params->get('enable');
+        $response = new JsonResponse();
+
+        try {
+            if ($val === "1") {
+                $model->enable(true);
+                $response->setSuccess(true);
+            } elseif ($val === "0") {
+                $model->enable(false);
+                $response->setSuccess(true);
+            } else {
+                throw new ModelException(
+                    "Invalid arguments, enable have to be 0/1"
+                );
+            }
+        } catch (\Exception $e) {
+            $response->setSuccess(false);
+            $response->addException($e);
+        }
+
+        return $response;
     }
 }
