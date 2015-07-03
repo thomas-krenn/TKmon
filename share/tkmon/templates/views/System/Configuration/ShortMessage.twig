@@ -1,0 +1,77 @@
+{% set info_link = web_link("https://www.thomas-krenn.com/de/wiki/SMS_Benachrichtigungen_mit_Icinga") %}
+<div class="page-header">
+    <h2>{% trans "Short Message Service" %}</h2>
+</div>
+
+<p>
+    {% trans %}
+    Enable or disable SMS notifications. If enable, spool files are created
+    for SMS Tools. In addition to have a working SMS model configured, a contact
+    need a phone number to get the feature working.
+    {% endtrans %}
+    <a href="{{ info_link }}" target="_blank">
+        {% trans "Click here for more information" %}.
+    </a>
+</p>
+
+<p>
+    {% trans "SMS Alert feature is" %}: <span id="sms-enable-status" data-ajax-call="{{ web_link("SmsEnabled") }}"></span>
+</p>
+
+<p id="sms-enable-again" class="hidden container-spacer-down">
+    <a href="{{ web_link('Index') }}" class="btn btn-primary">
+        <i class="icon-refresh"></i> {% trans "Recheck or change sms alert feature" %}
+    </a>
+</p>
+
+<div id="sms-enable-errors">
+
+</div>
+
+<p class="container-spacer-down">
+    <form id="form-system-access"
+          action="{{ web_link("ChangeSmsAlert") }}"
+          data-ajax="form"
+          data-ajax-type="json"
+          data-form-reset="true"
+          data-error-target="#sms-enable-errors"
+          data-success-frame="#sms-enable-success"
+          data-success-callback="sms_success_callback">
+    {% if status == true %}
+        <input type="hidden" name="enable" value="0" />
+        <button type="submit" class="btn btn-danger">
+            <i class="icon-off"></i> {% trans "Disable" %}
+        </button>
+        <p class="container-spacer-down">
+            {% trans %}
+            SMS Alerts will be disabled for existing and new contacts.
+            {% endtrans %}
+        </p>
+    {% else %}
+        <input type="hidden" name="enable" value="1" />
+        <button type="submit" class="btn btn-success">
+            <i class="icon-ok"></i> {% trans "Enable" %}
+        </button>
+        <p class="container-spacer-down">
+            {% trans %}
+            SMS Alerts will be enabled for new contacts with a cellular number configured.
+            {% endtrans %}
+        </p>
+    {% endif %}
+</p>
+
+<script>
+    var sms_success_callback = function() {
+        $("#form-system-access").remove();
+        $("#sms-enable-again").removeClass("hidden");
+        $("#sms-enable-status").Html5AjaxContent("insert");
+
+        // Reload with hash
+        $("#sms-enable-again-link").click(function(e) {
+            e.preventDefault();
+            var url = "{{ web_link('Index#tab-access-ssh') }}";
+            location.href = url;
+            location.reload();
+        });
+    }
+</script>

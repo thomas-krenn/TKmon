@@ -117,7 +117,7 @@
           dest=/etc/sudoers.d/tkmon
           mode=0440'
   - name: WWW User granted tkmon rights
-    user: name=www-data groups=tkmonweb append=yes
+    user: name=www-data groups=tkmonweb,nagios append=yes
   - name: Restart apache2
     service: name=apache2 state=restarted
   - name: Icinga icinga.cfg
@@ -135,6 +135,8 @@
     command: chown -R 33.33 /etc/icinga/tkmon
   - name: Restart icinga
     service: name=icinga state=restarted
+  - name: Icinga rw access
+    file: path=/var/lib/icinga/rw state=directory mode=755
   - name: Copy update script
     copy: 'src=../../bin/async_update.py
           dest=/usr/local/sbin/async_update.py
@@ -153,3 +155,9 @@
   - name: Install TKALERT
     shell: 'cd /vagrant/contrib/tkalert; /usr/bin/env python setup.py install'
     when: st.stat.md5 is not defined
+  - name: SMS Sppol Directory
+    file: 'path=/var/spool/sms/outgoing/
+          state=directory
+          owner=nagios
+          group=nagios
+          mode=775'

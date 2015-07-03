@@ -87,6 +87,11 @@
         "contactgroups": "tkmon-admin"
     },
 
+    "icinga.record.contact.sms": {
+      "use": "generic-contact-sms",
+      "contactgroups": "tkmon-admin,tkmon-sms"
+    },
+
     "icinga.record.host": {
         "use": "tkmon-base-host"
     },

@@ -69,6 +69,12 @@
                 "iconCls": "icon-inbox"
             },
             {
+                "title": "SMS",
+                "description": "Configure SMS notification",
+                "href": "System/Configuration/ShortMessage/Index",
+                "iconCls": "icon-phone"
+            },
+            {
                 "title": "Network",
                 "description": "Configure IP settings",
                 "href": "System/Configuration/Network/Index",

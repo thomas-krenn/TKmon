@@ -20,6 +20,9 @@
  */
 
 namespace TKMON\Action\Expose\Monitor\Icinga;
+use NETWAYS\Common\ValidatorObject;
+use NETWAYS\Common\ArrayObjectValidator;
+use TKMON\Model\System\ShortMessage;
 
 /**
  * Action handle contacts views
@@ -41,9 +44,12 @@ class Contacts extends \TKMON\Action\Base
         $contacts->load();
         $contacts->ksort();
 
+        $sms = new ShortMessage($this->container);
+
         $template = new \TKMON\Mvc\Output\TwigTemplate($this->container['template']);
         $template->setTemplateName('views/Monitor/Icinga/Contacts/List.twig');
         $template['contacts'] = $contacts;
+        $template['sms'] = $sms->isEnabled();
 
         return $template;
     }
@@ -61,7 +67,7 @@ class Contacts extends \TKMON\Action\Base
 
         try {
 
-            $validator = new \NETWAYS\Common\ArrayObjectValidator();
+            $validator = new ArrayObjectValidator();
 
             $validator->addValidatorObject(
                 \NETWAYS\Common\ValidatorObject::create(
@@ -99,24 +105,38 @@ class Contacts extends \TKMON\Action\Base
         try {
             $contacts->load();
 
-            $validator = new \NETWAYS\Common\ArrayObjectValidator();
+            $validator = new ArrayObjectValidator();
 
-            $validator->addValidator(
-                'contact_name',
-                'Mandatory',
-                \NETWAYS\Common\ArrayObjectValidator::VALIDATE_MANDATORY
+            $validator->addValidatorObject(
+                ValidatorObject::create(
+                    'contact_name',
+                    'Mandatory',
+                    ArrayObjectValidator::VALIDATE_MANDATORY
+                )
             );
 
-            $validator->addValidator(
-                'alias',
-                'Mandatory',
-                \NETWAYS\Common\ArrayObjectValidator::VALIDATE_MANDATORY
+            $validator->addValidatorObject(
+                ValidatorObject::create(
+                    'alias',
+                    'Mandatory',
+                    ArrayObjectValidator::VALIDATE_MANDATORY
+                )
             );
 
-            $validator->addValidator(
-                'email',
-                'Email',
-                FILTER_VALIDATE_EMAIL
+            $validator->addValidatorObject(
+                ValidatorObject::create(
+                    'email',
+                    'Email',
+                    FILTER_VALIDATE_EMAIL
+                )
+            );
+
+            $validator->addValidatorObject(
+                ValidatorObject::create(
+                    'pager',
+                    'pager',
+                    ValidatorObject::VALIDATE_ANYTHING
+                )
             );
 
             $validator->validateArrayObject($params);
@@ -155,12 +175,12 @@ class Contacts extends \TKMON\Action\Base
         try {
             $contacts->load();
 
-            $validator = new \NETWAYS\Common\ArrayObjectValidator();
+            $validator = new ArrayObjectValidator();
 
             $validator->addValidator(
                 'contact_name',
                 'Mandatory',
-                \NETWAYS\Common\ArrayObjectValidator::VALIDATE_MANDATORY
+                ArrayObjectValidator::VALIDATE_MANDATORY
             );
 
             $validator->validateArrayObject($params);
