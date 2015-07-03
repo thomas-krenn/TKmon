@@ -1,0 +1,392 @@
+{
+        "type": "service",
+        "version": "1.0",
+        "description": "Services catalogue for Intel Modular Server",
+        "data": [
+		{
+                        "service_description": "snmp-cmm-fault",
+                        "display_name": "SNMP-Intel-Modular-Server-CMM-Fault",
+                        "check_command": {
+                                "command_name": "check_ims_cmm_fault",
+				"arguments": null
+                        },
+                        "_catalogue_attributes": {
+                                "tags": ["CMM fault"],
+                                "name": "snmp-ims-cmm-fault",
+                                "label": "SNMP-Intel-Modular-Server-CMM-Fault",
+                                "description": {
+                                        "en_US": "Checks via SNMP the CMM fault of a Intel Modular Server",
+                                        "de_DE": "Überprüft über SNMP einen CMM Fehler eines Intel Modular Servers"
+                                },
+                                "defined": true,
+                                "defined_in": "/etc/nagios-plugins/config/check_snmp_ims_v2c.cfg",
+                                "doc": {
+                                        "en_US": [
+                                   		"<h4>SNMP Intel Modular Server CMM Fault</h4>",
+                                                "<p>Using this plugin, the CMM fault of a Intel Modular Server",
+                                                "can be monitored with Nagios or Icinga over SNMP.</p>"
+                                        ],
+                                        "de_DE": [
+                                                "<h4>SNMP Intel Modular Server CMM Fehler</h4>",
+                                                "<p>Mit diesem Plugin kann der CMM Fehler eines Intel Modular Servers",
+                                                "mit Nagios oder Icinga über SNMP überwacht werden.</p>"
+                                        ]
+                                },
+                                "tk_notify": false,
+                                "tk_notify_default": false
+                        }
+                },
+		{
+                        "service_description": "snmp-ims-blade-fault",
+                        "display_name": "SNMP-Intel-Modular-Server-Blade-Fault",
+                        "check_command": {
+                                "command_name": "check_ims_blade_fault",
+                                "arguments": [
+                                {
+                                        "label": "Blade number",
+                                        "description": {
+                                                "en_US": "Blade number",
+                                                "de_DE": "Bladenummer angeben"
+                                        },
+                                        "validation": "string",
+                                        "argument": "-o",
+                                        "value": ""
+                                }
+                                ]
+                        },
+                        "_catalogue_attributes": {
+                                "tags": ["Blade fault"],
+                                "name": "snmp-ims-blade-fault",
+                                "label": "SNMP-Intel-Modular-Server-Blade-Fault",
+                                "description": {
+                                        "en_US": "Checks via SNMP the blade fault of a Intel Modular Server",
+                                        "de_DE": "Überprüft über SNMP einen Bladefehler eines Intel Modular Servers"
+                                },
+                                "defined": true,
+                                "defined_in": "/etc/nagios-plugins/config/check_snmp_ims_v2c.cfg",
+                                "doc": {
+                                        "en_US": [
+                                   		"<h4>SNMP Intel Modular Server Blade Fault</h4>",
+                                                "<p>Using this plugin, the blade fault of a Intel Modular Server",
+                                                "can be monitored with Nagios or Icinga over SNMP.</p>"
+                                        ],
+                                        "de_DE": [
+                                                "<h4>SNMP Intel Modular Server Bladefehler</h4>",
+                                                "<p>Mit diesem Plugin kann der Bladefehler eines Intel Modular Servers",
+                                                "mit Nagios oder Icinga über SNMP überwacht werden.</p>"
+                                        ]
+                                },
+                                "tk_notify": false,
+                                "tk_notify_default": false
+                        }
+                },
+		{
+                        "service_description": "snmp-ims-switch-fault",
+                        "display_name": "SNMP-Intel-Modular-Server-Switch-Fault",
+                        "check_command": {
+                                "command_name": "check_ims_switch_fault",
+                                "arguments": [
+                                {
+                                        "label": "Switch number",
+                                        "description": {
+                                                "en_US": "Switch number",
+                                                "de_DE": "Switchnummer angeben"
+                                        },
+                                        "validation": "string",
+                                        "argument": "-o",
+                                        "value": ""
+                                }
+                                ]
+                        },
+                        "_catalogue_attributes": {
+                                "tags": ["Switch fault"],
+                                "name": "snmp-ims-switch-fault",
+                                "label": "SNMP-Intel-Modular-Server-Switch-Fault",
+                                "description": {
+                                        "en_US": "Checks via SNMP the switch fault of a Intel Modular Server",
+                                        "de_DE": "Überprüft über SNMP einen Switchfehler eines Intel Modular Servers"
+                                },
+                                "defined": true,
+                                "defined_in": "/etc/nagios-plugins/config/check_snmp_ims_v2c.cfg",
+                                "doc": {
+                                        "en_US": [
+                                   		"<h4>SNMP Intel Modular Server Switch Fault</h4>",
+                                                "<p>Using this plugin, the switch fault of a Intel Modular Server",
+                                                "can be monitored with Nagios or Icinga over SNMP.</p>"
+                                        ],
+                                        "de_DE": [
+                                                "<h4>SNMP Intel Modular Server Switchfehler</h4>",
+                                                "<p>Mit diesem Plugin kann der Switchfehler eines Intel Modular Servers",
+                                                "mit Nagios oder Icinga über SNMP überwacht werden.</p>"
+                                        ]
+                                },
+                                "tk_notify": false,
+                                "tk_notify_default": false
+                        }
+                },
+		{
+                        "service_description": "snmp-ims-scm-fault",
+                        "display_name": "SNMP-Intel-Modular-Server-SCM-Fault",
+                        "check_command": {
+                                "command_name": "check_ims_scm_fault",
+                                "arguments": [
+                                {
+                                        "label": "SCM number",
+                                        "description": {
+                                                "en_US": "SCM number",
+                                                "de_DE": "SCM Nummer angeben"
+                                        },
+                                        "validation": "string",
+                                        "argument": "-o",
+                                        "value": ""
+                                }
+                                ]
+                        },
+                        "_catalogue_attributes": {
+                                "tags": ["SCM fault"],
+                                "name": "snmp-ims-scm-fault",
+                                "label": "SNMP-Intel-Modular-Server-SCM-Fault",
+                                "description": {
+                                        "en_US": "Checks via SNMP the SCM fault of a Intel Modular Server",
+                                        "de_DE": "Überprüft über SNMP einen SCM Fehler eines Intel Modular Servers"
+                                },
+                                "defined": true,
+                                "defined_in": "/etc/nagios-plugins/config/check_snmp_ims_v2c.cfg",
+                                "doc": {
+                                        "en_US": [
+                                   		"<h4>SNMP Intel Modular Server SCM Fault</h4>",
+                                                "<p>Using this plugin, the SCM fault of a Intel Modular Server",
+                                                "can be monitored with Nagios or Icinga over SNMP.</p>"
+                                        ],
+                                        "de_DE": [
+                                                "<h4>SNMP Intel Modular Server SCM Fehler</h4>",
+                                                "<p>Mit diesem Plugin kann der SCM Fehler eines Intel Modular Servers",
+                                                "mit Nagios oder Icinga über SNMP überwacht werden.</p>"
+                                        ]
+                                },
+                                "tk_notify": false,
+                                "tk_notify_default": false
+                        }
+                },
+		{
+                        "service_description": "snmp-drives-with-PFA",
+                        "display_name": "SNMP-Intel-Modular-Server-Drives-with-PFA",
+                        "check_command": {
+                                "command_name": "check_ims_drives_with_pfa",
+				"arguments": null
+                        },
+                        "_catalogue_attributes": {
+                                "tags": ["Drives with PFA"],
+                                "name": "snmp-ims-drives-with-pfa",
+                                "label": "SNMP-Intel-Modular-Server-Drives-with-PFA",
+                                "description": {
+                                        "en_US": "Checks via SNMP the number of drives with a critical PFA condition (Predictive Failure Analysis) of a Intel Modular Server",
+                                        "de_DE": "Überprüft über SNMP die Anzahl der Festplatten mit einem kritischen PFA Zustand (Predictive Failure Analysis) eines Intel Modular Servers"
+                                },
+                                "defined": true,
+                                "defined_in": "/etc/nagios-plugins/config/check_snmp_ims_v2c.cfg",
+                                "doc": {
+                                        "en_US": [
+                                   		"<h4>SNMP Intel Modular Server Drives with PFA</h4>",
+                                                "<p>Using this plugin, the number of drives with a crtitical PFA condition of a Intel Modular Server",
+                                                "can be monitored with Nagios or Icinga over SNMP.</p>"
+                                        ],
+                                        "de_DE": [
+                                                "<h4>SNMP Intel Modular Server Festplatten mit PFA</h4>",
+                                                "<p>Mit diesem Plugin kann die Anzahl der Festplatten mit einem kritschen PFA Status eines Intel Modular Servers",
+                                                "mit Nagios oder Icinga über SNMP überwacht werden.</p>"
+                                        ]
+                                },
+                                "tk_notify": false,
+                                "tk_notify_default": false
+                        }
+                },
+		{
+                        "service_description": "snmp-drives-rebuilding",
+                        "display_name": "SNMP-Intel-Modular-Server-Drives-rebuilding",
+                        "check_command": {
+                                "command_name": "check_ims_drives_rebuilding",
+				"arguments": null
+                        },
+                        "_catalogue_attributes": {
+                                "tags": ["Drives rebuilding"],
+                                "name": "snmp-ims-drives-rebuilding",
+                                "label": "SNMP-Intel-Modular-Server-Drives-rebuilding",
+                                "description": {
+                                        "en_US": "Checks via SNMP the number of rebuilding drives of a Intel Modular Server",
+                                        "de_DE": "Überprüft über SNMP die Anzahl der rebuildenden Festplatten eines Intel Modular Servers"
+                                },
+                                "defined": true,
+                                "defined_in": "/etc/nagios-plugins/config/check_snmp_ims_v2c.cfg",
+                                "doc": {
+                                        "en_US": [
+                                   		"<h4>SNMP Intel Modular Server Drives rebuilding</h4>",
+                                                "<p>Using this plugin, the number of rebuilding Drives of a Intel Modular Server",
+                                                "can be monitored with Nagios or Icinga over SNMP.</p>"
+                                        ],
+                                        "de_DE": [
+                                                "<h4>SNMP Intel Modular Server rebuildende Festplatten</h4>",
+                                                "<p>Mit diesem Plugin kann die Anzahl der rebuildenden Festplatten eines Intel Modular Servers",
+                                                "mit Nagios oder Icinga über SNMP überwacht werden.</p>"
+                                        ]
+                                },
+                                "tk_notify": false,
+                                "tk_notify_default": false
+                        }
+                },
+		{
+                        "service_description": "snmp-drives-missing",
+                        "display_name": "SNMP-Intel-Modular-Server-Drives-missing",
+                        "check_command": {
+                                "command_name": "check_ims_drives_missing",
+				"arguments": null
+                        },
+                        "_catalogue_attributes": {
+                                "tags": ["Drives missing"],
+                                "name": "snmp-ims-drives-missing",
+                                "label": "SNMP-Intel-Modular-Server-Drives-missing",
+                                "description": {
+                                        "en_US": "Checks via SNMP the number of missing drives of a Intel Modular Server",
+                                        "de_DE": "Überprüft über SNMP die Anzahl der fehlenden Festplatten eines Intel Modular Servers"
+                                },
+                                "defined": true,
+                                "defined_in": "/etc/nagios-plugins/config/check_snmp_ims_v2c.cfg",
+                                "doc": {
+                                        "en_US": [
+                                   		"<h4>SNMP Intel Modular Server Drives missing</h4>",
+                                                "<p>Using this plugin, the number of missing Drives of a Intel Modular Server",
+                                                "can be monitored with Nagios or Icinga over SNMP.</p>"
+                                        ],
+                                        "de_DE": [
+                                                "<h4>SNMP Intel Modular Server fehlende Festplatten</h4>",
+                                                "<p>Mit diesem Plugin kann die Anzahl der fehlenden Festplatten eines Intel Modular Servers",
+                                                "mit Nagios oder Icinga über SNMP überwacht werden.</p>"
+                                        ]
+                                },
+                                "tk_notify": false,
+                                "tk_notify_default": false
+                        }
+                },
+		{
+                        "service_description": "snmp-virtual-drives-critical",
+                        "display_name": "SNMP-Intel-Modular-Virtual-Server-Drives-critical",
+                        "check_command": {
+                                "command_name": "check_ims_virtual_drives_critical",
+				"arguments": null
+                        },
+                        "_catalogue_attributes": {
+                                "tags": ["Virtual Drives critical"],
+                                "name": "snmp-ims-virtual-drives-critical",
+                                "label": "SNMP-Intel-Modular-Server-Virtual-Drives-critical",
+                                "description": {
+                                        "en_US": "Checks via SNMP the number of critical virtual drives of a Intel Modular Server",
+                                        "de_DE": "Überprüft über SNMP die Anzahl der kritischen virtuellen Drives eines Intel Modular Servers"
+                                },
+                                "defined": true,
+                                "defined_in": "/etc/nagios-plugins/config/check_snmp_ims_v2c.cfg",
+                                "doc": {
+                                        "en_US": [
+                                   		"<h4>SNMP Intel Modular Server Virtual Drives critical</h4>",
+                                                "<p>Using this plugin, the number of critical virtual Drives of a Intel Modular Server",
+                                                "can be monitored with Nagios or Icinga over SNMP.</p>"
+                                        ],
+                                        "de_DE": [
+                                                "<h4>SNMP Intel Modular Server kritische virtuelle Drives</h4>",
+                                                "<p>Mit diesem Plugin kann die Anzahl der kritischen virtuellen Drives eines Intel Modular Servers",
+                                                "mit Nagios oder Icinga über SNMP überwacht werden.</p>"
+                                        ]
+                                },
+                                "tk_notify": false,
+                                "tk_notify_default": false
+                        }
+                },
+		{
+                        "service_description": "snmp-ims-fan-fault",
+                        "display_name": "SNMP-Intel-Modular-Server-Fan-Fault",
+                        "check_command": {
+                                "command_name": "check_ims_fan_fault",
+                                "arguments": [
+                                {
+                                        "label": "Fan number",
+                                        "description": {
+                                                "en_US": "Insert fan number",
+                                                "de_DE": "Lüfternummer angeben"
+                                        },
+                                        "validation": "string",
+                                        "argument": "-o",
+                                        "value": ""
+                                }
+                                ]
+                        },
+                        "_catalogue_attributes": {
+                                "tags": ["Fan fault"],
+                                "name": "snmp-ims-fan-fault",
+                                "label": "SNMP-Intel-Modular-Server-Fan-Fault",
+                                "description": {
+                                        "en_US": "Checks via SNMP the fan fault state of a Intel Modular Server",
+                                        "de_DE": "Überprüft über SNMP den Lüfterfehlerstatus eines Intel Modular Servers"
+                                },
+                                "defined": true,
+                                "defined_in": "/etc/nagios-plugins/config/check_snmp_ims_v2c.cfg",
+                                "doc": {
+                                        "en_US": [
+                                   		"<h4>SNMP Intel Modular Server Fan Fault</h4>",
+                                                "<p>Using this plugin, the fan fault state of a Intel Modular Server",
+                                                "can be monitored with Nagios or Icinga over SNMP.</p>"
+                                        ],
+                                        "de_DE": [
+                                                "<h4>SNMP Intel Modular Server Lüfterfehlerstatus</h4>",
+                                                "<p>Mit diesem Plugin kann der Lüfterfehlerstatus eines Intel Modular Servers",
+                                                "mit Nagios oder Icinga über SNMP überwacht werden.</p>"
+                                        ]
+                                },
+                                "tk_notify": false,
+                                "tk_notify_default": false
+                        }
+                },
+		{
+                        "service_description": "snmp-ims-pwrsupply-fault",
+                        "display_name": "SNMP-Intel-Modular-Server-Power-Supply-Fault",
+                        "check_command": {
+                                "command_name": "check_ims_pwrsupply_fault",
+                                "arguments": [
+                                {
+                                        "label": "Power supply number",
+                                        "description": {
+                                                "en_US": "Insert power supply number",
+                                                "de_DE": "Netzteilnummer angeben"
+                                        },
+                                        "validation": "string",
+                                        "argument": "-o",
+                                        "value": ""
+                                }
+                                ]
+                        },
+                        "_catalogue_attributes": {
+                                "tags": ["Power supply fault"],
+                                "name": "snmp-ims-pwrsupply-fault",
+                                "label": "SNMP-Intel-Modular-Server-Power-Supply-Fault",
+                                "description": {
+                                        "en_US": "Checks via SNMP the power supply fault state of a Intel Modular Server",
+                                        "de_DE": "Überprüft über SNMP den Netzteilfehlerstatus eines Intel Modular Servers"
+                                },
+                                "defined": true,
+                                "defined_in": "/etc/nagios-plugins/config/check_snmp_ims_v2c.cfg",
+                                "doc": {
+                                        "en_US": [
+                                   		"<h4>SNMP Intel Modular Server Power Supply Fault</h4>",
+                                                "<p>Using this plugin, the power supply fault state of a Intel Modular Server",
+                                                "can be monitored with Nagios or Icinga over SNMP.</p>"
+                                        ],
+                                        "de_DE": [
+                                                "<h4>SNMP Intel Modular Server Netzteilfehlerstatus</h4>",
+                                                "<p>Mit diesem Plugin kann der Netzteilfehlerstatus eines Intel Modular Servers",
+                                                "mit Nagios oder Icinga über SNMP überwacht werden.</p>"
+                                        ]
+                                },
+                                "tk_notify": false,
+                                "tk_notify_default": false
+                        }
+                }
+	]
+}
