@@ -22,6 +22,7 @@
 namespace TKMON\Action\Expose\Monitor\Icinga;
 use NETWAYS\Common\ValidatorObject;
 use NETWAYS\Common\ArrayObjectValidator;
+use TKMON\Model\System\ShortMessage;
 
 /**
  * Action handle contacts views
@@ -43,9 +44,12 @@ class Contacts extends \TKMON\Action\Base
         $contacts->load();
         $contacts->ksort();
 
+        $sms = new ShortMessage($this->container);
+
         $template = new \TKMON\Mvc\Output\TwigTemplate($this->container['template']);
         $template->setTemplateName('views/Monitor/Icinga/Contacts/List.twig');
         $template['contacts'] = $contacts;
+        $template['sms'] = $sms->isEnabled();
 
         return $template;
     }

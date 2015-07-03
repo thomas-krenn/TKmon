@@ -63,7 +63,7 @@ class ContactData extends \ICINGA\Loader\FileSystem implements \TKMON\Interfaces
      * Creates a new object
      * @param \Pimple $container
      */
-    public function __construct(\Pimple $container)
+    public function __construct(\Pimple $container, $smsEnabled = false)
     {
         $this->setContainer($container);
 
@@ -73,7 +73,7 @@ class ContactData extends \ICINGA\Loader\FileSystem implements \TKMON\Interfaces
         $this->setPath($this->container['config']['icinga.dir.contact']);
 
         $smsModel = new ShortMessage($container);
-        if ($smsModel->isEnabled() === true) {
+        if ($smsEnabled || $smsModel->isEnabled() === true) {
             $this->contactBaseRecord = $container['config'][self::RECORD_SMS];
         } else {
             $this->contactBaseRecord = $container['config'][self::RECORD_DEFAULT];
@@ -159,7 +159,12 @@ class ContactData extends \ICINGA\Loader\FileSystem implements \TKMON\Interfaces
      */
     public function createContact(\NETWAYS\Common\ArrayObject $attributes)
     {
-        $attributes->fromVoyagerObject($this->contactBaseRecord);
+        if (isset($attributes['pager']) && strlen($attributes['pager'])) {
+            $attributes->fromVoyagerObject($this->contactBaseRecord);
+        } else {
+            $base = $this->container['config'][self::RECORD_DEFAULT];
+            $attributes->fromVoyagerObject($base);
+        }
         $record = Contact::createObjectFromArray($attributes);
         return $record;
     }
@@ -176,5 +181,18 @@ class ContactData extends \ICINGA\Loader\FileSystem implements \TKMON\Interfaces
         }
 
         $this->offsetUnset($name);
+    }
+
+    /**
+     * Recreate base attributes for all records
+     *
+     * @throws \TKMON\Exception\ModelException
+     */
+    public function resetBaseRecord()
+    {
+        foreach ($this->getAll() as $contact) {
+            $record = $this->createContact($contact);
+            $this->updateContact($record);
+        }
     }
 }

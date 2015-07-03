@@ -23,6 +23,7 @@ namespace TKMON\Action\Expose\System\Configuration;
 
 use NETWAYS\Common\ArrayObject;
 use TKMON\Exception\ModelException;
+use TKMON\Model\Icinga\ContactData;
 use TKMON\Model\System\ShortMessage as SmsModel;
 use TKMON\Mvc\Output\JsonResponse;
 
@@ -98,6 +99,12 @@ class ShortMessage extends \TKMON\Action\Base
                     "Invalid arguments, enable have to be 0/1"
                 );
             }
+
+            $contacts = new ContactData($this->container, $model->isEnabled());
+            $contacts->load();
+            $contacts->resetBaseRecord();
+            $contacts->write();
+
         } catch (\Exception $e) {
             $response->setSuccess(false);
             $response->addException($e);
