@@ -138,9 +138,13 @@ class System extends ApplicationModel
      */
     public function chownRecursiveToApache($dir)
     {
+        if (strpos($dir, '/vagrant') === 0) {
+            return;
+        }
         /** @var $chown Process */
         $chown = $this->container['command']->create('chown');
         $chown->addNamedArgument('-R');
+        // $chown->addNamedArgument('-f');
         $chown->addPositionalArgument($this->container['config']['system.apache_owner']);
         $chown->addPositionalArgument($dir);
         $chown->execute();
