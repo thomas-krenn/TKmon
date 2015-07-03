@@ -53,10 +53,18 @@ class CgiParams
     private $defaultNamespace = 'request';
 
     /**
-     * Creates a new parameter holder object
+     * Sanitize input data
+     * @var bool
      */
-    public function __construct()
+    private $sanitizeData = true;
+
+    /**
+     * Creates a new parameter holder object
+     * @param bool $sanitizeData
+     */
+    public function __construct($sanitizeData = true)
     {
+        $this->sanitizeData = $sanitizeData;
         $this->initializeData();
     }
 
@@ -67,9 +75,16 @@ class CgiParams
     {
         foreach ($this->namespaces as $namespace) {
             $this->data[$namespace] = new \NETWAYS\Common\ArrayObject();
-
             $method = 'get' . ucfirst($namespace) . 'Data';
-            $this->data[$namespace]->setAll(call_user_func(array($this, $method)));
+            $tmp = call_user_func(array($this, $method), $this->sanitizeData);
+            // @TODO(mh) Test if affects header of cookie
+            if ($this->sanitizeData === true && is_array($tmp)) {
+                $tmp = filter_var_array(
+                    $tmp,
+                    FILTER_SANITIZE_STRING
+                );
+            }
+            $this->data[$namespace]->setAll($tmp);
         }
     }
 
@@ -130,10 +145,7 @@ class CgiParams
             $data = array_merge($_POST, $_GET);
         }
 
-        return filter_var_array(
-            $data,
-            FILTER_SANITIZE_STRING
-        );
+        return $data;
     }
 
     /**

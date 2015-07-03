@@ -25,6 +25,7 @@ use ICINGA\Object\Service;
 use NETWAYS\Common\ArrayObject;
 use NETWAYS\Common\ArrayObjectValidator;
 use NETWAYS\Common\ValidatorObject;
+use NETWAYS\Http\CgiParams;
 use NETWAYS\Intl\SimpleTranslator;
 use TKMON\Action\Base;
 use TKMON\Model\Icinga\ServiceData;
@@ -414,9 +415,11 @@ class Services extends Base
             // ----------------------------------------------------------------
 
             $arguments = new ArrayObject();
+            $cgiParams = new CgiParams(false);
 
-            if ($params->offsetExists('arguments')) {
-                $arguments->fromArray($params['arguments']);
+            if ($cgiParams->hasParameter('arguments')) {
+                $plainArguments = $cgiParams->getParameter('arguments');
+                $arguments->fromArray($plainArguments);
                 $argumentValidator = $serviceData->createValidator($catalogueName);
                 $argumentValidator->validateArrayObject($arguments);
             }
@@ -430,7 +433,6 @@ class Services extends Base
             $hostData->load();
 
             $host = $hostData->getHost($hostName);
-
             $service = $serviceData->createServiceFromCatalogueWithArgumentValues($catalogueName, $arguments);
 
 
