@@ -35,14 +35,14 @@
         <th>{% trans "Name" %}</th>
         <th>{% trans "Alias" %}</th>
         <th>{% trans "Email Address" %}</th>
-        <th>{% trans "" %}</th>
+        <th>{% trans "Cellular" %}</th>
         <th>&nbsp;</th>
     </tr>
 
     {% if contacts.count() == 0 %}
     <tr>
 
-        <td colspan="4">
+        <td colspan="5">
             {% trans "No contacts defined, click the button on top to create one!" %}
         </td>
 
@@ -54,6 +54,7 @@
         <td>{{ contact.getContactName() }}</td>
         <td>{{ contact.getAlias() }}</td>
         <td>{{ contact.getEmail() }}</td>
+        <td>{{ contact.getPager() }}</td>
         <td>
             <button data-action="edit" data-value="{{ contact.getObjectIdentifier() }}" class="btn btn-primary">
                 <i class="icon-edit"></i> {% trans "Edit" %}
