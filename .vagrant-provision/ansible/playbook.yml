@@ -22,6 +22,8 @@
     - php-pear
     - pnp4nagios
     - python-setuptools
+    - sqlite3
+    - zip
   - name: Test launchpad repository
     stat: path=/etc/apt/sources.list.d/formorer-icinga-trusty.list
     register: sr
