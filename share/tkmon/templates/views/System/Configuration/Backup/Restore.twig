@@ -93,6 +93,20 @@
         <input type="hidden" id="restart" name="restart" />
     </fieldset>
 
+    <h4 class="container-spacer-down">
+        {% trans %}
+        4. When upgrade on different machines of operating systems it might be
+        required to ignore checksums
+        {% endtrans %}
+    </h4>
+
+    <fieldset>
+        <input type="checkbox" name="ignore_manifest" id="ignore_manifest" value="1" />
+        <label for="ignore_manifest" class="inline">
+            {% trans "Ignore checksum and path assertion" %}
+        </label>
+    </fieldset>
+
     <div class="container-spacer-down"></div>
 
     <fieldset>
@@ -230,10 +244,17 @@
             startHandler();
             var restoreUrl = '{{ web_link("System/Configuration/Backup/RestoreConfiguration") }}';
             var password = $(this).find('input#password').val();
+            var params = {nonce: new Date().getTime()};
 
             if (password) {
-                restoreUrl += '?password=' + encodeURIComponent(password);
+                params.password = encodeURIComponent(password);
             }
+
+            if ($('#ignore_manifest').is(':checked')) {
+                params.ignore_manifest = '1';
+            }
+
+            restoreUrl = restoreUrl + '?' + $.param(params);
 
             var filesInput = $(this).find('input[type=file]');
             var files = filesInput[0];

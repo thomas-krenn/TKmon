@@ -86,11 +86,13 @@ class Importer extends Base
         }
 
         $manifest1 = new Manifest($this->container);
+        $manifest1->setSoftAssert($this->softAssert);
         $manifest1->createFromDirectory($dir);
         $manifest1->setSoftwareVersion($this->container['config']['app.version.full']);
         $manifest1->setPassword($hasPasswordFlag);
 
         $manifest2 = new Manifest($this->container);
+        $manifest2->setSoftAssert($this->softAssert);
         $manifest2->fromJsonFile($fileName);
 
         $manifest2->assertEquality($manifest1);

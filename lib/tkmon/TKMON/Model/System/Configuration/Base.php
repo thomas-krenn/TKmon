@@ -33,6 +33,12 @@ class Base extends \TKMON\Model\ApplicationModel
     const TEMP_PREFIX = 'tkmon-dump-';
 
     /**
+     * Do not throw an exception
+     * @var bool
+     */
+    protected $softAssert = false;
+
+    /**
      * Structure of sub directories
      * @var string[]
      */
@@ -78,5 +84,13 @@ class Base extends \TKMON\Model\ApplicationModel
             $out->{$part} = $dir;
         }
         return $out;
+    }
+
+    /**
+     * @param boolean $softAssert
+     */
+    public function setSoftAssert($softAssert = true)
+    {
+        $this->softAssert = (boolean) $softAssert;
     }
 }

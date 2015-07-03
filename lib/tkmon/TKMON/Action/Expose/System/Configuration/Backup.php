@@ -112,6 +112,7 @@ class Backup extends Base
 
         try {
             $password = $params->get('password');
+            $ignoreManifestErrors = $params->get('ignore_manifest');
 
             /** @var $params CgiParams */
             $params = $this->container['params'];
@@ -145,6 +146,9 @@ class Backup extends Base
             }
 
             $importer = new Importer($this->container);
+            if ($ignoreManifestErrors === '1') {
+                $importer->setSoftAssert(true);
+            }
             $importer->fromDirectory($directory, (($password) ? true : false));
 
             $response->setSuccess(true);

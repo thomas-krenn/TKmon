@@ -21,6 +21,8 @@
 
 namespace TKMON\Model\System\Configuration;
 
+use TKMON\Model\System\Configuration\Manifest\ManifestException;
+
 /**
  * Manifest for configuration data
  * @package TKMON\Model
@@ -403,7 +405,8 @@ class Manifest extends Base
     /**
      * Test if objects are the same
      * @param Manifest $toTest
-     * @throws \TKMON\Exception\ModelException
+     * @return bool
+     * @throws ManifestException
      */
     public function assertEquality(Manifest $toTest)
     {
@@ -421,11 +424,13 @@ class Manifest extends Base
             }
         }
 
-        if (count($errors)) {
-            throw new \TKMON\Exception\ModelException(
+        if (count($errors) && ! $this->softAssert) {
+            throw new ManifestException(
                 'Manifest errors in following properties: '. implode(', ', $errors)
             );
         }
+
+        return count($errors) ? false : true;
     }
 
     /**
