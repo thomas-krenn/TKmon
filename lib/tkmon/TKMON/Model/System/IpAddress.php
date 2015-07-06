@@ -20,6 +20,7 @@
  */
 
 namespace TKMON\Model\System;
+use TKMON\Model\System\Exception\IpAddressException;
 
 /**
  * Class to handle IP address configuration
@@ -174,13 +175,13 @@ class IpAddress extends Interfaces
         } elseif ($this->hasFlag(self::TYPE_STATIC)) {
             $this->setConfigType(self::TYPE_STATIC);
         } else {
-            throw new \TKMON\Exception\ModelException("Could not detect config type (dhcp/static)");
+            throw new IpAddressException("Could not detect config type (dhcp/static)");
         }
     }
 
     /**
      * Prepare object and write
-     * @throws \TKMON\Exception\ModelException
+     * @throws IpAddressException
      */
     public function write()
     {
@@ -188,15 +189,15 @@ class IpAddress extends Interfaces
             // Static network configuration, prepare all fields
 
             if (!$this->getIpAddress()) {
-                throw new \TKMON\Exception\ModelException('Ip address is missing!');
+                throw new IpAddressException('Ip address is missing!');
             }
 
             if (!$this->getIpGateway()) {
-                throw new \TKMON\Exception\ModelException('Gateway is missing');
+                throw new IpAddressException('Gateway is missing');
             }
 
             if (!$this->getIpNetmask()) {
-                throw new \TKMON\Exception\ModelException('Netmask is missing');
+                throw new IpAddressException('Netmask is missing');
             }
 
             $this[self::FIELD_ADDRESS] = $this->getIpAddress();
@@ -214,7 +215,7 @@ class IpAddress extends Interfaces
             $this->setFlag(self::TYPE_DHCP);
 
         } else {
-            throw new \TKMON\Exception\ModelException('Unknown type: '. $this->getConfigType());
+            throw new IpAddressException('Unknown type: '. $this->getConfigType());
         }
 
         parent::write();

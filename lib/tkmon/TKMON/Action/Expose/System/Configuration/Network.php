@@ -27,6 +27,7 @@ use NETWAYS\Common\ValidatorObject;
 use TKMON\Action\Base;
 use TKMON\Exception\ModelException;
 use TKMON\Model\System\DnsServers;
+use TKMON\Model\System\Exception\IpAddressException;
 use TKMON\Model\System\Hostname;
 use TKMON\Model\System\IpAddress;
 use TKMON\Model\System\NtpConfiguration;
@@ -69,39 +70,48 @@ class Network extends Base
      */
     public function actionIndex(ArrayObject $params)
     {
-        $template = new TwigTemplate($this->container['template']);
-        $template->setTemplateName('views/System/Configuration/Network.twig');
+        try {
+            $template = new TwigTemplate($this->container['template']);
+            $template->setTemplateName('views/System/Configuration/Network.twig');
 
-        // Hostname / Devicename
-        $hostnameModel = new Hostname($this->container);
-        $hostnameModel->load();
-        $template['device_name'] = $hostnameModel->getCombined();
+            // Hostname / Devicename
+            $hostnameModel = new Hostname($this->container);
+            $hostnameModel->load();
+            $template['device_name'] = $hostnameModel->getCombined();
 
-        // DNS configuration
-        $dnsModel = new DnsServers($this->container);
-        $dnsModel->setInterfaceName($this->primaryInterface);
-        $dnsModel->load();
-        $template['dns_nameserver1'] = $dnsModel->getDnsServerItem(0);
-        $template['dns_nameserver2'] = $dnsModel->getDnsServerItem(1);
-        $template['dns_nameserver3'] = $dnsModel->getDnsServerItem(2);
-        $template['dns_search'] = $dnsModel->getDnsSearch();
+            // DNS configuration
+            $dnsModel = new DnsServers($this->container);
+            $dnsModel->setInterfaceName($this->primaryInterface);
+            $dnsModel->load();
+            $template['dns_nameserver1'] = $dnsModel->getDnsServerItem(0);
+            $template['dns_nameserver2'] = $dnsModel->getDnsServerItem(1);
+            $template['dns_nameserver3'] = $dnsModel->getDnsServerItem(2);
+            $template['dns_search'] = $dnsModel->getDnsSearch();
 
+            // IP Address
+            $ipModel = new IpAddress($this->container);
+            $ipModel->setInterfaceName($this->primaryInterface);
+            $ipModel->load();
+            $template['ip_address'] = $ipModel->getIpAddress();
+            $template['ip_netmask'] = $ipModel->getIpNetmask();
+            $template['ip_gateway'] = $ipModel->getIpGateway();
+            $template['ip_config'] = $ipModel->getConfigType();
 
-        // IP Address
-        $ipModel = new IpAddress($this->container);
-        $ipModel->setInterfaceName($this->primaryInterface);
-        $ipModel->load();
-        $template['ip_address'] = $ipModel->getIpAddress();
-        $template['ip_netmask'] = $ipModel->getIpNetmask();
-        $template['ip_gateway'] = $ipModel->getIpGateway();
-        $template['ip_config'] = $ipModel->getConfigType();
+            $ntpConfiguration = new NtpConfiguration($this->container);
+            $ntpConfiguration->setMaxServers(3);
+            $ntpConfiguration->load();
+            $template['timeserver_1'] = $ntpConfiguration->getNtpServer(0);
+            $template['timeserver_2'] = $ntpConfiguration->getNtpServer(1);
+            $template['timeserver_3'] = $ntpConfiguration->getNtpServer(2);
+        } catch (IpAddressException $e) {
+            $template = new TwigTemplate($this->container['template']);
+            $template->setTemplateName('views/System/Configuration/Network/Error.twig');
+            $template['exceptionClass'] = get_class($e);
+            $template['exception'] = $e;
+            $template['config'] = $this->container['config'];
+            $template['interface'] = $this->container['config']->get('system.interface');
+        }
 
-        $ntpConfiguration = new NtpConfiguration($this->container);
-        $ntpConfiguration->setMaxServers(3);
-        $ntpConfiguration->load();
-        $template['timeserver_1'] = $ntpConfiguration->getNtpServer(0);
-        $template['timeserver_2'] = $ntpConfiguration->getNtpServer(1);
-        $template['timeserver_3'] = $ntpConfiguration->getNtpServer(2);
 
         return $template;
     }

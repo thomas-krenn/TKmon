@@ -1,0 +1,26 @@
+{% set linkUrl="https://www.thomas-krenn.com/en/wiki/Main_Page" %}
+<div class="page-header">
+    <h2>{% trans "Network Error" %}</h2>
+</div>
+
+<div class="alert alert-error">
+    {% trans %}
+        Sorry, we could not load a valid network configuration.
+    {% endtrans %}
+</div>
+
+<h4>{{ exceptionClass }}</h4>
+
+<pre>{{ exception }}</pre>
+
+<hr>
+
+<p>
+    {% trans %}
+    This happens if the network interface is not announced and unknown to the
+    system. Interface which is configured: <strong>{{ interface }}</strong>
+    (system.interface / config.json). Click
+    <a href="{{ linkUrl }}" target="_blank">here to find more information</a>
+    and how to fix the problem.
+    {% endtrans %}
+</p>
