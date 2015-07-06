@@ -111,7 +111,7 @@
           dest=/etc/icinga/htpasswd.users
           owner=www-data
           group=www-data
-          mode=0640'
+          mode=0644'
   - name: TKMON group
     group: name=tkmonweb state=present system=yes
   - name: Copy sudoers
