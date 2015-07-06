@@ -16,7 +16,7 @@
  * along with TKMON.  If not, see <http://www.gnu.org/licenses/>.
  *
  * @author Marius Hein <marius.hein@netways.de>
- * @copyright 2012-2014 NETWAYS GmbH <info@netways.de>
+ * @copyright 2012-2015 NETWAYS GmbH <info@netways.de>
  */
 
 namespace TKMON\Model\Mail;
