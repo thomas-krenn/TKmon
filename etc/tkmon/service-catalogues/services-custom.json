@@ -31,29 +31,29 @@
 							"de_DE": "http://www.thomas-krenn.com/de/wiki/IPMI_Sensor_Monitoring_Plugin"
 						},
 						"description": {
-							"en_US": "Official wiki article about the IPMI Sensor Monitoring Plugin from Thomas Krenn",
-							"de_DE": "Offizieller Wiki Artikel zum IPMI Sensor Monitoring Plugin von Thomas Krenn"
+							"en_US": "Wiki article about the IPMI Sensor Monitoring Plugin from Thomas-Krenn",
+							"de_DE": "Wiki Artikel zum IPMI Sensor Monitoring Plugin von Thomas-Krenn"
 						}
 					}, {
 						"name": "GIT Repository",
 						"href": "http://git.thomas-krenn.com/?p=check_ipmi_sensor_v3.git;a=summary",
 						"description": {
-							"en_US": "Official GIT repository of the IPMI Sensor Monitoring Plugin from Thomas Krenn",
-							"de_DE": "Offizielles GIT Repository des IPMI Sensor Monitoring Plugins von Thomas Krenn"
+							"en_US": "GIT repository of the IPMI Sensor Monitoring Plugin from Thomas-Krenn",
+							"de_DE": "GIT Repository des IPMI Sensor Monitoring Plugins von Thomas-Krenn"
 						}
 					}
 			 	],
 				"doc": {
 					"en_US": [
 						"<h4>IPMI Sensor Monitoring Plugin</h4>",
-						"<p>Using this plugin, the hardware status of a server can be monitored by Nagios",
-						"or Icinga. As specific examples, fan rotation speeds, temperatures, voltages,",
+						"<p>Using this plugin, the hardware status of a server can be monitored.",
+						"As specific examples, fan rotation speeds, temperatures, voltages,",
 						"power supply states and more will be monitored.</p>"
 					],
 					"de_DE": [
 						"<h4>IPMI Sensor Monitoring Plugin</h4>",
-						"<p>Mit diesem Plugin kann der Hardware Status eines Servers mit Nagios oder Icinga",
-						"überwacht werden. Beispiele für Sensoren, die überwacht werden, sind Lüfterdrehzahlen,",
+						"<p>Mit diesem Plugin kann der Hardware Status eines Servers überwacht werden.",
+						"Beispiele für Sensoren, die überwacht werden, sind Lüfterdrehzahlen,",
 						"Temperaturen, Spannungen, Netzteilstatus und mehr.</p>"
 					]
 				},
@@ -88,15 +88,15 @@
 							"de_DE": "http://www.thomas-krenn.com/de/wiki/IPMI_Sensor_Monitoring_Plugin"
 						},
 						"description": {
-							"en_US": "Official wiki article about the IPMI Sensor Monitoring Plugin from Thomas Krenn",
-							"de_DE": "Offizieller Wiki Artikel zum IPMI Sensor Monitoring Plugin von Thomas Krenn"
+							"en_US": "Wiki article about the IPMI Sensor Monitoring Plugin from Thomas-Krenn",
+							"de_DE": "Wiki Artikel zum IPMI Sensor Monitoring Plugin von Thomas-Krenn"
 						}
 					}, {
 						"name": "GIT Repository",
 						"href": "http://git.thomas-krenn.com/?p=check_ipmi_sensor_v3.git;a=summary",
 						"description": {
-							"en_US": "Official GIT repository of the IPMI Sensor Monitoring Plugin from Thomas Krenn",
-							"de_DE": "Offizielles GIT Repository des IPMI Sensor Monitoring Plugins von Thomas Krenn"
+							"en_US": "GIT repository of the IPMI Sensor Monitoring Plugin from Thomas-Krenn",
+							"de_DE": "GIT Repository des IPMI Sensor Monitoring Plugins von Thomas-Krenn"
 						}
 					}
 				],
@@ -181,15 +181,15 @@
 				"doc": {
 					"en_US": [
 						"<h4>VMware ESXi Hardware Monitoring Plugin</h4>",
-						"<p>Using this plugin, the hardware of a VMware ESXi host can be monitored by Nagios",
-						"or Icinga. Please ensure to install all necessary CIM providers on your ESXi host,",
+						"<p>Using this plugin, the hardware of a VMware ESXi host can be monitored.",
+						"Please ensure to install all necessary CIM providers on your ESXi host,",
 						"e.g. the LSI CIM provider to monitor a LSI RAID controller.</p>"
 					],
 					"de_DE": [
 						"<h4>VMware ESXi Hardware Monitoring Plugin</h4>",
-						"<p>Mit diesem Plugin kann der Hardware Status eines ESXi Servers mit Nagios oder Icinga",
-						"überwacht werden. Bitte installieren Sie dazu am ESXi Host aller erforderlichen CIM,",
-						"Provider, z.B. den LSI CIM Provider zur Überwachung eines LSI RAID Controllers.</p>"
+						"<p>Mit diesem Plugin kann der Hardware Status eines ESXi Servers überwacht werden.",
+						"Bitte installieren Sie dazu am ESXi Host alle erforderlichen CIM Provider,",
+						"z.B. den LSI CIM Provider zur Überwachung eines LSI RAID Controllers.</p>"
 					]
 				},
 
@@ -231,21 +231,21 @@
 						"name": "GIT Repository",
 						"href": "http://git.thomas-krenn.com/?p=check_adaptec_raid.git;a=summary",
 						"description": {
-							"en_US": "Official GIT repository of the Adaptec Raid Monitoring Plugin from Thomas Krenn",
-							"de_DE": "Offizielles GIT Repository des Adaptec Raid Monitoring Plugin von Thomas Krenn"
+							"en_US": "GIT repository of the Adaptec RAID Monitoring Plugin from Thomas-Krenn",
+							"de_DE": "GIT Repository des Adaptec RAID Monitoring Plugins von Thomas-Krenn"
 						}
 					}
 				],
 				"doc": {
 					"en_US": [
 						"<h4>Adaptec RAID Monitoring Plugin</h4>",
-						"<p>Using this plugin, the status of a local Adaptec RAID can be monitored by Nagios",
-						"or Icinga. Please ensure to configure arcconf correctly.</p>"
+						"<p>Using this plugin, the status of a local Adaptec RAID can be monitored.",
+						"Please ensure to configure arcconf correctly.</p>"
 					],
 					"de_DE": [
 						"<h4>Adaptec RAID Monitoring Plugin</h4>",
-						"<p>Mit diesem Plugin kann der Status eines lokalen Adaptec RAIDs mit Nagios oder Icinga",
-						"überwacht werden. Bitte stellen Sie die korrekte Konfiguration von arcconf sicher.</p>"
+						"<p>Mit diesem Plugin kann der Status eines lokalen Adaptec RAIDs überwacht werden.",
+						"Bitte stellen Sie die korrekte Konfiguration von arcconf sicher.</p>"
 					]
 				},
 				"tk_notify": true,
@@ -285,21 +285,21 @@
 						"name": "GIT Repository",
 						"href": "http://git.thomas-krenn.com/?p=check_lsi_raid.git;a=summary",
 						"description": {
-							"en_US": "Official GIT repository of the LSI Raid Monitoring Plugin from Thomas Krenn",
-							"de_DE": "Offizielles GIT Repository des LSI Raid Monitoring Plugin von Thomas Krenn"
+							"en_US": "GIT repository of the LSI RAID Monitoring Plugin from Thomas-Krenn",
+							"de_DE": "GIT Repository des LSI RAID Monitoring Plugins von Thomas-Krenn"
 						}
 					}
 				],
 				"doc": {
 					"en_US": [
 						"<h4>Adaptec RAID Monitoring Plugin</h4>",
-						"<p>Using this plugin, the status of a local LSI RAID can be monitored by Nagios",
-						"or Icinga. Please ensure to configure storcli correctly.</p>"
+						"<p>Using this plugin, the status of a local LSI RAID can be monitored.",
+						"Please ensure to configure storcli correctly.</p>"
 					],
 					"de_DE": [
 						"<h4>Adaptec RAID Monitoring Plugin</h4>",
-						"<p>Mit diesem Plugin kann der Status eines lokalen LSI RAIDs mit Nagios oder Icinga",
-						"überwacht werden. Bitte stellen Sie die korrekte Konfiguration von storcli sicher.</p>"
+						"<p>Mit diesem Plugin kann der Status eines lokalen LSI RAIDs überwacht werden.",
+						"Bitte stellen Sie die korrekte Konfiguration von storcli sicher.</p>"
 					]
 				},
 				"tk_notify": true,
@@ -343,26 +343,26 @@
 						"de_DE": "http://www.thomas-krenn.com/de/wiki/SMART_Attributes_Monitoring_Plugin"
 					},
 					"description": {
-						"en_US": "Official wiki article about the SMART Attributes Monitoring Plugin from Thomas Krenn",
-						"de_DE": "Offizieller Wiki Artikel zum SMART Attributes Monitoring Plugin von Thomas Krenn"
+						"en_US": "Wiki article about the SMART Attributes Monitoring Plugin from Thomas-Krenn",
+						"de_DE": "Wiki Artikel zum SMART Attributes Monitoring Plugin von Thomas-Krenn"
 					}
 				},{
 					"name": "GIT Repository",
 					"href": "http://git.thomas-krenn.com/?p=check_smart_attributes.git;a=summary",
 					"description": {
-						"en_US": "Official GIT repository of the SMART Attributes Monitoring Plugin from Thomas Krenn",
-						"de_DE": "Offizielles GIT Repository des SMART Attributes Monitoring Plugins von Thomas Krenn"
+						"en_US": "GIT repository of the SMART Attributes Monitoring Plugin from Thomas-Krenn",
+						"de_DE": "GIT Repository des SMART Attributes Monitoring Plugins von Thomas-Krenn"
 					}
 				}],
 				"doc": {
 					"en_US": [
 						"<h4>SMART Attributes Check</h4>",
-						"<p>Using this plugin, the SMART attributes of a harddisk can be monitored</p>"
+						"<p>Using this plugin, the SMART attributes of a harddisk can be monitored.</p>"
 						],
 					"de_DE": [
 						"<h4>SMART Attribute Check</h4>",
 						"<p>Mit diesem Plugin können die SMART Attribute einer Festplatte oder SSD",
-						"ausgelesen werden.</p>"
+						"überwacht werden.</p>"
 						]
 				},
 				"tk_notify": true,
