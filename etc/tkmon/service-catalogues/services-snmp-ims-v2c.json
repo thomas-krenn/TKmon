@@ -24,12 +24,12 @@
                                         "en_US": [
                                    		"<h4>SNMP Intel Modular Server CMM Fault</h4>",
                                                 "<p>Using this plugin, the CMM fault of a Intel Modular Server",
-                                                "can be monitored with Nagios or Icinga over SNMP.</p>"
+                                                "can be monitored via SNMP.</p>"
                                         ],
                                         "de_DE": [
                                                 "<h4>SNMP Intel Modular Server CMM Fehler</h4>",
                                                 "<p>Mit diesem Plugin kann der CMM Fehler eines Intel Modular Servers",
-                                                "mit Nagios oder Icinga über SNMP überwacht werden.</p>"
+                                                "über SNMP überwacht werden.</p>"
                                         ]
                                 },
                                 "tk_notify": false,
@@ -68,12 +68,12 @@
                                         "en_US": [
                                    		"<h4>SNMP Intel Modular Server Blade Fault</h4>",
                                                 "<p>Using this plugin, the blade fault of a Intel Modular Server",
-                                                "can be monitored with Nagios or Icinga over SNMP.</p>"
+                                                "can be monitored via SNMP.</p>"
                                         ],
                                         "de_DE": [
                                                 "<h4>SNMP Intel Modular Server Bladefehler</h4>",
                                                 "<p>Mit diesem Plugin kann der Bladefehler eines Intel Modular Servers",
-                                                "mit Nagios oder Icinga über SNMP überwacht werden.</p>"
+                                                "über SNMP überwacht werden.</p>"
                                         ]
                                 },
                                 "tk_notify": false,
@@ -112,12 +112,12 @@
                                         "en_US": [
                                    		"<h4>SNMP Intel Modular Server Switch Fault</h4>",
                                                 "<p>Using this plugin, the switch fault of a Intel Modular Server",
-                                                "can be monitored with Nagios or Icinga over SNMP.</p>"
+                                                "can be monitored via SNMP.</p>"
                                         ],
                                         "de_DE": [
                                                 "<h4>SNMP Intel Modular Server Switchfehler</h4>",
                                                 "<p>Mit diesem Plugin kann der Switchfehler eines Intel Modular Servers",
-                                                "mit Nagios oder Icinga über SNMP überwacht werden.</p>"
+                                                "über SNMP überwacht werden.</p>"
                                         ]
                                 },
                                 "tk_notify": false,
@@ -156,7 +156,7 @@
                                         "en_US": [
                                    		"<h4>SNMP Intel Modular Server SCM Fault</h4>",
                                                 "<p>Using this plugin, the SCM fault of a Intel Modular Server",
-                                                "can be monitored with Nagios or Icinga over SNMP.</p>"
+                                                "can be monitored via SNMP.</p>"
                                         ],
                                         "de_DE": [
                                                 "<h4>SNMP Intel Modular Server SCM Fehler</h4>",
@@ -189,12 +189,12 @@
                                         "en_US": [
                                    		"<h4>SNMP Intel Modular Server Drives with PFA</h4>",
                                                 "<p>Using this plugin, the number of drives with a crtitical PFA condition of a Intel Modular Server",
-                                                "can be monitored with Nagios or Icinga over SNMP.</p>"
+                                                "can be monitored via SNMP.</p>"
                                         ],
                                         "de_DE": [
                                                 "<h4>SNMP Intel Modular Server Festplatten mit PFA</h4>",
                                                 "<p>Mit diesem Plugin kann die Anzahl der Festplatten mit einem kritschen PFA Status eines Intel Modular Servers",
-                                                "mit Nagios oder Icinga über SNMP überwacht werden.</p>"
+                                                "über SNMP überwacht werden.</p>"
                                         ]
                                 },
                                 "tk_notify": false,
@@ -222,12 +222,12 @@
                                         "en_US": [
                                    		"<h4>SNMP Intel Modular Server Drives rebuilding</h4>",
                                                 "<p>Using this plugin, the number of rebuilding Drives of a Intel Modular Server",
-                                                "can be monitored with Nagios or Icinga over SNMP.</p>"
+                                                "can be monitored via SNMP.</p>"
                                         ],
                                         "de_DE": [
                                                 "<h4>SNMP Intel Modular Server rebuildende Festplatten</h4>",
                                                 "<p>Mit diesem Plugin kann die Anzahl der rebuildenden Festplatten eines Intel Modular Servers",
-                                                "mit Nagios oder Icinga über SNMP überwacht werden.</p>"
+                                                "über SNMP überwacht werden.</p>"
                                         ]
                                 },
                                 "tk_notify": false,
@@ -255,12 +255,12 @@
                                         "en_US": [
                                    		"<h4>SNMP Intel Modular Server Drives missing</h4>",
                                                 "<p>Using this plugin, the number of missing Drives of a Intel Modular Server",
-                                                "can be monitored with Nagios or Icinga over SNMP.</p>"
+                                                "can be monitored via SNMP.</p>"
                                         ],
                                         "de_DE": [
                                                 "<h4>SNMP Intel Modular Server fehlende Festplatten</h4>",
                                                 "<p>Mit diesem Plugin kann die Anzahl der fehlenden Festplatten eines Intel Modular Servers",
-                                                "mit Nagios oder Icinga über SNMP überwacht werden.</p>"
+                                                "über SNMP überwacht werden.</p>"
                                         ]
                                 },
                                 "tk_notify": false,
@@ -288,12 +288,12 @@
                                         "en_US": [
                                    		"<h4>SNMP Intel Modular Server Virtual Drives critical</h4>",
                                                 "<p>Using this plugin, the number of critical virtual Drives of a Intel Modular Server",
-                                                "can be monitored with Nagios or Icinga over SNMP.</p>"
+                                                "can be monitored via SNMP.</p>"
                                         ],
                                         "de_DE": [
                                                 "<h4>SNMP Intel Modular Server kritische virtuelle Drives</h4>",
                                                 "<p>Mit diesem Plugin kann die Anzahl der kritischen virtuellen Drives eines Intel Modular Servers",
-                                                "mit Nagios oder Icinga über SNMP überwacht werden.</p>"
+                                                "über SNMP überwacht werden.</p>"
                                         ]
                                 },
                                 "tk_notify": false,
@@ -332,12 +332,12 @@
                                         "en_US": [
                                    		"<h4>SNMP Intel Modular Server Fan Fault</h4>",
                                                 "<p>Using this plugin, the fan fault state of a Intel Modular Server",
-                                                "can be monitored with Nagios or Icinga over SNMP.</p>"
+                                                "can be monitored via SNMP.</p>"
                                         ],
                                         "de_DE": [
                                                 "<h4>SNMP Intel Modular Server Lüfterfehlerstatus</h4>",
                                                 "<p>Mit diesem Plugin kann der Lüfterfehlerstatus eines Intel Modular Servers",
-                                                "mit Nagios oder Icinga über SNMP überwacht werden.</p>"
+                                                "über SNMP überwacht werden.</p>"
                                         ]
                                 },
                                 "tk_notify": false,
@@ -376,12 +376,12 @@
                                         "en_US": [
                                    		"<h4>SNMP Intel Modular Server Power Supply Fault</h4>",
                                                 "<p>Using this plugin, the power supply fault state of a Intel Modular Server",
-                                                "can be monitored with Nagios or Icinga over SNMP.</p>"
+                                                "can be monitored via SNMP.</p>"
                                         ],
                                         "de_DE": [
                                                 "<h4>SNMP Intel Modular Server Netzteilfehlerstatus</h4>",
                                                 "<p>Mit diesem Plugin kann der Netzteilfehlerstatus eines Intel Modular Servers",
-                                                "mit Nagios oder Icinga über SNMP überwacht werden.</p>"
+                                                "über SNMP überwacht werden.</p>"
                                         ]
                                 },
                                 "tk_notify": false,
