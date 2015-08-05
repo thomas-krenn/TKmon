@@ -30,7 +30,7 @@
 				{
 					"label": "Workgroup",
 					"description": {
-						"en_US": "Workgroup in which the Samba share is located",
+						"en_US": "Workgroup where the Samba share is located",
 						"de_DE": "Workgroup in der sich die Samba-Freigabe befindet"
 					},
 					"validation": "string",
@@ -69,13 +69,11 @@
 				"doc": {
 					"en_US": [
 						"<h4>Samba Share Usage Check</h4>",
-						"<p>Using this plugin, the disk usage of a Samba Share can be monitored",
-						"with Nagios or Icinga.</p>"
+						"<p>Using this plugin, the disk usage of a Samba Share can be monitored.</p>"
 					],
 					"de_DE": [
 						"<h4>Samba Share Usage Check</h4>",
-						"<p>Mithilfe dieses Plugins wird die Kapazität einer Samba-Freigabe",
-						"mit Hilfe von Nagios oder Icinga überwacht.</p>"
+						"<p>Mithilfe dieses Plugins wird die Kapazität einer Samba-Freigabe überwacht.</p>"
 					]
 				},
 				"tk_notify": false,
@@ -100,7 +98,7 @@
 				{
 					"label": "IP-Address",
 					"description": {
-						"en_US": "IP-Address which should be resolved",
+						"en_US": "IP-Address to be resolved",
 						"de_DE": "IP-Adresse die aufgelöst werden soll"
 					},
 					"validation": "string",
@@ -114,7 +112,7 @@
 				"label": "Domain Name Service Check",
 				"description": {
 					"en_US": "Checks if the given host resolves to the corresponding IP-Address",
-					"de_DE": "Überprüft ob der gegebene Host zu der gebenen IP-Adresse aufgelöst wird"
+					"de_DE": "Überprüft ob der gegebene Host zu der zugehörigen IP-Adresse aufgelöst wird"
 				},
 				"defined": true,
 				"defined_in": "/etc/tkmon/icinga/base/05-check-commands.cfg",
@@ -122,7 +120,7 @@
 					"en_US": [
 						"<h4>Domain Name System Check</h4>",
 						"<p>Using this plugin, a domain can be monitored whether it resolves",
-						"to the correct IP-Address with Nagios or Icinga.</p>"
+						"to the correct IP-Address.</p>"
 						],
 					"de_DE": [
 						"<h4>Domain Name System Check</h4>",
@@ -163,8 +161,7 @@
 				"doc": {
 					"en_US": [
 						"<h4>Lightweight Directory Access Protocol Check</h4>",
-						"<p>Using this plugin, the connectivity to a LDAP server",
-						"can be monitored with Nagios or Icinga.</p>"
+						"<p>Using this plugin, the connectivity to a LDAP server can be monitored.</p>"
 					],
 					"de_DE": [
 						"<h4>Lightweight Directory Access Protocol Check</h4>",
@@ -205,8 +202,7 @@
 				"doc": {
 					"en_US": [
 						"<h4>Lightweight Directory Access Protocol Secure Check</h4>",
-						"<p>Using this plugin, the connectivity to a LDAPs server",
-						"can be monitored with Nagios or Icinga.</p>"
+						"<p>Using this plugin, the connectivity to a LDAPs server can be monitored.</p>"
 					],
 					"de_DE": [
 						"<h4>Lightweight Directory Access Protocol Secure Check</h4>",
@@ -226,7 +222,7 @@
 				{
 					"label": "Warning",
 					"description": {
-						"en_US": "Min. number of messages in queue to generate warning",
+						"en_US": "Min. amount of messages in queue to generate a warning",
 						"de_DE": "Minimale Anzahl an Nachrichten in MailQ, um eine Warnung zu generieren"
 					},
 					"validation": "integer",
@@ -235,7 +231,7 @@
 				{
 					"label": "Critical",
 					"description": {
-						"en_US": "Min. number of messages in queue to generate critical alert ( w < c )",
+						"en_US": "Min. amount of messages in queue to generate a critical alert ( w < c )",
 						"de_DE": "Minimale Anzahl an Nachrichten in MailQ, um einen Critical Alert zu generieren"
 					},
 					"validation": "integer",
@@ -256,8 +252,8 @@
 				"doc": {
 					"en_US": [
 						"<h4>Mailqueue Sendmail Check</h4>",
-						"<p>Using this plugin, the number of mails in Sendmail's",
-						"mailqueue can be monitored with Nagios or Icinga.</p>"
+						"<p>Using this plugin, the amount of mails in Sendmail's",
+						"mailqueue can be monitored.</p>"
 					],
 					"de_DE": [
 						"<h4>Mailqueue Sendmail Check</h4>",
@@ -277,7 +273,7 @@
 				{
 					"label": "Warning",
 					"description": {
-						"en_US": "Min. number of messages in queue to generate warning",
+						"en_US": "Min. amount of messages in queue to generate a warning",
 						"de_DE": "Minimale Anzahl an Nachrichten in MailQ, um eine Warnung zu generieren"
 					},
 					"validation": "integer",
@@ -286,7 +282,7 @@
 				{
 					"label": "Critical",
 					"description": {
-						"en_US": "Min. number of messages in queue to generate critical alert ( w < c )",
+						"en_US": "Min. amount of messages in queue to generate a critical alert ( w < c )",
 						"de_DE": "Minimale Anzahl an Nachrichten in MailQ um einen Critical Alert zu generieren"
 					},
 					"validation": "integer",
@@ -307,8 +303,8 @@
 				"doc": {
 					"en_US": [
 						"<h4>Mailqueue Postfix Check</h4>",
-						"<p>Using this plugin, the number of mails in Postfixs",
-						"mailqueue can be monitored with Nagios or Icinga.</p>"
+						"<p>Using this plugin, the amount of mails in Postfix's",
+						"mailqueue can be monitored.</p>"
 					],
 					"de_DE": [
 						"<h4>Mailqueue Postfix Check</h4>",
@@ -328,7 +324,7 @@
 				{
 					"label": "Warning",
 					"description": {
-						"en_US": "Min. number of messages in queue to generate warning",
+						"en_US": "Min. amount of messages in queue to generate a warning",
 						"de_DE": "Minimale Anzahl an Nachrichten in MailQ um eine Warnung zu generieren"
 					},
 					"validation": "integer",
@@ -337,7 +333,7 @@
 				{
 					"label": "Critical",
 					"description": {
-						"en_US": "Min. number of messages in queue to generate critical alert ( w < c )",
+						"en_US": "Min. amount of messages in queue to generate a critical alert ( w < c )",
 						"de_DE": "Minimale Anzahl an Nachrichten in MailQ um einen Critical Alert zu generieren"
 					},
 					"validation": "integer",
@@ -359,8 +355,8 @@
 				"doc": {
 					"en_US": [
 						"<h4>Mailqueue Exim Check</h4>",
-						"<p>Using this plugin, the number of mails in Exims",
-						"mailqueue can be monitored with Nagios or Icinga.</p>"
+						"<p>Using this plugin, the amount of mails in Exims",
+						"mailqueue can be monitored.</p>"
 						],
 					"de_DE": [
 						"<h4>Mailqueue Exim Check</h4>",
@@ -380,7 +376,7 @@
 				{
 					"label": "Warning",
 					"description": {
-						"en_US": "Min. number of messages in queue to generate warning",
+						"en_US": "Min. amount of messages in queue to generate a warning",
 						"de_DE": "Minimale Anzahl an Nachrichten in MailQ um eine Warnung zu generieren"
 					},
 					"validation": "integer",
@@ -389,7 +385,7 @@
 				{
 					"label": "Critical",
 					"description": {
-						"en_US": "Min. number of messages in queue to generate critical alert ( w < c )",
+						"en_US": "Min. amount of messages in queue to generate a critical alert ( w < c )",
 						"de_DE": "Minimale Anzahl an Nachrichten in MailQ um einen Critical Alert zu generieren"
 					},
 					"validation": "integer",
@@ -410,8 +406,8 @@
 				"doc": {
 					"en_US": [
 						"<h4>Mailqueue QMail Check</h4>",
-						"<p>Using this plugin, the number of mails in QMails",
-						"mailqueue can be monitored with Nagios or Icinga.</p>"
+						"<p>Using this plugin, the amount of mails in QMails",
+						"mailqueue can be monitored.</p>"
 					],
 					"de_DE": [
 						"<h4>Mailqueue QMail Check</h4>",
@@ -462,7 +458,7 @@
 					"en_US": [
 						"<h4>MySQL Connection Check</h4>",
 						"<p>Using this plugin, the connectivity to a MySQL",
-						"Server can be monitored with Nagios or Icinga.",
+						"Server can be monitored.",
 						"ATTENTION: The Username and Password will be visible in a",
 						"process list!</p>"
 						],
@@ -498,12 +494,12 @@
 					"en_US": [
 						"<h4>PostgreSQL Connection Check</h4>",
 						"<p>Using this plugin, the connectivity to a PostgreSQL",
-						"Server can be monitored with Nagios or Icinga.</p>"
+						"Server can be monitored.</p>"
 						],
 					"de_DE": [
 						"<h4>PostgreSQL Connection Check</h4>",
-						"<p>Mithilfe dieses Plugins kann überprüft werden ob",
-						"eine Verbindung zu einem PostgreSQL Server möglich ist.</p>"
+						"<p>Mithilfe dieses Plugins kann überprüft werden,",
+						"ob eine Verbindung zu einem PostgreSQL Server möglich ist.</p>"
 						]
 				},
 				"tk_notify": false,
@@ -567,7 +563,7 @@
 					"en_US": [
 						"<h4>Remote Authentication Dial-In User Service Check</h4>",
 						"<p>Using this plugin, the connectivity to a RADIUS",
-						"server can be monitored with Nagios or Icinga.</p>"
+						"server can be monitored.</p>"
 					],
 					"de_DE": [
 						"<h4>Remote Authentication Dial-In User Service Check</h4>",
@@ -609,7 +605,7 @@
 					"en_US": [
 						"<h4>Remote Procedure Call Check</h4>",
 						"<p>Using this plugin, the RPC connectivity of a",
-						"server can be monitored with Nagios or Icinga.</p>"
+						"server can be monitored.</p>"
 					],
 					"de_DE": [
 						"<h4>Remote Procedure Call Check</h4>",
@@ -641,7 +637,7 @@
 					"en_US": [
 						"<h4>Network File System Check</h4>",
 						"<p>Using this plugin, the NFS connectivity of a",
-						"server can be monitored with Nagios or Icinga.</p>"
+						"server can be monitored.</p>"
 						],
 					"de_DE": [
 						"<h4>Network File System Check</h4>",
