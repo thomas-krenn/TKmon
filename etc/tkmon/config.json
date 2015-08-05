@@ -132,7 +132,7 @@
         },
 
         "halt": {
-          "path": "/sbin/halt",
+          "path": "/sbin/poweroff",
           "sudo": true
         },
 
