@@ -1,13 +1,13 @@
 {% set info_link = web_link("https://www.thomas-krenn.com/de/wiki/SMS_Benachrichtigungen_mit_Icinga") %}
+{% set contact_link = web_link('Monitor/Icinga/Contacts/Edit') %}
 <div class="page-header">
     <h2>{% trans "Short Message Service" %}</h2>
 </div>
 
 <p>
     {% trans %}
-    Enable or disable SMS notifications. If enable, spool files are created
-    for SMS Tools. In addition to have a working SMS model configured, a contact
-    need a phone number to get the feature working.
+    Enable or disable SMS notifications. If enabled, spool files are created
+for further processing by the SMS tools daemon. In addition to get SMS set up, you neet to configure a <a href="{{ contact_link }}">contact</a> with its cellular numer.
     {% endtrans %}
     <a href="{{ info_link }}" target="_blank">
         {% trans "Click here for more information" %}.

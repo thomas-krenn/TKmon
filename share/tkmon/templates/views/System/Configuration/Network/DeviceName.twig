@@ -1,4 +1,4 @@
-{% set reboot_link = web_link('System/Configuration/Backup/Index#tab-reboot') %}
+{% set reboot_link = web_link('System/Configuration/Power/Inde:x#tab-reboot') %}
 <h4>{% trans "Device name" %}</h4>
 
 <div id="device-errors">
@@ -7,9 +7,9 @@
 
 <div id="device-success" class="hidden alert alert-success">
     {% trans %}
-    New device name was written to appliance. You should consider
-    to reboot your device. To do so, please <a href="{{ reboot_link }}">
-    click on this link</a> and follow instructions.
+    The new device name was written to your appliance. You should consider
+    to reboot the device. To do so, please <a href="{{ reboot_link }}">
+    click on this link</a> and carry out a reboot.
     {% endtrans %}
 </div>
 
@@ -39,7 +39,7 @@
         >
 
     <fieldset>
-        <label for="device_name">{% trans "Current devicename" %}</label>
+        <label for="device_name">{% trans "Current device name" %}</label>
         <input type="text" id="device_name" name="device_name" value="{{ device_name }}" />
     </fieldset>
 
