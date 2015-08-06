@@ -77,6 +77,7 @@
     - rewrite
     - fastcgi
     - actions
+    - ssl
   - name : FastCGI jail
     file: 'path=/var/www/cgi-bin/
           mode=0755
@@ -93,6 +94,11 @@
           dest=/etc/apache2/ports.conf
           backup=yes
           mode=0644'
+  - name: Configure SSL Site
+    copy: 'src=files/apache2/default-ssl.conf
+          dest=/etc/apache2/sites-available/default-ssl.conf
+          backup=yes
+          mode=0644'
   - name: TKMON apache2 configuration 1
     copy: 'src=../../etc/apache2/conf.d/tkmon.conf
           dest=/etc/apache2/conf-available/tkmon.conf
@@ -106,6 +112,10 @@
     with_items:
     - tkmon
     - pnp4nagios
+  - name: Apache2 enable site ssl
+    command: /usr/sbin/a2ensite {{item}}
+    with_items:
+    - default-ssl
   - name: Icinga htpass file
     copy: 'src=files/icinga/htpasswd.users
           dest=/etc/icinga/htpasswd.users

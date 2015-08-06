@@ -20,6 +20,7 @@
  */
 
 namespace NETWAYS\Http;
+use NETWAYS\Http\Exception\SimpleProxyException;
 
 /**
  * Proxy class to fetch embedded data from a website
@@ -82,6 +83,20 @@ class SimpleProxy
      * @var array
      */
     private $info = array();
+
+    /**
+     * Curl error number
+     *
+     * @var int
+     */
+    private $cErrno;
+
+    /**
+     * Curl error
+     *
+     * @var string
+     */
+    private $cError;
 
     /**
      * Create a new object
@@ -185,6 +200,11 @@ class SimpleProxy
     public function setBaseUrl($baseUrl)
     {
         $this->baseUrl = $baseUrl;
+
+        if (strpos($this->baseUrl, 'https') === 0) {
+            curl_setopt($this->curlHandler, CURLOPT_SSL_VERIFYPEER, false);
+            curl_setopt($this->curlHandler, CURLOPT_SSL_VERIFYHOST, false);
+        }
     }
 
     /**
@@ -399,21 +419,28 @@ class SimpleProxy
     public function doRequest()
     {
         $this->writeOptions();
-        $this->content = curl_exec($this->curlHandler);
-        $this->info = curl_getinfo($this->curlHandler);
-
-        $return = (int)$this->getInfo(CURLINFO_HTTP_CODE);
+        $this->content  = curl_exec($this->curlHandler);
+        $this->info     = curl_getinfo($this->curlHandler);
+        $this->cErrno   = curl_errno($this->curlHandler);
+        $this->cError   = curl_error($this->curlHandler);
+        $return         = (int)$this->getInfo(CURLINFO_HTTP_CODE);
 
         // Something went wrong
         // 400 >= Client error
         // 500 >= Server error
         // http://httpstatus.es/
-
         if ($return >= 500) {
             throw new \NETWAYS\Http\Exception\SimpleProxyException('Server error: '. $return);
         } elseif ($return >= 400) {
             throw new \NETWAYS\Http\Exception\SimpleProxyException('Client error: '. $return);
+        } elseif ($this->cErrno > 0) {
+            throw new SimpleProxyException(sprintf(
+                'CURL Error: %s (%d)',
+                $this->cError,
+                $this->cErrno
+            ));
         }
+
     }
 
     /**
