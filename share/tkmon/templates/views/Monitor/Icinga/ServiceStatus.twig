@@ -78,7 +78,7 @@
         <td>{{ row.attempts }}</td>
         <td style="text-align: right">
             {% if pnp4nagios.setObject(row).hasChart() %}
-                <a class="btn" style="cursor: pointer" data-toggle="popover-pnp" data-url="{{ pnp4nagios.getUrl(true) }}">
+                <a class="btn" style="cursor: pointer" data-toggle="popover-pnp" data-trigger="focus" tabindex="0" data-url="{{ pnp4nagios.getUrl(true) }}">
                     <i class="icon-zoom-in"></i>
                 </a>
                 <a class="btn" href="{{ pnp4nagios.getUrl() }}" target="_blank" alt="{% trans "PNP4Nagios Chart" %}">
