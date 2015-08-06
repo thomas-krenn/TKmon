@@ -38,7 +38,7 @@
 				"name":"check_nt_uptime",
 				"label":"NT-Uptime",
 				"description":{
-					"en_US":"Checks via NSClient the Uptime of a remote Server",
+					"en_US":"Checks via NSClient the uptime of a remote server",
 					"de_DE":"Überprüft über NSClient die Laufzeit eines entfernten Servers"
 				},
 				"defined":true,
@@ -46,13 +46,13 @@
 				"doc":{
 					"en_US":[
 						"<h4>Uptime NT Check</h4>",
-						"<p>Using this plugin, the uptime of a remote Server",
-						"can be monitored with Nagios or Icinga over NSClient.</p>"
+						"<p>Using this plugin, the uptime of a remote server",
+						"can be monitored via NSClient.</p>"
 					],
 					"de_DE":[
 						"<h4>Uptime NT Check</h4>",
 						"<p>Mit diesem Plugin kann die Laufzeit eines entfernten Servers",
-						"mit Nagios oder Icinga über NSClient überwacht werden.</p>"
+						"über NSClient überwacht werden.</p>"
 					]
 				},
 				"tk_notify":false,
@@ -102,13 +102,12 @@
 				"doc":{
 					"en_US":[
 						"<h4>Clientversion NT Check</h4>",
-						"<p>Using this plugin, the Version of the installed NSClient++",
-						"can be monitored with Nagios or Icinga over NSClient.</p>"
+						"<p>Using this plugin, the version of the installed NSClient++",
+						"can be monitored.</p>"
 					],
 					"de_DE":[
 						"<h4>Clientversion NT Check</h4>",
-						"<p>Mit diesem Plugin kann die Version von NSClient++",
-						" mittels Nagios oder Icinga über NSClient überwacht werden.</p>"
+						"<p>Mit diesem Plugin kann die Version von NSClient++ überwacht werden.</p>"
 					]
 				},
 				"tk_notify":false,
@@ -160,7 +159,7 @@
 				"name":"check_nt_cpuload",
 				"label":"NT-CPULoad",
 				"description":{
-					"en_US":"Checks via NSClient the CPU load of the remote Server",
+					"en_US":"Checks via NSClient the CPU load of the remote server",
 					"de_DE":"Überprüft über NSClient die CPU Last des entfernten Servers"
 				},
 				"defined":true,
@@ -183,13 +182,13 @@
 				"doc":{
 					"en_US":[
 						"<h4>CPULoad NT Check</h4>",
-						"<p>Using this plugin, the CPU load of the remote Server",
-						"can be monitored with Nagios or Icinga over NSClient.</p>"
+						"<p>Using this plugin, the CPU load of the remote server",
+						"can be monitored via NSClient.</p>"
 					],
 					"de_DE":[
 						"<h4>CPULoad NT Check</h4>",
 						"<p>Mit diesem Plugin kann CPU Last eines entfernten Servers",
-						" mittels Nagios oder Icinga über NSClient überwacht werden.</p>"
+						"über NSClient überwacht werden.</p>"
 					]
 				},
 				"tk_notify":false,
@@ -226,7 +225,7 @@
 						"label":"Service",
 						"description":{
 							"en_US":"State of the service to be checked, default value is nsclient",
-							"de_DE":"Status des zu überprüfenden Services, als Standardwert der nsclient Dienst"
+							"de_DE":"Status des zu überprüfenden Services, Standardwert ist der nsclient Dienst"
 						},
 						"validation":"string",
 						"argument":"-l",
@@ -265,12 +264,12 @@
 					"en_US":[
 						"<h4>Servicestate NT Check</h4>",
 						"<p>Using this plugin, the state of a specific service",
-						"can be monitored with Nagios or Icinga over NSClient.</p>"
+						"can be monitored via NSClient.</p>"
 					],
 					"de_DE":[
 						"<h4>Servicestate NSClient Check</h4>",
 						"<p>Mit diesem Plugin kann der Zustand eines angebenen Services",
-						" mittels Nagios oder Icinga über NSClient überwacht werden.</p>"
+						"über NSClient überwacht werden.</p>"
 					]
 				},
 				"tk_notify":false,
@@ -332,7 +331,7 @@
 				"name":"check_nt_memuse",
 				"label":"NT-MemUse",
 				"description":{
-					"en_US":"Checks via NSClient the Memory usage of a remote Server",
+					"en_US":"Checks via NSClient the Memory usage of a remote server",
 					"de_DE":"Überprüft über NSClient die Speicherauslastung eines entfernten Servers"
 				},
 				"defined":true,
@@ -340,13 +339,13 @@
 				"doc":{
 					"en_US":[
 						"<h4>MemUse NT Check</h4>",
-						"<p>Using this plugin, the Memory usage of a remote Server",
-						"can be monitored with Nagios or Icinga over NSClient.</p>"
+						"<p>Using this plugin, the Memory usage of a remote server",
+						"can be monitored via NSClient.</p>"
 					],
 					"de_DE":[
 						"<h4>MemUse NT Check</h4>",
 						"<p>Mit diesem Plugin kann die Speicherauslastung eines entfernten Servers",
-						" mittels Nagios oder Icinga über NSClient überwacht werden.</p>"
+						"über NSClient überwacht werden.</p>"
 					]
 				},
 				"tk_notify":false,
@@ -418,7 +417,7 @@
 				"name":"check_nt_useddiskspace",
 				"label":"NT-UsedDiskSpace",
 				"description":{
-					"en_US":"Checks via NSClient the Disk usage of a remote Server",
+					"en_US":"Checks via NSClient the Disk usage of a remote server",
 					"de_DE":"Überprüft über NSClient die Festplattenauslastung eines entfernten Servers"
 				},
 				"defined":true,
@@ -426,13 +425,13 @@
 				"doc":{
 					"en_US":[
 						"<h4>UsedDiskSpace NT Check</h4>",
-						"<p>Using this plugin, the Disk usage of a remote Server",
-						"can be monitored with Nagios or Icinga over NSClient.</p>"
+						"<p>Using this plugin, the Disk usage of a remote server",
+						"can be monitored via NSClient.</p>"
 					],
 					"de_DE":[
 						"<h4>UsedDiskSpace NT Check</h4>",
 						"<p>Mit diesem Plugin kann die Festplattenauslastung eines entfernten Servers",
-						" mittels Nagios oder Icinga über NSClient überwacht werden.</p>"
+						"über NSClient überwacht werden.</p>"
 					]
 				},
 				"tk_notify":false,
