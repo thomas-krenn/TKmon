@@ -2,19 +2,22 @@
 
 <h2>{% trans "Settings" %}</h2>
 
-<div class="alert alert-info">
-    {% trans %}
-    Here you can configure your Thomas Krenn Call-Home-Service Subscription. Click the
-    <a href="http://www.thomas-krenn.com/en/wiki/Call-Home-Service">following link to get more information</a>.
-    {% endtrans %}
-</div>
-
 <p>
-{% trans %}
-    All data between your environment and Thomas Krenn will be encrypted. Read more on
-    our <strong><a href="http://www.thomas-krenn.com/en/wiki/Call-Home-Service_Privacy_Policy">Call-Home-Service Privacy Policy</a></strong>.
-{% endtrans %}
+    {% trans %}
+    Configure your Thomas Krenn Call-Home-Service subscription here. Click the
+    <a target="_blank" href="http://www.thomas-krenn.com/en/wiki/Call-Home-Service">following link to get more information</a>.
+    {% endtrans %}
 </p>
+<div class="container-spacer-down alert alert-info">
+    <h5>Privacy Policy</h5>
+    <p>
+        <i class="icon-thumbs-up icon-4x pull-left"></i>
+        {% trans %}
+    All data between your appliance and Thomas Krenn will be encrypted with GPG. Find out more in
+    our <a target="_blank" href="http://www.thomas-krenn.com/en/wiki/Call-Home-Service_Privacy_Policy">Call-Home-Service Privacy Policy</a>.
+{% endtrans %}
+    </p>
+</div>
 
 <div id="alert-config-errors"></div>
 
@@ -57,12 +60,8 @@
     </fieldset>
 
     <p class="container-spacer-down">
-        {% trans %}
-            Press the following button to commit your changes.
-        {% endtrans %}
-
         <button type="submit" class="btn btn-primary">
-            <i class="icon-save"></i> {% trans "Save" %}
+            <i class="icon-save"></i> {% trans "Save changes" %}
         </button>
     </p>
 

@@ -1,6 +1,6 @@
 <p>
     Install system updates regularly to keep your system up-to-date. System
-    updates include Ubuntu security updates and updates of TKmon and Icinga.
+    updates include Ubuntu security updates and updates for TKmon and Icinga.
 </p>
 
 <hr />
@@ -8,22 +8,21 @@
 <h5>Keep configuration files unmodified</h5>
 
 <p>
-    Avoid manual changes of configuration files on the system. Doing so ensures
-    the proper function of TKmon.
+    Avoid manual changes of configuration files on the system. Doing so ensures TKmon to function properly.
 </p>
 
 <hr />
 
-<h5>When an update fails</h5>
+<h5>If an update fails</h5>
 
 <p>
-    Under certain conditions an update may need manual intervention to run
-    successfully. This happens for example when a configuration file has been
-    manually altered. In such situations the packaging system needs to know
+    Sometimes an update needs a manual interaction to run
+    successfully. This can happen if a configuration file has been
+    modified manually. In such situations the packaging system needs to know
     whether the original contents of the configuration file, or the altered
     content should be used. Whenever this happens, you have to run the update
     manually on the command line by executing "apt-get dist-upgrade" (e.g. via
-    SSH). Then you can answer questions of the packing system interactively.
+    SSH). Then you can answeri the questions of the packaging system interactively.
 </p>
 
 <hr />
@@ -33,10 +32,9 @@
     <p>
         <i class="icon-thumbs-up icon-4x pull-left"></i>
         You are free to make any manual changes on the system. In this case we
-        assume that you are familiar with Linux systems and that you can solve
-        problems yourself. When you want to install additional software, we
-        recommend to install only packages provided by the offical Ubuntu
-        repository. As mentioned above, updates via this webinterface may fail
+        assume that you are familiar with Linux systems and that you can resolve any problems on your own. When you want to install additional software, we
+        recommend installing only packages provided by the offical Ubuntu
+        repositories. As mentioned above, updates via this webinterface may fail
         when configuration files are modified manually.
     </p>
 </div>

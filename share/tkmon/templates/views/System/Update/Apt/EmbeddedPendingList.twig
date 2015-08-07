@@ -2,12 +2,12 @@
 
 {% if error %}
     <div class="alert alert-error">
-        <h5>{% trans "Error occurred" %}</h5>
+        <h5>{% trans "An error occurred" %}</h5>
         <pre>{{ error }}</pre>
         <p>
             {% trans %}
-            This means that your packages are broken. Please test your packages and
-            fix it manually.
+            You have held broken packages. Please examine your current packages and
+            fix the problems manually on the command line.
             {% endtrans %}
         </p>
     </div>
