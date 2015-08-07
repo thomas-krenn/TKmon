@@ -20,7 +20,7 @@ for further processing by the SMS tools daemon. In addition to get SMS set up, y
 
 <p id="sms-enable-again" class="hidden container-spacer-down">
     <a href="{{ web_link('Index') }}" class="btn btn-primary">
-        <i class="icon-refresh"></i> {% trans "Recheck or change sms alert feature" %}
+        <i class="icon-refresh"></i> {% trans "Recheck or change SMS alert feature" %}
     </a>
 </p>
 
@@ -44,7 +44,7 @@ for further processing by the SMS tools daemon. In addition to get SMS set up, y
         </button>
         <p class="container-spacer-down">
             {% trans %}
-            SMS Alerts will be disabled for existing and new contacts.
+            SMS Alerts will be <strong>disabled</strong> for existing and new contacts.
             {% endtrans %}
         </p>
     {% else %}
@@ -54,7 +54,7 @@ for further processing by the SMS tools daemon. In addition to get SMS set up, y
         </button>
         <p class="container-spacer-down">
             {% trans %}
-            SMS Alerts will be enabled for new contacts with a cellular number configured.
+            SMS Alerts will be <strong>enabled</strong> for new contacts with a cellular number configured.
             {% endtrans %}
         </p>
     {% endif %}
