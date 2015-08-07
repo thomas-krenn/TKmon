@@ -3,6 +3,7 @@
 Vagrant.configure(2) do |config|
   config.vm.box = "parallels/ubuntu-14.04"
   config.vm.network "forwarded_port", guest: 80, host: 8085
+  config.vm.network "forwarded_port", guest: 8086, host: 8086
   config.vm.provision "shell", run: "always", inline: <<-SHELL
     export DEBIAN_FRONTEND=noninteractive
     if [[ -z $(ls -A /var/lib/apt/lists/) ]] ||
