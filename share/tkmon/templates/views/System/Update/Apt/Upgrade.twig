@@ -198,7 +198,7 @@
                         var error = data.errors[0].message;
 
                         if (String(error).match(/^no pending updates/i)) {
-                            messageBox('{% trans 'No updates found, everything ok' %}')
+                            messageBox('{% trans 'No updates found, everything OK' %}')
                         } else {
                             messageBox(error, 'error');
                         }

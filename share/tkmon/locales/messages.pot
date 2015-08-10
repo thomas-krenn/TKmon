@@ -144,7 +144,7 @@ msgstr ""
 #: /tmp/tkmon-templates//197bfcbbc57cdec09c363d2ee655.php:46
 #: /tmp/tkmon-templates//5e982da2dfdd9858d7aac98e1f54.php:68
 #: /tmp/tkmon-templates//5e982da2dfdd9858d7aac98e1f54.php:215
-#: /tmp/tkmon-templates//fce79dc009c0b6650594ef7a04cf.php:68
+#: /tmp/tkmon-templates//fce79dc009c0b6650594ef7a04cf.php:69
 msgid "Name"
 msgstr ""
 
@@ -159,19 +159,19 @@ msgstr ""
 
 #: /tmp/tkmon-templates//197bfcbbc57cdec09c363d2ee655.php:96
 #: /tmp/tkmon-templates//5e982da2dfdd9858d7aac98e1f54.php:133
-#: /tmp/tkmon-templates//fce79dc009c0b6650594ef7a04cf.php:188
+#: /tmp/tkmon-templates//fce79dc009c0b6650594ef7a04cf.php:189
 msgid "Edit"
 msgstr ""
 
 #: /tmp/tkmon-templates//197bfcbbc57cdec09c363d2ee655.php:104
 #: /tmp/tkmon-templates//5e982da2dfdd9858d7aac98e1f54.php:142
-#: /tmp/tkmon-templates//fce79dc009c0b6650594ef7a04cf.php:206
+#: /tmp/tkmon-templates//fce79dc009c0b6650594ef7a04cf.php:207
 msgid "Remove"
 msgstr ""
 
 #: /tmp/tkmon-templates//197bfcbbc57cdec09c363d2ee655.php:115
 #: /tmp/tkmon-templates//5e982da2dfdd9858d7aac98e1f54.php:153
-#: /tmp/tkmon-templates//fce79dc009c0b6650594ef7a04cf.php:217
+#: /tmp/tkmon-templates//fce79dc009c0b6650594ef7a04cf.php:218
 msgid "Yes, delete please"
 msgstr ""
 
@@ -226,6 +226,7 @@ msgid "Simple and fast monitoring based on Icinga."
 msgstr ""
 
 #: /tmp/tkmon-templates//26c2570911fd3238ad6112120c90.php:84
+#: /tmp/tkmon-templates//ce163b1737be8b35d63f417e5771.php:39
 msgid "Service status"
 msgstr ""
 
@@ -245,7 +246,7 @@ msgstr ""
 #: /tmp/tkmon-templates//2d8f6d518fa303eb915c2091f0c8.php:73
 #: /tmp/tkmon-templates//6d86acd653310efdfb17d14d1652.php:35
 #: /tmp/tkmon-templates//82f49410fc31f58bc86b037830ca.php:57
-#: /tmp/tkmon-templates//c1e6088779b0dc44ba2eaefad6de.php:51
+#: /tmp/tkmon-templates//c1e6088779b0dc44ba2eaefad6de.php:56
 #: /tmp/tkmon-templates//de8ea8a2246c2c8ebc55ce886be4.php:63
 msgid "Success"
 msgstr ""
@@ -374,7 +375,7 @@ msgid "Cache status"
 msgstr ""
 
 #: /tmp/tkmon-templates//4b7b2b666e3f4563286eb7aba8c0.php:22
-msgid "Daemon Status"
+msgid "Daemon status"
 msgstr ""
 
 #: /tmp/tkmon-templates//4b7b2b666e3f4563286eb7aba8c0.php:29
@@ -415,7 +416,7 @@ msgid "Device"
 msgstr ""
 
 #: /tmp/tkmon-templates//562951fd1557f52812bfccac20ae.php:44
-#: /tmp/tkmon-templates//fce79dc009c0b6650594ef7a04cf.php:80
+#: /tmp/tkmon-templates//fce79dc009c0b6650594ef7a04cf.php:81
 msgid "Address"
 msgstr ""
 
@@ -479,19 +480,19 @@ msgid "Press the following button to add a new person:"
 msgstr ""
 
 #: /tmp/tkmon-templates//5e982da2dfdd9858d7aac98e1f54.php:49
-#: /tmp/tkmon-templates//fce79dc009c0b6650594ef7a04cf.php:48
+#: /tmp/tkmon-templates//fce79dc009c0b6650594ef7a04cf.php:49
 msgid "Add new"
 msgstr ""
 
 #: /tmp/tkmon-templates//5e982da2dfdd9858d7aac98e1f54.php:58
-#: /tmp/tkmon-templates//fce79dc009c0b6650594ef7a04cf.php:57
+#: /tmp/tkmon-templates//fce79dc009c0b6650594ef7a04cf.php:58
 msgid ""
 "Please <a href=\"%restart_url%\">restart your Icinga instance</a> for the "
 "changes to take effect."
 msgstr ""
 
 #: /tmp/tkmon-templates//5e982da2dfdd9858d7aac98e1f54.php:72
-#: /tmp/tkmon-templates//fce79dc009c0b6650594ef7a04cf.php:72
+#: /tmp/tkmon-templates//fce79dc009c0b6650594ef7a04cf.php:73
 #: /home/gschoenb/tkdata/projects/tkmon/packages/tkmon/lib/tkmon/TKMON/Extension/Host/DefaultAttributes.php:105
 msgid "Alias"
 msgstr ""
@@ -515,13 +516,13 @@ msgstr ""
 #: /tmp/tkmon-templates//ed5127fc2369841892ce8bd98eb5.php:29
 #: /tmp/tkmon-templates//f3894920a394545db34c482eca67.php:50
 #: /tmp/tkmon-templates//fb2e0db838a188251d744cff76ca.php:48
-#: /tmp/tkmon-templates//fce79dc009c0b6650594ef7a04cf.php:240
+#: /tmp/tkmon-templates//fce79dc009c0b6650594ef7a04cf.php:241
 #: /tmp/tkmon-templates//ff5fb4588c11c70d4a8ac6a3dd50.php:29
 msgid "Success!"
 msgstr ""
 
 #: /tmp/tkmon-templates//5e982da2dfdd9858d7aac98e1f54.php:225
-#: /tmp/tkmon-templates//c1e6088779b0dc44ba2eaefad6de.php:95
+#: /tmp/tkmon-templates//c1e6088779b0dc44ba2eaefad6de.php:100
 msgid "Email address"
 msgstr ""
 
@@ -554,12 +555,12 @@ msgstr ""
 #: /tmp/tkmon-templates//5efe551e22544c2f40c795587f8a.php:125
 #: /tmp/tkmon-templates//82f49410fc31f58bc86b037830ca.php:115
 #: /tmp/tkmon-templates//bfc069bc54244e60da6682ef2da9.php:95
-#: /tmp/tkmon-templates//fce79dc009c0b6650594ef7a04cf.php:344
+#: /tmp/tkmon-templates//fce79dc009c0b6650594ef7a04cf.php:348
 msgid "Save"
 msgstr ""
 
 #: /tmp/tkmon-templates//5efe551e22544c2f40c795587f8a.php:24
-#: /tmp/tkmon-templates//fce79dc009c0b6650594ef7a04cf.php:198
+#: /tmp/tkmon-templates//fce79dc009c0b6650594ef7a04cf.php:199
 msgid "Services"
 msgstr ""
 
@@ -606,7 +607,7 @@ msgid "Ready to save? Press save button to do so or cancel to abort."
 msgstr ""
 
 #: /tmp/tkmon-templates//5efe551e22544c2f40c795587f8a.php:118
-#: /tmp/tkmon-templates//fce79dc009c0b6650594ef7a04cf.php:337
+#: /tmp/tkmon-templates//fce79dc009c0b6650594ef7a04cf.php:341
 msgid "Cancel"
 msgstr ""
 
@@ -631,7 +632,7 @@ msgid "SMS Alert feature is"
 msgstr ""
 
 #: /tmp/tkmon-templates//63d08a12bfa544184991a252d916.php:62
-msgid "Recheck or change sms alert feature"
+msgid "Recheck or change SMS alert feature"
 msgstr ""
 
 #: /tmp/tkmon-templates//63d08a12bfa544184991a252d916.php:91
@@ -641,7 +642,8 @@ msgid "Disable"
 msgstr ""
 
 #: /tmp/tkmon-templates//63d08a12bfa544184991a252d916.php:97
-msgid "SMS Alerts will be disabled for existing and new contacts."
+msgid ""
+"SMS Alerts will be <strong>disabled</strong> for existing and new contacts."
 msgstr ""
 
 #: /tmp/tkmon-templates//63d08a12bfa544184991a252d916.php:107
@@ -652,8 +654,8 @@ msgstr ""
 
 #: /tmp/tkmon-templates//63d08a12bfa544184991a252d916.php:113
 msgid ""
-"SMS Alerts will be enabled for new contacts with a cellular number "
-"configured."
+"SMS Alerts will be <strong>enabled</strong> for new contacts with a cellular "
+"number configured."
 msgstr ""
 
 #: /tmp/tkmon-templates//63d08a12bfa544184991a252d916.php:146
@@ -697,7 +699,7 @@ msgid "Icinga access"
 msgstr ""
 
 #: /tmp/tkmon-templates//66230e8e2a7b181cb891168d2957.php:46
-msgid "SSH Access"
+msgid "SSH access"
 msgstr ""
 
 #: /tmp/tkmon-templates//687a93a676ef07e5a5faafc9afc1.php:62
@@ -913,16 +915,12 @@ msgstr ""
 
 #: /tmp/tkmon-templates//87da6b293ac19ba715e6a5d4ece8.php:40
 msgid ""
-"Icinga is running if the daemon is available and the status file is up-to-"
-"date."
+"<span class=\"label label-info\">Information:</span> Icinga is running if "
+"the daemon is available and the status file is up-to-date."
 msgstr ""
 
-#: /tmp/tkmon-templates//87da6b293ac19ba715e6a5d4ece8.php:45
-msgid "Press the following button to refresh the status:"
-msgstr ""
-
-#: /tmp/tkmon-templates//87da6b293ac19ba715e6a5d4ece8.php:50
-msgid "Refresh"
+#: /tmp/tkmon-templates//87da6b293ac19ba715e6a5d4ece8.php:46
+msgid "Refresh Status"
 msgstr ""
 
 #: /tmp/tkmon-templates//887ec347e83f103ea27016cdecee.php:20
@@ -1089,32 +1087,36 @@ msgstr ""
 
 #: /tmp/tkmon-templates//c1e6088779b0dc44ba2eaefad6de.php:40
 msgid ""
-"All data between your appliance and Thomas Krenn will be encrypted with GPG. "
-"Find out more in\n"
-"    our <a target=\"_blank\" href=\"http://www.thomas-krenn.com/en/wiki/Call-"
-"Home-Service_Privacy_Policy\">Call-Home-Service Privacy Policy</a>."
+"All data between your appliance and Thomas Krenn will be encrypted with GPG."
 msgstr ""
 
-#: /tmp/tkmon-templates//c1e6088779b0dc44ba2eaefad6de.php:56
+#: /tmp/tkmon-templates//c1e6088779b0dc44ba2eaefad6de.php:46
+msgid ""
+"Find out more at our <a target=\"_blank\" href=\"http://www.thomas-krenn.com/"
+"en/wiki/Call-Home-Service_Privacy_Policy\">Call-Home-Service Privacy Policy</"
+"a>."
+msgstr ""
+
+#: /tmp/tkmon-templates//c1e6088779b0dc44ba2eaefad6de.php:61
 msgid ""
 "Changes have been written to disk.\n"
 "            Please <a href=\"%restart_link%\">restart your Icinga instance</"
 "a> for the changes to take effect."
 msgstr ""
 
-#: /tmp/tkmon-templates//c1e6088779b0dc44ba2eaefad6de.php:65
+#: /tmp/tkmon-templates//c1e6088779b0dc44ba2eaefad6de.php:70
 msgid "Toggle to enable call-home support"
 msgstr ""
 
-#: /tmp/tkmon-templates//c1e6088779b0dc44ba2eaefad6de.php:84
+#: /tmp/tkmon-templates//c1e6088779b0dc44ba2eaefad6de.php:89
 msgid "Contact person"
 msgstr ""
 
-#: /tmp/tkmon-templates//c1e6088779b0dc44ba2eaefad6de.php:106
+#: /tmp/tkmon-templates//c1e6088779b0dc44ba2eaefad6de.php:111
 msgid "Call-Home Auth-Key"
 msgstr ""
 
-#: /tmp/tkmon-templates//c1e6088779b0dc44ba2eaefad6de.php:118
+#: /tmp/tkmon-templates//c1e6088779b0dc44ba2eaefad6de.php:123
 msgid "Save changes"
 msgstr ""
 
@@ -1142,17 +1144,13 @@ msgstr ""
 msgid "Reboot device!"
 msgstr ""
 
-#: /tmp/tkmon-templates//ce163b1737be8b35d63f417e5771.php:39
-msgid "Service Status"
-msgstr ""
-
 #: /tmp/tkmon-templates//ce163b1737be8b35d63f417e5771.php:46
 msgid "List of currently monitored services"
 msgstr ""
 
 #: /tmp/tkmon-templates//ce163b1737be8b35d63f417e5771.php:54
 msgid ""
-"Press the releod button to reload the current view or restrict the view to "
+"Press the reload button to update the current view or restrict the view to "
 "one of the following status:\n"
 "            <a href=\"%link_ok%\">OK</a>,\n"
 "            <a href=\"%link_warning%\">WARNING</a>,\n"
@@ -1444,14 +1442,14 @@ msgstr ""
 
 #: /tmp/tkmon-templates//ed5127fc2369841892ce8bd98eb5.php:89
 msgid ""
-"System access (ssh/shell) for the user %username% will be <strong>enabled</"
-"strong>."
+"System access (SSH/shell) will be <strong>enabled</strong> for the user "
+"%username%."
 msgstr ""
 
 #: /tmp/tkmon-templates//ed5127fc2369841892ce8bd98eb5.php:105
 msgid ""
-"System access (ssh/shell) for the user %username% will be <strong>disabled</"
-"strong>."
+"System access (SSH/shell) will be <strong>disabled</strong> for the user "
+"%username%."
 msgstr ""
 
 #: /tmp/tkmon-templates//f01d1b584b903f02bdb37b2af317.php:28
@@ -1491,7 +1489,7 @@ msgid "Test for running upgrade ..."
 msgstr ""
 
 #: /tmp/tkmon-templates//f01d1b584b903f02bdb37b2af317.php:251
-msgid "No updates found, everything ok"
+msgid "No updates found, everything OK"
 msgstr ""
 
 #: /tmp/tkmon-templates//f01d1b584b903f02bdb37b2af317.php:327
@@ -1553,51 +1551,55 @@ msgstr ""
 msgid "Send"
 msgstr ""
 
-#: /tmp/tkmon-templates//fce79dc009c0b6650594ef7a04cf.php:23
+#: /tmp/tkmon-templates//fce79dc009c0b6650594ef7a04cf.php:24
 msgid "Hosts"
 msgstr ""
 
-#: /tmp/tkmon-templates//fce79dc009c0b6650594ef7a04cf.php:30
+#: /tmp/tkmon-templates//fce79dc009c0b6650594ef7a04cf.php:31
 msgid "Maintain your hosts and services here."
 msgstr ""
 
-#: /tmp/tkmon-templates//fce79dc009c0b6650594ef7a04cf.php:37
+#: /tmp/tkmon-templates//fce79dc009c0b6650594ef7a04cf.php:38
 msgid "Add new host"
 msgstr ""
 
-#: /tmp/tkmon-templates//fce79dc009c0b6650594ef7a04cf.php:42
+#: /tmp/tkmon-templates//fce79dc009c0b6650594ef7a04cf.php:43
 msgid "Press the following button to add a new host:"
 msgstr ""
 
-#: /tmp/tkmon-templates//fce79dc009c0b6650594ef7a04cf.php:76
+#: /tmp/tkmon-templates//fce79dc009c0b6650594ef7a04cf.php:77
 msgid "No. services"
 msgstr ""
 
-#: /tmp/tkmon-templates//fce79dc009c0b6650594ef7a04cf.php:94
-msgid "No hosts defined, click the button on top to create one!"
+#: /tmp/tkmon-templates//fce79dc009c0b6650594ef7a04cf.php:95
+msgid "No hosts defined yet, click the button above to create one!"
 msgstr ""
 
-#: /tmp/tkmon-templates//fce79dc009c0b6650594ef7a04cf.php:122
+#: /tmp/tkmon-templates//fce79dc009c0b6650594ef7a04cf.php:123
 msgid "Device is a"
 msgstr ""
 
-#: /tmp/tkmon-templates//fce79dc009c0b6650594ef7a04cf.php:266
+#: /tmp/tkmon-templates//fce79dc009c0b6650594ef7a04cf.php:246
+msgid "Data was written to Icinga and is available on next restart."
+msgstr ""
+
+#: /tmp/tkmon-templates//fce79dc009c0b6650594ef7a04cf.php:270
 msgid "Basic attributes"
 msgstr ""
 
-#: /tmp/tkmon-templates//fce79dc009c0b6650594ef7a04cf.php:290
+#: /tmp/tkmon-templates//fce79dc009c0b6650594ef7a04cf.php:294
 msgid "Parent host"
 msgstr ""
 
-#: /tmp/tkmon-templates//fce79dc009c0b6650594ef7a04cf.php:299
+#: /tmp/tkmon-templates//fce79dc009c0b6650594ef7a04cf.php:303
 msgid "Customfields"
 msgstr ""
 
-#: /tmp/tkmon-templates//fce79dc009c0b6650594ef7a04cf.php:329
+#: /tmp/tkmon-templates//fce79dc009c0b6650594ef7a04cf.php:333
 msgid "Ready to create? Press one of the following buttons:"
 msgstr ""
 
-#: /tmp/tkmon-templates//fce79dc009c0b6650594ef7a04cf.php:373
+#: /tmp/tkmon-templates//fce79dc009c0b6650594ef7a04cf.php:377
 msgid "Product information"
 msgstr ""
 
