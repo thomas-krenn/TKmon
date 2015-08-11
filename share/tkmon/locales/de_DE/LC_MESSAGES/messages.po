@@ -478,7 +478,7 @@ msgstr "Status"
 
 #: /tmp/tkmon-templates//4b7b2b666e3f4563286eb7aba8c0.php:50
 msgid "Test configuration"
-msgstr "Test der Konfiguration"
+msgstr "Konfiguration prüfen"
 
 #: /tmp/tkmon-templates//4b7b2b666e3f4563286eb7aba8c0.php:56
 msgid "Log"
@@ -566,8 +566,9 @@ msgid "Add new contact"
 msgstr "Neuen Kontakt hinzufügen"
 
 #: /tmp/tkmon-templates//5e982da2dfdd9858d7aac98e1f54.php:43
-msgid "Press the following button to add a new person:"
-msgstr "Drücken Sie den folgenden Button um eine neue Person hinzuzufügen:"
+msgid "Use the following button to add a new contact:"
+msgstr ""
+"Drücken Sie den folgenden Button um einen neuen Kontakt hinzuzufügen:"
 
 #: /tmp/tkmon-templates//5e982da2dfdd9858d7aac98e1f54.php:49
 #: /tmp/tkmon-templates//fce79dc009c0b6650594ef7a04cf.php:49
@@ -660,7 +661,7 @@ msgstr "Services"
 
 #: /tmp/tkmon-templates//5efe551e22544c2f40c795587f8a.php:31
 msgid "Maintain services for hosts here."
-msgstr "Verwalten Sie Services für Hosts hier."
+msgstr "Verwalten Sie hier die Services Ihrer Hosts."
 
 #: /tmp/tkmon-templates//5efe551e22544c2f40c795587f8a.php:38
 msgid "Select Host"
@@ -700,9 +701,7 @@ msgstr "Tippen Sie z.b. Web, Port, HTTP, ..."
 
 #: /tmp/tkmon-templates//5efe551e22544c2f40c795587f8a.php:111
 msgid "Ready to save? Press save button to do so or cancel to abort."
-msgstr ""
-"Bereit zur Übernahme der Änderungen? Drücken Sie speichernum zu "
-"übernehmen oder abbrechen um abzubrechen."
+msgstr "Bereit die Änderungen zu übernehmen?"
 
 #: /tmp/tkmon-templates//5efe551e22544c2f40c795587f8a.php:118
 #: /tmp/tkmon-templates//fce79dc009c0b6650594ef7a04cf.php:341
@@ -717,11 +716,11 @@ msgstr "Short Message Service"
 msgid ""
 "Enable or disable SMS notifications. If enabled, spool files are created\n"
 "for further processing by the SMS tools daemon. In addition to get SMS set "
-"up, you neet to configure a <a href=\"%contact_link%\">contact</a> with its "
+"up, you need to configure a <a href=\"%contact_link%\">contact</a> with its "
 "cellular numer."
 msgstr ""
 "SMS Notifications ein- oder ausschalten. Sind SMS aktiviert, werden\n"
-"spool Dateien für den SMS Daemon erstellt. Für ein korrektes Setup, ist "
+"spool Dateien für den SMS Dienst erstellt. Für ein korrektes Setup, ist "
 "ein <a href=\"%contact_link%\">Kontakt</a> mit hinterlegter Mobil-Nummer "
 "erforderlich"
 
@@ -799,7 +798,7 @@ msgid ""
 "    TKmon appliance. Please select one of the tabs below to\n"
 "    change the specific settings."
 msgstr ""
-"Hier können Sie Einstellungen betreffend der Sicherheit ändern. \n"
+"Hier ändern Sie die Sicherheits-Einstellungen Ihrer TKmon Appliance. \n"
 "    Bitte wählen Sie einen entsprechenden\n"
 "    Tab um Ihre Einstellung vorzunehmen."
 
@@ -875,7 +874,7 @@ msgstr ""
 
 #: /tmp/tkmon-templates//724ad7ded6b40c42882f62c0ed17.php:41
 msgid "Change your device name here to suite your needs."
-msgstr "Ändern Sie Ihren Gerätenamen hier nach Ihren Wünschen."
+msgstr "Je nach Wunsch ändern Sie hier Ihren Gerätenamen."
 
 #: /tmp/tkmon-templates//724ad7ded6b40c42882f62c0ed17.php:48
 msgid ""
@@ -912,7 +911,7 @@ msgid ""
 "Here you can download and backup your current TKmon configuration. This "
 "includes any modified Icinga configuration and your TKmon settings."
 msgstr ""
-"Sichern Sie Ihre aktuelle Konfiguration hier. Diese beinhaltet\n"
+"Sichern Sie hier Ihre aktuelle TKmon Konfiguration. Diese beinhaltet\n"
 "    etwaige Anpassungen an Icinga und Ihre TKmon Einstellungen."
 
 #: /tmp/tkmon-templates//7724d30cde9ad30971b6ee6d554b.php:43
@@ -1097,8 +1096,8 @@ msgid ""
 "Change your email settings here. You can send test emails to verify that "
 "your email setup works as expected."
 msgstr ""
-"Nehmen Sie hier Einstellungen bez. Mail-System vor. Verschicken Sie "
-"Testnachrichten um die Email-Funktionaliät zu testen."
+"Ändern Sie hier Ihre Email Einstellungen. Sie können Test-Emails "
+"verschicken, um Ihr Setup zu prüfen."
 
 #: /tmp/tkmon-templates//9643ec16c824c1a7aa4e2253ccb5.php:43
 msgid ""
@@ -1128,7 +1127,7 @@ msgid "Documentation for %desc%"
 msgstr "Dokumentation für %desc%"
 
 #: /tmp/tkmon-templates//a4d6f361c19cc83d2edca71569af.php:24
-msgid "Icinga Interface"
+msgid "Icinga interface"
 msgstr "Icinga Interface"
 
 #: /tmp/tkmon-templates//a4d6f361c19cc83d2edca71569af.php:31
@@ -1146,7 +1145,7 @@ msgid ""
 "        You have to apply your credentials again as you are opening a new "
 "web interface to Icinga."
 msgstr ""
-"Dies ist nur möglich wenn Sie den <a href=\"%access_href%\">Icinga "
+"Dies ist nur möglich, wenn Sie den <a href=\"%access_href%\">Icinga "
 "Zugriff</a> bei den Einstellungen aktiviert haben. Sie\n"
 "        müssen Ihren Benutzernamen erneut eingeben, da Sie ein neues "
 "Webinterface zu Icinga öffnen."
@@ -1194,7 +1193,7 @@ msgstr "Neues Passwort"
 
 #: /tmp/tkmon-templates//bab5efb6b431d59edc4909c25d33.php:69
 msgid "Verification"
-msgstr "Neues Passwort (nochmal)"
+msgstr "Neues Passwort wiederholen"
 
 #: /tmp/tkmon-templates//bab5efb6b431d59edc4909c25d33.php:78
 msgid "Change password"
@@ -1329,7 +1328,7 @@ msgid "Warning:"
 msgstr "Warnung:"
 
 #: /tmp/tkmon-templates//cc1579ffb1765ef33394a00ddddb.php:55
-msgid "During a reboot no TKMon or Icinga notifications will be sent to you."
+msgid "During a reboot no TKmon or Icinga notifications will be sent to you."
 msgstr ""
 "Während des Neustarts werden keine TKmon oder Icinga Benachrichtigungen "
 "versandt."
@@ -1414,7 +1413,7 @@ msgstr "System neu starten"
 
 #: /tmp/tkmon-templates//ced0915427beb2ab12aa5c67956d.php:38
 msgid "Shut down"
-msgstr "System ist down"
+msgstr "System herunterfahren"
 
 #: /tmp/tkmon-templates//d0c85fb8ab4b0133bd0edd2b40c9.php:20
 msgid "DNS settings"
@@ -1436,7 +1435,7 @@ msgid ""
 "Normally you can leave the fields blank if have configured DHCP on your "
 "interfaces."
 msgstr ""
-"Dieses System verwendet resolveconf für die verfügbaren DNS Server Sie "
+"Dieses System verwendet resolveconf für die verfügbaren DNS Server. Sie "
 "können diese Felder normalerweise leer lassen, wenn Sie DHCP verwenden."
 
 #: /tmp/tkmon-templates//d0c85fb8ab4b0133bd0edd2b40c9.php:66
@@ -1464,19 +1463,19 @@ msgstr "DNS Suchpfad (optional)"
 #: /tmp/tkmon-templates//dd6a003782b3b25fd6dd11ffb430.php:22
 #: /tmp/tkmon-templates//dd6a003782b3b25fd6dd11ffb430.php:179
 msgid "Restore configuration"
-msgstr "Wiederherstellung der Konfiguration "
+msgstr "Konfiguration wiederherstellen"
 
 #: /tmp/tkmon-templates//dd6a003782b3b25fd6dd11ffb430.php:28
 msgid "Restore backup configuration"
-msgstr "Wiederherstellung der Konfiguration "
+msgstr "Backup Konfiguration wiederherstellen"
 
 #: /tmp/tkmon-templates//dd6a003782b3b25fd6dd11ffb430.php:34
 msgid ""
 "If you have a backup configuration of your TKmon appliance you can restore "
 "those settings. This includes:"
 msgstr ""
-"Wenn Sie einen Konfigurations-Backup Ihrer TKmon Appliance haben, können "
-"Sie folgende Einstellungen wiederherstellen:"
+"Wenn Sie ein Konfigurations-Backup Ihrer TKmon Appliance haben, können Sie "
+"folgende Einstellungen wiederherstellen:"
 
 #: /tmp/tkmon-templates//dd6a003782b3b25fd6dd11ffb430.php:42
 msgid "Icinga configuration (hosts, services)"
@@ -1547,7 +1546,7 @@ msgstr ""
 
 #: /tmp/tkmon-templates//dd6a003782b3b25fd6dd11ffb430.php:134
 msgid "Restart device after restore (recommended)"
-msgstr "Neustart nach dem Restore (empfohlen)"
+msgstr "Nach dem Restore neu starten (empfohlen)"
 
 #: /tmp/tkmon-templates//dd6a003782b3b25fd6dd11ffb430.php:141
 msgid "Yes please"
@@ -1611,7 +1610,7 @@ msgstr "Datei fehlt"
 
 #: /tmp/tkmon-templates//de8ea8a2246c2c8ebc55ce886be4.php:25
 msgid "Use the following button to restart Icinga."
-msgstr "Verwenden Sie folgenden Button um Icinga neu zu starten."
+msgstr "Verwenden Sie den folgenden Button um Icinga neu zu starten."
 
 #: /tmp/tkmon-templates//de8ea8a2246c2c8ebc55ce886be4.php:36
 msgid "TKmon will not restart the daemon if the configuration check fails!"
@@ -1743,8 +1742,8 @@ msgstr ""
 "Ein Fehler ist aufgetreten, mehr Information finden Sie im Error Panel."
 
 #: /tmp/tkmon-templates//f3894920a394545db34c482eca67.php:26
-msgid "Change sender address and relay host"
-msgstr "Absenderadresse und Weiterleitungshost ändern"
+msgid "Change sender address and relayhost"
+msgstr "Absenderadresse und Weiterleitungs-Host (Relayhost) ändern"
 
 #: /tmp/tkmon-templates//f3894920a394545db34c482eca67.php:54
 msgid "Mail config was written to device"
@@ -1756,11 +1755,11 @@ msgstr "Absender Adresse"
 
 #: /tmp/tkmon-templates//f3894920a394545db34c482eca67.php:72
 msgid "Relayhost"
-msgstr "Weiterleitungs Host (Relayhost)"
+msgstr "Weiterleitungs-Host (Relayhost)"
 
 #: /tmp/tkmon-templates//f3894920a394545db34c482eca67.php:83
-msgid "Save and restart mailserver"
-msgstr "Speichern und Mailserver neu starten"
+msgid "Save and restart mail server"
+msgstr "Speichern und Mail-Server neu starten"
 
 #: /tmp/tkmon-templates//f3894920a394545db34c482eca67.php:114
 msgid ""
@@ -1789,8 +1788,8 @@ msgid "Subject"
 msgstr "Betreff"
 
 #: /tmp/tkmon-templates//fb2e0db838a188251d744cff76ca.php:71
-msgid "Test mail from TKmon"
-msgstr "Test Mail von TKmon"
+msgid "Test email from TKmon"
+msgstr "Test Email von TKmon"
 
 #: /tmp/tkmon-templates//fb2e0db838a188251d744cff76ca.php:87
 msgid "Send"
@@ -1986,6 +1985,10 @@ msgstr "SNMP V3 Benutzername"
 #: /home/gschoenb/tkdata/projects/tkmon/packages/tkmon/lib/tkmon/TKMON/Extension/Host/ThomasKrennAttributes.php:204
 msgid "SNMP V3 password"
 msgstr "SNMP V3 Passwort"
+
+#~ msgid "Press the following button to add a new person:"
+#~ msgstr ""
+#~ "Drücken Sie den folgenden Button um eine neue Person hinzuzufügen:"
 
 #~ msgid "Service Status"
 #~ msgstr "Service Status"

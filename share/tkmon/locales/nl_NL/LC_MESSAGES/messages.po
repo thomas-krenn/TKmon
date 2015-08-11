@@ -491,7 +491,7 @@ msgid "Add new contact"
 msgstr ""
 
 #: /tmp/tkmon-templates//5e982da2dfdd9858d7aac98e1f54.php:43
-msgid "Press the following button to add a new person:"
+msgid "Use the following button to add a new contact:"
 msgstr ""
 
 #: /tmp/tkmon-templates//5e982da2dfdd9858d7aac98e1f54.php:49
@@ -634,7 +634,7 @@ msgstr ""
 msgid ""
 "Enable or disable SMS notifications. If enabled, spool files are created\n"
 "for further processing by the SMS tools daemon. In addition to get SMS set "
-"up, you neet to configure a <a href=\"%contact_link%\">contact</a> with its "
+"up, you need to configure a <a href=\"%contact_link%\">contact</a> with its "
 "cellular numer."
 msgstr ""
 
@@ -983,7 +983,7 @@ msgid "Documentation for %desc%"
 msgstr ""
 
 #: /tmp/tkmon-templates//a4d6f361c19cc83d2edca71569af.php:24
-msgid "Icinga Interface"
+msgid "Icinga interface"
 msgstr ""
 
 #: /tmp/tkmon-templates//a4d6f361c19cc83d2edca71569af.php:31
@@ -1152,7 +1152,7 @@ msgid "Warning:"
 msgstr ""
 
 #: /tmp/tkmon-templates//cc1579ffb1765ef33394a00ddddb.php:55
-msgid "During a reboot no TKMon or Icinga notifications will be sent to you."
+msgid "During a reboot no TKmon or Icinga notifications will be sent to you."
 msgstr ""
 
 #: /tmp/tkmon-templates//cc1579ffb1765ef33394a00ddddb.php:65
@@ -1516,7 +1516,7 @@ msgid "Errors occurred, please examine error panel for more information."
 msgstr ""
 
 #: /tmp/tkmon-templates//f3894920a394545db34c482eca67.php:26
-msgid "Change sender address and relay host"
+msgid "Change sender address and relayhost"
 msgstr ""
 
 #: /tmp/tkmon-templates//f3894920a394545db34c482eca67.php:54
@@ -1532,7 +1532,7 @@ msgid "Relayhost"
 msgstr ""
 
 #: /tmp/tkmon-templates//f3894920a394545db34c482eca67.php:83
-msgid "Save and restart mailserver"
+msgid "Save and restart mail server"
 msgstr ""
 
 #: /tmp/tkmon-templates//f3894920a394545db34c482eca67.php:114
@@ -1559,7 +1559,7 @@ msgid "Subject"
 msgstr ""
 
 #: /tmp/tkmon-templates//fb2e0db838a188251d744cff76ca.php:71
-msgid "Test mail from TKmon"
+msgid "Test email from TKmon"
 msgstr ""
 
 #: /tmp/tkmon-templates//fb2e0db838a188251d744cff76ca.php:87
