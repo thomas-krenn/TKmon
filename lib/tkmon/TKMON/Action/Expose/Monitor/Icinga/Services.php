@@ -241,7 +241,7 @@ class Services extends Base
     (TwigTemplate $template, \stdClass $meta, Service $service = null)
     {
         /*
-         * Thomas Krenn flag if we want to switch on notification
+         * Thomas-Krenn flag if we want to switch on notification
          * @todo No function to extend this
          */
         if (isset($meta->tk_notify) && $meta->tk_notify === true) {

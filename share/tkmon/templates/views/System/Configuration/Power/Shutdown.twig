@@ -88,7 +88,7 @@
         var reboot_callback = function () {
             $("#shutdown-response").removeClass("hidden");
             $("#reboot-submit").remove();
-            add_response("Poweroff sent, waiting to go down");
+            add_response("Poweroff sent, waiting for the system to go down.");
             window.setTimeout(request_timer, 1000);
         };
 

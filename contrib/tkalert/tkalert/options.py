@@ -62,7 +62,7 @@ class MyOptions(OptionParser):
          'group': 'general'},
         {'name': '--auth-key',
          'dest': 'auth',
-         'help': 'Auth key from Thomas Krenn',
+         'help': 'Auth key from Thomas-Krenn',
          'group': 'general'},
         {'name': '--contact-person',
          'dest': 'person',
