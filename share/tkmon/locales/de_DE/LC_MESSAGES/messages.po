@@ -40,13 +40,13 @@ msgstr "Danke"
 msgid ""
 "Thanks to all developers bringing us these wonderful technologies like "
 "Bootstrap, Twig, beautiful icons and more.\n"
-"    NETWAYS and Thomas Krenn just use the best of breed to bring you an "
+"    NETWAYS and Thomas-Krenn just use the best of breed to bring you an "
 "incredible user experience."
 msgstr ""
-"Danke an alle Entwickler, die uns Technologien wie Bootstrap, Twig, schöne "
-"Icons und mehr bringen.\n"
-"    NETWAYS und Thomas Krenn verwenden diese Technologien um Ihnen ein "
-"besonderes Nutzungserlebnis zu bringen."
+"Danke an all die Entwickler, die uns Technologien wie Bootstrap, Twig oder "
+"schöne Icons und mehr bringen.\n"
+"    NETWAYS und Thomas-Krenn verwenden diese Technologien um Ihnen ein "
+"besonderes Nutzungserlebnis zu vermitteln."
 
 #: /tmp/tkmon-templates//02f8feb7daf73248d2d524e36f5d.php:56
 msgid "Why open source"
@@ -133,8 +133,8 @@ msgstr ""
 
 #: /tmp/tkmon-templates//02f8feb7daf73248d2d524e36f5d.php:140
 #: /tmp/tkmon-templates//16a3ef5302e29f5670b1360d3103.php:50
-msgid "Goto Thomas Krenn"
-msgstr "Gehe zu Thomas Krenn"
+msgid "Goto Thomas-Krenn"
+msgstr "Gehe zu Thomas-Krenn"
 
 #: /tmp/tkmon-templates//074ec95eb9aef1baa6cc62724e68.php:22
 msgid "Help"
@@ -261,21 +261,21 @@ msgstr ""
 
 #: /tmp/tkmon-templates//26c2570911fd3238ad6112120c90.php:51
 msgid ""
-"If you have a Thomas Krenn Call-Home-Service Subscription, please\n"
+"If you have a Thomas-Krenn Call-Home-Service Subscription, please\n"
 "                goto the <a href=\"%config_link%\">Alert Settings Page</a> "
 "and enter your credentials.\n"
 "\n"
-"                After that your monitoring service is equipped with Thomas "
-"Krenn support power!\n"
+"                After that your monitoring service is equipped with "
+"Thomas-Krenn support power!\n"
 "                (<a "
 "href=\"http://www.thomas-krenn.com/en/wiki/Call-Home-Service\">Click this "
 "link for more information</a>)"
 msgstr ""
-"Wenn Sie eine Thomas Krenn Call-Home-Service Subscription haben, gehen\n"
-"                Sie bitte zur <a href=\"%config_link%\">Alert Einstellungen "
+"Wenn Sie eine Thomas-Krenn Call-Home-Service Subscription haben, gehen\n"
+"                Sie bitte zur <a href=\"%config_link%\">Alert Einstellungs "
 "Seite</a> und geben Sie Ihre Daten ein.\n"
 "\n"
-"                Danach ist Ihre Appliance direkt mit dem Thomas Krenn "
+"                Danach ist Ihre Appliance direkt mit dem Thomas-Krenn "
 "Support verbunden!\n"
 "                (<a "
 "href=\"http://www.thomas-krenn.com/de/wiki/Call-Home-Service\">Klicken Sie "
@@ -352,16 +352,16 @@ msgstr "Custom Variablen"
 
 #: /tmp/tkmon-templates//2d8f6d518fa303eb915c2091f0c8.php:226
 msgid ""
-"This service will be notified to Thomas Krenn. Set flag to "
+"This service will be notified to Thomas-Krenn. Set flag to "
 "<strong>Yes</strong> if you want to use."
 msgstr ""
-"Zustandsänderungen dieses Services werden an Thomas Krenn übermittelt. "
-"Setzen Sie die folgende Option auf <strong>Ja</strong> wenn dies gewünscht "
-"ist."
+"Zustandsänderungen dieses Services werden an Thomas-Krenn übermittelt. "
+"Setzen Sie die folgende Option auf <strong>Ja</strong>, wenn Sie das "
+"möchten."
 
 #: /tmp/tkmon-templates//2d8f6d518fa303eb915c2091f0c8.php:232
-msgid "Report errors to Thomas Krenn"
-msgstr "Fehler an Thomas Krenn melden"
+msgid "Report errors to Thomas-Krenn"
+msgstr "Fehler an Thomas-Krenn melden"
 
 #: /tmp/tkmon-templates//2d8f6d518fa303eb915c2091f0c8.php:240
 #: /tmp/tkmon-templates//2d8f6d518fa303eb915c2091f0c8.php:250
@@ -452,8 +452,8 @@ msgid "Test result"
 msgstr "Testergebnis"
 
 #: /tmp/tkmon-templates//483d50587262c9e8b732631ec14f.php:28
-msgid "Everything OK, no broken packages or dependency errors found!"
-msgstr "Keine Fehler aufgetreten (keine Paket- oder Abhängigkeitsprobleme)."
+msgid "Everything OK, no broken packages or dependency errors found."
+msgstr "Alles OK, keine Paket- oder Abhängigkeitsprobleme."
 
 #: /tmp/tkmon-templates//483d50587262c9e8b732631ec14f.php:44
 msgid "Cache status"
@@ -576,6 +576,7 @@ msgid "Add new"
 msgstr "Neuen hinzufügen"
 
 #: /tmp/tkmon-templates//5e982da2dfdd9858d7aac98e1f54.php:58
+#: /tmp/tkmon-templates//5efe551e22544c2f40c795587f8a.php:61
 #: /tmp/tkmon-templates//fce79dc009c0b6650594ef7a04cf.php:58
 msgid ""
 "Please <a href=\"%restart_url%\">restart your Icinga instance</a> for the "
@@ -592,7 +593,7 @@ msgstr "Alias"
 
 #: /tmp/tkmon-templates//5e982da2dfdd9858d7aac98e1f54.php:76
 msgid "Email Address"
-msgstr "Email Adresse"
+msgstr "E-Mail Adresse"
 
 #: /tmp/tkmon-templates//5e982da2dfdd9858d7aac98e1f54.php:80
 msgid "Cellular"
@@ -619,7 +620,7 @@ msgstr "Erfolgreich!"
 #: /tmp/tkmon-templates//5e982da2dfdd9858d7aac98e1f54.php:225
 #: /tmp/tkmon-templates//c1e6088779b0dc44ba2eaefad6de.php:100
 msgid "Email address"
-msgstr "Email Adresse"
+msgstr "E-Mail Adresse"
 
 #: /tmp/tkmon-templates//5e982da2dfdd9858d7aac98e1f54.php:235
 msgid "Phone number"
@@ -647,7 +648,7 @@ msgid "Close"
 msgstr "Schließen"
 
 #: /tmp/tkmon-templates//5e982da2dfdd9858d7aac98e1f54.php:291
-#: /tmp/tkmon-templates//5efe551e22544c2f40c795587f8a.php:125
+#: /tmp/tkmon-templates//5efe551e22544c2f40c795587f8a.php:128
 #: /tmp/tkmon-templates//82f49410fc31f58bc86b037830ca.php:115
 #: /tmp/tkmon-templates//bfc069bc54244e60da6682ef2da9.php:95
 #: /tmp/tkmon-templates//fce79dc009c0b6650594ef7a04cf.php:348
@@ -675,44 +676,64 @@ msgstr "Bitte wählen Sie einen Host um seine Services zu editieren:"
 msgid "Go"
 msgstr "Los"
 
-#: /tmp/tkmon-templates//5efe551e22544c2f40c795587f8a.php:61
-msgid ""
-"Please <a href=\"%restart_url%\">restart your Icinga instance</a> that "
-"changes take effect."
-msgstr ""
-"Bitte <a href=\"%restart_url%\">starten Sie Ihre Icinga Instanz neu</a> "
-"damit die Änderungen übernommen werden."
+#: /tmp/tkmon-templates//5efe551e22544c2f40c795587f8a.php:74
+msgid "Edit services"
+msgstr "Services bearbeiten"
 
-#: /tmp/tkmon-templates//5efe551e22544c2f40c795587f8a.php:78
+#: /tmp/tkmon-templates//5efe551e22544c2f40c795587f8a.php:81
 msgid "Search"
 msgstr "Suche"
 
-#: /tmp/tkmon-templates//5efe551e22544c2f40c795587f8a.php:83
+#: /tmp/tkmon-templates//5efe551e22544c2f40c795587f8a.php:86
 msgid "Search for services in our catalogue:"
 msgstr "Suchen Sie nach Services in unserem Katalog:"
 
-#: /tmp/tkmon-templates//5efe551e22544c2f40c795587f8a.php:92
+#: /tmp/tkmon-templates//5efe551e22544c2f40c795587f8a.php:95
 msgid "Add"
 msgstr "Hinzufügen"
 
-#: /tmp/tkmon-templates//5efe551e22544c2f40c795587f8a.php:98
+#: /tmp/tkmon-templates//5efe551e22544c2f40c795587f8a.php:101
 msgid "Type something like Web, Port, HTTP or things like that"
 msgstr "Tippen Sie z.b. Web, Port, HTTP, ..."
 
-#: /tmp/tkmon-templates//5efe551e22544c2f40c795587f8a.php:111
+#: /tmp/tkmon-templates//5efe551e22544c2f40c795587f8a.php:114
 msgid "Ready to save? Press save button to do so or cancel to abort."
 msgstr "Bereit die Änderungen zu übernehmen?"
 
-#: /tmp/tkmon-templates//5efe551e22544c2f40c795587f8a.php:118
+#: /tmp/tkmon-templates//5efe551e22544c2f40c795587f8a.php:121
 #: /tmp/tkmon-templates//fce79dc009c0b6650594ef7a04cf.php:341
 msgid "Cancel"
 msgstr "Abbrechen"
 
-#: /tmp/tkmon-templates//63d08a12bfa544184991a252d916.php:26
+#: /tmp/tkmon-templates//63d08a12bfa544184991a252d916.php:24
 msgid "Short Message Service"
 msgstr "Short Message Service"
 
-#: /tmp/tkmon-templates//63d08a12bfa544184991a252d916.php:33
+#: /tmp/tkmon-templates//63d08a12bfa544184991a252d916.php:31
+msgid "SMS notifications using a CEP CT63 Modem"
+msgstr "SMS Notifications mit dem CEP CT63 Modem"
+
+#: /tmp/tkmon-templates//63d08a12bfa544184991a252d916.php:37
+msgid ""
+"To use this feature, a <a "
+"href=\"https://www.thomas-krenn.com/en/wiki/CEP_CT63_Modem\">CEP CT63 "
+"Modem</a> must be attached to this appliance.\n"
+"        Use a prepaid SIM card to reduce the risc of a high mobile phone "
+"bill in case of a misconfiguration.\n"
+"        Before you insert the SIM card in the modem, deactivate the SIM "
+"card's PIN code or configure the PIN code in the /etc/smsd.conf "
+"configuration file on the command line."
+msgstr ""
+"Für die SMS-Funktion muss ein <a "
+"href=\"https://www.thomas-krenn.com/en/wiki/CEP_CT63_Modem\">CEP CT63 "
+"Modem</a> mit Ihrer Appliance verbunden sein.\n"
+"        Verwenden Sie am besten eine Prepaid SIM-Karte, um hohe "
+"SMS-Gebühren im Falle einer Fehlkonfiguration zu vermeiden.\n"
+"        Bevor Sie die SIM-Karte in das Modem einsetzen, deaktivieren Sie den "
+"PIN Code oder konfigurieren Sie den PIN in der Datei /etc/smsd.conf auf der "
+"Kommandozeile."
+
+#: /tmp/tkmon-templates//63d08a12bfa544184991a252d916.php:48
 msgid ""
 "Enable or disable SMS notifications. If enabled, spool files are created\n"
 "for further processing by the SMS tools daemon. In addition to get SMS set "
@@ -724,38 +745,34 @@ msgstr ""
 "ein <a href=\"%contact_link%\">Kontakt</a> mit hinterlegter Mobil-Nummer "
 "erforderlich"
 
-#: /tmp/tkmon-templates//63d08a12bfa544184991a252d916.php:41
-msgid "Click here for more information"
-msgstr "Klicken Sie hier für weitere Informationen"
-
-#: /tmp/tkmon-templates//63d08a12bfa544184991a252d916.php:49
+#: /tmp/tkmon-templates//63d08a12bfa544184991a252d916.php:56
 msgid "SMS Alert feature is"
 msgstr "SMS Alerts sind"
 
-#: /tmp/tkmon-templates//63d08a12bfa544184991a252d916.php:62
+#: /tmp/tkmon-templates//63d08a12bfa544184991a252d916.php:69
 msgid "Recheck or change SMS alert feature"
 msgstr "SMS Alerts erneut prüfen oder ändern"
 
-#: /tmp/tkmon-templates//63d08a12bfa544184991a252d916.php:91
+#: /tmp/tkmon-templates//63d08a12bfa544184991a252d916.php:98
 #: /tmp/tkmon-templates//ed5127fc2369841892ce8bd98eb5.php:99
 #: /tmp/tkmon-templates//ff5fb4588c11c70d4a8ac6a3dd50.php:103
 msgid "Disable"
 msgstr "Deaktivieren"
 
-#: /tmp/tkmon-templates//63d08a12bfa544184991a252d916.php:97
+#: /tmp/tkmon-templates//63d08a12bfa544184991a252d916.php:104
 msgid ""
 "SMS Alerts will be <strong>disabled</strong> for existing and new contacts."
 msgstr ""
 "SMS Alerts werden für aktuelle und neue Kontakte "
 "<strong>deaktiviert</strong>."
 
-#: /tmp/tkmon-templates//63d08a12bfa544184991a252d916.php:107
+#: /tmp/tkmon-templates//63d08a12bfa544184991a252d916.php:114
 #: /tmp/tkmon-templates//ed5127fc2369841892ce8bd98eb5.php:83
 #: /tmp/tkmon-templates//ff5fb4588c11c70d4a8ac6a3dd50.php:99
 msgid "Enable"
 msgstr "Aktivieren"
 
-#: /tmp/tkmon-templates//63d08a12bfa544184991a252d916.php:113
+#: /tmp/tkmon-templates//63d08a12bfa544184991a252d916.php:120
 msgid ""
 "SMS Alerts will be <strong>enabled</strong> for new contacts with a cellular "
 "number configured."
@@ -763,12 +780,12 @@ msgstr ""
 "SMS Alerts werden für aktuelle und neue Kontakte mit einer Mobil-Nummer "
 "<strong>aktiviert</strong>."
 
-#: /tmp/tkmon-templates//63d08a12bfa544184991a252d916.php:146
+#: /tmp/tkmon-templates//63d08a12bfa544184991a252d916.php:153
 #: /tmp/tkmon-templates//f3894920a394545db34c482eca67.php:109
 msgid "Icinga restart required"
 msgstr "Icinga Neustart erforderlich"
 
-#: /tmp/tkmon-templates//63d08a12bfa544184991a252d916.php:151
+#: /tmp/tkmon-templates//63d08a12bfa544184991a252d916.php:158
 msgid ""
 "After changing the SMS alert feature you have to restart icinga to apply\n"
 "        the new settings. Please follow this <a href=\"%restart_href%\">link "
@@ -838,7 +855,7 @@ msgid ""
 "mail address."
 msgstr ""
 "Testen Sie Ihren Call-Home-Service. Ein verschlüsselter Heartbeat wird zu "
-"Thomas-Krenn gesendet und vor dort direkt zu Ihrer konfigurierten Email "
+"Thomas-Krenn gesendet und vor dort direkt zu Ihrer konfigurierten E-Mail "
 "Adresse zurück geschickt"
 
 #: /tmp/tkmon-templates//6d86acd653310efdfb17d14d1652.php:40
@@ -847,11 +864,11 @@ msgid ""
 "        <a href=\"#\" id=\"test-switch-tab\">configured here</a>. If your "
 "Call-Home-Service setup is correct, you will receive an email immediately."
 msgstr ""
-"Der Heartbeat wurde erfolgreich verschickt. Bitte prüfen Sie Ihren Email "
+"Der Heartbeat wurde erfolgreich verschickt. Bitte prüfen Sie Ihren E-Mail "
 "Account welcher\n"
 "        <a href=\"#\" id=\"test-switch-tab\">hier konfiguriert wurde</a>. "
 "Wenn Ihr Call-Home-Service Setup korrekt ist\n"
-"        werden Sie umgehend eine Email erhalten."
+"        werden Sie umgehend eine E-Mail erhalten."
 
 #: /tmp/tkmon-templates//6d86acd653310efdfb17d14d1652.php:61
 msgid "Test Call-Home-Service"
@@ -880,17 +897,21 @@ msgstr "Je nach Wunsch ändern Sie hier Ihren Gerätenamen."
 msgid ""
 "<span class=\"label label-info\">Information:</span> A valid\n"
 "    device name is <strong>&lt;name&gt;.&lt;fqdn&gt;</strong>\n"
-"    e.g. <strong>icinga.my.company.com</strong>"
+"    e.g. <strong>icinga.my.company.com</strong>. Ensure that the\n"
+"    device name can be correctly resolved via DNS to ensure that\n"
+"    your email server accepts emails sent from this device."
 msgstr ""
 "<span class=\"label label-info\">Information:</span> Ein gültiger\n"
 "    Gerätename ist <strong>&lt;name&gt;.&lt;fqdn&gt;</strong>\n"
-"    e.g. <strong>icinga.my.company.com</strong>"
+"    e.g. <strong>icinga.my.company.com</strong>. Stellen Sie sicher, dass\n"
+"    Ihr Gerätename korrekt per DNS aufgelöst wird, damit Ihr Mail-Server\n"
+"    E-Mails von diesem Gerät akzeptiert."
 
-#: /tmp/tkmon-templates//724ad7ded6b40c42882f62c0ed17.php:71
+#: /tmp/tkmon-templates//724ad7ded6b40c42882f62c0ed17.php:73
 msgid "Current device name"
 msgstr "Aktueller Gerätename"
 
-#: /tmp/tkmon-templates//724ad7ded6b40c42882f62c0ed17.php:81
+#: /tmp/tkmon-templates//724ad7ded6b40c42882f62c0ed17.php:83
 #: /tmp/tkmon-templates//d0c85fb8ab4b0133bd0edd2b40c9.php:133
 msgid "Update"
 msgstr "Update"
@@ -1096,7 +1117,7 @@ msgid ""
 "Change your email settings here. You can send test emails to verify that "
 "your email setup works as expected."
 msgstr ""
-"Ändern Sie hier Ihre Email Einstellungen. Sie können Test-Emails "
+"Ändern Sie hier Ihre E-Mail Einstellungen. Sie können Test E-Mails "
 "verschicken, um Ihr Setup zu prüfen."
 
 #: /tmp/tkmon-templates//9643ec16c824c1a7aa4e2253ccb5.php:43
@@ -1109,8 +1130,8 @@ msgstr ""
 "Wenn Ihr Relayhost eine Authentifizierung erfordert, müssen Sie die\n"
 "   Konfiguration auf der Kommando-Zeile vornehmen.\n"
 "   Eine Detaillierte Anleitung zur Konfiguration finden Sie  im "
-"Thomas-Krenn-Wiki unter <ahref=\"%linkUrl%\" target=\"_blank\">TKmon "
-"Relayhost with SMTP Auth</a>."
+"Thomas-Krenn-Wiki unter <a href=\"%linkUrl%\" target=\"_blank\">TKmon "
+"Relayhost mit SMTP Auth</a>."
 
 #: /tmp/tkmon-templates//9643ec16c824c1a7aa4e2253ccb5.php:63
 #: /tmp/tkmon-templates//b27314c2730f5727fcd0f45343e9.php:37
@@ -1255,19 +1276,18 @@ msgstr ""
 
 #: /tmp/tkmon-templates//c1e6088779b0dc44ba2eaefad6de.php:30
 msgid ""
-"Configure your Thomas Krenn Call-Home-Service subscription here. Click the\n"
-"    <a target=\"_blank\" "
-"href=\"http://www.thomas-krenn.com/en/wiki/Call-Home-Service\">following "
-"link to get more information</a>."
+"Configure your <a target=\"_blank\" "
+"href=\"http://www.thomas-krenn.com/en/wiki/Call-Home-Service\">Thomas-Krenn\n"
+"    Call-Home-Service</a> subscription here."
 msgstr ""
-"Hier können Sie die Thomas Krenn Call-Home-Service Subscription "
-"konfigurieren. Klicken Sie\n"
-"    <a href=\"http://www.thomas-krenn.com/de/wiki/Call-Home-Service\">den "
-"folgenden Link um mehr Information zu erhalten</a>."
+"Konfigurieren Sie hier Ihren <a target=\"_blank\" "
+"href=\"http://www.thomas-krenn.com/de/wiki/Call-Home-Service_Privacy_Policy\">Thomas-Krenn"
+"\n"
+"    Call-Home-Service</a>."
 
 #: /tmp/tkmon-templates//c1e6088779b0dc44ba2eaefad6de.php:40
 msgid ""
-"All data between your appliance and Thomas Krenn will be encrypted with GPG."
+"All data between your appliance and Thomas-Krenn will be encrypted with GPG."
 msgstr ""
 "Alle Daten zwischen Ihrer TKmon Appliance und Thomas-Krenn sind per GPG "
 "verschlüsselt."
@@ -1275,7 +1295,7 @@ msgstr ""
 #: /tmp/tkmon-templates//c1e6088779b0dc44ba2eaefad6de.php:46
 msgid ""
 "Find out more at our <a target=\"_blank\" "
-"href=\"http://www.thomas-krenn.com/en/wiki/Call-Home-Service_Privacy_Policy\">Call-Home-Service "
+"href=\"https://www.thomas-krenn.com/en/wiki/Call-Home-Service_Privacy_Policy\">Call-Home-Service "
 "Privacy Policy</a>."
 msgstr ""
 "Lesen Sie dazu mehr in unserer <a target=\"_blank\" "
@@ -1487,7 +1507,7 @@ msgstr "Software Einstellungen (Datenbank, Konfigurations-Dateien)"
 
 #: /tmp/tkmon-templates//dd6a003782b3b25fd6dd11ffb430.php:50
 msgid "Operating system (IP, DNS, email)"
-msgstr "Betriebssystem (IP, DNS, Email)"
+msgstr "Betriebssystem (IP, DNS, E-Mail)"
 
 #: /tmp/tkmon-templates//dd6a003782b3b25fd6dd11ffb430.php:60
 msgid "Warning"
@@ -1613,14 +1633,13 @@ msgid "Use the following button to restart Icinga."
 msgstr "Verwenden Sie den folgenden Button um Icinga neu zu starten."
 
 #: /tmp/tkmon-templates//de8ea8a2246c2c8ebc55ce886be4.php:36
-msgid "TKmon will not restart the daemon if the configuration check fails!"
+msgid "TKmon will not restart Icinga if the configuration check fails."
 msgstr ""
-"TKmon startet den Dienst nicht neu, wenn der Check der Konfiguration "
-"fehlschlägt!"
+"TKmon startet Icinga nicht neu, wenn der Konfigurations-Check fehlschlägt."
 
 #: /tmp/tkmon-templates//de8ea8a2246c2c8ebc55ce886be4.php:67
-msgid "Icinga has been restarted successfully"
-msgstr "Icinga wurde erfolgreich neu gestartet"
+msgid "Icinga has been restarted successfully."
+msgstr "Icinga wurde erfolgreich neu gestartet."
 
 #: /tmp/tkmon-templates//e372deb9beadc0a70f7e95460925.php:22
 msgid "System updates"
@@ -1675,14 +1694,16 @@ msgid ""
 "System access (SSH/shell) will be <strong>enabled</strong> for the user "
 "%username%."
 msgstr ""
-"Icinga Zugriff wird für den User icingaadmin <strong>aktiviert</strong>."
+"System Zugriff (SSH/Shell) wird für den User %username% "
+"<strong>aktiviert</strong>."
 
 #: /tmp/tkmon-templates//ed5127fc2369841892ce8bd98eb5.php:105
 msgid ""
 "System access (SSH/shell) will be <strong>disabled</strong> for the user "
 "%username%."
 msgstr ""
-"Icinga Zugriff wird für den User icingaadmin <strong>deaktiviert</strong>."
+"System Zugriff (SSH/Shell) wird für den User %username% "
+"<strong>deaktiviert</strong>."
 
 #: /tmp/tkmon-templates//f01d1b584b903f02bdb37b2af317.php:28
 msgid ""
@@ -1789,7 +1810,7 @@ msgstr "Betreff"
 
 #: /tmp/tkmon-templates//fb2e0db838a188251d744cff76ca.php:71
 msgid "Test email from TKmon"
-msgstr "Test Email von TKmon"
+msgstr "Test E-Mail von TKmon"
 
 #: /tmp/tkmon-templates//fb2e0db838a188251d744cff76ca.php:87
 msgid "Send"
@@ -1887,7 +1908,7 @@ msgstr "Person"
 
 #: /home/gschoenb/tkdata/projects/tkmon/packages/tkmon/lib/tkmon/TKMON/Action/Expose/ThomasKrenn/Alert/Configuration.php:81
 msgid "email"
-msgstr "Email"
+msgstr "E-Mail"
 
 #: /home/gschoenb/tkdata/projects/tkmon/packages/tkmon/lib/tkmon/TKMON/Action/Expose/ThomasKrenn/Alert/Configuration.php:89
 msgid "Auth key"
@@ -1931,7 +1952,7 @@ msgstr "Mail Einstellungen"
 
 #: /home/gschoenb/tkdata/projects/tkmon/packages/tkmon/lib/tkmon/TKMON/Action/Expose/System/Configuration/Mail.php:73
 msgid "Email"
-msgstr "Email"
+msgstr "E-Mail"
 
 #: /home/gschoenb/tkdata/projects/tkmon/packages/tkmon/lib/tkmon/TKMON/Action/Expose/System/Configuration/Mail.php:79
 #: /home/gschoenb/tkdata/projects/tkmon/packages/tkmon/lib/tkmon/TKMON/Action/Expose/System/Configuration/Mail.php:85
@@ -1955,12 +1976,12 @@ msgid "Operating system"
 msgstr "Betriebssystem"
 
 #: /home/gschoenb/tkdata/projects/tkmon/packages/tkmon/lib/tkmon/TKMON/Extension/Host/ThomasKrennAttributes.php:165
-msgid "Thomas Krenn wiki link"
-msgstr "Thomas Krenn Wiki Link"
+msgid "Thomas-Krenn wiki link"
+msgstr "Thomas-Krenn Wiki Link"
 
 #: /home/gschoenb/tkdata/projects/tkmon/packages/tkmon/lib/tkmon/TKMON/Extension/Host/ThomasKrennAttributes.php:170
-msgid "Thomas Krenn product title"
-msgstr "Thomas Krenn Produkt Name"
+msgid "Thomas-Krenn product title"
+msgstr "Thomas-Krenn Produktname"
 
 #: /home/gschoenb/tkdata/projects/tkmon/packages/tkmon/lib/tkmon/TKMON/Extension/Host/ThomasKrennAttributes.php:179
 msgid "IPMI IP address"
@@ -1985,6 +2006,28 @@ msgstr "SNMP V3 Benutzername"
 #: /home/gschoenb/tkdata/projects/tkmon/packages/tkmon/lib/tkmon/TKMON/Extension/Host/ThomasKrennAttributes.php:204
 msgid "SNMP V3 password"
 msgstr "SNMP V3 Passwort"
+
+#~ msgid ""
+#~ "Please <a href=\"%restart_url%\">restart your Icinga instance</a> that "
+#~ "changes take effect."
+#~ msgstr ""
+#~ "Bitte <a href=\"%restart_url%\">starten Sie Ihre Icinga Instanz neu</a> "
+#~ "damit die Änderungen übernommen werden."
+
+#~ msgid "Click here for more information"
+#~ msgstr "Klicken Sie hier für weitere Informationen"
+
+#~ msgid ""
+#~ "Configure your Thomas Krenn Call-Home-Service subscription here. Click "
+#~ "the\n"
+#~ "    <a target=\"_blank\" "
+#~ "href=\"http://www.thomas-krenn.com/en/wiki/Call-Home-Service\">following "
+#~ "link to get more information</a>."
+#~ msgstr ""
+#~ "Hier können Sie die Thomas Krenn Call-Home-Service Subscription "
+#~ "konfigurieren. Klicken Sie\n"
+#~ "    <a href=\"http://www.thomas-krenn.com/de/wiki/Call-Home-Service\">den "
+#~ "folgenden Link um mehr Information zu erhalten</a>."
 
 #~ msgid "Press the following button to add a new person:"
 #~ msgstr ""
