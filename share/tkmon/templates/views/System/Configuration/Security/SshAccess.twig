@@ -1,4 +1,4 @@
-<h3>SSH access</h3>
+<h4>{% trans "SSH access" %}</h4>
 
 <div id="ssh-access-errors">
 
@@ -32,7 +32,7 @@
         data-success-callback="access_success_callback"
 >
 
-    <h4>{% trans "To change the access setting please press the following button:" %}</h4>
+    <p>{% trans "To change the access setting please press the following button:" %}</p>
         {% set username = user.getName() %}
         {% if system_enabled == false %}
         <input type="hidden" name="access" value="1" />
