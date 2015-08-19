@@ -78,8 +78,14 @@ msgid "Add"
 msgstr "Hinzufügen"
 
 #: /tmp/tkmon-templates//0ca056bec08d78550689d1b8cea9.php:101
-msgid "Type something like Web, Port, HTTP or things like that"
-msgstr "Tippen Sie z.b. Web, Port, HTTP, ..."
+msgid ""
+"Type something like Web, Port, HTTP or things like that (see also the <a "
+"href=https://www.thomas-krenn.com/en/wiki/TKmon_Servicechecks "
+"target=_blank>list of TKmon service checks</a>)."
+msgstr ""
+"Tippen Sie z.B. Web, Port, HTTP, ...  (siehe auch <a "
+"href=https://www.thomas-krenn.com/de/wiki/TKmon_Servicechecks "
+"target=_blank>Liste der TKmon Servicechecks</a>)."
 
 #: /tmp/tkmon-templates//0ca056bec08d78550689d1b8cea9.php:114
 msgid "Ready to save? Press save button to do so or cancel to abort."
@@ -306,6 +312,8 @@ msgid "Operating system (IP, DNS, email)"
 msgstr "Betriebssystem (IP, DNS, E-Mail)"
 
 #: /tmp/tkmon-templates//1a00cb879774ba54b9a9c9af9791.php:60
+#: /tmp/tkmon-templates//a212ee56e9e3933a62d2992b3001.php:51
+#: /tmp/tkmon-templates//ae98c32756d4a7c2ddb2b6f255aa.php:48
 msgid "Warning"
 msgstr "Warnung"
 
@@ -891,7 +899,7 @@ msgstr "Services für %hostName%"
 #: /tmp/tkmon-templates//83e931c7efe8f83c203502f048bf.php:31
 msgid "Click on the following button to add services to the host:"
 msgstr ""
-"Klicken Sie auf den folgenden Button, um dem Host einen neuen Service "
+"Klicken Sie auf den folgenden Button um dem Host einen neuen Service "
 "hinzuzufügen:"
 
 #: /tmp/tkmon-templates//83e931c7efe8f83c203502f048bf.php:36
@@ -1200,17 +1208,13 @@ msgstr ""
 "        dauert einige Minuten, die Weboberfläche lädt sich dann neu.\n"
 "        Danach müssen Sie sich neu einloggen."
 
-#: /tmp/tkmon-templates//a212ee56e9e3933a62d2992b3001.php:51
-msgid "Warning:"
-msgstr "Warnung:"
-
-#: /tmp/tkmon-templates//a212ee56e9e3933a62d2992b3001.php:55
+#: /tmp/tkmon-templates//a212ee56e9e3933a62d2992b3001.php:56
 msgid "During a reboot no TKmon or Icinga notifications will be sent to you."
 msgstr ""
 "Während des Neustarts werden keine TKmon oder Icinga Benachrichtigungen "
 "versandt."
 
-#: /tmp/tkmon-templates//a212ee56e9e3933a62d2992b3001.php:65
+#: /tmp/tkmon-templates//a212ee56e9e3933a62d2992b3001.php:67
 msgid "Reboot device!"
 msgstr "Gerät neu starten!"
 
@@ -1287,9 +1291,25 @@ msgstr "System herunterfahren"
 
 #: /tmp/tkmon-templates//ae98c32756d4a7c2ddb2b6f255aa.php:41
 msgid "Press the following button to shut down your appliance."
-msgstr "Drücken Sie den folgenden Button, um Ihre Appliance herunterzufahren."
+msgstr "Drücken Sie den folgenden Button um Ihre Appliance herunterzufahren."
 
-#: /tmp/tkmon-templates//ae98c32756d4a7c2ddb2b6f255aa.php:51
+#: /tmp/tkmon-templates//ae98c32756d4a7c2ddb2b6f255aa.php:53
+msgid ""
+"You have to press the power button of the server in order to power on your "
+"appliance again."
+msgstr ""
+"Um die Appliance anschließend wieder einzuschalten, drücken Sie den "
+"An-/Aus-Schalter des Servers."
+
+#: /tmp/tkmon-templates//ae98c32756d4a7c2ddb2b6f255aa.php:59
+msgid ""
+"Only shut down the appliance when you have physical access to the server. "
+"Otherwise you cannot power it on again."
+msgstr ""
+"Fahren Sie die Appliance nur dann herunter, wenn Sie physischen Zugriff auf "
+"den Server haben. Anderenfalls können Sie den Server nicht einschalten."
+
+#: /tmp/tkmon-templates//ae98c32756d4a7c2ddb2b6f255aa.php:70
 msgid "Shut down device!"
 msgstr "System herunterfahren!"
 
@@ -1495,7 +1515,7 @@ msgid ""
 "Click on the button to test package dependencies and check if something is "
 "broken in the packaging system."
 msgstr ""
-"Drücken Sie den folgenden Button, um Paketabhängigkeiten und die Funktion "
+"Drücken Sie den folgenden Button um Paketabhängigkeiten und die Funktion "
 "des Packaging Systems zu prüfen."
 
 #: /tmp/tkmon-templates//d91806c54a6f3d1b736be99150cc.php:33
@@ -1620,7 +1640,7 @@ msgstr "Icinga Konfiguration prüfen"
 #: /tmp/tkmon-templates//ea35679b8c7fc8f807ee1a9056da.php:26
 msgid "Press the button below to verify the current configuration."
 msgstr ""
-"Drücken Sie den folgenden Button, um die aktuelle Konfiguration zu prüfen."
+"Drücken Sie den folgenden Button um die aktuelle Konfiguration zu prüfen."
 
 #: /tmp/tkmon-templates//ea35679b8c7fc8f807ee1a9056da.php:35
 msgid "Your configuration is"
@@ -2005,6 +2025,12 @@ msgstr "Run Flag"
 #: /home/wfischer/tkdata/git/git-werner/georg-tkmon-debian/lib/tkmon/TKMON/Action/Expose/ThomasKrenn/Alert/Configuration.php:154
 msgid "CGI parameter run=1 is missing to start the test"
 msgstr "CGI Parameter run=1 fehlt um den Test zu starten"
+
+#~ msgid "Type something like Web, Port, HTTP or things like that"
+#~ msgstr "Tippen Sie z.b. Web, Port, HTTP, ..."
+
+#~ msgid "Warning:"
+#~ msgstr "Warnung:"
 
 #~ msgid "Network"
 #~ msgstr "Netzwerk"

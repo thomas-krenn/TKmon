@@ -21,12 +21,14 @@
         {% endtrans %}
     </p>
 
+    <div class="alert alert-danger">
+    <h4>{% trans "Warning" %}</h4>
     <p>
-        <span class="label label-warning">{% trans "Warning:" %}</span>
         {% trans %}
         During a reboot no TKmon or Icinga notifications will be sent to you.
         {% endtrans %}
     </p>
+    </div>
 
     <input type="hidden" name="reboot" value="1"/>
 

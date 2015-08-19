@@ -18,6 +18,20 @@
         {% endtrans %}
     </p>
 
+    <div class="alert alert-danger">
+    <h4>{% trans "Warning" %}</h4>
+    <p>
+        {% trans %}
+        You have to press the power button of the server in order to power on your appliance again.
+        {% endtrans %}
+    </p>
+    <p>
+        {% trans %}
+        Only shut down the appliance when you have physical access to the server. Otherwise you cannot power it on again.
+        {% endtrans %}
+    </p>
+    </div>
+
     <input type="hidden" name="shutdown" value="1"/>
 
     <div class="container-spacer-down" id="reboot-submit">

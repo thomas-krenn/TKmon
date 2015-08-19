@@ -60,7 +60,10 @@ msgid "Add"
 msgstr ""
 
 #: /tmp/tkmon-templates//0ca056bec08d78550689d1b8cea9.php:101
-msgid "Type something like Web, Port, HTTP or things like that"
+msgid ""
+"Type something like Web, Port, HTTP or things like that (see also the <a "
+"href=https://www.thomas-krenn.com/en/wiki/TKmon_Servicechecks "
+"target=_blank>list of TKmon service checks</a>)."
 msgstr ""
 
 #: /tmp/tkmon-templates//0ca056bec08d78550689d1b8cea9.php:114
@@ -276,6 +279,8 @@ msgid "Operating system (IP, DNS, email)"
 msgstr ""
 
 #: /tmp/tkmon-templates//1a00cb879774ba54b9a9c9af9791.php:60
+#: /tmp/tkmon-templates//a212ee56e9e3933a62d2992b3001.php:51
+#: /tmp/tkmon-templates//ae98c32756d4a7c2ddb2b6f255aa.php:48
 msgid "Warning"
 msgstr ""
 
@@ -1050,15 +1055,11 @@ msgid ""
 "        your credentials to login."
 msgstr ""
 
-#: /tmp/tkmon-templates//a212ee56e9e3933a62d2992b3001.php:51
-msgid "Warning:"
-msgstr ""
-
-#: /tmp/tkmon-templates//a212ee56e9e3933a62d2992b3001.php:55
+#: /tmp/tkmon-templates//a212ee56e9e3933a62d2992b3001.php:56
 msgid "During a reboot no TKmon or Icinga notifications will be sent to you."
 msgstr ""
 
-#: /tmp/tkmon-templates//a212ee56e9e3933a62d2992b3001.php:65
+#: /tmp/tkmon-templates//a212ee56e9e3933a62d2992b3001.php:67
 msgid "Reboot device!"
 msgstr ""
 
@@ -1131,7 +1132,19 @@ msgstr ""
 msgid "Press the following button to shut down your appliance."
 msgstr ""
 
-#: /tmp/tkmon-templates//ae98c32756d4a7c2ddb2b6f255aa.php:51
+#: /tmp/tkmon-templates//ae98c32756d4a7c2ddb2b6f255aa.php:53
+msgid ""
+"You have to press the power button of the server in order to power on your "
+"appliance again."
+msgstr ""
+
+#: /tmp/tkmon-templates//ae98c32756d4a7c2ddb2b6f255aa.php:59
+msgid ""
+"Only shut down the appliance when you have physical access to the server. "
+"Otherwise you cannot power it on again."
+msgstr ""
+
+#: /tmp/tkmon-templates//ae98c32756d4a7c2ddb2b6f255aa.php:70
 msgid "Shut down device!"
 msgstr ""
 
