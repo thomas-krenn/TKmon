@@ -1,0 +1,555 @@
+{
+  "type": "service",
+  "version": "1.0",
+  "description": "Services catalogue for nagios built-in SNMP checks",
+  "data": [{
+    "service_description": "snmp-generic-load",
+    "display_name": "SNMP-Generic-Load",
+    "check_command": {
+      "command_name": "snmp_generic_load",
+      "arguments": [{
+        "label": "1 minute warning threshold",
+        "description": {
+          "en_US": "Insert warning threshold x100",
+          "de_DE": "Warning Grenzwert angeben x100"
+        },
+        "validation": "string",
+        "argument": "-w",
+        "value": ""
+      }, {
+        "label": "5 minute warning threshold",
+        "description": {
+          "en_US": "Insert warning threshold x100",
+          "de_DE": "Warning Grenzwert angeben x100"
+        },
+        "validation": "string",
+        "argument": "-w",
+        "value": ""
+      }, {
+        "label": "10 minute warning threshold",
+        "description": {
+          "en_US": "Insert warning threshold x100",
+          "de_DE": "Warning Grenzwert angeben x100"
+        },
+        "validation": "string",
+        "argument": "-w",
+        "value": ""
+      }, {
+        "label": "1 minute critical threshold",
+        "description": {
+          "en_US": "Insert critical threshold x100",
+          "de_DE": "Critical Grenzwert angeben x100"
+        },
+        "validation": "string",
+        "argument": "-c",
+        "value": ""
+      }, {
+        "label": "5 minute critical threshold",
+        "description": {
+          "en_US": "Insert critical threshold x100",
+          "de_DE": "Critical Grenzwert angeben x100"
+        },
+        "validation": "string",
+        "argument": "-c",
+        "value": ""
+      }, {
+        "label": "10 minute critical threshold",
+        "description": {
+          "en_US": "Insert critical threshold x100",
+          "de_DE": "Critical Grenzwert angeben x100"
+        },
+        "validation": "string",
+        "argument": "-c",
+        "value": ""
+      }]
+    },
+    "_catalogue_attributes": {
+      "tags": ["CPU", "Load"],
+      "name": "snmp_generic_load",
+      "label": "SNMP-Generic-Load",
+      "description": {
+        "en_US": "Checks via SNMP the CPU Load of a System",
+        "de_DE": "Überprüft über SNMP die CPU Last eines Systems"
+      },
+      "defined": true,
+      "defined_in": "/etc/nagios-plugins/config/check_snmp_generic.cfg",
+      "doc": {
+        "en_US": [
+          "<h4>SNMP Generic CPU Load</h4>",
+          "<p>Using this plugin, the CPU load of a System",
+          "can be monitored with Nagios or Icinga over SNMP.</p>"
+        ],
+        "de_DE": [
+          "<h4>SNMP Generic CPU Load</h4>",
+          "<p>Mit diesem Plugin kann die CPU Last eines Systems",
+          "mit Nagios oder Icinga über SNMP überwacht werden.</p>"
+        ]
+      },
+      "tk_notify": false,
+      "tk_notify_default": false
+    }
+  }, {
+    "service_description": "snmp-generic-procname",
+    "display_name": "SNMP-Generic-Procname",
+    "check_command": {
+      "command_name": "snmp_generic_procname",
+      "arguments": [{
+        "label": "Index in SNMP process table",
+        "description": {
+          "en_US": "Insert the index of the process to count",
+          "de_DE": "Index des Prozesses, der gezählt werden soll"
+        },
+        "validation": "string",
+        "argument": "-o",
+        "value": ""
+      }, {
+        "label": "Warning lower threshold",
+        "description": {
+          "en_US": "Insert warning lower threshold",
+          "de_DE": "Untereren Warning Grenzwert angeben"
+        },
+        "validation": "string",
+        "argument": "-w",
+        "value": ""
+      }, {
+        "label": "Warning upper threshold",
+        "description": {
+          "en_US": "Insert warning upper threshold",
+          "de_DE": "Oberen Warning Grenzwert angeben"
+        },
+        "validation": "string",
+        "argument": "-w",
+        "value": ""
+      }, {
+        "label": "Critical lower threshold",
+        "description": {
+          "en_US": "Insert Critical lower threshold",
+          "de_DE": "Untereren Critical Grenzwert angeben"
+        },
+        "validation": "string",
+        "argument": "-c",
+        "value": ""
+      }, {
+        "label": "Critical upper threshold",
+        "description": {
+          "en_US": "Insert Critical upper threshold",
+          "de_DE": "Oberen Critical Grenzwert angeben"
+        },
+        "validation": "string",
+        "argument": "-c",
+        "value": ""
+      }]
+    },
+    "_catalogue_attributes": {
+      "tags": ["Process", "Name"],
+      "name": "snmp_generic_procname",
+      "label": "SNMP-Generic-Procname",
+      "description": {
+        "en_US": "Checks via SNMP the number of instances of the process with the given index",
+        "de_DE": "Überprüft über SNMP die Anzahl der Prozesse die dem angegebenen Index entsprechen"
+      },
+      "defined": true,
+      "defined_in": "/etc/nagios-plugins/config/check_snmp_generic.cfg",
+      "doc": {
+        "en_US": [
+          "<h4>SNMP Generic Process Name Count</h4>",
+          "<p>Using this plugin, the number of running instances of the process with the given index",
+          "can be monitored with Nagios or Icinga over SNMP.</p>"
+        ],
+        "de_DE": [
+          "<h4>SNMP Generic Process Name Count</h4>",
+          "<p>Mit diesem Plugin kann die Anzahl der Instanzen des Prozesses mit dem angegebenen Index",
+          "mit Nagios oder Icinga über SNMP überwacht werden.</p>"
+        ]
+      },
+      "tk_notify": false,
+      "tk_notify_default": false
+    }
+  }, {
+    "service_description": "snmp-generic-disk",
+    "display_name": "SNMP-Generic-Disk",
+    "check_command": {
+      "command_name": "snmp_generic_disk",
+      "arguments": [{
+        "label": "Index in SNMP disk table",
+        "description": {
+          "en_US": "Insert the index of the disk",
+          "de_DE": "Index der Festplatte"
+        },
+        "validation": "string",
+        "argument": "-o",
+        "value": ""
+      }, {
+        "label": "Warning threshold free space(KB)",
+        "description": {
+          "en_US": "Insert warning threshold for space left on disk (KB)",
+          "de_DE": "Warning Grenzwert für freien Speicherplatz angeben (KB)"
+        },
+        "validation": "string",
+        "argument": "-w",
+        "value": ""
+      }, {
+        "label": "Warning threshold percentage used",
+        "description": {
+          "en_US": "Insert warning threshold for percentage of disk used",
+          "de_DE": "Warning Grenzwert für belegten Speicherplatz in % angeben"
+        },
+        "validation": "string",
+        "argument": "-w",
+        "value": ""
+      }, {
+        "label": "Critical threshold free space(KB)",
+        "description": {
+          "en_US": "Insert Critical threshold for space left on disk (KB)",
+          "de_DE": "Critical Grenzwert für freien Speicherplatz angeben (KB)"
+        },
+        "validation": "string",
+        "argument": "-c",
+        "value": ""
+      }, {
+        "label": "Critical threshold percentage used",
+        "description": {
+          "en_US": "Insert Critical threshold for percentage of disk used",
+          "de_DE": "Critical Grenzwert für belegten Speicherplatz in % angeben"
+        },
+        "validation": "string",
+        "argument": "-c",
+        "value": ""
+      }]
+    },
+    "_catalogue_attributes": {
+      "tags": ["Disk", "Space", "free"],
+      "name": "snmp-generic-disk",
+      "label": "SNMP-Generic-Disk",
+      "description": {
+        "en_US": "Checks via SNMP the Disk status of a System",
+        "de_DE": "Überprüft über SNMP den Festplatten-Status eines Systems"
+      },
+      "defined": true,
+      "defined_in": "/etc/nagios-plugins/config/check_snmp_generic.cfg",
+      "doc": {
+        "en_US": [
+          "<h4>SNMP Generic Disk Status</h4>",
+          "<p>Using this plugin, the Disk status of a System",
+          "can be monitored with Nagios or Icinga over SNMP.</p>"
+        ],
+        "de_DE": [
+          "<h4>SNMP Generic Disk Status</h4>",
+          "<p>Mit diesem Plugin kann der Festplatten-Status eines Systems",
+          "mit Nagios oder Icinga über SNMP überwacht werden.</p>"
+        ]
+      },
+      "tk_notify": false,
+      "tk_notify_default": false
+    }
+  }, {
+    "service_description": "snmp-generic-memory",
+    "display_name": "SNMP-Generic-Memory",
+    "check_command": {
+      "command_name": "snmp_generic_mem",
+      "arguments": [{
+        "label": "Warning threshold available physical memory",
+        "description": {
+          "en_US": "Insert warning threshold for available physical memory",
+          "de_DE": "Warning Grenzwert für freien physischen Speicher"
+        },
+        "validation": "string",
+        "argument": "-w",
+        "value": ""
+      }, {
+        "label": "Critical threshold available physical memory",
+        "description": {
+          "en_US": "Insert Critical threshold for available physical memory",
+          "de_DE": "Critical Grenzwert für freien physischen Speicher"
+        },
+        "validation": "string",
+        "argument": "-c",
+        "value": ""
+      }]
+    },
+    "_catalogue_attributes": {
+      "tags": ["System status"],
+      "name": "snmp_generic_mem",
+      "label": "SNMP-Generic-Memory",
+      "description": {
+        "en_US": "Checks via SNMP the free physical memory of a system",
+        "de_DE": "Überprüft über SNMP den freien physischen Speicher eines System"
+      },
+      "defined": true,
+      "defined_in": "/etc/nagios-plugins/config/check_snmp_generic.cfg",
+      "doc": {
+        "en_US": [
+          "<h4>SNMP Memory Status</h4>",
+          "<p>Using this plugin, the free physical memory of a system",
+          "can be monitored with Nagios or Icinga over SNMP.</p>"
+        ],
+        "de_DE": [
+          "<h4>SNMP Memory Status</h4>",
+          "<p>Mit diesem Plugin kann der freie physische Speicher eines Systems",
+          "mit Nagios oder Icinga über SNMP überwacht werden.</p>"
+        ]
+      },
+      "tk_notify": false,
+      "tk_notify_default": false
+    }
+  }, {
+    "service_description": "snmp-generic-swap",
+    "display_name": "SNMP-Generic-Swap",
+    "check_command": {
+      "command_name": "snmp_generic_swap",
+      "arguments": [{
+        "label": "Warning threshold available swap space",
+        "description": {
+          "en_US": "Insert warning threshold for available swap space",
+          "de_DE": "Warning Grenzwert für freien Swap Speicher"
+        },
+        "validation": "string",
+        "argument": "-w",
+        "value": ""
+      }, {
+        "label": "Critical threshold available swap space",
+        "description": {
+          "en_US": "Insert Critical threshold for available swap space",
+          "de_DE": "Critical Grenzwert für freien Swap Speicher"
+        },
+        "validation": "string",
+        "argument": "-c",
+        "value": ""
+      }]
+    },
+    "_catalogue_attributes": {
+      "tags": ["Swap"],
+      "name": "snmp_generic_swap",
+      "label": "SNMP-Generic-Swap",
+      "description": {
+        "en_US": "Checks via SNMP the swap space of a system",
+        "de_DE": "Überprüft über SNMP den Swap Speicher eines Systems"
+      },
+      "defined": true,
+      "defined_in": "/etc/nagios-plugins/config/check_snmp_generic.cfg",
+      "doc": {
+        "en_US": [
+          "<h4>SNMP Swap Status</h4>",
+          "<p>Using this plugin, the free swap space of a system",
+          "can be monitored with Nagios or Icinga over SNMP.</p>"
+        ],
+        "de_DE": [
+          "<h4>SNMP Swap Status</h4>",
+          "<p>Mit diesem Plugin kann der freie Swap Speicher eines Systems",
+          "mit Nagios oder Icinga über SNMP überwacht werden.</p>"
+        ]
+      },
+      "tk_notify": false,
+      "tk_notify_default": false
+    }
+  }, {
+    "service_description": "snmp-generic-procs",
+    "display_name": "SNMP-Generic-Procs",
+    "check_command": {
+      "command_name": "snmp_generic_procs",
+      "arguments": [{
+        "label": "Warning threshold process count",
+        "description": {
+          "en_US": "Insert warning threshold for running processes",
+          "de_DE": "Warning Grenzwert für laufende Prozesse"
+        },
+        "validation": "string",
+        "argument": "-w",
+        "value": ""
+      }, {
+        "label": "Critical threshold process count",
+        "description": {
+          "en_US": "Insert Critical threshold for running processes",
+          "de_DE": "Critical Grenzwert für laufende Prozesse"
+        },
+        "validation": "string",
+        "argument": "-c",
+        "value": ""
+      }]
+    },
+    "_catalogue_attributes": {
+      "tags": ["Process","Count"],
+      "name": "snmp_generic_procs",
+      "label": "SNMP-Generic-Procs",
+      "description": {
+        "en_US": "Checks via SNMP the number of running processes of a system",
+        "de_DE": "Überprüft über SNMP die Anzahl der laufenden Prozesse eines Systems"
+      },
+      "defined": true,
+      "defined_in": "/etc/nagios-plugins/config/check_snmp_generic.cfg",
+      "doc": {
+        "en_US": [
+          "<h4>SNMP Generic Process Count</h4>",
+          "<p>Using this plugin, the number of running processes of a system",
+          "can be monitored with Nagios or Icinga over SNMP.</p>"
+        ],
+        "de_DE": [
+          "<h4>SNMP Generic Process Count</h4>",
+          "<p>Mit diesem Plugin kann die Anzahl der laufenden Prozesse eines Systems",
+          "mit Nagios oder Icinga über SNMP überwacht werden.</p>"
+        ]
+      },
+      "tk_notify": false,
+      "tk_notify_default": false
+    }
+  }, {
+    "service_description": "snmp-generic-users",
+    "display_name": "SNMP-Generic-Users",
+    "check_command": {
+      "command_name": "snmp_generic_users",
+      "arguments": [{
+        "label": "Warning threshold users",
+        "description": {
+          "en_US": "Insert warning threshold for logged-in users",
+          "de_DE": "Warning Grenzwert für eingeloggte Benutzer"
+        },
+        "validation": "string",
+        "argument": "-w",
+        "value": ""
+      }, {
+        "label": "Critical threshold users",
+        "description": {
+          "en_US": "Insert Critical threshold for logged-in users",
+          "de_DE": "Critical Grenzwert für eingeloggte Benutzer"
+        },
+        "validation": "string",
+        "argument": "-c",
+        "value": ""
+      }]
+    },
+    "_catalogue_attributes": {
+      "tags": ["Users"],
+      "name": "snmp_generic_users",
+      "label": "SNMP-Generic-Users",
+      "description": {
+        "en_US": "Checks via SNMP the logged-in users on a system",
+        "de_DE": "Überprüft über SNMP die angemeldeten User auf einem System"
+      },
+      "defined": true,
+      "defined_in": "/etc/nagios-plugins/config/check_snmp_generic.cfg",
+      "doc": {
+        "en_US": [
+          "<h4>SNMP Generic Users</h4>",
+          "<p>Using this plugin, logged-in users of a system",
+          "can be monitored with Nagios or Icinga over SNMP.</p>"
+        ],
+        "de_DE": [
+          "<h4>SNMP Generic Users</h4>",
+          "<p>Mit diesem Plugin können die angemeldeten User eines Systems",
+          "mit Nagios oder Icinga über SNMP überwacht werden.</p>"
+        ]
+      },
+      "tk_notify": false,
+      "tk_notify_default": false
+    }
+  }, {
+    "service_description": "snmp-generic-tcpcons",
+    "display_name": "SNMP-Generic-Tcpcons",
+    "check_command": {
+      "command_name": "snmp_generic_tcpopen",
+      "arguments": [{
+        "label": "Warning threshold TCP connections",
+        "description": {
+          "en_US": "Insert warning threshold for established TCP connections",
+          "de_DE": "Warning Grenzwert für bestehende TCP Verbindungen"
+        },
+        "validation": "string",
+        "argument": "-w",
+        "value": ""
+      }, {
+        "label": "Critical threshold TCP connections",
+        "description": {
+          "en_US": "Insert Critical threshold for TCP connections",
+          "de_DE": "Critical Grenzwert für bestehende TCP Verbindungen"
+        },
+        "validation": "string",
+        "argument": "-c",
+        "value": ""
+      }]
+    },
+    "_catalogue_attributes": {
+      "tags": ["TCP","connections"],
+      "name": "snmp_generic_tcpcons",
+      "label": "SNMP-Generic-Tcpcons",
+      "description": {
+        "en_US": "Checks via SNMP the established TCP connections on a system",
+        "de_DE": "Überprüft über SNMP die bestehenden TCP Verbindungen auf einem System"
+      },
+      "defined": true,
+      "defined_in": "/etc/nagios-plugins/config/check_snmp_generic.cfg",
+      "doc": {
+        "en_US": [
+          "<h4>SNMP Generic Tcpcons</h4>",
+          "<p>Using this plugin, established TCP connections of a system",
+          "can be monitored with Nagios or Icinga over SNMP.</p>"
+        ],
+        "de_DE": [
+          "<h4>SNMP Generic Tcpcons</h4>",
+          "<p>Mit diesem Plugin können die bestehenden TCP Verbindungen eines Systems",
+          "mit Nagios oder Icinga über SNMP überwacht werden.</p>"
+        ]
+      },
+      "tk_notify": false,
+      "tk_notify_default": false
+    }
+  }, {
+    "service_description": "snmp-generic-customoid",
+    "display_name": "SNMP-Generic-Customoid",
+    "check_command": {
+      "command_name": "snmp_generic_customoid",
+      "arguments": [{
+        "label": "OID(s) to monitor",
+        "description": {
+          "en_US": "Insert the OID you want to monitor (multiple OIDs must be seperated with comma)",
+          "de_DE": "OID die überwacht werden soll (mehrere OIDs können mit Komma getrennt werden)"
+        },
+        "validation": "string",
+        "argument": "-o",
+        "value": ""
+      }, {
+        "label": "Warning threshold",
+        "description": {
+          "en_US": "Insert warning threshold (comma seperated when using multiple OIDs) syntax: https://nagios-plugins.org/doc/guidelines.html#THRESHOLDFORMAT",
+          "de_DE": "Warning Grenzwert (mit Komma getrennt bei mehreren OIDs) syntax: https://nagios-plugins.org/doc/guidelines.html#THRESHOLDFORMAT"
+        },
+        "validation": "string",
+        "argument": "-w",
+        "value": ""
+      }, {
+        "label": "Critical threshold",
+        "description": {
+          "en_US": "Insert critical threshold (comma seperated when using multiple OIDs) syntax: https://nagios-plugins.org/doc/guidelines.html#THRESHOLDFORMAT",
+          "de_DE": "Critical Grenzwert (mit Komma getrennt bei mehreren OIDs) syntax: https://nagios-plugins.org/doc/guidelines.html#THRESHOLDFORMAT"
+        },
+        "validation": "string",
+        "argument": "-c",
+        "value": ""
+      }]
+    },
+    "_catalogue_attributes": {
+      "tags": ["OID","custom"],
+      "name": "snmp_generic_customoid",
+      "label": "SNMP-Generic-Customoid",
+      "description": {
+        "en_US": "Checks via SNMP the given OID(s) on a system",
+        "de_DE": "Überprüft über SNMP die angebene(n) OID(s) auf einem System"
+      },
+      "defined": true,
+      "defined_in": "/etc/nagios-plugins/config/check_snmp_generic.cfg",
+      "doc": {
+        "en_US": [
+          "<h4>SNMP Generic Customoid</h4>",
+          "<p>Using this plugin, custom OID(s) of a system",
+          "can be monitored with Nagios or Icinga over SNMP.</p>"
+        ],
+        "de_DE": [
+          "<h4>SNMP Generic Customoid</h4>",
+          "<p>Mit diesem Plugin können benutzerdefinierte OID(s) eines Systems",
+          "mit Nagios oder Icinga über SNMP überwacht werden.</p>"
+        ]
+      },
+      "tk_notify": false,
+      "tk_notify_default": false
+    }
+  }]
+}
