@@ -5,7 +5,7 @@
 <div class="alert alert-danger">
     {% trans %}
     <p>
-        This performs a real upgrade of your system. Press the following button to proceed.
+        Here you perform a real upgrade of your system. Press the following button to proceed.
     </p>
     <p>
         Please be patient. We update the package cache, make a dry run and do a real upgrade.
@@ -14,7 +14,7 @@
 </div>
 
 <button type="button" class="btn btn-danger" id="start-real-upgrade">
-    <i class="icon-exclamation-sign"></i> {% trans "Yes, upgrade my system" %}
+    <i class="icon-exclamation-sign"></i> {% trans "Yes, upgrade now" %}
 </button>
 
 <div id="message-target" class="container-spacer-down">
@@ -198,7 +198,7 @@
                         var error = data.errors[0].message;
 
                         if (String(error).match(/^no pending updates/i)) {
-                            messageBox('{% trans 'No updates found, everything ok' %}')
+                            messageBox('{% trans 'No updates found, everything OK' %}')
                         } else {
                             messageBox(error, 'error');
                         }

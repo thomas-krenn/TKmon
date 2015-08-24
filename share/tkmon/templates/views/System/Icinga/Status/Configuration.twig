@@ -15,7 +15,7 @@
     </p>
 
     <div id="test-output" class="hidden container-spacer-down">
-        <span class="label">{% trans "The reason behind" %}:</span><br /><br />
+        <span class="label">{% trans "Further information" %}:</span><br /><br />
         <pre></pre>
     </div>
 </div>
@@ -30,7 +30,7 @@
         "use strict";
 
         var url = '{{ web_link("ConfigTest") }}';
-        var message_nothing = '{% trans "No reason found, everything is ok." %}';
+        var message_nothing = '{% trans "No problems found, everything is OK." %}';
 
         $('#icinga-test-configuration').click(function(event) {
 

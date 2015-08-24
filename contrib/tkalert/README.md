@@ -3,18 +3,18 @@ TKALERT v1.1.0
 TKALERT
 =======
 
-TKALERT is a icinga(tm)/nagios(tm) alerter script for Thomas Krenn monitoring services. This script sends encrypted
-monitoring data to Thomas Krenn to maximize service for Thomas Krenn hardware
+TKALERT is a icinga(tm)/nagios(tm) alerter script for Thomas-Krenn monitoring services. This script sends encrypted
+monitoring data to Thomas-Krenn to maximize service for Thomas-Krenn-Hardware.
 
 
 Privacy policy
 --------------
 
 We know that services like this are called "home caller" and you may feel that this could be risky. Please
-read the privacy policy on the Thomas Krenn website: [http://www.thomas-krenn.com](http://www.thomas-krenn.com).
+read the privacy policy on the Thomas-Krenn website: [http://www.thomas-krenn.com](http://www.thomas-krenn.com).
 
-To reduce problems this tool is open source and you can debug the data which is sent to Thomas Krenn. All data
-is encrypted and only data to provide this service to you is sent to Thomas Krenn
+To reduce problems this tool is open source and you can debug the data which is sent to Thomas-Krenn. All data
+is encrypted and only data to provide this service to you is sent to Thomas-Krenn.
 
 
 Installation
@@ -69,7 +69,7 @@ Now you can execute this as user icinga:
 Send an alert
 -------------
 
-First you have to make sure that you have an valid Thomas Krenn service account and an auth key
+First you have to make sure that you have an valid Thomas-Krenn service account and an auth key.
 
 
 ### Sending heartbeat
@@ -80,7 +80,7 @@ First you have to make sure that you have an valid Thomas Krenn service account 
         --contact-person="Jean Luc Picard" \
         --contact-mail="jpicard@starfleet.foo"
 
-This sends an heartbeat to Thomas Krenn.
+This sends an heartbeat to Thomas-Krenn.
 
 If you want to see that is in your request you can type:
 
@@ -96,7 +96,7 @@ If you want to see that is in your request you can type:
 
 ### Sending service problems
 
-Use this syntax to send service provlems to Thomas Krenn
+Use this syntax to send service provlems to Thomas-Krenn:
 
     $ tkalert \
         --type="service" \
@@ -169,17 +169,17 @@ To use this alerter script it's best to create master hosts with customvars. Aft
                 --date="$LASTSERVICECHECK$"
     }
 
-This is a quite small example, please have a look on the [Thomas Krenn Wiki for further information]
+This is a quite small example, please have a look on the [Thomas-Krenn Wiki for further information]
 (http://www.thomas-krenn.com/)
 
 
 Use as an heartbeat checkplugin
 -------------------------------
 
-You can also send heartbeat messages to Thomas Krenn, this is done by integrate the alerter as an
+You can also send heartbeat messages to Thomas-Krenn, this is done by integrate the alerter as an
 check plugin to your icinga system.
 
-Use a configuration like this and call the heartbeat check every 24 hours to notify Thomas Krenn
+Use a configuration like this and call the heartbeat check every 24 hours to notify Thomas-Krenn
 that you're alive.
 
         define host {
@@ -223,7 +223,7 @@ Some options are mandatory or evercall these are:
     --type=ALERTTYPE                    What to send. A 'service' problem or
                                         just a 'heartbeat'. If you want to trigger
                                         a bounce mail, use mode 'test'.
-    --auth-key=TK AUTH KEY              Your authkey from Thomas Krenn
+    --auth-key=TK AUTH KEY              Your authkey from Thomas-Krenn
     --contact-person=NAME               Person of interest.
     --contact-mail                      Who is reposible for service problems,
                                         mail support will answer
@@ -247,7 +247,7 @@ To debug settings and so how things work
     --verbose                           Print some log to shell.
                                         See single steps what we're doing here
     ----dump-xml=FILE                   Dumps XML output to a specified file. You
-                                        can see what is sent to Thomas Krenn. A
+                                        can see what is sent to Thomas-Krenn. A
                                         mail is not sent here, just a dump to
                                         filesystem.
     --disable-gpg-encryption            Do not encrypt output. Take care that you

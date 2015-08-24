@@ -10,7 +10,7 @@
 </p>
 
 <div class="alert alert-info">
-    <h4>{% trans "Start over" %}</h4>
+    <h4>{% trans "Select Host" %}</h4>
 
     {% trans "Please select a host to edit its services:" %}
 
@@ -25,7 +25,7 @@
 
     <p>
         {% trans %}
-        Please <a href="{{ restart_url }}">restart your Icinga instance</a> that changes take effect.
+        Please <a href="{{ restart_url }}">restart your Icinga instance</a> for the changes to take effect.
         {% endtrans %}
     </p>
 </div>
@@ -36,7 +36,7 @@
     <div id="services-grid"></div>
 
     <div id="services-create" class="hide">
-        <h3>Edit services</h3>
+        <h3>{% trans "Edit services" %}</h3>
 
         <div id="service-search-container" class="alert alert-info">
 
@@ -51,7 +51,7 @@
                         <i class="icon-pencil"></i> {% trans "Add" %}
                     </button>
                 </div>
-                <i>{% trans "Type something like Web, Port, HTTP or things like that" %}</i>
+                <i>{% trans "Type something like Web, Port, HTTP or things like that (see also the <a href=https://www.thomas-krenn.com/en/wiki/TKmon_Servicechecks target=_blank>list of TKmon service checks</a>)." %}</i>
             </form>
         </div>
 

@@ -5,12 +5,12 @@
 
 <p>
     {% trans %}
-    Maintain hosts and services here.
+    Maintain your hosts and services here.
     {% endtrans %}
 </p>
 
 <div class="alert alert-info">
-    <h4>{% trans "Add new" %}</h4>
+    <h4>{% trans "Add new host" %}</h4>
     <div>
         {% trans %}
         Press the following button to add a new host:
@@ -44,7 +44,7 @@
         <tr>
 
             <td colspan="6">
-                {% trans "No hosts defined, click the button on top to create one!" %}
+                {% trans "No hosts defined yet, click the button above to create one!" %}
             </td>
 
         </tr>
@@ -120,7 +120,7 @@
     <div id="host-success" class="alert alert-success hidden">
         <h4>{% trans "Success!" %}</h4>
         <div>
-            Data was written to Icinga and is available on next restart.
+            {% trans "Data was written to Icinga and is available on next restart." %}
         </div>
     </div>
 

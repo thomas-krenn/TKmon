@@ -2,9 +2,8 @@
 
 <p>
     {% trans %}
-    The following list shows available updates for your system. Click the
-    "Refresh pending updates" button to retrieve the current list of available
-    updates.
+    Display a list of available updates for your system. Click the
+    following button to retrieve a list of current available updates.
     {% endtrans %}
 </p>
 
@@ -25,7 +24,7 @@
     require(['jquery', 'TKMON/jquery/AjaxContent'], function() {
         "use strict";
 
-        var spinnerLabel = '{% trans "Loading pending upgrades" %}' + '...';
+        var spinnerLabel = '{% trans "Loading pending updates" %}' + '...';
 
         $('#refresh-pending-updates').click(function() {
             $('#pending-updates-target').html('<i class="icon-spinner icon-spin icon-large"></i> ' + spinnerLabel)

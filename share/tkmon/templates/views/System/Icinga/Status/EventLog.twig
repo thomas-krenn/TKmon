@@ -10,9 +10,13 @@
     <h4>{% trans "Info" %}</h4>
 
     {% trans %}
-    Maximum 200 items are displayed, ordered descending. Press button to refresh:
+    The output is limited to 200 entries in descended order.
     {% endtrans %}
-
+	<p>
+    {% trans %}
+	Press this button to refresh:
+    {% endtrans %}
+	</p>
     <a id="event-logs-refresh" class="btn btn-success">
         <i class="icon-refresh"></i> {% trans "Reload" %}
     </a>

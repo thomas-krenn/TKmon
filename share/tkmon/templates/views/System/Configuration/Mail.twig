@@ -1,13 +1,24 @@
+{% set linkUrl="https://www.thomas-krenn.com/de/wiki/TKmon_Relayhost_mit_SMTP_AUTH" %}
 <div class="page-header">
-    <h2>{%  trans "Mail settings" %}</h2>
+    <h2>Mail</h2>
 </div>
 
 <p>
     {% trans %}
-    Change email settings and send test emails to verify that your email setup
-    works like expected.
+    Change your email settings here. You can send test emails to verify that your email setup works as expected.
     {% endtrans %}
 </p>
+
+<div class="alert alert-info container-spacer-down">
+<p>
+    <h4>{% trans "Note" %}</h4>
+    {% trans %}
+    If you have to configure a relayhost with authentication, you must
+    do that on the command line.
+    Please use the detailed instructions from the Thomas-Krenn Wiki at <a href="{{ linkUrl }}" target="_blank">TKmon Relayhost with SMTP Auth</a>.
+    {% endtrans %}
+</p>
+</div>
 
 <br />
 

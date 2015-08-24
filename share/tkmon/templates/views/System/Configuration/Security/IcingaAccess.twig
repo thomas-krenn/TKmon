@@ -1,4 +1,4 @@
-<h3>Icinga access</h3>
+<h4>{% trans "Icinga access" %}</h4>
 
 <div id="icinga-access-errors">
 
@@ -15,7 +15,7 @@
     {% trans "Access to Icinga is" %}: <span id="icinga-access-status" class="label">...</span>
 </p>
 
-<h4>{% trans "To change the access setting please press the following button" %}</h4>
+<p>{% trans "To change the access setting please press the following button:" %}</p>
 
 <form
         id="form-icinga-access"
@@ -47,8 +47,8 @@
         var currentAccess = JSON.parse("{{ icinga_enabled }}");
 
         var messages = [
-            '{% trans "Icinga access will be <strong>enabled</strong> for user icingaadmin." %}',
-            '{% trans "Icinga access will be <strong>disabled</strong> for user icingaadmin." %}'
+            '{% trans "Icinga access will be <strong>enabled</strong> for the user icingaadmin." %}',
+            '{% trans "Icinga access will be <strong>disabled</strong> for the user icingaadmin." %}'
         ];
 
         var labels = [
@@ -61,7 +61,7 @@
             '{% trans "Disabled" %}'
         ];
 
-        var icons = ['icon-ok', 'icon-off'];
+        var icons = ['icon-unlock', 'icon-lock'];
 
         var btnCls = ['btn-success', 'btn-danger'];
 

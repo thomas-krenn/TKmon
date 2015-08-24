@@ -7,7 +7,7 @@
 
 {% import "macros/icinga.twig" as icinga %}
 <div class="page-header">
-    <h2>{%  trans "Service Status" %}</h2>
+    <h2>{%  trans "Service status" %}</h2>
 </div>
 
 <h4>
@@ -19,7 +19,7 @@
 <div class="alert alert-info">
     <p>
     {% trans %}
-        Press the releod button to reload the current view or restrict the view to one of the following statuses:
+        Press the reload button to update the current view or restrict the view to one of the following status:
             <a href="{{ link_ok }}">OK</a>,
             <a href="{{ link_warning }}">WARNING</a>,
             <a href="{{ link_critical }}">CRITICAL</a>,
@@ -53,7 +53,7 @@
         <th>{% trans "Last check" %}</th>
         <th>{% trans "Duration" %}</th>
         <th>{% trans "Attempt" %}</th>
-        <th></th>
+        <th>{% trans "Graphs" %}</th>
     </tr>
 
 {% if data.status.service_status|length == 0 %}
@@ -78,7 +78,7 @@
         <td>{{ row.attempts }}</td>
         <td style="text-align: right">
             {% if pnp4nagios.setObject(row).hasChart() %}
-                <a class="btn" style="cursor: pointer" data-toggle="popover-pnp" data-url="{{ pnp4nagios.getUrl(true) }}">
+                <a class="btn" style="cursor: pointer" data-toggle="popover-pnp" data-trigger="focus" tabindex="0" data-url="{{ pnp4nagios.getUrl(true) }}">
                     <i class="icon-zoom-in"></i>
                 </a>
                 <a class="btn" href="{{ pnp4nagios.getUrl() }}" target="_blank" alt="{% trans "PNP4Nagios Chart" %}">
@@ -134,8 +134,8 @@
                 var pos = that.position();
                 var n = that.next();
                 n.css('max-width', '800px').css('max-height', '300px');
-                n.css('left', pos.left - n.width() - 160);
-                n.css('top', Math.floor(pos.top - n.height() / 2) + 10);
+                n.css('left', pos.left - n.width() - 590);
+                n.css('top', Math.floor(pos.top - n.height() / 2) + 10 -100);
             }, 100)
         });
     });

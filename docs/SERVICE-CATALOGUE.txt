@@ -418,12 +418,12 @@ Keys
     notation. See appendix **F** for more information.
 
 ***tk_notify*** (boolean)::
-    Thomas Krenn notification flag, if set this service can
-    reported to Thomas Krenn.
+    Thomas-Krenn notification flag, if set this service can
+    reported to Thomas-Krenn.
 
 ***tk_notify_default*** (boolean)::
     Default of notification set. Set to **true** the widget is selected
-    to **Yes, report this service to Thomas Krenn**
+    to **Yes, report this service to Thomas-Krenn**
 
 Appendix
 --------
@@ -609,13 +609,13 @@ the IPMI plugin.
             "de_DE": "http://www.thomas-krenn.com/de/wiki/IPMI_Sensor_Monitoring_Plugin"
         },
         "description": {
-            "en_US": "Official IPMI wiki article from Thomas Krenn",
-            "de_DE": "Offizieller IPMI wiki Artikel von Thomas Krenn"
+            "en_US": "Official IPMI wiki article from Thomas-Krenn",
+            "de_DE": "Offizieller IPMI wiki Artikel von Thomas-Krenn"
         }
     }, {
         "name": "GIT Repository",
         "href": "http://git.thomas-krenn.com/?p=check_ipmi_sensor_v3.git;a=summary",
-        "description": "Thomas Krenn GIT repository for check_ipmi_sensor"
+        "description": "Thomas-Krenn GIT repository for check_ipmi_sensor"
     }]
 }
 -------------------------------------------------------------------------------

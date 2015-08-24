@@ -79,7 +79,7 @@ class System extends ApplicationModel
         $command->execute();
 
         /*
-         * Testing for Thomas Krenn issue script and
+         * Testing for Thomas-Krenn issue script and
          * start if available
          */
 

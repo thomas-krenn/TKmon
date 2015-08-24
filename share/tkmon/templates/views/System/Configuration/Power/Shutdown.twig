@@ -1,4 +1,4 @@
-<h2>{% trans "Shut down system" %}</h2>
+<h4>{% trans "Shut down system" %}</h4>
 
 <div id="reboot-error">
 
@@ -14,9 +14,23 @@
         >
     <p>
         {% trans %}
-        Please press the following button to shut down your appliance.
+        Press the following button to shut down your appliance.
         {% endtrans %}
     </p>
+
+    <div class="alert alert-danger">
+    <h4>{% trans "Warning" %}</h4>
+    <p>
+        {% trans %}
+        You have to press the power button of the server in order to power on your appliance again.
+        {% endtrans %}
+    </p>
+    <p>
+        {% trans %}
+        Only shut down the appliance when you have physical access to the server. Otherwise you cannot power it on again.
+        {% endtrans %}
+    </p>
+    </div>
 
     <input type="hidden" name="shutdown" value="1"/>
 
@@ -88,7 +102,7 @@
         var reboot_callback = function () {
             $("#shutdown-response").removeClass("hidden");
             $("#reboot-submit").remove();
-            add_response("Poweroff sent, waiting to go down");
+            add_response("Poweroff sent, waiting for the system to go down.");
             window.setTimeout(request_timer, 1000);
         };
 

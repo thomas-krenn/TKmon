@@ -1,5 +1,5 @@
 {% set home_link = web_link("Index/Index") %}
-<h2>{% trans "Restore configuration" %}</h2>
+<h4>{% trans "Restore configuration" %}</h4>
 
 <div class="alert alert-info container-spacer-down">
     <h4>{% trans "Restore backup configuration" %}</h4>
@@ -24,15 +24,15 @@
     <h4>{% trans "Warning" %}</h4>
     <p>
         {% trans %}
-        After the restore the appliance will reboot to complete system changes. Keep in mind that the system is
-        not reachable through the network and your Icinga instance is not able to monitor
+        After restoring the configuration your appliance will reboot to apply the system changes. Keep in mind that the appliance is
+        not reachable via network and your Icinga instance will not monitor
         your environment during the reboot.
         {% endtrans %}
     </p>
 
     <p>
         {% trans %}
-        If you decide not to reboot, e.g. for testing purposes, keep in mind to do this soon or restart appropriate daemons manually.
+        If you choose not to reboot immediately, e.g. for testing purposes, keep in mind to do this as soon as possible or do a restart of the appropriate daemons manually.
         {% endtrans %}
     </p>
 </div>
@@ -45,7 +45,7 @@
 
     <h4>
         {% trans %}
-        1. Select a file by clicking on the button
+        1. Select a file by clicking the button
         {% endtrans %}
     </h4>
 
@@ -73,7 +73,7 @@
 
     <h4 class="container-spacer-down">
         {% trans %}
-        3. If you are sure that you want to restore the backup configuration, click the button below
+        3. If you are sure you want to restore the backup configuration, click the button below
         {% endtrans %}
     </h4>
 
@@ -95,25 +95,22 @@
 
     <h4 class="container-spacer-down">
         {% trans %}
-        4. When upgrade on different machines of operating systems it might be
-        required to ignore checksums
+        4. On different machines or after operating system upgrades, it might be required to ignore the backup archive checksums
         {% endtrans %}
     </h4>
 
     <fieldset>
         <input type="checkbox" name="ignore_manifest" id="ignore_manifest" value="1" />
         <label for="ignore_manifest" class="inline">
-            {% trans "Ignore checksum and path assertion" %}
+            {% trans "Ignore checksums and path assertions" %}
         </label>
     </fieldset>
 
     <div class="container-spacer-down"></div>
 
     <fieldset>
-        <label>{% trans "Fire and forget!" %}</label>
-
         <button type="submit" class="btn btn-danger">
-            <i class="icon-cloud-upload"></i> {% trans "Restore!" %}
+            <i class="icon-cloud-upload"></i> {% trans "Restore configuration" %}
         </button>
     </fieldset>
 </form>

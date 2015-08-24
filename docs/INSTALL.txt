@@ -14,7 +14,7 @@ medium sized environments.
 
 This interface is open source software
 (http://www.gnu.org/licenses/gpl.html[GPLv3]), you can install where ever you
-want. It's also available as a appliance on Thomas Krenn Low Energy Server
+want. It's also available as a appliance on Thomas-Krenn Low Energy Server
 (http://www.thomas-krenn.com/en/products/server-systems/thomas-krenn-low-energy-server.html[LES]).
 
 TKMON-WEB is a consortium project of

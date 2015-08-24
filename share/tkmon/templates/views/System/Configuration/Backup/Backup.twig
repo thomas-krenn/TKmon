@@ -1,11 +1,10 @@
 {% set login_link=web_link('System/Login/Index') %}
-<h2>{% trans "Backup configuration" %}</h2>
+<h4>{% trans "Backup configuration" %}</h4>
 
 <div class="alert alert-info container-spacer-down">
-    <h4>{% trans "What happens here?" %}</h4>
+    <h4>{% trans "Note" %}</h4>
     {% trans  %}
-    Download you current TKmon configuration here. This includes changed Icinga
-    configurations and TKmon settings.
+    Here you can download and backup your current TKmon configuration. This includes any modified Icinga configuration and your TKmon settings.
     {% endtrans  %}
 </div>
 
@@ -13,11 +12,12 @@
     <fieldset>
         <label for="password">{% trans "Password" %}</label>
         <input type="text" name="password" id="password" />
-        <br /><i>{% trans "You can protect your backup configuration file with a password." %}</i>
     </fieldset>
-
-    <br /><br />
-
+    <p>
+    {% trans %}
+    <span class="label label-info">Information:</span> Protecting your configuration backup with a password is highly recommended!
+    {% endtrans %}
+    </p>
     <button type="submit" class="btn btn-success">
         <i class="icon-cloud-download"></i> {% trans "Download configuration" %}
     </button>

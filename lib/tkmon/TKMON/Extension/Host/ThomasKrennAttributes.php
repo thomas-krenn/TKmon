@@ -55,13 +55,13 @@ class ThomasKrennAttributes extends ReflectionHandler implements ApplicationMode
     const CV_OS = 'os';
 
     /**
-     * CustomVariable name for Thomas Krenn wiki link
+     * CustomVariable name for Thomas-Krenn wiki link
      * @var string
      */
     const CV_TK_WIKI_LINK = 'tk_wiki_link';
 
     /**
-     * CustomVariable name for Thomas Krenn product title
+     * CustomVariable name for Thomas-Krenn product title
      * @var string
      */
     const CV_TK_PRODUCT_TITLE = 'tk_product_title';
@@ -144,7 +144,7 @@ class ThomasKrennAttributes extends ReflectionHandler implements ApplicationMode
         $attributes->fromArray(
             array(
                 /*
-                 * Thomsa Krenn customer data
+                 * Thomas-Krenn customer data
                  */
                 self::CV_SERIAL => new Text(
                     self::CV_SERIAL,
@@ -158,16 +158,16 @@ class ThomasKrennAttributes extends ReflectionHandler implements ApplicationMode
                 ),
 
                 /*
-                 * Thomas Krenn product data
+                 * Thomas-Krenn product data
                  */
                 self::CV_TK_WIKI_LINK => new TextReadonly(
                     self::CV_TK_WIKI_LINK,
-                    _('Thomas Krenn wiki link'),
+                    _('Thomas-Krenn wiki link'),
                     false
                 ),
                 self::CV_TK_PRODUCT_TITLE => new TextReadonly(
                     self::CV_TK_PRODUCT_TITLE,
-                    _('Thomas Krenn product title'),
+                    _('Thomas-Krenn product title'),
                     false
                 ),
 
@@ -280,7 +280,7 @@ class ThomasKrennAttributes extends ReflectionHandler implements ApplicationMode
     }
 
     /**
-     * Add data to host from Thomas Krenn webservice
+     * Add data to host from Thomas-Krenn webservice
      * @param Host $host
      * @throws \TKMON\Exception\ModelException
      */

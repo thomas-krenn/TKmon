@@ -1,17 +1,26 @@
-{% set info_link = web_link("https://www.thomas-krenn.com/de/wiki/SMS_Benachrichtigungen_mit_Icinga") %}
+{% set contact_link = web_link('Monitor/Icinga/Contacts/Edit') %}
 <div class="page-header">
     <h2>{% trans "Short Message Service" %}</h2>
 </div>
 
+<div class="container-spacer-down alert alert-info">
+    <h5>{% trans 'SMS notifications using a CEP CT63 Modem' %}</h5>
+    <p>
+        <i class="icon-thumbs-up icon-4x pull-left"></i>
+        {% trans %}
+        To use this feature, a <a href="https://www.thomas-krenn.com/en/wiki/CEP_CT63_Modem">CEP CT63 Modem</a> must be attached to this appliance.
+        Use a prepaid SIM card to reduce the risc of a high mobile phone bill in case of a misconfiguration.
+        Before you insert the SIM card in the modem, deactivate the SIM card's PIN code or configure the PIN code in the /etc/smsd.conf configuration file on the command line.
+        {% endtrans %}
+    </p>
+</div>
+
+
 <p>
     {% trans %}
-    Enable or disable SMS notifications. If enable, spool files are created
-    for SMS Tools. In addition to have a working SMS model configured, a contact
-    need a phone number to get the feature working.
+    Enable or disable SMS notifications. If enabled, spool files are created
+for further processing by the SMS tools daemon. In addition to get SMS set up, you need to configure a <a href="{{ contact_link }}">contact</a> with its cellular numer.
     {% endtrans %}
-    <a href="{{ info_link }}" target="_blank">
-        {% trans "Click here for more information" %}.
-    </a>
 </p>
 
 <p>
@@ -20,7 +29,7 @@
 
 <p id="sms-enable-again" class="hidden container-spacer-down">
     <a href="{{ web_link('Index') }}" class="btn btn-primary">
-        <i class="icon-refresh"></i> {% trans "Recheck or change sms alert feature" %}
+        <i class="icon-refresh"></i> {% trans "Recheck or change SMS alert feature" %}
     </a>
 </p>
 
@@ -44,7 +53,7 @@
         </button>
         <p class="container-spacer-down">
             {% trans %}
-            SMS Alerts will be disabled for existing and new contacts.
+            SMS Alerts will be <strong>disabled</strong> for existing and new contacts.
             {% endtrans %}
         </p>
     {% else %}
@@ -54,7 +63,7 @@
         </button>
         <p class="container-spacer-down">
             {% trans %}
-            SMS Alerts will be enabled for new contacts with a cellular number configured.
+            SMS Alerts will be <strong>enabled</strong> for new contacts with a cellular number configured.
             {% endtrans %}
         </p>
     {% endif %}
@@ -75,3 +84,14 @@
         });
     }
 </script>
+
+<div class="container-spacer-down alert alert-info">
+    {% set restart_href = web_link('System/Icinga/Daemon/Index#daemon-restart') %}
+    <h4>{% trans 'Icinga restart required' %}</h4>
+    <p>
+        {% trans %}
+        After changing the SMS alert feature you have to restart icinga to apply
+        the new settings. Please follow this <a href="{{ restart_href }}">link to restart icinga</a>.
+        {% endtrans %}
+    </p>
+</div>

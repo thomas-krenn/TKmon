@@ -35,7 +35,7 @@ class RestInterface extends ApplicationModel
 {
 
     /**
-     * AuthKey to talk to Thomas Krenn
+     * AuthKey to talk to Thomas-Krenn
      * @var string
      */
     private $authKey;

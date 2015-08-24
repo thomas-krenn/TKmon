@@ -1,15 +1,8 @@
-<h2>{% trans "Test" %}</h2>
+<h4>{% trans "Check setup" %}</h4>
 
 <div class="alert alert-info">
     {% trans %}
-    Use this dialog to test your configuration. A heartbeat email will be bounced
-    back to your contact email address to ensure all settings work as expected.
-    {% endtrans %}
-</div>
-
-<div class="alert container-spacer-down">
-    {% trans %}
-    Just press 'Test' to start the validation of your configuration, no more parameters are needed.
+    Test your Call-Home-Servive setup here. An encrypted heartbeat will be sent to Thomas-Krenn, which is bounced back directly to your configured contact mail address.
     {% endtrans %}
 </div>
 
@@ -19,9 +12,8 @@
     <h4>{% trans "Success" %}</h4>
     <p>
         {% trans %}
-        Email was sent successfully. Please check your email account
-        <a href="#" id="test-switch-tab">configured here</a>. If everything
-        is correct you will receive an email immediately.
+        The heartbeat was sent successfully. Please check your email account
+        <a href="#" id="test-switch-tab">configured here</a>. If your Call-Home-Service setup is correct, you will receive an email immediately.
         {% endtrans %}
     </p>
 </div>
@@ -36,7 +28,7 @@
 >
 
     <button type="submit" class="btn btn-primary">
-        <i class="icon-save"></i> {% trans "Test" %}
+        <i class="icon-save"></i> {% trans "Test Call-Home-Service" %}
     </button>
 
     <input type="hidden" name="run" value="1" />

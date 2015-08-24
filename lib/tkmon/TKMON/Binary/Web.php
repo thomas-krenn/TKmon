@@ -482,7 +482,7 @@ final class Web
              *
              * Appends customfields to services to fit IPMI and SNMP checks
              * Changes notification templates if a service needs reporting
-             * to Thomas Krenn
+             * to Thomas-Krenn
              */
             $hostData->appendHandlerToChain(new ThomasKrennAttributes($c));
 

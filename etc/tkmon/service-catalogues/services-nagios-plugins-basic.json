@@ -24,8 +24,7 @@
 				"doc": {
 					"en_US": [
 						"<h4>Simple Mail Transfer Protocol Check</h4>",
-						"<p>Using this plugin the status of a remote or local SMTP-Server can be monitored",
-						"with Nagios or Icinga.</p>"
+						"<p>Using this plugin the status of a remote or local SMTP-Server can be monitored.</p>"
 						],
 					"de_DE": [
 						"<h4>Simple Mail Transfer Protocol Check</h4>",
@@ -58,13 +57,11 @@
 				"doc": {
 					"en_US": [
 						"<h4>Secure Simple Mail Transfer Protocol Check</h4>",
-						"<p>Using this plugin the status of a remote or local SSMTP-Server can be monitored",
-						"with Nagios or Icinga.</p>"
+						"<p>Using this plugin the status of a remote or local SSMTP-Server can be monitored.</p>"
 					],
 					"de_DE": [
 						"<h4>Secure Simple Mail Transfer Protocol Check</h4>",
-						"<p>Mit diesem Plugin kann der Status eines lokalen oder entfernten SSMTP-Servers mit",
-						"Nagios oder Icinga überwacht werden.</p>"
+						"<p>Mit diesem Plugin kann der Status eines lokalen oder entfernten SSMTP-Servers überwacht werden.</p>"
 					]
 				},
 				"tk_notify": false,
@@ -91,13 +88,11 @@
 				"doc": {
 					"en_US": [
 						"<h4>Post Office Protocol 3 Check</h4>",
-						"<p>Using this plugin, the status of a remote or local POP3-Server can be monitored",
-						"with Nagios or Icinga.</p>"
+						"<p>Using this plugin, the status of a remote or local POP3-Server can be monitored.</p>"
 					],
 					"de_DE": [
 						"<h4>Post Office Protocol 3 Check</h4>",
-						"<p>Mit diesem Plugin kann der Status eines lokalen oder entfernten POP3-Servers mit",
-						"Nagios oder Icinga überwacht werden.</p>"
+						"<p>Mit diesem Plugin kann der Status eines lokalen oder entfernten POP3-Servers überwacht werden.</p>"
 					]
 				},
 				"tk_notify": false,
@@ -124,13 +119,11 @@
 				"doc": {
 					"en_US": [
 						"<h4>Secure Post Office Protocol 3 Check</h4>",
-						"<p>Using this plugin, the status of a remote or local sPOP3-Server can be monitored",
-						"with Nagios or Icinga.</p>"
+						"<p>Using this plugin, the status of a remote or local sPOP3-Server can be monitored.</p>"
 					],
 					"de_DE": [
 						"<h4>Secure Post Office Protocol 3 Check</h4>",
-						"<p>Mit diesem Plugin kann der Status eines lokalen oder entfernten sPOP3-Servers mit",
-						"Nagios oder Icinga überwacht werden.</p>"
+						"<p>Mit diesem Plugin kann der Status eines lokalen oder entfernten sPOP3-Servers überwacht werden.</p>"
 					]
 				},
 				"tk_notify": false,
@@ -157,13 +150,11 @@
 				"doc": {
 					"en_US": [
 						"<h4>Internet Message Access Protocol Check</h4>",
-						"<p>Using this plugin, the status of a remote or local IMAP-Server can be monitored",
-						"with Nagios or Icinga.</p>"
+						"<p>Using this plugin, the status of a remote or local IMAP-Server can be monitored.</p>"
 					],
 					"de_DE": [
 						"<h4>Secure Post Office Protocol Check</h4>",
-						"<p>Mit diesem Plugin kann der Status eines lokalen oder entfernten IMAP-Servers mit",
-						"Nagios oder Icinga überwacht werden.</p>"
+						"<p>Mit diesem Plugin kann der Status eines lokalen oder entfernten IMAP-Servers überwacht werden.</p>"
 					]
 				},
 				"tk_notify": false,
@@ -190,13 +181,11 @@
 				"doc": {
 					"en_US": [
 						"<h4>Secure Internet Message Access Protocol Check</h4>",
-						"<p>Using this plugin, the status of a remote or local sIMAP-Server can be monitored",
-						"with Nagios or Icinga.</p>"
+						"<p>Using this plugin, the status of a remote or local sIMAP-Server can be monitored.</p>"
 					],
 					"de_DE": [
 						"<h4>Secure Post Office Protocol Check</h4>",
-						"<p>Mit diesem Plugin kann der Status eines lokalen oder entfernten sIMAP-Servers mit",
-						"Nagios oder Icinga überwacht werden.</p>"
+						"<p>Mit diesem Plugin kann der Status eines lokalen oder entfernten sIMAP-Servers überwacht werden.</p>"
 					]
 				},
 				"tk_notify": false,
@@ -223,13 +212,11 @@
 				"doc": {
 					"en_US": [
 						"<h4>File Transfer Protocol Check</h4>",
-						"<p>Using this plugin, the status of a remote or local FTP-Server can be monitored",
-						"with Nagios or Icinga.</p>"
+						"<p>Using this plugin, the status of a remote or local FTP-Server can be monitored.</p>"
 					],
 					"de_DE": [
 						"<h4>File Transfer Protocol Check</h4>",
-						"<p>Mit diesem Plugin kann der Status eines lokalen oder entfernten FTP-Servers mit",
-						"Nagios oder Icinga überwacht werden.</p>"
+						"<p>Mit diesem Plugin kann der Status eines lokalen oder entfernten FTP-Servers überwacht werden.</p>"
 					]
 				},
 				"tk_notify": false,
@@ -256,13 +243,11 @@
 				"doc": {
 					"en_US": [
 						"<h4>Dynamic Host Configuration Protocol Check</h4>",
-						"<p>Using this plugin, the status of a local DHCP-Server can be monitored",
-						"with Nagios or Icinga.</p>"
+						"<p>Using this plugin, the status of a local DHCP-Server can be monitored.</p>"
 					],
 					"de_DE": [
 						"<h4>Dynamic Host Configuration Protocol Check</h4>",
-						"<p>Mit diesem Plugin kann der Status eines lokalen DHCP-Servers mit",
-						"Nagios oder Icinga überwacht werden.</p>"
+						"<p>Mit diesem Plugin kann der Status eines lokalen DHCP-Servers überwacht werden.</p>"
 					]
 				},
 				"tk_notify": false,
@@ -300,12 +285,11 @@
 					"en_US": [
 						"<h4>Dynamic Host Configuration Protocol Check</h4>",
 						"<p>Using this plugin, the status of a remote or local DHCP-Server on a specified",
-						"interface can be monitored with Nagios or Icinga.</p>"
+						"interface can be monitored.</p>"
 					],
 					"de_DE": [
 						"<h4>Dynamic Host Configuration Protocol Check</h4>",
-						"<p>Mit diesem Plugin kann der Status eines Netzwerkadapters auf DHCP Konnektivität mit",
-						"Nagios oder Icinga überwacht werden.</p>"
+						"<p>Mit diesem Plugin kann der Status eines Netzwerkadapters auf DHCP Konnektivität überwacht werden.</p>"
 					]
 				},
 				"tk_notify": false,
@@ -332,13 +316,11 @@
 				"doc": {
 					"en_US": [
 						"<h4>Network Time Protocol Check</h4>",
-						"<p>Using this plugin, the status of a remote or local NTP-Server can be monitored",
-						"with Nagios or Icinga.</p>"
+						"<p>Using this plugin, the status of a remote or local NTP-Server can be monitored.</p>"
 					],
 					"de_DE": [
 						"<h4>Network Time Protocol Check</h4>",
-						"<p>Mit diesem Plugin kann der Status eines lokalen oder entfernten NTP-Servers mit",
-						"Nagios oder Icinga überwacht werden.</p>"
+						"<p>Mit diesem Plugin kann der Status eines lokalen oder entfernten NTP-Servers überwacht werden.</p>"
 					]
 				},
 				"tk_notify": false,
@@ -365,13 +347,11 @@
 				"doc": {
 					"en_US": [
 						"<h4>Network Time Protocol Check</h4>",
-						"<p>Using this plugin, the time of a remote or local Server can be monitored",
-						"with Nagios or Icinga.</p>"
+						"<p>Using this plugin, the time of a remote or local Server can be monitored.</p>"
 					],
 					"de_DE": [
 						"<h4>Network Time Protocol Check</h4>",
-						"<p>Mit diesem Plugin kann der Zeit eines lokalen oder entfernten Servers mit",
-						"Nagios oder Icinga überwacht werden.</p>"
+						"<p>Mit diesem Plugin kann die Zeit eines lokalen oder entfernten Servers überwacht werden.</p>"
 					]
 				},
 				"tk_notify": false,
@@ -451,12 +431,11 @@
 				"doc": {
 					"en_US": [
 						"<h4>Apt-Get Updates Check</h4>",
-						"<p>This plugin checks whether there are updates available for the Server",
-						"with Nagios or Icinga.</p>"
+						"<p>This plugin checks whether there are updates available for the Server.</p>"
 					],
 					"de_DE": [
 						"<h4>Apt-Get Updates Check</h4>",
-						"<p>Dieses Plugin überprüft, ob für System Updates verfügbar sind.</p>"
+						"<p>Dieses Plugin überprüft, ob für den Server Updates verfügbar sind.</p>"
 					]
 				},
 				"tk_notify": false,
@@ -488,7 +467,7 @@
 					],
 					"de_DE": [
 						"<h4>Apt-Get Dist-Updates Check</h4>",
-						"<p>Dieses Plugin überprüft, ob für das Zielsystem Distributions-Updates verfügbar sind.</p>"
+						"<p>Dieses Plugin überprüft, ob für den Server Distributions-Updates verfügbar sind.</p>"
 					]
 				},
 				"tk_notify": false,
@@ -547,7 +526,7 @@
 					],
 					"de_DE": [
 						"<h4>Disk Usage Check</h4>",
-						"<p>Mithilfe dieses Plugins wird überwacht, ob eine bestimmte Festplatte ihre Kapazität erreicht.</p>"
+						"<p>Mithilfe dieses Plugins wird überwacht, ob eine bestimmte Festplatte ihr Kapazitätlimit erreicht.</p>"
 					]
 				},
 				"tk_notify": false,
@@ -593,7 +572,7 @@
 				"doc": {
 					"en_US": [
 						"<h4>Disk Usage Check</h4>",
-						"<p>This plugin helps monitoring if any disk reaches its capacity.</p>"
+						"<p>This plugin helps monitoring if any disk reaches its capacity</p>"
 						],
 					"de_DE": [
 						"<h4>Disk Usage Check</h4>",
@@ -877,7 +856,7 @@
 						"label": "SSH Port",
 						"description": {
 							"en_US": "Integer port where ssh is listening on",
-							"de_DE": "Integer Port vom SSH Dienst"
+							"de_DE": "Integer Port des SSH Dienstes"
 						},
 						"validation": "port",
 						"argument": "-p"

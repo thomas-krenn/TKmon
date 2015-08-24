@@ -11,15 +11,13 @@
 
 <p class="container-spacer-down">
     {% trans %}
-    Icinga is running if the daemon is available and the status file is up-to-date.
+    <span class="label label-info">Information:</span> Icinga is running if the daemon is available and the status file is up-to-date.
     {% endtrans %}
-    <br /><br />
-    {% trans %}
-    Press the following button to refresh the status:
-    {% endtrans %}
+    <div class="container-spacer-down">
     <button type="button" id="icinga-status-refresh" class="btn btn-primary">
-        <i class="icon-refresh"></i> {% trans "Refresh" %}
+        <i class="icon-refresh"></i> {% trans "Refresh Status" %}
     </button>
+    </div>
 </p>
 
 <script>

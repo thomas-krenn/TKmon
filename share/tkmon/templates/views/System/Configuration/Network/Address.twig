@@ -5,8 +5,8 @@
 <div class="alert alert-error">
     <i class="icon-exclamation-sign"></i>
     {% trans %}
-    Attention: setting wrong network parameters here can make this webinterface unreachable on your network.
-    In this case you have to login to the local console and correct your network settings at the local shell.
+    Attention: setting wrong network parameters can lead to a situation where your TKmon web interface is unreachable.
+    In this case you have to login to the local console and correct your network settings on the command line.
     {% endtrans %}
 </div>
 
@@ -50,7 +50,7 @@
     </fieldset>
 
     <fieldset>
-        <label for="ip_gateway">{% trans "Default Gateway" %}</label>
+        <label for="ip_gateway">{% trans "Default gateway" %}</label>
         <input type="text" name="ip_gateway" id="ip_gateway" value="{{ ip_gateway }}" />
     </fieldset>
 
