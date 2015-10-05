@@ -67,5 +67,7 @@ class Mailer(object):
 
         LOG.debug("Send mail to %s (server=%s)", self.receiver, self.server)
 
-        server = smtplib.SMTP(self.server)
-        server.sendmail(self.sender, self.receiver, message.as_string())
+        
+	if "@example.com" not in self.get_sender_string().lower():
+		server = smtplib.SMTP(self.server)
+		server.sendmail(self.sender, self.receiver, message.as_string())
