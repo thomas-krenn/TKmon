@@ -9,27 +9,6 @@
                         "check_command": {
                                 "command_name": "check_synology_disk_status",
                                 "arguments": [
-				{
-				        "label": "SNMPv3 Username",
-                                        "description": {
-                                                "en_US": "SNMPv3 Username",
-                                                "de_DE": "SNMPv3 Benutzername"
-                                        },
-                                        "validation": "string",
-                                        "argument": "-U",
-                                        "value": ""
-                                },
-				{
-				        "label": "SNMPv3 Password",
-                                        "description": {
-                                                "en_US": "SNMPv3 Password",
-                                                "de_DE": "SNMPv3 Passwort"
-                                        },
-                                        "validation": "string",
-                                        "argument": "-A",
-										"type" : "password",
-                                        "value": ""
-                                },
                                 {
                                         "label": "Disk number",
                                         "description": {
@@ -74,27 +53,6 @@
                         "check_command": {
                                 "command_name": "check_synology_raid_status",
                                 "arguments": [
-				{
-				        "label": "SNMPv3 Username",
-                                        "description": {
-                                                "en_US": "SNMPv3 Username",
-                                                "de_DE": "SNMPv3 Benutzername"
-                                        },
-                                        "validation": "string",
-                                        "argument": "-U",
-                                        "value": ""
-                                },
-				{
-				        "label": "SNMPv3 Password",
-                                        "description": {
-                                                "en_US": "SNMPv3 Password",
-                                                "de_DE": "SNMPv3 Passwort"
-                                        },
-                                        "validation": "string",
-                                        "argument": "-A",
-										"type" : "password",
-                                        "value": ""
-                                },
                                 {
                                         "label": "RAID volume number",
                                         "description": {
@@ -138,29 +96,7 @@
                         "display_name": "SNMP-Synology-System-Status",
                         "check_command": {
                                 "command_name": "check_synology_system_status",
-                                "arguments": [
-				{
-				        "label": "SNMPv3 Username",
-                                        "description": {
-                                                "en_US": "SNMPv3 Username",
-                                                "de_DE": "SNMPv3 Benutzername"
-                                        },
-                                        "validation": "string",
-                                        "argument": "-U",
-                                        "value": ""
-                                },
-				{
-				        "label": "SNMPv3 Password",
-                                        "description": {
-                                                "en_US": "SNMPv3 Password",
-                                                "de_DE": "SNMPv3 Passwort"
-                                        },
-                                        "validation": "string",
-                                        "argument": "-A",
-										"type" : "password",
-                                        "value": ""
-                                }
-                                ]
+				"arguments": []
                         },
                         "_catalogue_attributes": {
                                 "tags": ["System status"],
@@ -193,29 +129,7 @@
                         "display_name": "SNMP-Synology-Power-Status",
                         "check_command": {
                                 "command_name": "check_synology_power_status",
-                                "arguments": [
-				{
-				        "label": "SNMPv3 Username",
-                                        "description": {
-                                                "en_US": "SNMPv3 Username",
-                                                "de_DE": "SNMPv3 Benutzername"
-                                        },
-                                        "validation": "string",
-                                        "argument": "-U",
-                                        "value": ""
-                                },
-				{
-				        "label": "SNMPv3 Password",
-                                        "description": {
-                                                "en_US": "SNMPv3 Password",
-                                                "de_DE": "SNMPv3 Passwort"
-                                        },
-                                        "validation": "string",
-                                        "argument": "-A",
-										"type" : "password",
-                                        "value": ""
-                                }
-                                ]
+				"arguments": []
                         },
                         "_catalogue_attributes": {
                                 "tags": ["System status"],
@@ -248,29 +162,7 @@
                         "display_name": "SNMP-Synology-System-Fan-Status",
                         "check_command": {
                                 "command_name": "check_synology_fan_status",
-                                "arguments": [
-				{
-				        "label": "SNMPv3 Username",
-                                        "description": {
-                                                "en_US": "SNMPv3 Username",
-                                                "de_DE": "SNMPv3 Benutzername"
-                                        },
-                                        "validation": "string",
-                                        "argument": "-U",
-                                        "value": ""
-                                },
-				{
-				        "label": "SNMPv3 Password",
-                                        "description": {
-                                                "en_US": "SNMPv3 Password",
-                                                "de_DE": "SNMPv3 Passwort"
-                                        },
-                                        "validation": "string",
-                                        "argument": "-A",
-										"type" : "password",
-                                        "value": ""
-                                }
-                                ]
+				"arguments": []
                         },
                         "_catalogue_attributes": {
                                 "tags": ["System status"],
@@ -303,29 +195,7 @@
                         "display_name": "SNMP-Synology-CPU-Fan-Status",
                         "check_command": {
                                 "command_name": "check_synology_cpufan_status",
-                                "arguments": [
-				{
-				        "label": "SNMPv3 Username",
-                                        "description": {
-                                                "en_US": "SNMPv3 Username",
-                                                "de_DE": "SNMPv3 Benutzername"
-                                        },
-                                        "validation": "string",
-                                        "argument": "-U",
-                                        "value": ""
-                                },
-				{
-				        "label": "SNMPv3 Password",
-                                        "description": {
-                                                "en_US": "SNMPv3 Password",
-                                                "de_DE": "SNMPv3 Passwort"
-                                        },
-                                        "validation": "string",
-                                        "argument": "-A",
-										"type" : "password",
-                                        "value": ""
-                                }
-                                ]
+				"arguments": []
                         },
                         "_catalogue_attributes": {
                                 "tags": ["System status"],
@@ -360,28 +230,7 @@
                                 "command_name": "check_synology_cpu",
                                 "arguments": [
 				{
-				        "label": "SNMPv3 Username",
-                                        "description": {
-                                                "en_US": "SNMPv3 Username",
-                                                "de_DE": "SNMPv3 Benutzername"
-                                        },
-                                        "validation": "string",
-                                        "argument": "-U",
-                                        "value": ""
-                                },
-				{
-				        "label": "SNMPv3 Password",
-                                        "description": {
-                                                "en_US": "SNMPv3 Password",
-                                                "de_DE": "SNMPv3 Passwort"
-                                        },
-                                        "validation": "string",
-                                        "argument": "-A",
-										"type" : "password",
-                                        "value": ""
-                                },
-				{
-                                        "label": "Warning treshold",
+                                        "label": "Warning threshold",
                                         "description": {
                                                 "en_US": "Insert warning threshold x100",
                                                 "de_DE": "Warning Grenzwert angeben x100"
@@ -435,27 +284,6 @@
                                 "command_name": "check_synology_disk_temperature",
                                 "arguments": [
 				{
-				        "label": "SNMPv3 Username",
-                                        "description": {
-                                                "en_US": "SNMPv3 Username",
-                                                "de_DE": "SNMPv3 Benutzername"
-                                        },
-                                        "validation": "string",
-                                        "argument": "-U",
-                                        "value": ""
-                                },
-				{
-				        "label": "SNMPv3 Password",
-                                        "description": {
-                                                "en_US": "SNMPv3 Password",
-                                                "de_DE": "SNMPv3 Passwort"
-                                        },
-                                        "validation": "string",
-                                        "argument": "-A",
-										"type" : "password",
-                                        "value": ""
-                                },
-                                {
                                         "label": "Disk number",
                                         "description": {
                                                 "en_US": "Insert disk number",
@@ -519,27 +347,6 @@
                         "check_command": {
                                 "command_name": "check_synology_system_temperature",
                                 "arguments": [
-				{
-				        "label": "SNMPv3 Username",
-                                        "description": {
-                                                "en_US": "SNMPv3 Username",
-                                                "de_DE": "SNMPv3 Benutzername"
-                                        },
-                                        "validation": "string",
-                                        "argument": "-U",
-                                        "value": ""
-                                },
-				{
-				        "label": "SNMPv3 Password",
-                                        "description": {
-                                                "en_US": "SNMPv3 Password",
-                                                "de_DE": "SNMPv3 Passwort"
-                                        },
-                                        "validation": "string",
-                                        "argument": "-A",
-										"type" : "password",
-                                        "value": ""
-                                },
 				{
                                         "label": "Warning temperature",
                                         "description": {
