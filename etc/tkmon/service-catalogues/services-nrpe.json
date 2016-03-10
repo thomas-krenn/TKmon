@@ -18,7 +18,7 @@
 				]
 			},
 			"_catalogue_attributes": {
-				"tags": ["remote", "nrpe"],
+				"tags": ["remote", "nrpe", "windows"],
 				"name": "nrpe-check",
 				"label": "NRPE check",
 				"description": "Checks the status of a service check defined on a host running NRPE daemon.",
