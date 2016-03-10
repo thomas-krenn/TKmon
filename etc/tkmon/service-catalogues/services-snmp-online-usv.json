@@ -1,0 +1,301 @@
+{
+        "type": "service",
+        "version": "1.0",
+        "description": "Services catalogue for online-usv snmp checks",
+        "data": [
+                {
+                        "service_description": "snmp-online-usv-temperature",
+                        "display_name": "SNMP-Online-USV-Temperature",
+                        "check_command": {
+                                "command_name": "check_online_temperature",
+                                "arguments": [
+				{
+                                        "label": "Warning temperature",
+                                        "description": {
+                                                "en_US": "Insert warning temperature",
+                                                "de_DE": "Temperaturwarnschwelle angeben"
+                                        },
+                                        "validation": "string",
+                                        "argument": "-w",
+                                        "value": ""
+                                },
+				{
+                                        "label": "Critical temperature",
+                                        "description": {
+                                                "en_US": "Insert critical temperature",
+                                                "de_DE": "Kritische Temperaturschwelle angeben"
+                                        },
+                                        "validation": "string",
+                                        "argument": "-c",
+                                        "value": ""
+                                }
+                                ]
+                        },
+                        "_catalogue_attributes": {
+                                "tags": ["Temperature"],
+                                "name": "snmp_online_usv_temperature",
+                                "label": "SNMP-Online-USV-Temperature",
+                                "description": {
+                                        "en_US": "Checks via SNMP the temperature of a Online-USV",
+                                        "de_DE": "Überprüft über SNMP die Temperatur einer Online-USV"
+                                },
+                                "defined": true,
+                                "defined_in": "/etc/nagios-plugins/config/check_snmp_online.cfg",
+                                "doc": {
+                                        "en_US": [
+                                   		"<h4>SNMP Online-USV Battery Temperature</h4>",
+                                                "<p>Using this plugin, the battery and surrounding temperature of a Online-USV UPS",
+                                                "can be monitored via SNMP.</p>"
+                                        ],
+                                        "de_DE": [
+                                                "<h4>SNMP Online-USV Batterie Temperatur</h4>",
+                                                "<p>Mit diesem Plugin kann die Batterie- und Umgebungstemperatur einer Online-USV",
+                                                "über SNMP überwacht werden.</p>"
+                                        ]
+                                },
+                                "tk_notify": false,
+                                "tk_notify_default": false
+                        }
+                },
+		{
+                        "service_description": "snmp-online-usv-battery-status",
+                        "display_name": "SNMP-Online-USV-Battery-Status",
+                        "check_command": {
+                                "command_name": "check_online_battery_status",
+                                "arguments": []
+                        },
+                        "_catalogue_attributes": {
+                                "tags": ["Battery Status"],
+                                "name": "snmp_online_usv_battery_status",
+                                "label": "SNMP-Online-USV-Battery-Status",
+                                "description": {
+                                        "en_US": "Checks via SNMP the battery status of a Online-USV",
+                                        "de_DE": "Überprüft über SNMP den Status der Batterie einer Online-USV"
+                                },
+                                "defined": true,
+                                "defined_in": "/etc/nagios-plugins/config/check_snmp_online.cfg",
+                                "doc": {
+                                        "en_US": [
+                                   		"<h4>SNMP Online-USV Battery Status</h4>",
+                                                "<p>Using this plugin, the battery status of a Online-USV UPS",
+                                                "can be monitored via SNMP.</p>"
+                                        ],
+                                        "de_DE": [
+                                                "<h4>SNMP Online-USV Batterie Temperatur</h4>",
+                                                "<p>Mit diesem Plugin kann der Batteriestatus einer Online-USV",
+                                                "über SNMP überwacht werden.</p>"
+                                        ]
+                                },
+                                "tk_notify": false,
+                                "tk_notify_default": false
+                        }
+                },
+		{
+                        "service_description": "snmp-online-usv-seconds-on-battery",
+                        "display_name": "SNMP-Online-USV-seconds-on-battery",
+                        "check_command": {
+                                "command_name": "check_online_seconds_on_battery",
+                                "arguments": []
+                        },
+                        "_catalogue_attributes": {
+                                "tags": ["Seconds on Battery Counter"],
+                                "name": "snmp_online_usv_seconds_on_battery",
+                                "label": "SNMP-Online-USV-seconds-on-battery",
+                                "description": {
+                                        "en_US": "Checks and Counts via SNMP the seconds a Online-USV is on battery",
+                                        "de_DE": "Überprüft und Zählt über SNMP wie lange eine Online-USV auf Batteriestrom ist"
+                                },
+                                "defined": true,
+                                "defined_in": "/etc/nagios-plugins/config/check_snmp_online.cfg",
+                                "doc": {
+                                        "en_US": [
+                                   		"<h4>SNMP Online-USV seconds on battery</h4>",
+                                                "<p>Using this plugin, the seconds a Online-USV UPS is on battery",
+                                                "can be monitored via SNMP.</p>"
+                                        ],
+                                        "de_DE": [
+                                                "<h4>SNMP Online-USV Batterie Temperatur</h4>",
+                                                "<p>Mit diesem Plugin können die Sekunden auf Batteriestrom einer Online-USV",
+                                                "über SNMP überwacht werden.</p>"
+                                        ]
+                                },
+                                "tk_notify": false,
+                                "tk_notify_default": false
+                        }
+                },
+		{
+                        "service_description": "snmp-online-estimated-minutes-remaining",
+                        "display_name": "SNMP-Online-USV-estimated-minutes-remaining",
+                        "check_command": {
+                                "command_name": "check_online_estimated_minutes_remaining",
+                                "arguments": [
+				{
+                                        "label": "Minutes warning",
+                                        "description": {
+                                                "en_US": "Insert warning minutes threshold",
+                                                "de_DE": "Minutenwarnschwelle angeben"
+                                        },
+                                        "validation": "string",
+                                        "argument": "-w",
+                                        "value": ""+":"
+                                },
+				{
+                                        "label": "Minutes critical",
+                                        "description": {
+                                                "en_US": "Insert critical minutes threshold",
+                                                "de_DE": "Kritische Minutenwarnschwelle angeben"
+                                        },
+                                        "validation": "string",
+                                        "argument": "-c",
+                                        "value": ""
+                                }
+				]
+                        },
+                        "_catalogue_attributes": {
+                                "tags": ["estimated minutes remaining"],
+                                "name": "snmp_online_usv_estimated_minutes_remaining",
+                                "label": "SNMP-Online-USV-estimated-minutes-remaining",
+                                "description": {
+                                        "en_US": "Checks via SNMP the estimated remaining minutes of battery runtime of a Online-USV",
+                                        "de_DE": "Überprüft über SNMP die verbleibende Batterielaufzeit in Minuten einer Online-USV"
+                                },
+                                "defined": true,
+                                "defined_in": "/etc/nagios-plugins/config/check_snmp_online.cfg",
+                                "doc": {
+                                        "en_US": [
+                                   		"<h4>SNMP Online-USV estimated minutes remaining</h4>",
+                                                "<p>Using this plugin, the estimated remaining minutes of battery runtime of a Online-USV UPS",
+                                                "can be monitored via SNMP.</p>"
+                                        ],
+                                        "de_DE": [
+                                                "<h4>SNMP Online-USV verbleibende Batterielaufzeit</h4>",
+                                                "<p>Mit diesem Plugin kann die verbleibende Batterielaufzeit in Minuten einer Online-USV",
+                                                "über SNMP überwacht werden.</p>"
+                                        ]
+                                },
+                                "tk_notify": false,
+                                "tk_notify_default": false
+                        }
+                },
+		{
+                        "service_description": "snmp-online-estimated-charge-remaining",
+                        "display_name": "SNMP-Online-USV-estimated-charge-remaining",
+                        "check_command": {
+                                "command_name": "check_online_estimated_charge_remaining",
+                                "arguments": [
+				{
+                                        "label": "Charge warning",
+                                        "description": {
+                                                "en_US": "Insert warning charge threshold",
+                                                "de_DE": "Warnschwellwert der Ladung angeben"
+                                        },
+                                        "validation": "string",
+                                        "argument": "-w",
+                                        "value": ""
+                                },
+				{
+                                        "label": "Charge critical",
+                                        "description": {
+                                                "en_US": "Insert critical charge threshold",
+                                                "de_DE": "Kritischen Ladungsschwellwert angeben"
+                                        },
+                                        "validation": "string",
+                                        "argument": "-c",
+                                        "value": ""
+                                }
+				]
+                        },
+                        "_catalogue_attributes": {
+                                "tags": ["estimated charge remaining"],
+                                "name": "snmp_online_usv_estimated_charge_remaining",
+                                "label": "SNMP-Online-USV-estimated-charge-remaining",
+                                "description": {
+                                        "en_US": "Checks via SNMP the estimated percental remaining battery charge of a Online-USV",
+                                        "de_DE": "Überprüft über SNMP die verbleibende prozentuale Batterieladung einer Online-USV"
+                                },
+                                "defined": true,
+                                "defined_in": "/etc/nagios-plugins/config/check_snmp_online.cfg",
+                                "doc": {
+                                        "en_US": [
+                                   		"<h4>SNMP Online-USV estimated charge remaining</h4>",
+                                                "<p>Using this plugin, the estimated percental remaining battery charge of a Online-USV UPS",
+                                                "can be monitored via SNMP.</p>"
+                                        ],
+                                        "de_DE": [
+                                                "<h4>SNMP Online-USV verbleibende Batterieladung</h4>",
+                                                "<p>Mit diesem Plugin kann die verbleibende prozentuale Batterieladung einer Online-USV",
+                                                "über SNMP überwacht werden.</p>"
+                                        ]
+                                },
+                                "tk_notify": false,
+                                "tk_notify_default": false
+                        }
+                },
+		{
+                        "service_description": "snmp-online-output-power",
+                        "display_name": "SNMP-Online-USV-Output-Power",
+                        "check_command": {
+                                "command_name": "check_online_output_power",
+                                "arguments": []
+                        },
+                        "_catalogue_attributes": {
+                                "tags": ["output power"],
+                                "name": "snmp_online_usv_output_power",
+                                "label": "SNMP-Online-USV-Output-Power",
+                                "description": {
+                                        "en_US": "Checks via SNMP the current output power of a Online-USV",
+                                        "de_DE": "Überprüft über SNMP die momentane Ausgangsleistung einer Online-USV"
+                                },
+                                "defined": true,
+                                "defined_in": "/etc/nagios-plugins/config/check_snmp_online.cfg",
+                                "doc": {
+                                        "en_US": [
+                                   		"<h4>SNMP Online-USV output power</h4>",
+                                                "<p>Using this plugin, the current output power of a Online-USV UPS",
+                                                "can be monitored via SNMP.</p>"
+                                        ],
+                                        "de_DE": [
+                                                "<h4>SNMP Online-USV Ausgangsleistung</h4>",
+                                                "<p>Mit diesem Plugin kann die momentane Ausgangsleistung einer Online-USV",
+                                                "über SNMP überwacht werden.</p>"
+                                        ]
+                                },
+                                "tk_notify": false,
+                                "tk_notify_default": false
+                        }
+                },
+		{
+                        "service_description": "snmp-online-output-load",
+                        "display_name": "SNMP-Online-USV-Output-Load",
+                        "check_command": {
+                                "command_name": "check_online_output_load",
+                                "arguments": []
+                        },
+                        "_catalogue_attributes": {
+                                "tags": ["output load"],
+                                "name": "snmp_online_usv_output_load",
+                                "label": "SNMP-Online-USV-Output-Load",
+                                "description": {
+                                        "en_US": "Checks via SNMP the current percental output load of a Online-USV",
+                                        "de_DE": "Überprüft über SNMP die momentane prozentuale Last an den Ausgängen einer Online-USV"
+                                },
+                                "defined": true,
+                                "defined_in": "/etc/nagios-plugins/config/check_snmp_online.cfg",
+                                "doc": {
+                                        "en_US": [
+                                   		"<h4>SNMP Online-USV output load</h4>",
+                                                "<p>Using this plugin, the current percental output load of a Online-USV UPS",
+                                                "can be monitored via SNMP.</p>"
+                                        ],
+                                        "de_DE": [
+                                                "<h4>SNMP Online-USV Ausgangslast</h4>",
+                                                "<p>Mit diesem Plugin kann die momentane prozentuale Ausgangslast einer Online-USV",
+                                                "über SNMP überwacht werden.</p>"
+                                        ]
+                                },
+                                "tk_notify": false,
+                                "tk_notify_default": false
+                        }
+                }
+	]
+}
