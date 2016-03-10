@@ -1,0 +1,65 @@
+{
+  "type": "service",
+  "version": "1.0",
+  "description": "Services catalogue for nagios built-in SNMP checks",
+  "data": [{
+    "service_description": "snmp-generic-customoid_v3",
+    "display_name": "SNMP-Generic-Customoid_v3",
+    "check_command": {
+      "command_name": "snmp_generic_customoid_v3",
+      "arguments": [{
+        "label": "OID(s) to monitor",
+        "description": {
+          "en_US": "Insert the OID you want to monitor (multiple OIDs must be seperated with comma)",
+          "de_DE": "OID die überwacht werden soll (mehrere OIDs können mit Komma getrennt werden)"
+        },
+        "validation": "string",
+        "argument": "-o",
+        "value": ""
+      }, {
+        "label": "Warning threshold",
+        "description": {
+          "en_US": "Insert warning threshold (comma seperated when using multiple OIDs) syntax: https://nagios-plugins.org/doc/guidelines.html#THRESHOLDFORMAT",
+          "de_DE": "Warning Grenzwert (mit Komma getrennt bei mehreren OIDs) syntax: https://nagios-plugins.org/doc/guidelines.html#THRESHOLDFORMAT"
+        },
+        "validation": "string",
+        "argument": "-w",
+        "value": ""
+      }, {
+        "label": "Critical threshold",
+        "description": {
+          "en_US": "Insert critical threshold (comma seperated when using multiple OIDs) syntax: https://nagios-plugins.org/doc/guidelines.html#THRESHOLDFORMAT",
+          "de_DE": "Critical Grenzwert (mit Komma getrennt bei mehreren OIDs) syntax: https://nagios-plugins.org/doc/guidelines.html#THRESHOLDFORMAT"
+        },
+        "validation": "string",
+        "argument": "-c",
+        "value": ""
+      }]
+    },
+    "_catalogue_attributes": {
+      "tags": ["OID","custom"],
+      "name": "snmp_generic_customoid_v3",
+      "label": "SNMP-Generic-Customoid_v3",
+      "description": {
+        "en_US": "Checks via SNMP the given OID(s) on a system",
+        "de_DE": "Überprüft über SNMP die angebene(n) OID(s) auf einem System"
+      },
+      "defined": true,
+      "defined_in": "/etc/nagios-plugins/config/check_snmp_generic_customoid_v3.cfg",
+      "doc": {
+        "en_US": [
+          "<h4>SNMP Generic Customoid v3</h4>",
+          "<p>Using this plugin, custom OID(s) of a system",
+          "can be monitored with Nagios or Icinga over SNMP.</p>"
+        ],
+        "de_DE": [
+          "<h4>SNMP Generic Customoid v3</h4>",
+          "<p>Mit diesem Plugin können benutzerdefinierte OID(s) eines Systems",
+          "mit Nagios oder Icinga über SNMP überwacht werden.</p>"
+        ]
+      },
+      "tk_notify": false,
+      "tk_notify_default": false
+    }
+  }]
+}
