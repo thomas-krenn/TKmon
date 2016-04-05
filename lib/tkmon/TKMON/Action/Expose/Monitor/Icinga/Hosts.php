@@ -45,6 +45,15 @@ class Hosts extends \TKMON\Action\Base
         $hostData = $this->container['hostData'];
         $hostData->load();
 
+        if ($params->get('sort', null) !== null) {
+            $hostData->sort(
+                $params->get('sort'),
+                $params->get('order', 'asc')
+            );
+        } else {
+            $hostData->sort('host_name', 'asc');
+        }
+
         $template['host_attributes'] = $hostData->getEditableAttributes();
         $template['host_customvars'] = $hostData->getCustomVariables();
         $template['hosts'] = $hostData;
