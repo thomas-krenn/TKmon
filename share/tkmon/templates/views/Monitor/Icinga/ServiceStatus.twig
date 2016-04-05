@@ -103,21 +103,30 @@
 </div>
 
 <script>
-    require(['TKMON/jquery/SiteRefreshTimer'], function() {
-        /*
-         * setTimeout is a hack. Because we're too fast for require.js
-         * ticks that deps are not loaded.
-         *
-         * @todo Update require.js to (maybe) fixed version
-         */
-        window.setTimeout(function() {
+    require(['jquery', 'bootstrap', 'TKMON/jquery/SiteRefreshTimer'], function($) {
+        var startRefresh = function() {
             $('#site-refresh').siteRefreshTimer({
                 timeout: parseInt('{{ config.get('view.refresh') }}', 10),
                 secondsLabel: '{% trans "seconds" %}',
                 stopLabel: '',
                 initialLabel: '{% trans "Reload page in" %}'
             });
-        },  30);
+        };
+
+        var testCount = 0;
+
+        var testRefresh = function() {
+            try {
+                startRefresh()
+            } catch(e) {
+                if (String(e).indexOf('siteRefresh') > -1 && testCount < 10) {
+                    testCount++;
+                    window.setTimeout(testRefresh, 30);
+                }
+            }
+        }
+
+        testRefresh();
     });
 
     require(['jquery', 'bootstrap'], function() {
