@@ -1,9 +1,9 @@
-{% set link_ok = web_link('Services?servicestatustypes=2') %}
-{% set link_warning = web_link('Services?servicestatustypes=4') %}
-{% set link_critical = web_link('Services?servicestatustypes=16') %}
-{% set link_unknown = web_link('Services?servicestatustypes=8') %}
-{% set link_problems = web_link('Services?servicestatustypes=29') %}
-{% set link_pending = web_link('Services?servicestatustypes=1') %}
+{% set link_ok = web_link('Services?servicestatustypes=2', 'sort,order') %}
+{% set link_warning = web_link('Services?servicestatustypes=4', 'sort,order') %}
+{% set link_critical = web_link('Services?servicestatustypes=16', 'sort,order') %}
+{% set link_unknown = web_link('Services?servicestatustypes=8', 'sort,order') %}
+{% set link_problems = web_link('Services?servicestatustypes=29', 'sort,order') %}
+{% set link_pending = web_link('Services?servicestatustypes=1', 'sort,order') %}
 
 {% import "macros/icinga.twig" as icinga %}
 <div class="page-header">
@@ -34,7 +34,7 @@
     <a href="{{ link_problems }}" class="btn btn-danger">
         <i class="icon-exclamation-sign"></i> {% trans "Problems only" %}
     </a>
-    <a href="{{ web_link('Services') }}" class="btn btn-info">
+    <a href="{{ web_link('Services', 'sort,order') }}" class="btn btn-info">
         <i class="icon-asterisk"></i> {% trans "All" %}
     </a>
 
@@ -47,12 +47,36 @@
 <table class="tkmon-data-table">
 
     <tr>
-        <th>{% trans "Hostname" %}</th>
-        <th>{% trans "Service" %}</th>
-        <th>{% trans "Status" %}</th>
-        <th>{% trans "Last check" %}</th>
-        <th>{% trans "Duration" %}</th>
-        <th>{% trans "Attempt" %}</th>
+        <th>
+            {% trans "Hostname" %}
+            <a title="{% trans 'Sort by hostname ascending' %}" href="{{ web_link('Services?sort=host&order=asc', 'servicestatustypes') }}"><i class="icon-caret-up"></i></a>
+            <a title="{% trans 'Sort by hostname descending' %}" href="{{ web_link('Services?sort=host&order=desc', 'servicestatustypes') }}"><i class="icon-caret-down"></i></a>
+        </th>
+        <th>
+            {% trans "Service" %}
+            <a title="{% trans 'Sort by service ascending' %}" href="{{ web_link('Services?sort=service&order=asc', 'servicestatustypes') }}"><i class="icon-caret-up"></i></a>
+            <a title="{% trans 'Sort by service descending' %}" href="{{ web_link('Services?sort=service&order=desc', 'servicestatustypes') }}"><i class="icon-caret-down"></i></a>
+        </th>
+        <th>
+            {% trans "Status" %}
+            <a title="{% trans 'Sort by status ascending' %}" href="{{ web_link('Services?sort=status&order=asc', 'servicestatustypes') }}"><i class="icon-caret-up"></i></a>
+            <a title="{% trans 'Sort by status descending' %}" href="{{ web_link('Services?sort=status&order=desc', 'servicestatustypes') }}"><i class="icon-caret-down"></i></a>
+        </th>
+        <th>
+            {% trans "Last check" %}
+            <a title="{% trans 'Sort by last check ascending' %}" href="{{ web_link('Services?sort=lastcheck&order=asc', 'servicestatustypes') }}"><i class="icon-caret-up"></i></a>
+            <a title="{% trans 'Sort by last check descending' %}" href="{{ web_link('Services?sort=lastcheck&order=desc', 'servicestatustypes') }}"><i class="icon-caret-down"></i></a>
+        </th>
+        <th>
+            {% trans "Duration" %}
+            <a title="{% trans 'Sort by duration ascending' %}" href="{{ web_link('Services?sort=duration&order=asc', 'servicestatustypes') }}"><i class="icon-caret-up"></i></a>
+            <a title="{% trans 'Sort by duration descending' %}" href="{{ web_link('Services?sort=duration&order=desc', 'servicestatustypes') }}"><i class="icon-caret-down"></i></a>
+        </th>
+        <th>
+            {% trans "Attempt" %}
+            <a title="{% trans 'Sort by check attempt ascending' %}" href="{{ web_link('Services?sort=attempt&order=asc', 'servicestatustypes') }}"><i class="icon-caret-up"></i></a>
+            <a title="{% trans 'Sort by check attempt descending' %}" href="{{ web_link('Services?sort=attempt&order=desc', 'servicestatustypes') }}"><i class="icon-caret-down"></i></a>
+        </th>
         <th>{% trans "Graphs" %}</th>
     </tr>
 

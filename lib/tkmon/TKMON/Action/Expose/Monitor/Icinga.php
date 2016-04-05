@@ -42,10 +42,15 @@ class Icinga extends Base
     public function actionServices(\NETWAYS\Common\ArrayObject $params)
     {
         $config = $this->container['config'];
+        /** @var $icingaModel StatusData **/
         $icingaModel = new StatusData($this->container);
         $template = new TwigTemplate($this->container['template']);
         $template->setTemplateName('views/Monitor/Icinga/ServiceStatus.twig');
-        $template['data'] = $icingaModel->getServiceStatus($params->get('servicestatustypes', null));
+        $template['data'] = $icingaModel->getServiceStatus(
+            $params->get('servicestatustypes', null),
+            $params->get('sort', null),
+            $params->get('order', 'asc')
+        );
         $template['config'] = $this->container['config'];
         $pnpModel = new Pnp4Nagios($this->container);
         $pnpModel->setAccessUrl($config->get('pnp4nagios.url'));

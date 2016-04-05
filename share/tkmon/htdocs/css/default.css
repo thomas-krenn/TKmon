@@ -150,10 +150,14 @@ table.tkmon-data-table {
     width: 100%;
 }
 
-table.tkmon-data-table th {
+table.tkmon-data-table th, table.tkmon-data-table th a {
     background-color: #0088cc;
     color: white;
     font-weight: bold;
+}
+
+table.tkmon-data-table th a i {
+    text-decoration: none;
 }
 
 table.tkmon-data-table th, table.tkmon-data-table td {

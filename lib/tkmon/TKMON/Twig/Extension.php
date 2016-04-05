@@ -141,15 +141,30 @@ class Extension implements \Twig_ExtensionInterface
      * - Path/To/Class/Action: Another class with action name 'Action'
      *
      * @param string $args
+     * @param string $keep String of query parameters to keep
+     * 
      * @return string
      */
-    public function getCurrentUrl($args)
+    public function getCurrentUrl($args, $keep = null)
     {
         $num = func_num_args();
         $params = $this->container['params'];
         $uri = $params->getParameter('REQUEST_URI', null, 'header');
         $script = $this->container['config']['web.script'];
 
+        if (! $keep !== null) {
+            $keep_array = array_map('trim', explode(',', $keep));
+            foreach ($keep_array as $keep_arg) {
+                $keep_value = $params->getParameter($keep_arg);
+                if ($keep_value) {
+                    if (strpos($args, '?') === false) {
+                        $args .= '?';
+                    }
+                    $args .= '&' . $keep_arg . '=' . urlencode($keep_value);
+                }
+            }
+        }
+        
         if ($num === 0) {
             return $uri;
         } else {

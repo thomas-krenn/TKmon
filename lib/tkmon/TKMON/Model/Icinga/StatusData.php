@@ -20,6 +20,7 @@
  */
 
 namespace TKMON\Model\Icinga;
+use TKMON\Exception\ModelException;
 
 /**
  * Model to get monitoring information
@@ -28,6 +29,36 @@ namespace TKMON\Model\Icinga;
  */
 class StatusData extends \TKMON\Model\ApplicationModel
 {
+    /**
+     * Keys of sort direction
+     *
+     * @var array
+     */
+    private static $sortDirection = array(
+        'asc'   => 1,
+        'desc'  => 2
+    );
+
+    /**
+     * Available sort columns
+     *
+     * @var array
+     */
+    private static $sortColumns = array(
+        'host'      => 1,
+        'service'   => 2,
+        'status'    => 3,
+        'lastcheck' => 4,
+        'duration'  => 5,
+        'attempt'   => 6
+    );
+
+    /**
+     * Default sort object
+     *
+     * @var string
+     */
+    private static $sortObject = 'services';
 
     /**
      * PHP proxy to fetch data from icinga
@@ -73,20 +104,36 @@ class StatusData extends \TKMON\Model\ApplicationModel
 
     /**
      * Fetch current service status
-
-     * @param null|int $serviceStatusTypes
+     *
+     * @param int       $serviceStatusTypes
+     * @param string    $sort
+     * @param string    $sortDirection
+     * @throws          ModelException
+     *
      * @return \stdClass
      */
-    public function getServiceStatus($serviceStatusTypes = null)
+    public function getServiceStatus($serviceStatusTypes = null, $sort = null, $sortDirection = 'asc')
     {
 
         $requestUri = '/cgi-bin/icinga/status.cgi';
+        $this->proxy->setRequestUrl($requestUri);
 
         if ($serviceStatusTypes !== null) {
             $this->proxy->addParam('servicestatustypes', (int)$serviceStatusTypes);
         }
 
-        $this->proxy->setRequestUrl($requestUri);
+        if ($sort !== null) {
+            if (! array_key_exists($sort, self::$sortColumns)) {
+                throw new ModelException('Sort column does not exist: ' . $sort);
+            }
+            if (! array_key_exists($sortDirection, self::$sortDirection)) {
+                throw new ModelException('Sort direction is not valid: ' . $sortDirection);
+            }
+            $this->proxy->addParam('sortobject', (int)self::$sortObject);
+            $this->proxy->addParam('sorttype', self::$sortDirection[$sortDirection]);
+            $this->proxy->addParam('sortoption', self::$sortColumns[$sort]);
+        }
+
         return $this->createObjectData();
     }
 
