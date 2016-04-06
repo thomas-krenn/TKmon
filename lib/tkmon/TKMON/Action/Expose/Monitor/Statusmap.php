@@ -22,6 +22,9 @@
 namespace TKMON\Action\Expose\Monitor;
 
 use NETWAYS\Common\ArrayObject;
+use NETWAYS\Common\ArrayObjectValidator;
+use NETWAYS\Common\Exception\ValidatorException;
+use NETWAYS\Common\ValidatorObject;
 use TKMON\Action\Base;
 use TKMON\Model\Icinga\Statusmap as StatusmapModel;
 use TKMON\Mvc\Output\TwigTemplate;
@@ -39,8 +42,55 @@ class Statusmap extends Base
      */
     public function actionView(ArrayObject $params)
     {
+        $validator = new ArrayObjectValidator();
+
+        $validator->addValidatorObject(
+            ValidatorObject::create(
+                'layout',
+                'Layout',
+                FILTER_SANITIZE_NUMBER_INT,
+                null,
+                null,
+                false
+            )
+        );
+
         $template = new TwigTemplate($this->container['template']);
         $template->setTemplateName('views/Monitor/Icinga/Statusmap.twig');
+        $template['error'] = '';
+
+        $template['config'] = $this->container['config'];
+        $template['layouts'] = array(
+            2 => 'Collapsed tree',
+            3 => 'Balanced tree',
+            4 => 'Circular',
+            5 => 'Circular (Marked Up)',
+            6 => 'Circular (Balloon)',
+        );
+
+        try {
+            $validator->validateArrayObject($params);
+            $template['layout'] = $params->get('layout', 5);
+
+        } catch (ValidatorException $e) {
+            $template['layout'] = 5;
+            $params->set('layout', $template['layout']);
+            $template['error'] = $e->getMessage();
+        }
+
+        $statusmap = new StatusmapModel($this->container);
+        $imageLinkParams = array();
+        foreach ($statusmap->getDefaultParamKeys() as $key) {
+            $param = $params->get($key);
+            if (isset($param)) {
+                $imageLinkParams[] = $key . '=' . urlencode($param);
+            }
+        }
+        $template['image_querystring'] = implode('&', $imageLinkParams);
+        if ($template['image_querystring']) {
+            $template['image_querystring'] = '?' . $template['image_querystring'];
+        }
+
         return $template;
     }
 

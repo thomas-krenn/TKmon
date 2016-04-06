@@ -2,6 +2,59 @@
     <h2>{%  trans "Statusmap" %}</h2>
 </div>
 
-<div style="text-align: center;">
-    <img src="{{ web_link('Monitor/Statusmap/Image') }}" />
+{% if error %}
+<div class="alert alert-error">
+    {{ error }}
 </div>
+{% endif %}
+
+<div class="alert alert-info">
+    <form class="form-inline" method="get" action="{{ web_link('View') }}">
+        <label for="layout">{% trans "Layout" %}</label>:
+        <select id="layout" name="layout">
+            {% for lid,lname in layouts %}
+                <option {% if layout == lid %}selected="selected"{% endif %} value="{{ lid }}">{% trans lname %}</option>
+            {% endfor %}
+        </select>
+        <button type="submit" class="btn btn-success">
+            {% trans "Update" %}
+        </button>
+    </form>
+    <div id="site-refresh" class="container-spacer-down"></div>
+</div>
+
+<div style="text-align: center;">
+    <img src="{{ web_link('Monitor/Statusmap/Image') }}{{ image_querystring }}" />
+</div>
+
+<script>
+    require(['jquery', 'bootstrap', 'TKMON/jquery/SiteRefreshTimer'], function($) {
+        var startRefresh = function() {
+            $('#site-refresh').siteRefreshTimer({
+                timeout: parseInt('{{ config.get('view.refresh') }}', 10),
+                secondsLabel: '{% trans "seconds" %}',
+                stopLabel: '',
+                initialLabel: '{% trans "Reload page in" %}'
+            });
+        };
+
+        var testCount = 0;
+
+        var testRefresh = function() {
+            try {
+                startRefresh()
+            } catch(e) {
+                if (String(e).indexOf('siteRefresh') > -1 && testCount < 10) {
+                    testCount++;
+                    window.setTimeout(testRefresh, 30);
+                }
+            }
+        };
+
+        $('#layout').change(function() {
+            $(this).parent().submit();
+        });
+
+        testRefresh();
+    });
+</script>
