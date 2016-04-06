@@ -27,6 +27,12 @@
                 "iconCls": "icon-heart"
             },
             {
+                "title": "Statusmap",
+                "description": "Show a map of dependend icinga objects",
+                "href": "Monitor/Statusmap/View",
+                "iconCls": "icon-map-marker"
+            },
+            {
                 "type": "divider"
             },
             {
