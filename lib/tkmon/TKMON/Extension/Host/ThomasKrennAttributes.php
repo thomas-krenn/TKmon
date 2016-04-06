@@ -302,12 +302,18 @@ class ThomasKrennAttributes extends ReflectionHandler implements ApplicationMode
         $restInterface->setLangFromUserObject($this->container['user']);
 
         try {
+            $this->container['logger']->debug('Get product info for serial ' . $serial);
             $detailObject = $restInterface->getProductDetailFromSerial($serial);
             $host->addCustomVariable(self::CV_TK_PRODUCT_TITLE, $detailObject->title);
             $host->addCustomVariable(self::CV_TK_WIKI_LINK, $detailObject->wiki_link);
         } catch (\Exception $e) {
             $host->addCustomVariable(self::CV_TK_PRODUCT_TITLE, '');
             $host->addCustomVariable(self::CV_TK_WIKI_LINK, '');
+            $this->container['logger']->error(
+                'Could not find products for serial '
+                . $serial
+                . ' (' . $e->getMessage(). ')'
+            );
             throw new ModelException('Could not find any products for '. $serial. ' (error: '. $e->getMessage(). ')');
         }
     }
