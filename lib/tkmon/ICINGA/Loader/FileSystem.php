@@ -21,8 +21,10 @@
 
 namespace ICINGA\Loader;
 
+use ICINGA\Base\Object;
 use ICINGA\Exception\LoadException;
 use ICINGA\Interfaces\LoaderStrategyInterface;
+use NETWAYS\Common\ArrayObject;
 
 /**
  * Filesystem
@@ -61,6 +63,45 @@ class FileSystem extends \NETWAYS\Common\ArrayObject
      * @var LoaderStrategyInterface
      */
     private $strategy;
+
+    /**
+     * Sort the array object by field
+     * @param string $field
+     * @param string $order
+     * @throws LoadException
+     */
+    public function sort($field, $order = 'asc')
+    {
+        static $sortOrderFunction = null;
+
+        if ($sortOrderFunction === null) {
+            $sortOrderFunction = array(
+                'asc'   => function ($a, $b) {return strcasecmp($a, $b);},
+                'desc'  => function ($a, $b) {return strcasecmp($a, $b)*-1;}
+            );
+        }
+
+        if (! array_key_exists($order, $sortOrderFunction)) {
+            throw new LoadException('Order is not valid: ' . $order);
+        }
+
+        $orderFunction = $sortOrderFunction[$order];
+        $sortFunction = function ($a, $b) use ($field, $orderFunction) {
+            if (!($a instanceof Object) || !($b instanceof Object)) {
+                throw new LoadException('Could not sort object not instance of stdclass');
+            }
+            if (! $a->{$field} || ! $b->{$field}) {
+                throw new LoadException('Sort field not available on object: ' . $field);
+            }
+            return $orderFunction($a->{$field}, $b->{$field});
+        };
+
+        /**
+         * This is a bug in PHP
+         * @see https://bugs.php.net/bug.php?id=50688
+         */
+        @$this->uasort($sortFunction);
+    }
 
     /**
      * Setter for the path
