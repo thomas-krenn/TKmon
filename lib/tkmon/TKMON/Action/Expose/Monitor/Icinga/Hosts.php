@@ -51,7 +51,7 @@ class Hosts extends \TKMON\Action\Base
                 $params->get('order', 'asc')
             );
         } else {
-            $hostData->sort('host_name', 'asc');
+            $hostData->sort('host_name', $params->get('order', 'asc'));
         }
 
         $template['host_attributes'] = $hostData->getEditableAttributes();
