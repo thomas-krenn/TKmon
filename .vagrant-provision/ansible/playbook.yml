@@ -45,7 +45,7 @@
     register: sp
   - name: Download phpunit
     command: 'wget
-              https://phar.phpunit.de/phpunit.phar
+              https://phar.phpunit.de/phpunit-3.7.29.phar
               -O /usr/local/bin/phpunit.phar'
     when: sp.stat.md5 is not defined
   - name: Rename PHPUNIT
