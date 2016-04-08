@@ -215,6 +215,12 @@
             "sudo": true
         },
 
+        "apt-mark-kernel": {
+            "path": "/usr/local/sbin/apt-mark-kernel.sh",
+            "sudo": true
+        },
+
+
         "pkill": {
             "path": "/usr/bin/pkill",
             "sudo": true

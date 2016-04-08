@@ -22,6 +22,8 @@ Defaults:%tkmonweb !env_reset
 %tkmonweb ALL=(ALL)NOPASSWD:/usr/local/bin/tkalert
 %tkmonweb ALL=(ALL)NOPASSWD:/usr/bin/apt-get
 %tkmonweb ALL=(ALL)NOPASSWD:/usr/bin/apt-cache
+%tkmonweb ALL=(ALL)NOPASSWD:/usr/bin/apt-mark
+%tkmonweb ALL=(ALL)NOPASSWD:/usr/local/sbin/apt-mark-kernel.sh
 %tkmonweb ALL=(ALL)NOPASSWD:/usr/bin/pkill
 %tkmonweb ALL=(ALL)NOPASSWD:/usr/local/sbin/async_update.py
 nagios ALL=(ALL)NOPASSWD:/usr/local/bin/tkalert

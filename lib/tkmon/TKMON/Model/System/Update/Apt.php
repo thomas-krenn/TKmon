@@ -203,6 +203,8 @@ class Apt extends ApplicationModel
         $aptGet->execute();
         return $aptGet->getOutput();
     }
+    
+    
 
     /**
      * Test if a system restart is required
@@ -222,5 +224,34 @@ class Apt extends ApplicationModel
         }
 
         return false;
+    }
+
+    public function aptMarkKernel()
+    {
+        /** @var Process $markKernel */
+        $markKernel = $this->container['command']->create('apt-mark-kernel');
+        $markKernel->execute();
+        return $markKernel->getOutput();
+    }
+
+    public function aptAutoRemove()
+    {
+        /** @var Process $aptGet */
+        $aptGet = $this->container['command']->create('apt-get');
+        $aptGet->addEnvironment('DEBIAN_FRONTEND', 'noninteractive');
+        $aptGet->addPositionalArgument('autoremove');
+        $aptGet->addPositionalArgument('--purge');
+        $aptGet->execute();
+        return $aptGet->getOutput();
+    }
+
+    public function aptClean()
+    {
+        /** @var Process $aptGet */
+        $aptGet = $this->container['command']->create('apt-get');
+        $aptGet->addEnvironment('DEBIAN_FRONTEND', 'noninteractive');
+        $aptGet->addPositionalArgument('clean');
+        $aptGet->execute();
+        return $aptGet->getOutput();
     }
 }

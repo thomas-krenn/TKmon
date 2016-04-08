@@ -543,7 +543,7 @@ class Process
 
         if ($this->processReturn > 0 && $this->ignoreProcessReturn === false) {
             throw new Exception\ProcessException(
-                'Process exited with '. $this->processReturn .
+                'Process (' . $this->getExecutionCall(). ') exited with '. $this->processReturn .
                 (($this->processError) ? '. STDERR: ' . $this->processError :
                     '(NOSTDERR)')
             );

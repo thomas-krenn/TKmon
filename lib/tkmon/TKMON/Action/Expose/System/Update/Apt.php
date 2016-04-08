@@ -130,17 +130,21 @@ class Apt extends Base
         );
 
         $response = new JsonResponse();
+        $model = new AptModel($this->container);
 
         try {
             $validator->validateArrayObject($params);
 
             if ($params['doUpgrade'] === '1') {
-                $model = new AptModel($this->container);
                 $model->doAsyncUpgrade();
                 $response->setSuccess(true);
             }
         } catch (\Exception $e) {
             $response->addException($e);
+        } finally {
+            $response->addData('apt-mark-kernel: ' . $model->aptMarkKernel());
+            $response->addData('apt-autoremove:' . $model->aptAutoRemove());
+            $response->addData('apt-cleanup: ' . $model->aptClean());
         }
 
         return $response;

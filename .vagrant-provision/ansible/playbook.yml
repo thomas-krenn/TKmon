@@ -155,6 +155,12 @@
           mode=0755
           owner=root
           group=root'
+  - name: Copy apt script
+    copy: 'src=../../bin/apt-mark-kernel.sh
+          dest=/usr/local/sbin/apt-mark-kernel.sh
+          mode=0755
+          owner=root
+          group=root'
   - name: Enable NPCD
     copy: 'src=files/pnp4nagios/npcd
           dest=/etc/default/npcd
