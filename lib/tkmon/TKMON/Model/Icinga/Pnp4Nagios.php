@@ -125,6 +125,7 @@ class Pnp4Nagios extends ApplicationModel
         if (isset($o->service_description)) {
             $path .= '/' . $o->service_description . '.rrd';
         }
+        $path = str_replace(' ', '_', $path);
         if (file_exists($path)) {
             return true;
         }
