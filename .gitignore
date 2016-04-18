@@ -10,3 +10,4 @@ etc/tkmon/userconfig.json
 lib/tkmon/vendor/
 var/
 debian/
+.vagrant-provision/ansible/playbook.retry

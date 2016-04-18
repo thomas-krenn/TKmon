@@ -1,11 +1,9 @@
 ---
 - hosts: all
   sudo: true
-  roles:
+
   tasks:
-  - name: Ansible alive
-    debug: msg="I am alive, let's build TKMON"
-  - name: Install packages
+  - name: Install base system
     apt: pkg={{item}} state=installed update_cache=no
     with_items:
     - software-properties-common
@@ -24,13 +22,17 @@
     - python-setuptools
     - sqlite3
     - zip
+    - vim
+    - pandoc
+
   - name: Test launchpad repository
     stat: path=/etc/apt/sources.list.d/formorer-icinga-trusty.list
     register: sr
   - name: Add icinga launchpad
     command: apt-add-repository --yes ppa:formorer/icinga
     when: sr.stat.md5 is not defined
-  - name: Install packages 2
+
+  - name: Install icinga
     apt: pkg={{item}} state=installed update_cache=yes
     with_items:
     - icinga
@@ -40,37 +42,36 @@
     - icinga-core
     - postfix
     - ntp
+
   - name: Test PHPUNIT
-    stat: path=/usr/local/bin/phpunit
+    shell: "T=$(command -v phpunit) && $T --version | awk '{print $2}' | /usr/bin/xargs ||/bin/true"
     register: sp
   - name: Download phpunit
-    command: 'wget
-              https://phar.phpunit.de/phpunit-3.7.29.phar
-              -O /usr/local/bin/phpunit.phar'
-    when: sp.stat.md5 is not defined
-  - name: Rename PHPUNIT
-    command: 'mv /usr/local/bin/phpunit.phar /usr/local/bin/phpunit'
-    when: sp.stat.md5 is not defined
-  - name: chmod PHPUNIT
-    command: 'chmod 0755 /usr/local/bin/phpunit'
-    when: sp.stat.md5 is not defined
+    get_url: 'url=https://phar.phpunit.de/phpunit-3.7.29.phar dest=/usr/local/bin/phpunit.phar mode=0755'
+    when: "sp.stdout != '3.7.29'"
+
   - name: Configure XCache
     copy: 'src=files/php5/xcache.ini
           dest=/etc/php5/mods-available/xcache.ini
           mode=0644'
+
   - name: Configure PHP
     copy: 'src=files/php5/php.ini
           dest=/etc/php5/fpm/php.ini
           mode=0644'
+
   - name: Configure sp.php5-fpm
     copy: 'src=files/php5-fpm/www.conf
           dest=/etc/php5/fpm/pool.d/www.conf
           backup=yes
           mode=0644'
+
   - name: Restart php5-fpm
     command: /sbin/restart php5-fpm
+
   - name: Enable apache2 module rewrite
     apache2_module: name=rewrite state=present
+
   - name: Enable apache2 moduls
     apache2_module: name={{item}} state=present
     with_items:
@@ -78,101 +79,129 @@
     - fastcgi
     - actions
     - ssl
+
   - name : FastCGI jail
     file: 'path=/var/www/cgi-bin/
           mode=0755
           owner=www-data
           group=www-data
           state=directory'
+
   - name: Configure apache2 fastcgi
     copy: 'src=files/apache2/fastcgi.conf
           dest=/etc/apache2/mods-available/fastcgi.conf
           backup=yes
           mode=0644'
+
   - name: Configure apache2 ports
     copy: 'src=files/apache2/ports.conf
           dest=/etc/apache2/ports.conf
           backup=yes
           mode=0644'
+
   - name: Configure SSL Site
     copy: 'src=files/apache2/default-ssl.conf
           dest=/etc/apache2/sites-available/default-ssl.conf
           backup=yes
           mode=0644'
+
   - name: TKMON apache2 configuration 1
     copy: 'src=../../etc/apache2/conf.d/tkmon.conf
           dest=/etc/apache2/conf-available/tkmon.conf
           mode=0644'
+
   - name: PNP4Nagios Apache configuration
     copy: 'src=files/pnp4nagios/apache.conf
           dest=/etc/apache2/conf-available/pnp4nagios.conf
           mode=0644'
+
   - name: Apache2 enable conf
     command: /usr/sbin/a2enconf {{item}}
     with_items:
     - tkmon
     - pnp4nagios
+
   - name: Apache2 enable site ssl
     command: /usr/sbin/a2ensite {{item}}
     with_items:
     - default-ssl
+
   - name: Icinga htpass file
     copy: 'src=files/icinga/htpasswd.users
           dest=/etc/icinga/htpasswd.users
           owner=www-data
           group=www-data
           mode=0644'
+
   - name: TKMON group
     group: name=tkmonweb state=present system=yes
   - name: Copy sudoers
     copy: 'src=../../etc/sudoers.d/tkmon
           dest=/etc/sudoers.d/tkmon
           mode=0440'
+
   - name: WWW User granted tkmon rights
     user: name=www-data groups=tkmonweb,nagios append=yes
+
   - name: Restart apache2
     service: name=apache2 state=restarted
+
   - name: Icinga icinga.cfg
     copy: 'src=files/icinga/icinga.cfg
           dest=/etc/icinga/icinga.cfg
           mode=0644'
+
   - name: Icinga cgi.cfg
     copy: 'src=files/icinga/cgi.cfg
           dest=/etc/icinga/cgi.cfg
           mode=0644'
+
   - name: Icinga tkmon base config
     copy: 'src=../../etc/icinga/
           dest=/etc/icinga/tkmon'
+
   - name: Config owner
-    command: chown -R 33.33 /etc/icinga/tkmon
+    file: 'path=/etc/icinga/tkmon
+          owner=www-data
+          group=www-data
+          mode=0775
+          state=directory'
+
   - name: Restart icinga
     service: name=icinga state=restarted
+
   - name: Icinga rw access
     file: path=/var/lib/icinga/rw state=directory mode=755
+
   - name: Copy update script
     copy: 'src=../../bin/async_update.py
           dest=/usr/local/sbin/async_update.py
           mode=0755
           owner=root
           group=root'
+
   - name: Copy apt script
     copy: 'src=../../bin/apt-mark-kernel.sh
           dest=/usr/local/sbin/apt-mark-kernel.sh
           mode=0755
           owner=root
           group=root'
+
   - name: Enable NPCD
     copy: 'src=files/pnp4nagios/npcd
           dest=/etc/default/npcd
           mode=0644'
+
   - name: Restart npcd
     service: name=npcd state=restarted
+
   - name: Test TKLAERT
     stat: path=/usr/local/bin/tkalert
     register: st
   - name: Install TKALERT
     shell: 'cd /vagrant/contrib/tkalert; /usr/bin/env python setup.py install'
     when: st.stat.md5 is not defined
+
   - name: SMS Sppol Directory
     file: 'path=/var/spool/sms/outgoing/
           state=directory
