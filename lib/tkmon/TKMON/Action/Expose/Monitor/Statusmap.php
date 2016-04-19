@@ -67,6 +67,15 @@ class Statusmap extends Base
             5 => 'Circular (Marked Up)',
             6 => 'Circular (Balloon)',
         );
+        
+        $template['canvas_width'] = $params->get('canvas_width');
+        if (!$template['canvas_width']) {
+            $template['canvas_width'] = 800;
+        }
+        $template['canvas_height'] = $params->get('canvas_height');
+        if (!$template['canvas_height']) {
+            $template['canvas_height'] = 600;
+        }
 
         try {
             $validator->validateArrayObject($params);

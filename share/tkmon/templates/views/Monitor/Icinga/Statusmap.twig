@@ -16,6 +16,13 @@
                 <option {% if layout == lid %}selected="selected"{% endif %} value="{{ lid }}">{% trans lname %}</option>
             {% endfor %}
         </select>
+
+        <label for="canvas_width">{% trans "Width" %}</label>
+        <input type="text" name="canvas_width" id="canvas_width" maxlength="4" style="width: 40px" value="{{ canvas_width }}" />
+
+        <label for="canvas_height">{% trans "Height" %}</label>
+        <input type="text" name="canvas_height" id="canvas_height" maxlength="4" style="width: 40px" value="{{ canvas_height }}" />
+
         <button type="submit" class="btn btn-success">
             {% trans "Update" %}
         </button>
