@@ -141,10 +141,6 @@ class Apt extends Base
             }
         } catch (\Exception $e) {
             $response->addException($e);
-        } finally {
-            $response->addData('apt-mark-kernel: ' . $model->aptMarkKernel());
-            $response->addData('apt-autoremove:' . $model->aptAutoRemove());
-            $response->addData('apt-cleanup: ' . $model->aptClean());
         }
 
         return $response;

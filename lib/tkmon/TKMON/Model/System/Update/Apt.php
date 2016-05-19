@@ -241,6 +241,8 @@ class Apt extends ApplicationModel
         $aptGet->addEnvironment('DEBIAN_FRONTEND', 'noninteractive');
         $aptGet->addPositionalArgument('autoremove');
         $aptGet->addPositionalArgument('--purge');
+        $aptGet->addPositionalArgument('--force-yes');
+        $aptGet->addPositionalArgument('-y');
         $aptGet->execute();
         return $aptGet->getOutput();
     }
@@ -251,6 +253,8 @@ class Apt extends ApplicationModel
         $aptGet = $this->container['command']->create('apt-get');
         $aptGet->addEnvironment('DEBIAN_FRONTEND', 'noninteractive');
         $aptGet->addPositionalArgument('clean');
+        $aptGet->addPositionalArgument('--force-yes');
+        $aptGet->addPositionalArgument('-y');
         $aptGet->execute();
         return $aptGet->getOutput();
     }

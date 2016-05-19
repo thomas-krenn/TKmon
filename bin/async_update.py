@@ -152,7 +152,16 @@ def main():
     if proc.returncode != 0:
         log.error('Error occurred, please check ' + ERROR_FILE)
         error = True
-    
+
+    coutput = subprocess.check_output(['apt-mark-kernel.sh'])
+    log.info('Apt mark kernel: %s', coutput)
+
+    coutput = subprocess.check_output(['apt-get', 'autoremove', '-y', '--force-yes', '--purge'])
+    log.info('Apt autoremove: %s', coutput)
+
+    coutput = subprocess.check_output(['apt-get', 'clean', '-y', '--force-yes'])
+    log.info('Apt clean: %s', coutput)
+
     update_status(starttime, 100, False, error)
     log.info('Update finish, needed %.2f seconds', time.time() - starttime)
     
