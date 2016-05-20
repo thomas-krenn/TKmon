@@ -1,0 +1,63 @@
+{
+        "type": "service",
+        "version": "1.0",
+        "description": "Services catalogue for Sensormetrix Neon 110 temperature and humidity sensor",
+        "data": [
+
+{
+        "service_description": "check-neon-temp",
+        "display_name": "Check-Neon110-Temperature-Humidity",
+        "check_command": {
+                "command_name": "check_neon",
+                "arguments": [
+	        {
+                        "label": "Warning threshold",
+                        "description": {
+                                "en_US": "Insert warning threshold",
+                                "de_DE": "Warnschwellwert angeben"
+                        },
+                        "validation": "string",
+                        "argument": "-w",
+                        "value": ""
+                },
+                {
+                        "label": "Critical threshold",
+                        "description": {
+                                "en_US": "Insert critical value",
+                                "de_DE": "Kritischen Schwellwert angeben"
+                        },
+                        "validation": "string",
+                        "argument": "-c",
+                        "value": ""
+                }
+                ]
+        },
+        "_catalogue_attributes": {
+                "tags": ["Neon110 Temperature Humidity Sensor"],
+                "name": "check-neon-temp",
+                "label": "Check-Neon110-Temperature-Humidity",
+                "description": {
+                        "en_US": "Checks the temperature and humidity with a Sensormetrix Neon110 Sensor",
+                        "de_DE": "Überprüft die Temperatur und Luftfeuchtigkeit mithilfe eines Sensormetrix Neon110 Sensor"
+                },
+                "defined": true,
+                "defined_in": "/etc/nagios-plugins/config/check_neon.cfg",
+                "doc": {
+                        "en_US": [
+                                "<h4>Neon110 Temperature Humidity Sensor</h4>",
+                                "<p>Using this plugin, the temperature and humidity",
+                                "can be monitored with Nagios or Icinga using the Sensormetrix Neon110 Sensor.</p>"
+                        ],
+                        "de_DE": [
+                                "<h4>Neon110 Temperature Humidity Sensor</h4>",
+                                "<p>Mit diesem Plugin kann die Temperatur und Luftfeuchtigkeit",
+                                "mithilfe des Sensormetrix Neon110 Sensors mit Nagios oder Icinga überwacht werden.</p>"
+                        ]
+                },
+                "tk_notify": false,
+                "tk_notify_default": false
+        }
+}
+
+        ]
+}
