@@ -103,6 +103,12 @@ class ThomasKrennAttributes extends ReflectionHandler implements ApplicationMode
     const CV_SNMP3_PASSWORD = 'snmp3_password';
 
     /**
+     * SNMPv3 priv password
+     * @var string
+     */
+    const CV_SNMP3_PRIVPASSWORD = 'snmp3_privpassword';
+
+    /**
      * DI container
      * @var \Pimple
      */
@@ -202,6 +208,11 @@ class ThomasKrennAttributes extends ReflectionHandler implements ApplicationMode
                 self::CV_SNMP3_PASSWORD => new Text(
                     self::CV_SNMP3_PASSWORD,
                     _('SNMP V3 password'),
+                    false
+                ),
+		self::CV_SNMP3_PRIVPASSWORD => new Text(
+                    self::CV_SNMP3_PRIVPASSWORD,
+                    _('SNMP V3 priv password'),
                     false
                 )
             )
