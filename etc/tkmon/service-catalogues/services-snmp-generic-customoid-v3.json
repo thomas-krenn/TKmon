@@ -37,7 +37,7 @@
       }]
     },
     "_catalogue_attributes": {
-      "tags": ["OID","custom"],
+      "tags": ["snmp","OID","custom","generic"],
       "name": "snmp_generic_customoid_v3",
       "label": "SNMP-Generic-Customoid_v3",
       "description": {

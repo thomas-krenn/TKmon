@@ -64,7 +64,7 @@
       }]
     },
     "_catalogue_attributes": {
-      "tags": ["CPU", "Load"],
+      "tags": ["snmp","CPU", "Load"],
       "name": "snmp_generic_load",
       "label": "SNMP-Generic-Load",
       "description": {
@@ -141,7 +141,7 @@
       }]
     },
     "_catalogue_attributes": {
-      "tags": ["Process", "Name"],
+      "tags": ["snmp","Process","Name"],
       "name": "snmp_generic_procname",
       "label": "SNMP-Generic-Procname",
       "description": {
@@ -218,7 +218,7 @@
       }]
     },
     "_catalogue_attributes": {
-      "tags": ["Disk", "Space", "free"],
+      "tags": ["snmp","Disk","Space","free"],
       "name": "snmp-generic-disk",
       "label": "SNMP-Generic-Disk",
       "description": {
@@ -268,7 +268,7 @@
       }]
     },
     "_catalogue_attributes": {
-      "tags": ["System status"],
+      "tags": ["snmp","System status"],
       "name": "snmp_generic_mem",
       "label": "SNMP-Generic-Memory",
       "description": {
@@ -318,7 +318,7 @@
       }]
     },
     "_catalogue_attributes": {
-      "tags": ["Swap"],
+      "tags": ["snmp","Swap"],
       "name": "snmp_generic_swap",
       "label": "SNMP-Generic-Swap",
       "description": {
@@ -368,7 +368,7 @@
       }]
     },
     "_catalogue_attributes": {
-      "tags": ["Process","Count"],
+      "tags": ["snmp","Process","Count"],
       "name": "snmp_generic_procs",
       "label": "SNMP-Generic-Procs",
       "description": {
@@ -418,7 +418,7 @@
       }]
     },
     "_catalogue_attributes": {
-      "tags": ["Users"],
+      "tags": ["snmp","Users"],
       "name": "snmp_generic_users",
       "label": "SNMP-Generic-Users",
       "description": {
@@ -468,7 +468,7 @@
       }]
     },
     "_catalogue_attributes": {
-      "tags": ["TCP","connections"],
+      "tags": ["snmp","TCP","connections"],
       "name": "snmp_generic_tcpcons",
       "label": "SNMP-Generic-Tcpcons",
       "description": {
@@ -527,7 +527,7 @@
       }]
     },
     "_catalogue_attributes": {
-      "tags": ["OID","custom"],
+      "tags": ["snmp","OID","custom"],
       "name": "snmp_generic_customoid",
       "label": "SNMP-Generic-Customoid",
       "description": {
