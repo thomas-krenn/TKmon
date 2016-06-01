@@ -56,11 +56,26 @@ def truncate_file(file):
     with open(file, 'w') as f:
         f.close()
 
+def run_cmd(cmd_string, name='Unknown'):
+    DEVNULL = open(os.devnull, 'wb')
+    log = logging.getLogger(__name__)
+    log.debug('Run cmd %s: %s', name, cmd_string)
+    try:
+        output = subprocess.check_output([cmd_string], shell=True, stderr=DEVNULL)
+        log.debug('[%s] Output: %s', name, output)
+        write_line(INFO_FILE, output)
+    except (subprocess.CalledProcessError, TypeError) as e:
+        log.error('[%s] ERROR: %s', name, e)
+        write_line(ERROR_FILE, str(e))
+    finally:
+        DEVNULL.close()
+
+
 def detach_process():
     # 1 Double fork to prevent zombies
     # 2 Close all file descriptors
     # 3 Move all stdout and stdin to /dev/null
-    
+
     pid = os.fork()
     if pid == 0:
         os.setsid()
@@ -71,11 +86,11 @@ def detach_process():
             os._exit(0)
     else:
         os._exit(0)
-    
+
     maxfd = resource.getrlimit(resource.RLIMIT_NOFILE)[1]
     if (maxfd == resource.RLIM_INFINITY):
         maxfd = MAXFD
-    
+
     os.closerange(0, maxfd)
     os.open(os.devnull, os.O_RDWR)
     os.dup2(0, 1)
@@ -86,41 +101,39 @@ def get_options():
     parser.add_option('-b', '--background', dest='background',
                       help='Detach process from shell',
                       action='store_true')
-    
+
     (options, args) = parser.parse_args()
     return options
 
 def main():
-    logging.getLogger().setLevel(logging.DEBUG)
     log = logging.getLogger(__name__)
-    
     log.debug('Starting up')
-    
+
+    env = os.environ
+    env['DEBIAN_FRONTEND'] = 'noninteractve'
+
     starttime=time.time()
-    
+
     proc = subprocess.Popen([
         APTGET_BIN + ' -o Dpkg::Options::=--force-confold'
         + ' -y dist-upgrade'
-        ], env={
-            'DEBIAN_FRONTEND': 'noninteractive',
-            'PATH' : '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games'
-        },
+        ], env=env,
         shell=True,
         stdin=subprocess.PIPE,
         stdout=subprocess.PIPE,
         stderr=subprocess.PIPE
         )
-    
+
     percentage      = 0;
     workItems       = 0;
     currentItems    = 0;
     currentOld      = 0;
-    
+
     truncate_file(INFO_FILE)
     truncate_file(ERROR_FILE)
-    
+
     update_status(starttime, percentage, True, False)
-    
+
     while proc.returncode is None:
         proc.poll()
 
@@ -135,36 +148,38 @@ def main():
                 if itemMatch:
                     currentItems += 1
                 percentage = float(currentItems / workItems) * 100
-                
+
             if workItems and currentOld != currentItems:
                 log.info('Upgrade %d of %d items (%.2f%%)', currentItems, workItems, percentage)
                 update_status(starttime, percentage, True, True)
                 currentOld = currentItems
-            
+
             write_line(INFO_FILE, line)
-        
+
         for line in iter(proc.stderr.readline, b''):
             write_line(ERROR_FILE, line)
-        
+
         time.sleep(0.2)
-    
+
     error = False
     if proc.returncode != 0:
         log.error('Error occurred, please check ' + ERROR_FILE)
         error = True
 
-    coutput = subprocess.check_output(['apt-mark-kernel.sh'])
-    log.info('Apt mark kernel: %s', coutput)
+    update_status(starttime, 99, True, error)
 
-    coutput = subprocess.check_output(['apt-get', 'autoremove', '-y', '--force-yes', '--purge'])
-    log.info('Apt autoremove: %s', coutput)
+    commands = {
+        'Mark Obsolete Kernel': 'apt-mark-kernel.sh',
+        'Apt Autoremove': 'apt-get autoremove -y --force-yes --purge',
+        'Apt Clean' : 'apt-get clean -y --force-yes'
+    }
 
-    coutput = subprocess.check_output(['apt-get', 'clean', '-y', '--force-yes'])
-    log.info('Apt clean: %s', coutput)
+    for cname, crun in commands.iteritems():
+        run_cmd(crun, cname)
 
     update_status(starttime, 100, False, error)
     log.info('Update finish, needed %.2f seconds', time.time() - starttime)
-    
+
     return proc.returncode;
 
 class LogFormatter(logging.Formatter):
@@ -209,12 +224,13 @@ if __name__ == '__main__':
     _CHANNEL = logging.StreamHandler()
     _CHANNEL.setFormatter(LogFormatter(fmt='%(asctime)s [%(levelname)s] %(message)s'))
     logging.getLogger().addHandler(_CHANNEL)
+    logging.getLogger().setLevel(logging.DEBUG)
     try:
         with LockFile(LOCK_FILE):
             options = get_options()
             if options.background is True:
                 detach_process()
-            
+
             sys.exit(main())
     except IOError, e:
         sys.stderr.write('Script is already running\n')
