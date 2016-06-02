@@ -1,34 +1,71 @@
-tk-mon 1.5.5 (2015-06-24)
+TKmon 2.1.0 (2016-06-06)
 
-	1.5.5 Minor release
+    2.1.0 Feature and bugfix release
+    (https://www.netways.org/versions/235)
+
+    * #2686 Integrate Statusmap
+    * #2722 HOSTS list sortable
+    * #2724 SERVICESTATUS list sortable
+    * #2730 apt-get clean after update
+    * #3063 Update Wiki-Link to Shopdownloads
+
+    * FIX #2953 PNP icons not shown in TKmon interface if host name contains spaces
+
+    * New and reworked Servicechecks
+    * Extended SNMPv3 support
+
+TKmon 2.0.0 (2015-09-01)
+
+    2.0.0 Feature release
+    (https://www.netways.org/versions/210)
+
+    * #2222 PNP4Nagios frontend integration
+    * #2431 Implement shutdown functionality
+    * #2720 SMS alerts integration
+    * #2726 Power section in the System menu
+    * #2728 SNMPv3 support for hosts
+    * #2732 Simplify interface
+    * #2740 Open Icinga interface in a new tab
+    * #2744 Update TKmon and Thomas-Krenn Logos
+    * #2910 Dev Environment w/ Ubuntu 14.04
+
+    * Bug #2704 Store service configuration without HTML encoding
+    * Bug #2706 Dollar symbols stored properly but TKmon displays a blank field
+    * Bug #2912 Manifest error while trying to restore the configuration in TKmon
+    * Bug #2914 Icinga 1.13.2 JSON API
+    * Bug #2924 Email notifications of host problems don't show states correctly 
+
+TKmon 1.5.5 (2015-06-24)
+
+    1.5.5 Minor release
 
     * Update intervals to check_interval and retry_interval in templates
 
-tk-mon 1.5.4 (2015-02-05)
+TKmon 1.5.4 (2015-02-05)
 
-	1.5.4 Minor release
+    1.5.4 Minor release
 
-	* Switched from mail to sendmail in notification commands 
+    * Switched from mail to sendmail in notification commands 
 
-tk-mon 1.5.3 (2014-07-08)
+TKmon 1.5.3 (2014-07-08)
 
-	1.5.3 Minor release
+    1.5.3 Minor release
 	
-	* Added support to monitor Intel Modular Servers with SNMP
+    * Added support to monitor Intel Modular Servers with SNMP
 
-tk-mon 1.5.2 (2014-05-06)
+TKmon 1.5.2 (2014-05-06)
 
-	1.5.2 Minor release
+    1.5.2 Minor release
 	
-	* Added support to monitor Synology NAS services with SNMP
+    * Added support to monitor Synology NAS services with SNMP
 
-tk-mon 1.5.1 (2014-03-27)
+TKmon 1.5.1 (2014-03-27)
 
-	1.5.1 Minor release
+    1.5.1 Minor release
 	
-	* Added support to monitor services with NSClient++ from Windows Hosts
+    * Added support to monitor services with NSClient++ from Windows Hosts
 
-tk-mon 1.5.0 (2014-01-22)
+TKmon 1.5.0 (2014-01-22)
 
     1.5.0 Feature release
     (https://www.netways.org/versions/196)
@@ -48,7 +85,7 @@ tk-mon 1.5.0 (2014-01-22)
     * FIX #2479 Updates: footer display issue in 'List pending updates' tab
     * FIX #2487 Automatically created service ipmi-sensors does not use value of tk_notify_default
 
-tk-mon 1.4.1 (2014-01-12)
+TKmon 1.4.1 (2014-01-12)
 
     1.4.1 Bug fix felease
     (https://www.netways.org/versions/194)
@@ -64,7 +101,7 @@ tk-mon 1.4.1 (2014-01-12)
     * FIX #2419 Configured Email Sender address is not used for Icinga alerts
     * FIX #2435 Update fails when questions need to be answered interactively
 
-tk-mon 1.4.0 (2013-10-22)
+TKmon 1.4.0 (2013-10-22)
 
     1.4.0 Feature release
     (https://www.netways.org/projects/tkmon-web/versions/178)
@@ -86,7 +123,7 @@ tk-mon 1.4.0 (2013-10-22)
       write /etc/hosts file
     * FIX #2316 Set config upload percentage always to 100% after upload
 
-tk-mon 1.3.1 (2013-10-22)
+TKmon 1.3.1 (2013-10-22)
 
     1.3.1 bug fix release
     (https://www.netways.org/projects/tkmon-web/versions/186)
@@ -94,7 +131,7 @@ tk-mon 1.3.1 (2013-10-22)
     * FIX #2191 Restore of configuration fails when Firefox browser is used
     * FIX #2194 Replace VMware ESXi Password at Service configuration
 
-tk-mon 1.3.0 (2013-07-17)
+TKmon 1.3.0 (2013-07-17)
 
    -----------------------------------------------------------------------------
      1.3.0 is a productive release.
@@ -134,7 +171,7 @@ tk-mon 1.3.0 (2013-07-17)
    * Missing translations and interfaces fixes
    * FIX Icinga configuragion for templates and objects
 
-tk-mon 1.2.0 (2013-04-13)
+TKmon 1.2.0 (2013-04-13)
 
     * #2379 Mask passwords in free settings
     * #2377 Config changes for release
@@ -161,7 +198,7 @@ tk-mon 1.2.0 (2013-04-13)
     * FIX #2282 Network configuration interfaces file ownership
     * FIX #2280 Harmonize spelling
 
-tk-mon 1.1.0 (2013-03-27)
+TKmon 1.1.0 (2013-03-27)
 
 Pre-release of milestone 2 with folowing features
 
@@ -171,19 +208,19 @@ Pre-release of milestone 2 with folowing features
     * #2162 Package compliance III
     * #2164 Change doc format to ASCII doc
 
-tk-mon 1.0.2 (2013-03-26)
+TKmon 1.0.2 (2013-03-26)
 
 Hotfix milestone 1
 
     * #2168 Missed out feature to create missing paths
 
-tk-mon 1.0.1 (2013-03-25)
+TKmon 1.0.1 (2013-03-25)
 
 Hotfix milestone 1
 
     * #2138 Web binary lost features
 
-tk-mon 1.0 (2013-03-14)
+TKmon 1.0 (2013-03-14)
 
 First stable release, determine milestone 1
 
@@ -210,7 +247,7 @@ First stable release, determine milestone 1
     * #1414 Erster Start
     * #1402 Webinterface
 
-tk-mon 0.0.1 (2013-02-11)
+TKmon 0.0.1 (2013-02-11)
 
 This is a preview release to test packaging and misc concepts
 
