@@ -110,7 +110,7 @@ def main():
     log.debug('Starting up')
 
     env = os.environ
-    env['DEBIAN_FRONTEND'] = 'noninteractve'
+    env['DEBIAN_FRONTEND'] = 'noninteractive'
 
     starttime=time.time()
 
