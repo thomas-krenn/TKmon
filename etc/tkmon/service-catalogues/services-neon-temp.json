@@ -1,6 +1,6 @@
 {
         "type": "service",
-        "version": "1.0",
+        "version": "1.1",
         "description": "Services catalogue for Sensormetrix Neon 110 temperature and humidity sensor",
         "data": [
 
@@ -28,6 +28,26 @@
                         },
                         "validation": "string",
                         "argument": "-c",
+                        "value": ""
+                },
+		{
+                        "label": "Humidity Warning threshold",
+                        "description": {
+                                "en_US": "Insert warning humidity threshold",
+                                "de_DE": "Luftfeuchtigkeitswarnschwellwert angeben"
+                        },
+                        "validation": "string",
+                        "argument": "-x",
+                        "value": ""
+                },
+                {
+                        "label": "Humidity Critical threshold",
+                        "description": {
+                                "en_US": "Insert critical humidity value",
+                                "de_DE": "Kritischen Luftfeuchtigkeitsschwellwert angeben"
+                        },
+                        "validation": "string",
+                        "argument": "-d",
                         "value": ""
                 }
                 ]
