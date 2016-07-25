@@ -1,3 +1,8 @@
+TKmon 2.1.1 (2016-07-25)
+
+	2.1.1 Minor release
+	* Improved Sensormetrix Neon110 temperature and humidity check
+
 TKmon 2.1.0 (2016-06-06)
 
     2.1.0 Feature and bugfix release
