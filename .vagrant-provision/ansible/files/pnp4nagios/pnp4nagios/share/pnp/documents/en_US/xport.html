@@ -1,0 +1,44 @@
+
+
+
+<h1><a name="data_export" id="data_export">Data export</a></h1>
+<div class="level1">
+
+<p>
+
+PNP provides access to RRD data using the <code>xport</code> controller. The output format can be specified. At the moment the formats <code>xml</code>, <code>json</code> and <code>csv</code> are supported.
+</p>
+
+<p>
+The controller can be called using the <acronym title="Uniform Resource Locator">URL</acronym>
+
+</p>
+<pre class="code">/pnp4nagios/xport/&lt;format&gt;?host=&lt;hostname&gt;&amp;srv=&lt;servicedesc&gt;</pre>
+
+<p>
+
+whereas &lt;format&gt; has to be replaced with the desired format.
+</p>
+
+<p>
+
+You can also use <code>wget</code> to generate images and place them in periodic reports. One example may be:
+</p>
+<pre class="code">wget -O image.png &#039;http://&lt;user&gt;:&lt;pass&gt;@&lt;nagios-server&gt;/pnp4nagios/image?host=&lt;hostname&gt;&amp;srv=&lt;service&gt;&amp;view=2&amp;source=0&#039;</pre>
+
+<p>
+<code>view=&lt;n&gt;</code> limits the graph to the timeperiod specified in config.php <br/>
+
+<code>source=&lt;n&gt;</code> only shows one data source if you have more than one in your RRD file
+</p>
+
+<p>
+Instead of <code>view</code> you can use <code>start</code> and/or <code>end</code> to specify the time period. For details please look at <a href="/pnp-0.6/timeranges" class="wikilink1" title="pnp-0.6:timeranges">&quot;time ranges&quot;</a>.
+</p>
+
+<p>
+<a href="/pnp-0.6/start" class="wikilink1" title="pnp-0.6:start">back to contents</a> | <a href="/pnp-0.6/tpl" class="wikilink1" title="pnp-0.6:tpl">templates</a>
+
+</p>
+
+</div>

@@ -1,0 +1,326 @@
+
+
+
+<h1><a name="custom_templates" id="custom_templates">Custom Templates</a></h1>
+<div class="level1">
+
+<p>
+
+Wie bereits unter ”<a href="/de/pnp-0.6/tpl" class="wikilink1" title="de:pnp-0.6:tpl">Was sind Templates ?</a>” beschrieben, ist die Darstellung der Graphen abh&auml;ngig vom verwendeten Check-Command.
+</p>
+
+<p>
+Es gibt jedoch Situationen, in denen dieses Verhalten &uuml;bersteuert werden muss, zum Beispiel dann wenn allgemeing&uuml;ltige Commands definiert wurden.
+</p>
+
+<p>
+PNP, speziell process_perfdata.pl, sucht zur Laufzeit f&uuml;r jedes check_command im Verzeichnis etc/check_commands nach einer Config-Datei (&lt;check_command&gt;.cfg) und liest diese, wenn vorhanden, ein.
+Folgende Optionen k&ouml;nnen darin definiert werden:
+</p>
+
+</div>
+<!-- SECTION "Custom Templates" [1-565] -->
+<h2><a name="custom_template" id="custom_template">CUSTOM_TEMPLATE</a></h2>
+<div class="level2">
+
+<p>
+Geht man von folgendem Beispiel einer Nagios command-Definition aus:
+
+</p>
+<pre class="code">
+define command {
+  command_name check_nrpe
+  command_line $USER1$/check_nrpe -H $HOSTADDRESS$ -c $ARG1$ -a &quot;$ARG2$&quot;
+}
+</pre>
+
+<p>
+Die Folge w&auml;re, dass immer das Template check_nrpe.php verwendet werden w&uuml;rde, auch wenn auf dem zu &uuml;berwachenden Server via NRPE ein ganz anderes Plugin aufgerufen wurde.
+</p>
+
+<p>
+Da unser Beispiel-Command check_nrpe lautet, wird nach etc/check_commands/check_nrpe.cfg gesucht.
+</p>
+
+<p>
+Eine Beispiel-Config wird bereits w&auml;hrend der Installation mit der Dateierweiterung .cfg-sample in etc/check_commands gespeichert.
+</p>
+<pre class="code">
+# check_command check_nrpe!load!-w 4,4,4 -c 5,5,5
+# ________0__________|       |       |
+# ________1__________________|       |
+# ________2__________________________|
+#
+CUSTOM_TEMPLATE = 1
+</pre>
+
+<p>
+<code>CUSTOM_TEMPLATE = 1</code> sorgt daf&uuml;r, dass nur der Inhalt von $ARG1$ als Template-Name verwendet wird. Da in diesem Beispiel $ARG1$ mit dem Wert “load” gef&uuml;llt ist, ergibt sich als Template-Name “load.php”
+</p>
+
+<p>
+<code>CUSTOM_TEMPLATE = 0,1</code> ergibt → “check_nrpe_load.php”
+</p>
+
+<p>
+<code>CUSTOM_TEMPLATE = 1,0</code> ergibt → “load_check_nrpe.php”
+</p>
+
+<p>
+Diese Option hat nur Einfluss, wenn die RRD Datenbank neu erstellt wird.
+</p>
+
+</div>
+<!-- SECTION "CUSTOM_TEMPLATE" [566-1811] -->
+<h2><a name="datatype" id="datatype">DATATYPE</a></h2>
+<div class="level2">
+
+<p>
+
+&Uuml;ber die Option “DATATYPE” kann beeinflusst werden, mit welchem Datentyp die RRD-Datenbank angelegt werden soll.
+Default ist in diesem Fall “GAUGE”. F&uuml;r fortlaufende Werte wird aber hier der Datentyp COUNTER ben&ouml;tigt.
+Normalerweise sollten Plugin-Entwickler f&uuml;r Daten von Typ Counter die Einheit “c” verwenden. Dies ist jedoch nicht immer der Fall.
+</p>
+
+<p>
+Alle Datenreihen auf Typ COUNTER einstellen.
+
+</p>
+<pre class="code">DATATYPE = COUNTER</pre>
+
+<p>
+Einzelnen Datenreihen spezielle Datentypen zuweisen
+
+</p>
+<pre class="code">DATATYPE = GAUGE,GAUGE,COUNTER,COUNTER</pre>
+
+<p>
+Weitere Datentypen sind in der RRDTool-Dokumentation unter <a href="http://oss.oetiker.ch/rrdtool/doc/rrdcreate.en.html" class="urlextern" title="http://oss.oetiker.ch/rrdtool/doc/rrdcreate.en.html"  rel="nofollow">rrdcreate</a> erkl&auml;rt.
+</p>
+
+<p>
+Diese Option hat nur Einfluss, wenn die RRD Datenbank neu erstellt wird.
+</p>
+
+</div>
+<!-- SECTION "DATATYPE" [1812-2580] -->
+<h2><a name="use_min_on_create_und_use_max_on_create" id="use_min_on_create_und_use_max_on_create">USE_MIN_ON_CREATE und USE_MAX_ON_CREATE</a></h2>
+<div class="level2">
+
+<p>
+
+In einigen wenigen Situationen ist es notwendig, die f&uuml;r RRDTool g&uuml;ltigen Daten zu begrenzen.
+</p>
+
+<p>
+RRD-Datenbanken lassen sich mit definierten Minimum- und Maximum-Werten anlegen.
+Weitere Infos unter <a href="http://oss.oetiker.ch/rrdtool/doc/rrdcreate.en.html" class="urlextern" title="http://oss.oetiker.ch/rrdtool/doc/rrdcreate.en.html"  rel="nofollow">http://oss.oetiker.ch/rrdtool/doc/rrdcreate.en.html</a>
+</p>
+
+<p>
+Ber&uuml;cksichtigen des Maximum-Wertes aus den Performance-Daten
+
+</p>
+<pre class="code">USE_MAX_ON_CREATE = 1</pre>
+
+<p>
+Ber&uuml;cksichtigen des Minimum-Wertes aus den Performance-Daten
+
+</p>
+<pre class="code">USE_MIN_ON_CREATE = 1</pre>
+
+<p>
+Diese Option hat nur Einfluss, wenn die RRD Datenbank neu erstellt wird.
+</p>
+
+</div>
+<!-- SECTION "USE_MIN_ON_CREATE und USE_MAX_ON_CREATE" [2581-3154] -->
+<h2><a name="rrd_storage_type" id="rrd_storage_type">RRD_STORAGE_TYPE</a></h2>
+<div class="level2">
+<pre class="code">RRD_STORAGE_TYPE = SINGLE</pre>
+
+<p>
+
+Die Option RRD_STORAGE_TYPE definiert die Art der Datenhaltung.
+</p>
+
+<p>
+M&ouml;gliche Werte sind MULTIPLE und SINGLE
+</p>
+
+<p>
+SINGLE: Eine RRD-Datenbank pro Service
+</p>
+
+<p>
+MULTIPLE: Ein oder mehrere RRD-Datenbanken pro Service. F&uuml;r jede Datenreihe wird eine eigene RRD-Datenbank erstellt.
+</p>
+
+<p>
+<strong>ACHTUNG:</strong> Daten werden nicht automatisch migriert!<br/>
+
+Ein Konvertierungs-Script finden Sie <a href="/de/pnp-0.6/rrd_convert" class="wikilink1" title="de:pnp-0.6:rrd_convert">hier</a>.
+</p>
+
+<p>
+Diese Option hat nur Einfluss, wenn die RRD Datenbank neu erstellt wird.
+</p>
+
+</div>
+<!-- SECTION "RRD_STORAGE_TYPE" [3155-3680] -->
+<h2><a name="rrd_heartbeat" id="rrd_heartbeat">RRD_HEARTBEAT</a></h2>
+<div class="level2">
+
+<p>
+
+<strong>G&uuml;ltig ab PNP 0.6.1</strong>
+</p>
+<pre class="code">RRD_HEARTBEAT = 305</pre>
+
+<p>
+Nach &lt;RRD_HEARTBEAT&gt; Sekunden erwartet RRDtool neue Daten.
+</p>
+
+<p>
+Mehr dazu unter <a href="http://oss.oetiker.ch/rrdtool/doc/rrdcreate.en.html" class="urlextern" title="http://oss.oetiker.ch/rrdtool/doc/rrdcreate.en.html"  rel="nofollow">http://oss.oetiker.ch/rrdtool/doc/rrdcreate.en.html</a>
+</p>
+
+<p>
+Diese Option hat nur Einfluss, wenn die RRD Datenbank neu erstellt wird.
+</p>
+
+</div>
+<!-- SECTION "RRD_HEARTBEAT" [3681-3970] -->
+<h2><a name="hints_on_template_names" id="hints_on_template_names">Hints on Template Names</a></h2>
+<div class="level2">
+
+<p>
+
+In den meisten Situationen, kann man erw&uuml;nsche Template Namen relativ einfach, durch die Verwendung geeignter command Objekt Definitionen, erhalten.
+</p>
+
+<p>
+Man betrachte folgendes Beispiel:
+
+</p>
+<pre class="code">
+define command {
+  command_name check_by_ssh
+  command_line /usr/bin/ssh $HOSTADDRESS$ $ARG1$
+}
+</pre>
+
+<p>
+
+mit commands wie diesem:
+
+</p>
+<pre class="code">
+  …
+  check_command check_by_ssh!/usr/lib/nagios/plugins/check_load -w 4,4,4 -c 5,5,5
+  …
+</pre>
+
+<p>
+Selbst wenn man “CUSTOM_TEMPLATE = 1” benutz, w&uuml;rde man template Namen wie diesen “_usr_lib_nagios_plugins_check_load_-w_4,4,4_-c_5,5,5” erhalten, was h&ouml;chst unerw&uuml;nscht ist, insbesondere wegen den darin enthaltenen Parametern.
+</p>
+
+<p>
+<strong>L&ouml;sung 1: Die Parameter in eigenst&auml;ndige $ARGn$ auslagern</strong>
+</p>
+
+<p>
+Eine einfache L&ouml;sung ist die Verwendung der folgenden command Objekt Definition:
+
+</p>
+<pre class="code">
+define command {
+  command_name check_by_ssh
+  command_line /usr/bin/ssh $HOSTADDRESS$ $ARG1$ $ARG2$
+}
+</pre>
+
+<p>
+
+mit commands wie diesem:
+
+</p>
+<pre class="code">
+  …
+  check_command check_by_ssh!/usr/lib/nagios/plugins/check_load!-w 4,4,4 -c 5,5,5
+  …
+</pre>
+
+<p>
+
+(man beachte das hinzugekommene “!”)
+</p>
+
+<p>
+Dies funktioniert selbst dann, wann $ARG2$ leer bleibt.
+</p>
+
+<p>
+Selbstverst&auml;ndlich m&uuml;sste man immer noch “CUSTOM_TEMPLATE = 1” setzen.
+</p>
+
+<p>
+
+<strong>L&ouml;sung 2: Den remote executor in der command Objekt Definition verstecken</strong>
+</p>
+
+<p>
+Eine andere L&ouml;sung ist es, den remote excutor in den jeweiligen command Objekt Definitionen zu verstekcne.
+</p>
+
+<p>
+Anstatt folgender Definition:
+
+</p>
+<pre class="code">
+define command {
+  command_name check_by_ssh
+  command_line /usr/bin/ssh $HOSTADDRESS$ $ARG1$ $ARG2$
+}
+</pre>
+
+<p>
+
+w&uuml;rde man dies f&uuml;r <strong>jeden</strong> fern auszuf&uuml;hrenden command definieren:
+
+</p>
+<pre class="code">
+define command {
+  command_name check_load_by_ssh
+  command_line /usr/bin/ssh $HOSTADDRESS$ /usr/lib/nagios/plugins/check_load $ARG1$
+}
+</pre>
+
+<p>
+
+mit commands wie diesem:
+
+</p>
+<pre class="code">
+  …
+  check_load_by_ssh!-w 4,4,4 -c 5,5,5
+  …
+</pre>
+
+<p>
+
+Nat&uuml;rlich darf “CUSTOM_TEMPLATE = 1” bei dieser L&ouml;sung nicht mehr gesetzt werden.
+</p>
+
+<p>
+
+Welche der obigen L&ouml;sungen verwendet wird, ist weitgehend Geschmacksache.
+</p>
+
+<p>
+<a href="/de/pnp-0.6/start" class="wikilink1" title="de:pnp-0.6:start">zur&uuml;ck zur &Uuml;bersicht</a> | <a href="/de/pnp-0.6/advanced" class="wikilink1" title="de:pnp-0.6:advanced">PNP in verteilten Umgebungen</a>
+
+</p>
+
+</div>
+<!-- SECTION "Hints on Template Names" [3971-] -->
