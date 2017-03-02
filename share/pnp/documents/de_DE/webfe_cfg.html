@@ -1,0 +1,142 @@
+
+
+
+<h1><a name="pnp_web_frontend" id="pnp_web_frontend">PNP Web Frontend</a></h1>
+<div class="level1">
+
+<p>
+
+Das Verhalten des PNP-Web-Frontend l&auml;sst sich &uuml;ber die Config-Datei <code>etc/config.php</code> beeinflussen.
+Diese Datei wird bei Updates von PNP immer wieder &uuml;berschrieben, da die meisten Pfade und Optionen bereits durch <code>./configure</code> ermittelt werden.
+</p>
+
+<p>
+Eigene Anpassungen sollten daher in der Datei etc/config_local.php erfolgen. Sollte die Datei noch nicht existieren, kann die config.php als Vorlage verwendet werden.
+</p>
+
+</div>
+<!-- SECTION "PNP Web Frontend" [1-452] -->
+<h2><a name="etcpnpconfigphp" id="etcpnpconfigphp">etc/pnp/config.php</a></h2>
+<div class="level2">
+
+<p>
+
+Im folgenden die wichtigsten Parameter:
+</p>
+
+<p>
+Der Pfad zum RRDtool-Binary. Wird von <code>./configure</code> ermittelt.
+
+</p>
+<pre class="code"> $conf[&#039;rrdtool&#039;] = &quot;/usr/bin/rrdtool&quot;;</pre>
+<hr />
+
+<p>
+H&ouml;he und Breite der RRD-Graphen
+
+</p>
+<pre class="code"> $conf[&#039;graph_width&#039;] = &quot;500&quot;;
+ $conf[&#039;graph_height&#039;] = &quot;100&quot;;</pre>
+<hr />
+
+<p>
+
+Bildschirmdimensionen &auml;ndern sich, Blattgr&ouml;ßen nicht. Um unterschiedliche Einstellungen zu erm&ouml;glichen, k&ouml;nnen f&uuml;r die Generierung von <acronym title="Portable Document Format">PDF</acronym>-Dateien eigene Werte definiert werden. Wenn diese Variablen nicht definiert sind, werden die Werte der Graphen benutzt.
+H&ouml;he und Breite der RRD-Graphen bei PDFs
+
+</p>
+<pre class="code"> $conf[&#039;pdf_width&#039;] = &quot;675&quot;;
+ $conf[&#039;pdf_height&#039;] = &quot;100&quot;;</pre>
+<hr />
+
+<p>
+
+Zus&auml;tzliche Optionen, die bei jedem Aufruf von RRDTool mit &uuml;bergeben werden. Beispielsweise <code>--slope-mode</code>, um die Graphen etwas zu gl&auml;tten.
+
+</p>
+<pre class="code"> $conf[&#039;graph_opt&#039;] = &quot;&quot;;</pre>
+<hr />
+
+<p>
+
+Der Pfad zu den von <code>process_perfdata.pl</code> erstellten RRD- und <acronym title="Extensible Markup Language">XML</acronym>-Dateien
+
+</p>
+<pre class="code"> $conf[&#039;rrdbase&#039;] = &quot;/usr/local/pnp4nagios/var/perfdata/&quot;;</pre>
+<hr />
+
+<p>
+
+Pfad zu den Config-Files f&uuml;r die <a href="/de/pnp-0.6/pages" class="wikilink1" title="de:pnp-0.6:pages">Pages</a>.
+
+</p>
+<pre class="code"> $conf[&#039;page_dir&#039;] = &quot;/usr/local/pnp4nagios/etc/pages/&quot;;</pre>
+<hr />
+
+<p>
+Wert in Sekunden, nachdem die PNP-Seiten neu geladen werden sollen.
+
+</p>
+<pre class="code"> $conf[&#039;refresh&#039;] = &quot;90&quot;;</pre>
+<hr />
+
+<p>
+
+Maximales Alter der RRD-Files in Sekunden. Nach Erreichen dieses Wertes werden Links zu den Graphen als “inactive” gekennzeichnet.
+
+</p>
+<pre class="code"> $conf[&#039;max_age&#039;] = 60*60*6;</pre>
+<hr />
+
+<p>
+
+Basis-<acronym title="Uniform Resource Locator">URL</acronym> zu den Nagios CGIs.
+
+</p>
+<pre class="code"> $conf[&#039;nagios_base&#039;] = &quot;/nagios/cgi-bin&quot;;</pre>
+<hr />
+
+<p>
+Liste von Usern, f&uuml;r die Links zu den Services des aktuellen Hosts angezeigt werden sollen.
+
+</p>
+<pre class="code"> $conf[&#039;allowed_for_service_links&#039;] = &quot;EVERYONE&quot;;</pre>
+<hr />
+
+<p>
+Liste von Usern, f&uuml;r die das Host-Suchfeld angezeigt werden soll.
+
+</p>
+<pre class="code"> $conf[&#039;allowed_for_host_search&#039;] = &quot;EVERYONE&quot;;</pre>
+<hr />
+
+<p>
+Wird PNP nur mit der Angabe eines Hosts ( index.php?host=&lt;myserver&gt; ) aufgerufen, so wird eine &Uuml;bersicht aller Services angezeigt, wenn der User in dieser Liste enthalten ist.
+
+</p>
+<pre class="code"> $conf[&#039;allowed_for_host_overview&#039;] = &quot;EVERYONE&quot;;</pre>
+<hr />
+
+<p>
+Das Array $views[] legt fest, welche Zeitspannen die RRD-Graphen dargestellen sollen. Der Titel und die Anzahl der Graphen kann somit hier zentral definiert werden.
+</p>
+<pre class="code">
+$views[] = array(&#039;title&#039; =&gt; &#039;One Hour&#039;,  &#039;start&#039; =&gt; (60*60) );
+$views[] = array(&#039;title&#039; =&gt; &#039;4 Hours&#039;,   &#039;start&#039; =&gt; (60*60*4) );
+$views[] = array(&#039;title&#039; =&gt; &#039;25 Hours&#039;,  &#039;start&#039; =&gt; (60*60*25) );
+$views[] = array(&#039;title&#039; =&gt; &#039;One Week&#039;,  &#039;start&#039; =&gt; (60*60*25*7) );
+$views[] = array(&#039;title&#039; =&gt; &#039;One Month&#039;, &#039;start&#039; =&gt; (60*60*24*32) );
+$views[] = array(&#039;title&#039; =&gt; &#039;One Year&#039;,  &#039;start&#039; =&gt; (60*60*24*380) );
+</pre>
+
+<p>
+Sie k&ouml;nnen hier auch weitere Views definieren, sollten aber dabei ber&uuml;cksichtigen, dass im Normalfall ALLE definierten Views angezeigt werden.
+</p>
+
+<p>
+<a href="/de/pnp-0.6/start" class="wikilink1" title="de:pnp-0.6:start">zur&uuml;ck zur &Uuml;bersicht</a> | <a href="/de/pnp-0.6/timeranges" class="wikilink1" title="de:pnp-0.6:timeranges">Timeranges</a>
+
+</p>
+
+</div>
+<!-- SECTION "etc/pnp/config.php" [453-] -->

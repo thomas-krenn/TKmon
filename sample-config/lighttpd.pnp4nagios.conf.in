@@ -1,0 +1,20 @@
+#
+# Sample Lighttpd Config snippet.
+# Tested on Debian.
+#
+server.modules   += ( "mod_auth" )
+
+alias.url += (
+               "@BASE_URL@" => "@datarootdir@" 
+             )
+
+$HTTP["url"] =~ "(^@BASE_URL@)" {
+                    auth.backend = "htpasswd" 
+                    auth.backend.htpasswd.userfile = "/usr/local/nagios/etc/htpasswd.users" 
+                    auth.require = ( "" => (
+                        "method" => "basic",
+                        "realm" => "Nagios Access",
+                        "require" => "valid-user" 
+                    )
+                )
+}
