@@ -201,6 +201,7 @@
           owner=www-data
           group=www-data
           mode=0775
+          recurse=yes
           state=directory'
 
   - name: Restart icinga
