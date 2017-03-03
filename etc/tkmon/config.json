@@ -53,7 +53,7 @@
 
     "doc.basepath":         "{core.share_dir}/templates/doc",
 
-    "system.interface":     "eth0",
+    "system.interface":     "enp0s5",
     "system.apache_owner":  "www-data.www-data",
 
     "locale.domain":        "messages",
