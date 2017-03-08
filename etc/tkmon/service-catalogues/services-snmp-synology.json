@@ -43,7 +43,7 @@
                                                 "über SNMP überwacht werden.</p>"
                                         ]
                                 },
-                                "tk_notify": false,
+                                "tk_notify": true,
                                 "tk_notify_default": false
                         }
                 },
@@ -186,7 +186,7 @@
                                                 "über SNMP überwacht werden.</p>"
                                         ]
                                 },
-                                "tk_notify": false,
+                                "tk_notify": true,
                                 "tk_notify_default": false
                         }
                 },
@@ -219,7 +219,7 @@
                                                 "über SNMP überwacht werden.</p>"
                                         ]
                                 },
-                                "tk_notify": false,
+                                "tk_notify": true,
                                 "tk_notify_default": false
                         }
                 },
