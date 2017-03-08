@@ -16,6 +16,7 @@
     - php7.0-curl
     - php7.0-gd
     - php-pear
+    - php-apcu
     - python-setuptools
     - sqlite3
     - zip
