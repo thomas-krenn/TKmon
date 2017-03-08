@@ -220,7 +220,6 @@
             "sudo": true
         },
 
-
         "pkill": {
             "path": "/usr/bin/pkill",
             "sudo": true
@@ -228,6 +227,11 @@
 
         "async_update": {
             "path": "/usr/local/sbin/async_update.py",
+            "sudo": true
+        },
+
+        "systemctl": {
+            "path": "/bin/systemctl",
             "sudo": true
         }
     }
