@@ -1,7 +1,7 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 Vagrant.configure(2) do |config|
-  config.vm.box = "ubuntu/trusty64"
+  config.vm.box = "bento/ubuntu-16.04"
 
   config.vm.network "forwarded_port", guest: 80, host: 8085
   config.vm.network "forwarded_port", guest: 8086, host: 8086
@@ -15,7 +15,6 @@ Vagrant.configure(2) do |config|
   end
 
   config.vm.provider :parallels do |p, override|
-    override.vm.box = "parallels/ubuntu-14.04"
     p.name = "tkmon-development"
     p.update_guest_tools = true
     p.memory = 1024
@@ -32,7 +31,7 @@ Vagrant.configure(2) do |config|
     else
         echo "Apt list update within 24 hours, abort."
     fi
-    sudo apt-get install -y --no-install-recommends \
+    apt-get install -y --no-install-recommends \
         language-pack-en-base \
         language-pack-en \
         locales
