@@ -21,6 +21,7 @@
 
 namespace TKMON\Action\Expose\System\Configuration;
 
+use TKMON\Model\Icinga\Daemon;
 use TKMON\Model\ThomasKrenn\ContactInfo;
 
 /**
@@ -137,6 +138,9 @@ class Mail extends \TKMON\Action\Base
 
             $systemModel = new \TKMON\Model\System($this->container);
             $systemModel->restartPostfix();
+
+            $icingaModel = new Daemon($this->container);
+            $icingaModel->restartIcinga();
 
             $response->setSuccess(true);
         } catch (\Exception $e) {
