@@ -73,9 +73,10 @@ class System extends ApplicationModel
         $interface = $this->container['config']['system.interface'];
 
         /** @var $command Process */
-        $command = $this->container['command']->create('restart');
-        $command->addPositionalArgument('network-interface');
-        $command->addPositionalArgument('INTERFACE='. $interface);
+        $command = $this->container['command']->create('systemctl');
+        $command->addPositionalArgument('restart');
+        $command->addPositionalArgument('networking.service');
+        // $command->addPositionalArgument('INTERFACE='. $interface);
         $command->execute();
 
         /*

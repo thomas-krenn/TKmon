@@ -8,22 +8,22 @@
     with_items:
     - software-properties-common
     - apache2
-    - apache2-mpm-event
     - libapache2-mod-fastcgi
-    - php5
-    - php5-cli
-    - php5-sqlite
-    - php5-fpm
-    - php5-curl
-    - php5-xcache
-    - php5-xdebug
+    - php7.0
+    - php7.0-cli
+    - php7.0-sqlite3
+    - php7.0-fpm
+    - php7.0-curl
+    - php7.0-gd
     - php-pear
-    - pnp4nagios
+    - php-apcu
     - python-setuptools
     - sqlite3
     - zip
     - vim
     - pandoc
+    - rrdtool
+    - librrds-perl
 
   - name: Test launchpad repository
     stat: path=/etc/apt/sources.list.d/formorer-icinga-trusty.list
@@ -52,22 +52,22 @@
 
   - name: Configure XCache
     copy: 'src=files/php5/xcache.ini
-          dest=/etc/php5/mods-available/xcache.ini
+          dest=/etc/php/7.0/mods-available/xcache.ini
           mode=0644'
 
   - name: Configure PHP
     copy: 'src=files/php5/php.ini
-          dest=/etc/php5/fpm/php.ini
+          dest=/etc/php/7.0/fpm/php.ini
           mode=0644'
 
   - name: Configure sp.php5-fpm
     copy: 'src=files/php5-fpm/www.conf
-          dest=/etc/php5/fpm/pool.d/www.conf
+          dest=/etc/php/7.0/fpm/pool.d/www.conf
           backup=yes
           mode=0644'
 
-  - name: Restart php5-fpm
-    command: /sbin/restart php5-fpm
+  - name: Restart php7.0-fpm
+    service: name=php7.0-fpm state=restarted
 
   - name: Enable apache2 module rewrite
     apache2_module: name=rewrite state=present
@@ -146,6 +146,38 @@
   - name: Restart apache2
     service: name=apache2 state=restarted
 
+  # pnp4nagios installation
+  - name: pnp4nagios, copy source
+    synchronize: 'src=files/pnp4nagios/pnp4nagios
+                 dest=/usr/local/src'
+  - name: pnp4nagios, configure source
+    command: './configure --with-layout=debian --with-nagios-user=nagios --with-nagios-group=nagios'
+    args:
+      chdir: '/usr/local/src/pnp4nagios'
+
+  - name: pnp4nagios, make
+    command: 'make all install install-init install-config install-processperfdata install-html fullinstall'
+    args:
+      chdir: '/usr/local/src/pnp4nagios'
+
+  - name: pnp4nagios, copy npcd and broker
+    shell: 'chown -R nagios.nagios src/ && cp src/npcdmod.o /usr/lib/pnp4nagios && cp src/npcd /usr/bin'
+    args:
+      chdir: '/usr/local/src/pnp4nagios'
+
+  - name: pnp4nagios, move install file
+    shell: 'mv /usr/share/pnp4nagios/html/install.php /usr/share/pnp4nagios/html/install.php.deact'
+    args:
+      chdir: '/usr/local/src/pnp4nagios'
+
+  - name: Fix pnp4nagios spool directory
+    file: 'path=/var/spool/pnp4nagios
+          state=directory
+          mode=0755
+          owner=nagios
+          group=nagios'
+
+  # Icinga Configuration
   - name: Icinga icinga.cfg
     copy: 'src=files/icinga/icinga.cfg
           dest=/etc/icinga/icinga.cfg
@@ -154,6 +186,11 @@
   - name: Icinga cgi.cfg
     copy: 'src=files/icinga/cgi.cfg
           dest=/etc/icinga/cgi.cfg
+          mode=0644'
+
+  - name: Icinga pnp4nagios.cfg
+    copy: 'src=files/icinga/pnp4nagios.cfg
+          dest=/etc/icinga/modules/pnp4nagios.cfg
           mode=0644'
 
   - name: Icinga tkmon base config
@@ -165,6 +202,7 @@
           owner=www-data
           group=www-data
           mode=0775
+          recurse=yes
           state=directory'
 
   - name: Restart icinga
@@ -192,8 +230,9 @@
           dest=/etc/default/npcd
           mode=0644'
 
-  - name: Restart npcd
-    service: name=npcd state=restarted
+  # Restart NPCD
+  # - name: Restart npcd
+  #   service: name=npcd state=restarted
 
   - name: Test TKLAERT
     stat: path=/usr/local/bin/tkalert

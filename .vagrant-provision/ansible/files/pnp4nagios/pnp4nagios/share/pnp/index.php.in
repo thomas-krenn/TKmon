@@ -1,0 +1,148 @@
+<?php
+/**
+ * @PKG_NAME@–@PKG_VERSION@
+ * This file acts as the "front controller" to your application. You can
+ * configure your application, modules, and system directories here.
+ * PHP error_reporting level may also be changed.
+ *
+ * @see http://kohanaphp.com
+ */
+
+define('PNP_NAME'     , '@PKG_NAME@');
+define('PNP_VERSION'  , '@PKG_VERSION@');
+define('PNP_REL_DATE' , '@PKG_REL_DATE@');
+define('PNP_ETC_PATH' , '@sysconfdir@');
+define('PNP_LOG_PATH' , '@localstatedir@');
+
+/**
+ * Define the website environment status. When this flag is set to TRUE, some
+ * module demonstration controllers will result in 404 errors. For more information
+ * about this option, read the documentation about deploying Kohana.
+ *
+ * @see http://docs.kohanaphp.com/installation/deployment
+ */
+define('IN_PRODUCTION', TRUE);
+
+/**
+ *
+ * OMD path detection
+ *
+ */
+if(substr($_SERVER["SCRIPT_FILENAME"], 0, 4) == '/omd') {
+    define('OMD', TRUE);
+    $site_parts = array_slice(explode('/' ,dirname($_SERVER["SCRIPT_FILENAME"])), 0, -3);
+    define('OMD_SITE_ROOT', join($site_parts, '/'));
+    define('OMD_SITE', $site_parts[count($site_parts)-1]);
+    unset($site_parts);
+}else{
+    define('OMD', FALSE);
+}
+
+
+/**
+ *
+ * Autodetect base URL
+ *
+ */
+define('BASE_URL' , dirname($_SERVER["SCRIPT_NAME"]));
+
+/**
+* The current XML Structure Tag for this PNP Version
+*/
+define('XML_STRUCTURE_VERSION', '@XML_STRUCTURE_VERSION@');
+
+/**
+ * Website application directory. This directory should contain your application
+ * configuration, controllers, models, views, and other resources.
+ *
+ * This path can be absolute or relative to this file.
+ */
+$kohana_application = 'application';
+
+/**
+ * Kohana modules directory. This directory should contain all the modules used
+ * by your application. Modules are enabled and disabled by the application
+ * configuration file.
+ *
+ * This path can be absolute or relative to this file.
+ */
+$kohana_modules = 'modules';
+
+/**
+ * Kohana system directory. This directory should contain the core/ directory,
+ * and the resources you included in your download of Kohana.
+ *
+ * This path can be absolute or relative to this file.
+ */
+$kohana_system = '@KOHANA_SYSTEM@';
+
+/**
+ * Test to make sure that Kohana is running on PHP 5.2 or newer. Once you are
+ * sure that your environment is compatible with Kohana, you can comment this
+ * line out. When running an application on a new server, uncomment this line
+ * to check the PHP version quickly.
+ */
+version_compare(PHP_VERSION, '5.1', '<') and exit('Kohana requires PHP 5.1 or newer.');
+
+/**
+ * Set the error reporting level. Unless you have a special need, E_ALL is a
+ * good level for error reporting.
+ */
+error_reporting(E_ALL & ~E_STRICT);
+
+/**
+ * Turning off display_errors will effectively disable Kohana error display
+ * and logging. You can turn off Kohana errors in application/config/config.php
+ */
+ini_set('display_errors', TRUE);
+
+/**
+ * If you rename all of your .php files to a different extension, set the new
+ * extension here. This option can left to .php, even if this file has a
+ * different extension.
+ */
+define('EXT', '.php');
+
+//
+// DO NOT EDIT BELOW THIS LINE, UNLESS YOU FULLY UNDERSTAND THE IMPLICATIONS.
+// ----------------------------------------------------------------------------
+//
+
+// Force default timezone
+if(function_exists("date_default_timezone_set") and function_exists("date_default_timezone_get")){
+	@date_default_timezone_set(@date_default_timezone_get());
+}
+
+$kohana_pathinfo = pathinfo(__FILE__);
+// Define the front controller name and docroot
+define('DOCROOT', $kohana_pathinfo['dirname'].DIRECTORY_SEPARATOR);
+define('KOHANA',  $kohana_pathinfo['basename']);
+
+// If the front controller is a symlink, change to the real docroot
+is_link(KOHANA) and chdir(dirname(realpath(__FILE__)));
+
+// If kohana folders are relative paths, make them absolute.
+$kohana_application = file_exists($kohana_application) ? $kohana_application : DOCROOT.$kohana_application;
+$kohana_modules = file_exists($kohana_modules) ? $kohana_modules : DOCROOT.$kohana_modules;
+$kohana_system = file_exists($kohana_system) ? $kohana_system : DOCROOT.$kohana_system;
+
+// Define application and system paths
+define('APPPATH', str_replace('\\', '/', realpath($kohana_application)).'/');
+define('MODPATH', str_replace('\\', '/', realpath($kohana_modules)).'/');
+define('SYSPATH', str_replace('\\', '/', realpath($kohana_system)).'/');
+// JSON Wrapper used for PHP 5.1.x
+require('application/lib/jsonwrapper.php');
+// Clean up
+unset($kohana_application, $kohana_modules, $kohana_system);
+
+if (file_exists(DOCROOT.'install'.EXT) && !file_exists(DOCROOT.'install.ignore')){
+	// Load the installation tests
+	include DOCROOT.'install'.EXT;
+}
+else
+{
+	// Initialize Kohana
+	require SYSPATH.'core/Bootstrap'.EXT;
+}
+
+

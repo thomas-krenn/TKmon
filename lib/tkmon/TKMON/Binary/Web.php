@@ -24,7 +24,7 @@ namespace TKMON\Binary;
 use ICINGA\Catalogue\Provider\JsonFiles;
 use ICINGA\Catalogue\Services;
 use NETWAYS\Cache\Manager;
-use NETWAYS\Cache\Provider\XCache;
+use NETWAYS\Cache\Provider\APCu;
 use NETWAYS\Common\Config\PDOLoader;
 use NETWAYS\Common\Config\PDOPersister;
 use NETWAYS\Common\Config;
@@ -295,7 +295,7 @@ final class Web
          */
         $container['cache'] = $container->share(
             function ($c) {
-                $provider = new XCache();
+                $provider = new APCu();
                 $cache = new Manager($provider);
                 return $cache;
             }
