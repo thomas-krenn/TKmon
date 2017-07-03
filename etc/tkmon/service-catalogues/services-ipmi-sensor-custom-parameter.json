@@ -1,0 +1,211 @@
+{
+	"type": "service",
+	"version": "1.0",
+	"description": "Services catalogue for custom ipmi checks",
+	"data": [
+	{
+		"service_description": "ipmi-sensors-exclude-id",
+		"display_name": "IPMI Sensors Exclude ID",
+		"check_command": {
+			"command_name": "check_ipmi_sensor_exclude_id",
+			"arguments": [{
+				"label": "Sensor ID",
+				"description": {
+					"en_US": "Insert sensor ID",
+					"de_DE": "Sensor ID angeben"
+				},
+				"validation": "string",
+				"argument": "-x",
+				"value": ""
+			}]
+		},
+		"_catalogue_attributes": {
+			"tags": ["remote", "ipmi", "hardware", "tkmon", "custom", "sensor", "exclude", "id"],
+			"name": "ipmi-sensors-exclude-id",
+			"label": {
+				"en_US": "IPMI Check Exclude ID",
+				"de_DE": "IPMI Check Exclude ID"
+			},
+			"description": {
+				"en_US": "Checks all IPMI sensors, excluded the provided sensor",
+				"de_DE": "Prüft alle IPMI Sensoren, ohne den angegebenen Sensor"
+			},
+			"defined": true,
+			"defined_in": "/etc/nagios-plugins/config/check_ipmi_sensor_custom_parameter.cfg",
+			"links": [{
+				"name": "IPMI Sensors Monitoring Plugin Exclude Sensor ID",
+				"href": {
+					"en_US": "http://www.thomas-krenn.com/en/wiki/IPMI_Sensor_Monitoring_Plugin",
+					"de_DE": "http://www.thomas-krenn.com/de/wiki/IPMI_Sensor_Monitoring_Plugin"
+				},
+				"description": {
+					"en_US": "Wiki article about the IPMI Sensor Monitoring Plugin from Thomas-Krenn",
+					"de_DE": "Wiki Artikel zum IPMI Sensor Monitoring Plugin von Thomas-Krenn"
+				}
+			}, {
+				"name": "GIT Repository",
+				"href": "http://git.thomas-krenn.com/?p=check_ipmi_sensor_v3.git;a=summary",
+				"description": {
+					"en_US": "GIT repository of the IPMI Sensor Monitoring Plugin from Thomas-Krenn",
+					"de_DE": "GIT Repository des IPMI Sensor Monitoring Plugins von Thomas-Krenn"
+				}
+			}],
+			"doc": {
+				"en_US": [
+					"<h4>IPMI Sensors Monitoring Plugin Exclude Sensor ID</h4>",
+					"<p>Using this plugin, the hardware status of a server can be monitored.",
+					"As specific examples, fan rotation speeds, temperatures, voltages,",
+					"power supply states and more will be monitored.",
+					"You can exclude one specific sensor id, eg. a fan,",
+					"and also multiple ids separated by comma by entering the sensor's ID</p>"
+				],
+				"de_DE": [
+					"<h4>IPMI Sensors Monitoring Plugin Exclude Sensor ID</h4>",
+					"<p>Mit diesem Plugin kann der Hardware Status eines Servers überwacht werden.",
+					"Beispiele für Sensoren, die überwacht werden, sind Lüfterdrehzahlen,",
+					"Temperaturen, Spannungen, Netzteilstatus und mehr.",
+					"Ein einzelner Sensor, z.B. ein Lüfter,",
+					"oder auch mehrere IDs, per Komma getrennt,",
+					"kann von der Überwachung ausgeschlossen werden.</p>"
+				]
+			},
+			"tk_notify": true,
+			"tk_notify_default": true
+		}
+	},
+	{
+		"service_description": "ipmi-sensors-exclude-type",
+		"display_name": "IPMI Sensors Exclude Type",
+		"check_command": {
+			"command_name": "check_ipmi_sensor_exclude_type",
+			"arguments": [{
+				"label": "Sensor Type",
+				"description": {
+					"en_US": "Insert sensor type",
+					"de_DE": "Sensor Typen angeben"
+				},
+				"validation": "string",
+				"argument": "-xT",
+				"value": ""
+			}]
+		},
+		"_catalogue_attributes": {
+			"tags": ["remote", "ipmi", "hardware", "tkmon", "custom", "sensor", "exclude", "type"],
+			"name": "ipmi-sensors-exclude-type",
+			"label": {
+				"en_US": "IPMI Check Exclude Type",
+				"de_DE": "IPMI Check Exclude Typ"
+			},
+			"description": {
+				"en_US": "Checks all IPMI sensors, excluded the provided sensor type",
+				"de_DE": "Prüft alle IPMI Sensoren, ohne die angegebenen Sensortypen"
+			},
+			"defined": true,
+			"defined_in": "/etc/nagios-plugins/config/check_ipmi_sensor_custom_parameter.cfg",
+			"links": [{
+				"name": "IPMI Sensors Monitoring Plugin Exclude Sensor Type",
+				"href": {
+					"en_US": "http://www.thomas-krenn.com/en/wiki/IPMI_Sensor_Monitoring_Plugin",
+					"de_DE": "http://www.thomas-krenn.com/de/wiki/IPMI_Sensor_Monitoring_Plugin"
+				},
+				"description": {
+					"en_US": "Wiki article about the IPMI Sensor Monitoring Plugin from Thomas-Krenn",
+					"de_DE": "Wiki Artikel zum IPMI Sensor Monitoring Plugin von Thomas-Krenn"
+				}
+			}, {
+				"name": "GIT Repository",
+				"href": "http://git.thomas-krenn.com/?p=check_ipmi_sensor_v3.git;a=summary",
+				"description": {
+					"en_US": "GIT repository of the IPMI Sensor Monitoring Plugin from Thomas-Krenn",
+					"de_DE": "GIT Repository des IPMI Sensor Monitoring Plugins von Thomas-Krenn"
+				}
+			}],
+			"doc": {
+				"en_US": [
+					"<h4>IPMI Sensors Monitoring Plugin Exclude Sensor Type</h4>",
+					"<p>Using this plugin, the hardware status of a server can be monitored.",
+					"As specific examples, fan rotation speeds, temperatures, voltages,",
+					"power supply states and more will be monitored.",
+					"You can exclude whole sensor types by entering the sensor types.</p>"
+				],
+				"de_DE": [
+					"<h4>IPMI Sensors Monitoring Plugin Exclude Sensor Type</h4>",
+					"<p>Mit diesem Plugin kann der Hardware Status eines Servers überwacht werden.",
+					"Beispiele für Sensoren, die überwacht werden, sind Lüfterdrehzahlen,",
+					"Temperaturen, Spannungen, Netzteilstatus und mehr.",
+					"Es können Sensortypen von der Überwachung ausgeschlossen werden.</p>"
+				]
+			},
+			"tk_notify": true,
+			"tk_notify_default": true
+		}
+	},
+	{
+		"service_description": "ipmi-sensors-exclude-sel",
+		"display_name": "IPMI Sensors Exclude SEL",
+		"check_command": {
+			"command_name": "check_ipmi_sensor_exclude_sel",
+			"arguments": [{
+				"label": "SEL Type",
+				"description": {
+					"en_US": "Insert System Event Log Types",
+					"de_DE": "System Event Log Typen angeben"
+				},
+				"validation": "string",
+				"argument": "-xST",
+				"value": ""
+			}]
+		},
+		"_catalogue_attributes": {
+			"tags": ["remote", "ipmi", "hardware", "tkmon", "custom", "sensor", "exclude", "sel"],
+			"name": "ipmi-sensors-exclude-sel",
+			"label": {
+				"en_US": "IPMI Check Exclude SEL Types",
+				"de_DE": "IPMI Check Exclude SEL Types"
+			},
+			"description": {
+				"en_US": "Checks all IPMI sensors, excluded the provided System Event Log type",
+				"de_DE": "Prüft alle IPMI Sensoren, ohne die angegebenen System Event Log Typen"
+			},
+			"defined": true,
+			"defined_in": "/etc/nagios-plugins/config/check_ipmi_sensor_custom_parameter.cfg",
+			"links": [{
+				"name": "IPMI Sensors Monitoring Plugin Exclude SEL Types",
+				"href": {
+					"en_US": "http://www.thomas-krenn.com/en/wiki/IPMI_Sensor_Monitoring_Plugin",
+					"de_DE": "http://www.thomas-krenn.com/de/wiki/IPMI_Sensor_Monitoring_Plugin"
+				},
+				"description": {
+					"en_US": "Wiki article about the IPMI Sensor Monitoring Plugin from Thomas-Krenn",
+					"de_DE": "Wiki Artikel zum IPMI Sensor Monitoring Plugin von Thomas-Krenn"
+				}
+			}, {
+				"name": "GIT Repository",
+				"href": "http://git.thomas-krenn.com/?p=check_ipmi_sensor_v3.git;a=summary",
+				"description": {
+					"en_US": "GIT repository of the IPMI Sensor Monitoring Plugin from Thomas-Krenn",
+					"de_DE": "GIT Repository des IPMI Sensor Monitoring Plugins von Thomas-Krenn"
+				}
+			}],
+			"doc": {
+				"en_US": [
+					"<h4>IPMI Sensors Monitoring Plugin SEL Types</h4>",
+					"<p>Using this plugin, the hardware status of a server can be monitored.",
+					"As specific examples, fan rotation speeds, temperatures, voltages,",
+					"power supply states and more will be monitored.",
+					"You can exclude specific sel types by entering the IDs.</p>"
+				],
+				"de_DE": [
+					"<h4>IPMI Sensor Monitoring Plugin SEL Types</h4>",
+					"<p>Mit diesem Plugin kann der Hardware Status eines Servers überwacht werden.",
+					"Beispiele für Sensoren, die überwacht werden, sind Lüfterdrehzahlen,",
+					"Temperaturen, Spannungen, Netzteilstatus und mehr.",
+					"Es können spezifische SEL Typen von der Überwachung ausgeschlossen werden.</p>"
+				]
+			},
+			"tk_notify": true,
+			"tk_notify_default": true
+		}
+	}
+	]
+}
