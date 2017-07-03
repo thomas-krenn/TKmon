@@ -11,20 +11,20 @@
                 "command_name": "check_neon",
                 "arguments": [
 	        {
-                        "label": "Warning threshold",
+                        "label": "Temperature Warning threshold",
                         "description": {
-                                "en_US": "Insert warning threshold",
-                                "de_DE": "Warnschwellwert angeben"
+                                "en_US": "Insert warning temperature threshold",
+                                "de_DE": "Temperaturwarnschwellwert angeben"
                         },
                         "validation": "string",
                         "argument": "-w",
                         "value": ""
                 },
                 {
-                        "label": "Critical threshold",
+                        "label": "Temperature Critical threshold",
                         "description": {
-                                "en_US": "Insert critical value",
-                                "de_DE": "Kritischen Schwellwert angeben"
+                                "en_US": "Insert critical temperature threshold",
+                                "de_DE": "Kritischen Temperaturschwellwert angeben"
                         },
                         "validation": "string",
                         "argument": "-c",
@@ -43,7 +43,7 @@
                 {
                         "label": "Humidity Critical threshold",
                         "description": {
-                                "en_US": "Insert critical humidity value",
+                                "en_US": "Insert critical humidity threshold",
                                 "de_DE": "Kritischen Luftfeuchtigkeitsschwellwert angeben"
                         },
                         "validation": "string",
