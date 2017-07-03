@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: TKmon\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2016-06-03 10:37+0100\n"
+"PO-Revision-Date: 2017-07-03 12:55+0200\n"
 "Last-Translator: Georg Schoenberger <gschoenberger@thomas-krenn.com>\n"
 "Language-Team: German\n"
 "Language: de\n"
@@ -10,7 +10,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 1.5.4\n"
+"X-Generator: Poedit 1.8.7.1\n"
 
 #: /tmp/tkmon-templates//00b80540bb297b8929649896f8b9.php:24
 #: /tmp/tkmon-templates//3dbd29ef39e232c9753bf42b08f4.php:31
@@ -1109,8 +1109,8 @@ msgstr "Alle"
 
 #: /tmp/tkmon-templates//7de2cb94cc953424e1c7ab5e13e7.php:100
 #: /tmp/tkmon-templates//9c794d4c807cf533962a5d80c0ba.php:94
-#: /home/tniedermeier/tkdata/git/git-thomas/georg-tkmon-debian/lib/tkmon/TKMON/Extension/Host/DefaultAttributes.php:104
 #: /home/tniedermeier/tkdata/git/git-thomas/georg-tkmon-debian/lib/tkmon/TKMON/Action/Expose/Monitor/Icinga/Services.php:383
+#: /home/tniedermeier/tkdata/git/git-thomas/georg-tkmon-debian/lib/tkmon/TKMON/Extension/Host/DefaultAttributes.php:104
 msgid "Hostname"
 msgstr "Hostname"
 
@@ -1360,13 +1360,13 @@ msgstr "Setup prüfen"
 
 #: /tmp/tkmon-templates//88627f8e59f58cd4667573f5afcb.php:26
 msgid ""
-"Test your Call-Home-Servive setup here. An encrypted heartbeat will be sent "
+"Test your Call-Home-Service setup here. An encrypted heartbeat will be sent "
 "to Thomas-Krenn, which is bounced back directly to your configured contact "
 "mail address."
 msgstr ""
 "Testen Sie Ihren Call-Home-Service. Ein verschlüsselter Heartbeat wird zu "
 "Thomas-Krenn gesendet und vor dort direkt zu Ihrer konfigurierten E-Mail "
-"Adresse zurück geschickt"
+"Adresse zurück geschickt."
 
 #: /tmp/tkmon-templates//88627f8e59f58cd4667573f5afcb.php:40
 msgid ""
@@ -1594,7 +1594,7 @@ msgid ""
 "configuration file on the command line."
 msgstr ""
 "Für die SMS-Funktion muss ein <a target=\"_blank\" href=\"https://www.thomas-"
-"krenn.com/en/wiki/CEP_CT63_Modem\">CEP CT63 Modem</a> mit Ihrer Appliance "
+"krenn.com/de/wiki/CEP_CT63_Modem\">CEP CT63 Modem</a> mit Ihrer Appliance "
 "verbunden sein.\n"
 "        Verwenden Sie am besten eine Prepaid SIM-Karte, um hohe SMS-Gebühren "
 "im Falle einer Fehlkonfiguration zu vermeiden.\n"
@@ -1999,83 +1999,6 @@ msgstr "Test ausführen"
 msgid "No problems found, everything is OK."
 msgstr "Keine Probleme gefunden, alles OK."
 
-#: /home/tniedermeier/tkdata/git/git-thomas/georg-tkmon-debian/lib/tkmon/TKMON/Extension/Host/ThomasKrennAttributes.php:157
-msgid "Serial"
-msgstr "Seriennummer"
-
-#: /home/tniedermeier/tkdata/git/git-thomas/georg-tkmon-debian/lib/tkmon/TKMON/Extension/Host/ThomasKrennAttributes.php:162
-msgid "Operating system"
-msgstr "Betriebssystem"
-
-#: /home/tniedermeier/tkdata/git/git-thomas/georg-tkmon-debian/lib/tkmon/TKMON/Extension/Host/ThomasKrennAttributes.php:171
-msgid "Thomas-Krenn wiki link"
-msgstr "Thomas-Krenn Wiki Link"
-
-#: /home/tniedermeier/tkdata/git/git-thomas/georg-tkmon-debian/lib/tkmon/TKMON/Extension/Host/ThomasKrennAttributes.php:176
-msgid "Thomas-Krenn product title"
-msgstr "Thomas-Krenn Produktname"
-
-#: /home/tniedermeier/tkdata/git/git-thomas/georg-tkmon-debian/lib/tkmon/TKMON/Extension/Host/ThomasKrennAttributes.php:185
-msgid "IPMI IP address"
-msgstr "IPMI IP Adresse"
-
-#: /home/tniedermeier/tkdata/git/git-thomas/georg-tkmon-debian/lib/tkmon/TKMON/Extension/Host/ThomasKrennAttributes.php:190
-msgid "IPMI user"
-msgstr "IPMI User"
-
-#: /home/tniedermeier/tkdata/git/git-thomas/georg-tkmon-debian/lib/tkmon/TKMON/Extension/Host/ThomasKrennAttributes.php:195
-msgid "IPMI password"
-msgstr "IPMI Passwort"
-
-#: /home/tniedermeier/tkdata/git/git-thomas/georg-tkmon-debian/lib/tkmon/TKMON/Extension/Host/ThomasKrennAttributes.php:200
-msgid "SNMP community"
-msgstr "SNMP Community"
-
-#: /home/tniedermeier/tkdata/git/git-thomas/georg-tkmon-debian/lib/tkmon/TKMON/Extension/Host/ThomasKrennAttributes.php:205
-msgid "SNMP V3 username"
-msgstr "SNMP V3 Benutzername"
-
-#: /home/tniedermeier/tkdata/git/git-thomas/georg-tkmon-debian/lib/tkmon/TKMON/Extension/Host/ThomasKrennAttributes.php:210
-msgid "SNMP V3 password"
-msgstr "SNMP V3 Passwort"
-
-#: /home/tniedermeier/tkdata/git/git-thomas/georg-tkmon-debian/lib/tkmon/TKMON/Extension/Host/ThomasKrennAttributes.php:215
-msgid "SNMP V3 priv password"
-msgstr "SNMP V3 Privacy Passwort"
-
-#: /home/tniedermeier/tkdata/git/git-thomas/georg-tkmon-debian/lib/tkmon/TKMON/Extension/Host/DefaultAttributes.php:110
-msgid "Parent hosts"
-msgstr "Parent Hosts"
-
-#: /home/tniedermeier/tkdata/git/git-thomas/georg-tkmon-debian/lib/tkmon/TKMON/Action/Expose/System/Configuration/Mail.php:43
-msgid "Mail config"
-msgstr "Mail Einstellungen"
-
-#: /home/tniedermeier/tkdata/git/git-thomas/georg-tkmon-debian/lib/tkmon/TKMON/Action/Expose/System/Configuration/Mail.php:73
-msgid "Email"
-msgstr "E-Mail"
-
-#: /home/tniedermeier/tkdata/git/git-thomas/georg-tkmon-debian/lib/tkmon/TKMON/Action/Expose/System/Configuration/Mail.php:79
-#: /home/tniedermeier/tkdata/git/git-thomas/georg-tkmon-debian/lib/tkmon/TKMON/Action/Expose/System/Configuration/Mail.php:85
-msgid "Mandatory"
-msgstr "verpflichtend"
-
-#: /home/tniedermeier/tkdata/git/git-thomas/georg-tkmon-debian/lib/tkmon/TKMON/Action/Expose/System/Configuration/Mail.php:122
-msgid "IP"
-msgstr "IP"
-
-#: /home/tniedermeier/tkdata/git/git-thomas/georg-tkmon-debian/lib/tkmon/TKMON/Action/Expose/System/Configuration/Backup.php:142
-msgid "Password is empty or does not match"
-msgstr "Passwort ist leer oder stimmt nicht überein"
-
-#: /home/tniedermeier/tkdata/git/git-thomas/georg-tkmon-debian/lib/tkmon/TKMON/Action/Expose/System/Icinga/Daemon.php:56
-msgid "Not running"
-msgstr "läuft nicht"
-
-#: /home/tniedermeier/tkdata/git/git-thomas/georg-tkmon-debian/lib/tkmon/TKMON/Action/Expose/System/Icinga/Daemon.php:65
-msgid "Running"
-msgstr "läuft"
-
 #: /home/tniedermeier/tkdata/git/git-thomas/georg-tkmon-debian/lib/tkmon/TKMON/Action/Expose/ThomasKrenn/Alert/Configuration.php:73
 msgid "Person"
 msgstr "Person"
@@ -2107,6 +2030,87 @@ msgstr "Service-Name"
 #: /home/tniedermeier/tkdata/git/git-thomas/georg-tkmon-debian/lib/tkmon/TKMON/Action/Expose/Monitor/Icinga/Services.php:399
 msgid "Catalogue identifier"
 msgstr "Katalog ID"
+
+#: /home/tniedermeier/tkdata/git/git-thomas/georg-tkmon-debian/lib/tkmon/TKMON/Action/Expose/System/Icinga/Daemon.php:56
+msgid "Not running"
+msgstr "läuft nicht"
+
+#: /home/tniedermeier/tkdata/git/git-thomas/georg-tkmon-debian/lib/tkmon/TKMON/Action/Expose/System/Icinga/Daemon.php:65
+msgid "Running"
+msgstr "läuft"
+
+#: /home/tniedermeier/tkdata/git/git-thomas/georg-tkmon-debian/lib/tkmon/TKMON/Action/Expose/System/Configuration/Mail.php:44
+msgid "Mail config"
+msgstr "Mail Einstellungen"
+
+#: /home/tniedermeier/tkdata/git/git-thomas/georg-tkmon-debian/lib/tkmon/TKMON/Action/Expose/System/Configuration/Mail.php:74
+msgid "Email"
+msgstr "E-Mail"
+
+#: /home/tniedermeier/tkdata/git/git-thomas/georg-tkmon-debian/lib/tkmon/TKMON/Action/Expose/System/Configuration/Mail.php:80
+#: /home/tniedermeier/tkdata/git/git-thomas/georg-tkmon-debian/lib/tkmon/TKMON/Action/Expose/System/Configuration/Mail.php:86
+msgid "Mandatory"
+msgstr "verpflichtend"
+
+#: /home/tniedermeier/tkdata/git/git-thomas/georg-tkmon-debian/lib/tkmon/TKMON/Action/Expose/System/Configuration/Mail.php:123
+msgid "IP"
+msgstr "IP"
+
+#: /home/tniedermeier/tkdata/git/git-thomas/georg-tkmon-debian/lib/tkmon/TKMON/Action/Expose/System/Configuration/Backup.php:142
+msgid "Password is empty or does not match"
+msgstr "Passwort ist leer oder stimmt nicht überein"
+
+#: /home/tniedermeier/tkdata/git/git-thomas/georg-tkmon-debian/lib/tkmon/TKMON/Extension/Host/ThomasKrennAttributes.php:163
+msgid "Serial"
+msgstr "Seriennummer"
+
+#: /home/tniedermeier/tkdata/git/git-thomas/georg-tkmon-debian/lib/tkmon/TKMON/Extension/Host/ThomasKrennAttributes.php:168
+msgid "Operating system"
+msgstr "Betriebssystem"
+
+#: /home/tniedermeier/tkdata/git/git-thomas/georg-tkmon-debian/lib/tkmon/TKMON/Extension/Host/ThomasKrennAttributes.php:177
+msgid "Thomas-Krenn wiki link"
+msgstr "Thomas-Krenn Wiki Link"
+
+#: /home/tniedermeier/tkdata/git/git-thomas/georg-tkmon-debian/lib/tkmon/TKMON/Extension/Host/ThomasKrennAttributes.php:182
+msgid "Thomas-Krenn product title"
+msgstr "Thomas-Krenn Produktname"
+
+#: /home/tniedermeier/tkdata/git/git-thomas/georg-tkmon-debian/lib/tkmon/TKMON/Extension/Host/ThomasKrennAttributes.php:191
+msgid "IPMI IP address"
+msgstr "IPMI IP Adresse"
+
+#: /home/tniedermeier/tkdata/git/git-thomas/georg-tkmon-debian/lib/tkmon/TKMON/Extension/Host/ThomasKrennAttributes.php:196
+msgid "IPMI user"
+msgstr "IPMI User"
+
+#: /home/tniedermeier/tkdata/git/git-thomas/georg-tkmon-debian/lib/tkmon/TKMON/Extension/Host/ThomasKrennAttributes.php:201
+msgid "IPMI password"
+msgstr "IPMI Passwort"
+
+#: /home/tniedermeier/tkdata/git/git-thomas/georg-tkmon-debian/lib/tkmon/TKMON/Extension/Host/ThomasKrennAttributes.php:206
+msgid "SNMP community"
+msgstr "SNMP Community"
+
+#: /home/tniedermeier/tkdata/git/git-thomas/georg-tkmon-debian/lib/tkmon/TKMON/Extension/Host/ThomasKrennAttributes.php:211
+msgid "SNMP V3 username"
+msgstr "SNMP V3 Benutzername"
+
+#: /home/tniedermeier/tkdata/git/git-thomas/georg-tkmon-debian/lib/tkmon/TKMON/Extension/Host/ThomasKrennAttributes.php:216
+msgid "SNMP V3 password"
+msgstr "SNMP V3 Passwort"
+
+#: /home/tniedermeier/tkdata/git/git-thomas/georg-tkmon-debian/lib/tkmon/TKMON/Extension/Host/ThomasKrennAttributes.php:221
+msgid "SNMP V3 priv password"
+msgstr "SNMP V3 Privacy Passwort"
+
+#: /home/tniedermeier/tkdata/git/git-thomas/georg-tkmon-debian/lib/tkmon/TKMON/Extension/Host/ThomasKrennAttributes.php:226
+msgid "SSH Pubkey Path"
+msgstr "SSH Pubkey Pfad"
+
+#: /home/tniedermeier/tkdata/git/git-thomas/georg-tkmon-debian/lib/tkmon/TKMON/Extension/Host/DefaultAttributes.php:110
+msgid "Parent hosts"
+msgstr "Parent Hosts"
 
 #~ msgid "Type something like Web, Port, HTTP or things like that"
 #~ msgstr "Tippen Sie z.b. Web, Port, HTTP, ..."
