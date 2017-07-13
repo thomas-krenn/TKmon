@@ -1,7 +1,26 @@
+<<<<<<< HEAD
 TKmon 2.1.1 (2016-07-25)
 
 	2.1.1 Minor release
 	* Improved Sensormetrix Neon110 temperature and humidity check
+=======
+TKmon 2.2.0 (2017-07-13)
+
+    2.2.0 Bugfix release
+    (https://git.netways.org/thomas-krenn/tkmon-web/milestones/1)
+
+    *** We changed the issue tracker ***
+
+    * #2 Use the configured "Sender address" for notifications (instead of icinga user @ hostname)
+    * #3 Automatically restart (reload) Icinga after changing the Mail settings (sender address)
+    * #6 Caching is not available anymore, rework provider
+    * #5 SSH access is not changeable
+
+    * FIX PHP 7 compatibility
+    * FIX JS dependency bug
+    * Using systemctl for system commands
+    * Update of the dev environment
+>>>>>>> 499aec9b5dcabd5d5babcff99d4cc13d4b34ae44
 
 TKmon 2.1.0 (2016-06-06)
 
