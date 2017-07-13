@@ -22,7 +22,7 @@
     "mvc.action.namespace": "\\TKMON\\Action\\Expose",
 
     "app.version.major":    2,
-    "app.version.minor":    1,
+    "app.version.minor":    2,
     "app.version.patch":    0,
     "app.version.full":     "{app.version.major}.{app.version.minor}.{app.version.patch}",
     "app.name":             "TKmon",
