@@ -1,9 +1,3 @@
-<<<<<<< HEAD
-TKmon 2.1.1 (2016-07-25)
-
-	2.1.1 Minor release
-	* Improved Sensormetrix Neon110 temperature and humidity check
-=======
 TKmon 2.2.0 (2017-07-13)
 
     2.2.0 Bugfix release
@@ -20,7 +14,11 @@ TKmon 2.2.0 (2017-07-13)
     * FIX JS dependency bug
     * Using systemctl for system commands
     * Update of the dev environment
->>>>>>> 499aec9b5dcabd5d5babcff99d4cc13d4b34ae44
+
+TKmon 2.1.1 (2016-07-25)
+
+    2.1.1 Minor release
+    * Improved Sensormetrix Neon110 temperature and humidity check
 
 TKmon 2.1.0 (2016-06-06)
 
