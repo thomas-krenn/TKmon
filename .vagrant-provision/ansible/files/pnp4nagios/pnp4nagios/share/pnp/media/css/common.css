@@ -1,0 +1,206 @@
+body {
+	font-family: sans-serif;
+	font-size: 11px;
+	margin: 0px;
+	background-color: #ffffff;
+	color: #000000;
+	height: 100%;
+}
+
+table.body {
+	border-spacing:  0px;
+}
+
+a {
+	color: #0000cc;
+}
+
+a:hover, a:visited, a:active {
+	color: #880000;
+}
+
+a.active { color: #88cc00; }
+
+.gh {
+	min-height: 150px;
+}
+
+
+img.icon {
+    width: 32px;
+    height: 32px;
+}
+
+div.graph {
+	background: url(../images/1x1.gif);
+}
+
+div.right {
+	width: 260px;
+	margin-top: 4px;
+	padding: 4px;
+}
+
+div.left {
+	padding: 4px 4px 4px 4px;
+	margin: 4px 4px 4px 0px; 
+}
+
+.cb {
+	clear: both;
+}
+
+.cl {
+	clear: left;
+}
+
+.cr {
+	clear: right;
+}
+
+img {
+	border: none;
+}
+
+input.textbox {
+	width: 97%;
+}
+
+.b1 {
+	border: solid #FE880F;
+	border-width: 1px;
+}
+.b0 {
+	border-width: 0px;
+}
+.w32 {
+	width: 32%;
+}
+.w66 {
+	width: 66%;
+}
+.w90 {
+	width: 90%;
+}
+.w99 {
+	width: 99%;
+}
+.w98 {
+	width: 98%;
+}
+.w100 {
+	width: 100%;
+}
+
+.p2 {
+	padding: 2px;
+}
+.p4 {
+	padding: 4px;
+}
+.multi0 {
+	padding-left:14px;
+	background: url(../images/int.gif) no-repeat left;
+}
+.multi1 {
+	padding-left:14px;
+}
+.multi2 {
+	padding-left:14px;
+	margin-left:8px;
+}
+a.active {
+	background: url(../images/int.gif) no-repeat left;
+}
+a.inactive {
+	background: url(../images/int2.gif) no-repeat left;
+}
+div.header {
+	margin-top: 2px;
+	padding: 2px;
+	background-color: #c5d8d1;
+}
+
+div.pagebody {
+	display: block;
+	float: left;
+	padding: 4px;
+}
+
+div.logo {
+	padding: 6px;
+	text-align: center;
+	vertical-align: center;
+}
+
+ul {
+    line-height:1.5em;
+    list-style-type:square;
+    margin:0 0 0.5em 1.5em;
+    padding:0;
+}
+
+img.medialeft {
+    border: 0;
+    float: left;
+    margin: 0 1.5em 0 0;
+}
+
+img.mediaright {
+    border: 0;
+    float: right;
+    margin: 0 0 0 1.5em;
+}
+
+h1,h2,h3,h4,h5 {
+    border-bottom: 1px solid;
+    clear: left;
+    margin: 0 0 1em 0;
+    padding: 0.5em 0 0 0;
+}
+
+/* code blocks by indention */
+pre.code, pre.file {
+    width: auto !important;
+    width: 98%;
+    padding: 0.5em;
+    border: 1px dashed;
+    border-left: 3px solid;
+    overflow: auto;
+}
+
+#basket_items { 
+    list-style-type: none; margin: 0; padding: 0; 
+}
+
+#basket_items li { 
+    margin: 0px 2px 2px 2px; height: 16px; 
+}
+
+img.ui-datepicker-trigger {
+  position:relative;
+  bottom:-6px; 
+}
+
+.ui-timepicker-div .ui-widget-header { margin-bottom: 8px; }
+.ui-timepicker-div dl { text-align: left; }
+.ui-timepicker-div dl dt { height: 25px; }
+.ui-timepicker-div dl dd { margin: -25px 10px 10px 65px; }
+.ui-timepicker-div td { font-size: 90%; }
+.ui-tpicker-grid-label { background: none; border: none; margin: 0; padding: 0; }
+
+ul.colorscheme{
+    list-style: none;
+    padding: 2px;
+    /*margin: 2px auto;*/
+}
+
+li.colorscheme {
+    float: left;
+}
+span.colorscheme {
+    border: 1px solid #C0C0C0;
+    display:inline-block;
+    width: 30px;
+    height: 30px;
+}
