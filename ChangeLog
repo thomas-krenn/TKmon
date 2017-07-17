@@ -10,6 +10,9 @@ TKmon 2.2.0 (2017-07-13)
     * #6 Caching is not available anymore, rework provider
     * #5 SSH access is not changeable
 
+    * SSH-based Servicechecks
+    * IPMI Custom Parameter Servicechecks
+    * Network UPS Tools Servicechecks
     * FIX PHP 7 compatibility
     * FIX JS dependency bug
     * Using systemctl for system commands
