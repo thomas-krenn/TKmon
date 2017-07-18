@@ -3,6 +3,8 @@
 composer.lock
 composer.phar
 .vagrant
+Vagrantfile
+.vagrant-provision/
 docs/*html
 etc/icinga/system/contacts/*cfg
 etc/icinga/system/hosts/*cfg
