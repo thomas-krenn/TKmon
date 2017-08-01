@@ -109,6 +109,12 @@ class ThomasKrennAttributes extends ReflectionHandler implements ApplicationMode
     const CV_SNMP3_PRIVPASSWORD = 'snmp3_privpassword';
 
     /**
+     * SSH pubkey path
+     * @var string
+     */
+    const CV_SSH_PUBKEY_PATH = 'ssh_pubkey_path';
+
+    /**
      * DI container
      * @var \Pimple
      */
@@ -213,6 +219,11 @@ class ThomasKrennAttributes extends ReflectionHandler implements ApplicationMode
 		self::CV_SNMP3_PRIVPASSWORD => new Text(
                     self::CV_SNMP3_PRIVPASSWORD,
                     _('SNMP V3 priv password'),
+                    false
+                ),
+		self::CV_SSH_PUBKEY_PATH => new Text(
+                    self::CV_SSH_PUBKEY_PATH,
+                    _('SSH Pubkey Path'),
                     false
                 )
             )

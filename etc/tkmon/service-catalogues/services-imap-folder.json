@@ -1,0 +1,83 @@
+{
+        "type": "service",
+        "version": "1.0",
+        "description": "Services catalogue for imap inbox folder check",
+        "data": [
+
+{
+        "service_description": "imap-inbox-check",
+        "display_name": "IMAP-inbox-check",
+        "check_command": {
+                "command_name": "check_imap_mailbox",
+                "arguments": [
+		{
+		        "label": "Mailserver Hostname",
+                        "description": {
+                                "en_US": "Mailserver Hostname",
+                                "de_DE": "Mailserver Hostname"
+                        },
+                        "validation": "string",
+                        "argument": "--host=",
+                        "value": ""
+                },
+	        {
+                        "label": "User",
+                        "description": {
+                                "en_US": "User",
+                                "de_DE": "User"
+                        },
+                        "validation": "string",
+                        "argument": "--user=",
+                        "value": ""
+                },
+                {
+                        "label": "Password",
+                        "description": {
+                                "en_US": "Insert password",
+                                "de_DE": "Passwort angeben"
+                        },
+                        "validation": "string",
+                        "argument": "--pass=",
+                        "value": ""
+                },
+		{
+                        "label": "Folder",
+                        "description": {
+                                "en_US": "Insert folder",
+                                "de_DE": "Postfach angeben"
+                        },
+                        "validation": "string",
+                        "argument": "--folder=",
+                        "value": ""
+                }
+                ]
+        },
+        "_catalogue_attributes": {
+                "tags": ["imap","inbox"],
+                "name": "check_imap_inbox",
+                "label": "IMAP-inbox-check",
+                "description": {
+                        "en_US": "Checks for new mails in a specific imap inbox",
+                        "de_DE": "Prüft ein spezifisches IMAP Postfach auf neue Mails"
+                },
+                "defined": true,
+                "defined_in": "/etc/nagios-plugins/config/check_imap_inbox.cfg",
+                "doc": {
+                        "en_US": [
+                                "<h4>IMAP Inbox Check</h4>",
+                                "<p>Using this plugin, new mails in a specific inbox folder",
+                                "of an imap server can be monitored with Nagios or Icinga.</p>"
+                        ],
+                        "de_DE": [
+                                "<h4>IMAP Inbox Check</h4>",
+                                "<p>Mit diesem Plugin können neue Mails in einem spezifischen Postfach eines",
+                                "IMAP Servers mit Nagios oder Icinga überwacht werden.</p>"
+                        ]
+                },
+                "tk_notify": false,
+                "tk_notify_default": false
+        }
+}
+
+        ]
+}

@@ -1,0 +1,133 @@
+{
+  "type": "service",
+  "version": "1.0",
+  "description": "Services catalogue for network ups tools checks",
+  "data": [{
+    "service_description": "check-ups-basic",
+    "display_name": "Check-UPS-Basic",
+    "check_command": {
+      "command_name": "check_ups_basic",
+      "arguments": [{
+        "label": "Name of UPS",
+        "description": {
+          "en_US": "Insert the name of the ups",
+          "de_DE": "Geben Sie die Bezeichnung der USV an"
+        },
+        "validation": "string",
+        "argument": "-u",
+        "value": ""
+      }]
+    },
+    "_catalogue_attributes": {
+      "tags": ["ups","nut","basic"],
+      "name": "check_ups_basic",
+      "label": "Check-UPS-Basic",
+      "description": {
+        "en_US": "Checks via Network UPS Tools connected UPS devices",
+        "de_DE": "Überprüft mit den Network UPS Tools verbundenen USV Geräte"
+      },
+      "defined": true,
+      "defined_in": "/etc/nagios-plugins/config/check_network_ups_tools.cfg",
+      "doc": {
+        "en_US": [
+          "<h4>Check UPS Parameter</h4>",
+          "<p>Using this plugin, various UPS devices connected to Network UPS Tools",
+          "can be monitored with Nagios or Icinga.</p>"
+        ],
+        "de_DE": [
+          "<h4>Check UPS Parameter</h4>",
+          "<p>Mit diesem Plugin können verschiedene USV Geräte",
+          "mit Nagios oder Icinga über die Network UPS Tools überwacht werden.</p>"
+        ]
+      },
+      "tk_notify": false,
+      "tk_notify_default": false
+    }},
+    {
+    "service_description": "check-ups-parameter",
+    "display_name": "Check-UPS-Parameter",
+    "check_command": {
+      "command_name": "check_ups_parameter",
+      "arguments": [{
+        "label": "Name of UPS",
+        "description": {
+          "en_US": "Insert the name of the ups",
+          "de_DE": "Geben Sie die Bezeichnung der USV an"
+        },
+        "validation": "string",
+        "argument": "-u",
+        "value": ""
+      }, {
+        "label": "Port number",
+        "description": {
+          "en_US": "Insert the port number",
+          "de_DE": "Geben Sie die Port Nummer an"
+        },
+        "validation": "string",
+        "argument": "-p",
+        "value": ""
+      }, {
+        "label": "Values",
+        "description": {
+          "en_US": "Insert value, valid values are LINE, TEMP, BATTPCT or LOADPCT",
+          "de_DE": "Wert angeben, erlaubte Werte sind LINE, TEMP, BATTPCT or LOADPCT"
+        },
+        "validation": "string",
+        "argument": "-v",
+        "value": ""
+      }, {
+        "label": "Warning threshold",
+        "description": {
+          "en_US": "Insert warning threshold syntax: https://nagios-plugins.org/doc/guidelines.html#THRESHOLDFORMAT",
+          "de_DE": "Warning Grenzwert syntax: https://nagios-plugins.org/doc/guidelines.html#THRESHOLDFORMAT"
+        },
+        "validation": "string",
+        "argument": "-w",
+        "value": ""
+      }, {
+        "label": "Critical threshold",
+        "description": {
+          "en_US": "Insert critical threshold syntax: https://nagios-plugins.org/doc/guidelines.html#THRESHOLDFORMAT",
+          "de_DE": "Critical Grenzwert syntax: https://nagios-plugins.org/doc/guidelines.html#THRESHOLDFORMAT"
+        },
+        "validation": "string",
+        "argument": "-c",
+        "value": ""
+      },  {
+        "label": "Timeout",
+        "description": {
+          "en_US": "Insert timeout value in seconds",
+          "de_DE": "Timeout Wert in Sekunden angeben"
+        },
+        "validation": "string",
+        "argument": "-t",
+        "value": ""
+      }]
+    },
+    "_catalogue_attributes": {
+      "tags": ["ups","nut","parameter"],
+      "name": "check_ups_parameter",
+      "label": "Check-UPS-Parameter",
+      "description": {
+        "en_US": "Checks via Network UPS Tools connected UPS devices",
+        "de_DE": "Überprüft mit den Network UPS Tools verbundenen USV Geräte"
+      },
+      "defined": true,
+      "defined_in": "/etc/nagios-plugins/config/check_network_ups_tools.cfg",
+      "doc": {
+        "en_US": [
+          "<h4>Check UPS Parameter</h4>",
+          "<p>Using this plugin, various UPS devices connected to Network UPS Tools",
+          "can be monitored with Nagios or Icinga.</p>"
+        ],
+        "de_DE": [
+          "<h4>Check UPS Parameter</h4>",
+          "<p>Mit diesem Plugin können verschiedene USV Geräte",
+          "mit Nagios oder Icinga über die Network UPS Tools überwacht werden.</p>"
+        ]
+      },
+      "tk_notify": false,
+      "tk_notify_default": false
+    }
+}]
+}

@@ -1,0 +1,224 @@
+{
+  "type": "service",
+  "version": "1.0",
+  "description": "Services catalogue for nagios built-in ssh checks",
+  "data": [{
+    "service_description": "check-by-ssh-users",
+    "display_name": "Check-by-SSH-Users",
+    "check_command": {
+      "command_name": "check_by_ssh_users",
+      "arguments": [{
+        "label": "Login name",
+        "description": {
+          "en_US": "Insert the user name for your SSH connection",
+          "de_DE": "Geben Sie den Benutzernamen an, der für die SSH Verbindung verwendet wird"
+        },
+        "validation": "string",
+        "argument": "-l",
+        "value": ""
+      }, {
+        "label": "Warning threshold",
+        "description": {
+          "en_US": "Insert warning threshold syntax: https://nagios-plugins.org/doc/guidelines.html#THRESHOLDFORMAT",
+          "de_DE": "Warning Grenzwert syntax: https://nagios-plugins.org/doc/guidelines.html#THRESHOLDFORMAT"
+        },
+        "validation": "string",
+        "argument": "-w",
+        "value": ""
+      }, {
+        "label": "Critical threshold",
+        "description": {
+          "en_US": "Insert critical threshold syntax: https://nagios-plugins.org/doc/guidelines.html#THRESHOLDFORMAT",
+          "de_DE": "Critical Grenzwert syntax: https://nagios-plugins.org/doc/guidelines.html#THRESHOLDFORMAT"
+        },
+        "validation": "string",
+        "argument": "-c",
+        "value": ""
+      }]
+    },
+    "_catalogue_attributes": {
+      "tags": ["ssh","users"],
+      "name": "check_by_ssh_users",
+      "label": "Check-by-SSH-Users",
+      "description": {
+        "en_US": "Checks via SSH the monitored system for logged in users",
+        "de_DE": "Überprüft über SSH ob am überwachten System Benutzer angemeldet sind"
+      },
+      "defined": true,
+      "defined_in": "/etc/nagios-plugins/config/check_by_ssh.cfg",
+      "doc": {
+        "en_US": [
+          "<h4>Check by SSH Users</h4>",
+          "<p>Using this plugin, logins from users of a system",
+          "can be monitored with Nagios or Icinga by SSH.</p>"
+        ],
+        "de_DE": [
+          "<h4>Check by SSH Users</h4>",
+          "<p>Mit diesem Plugin können Logins von Benutzern eines Systems",
+          "mit Nagios oder Icinga über SSH überwacht werden.</p>"
+        ]
+      },
+      "tk_notify": false,
+      "tk_notify_default": false
+    }},
+    {
+    "service_description": "check-by-ssh-disk",
+    "display_name": "Check-by-SSH-Disk",
+    "check_command": {
+      "command_name": "check_by_ssh_disk",
+      "arguments": [{
+        "label": "Login name",
+        "description": {
+          "en_US": "Insert the user name for your SSH connection",
+          "de_DE": "Geben Sie den Benutzernamen an, der für die SSH Verbindung verwendet wird"
+        },
+        "validation": "string",
+        "argument": "-l",
+        "value": ""
+      }, {
+        "label": "Warning threshold",
+        "description": {
+          "en_US": "Insert warning threshold syntax: https://nagios-plugins.org/doc/guidelines.html#THRESHOLDFORMAT",
+          "de_DE": "Warning Grenzwert syntax: https://nagios-plugins.org/doc/guidelines.html#THRESHOLDFORMAT"
+        },
+        "validation": "string",
+        "argument": "-w",
+        "value": ""
+      }, {
+        "label": "Critical threshold",
+        "description": {
+          "en_US": "Insert critical threshold syntax: https://nagios-plugins.org/doc/guidelines.html#THRESHOLDFORMAT",
+          "de_DE": "Critical Grenzwert syntax: https://nagios-plugins.org/doc/guidelines.html#THRESHOLDFORMAT"
+        },
+        "validation": "string",
+        "argument": "-c",
+        "value": ""
+      }]
+    },
+    "_catalogue_attributes": {
+      "tags": ["ssh","disk"],
+      "name": "check_by_ssh_disk",
+      "label": "Check-by-SSH-Disk",
+      "description": {
+        "en_US": "Checks via SSH the amount of used disk space on a monitored system",
+        "de_DE": "Überprüft über SSH den belegten Festplattenspeicher am überwachten System"
+      },
+      "defined": true,
+      "defined_in": "/etc/nagios-plugins/config/check_by_ssh.cfg",
+      "doc": {
+        "en_US": [
+          "<h4>Check by SSH Disk</h4>",
+          "<p>Using this plugin, the amount of used disk space of a system",
+          "can be monitored with Nagios or Icinga by SSH.</p>"
+        ],
+        "de_DE": [
+          "<h4>Check by SSH Disk</h4>",
+          "<p>Mit diesem Plugin kann der belegte Festplattenspeicher eines Systems",
+          "mit Nagios oder Icinga über SSH überwacht werden.</p>"
+        ]
+      },
+      "tk_notify": false,
+      "tk_notify_default": false
+    }},
+    {
+    "service_description": "check-by-ssh-load",
+    "display_name": "Check-by-SSH-Load",
+    "check_command": {
+      "command_name": "check_by_ssh_load",
+      "arguments": [{
+        "label": "Login name",
+        "description": {
+          "en_US": "Insert the user name for your SSH connection",
+          "de_DE": "Geben Sie den Benutzernamen an, der für die SSH Verbindung verwendet wird"
+        },
+        "validation": "string",
+        "argument": "-l",
+        "value": ""
+      }, {
+        "label": "Warning threshold",
+        "description": {
+          "en_US": "Insert warning threshold: WLOAD1,WLOAD5,WLOAD15",
+          "de_DE": "Warning Grenzwert: WLOAD1,WLOAD5,WLOAD15"
+        },
+        "validation": "string",
+        "argument": "-w",
+        "value": ""
+      }, {
+        "label": "Critical threshold",
+        "description": {
+          "en_US": "Insert critical threshold: CLOAD1,CLOAD5,CLOAD15",
+          "de_DE": "Critical Grenzwert: CLOAD1,CLOAD5,CLOAD15"
+        },
+        "validation": "string",
+        "argument": "-c",
+        "value": ""
+      }]
+    },
+    "_catalogue_attributes": {
+      "tags": ["ssh","load"],
+      "name": "check_by_ssh_load",
+      "label": "Check-by-SSH-Load",
+      "description": {
+        "en_US": "Checks via SSH the current system load average of a monitored system",
+        "de_DE": "Überprüft über SSH den Mittelwert der gegenwärtigen Systemlast eines überwachten Systems"
+      },
+      "defined": true,
+      "defined_in": "/etc/nagios-plugins/config/check_by_ssh.cfg",
+      "doc": {
+        "en_US": [
+          "<h4>Check by SSH Load</h4>",
+          "<p>Using this plugin, the current system load average of a monitored system",
+          "can be monitored with Nagios or Icinga by SSH.</p>"
+        ],
+        "de_DE": [
+          "<h4>Check by SSH Load</h4>",
+          "<p>Mit diesem Plugin kann der Mittelwert der gegenwärtigen Systemlast eines Systems",
+          "mit Nagios oder Icinga über SSH überwacht werden.</p>"
+        ]
+      },
+      "tk_notify": false,
+      "tk_notify_default": false
+    }},
+    {
+    "service_description": "check-by-ssh-apt",
+    "display_name": "Check-by-SSH-Apt",
+    "check_command": {
+      "command_name": "check_by_ssh_apt",
+      "arguments": [{
+        "label": "Login name",
+        "description": {
+          "en_US": "Insert the user name for your SSH connection",
+          "de_DE": "Geben Sie den Benutzernamen an, der für die SSH Verbindung verwendet wird"
+        },
+        "validation": "string",
+        "argument": "-l",
+        "value": ""
+      }]
+    },
+    "_catalogue_attributes": {
+      "tags": ["ssh","apt"],
+      "name": "check_by_ssh_apt",
+      "label": "Check-by-SSH-Apt",
+      "description": {
+        "en_US": "Checks via SSH for software updates of monitored systems with package management",
+        "de_DE": "Überprüft über SSH ob am überwachten paketbasierten System Software Updates verfügbar sind"
+      },
+      "defined": true,
+      "defined_in": "/etc/nagios-plugins/config/check_by_ssh.cfg",
+      "doc": {
+        "en_US": [
+          "<h4>Check by SSH Apt</h4>",
+          "<p>Using this plugin, available software updates of a system",
+          "can be monitored with Nagios or Icinga by SSH.</p>"
+        ],
+        "de_DE": [
+          "<h4>Check by SSH Apt</h4>",
+          "<p>Mit diesem Plugin können verfügbare Softwareupdates eines Systems",
+          "mit Nagios oder Icinga über SSH überwacht werden.</p>"
+        ]
+      },
+      "tk_notify": false,
+      "tk_notify_default": false
+    }
+  }]
+}

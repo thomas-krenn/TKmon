@@ -22,7 +22,7 @@
     "mvc.action.namespace": "\\TKMON\\Action\\Expose",
 
     "app.version.major":    2,
-    "app.version.minor":    1,
+    "app.version.minor":    2,
     "app.version.patch":    0,
     "app.version.full":     "{app.version.major}.{app.version.minor}.{app.version.patch}",
     "app.name":             "TKmon",
@@ -53,7 +53,7 @@
 
     "doc.basepath":         "{core.share_dir}/templates/doc",
 
-    "system.interface":     "eth0",
+    "system.interface":     "enp0s5",
     "system.apache_owner":  "www-data.www-data",
 
     "locale.domain":        "messages",
@@ -220,7 +220,6 @@
             "sudo": true
         },
 
-
         "pkill": {
             "path": "/usr/bin/pkill",
             "sudo": true
@@ -228,6 +227,11 @@
 
         "async_update": {
             "path": "/usr/local/sbin/async_update.py",
+            "sudo": true
+        },
+
+        "systemctl": {
+            "path": "/bin/systemctl",
             "sudo": true
         }
     }

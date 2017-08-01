@@ -137,8 +137,8 @@
                                         },
                                         "validation": "string",
                                         "argument": "-w",
-                                        "value": ""+":"
-                                },
+                                        "value": ""
+				},
 				{
                                         "label": "Minutes critical",
                                         "description": {

@@ -26,4 +26,8 @@ Defaults:%tkmonweb !env_reset
 %tkmonweb ALL=(ALL)NOPASSWD:/usr/local/sbin/apt-mark-kernel.sh
 %tkmonweb ALL=(ALL)NOPASSWD:/usr/bin/pkill
 %tkmonweb ALL=(ALL)NOPASSWD:/usr/local/sbin/async_update.py
+%tkmonweb ALL=(ALL)NOPASSWD:/bin/systemctl
+
+# Use both, debug and productive commands
 nagios ALL=(ALL)NOPASSWD:/usr/local/bin/tkalert
+nagios ALL=(ALL)NOPASSWD:/usr/local/bin/tkalert.sh
