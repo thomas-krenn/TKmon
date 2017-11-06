@@ -1,0 +1,56 @@
+{
+  "type": "service",
+  "version": "1.0",
+  "description": "Services catalogue for nagios built-in generic ssh checks",
+  "data": [{
+    "service_description": "check-by-ssh-generic",
+    "display_name": "Check-by-SSH-Generic",
+    "check_command": {
+      "command_name": "check_by_ssh_generic",
+      "arguments": [{
+        "label": "Login name",
+        "description": {
+          "en_US": "Insert the user name for your SSH connection",
+          "de_DE": "Geben Sie den Benutzernamen an, der für die SSH Verbindung verwendet wird"
+        },
+        "validation": "string",
+        "argument": "-l",
+        "value": ""
+      }, {
+        "label": "Custom string",
+        "description": {
+          "en_US": "Insert your custom string you want to execute via SSH",
+          "de_DE": "Geben Sie den selbst definierten String an, den sie per SSH ausführen möchten"
+        },
+        "validation": "string",
+        "argument": "-C",
+        "value": ""
+      }]
+    },
+    "_catalogue_attributes": {
+      "tags": ["ssh","generic"],
+      "name": "check_by_ssh_generic",
+      "label": "Check-by-SSH-Generic",
+      "description": {
+        "en_US": "Checks via SSH a custom defined string",
+        "de_DE": "Überpüft über SSH einen selbst definierten String"
+      },
+      "defined": true,
+      "defined_in": "/etc/nagios-plugins/config/check_by_ssh_generic.cfg",
+      "doc": {
+        "en_US": [
+          "<h4>Check by SSH Generic</h4>",
+          "<p>Using this plugin, you can check a custom defined string",
+          "with Nagios or Icinga by SSH.</p>"
+        ],
+        "de_DE": [
+          "<h4>Check by SSH Generic</h4>",
+          "<p>Mit diesem Plugin können selbst definierte Strings",
+          "mit Nagios oder Icinga über SSH überwacht werden.</p>"
+        ]
+      },
+      "tk_notify": false,
+      "tk_notify_default": false
+    }
+  }]
+}
