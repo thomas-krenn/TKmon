@@ -283,26 +283,17 @@ msgstr ""
 
 #: /tmp/tkmon-templates//0b25358dd8cc01992f6436748665.php:121
 msgid ""
-"The server manufacturer Thomas-Krenn.AG is Europe's leading online store for "
-"servers, server solutions\n"
-"    and quality hosting. The company has currently about 150 employees in "
-"the areas of technology and\n"
-"    development, purchasing, production, quality assurance, sales, marketing "
-"and administration. Medical\n"
-"    practices, educational institutions, medium-sized companies and large "
-"corporations all over Europe\n"
-"    account for the more than 15,000 customers. In 2015 Thomas-Krenn.AG had "
-"33.5 million euros in sales\n"
-"    and about 20 percent growth in relation to 2014."
+"Thomas-Krenn.AG is a leading manufacturer of individual server and storage "
+"systems as well as a provider of data center solutions.\n"
+"    Our online shop offers customers a europewide unique opportunity to "
+"configure customized servers with tested components\n"
+"    in a very short time and install them on the next day. The company "
+"assembles all servers in Germany at its Freyung location.\n"
+"    Since its foundation in 2002, Thomas-Krenn.AG has enjoyed steady organic "
+"growth."
 msgstr ""
 
 #: /tmp/tkmon-templates//0b25358dd8cc01992f6436748665.php:132
-msgid ""
-"All products are assembled in the Lower Bavarian city of Freyung and sent to "
-"the customers within 24 hours."
-msgstr ""
-
-#: /tmp/tkmon-templates//0b25358dd8cc01992f6436748665.php:140
 #: /tmp/tkmon-templates//c687ce196fa3db27abeed8549a6a.php:50
 msgid "Goto Thomas-Krenn"
 msgstr ""
@@ -1383,9 +1374,10 @@ msgstr ""
 #: /tmp/tkmon-templates//9eac6dc1a81a9e8392df6cfeff1b.php:37
 msgid ""
 "To use this feature, a <a target=\"_blank\" href=\"https://www.thomas-krenn."
-"com/en/wiki/CEP_CT63_Modem\">CEP CT63 Modem</a> must be attached to this "
-"appliance.\n"
-"        Use a prepaid SIM card to reduce the risc of a high mobile phone "
+"com/en/wiki/CEP_CT63_Modem\">CEP CT63 Modem</a> or a <a target=\"_blank\" "
+"href=\"https://www.thomas-krenn.com/de/wiki/MultiTech_MTD-H5-2.0\">MultiTech "
+"MTD-H5-2.0</a> must be attached to this appliance.\n"
+"        Use a prepaid SIM card to reduce the risk of a high mobile phone "
 "bill in case of a misconfiguration.\n"
 "        Before you insert the SIM card in the modem, deactivate the SIM "
 "card's PIN code or configure the PIN code in the /etc/smsd.conf "
@@ -1681,9 +1673,9 @@ msgstr ""
 
 #: /tmp/tkmon-templates//f11238696864871b238ccf19444c.php:59
 msgid ""
-"This system uses resolveconf which keeps track of the available DNS servers. "
-"Normally you can leave the fields blank if have configured DHCP on your "
-"interfaces."
+"This system uses a resolv.conf configuration file which keeps track of the "
+"available DNS servers. Normally you can leave the fields blank if you have a "
+"DHCP configured interface."
 msgstr ""
 
 #: /tmp/tkmon-templates//f11238696864871b238ccf19444c.php:66
